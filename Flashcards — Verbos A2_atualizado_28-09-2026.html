@@ -525,7 +525,7 @@
 
 <div id="catView" style="display:none; width:100%; flex-direction:column; align-items:center;"></div>
 <div id="catExport" style="display:none; width:100%; max-width:480px; justify-content:center; margin:0 0 18px;">
-  <button class="export-csv-btn" onclick="exportVerbsCSV()">📥 Baixar Excel (.csv)</button>
+  <button class="export-csv-btn" id="exportCsvBtn" onclick="exportVerbsCSV()">📥 Baixar Excel (.csv)</button>
 </div>
 
 <div id="soundsView" style="display:none; width:100%; flex-direction:column; align-items:center;"></div>
@@ -541,6 +541,7 @@ const UI = {
     title: "Verbos A2 — por padrão",
     sub: "Toque no cartão pra virar",
     tabStudy: "Estudar", tabQuiz: "Testar", tabCat: "Categorias", tabSounds: "Sons",
+    exportCsv: "📥 Baixar Excel (.csv)",
     hint: "toque no cartão pra ver a conjugação",
     prev: "◀ Anterior", next: "Próxima ▶", restart: "Reiniciar ↺",
     speakAll: "🔊 Ouvir as 6 formas",
@@ -554,6 +555,7 @@ const UI = {
     title: "Verbos A2 — por patrón",
     sub: "Toca la tarjeta para darle la vuelta",
     tabStudy: "Estudiar", tabQuiz: "Practicar", tabCat: "Categorías", tabSounds: "Sonidos",
+    exportCsv: "📥 Descargar Excel (.csv)",
     hint: "toca la tarjeta para ver la conjugación",
     prev: "◀ Anterior", next: "Siguiente ▶", restart: "Reiniciar ↺",
     speakAll: "🔊 Escuchar las 6 formas",
@@ -567,6 +569,7 @@ const UI = {
     title: "A2 Verbs — by pattern",
     sub: "Tap the card to flip it",
     tabStudy: "Study", tabQuiz: "Quiz", tabCat: "Categories", tabSounds: "Sounds",
+    exportCsv: "📥 Download Excel (.csv)",
     hint: "tap the card to see the conjugation",
     prev: "◀ Previous", next: "Next ▶", restart: "Restart ↺",
     speakAll: "🔊 Hear all 6 forms",
@@ -1109,6 +1112,7 @@ function setLang(l) {
   document.getElementById('tabSounds').textContent = t('tabSounds');
   document.getElementById('prevBtn').textContent = t('prev');
   document.getElementById('quizRestartBtn').textContent = t('quizRestart');
+  document.getElementById('exportCsvBtn').textContent = t('exportCsv');
 
   render();
   if (mode === 'quiz' && currentQuestion) renderQuiz();
