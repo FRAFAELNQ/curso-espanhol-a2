@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aula de Español A2 — 08/09/2026</title>
+<style>
+:root{
+  --bg:#fef6ff;--card:#fff;--text:#2b1a2e;--muted:#76577d;
+  --pink:#e0218a;--purple:#7c3aed;--turq:#00a992;--yellow:#ffb703;
+  --blue:#2563eb;--soft:#fbe3f4;--border:#ead3e7;--ok:#087f5b;--bad:#b42318;
+}
+@media(prefers-color-scheme:dark){
+ :root{--bg:#160d1c;--card:#27182f;--text:#f7eafb;--muted:#c9acd1;--soft:#3a2148;--border:#50345b;--pink:#ff4fb0;--purple:#a78bfa;--turq:#2dd4bf;--yellow:#fbbf24;--blue:#60a5fa;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}
+body:before{content:"";position:fixed;inset:0;z-index:-1;background:
+radial-gradient(circle at 10% 5%,color-mix(in srgb,var(--purple) 18%,transparent),transparent 35%),
+radial-gradient(circle at 90% 10%,color-mix(in srgb,var(--pink) 15%,transparent),transparent 35%),
+radial-gradient(circle at 50% 100%,color-mix(in srgb,var(--turq) 12%,transparent),transparent 45%)}
+.container{max-width:1100px;margin:auto;padding:22px 16px 60px}
+header{text-align:center;padding:14px 0 22px}
+.badge{display:inline-block;padding:6px 12px;border-radius:999px;background:var(--soft);color:var(--purple);font-weight:800;font-size:.82rem}
+h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq),var(--yellow));-webkit-background-clip:text;background-clip:text;color:transparent}
+.subtitle{color:var(--muted)}
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);display:flex;gap:7px;overflow:auto;padding:8px;border-bottom:1px solid var(--border)}
+nav button{border:1px solid var(--border);background:var(--card);color:var(--text);padding:9px 12px;border-radius:12px;cursor:pointer;white-space:nowrap;font-weight:750}
+nav button.active{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;border-color:transparent}
+section{display:none;padding-top:22px}
+section.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:0 7px 22px color-mix(in srgb,var(--purple) 10%,transparent);margin-bottom:14px}
+.card h3{margin-top:0}
+.pink{color:var(--pink)}.purple{color:var(--purple)}.turq{color:var(--turq)}.blue{color:var(--blue)}.yellow{color:#a66a00}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden}
+th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+th{background:var(--soft);color:var(--purple)}
+.example{border-left:4px solid var(--turq);padding:9px 12px;background:color-mix(in srgb,var(--turq) 8%,var(--card));border-radius:0 12px 12px 0;margin:9px 0}
+.note{font-size:.9rem;color:var(--muted)}
+.choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:9px}
+.choice{padding:12px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;text-align:left}
+.choice.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card))}
+.choice.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card))}
+.feedback{margin-top:12px;font-weight:800}
+details{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px;margin:9px 0}
+summary{cursor:pointer;font-weight:800}
+.progress{height:10px;background:var(--soft);border-radius:99px;overflow:hidden}.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq));transition:.25s}
+.small{font-size:.88rem;color:var(--muted)}
+footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
+@media(max-width:600px){.container{padding:14px 10px 45px}th,td{padding:8px;font-size:.9rem}.card{padding:15px}}
+
+.home-nav{text-align:center;margin:14px 0 8px}
+.home-nav a{display:inline-block;padding:10px 18px;border-radius:12px;
+background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;
+text-decoration:none;font-weight:800;box-shadow:0 8px 22px color-mix(in srgb,var(--purple) 28%,transparent);
+transition:transform .15s ease,filter .15s ease}
+.home-nav a:hover{transform:translateY(-1px);filter:brightness(1.08)}
+
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <span class="badge">EOI · Español A2 · Aula individual</span>
+  <h1>Ficha Interactiva — 08/09/2026</h1>
+  <div class="subtitle">Inicio del curso, presentaciones, preguntas personales, intereses y tiempo libre</div>
+</header>
+<div class="home-nav"><a href="index.html">🏠 Página inicial</a></div>
+
+<nav>
+  <button class="active" onclick="showTab('resumen',this)">📚 Resumen</button>
+  <button onclick="showTab('curso',this)">🏫 Curso</button>
+  <button onclick="showTab('preguntas',this)">❓ Preguntas</button>
+  <button onclick="showTab('intereses',this)">⭐ Intereses</button>
+  <button onclick="showTab('quiz',this)">✏️ Ejercicios</button>
+</nav>
+
+<section id="resumen" class="active">
+  <div class="grid">
+    <div class="card"><h3 class="pink">👋 Inicio y presentaciones</h3><p>Presentación de la profesora y de los compañeros. La clase comenzó con preguntas para conocerse y con la intención de aprender los nombres y algunos datos personales.</p></div>
+    <div class="card"><h3 class="purple">🇪🇸 Motivos para estudiar español</h3><p>Se preguntó por qué los estudiantes habían decidido estudiar español: vivir en España, trabajo, objetivos personales y otras necesidades de comunicación.</p></div>
+    <div class="card"><h3 class="turq">🕒 Tiempo en España</h3><p>Se practicaron preguntas como <b>¿Cuánto tiempo llevas en España?</b> y respuestas con años y meses.</p></div>
+    <div class="card"><h3 class="blue">🎯 Intereses y tiempo libre</h3><p>Se revisaron preguntas sobre actividades de tiempo libre, intereses, preferencias, series, periódicos, webs y personas importantes.</p></div>
+  </div>
+  <div class="card">
+    <h3>📌 Importante</h3>
+    <p>Esta ficha corresponde únicamente a la clase del <b>8 de septiembre de 2026</b>. El contenido se ha organizado a partir de la grabación/transcripción de esta clase.</p>
+  </div>
+</section>
+
+<section id="curso">
+  <div class="card">
+    <h2 class="purple">🏫 Información del curso</h2>
+    <ul>
+      <li>El nivel A2 tiene <b>120 horas de clase</b>.</li>
+      <li>Las clases son de <b>lunes a jueves</b>.</li>
+      <li>El curso se desarrolla de <b>septiembre a diciembre</b>.</li>
+      <li>Se explicó la diferencia entre <b>superar el curso</b> y realizar posteriormente una <b>prueba de certificación</b>.</li>
+      <li>La primera prueba del curso se indicó para octubre y la segunda para diciembre.</li>
+      <li>También se explicó que existe una prueba extraordinaria en enero en determinadas situaciones.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3 class="pink">📊 Estructura de las pruebas</h3>
+    <p>La profesora explicó que para superar el curso hay dos pruebas obligatorias y que cada una tiene un peso diferente en la calificación final.</p>
+    <table>
+      <tr><th>Prueba</th><th>Fecha indicada en clase</th><th>Peso</th></tr>
+      <tr><td>Primera</td><td>20 de octubre, 19:20</td><td>40 %</td></tr>
+      <tr><td>Segunda</td><td>9 de diciembre</td><td>60 %</td></tr>
+    </table>
+    <p class="small">La grabación contiene algunos fragmentos transcritos de forma imperfecta; se conserva aquí la información que aparece claramente en la explicación de la clase.</p>
+  </div>
+</section>
+
+<section id="preguntas">
+  <div class="card">
+    <h2 class="pink">❓ Preguntas para conocer a una persona</h2>
+    <div class="example"><b>¿Cómo te llamas?</b></div>
+    <div class="example"><b>¿De dónde eres?</b></div>
+    <div class="example"><b>¿Cuánto tiempo llevas en España?</b></div>
+    <div class="example"><b>¿Has estudiado español antes?</b></div>
+    <div class="example"><b>¿Por qué estudias español?</b></div>
+    <div class="example"><b>¿Qué haces en España?</b></div>
+  </div>
+
+  <div class="card">
+    <h3 class="purple">🧩 Preguntar por idiomas</h3>
+    <p>También se practicaron preguntas para hablar de las lenguas que una persona conoce y de cuál utiliza mejor.</p>
+    <div class="example"><b>¿Qué lengua materna hablas?</b></div>
+    <div class="example"><b>¿Qué lengua extranjera hablas mejor?</b></div>
+  </div>
+
+  <div class="card">
+    <h3 class="turq">🔎 ¿Qué, cuál o cuáles?</h3>
+    <p>La profesora llamó la atención sobre el uso de <b>qué</b> y <b>cuál/cuáles</b> al formular preguntas.</p>
+    <table>
+      <tr><th>Forma</th><th>Ejemplo trabajado</th></tr>
+      <tr><td><b>qué</b></td><td>¿Qué periódico lees? · ¿Qué web sigues? · ¿Qué serie te gusta en español?</td></tr>
+      <tr><td><b>cuál</b></td><td>¿Cuál es tu actividad de tiempo libre favorita?</td></tr>
+      <tr><td><b>cuáles</b></td><td>¿Cuáles son tus actividades favoritas?</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="intereses">
+  <div class="card">
+    <h2 class="turq">⭐ Tiempo libre e intereses</h2>
+    <p>Se trabajó cómo preguntar y responder sobre lo que hacemos en nuestro tiempo libre.</p>
+    <div class="example"><b>¿Qué actividades de tiempo libre haces?</b></div>
+    <div class="example"><b>¿Cuál es tu actividad de tiempo libre favorita?</b></div>
+    <div class="example"><b>¿Cuáles son tus actividades favoritas?</b></div>
+  </div>
+
+  <div class="grid">
+    <div class="card"><h3 class="pink">📺 Ejemplos de intereses</h3><ul><li>series</li><li>películas</li><li>periódicos</li><li>webs</li><li>compras</li><li>deporte</li></ul></div>
+    <div class="card"><h3 class="purple">👥 Personas importantes</h3><p>Se preguntó: <b>¿Cuáles son las personas más importantes de tu vida?</b></p></div>
+    <div class="card"><h3 class="blue">💭 Experiencias</h3><p>Se propuso contar <b>una cosa interesante que has hecho en tu vida</b>.</p></div>
+    <div class="card"><h3 class="yellow">🧘 Relajarse</h3><p>También se habló de la actividad o el lugar favorito para relajarse.</p></div>
+  </div>
+
+  <div class="card">
+    <h3 class="purple">📖 Palabras clave</h3>
+    <table>
+      <tr><th>Palabra</th><th>Sentido trabajado en clase</th></tr>
+      <tr><td><b>costumbre</b></td><td>Algo que una persona hace normalmente.</td></tr>
+      <tr><td><b>hábito</b></td><td>Una acción que se repite normalmente, por ejemplo, todos los días.</td></tr>
+      <tr><td><b>manía</b></td><td>Una costumbre o comportamiento repetitivo que puede resultar molesto o que no gusta demasiado.</td></tr>
+    </table>
+    <div class="example"><b>Mi mejor costumbre...</b></div>
+    <div class="example"><b>Mi peor manía...</b></div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="card">
+    <h2 class="pink">✏️ Comprueba lo aprendido</h2>
+    <div class="progress"><span id="bar"></span></div>
+    <p class="small">Responde y comprueba tu resultado.</p>
+
+    <div class="card">
+      <p><b>1. ¿Qué pregunta sirve para saber desde cuándo una persona está en España?</b></p>
+      <div class="choice-grid">
+        <button class="choice" onclick="answer(this,false,'f1')">¿Qué haces en España?</button>
+        <button class="choice" onclick="answer(this,true,'f1')">¿Cuánto tiempo llevas en España?</button>
+        <button class="choice" onclick="answer(this,false,'f1')">¿Qué serie te gusta?</button>
+      </div>
+      <div id="f1" class="feedback"></div>
+    </div>
+
+    <div class="card">
+      <p><b>2. Completa: ¿_____ actividades de tiempo libre haces?</b></p>
+      <div class="choice-grid">
+        <button class="choice" onclick="answer(this,false,'f2')">Cuál</button>
+        <button class="choice" onclick="answer(this,true,'f2')">Qué</button>
+        <button class="choice" onclick="answer(this,false,'f2')">Quién</button>
+      </div>
+      <div id="f2" class="feedback"></div>
+    </div>
+
+    <div class="card">
+      <p><b>3. ¿Cuál de estas palabras se trabajó como algo que hacemos normalmente?</b></p>
+      <div class="choice-grid">
+        <button class="choice" onclick="answer(this,true,'f3')">costumbre</button>
+        <button class="choice" onclick="answer(this,false,'f3')">certificado</button>
+        <button class="choice" onclick="answer(this,false,'f3')">calendario</button>
+      </div>
+      <div id="f3" class="feedback"></div>
+    </div>
+
+    <div class="card">
+      <p><b>4. ¿Qué pregunta se utilizó para hablar de las personas importantes de la vida de alguien?</b></p>
+      <div class="choice-grid">
+        <button class="choice" onclick="answer(this,false,'f4')">¿Qué web sigues?</button>
+        <button class="choice" onclick="answer(this,true,'f4')">¿Cuáles son las personas más importantes de tu vida?</button>
+        <button class="choice" onclick="answer(this,false,'f4')">¿Cuánto tiempo llevas en España?</button>
+      </div>
+      <div id="f4" class="feedback"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 class="turq">🗣️ Mini misión</h3>
+    <p>Responde oralmente, sin mirar las respuestas:</p>
+    <ol>
+      <li>¿Cómo te llamas?</li>
+      <li>¿De dónde eres?</li>
+      <li>¿Cuánto tiempo llevas en España?</li>
+      <li>¿Has estudiado español antes?</li>
+      <li>¿Por qué estudias español?</li>
+      <li>¿Qué haces en tu tiempo libre?</li>
+      <li>¿Cuál es tu actividad de tiempo libre favorita?</li>
+      <li>¿Cuáles son las personas más importantes de tu vida?</li>
+      <li>¿Cuál es tu mejor costumbre?</li>
+      <li>¿Cuál es tu peor manía?</li>
+    </ol>
+  </div>
+</section>
+
+<div class="home-nav"><a href="index.html">🏠 Volver a la página inicial</a></div>
+<footer>EOI · Español A2 · Aula individual · 08/09/2026</footer>
+</div>
+
+<script>
+let score=0,done=0,total=4;
+function showTab(id,btn){
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function answer(btn,correct,id){
+  const box=document.getElementById(id);
+  if(box.dataset.done==='1') return;
+  box.dataset.done='1';
+  done++;
+  if(correct){score++;btn.classList.add('correct');box.textContent='✅ Correcto.';box.style.color='var(--ok)';}
+  else{btn.classList.add('wrong');box.textContent='❌ No. Revisa el contenido de esta aula.';box.style.color='var(--bad)';}
+  document.getElementById('bar').style.width=(done/total*100)+'%';
+}
+</script>
+</body>
+</html>

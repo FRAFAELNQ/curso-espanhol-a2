@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EOI · Español A2 · Aula individual · 09/09/2026</title>
+<style>
+:root{--bg:#fef6ff;--card:#fff;--text:#2b1a2e;--muted:#76577d;--pink:#e0218a;--purple:#7c3aed;--turq:#00a992;--yellow:#ffb703;--blue:#2563eb;--soft:#fbe3f4;--border:#ead3e7;--ok:#087f5b;--bad:#b42318}
+@media(prefers-color-scheme:dark){:root{--bg:#160d1c;--card:#27182f;--text:#f7eafb;--muted:#c9acd1;--soft:#3a2148;--border:#50345b;--pink:#ff4fb0;--purple:#a78bfa;--turq:#2dd4bf;--yellow:#fbbf24;--blue:#60a5fa}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}
+.container{max-width:1100px;margin:auto;padding:22px 16px 60px}header{text-align:center;padding:14px 0 22px}
+.badge{display:inline-block;padding:6px 12px;border-radius:999px;background:var(--soft);color:var(--purple);font-weight:800;font-size:.82rem}
+h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq),var(--yellow));-webkit-background-clip:text;background-clip:text;color:transparent}.subtitle{color:var(--muted)}
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);display:flex;gap:7px;overflow:auto;padding:8px;border-bottom:1px solid var(--border)}
+nav button{border:1px solid var(--border);background:var(--card);color:var(--text);padding:9px 12px;border-radius:12px;cursor:pointer;white-space:nowrap;font-weight:750}nav button.active{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;border-color:transparent}
+section{display:none;padding-top:22px}section.active{display:block}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:0 7px 22px color-mix(in srgb,var(--purple) 10%,transparent);margin-bottom:14px}
+.card h2,.card h3{margin-top:0}.pink{color:var(--pink)}.purple{color:var(--purple)}.turq{color:var(--turq)}.blue{color:var(--blue)}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden}th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}th{background:var(--soft);color:var(--purple)}
+.example{border-left:4px solid var(--turq);padding:9px 12px;background:color-mix(in srgb,var(--turq) 8%,var(--card));border-radius:0 12px 12px 0;margin:9px 0}
+.note,.small{font-size:.9rem;color:var(--muted)}.choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:9px}.choice{padding:12px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;text-align:left}.choice.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card))}.choice.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card))}.feedback{margin-top:12px;font-weight:800}
+.progress{height:10px;background:var(--soft);border-radius:99px;overflow:hidden}.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq));transition:.25s}
+footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}@media(max-width:600px){.container{padding:14px 10px 45px}th,td{padding:8px;font-size:.9rem}.card{padding:15px}}
+
+.home-nav{text-align:center;margin:14px 0 8px}
+.home-nav a{display:inline-block;padding:10px 18px;border-radius:12px;
+background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;
+text-decoration:none;font-weight:800;box-shadow:0 8px 22px color-mix(in srgb,var(--purple) 28%,transparent);
+transition:transform .15s ease,filter .15s ease}
+.home-nav a:hover{transform:translateY(-1px);filter:brightness(1.08)}
+
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<span class="badge">EOI · Español A2 · Aula individual</span>
+<h1>Ficha Interactiva — 09/09/2026</h1>
+<div class="subtitle">Presente, verbos irregulares, verbos pronominales, gustar/interesar/costar y biografía lingüística</div>
+</header>
+<div class="home-nav"><a href="index.html">🏠 Página inicial</a></div>
+
+<nav>
+<button class="active" onclick="tab('resumen',this)">📚 Resumen</button>
+<button onclick="tab('verbos',this)">🔤 Verbos</button>
+<button onclick="tab('gustar',this)">💗 Estructuras</button>
+<button onclick="tab('biografia',this)">🌍 Biografía lingüística</button>
+<button onclick="tab('quiz',this)">✏️ Ejercicios</button>
+</nav>
+
+<section id="resumen" class="active">
+<div class="grid">
+<div class="card"><h3 class="pink">🔤 Presente</h3><p>La clase comenzó revisando el presente y los verbos irregulares, como preparación para trabajar posteriormente los tiempos del pasado.</p></div>
+<div class="card"><h3 class="purple">🔁 Verbos pronominales</h3><p>Se repasaron estructuras como <b>me levanto</b> y <b>me ducho</b>.</p></div>
+<div class="card"><h3 class="turq">💗 Estructuras tipo gustar</h3><p>Se revisaron <b>gustar</b> y otros verbos con la misma estructura, especialmente <b>interesar</b> y <b>costar</b>.</p></div>
+<div class="card"><h3 class="blue">🌍 Biografía lingüística</h3><p>Se trabajó qué lenguas habla una persona, con quién las habla, dónde las utiliza, qué nivel tiene y qué sabe hacer en cada lengua.</p></div>
+</div>
+<div class="card"><h3>🎯 Objetivo de la actividad</h3><p>La profesora explicó que conocer bien el presente es importante porque los tiempos del pasado contienen muchas irregularidades.</p></div>
+</section>
+
+<section id="verbos">
+<div class="card">
+<h2 class="purple">🔤 Verbos y estructuras trabajadas</h2>
+<table>
+<tr><th>Tipo</th><th>Ejemplos trabajados</th></tr>
+<tr><td>Regular</td><td>comer → yo como</td></tr>
+<tr><td>Pronominal</td><td>me levanto · me ducho</td></tr>
+<tr><td>Tipo <i>gustar</i></td><td>me gusta · le gusta</td></tr>
+<tr><td>Otros de la misma estructura</td><td>me cuesta · me interesa</td></tr>
+</table>
+</div>
+<div class="card">
+<h3 class="pink">🧩 Patrón que se repasó</h3>
+<p>La profesora explicó que <b>gustar, interesar y costar</b> funcionan con una estructura diferente de los verbos regulares: el elemento que gusta, interesa o cuesta determina normalmente el singular/plural de la forma verbal.</p>
+<div class="example"><b>Me gusta</b> + singular</div>
+<div class="example"><b>Me gustan</b> + plural</div>
+<div class="example"><b>Me interesa</b> + singular</div>
+<div class="example"><b>Me interesan</b> + plural</div>
+<div class="example"><b>Me cuesta</b> + singular / infinitivo</div>
+</div>
+<div class="card">
+<h3 class="turq">🗣️ Para pedir ayuda en clase</h3>
+<div class="example"><b>¿Puedes repetir, por favor?</b></div>
+<div class="example"><b>¿Qué significa esto?</b></div>
+<div class="example"><b>¿Cómo escribo ...?</b></div>
+<p class="small">Estas expresiones aparecieron al hablar de cómo pedir aclaraciones o repeticiones durante la clase.</p>
+</div>
+</section>
+
+<section id="gustar">
+<div class="card">
+<h2 class="pink">💗 Gustar · interesar · costar</h2>
+<p>Estos verbos se revisaron como estructuras que comparten un funcionamiento parecido.</p>
+<table>
+<tr><th>Verbo</th><th>Ejemplo</th><th>Idea</th></tr>
+<tr><td><b>gustar</b></td><td>Me gusta leer.</td><td>Algo produce gusto/interés.</td></tr>
+<tr><td><b>interesar</b></td><td>Me interesa el español.</td><td>Algo resulta interesante.</td></tr>
+<tr><td><b>costar</b></td><td>Me cuesta aprender.</td><td>Algo resulta difícil.</td></tr>
+</table>
+<div class="example"><b>Me gusta un montón.</b> → expresión coloquial para intensificar.</div>
+</div>
+<div class="card">
+<h3 class="purple">🗣️ «Un montón»</h3>
+<p>La profesora explicó <b>un montón</b> como una expresión coloquial muy usada para expresar una cantidad grande o intensidad.</p>
+<div class="example">Me gusta <b>un montón</b>.</div>
+<div class="example">Leo <b>un montón</b>.</div>
+<div class="example">Escucho <b>un montón de música</b>.</div>
+<p class="small">También se comentó que es una expresión coloquial y que no siempre resulta apropiada en todos los contextos formales.</p>
+</div>
+</section>
+
+<section id="biografia">
+<div class="card">
+<h2 class="turq">🌍 Biografía lingüística</h2>
+<p>La profesora definió la <b>biografía lingüística</b> como las lenguas que una persona habla normalmente y, además, <b>cómo, con quién, dónde y para qué</b> las utiliza.</p>
+<table>
+<tr><th>Aspecto</th><th>Pregunta útil</th></tr>
+<tr><td>Lengua</td><td>¿Qué lengua hablas?</td></tr>
+<tr><td>Nivel</td><td>¿Qué nivel tienes?</td></tr>
+<tr><td>Persona</td><td>¿Con quién la hablas?</td></tr>
+<tr><td>Lugar</td><td>¿Dónde la hablas?</td></tr>
+<tr><td>Uso</td><td>¿Qué haces en esa lengua?</td></tr>
+</table>
+</div>
+<div class="card">
+<h3 class="purple">🎧 Actividad de comprensión</h3>
+<p>Se escuchó una conversación sobre una persona que hablaba varias lenguas. Después de escucharla, la clase debía identificar:</p>
+<ul>
+<li>las lenguas que hablaba;</li>
+<li>su nivel en cada una;</li>
+<li>con quién las hablaba;</li>
+<li>dónde las utilizaba;</li>
+<li>qué actividades podía realizar en cada lengua.</li>
+</ul>
+</div>
+<div class="card">
+<h3 class="pink">📝 Producción propia</h3>
+<p>Después de la escucha, cada estudiante debía preparar una pequeña tabla sobre la biografía lingüística de su compañero y explicársela.</p>
+<div class="example"><b>Lengua → nivel → con quién → dónde → qué hago en esa lengua.</b></div>
+</div>
+</section>
+
+<section id="quiz">
+<div class="card">
+<h2 class="pink">✏️ Comprueba lo aprendido</h2>
+<div class="progress"><span id="bar"></span></div>
+<div class="card">
+<p><b>1. ¿Qué verbo se trabajó con la estructura «me ...»?</b></p>
+<div class="choice-grid">
+<button class="choice" onclick="ans(this,false,'f1')">soler</button>
+<button class="choice" onclick="ans(this,true,'f1')">gustar</button>
+<button class="choice" onclick="ans(this,false,'f1')">ser</button>
+</div><div id="f1" class="feedback"></div>
+</div>
+<div class="card">
+<p><b>2. Completa: «Me ___ aprender español».</b></p>
+<div class="choice-grid">
+<button class="choice" onclick="ans(this,true,'f2')">cuesta</button>
+<button class="choice" onclick="ans(this,false,'f2')">cuestan</button>
+<button class="choice" onclick="ans(this,false,'f2')">costamos</button>
+</div><div id="f2" class="feedback"></div>
+</div>
+<div class="card">
+<p><b>3. ¿Qué significa «un montón» en el uso explicado en clase?</b></p>
+<div class="choice-grid">
+<button class="choice" onclick="ans(this,false,'f3')">muy poco</button>
+<button class="choice" onclick="ans(this,true,'f3')">mucho / una cantidad grande</button>
+<button class="choice" onclick="ans(this,false,'f3')">nunca</button>
+</div><div id="f3" class="feedback"></div>
+</div>
+<div class="card">
+<p><b>4. La biografía lingüística incluye...</b></p>
+<div class="choice-grid">
+<button class="choice" onclick="ans(this,false,'f4')">solo el nombre de una lengua</button>
+<button class="choice" onclick="ans(this,true,'f4')">lenguas, nivel, con quién, dónde y qué hacemos con ellas</button>
+<button class="choice" onclick="ans(this,false,'f4')">solo la gramática</button>
+</div><div id="f4" class="feedback"></div>
+</div>
+</div>
+<div class="card"><h3 class="turq">🗣️ Misión</h3><p>Prepara oralmente tu propia biografía lingüística siguiendo esta secuencia:</p><ol><li>¿Qué lenguas hablas?</li><li>¿Qué nivel tienes en cada una?</li><li>¿Con quién las hablas?</li><li>¿Dónde las hablas?</li><li>¿Qué haces en cada lengua?</li></ol></div>
+</section>
+
+<div class="home-nav"><a href="index.html">🏠 Volver a la página inicial</a></div>
+<footer>EOI · Español A2 · Aula individual · 09/09/2026</footer>
+</div>
+<script>
+let done=0,total=4;
+function tab(id,b){document.querySelectorAll('section').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');scrollTo({top:0,behavior:'smooth'})}
+function ans(b,ok,id){let f=document.getElementById(id);if(f.dataset.done)return;f.dataset.done=1;done++;b.classList.add(ok?'correct':'wrong');f.textContent=ok?'✅ Correcto.':'❌ Revisa el contenido de esta aula.';f.style.color=ok?'var(--ok)':'var(--bad)';document.getElementById('bar').style.width=(done/total*100)+'%'}
+</script>
+</body>
+</html>
