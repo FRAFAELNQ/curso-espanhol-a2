@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aula de Español A2 — 28/09/2026</title>
+<style>
+:root{
+  --bg:#fef6ff;--card:#fff;--text:#2b1a2e;--muted:#76577d;
+  --pink:#e0218a;--purple:#7c3aed;--turq:#00a992;--yellow:#ffb703;
+  --blue:#2563eb;--soft:#fbe3f4;--border:#ead3e7;--ok:#087f5b;--bad:#b42318;
+}
+@media(prefers-color-scheme:dark){
+ :root{--bg:#160d1c;--card:#27182f;--text:#f7eafb;--muted:#c9acd1;--soft:#3a2148;--border:#50345b;--pink:#ff4fb0;--purple:#a78bfa;--turq:#2dd4bf;--yellow:#fbbf24;--blue:#60a5fa;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}
+body:before{content:"";position:fixed;inset:0;z-index:-1;background:
+radial-gradient(circle at 10% 5%,color-mix(in srgb,var(--purple) 18%,transparent),transparent 35%),
+radial-gradient(circle at 90% 10%,color-mix(in srgb,var(--pink) 15%,transparent),transparent 35%),
+radial-gradient(circle at 50% 100%,color-mix(in srgb,var(--turq) 12%,transparent),transparent 45%)}
+.container{max-width:1100px;margin:auto;padding:22px 16px 60px}
+header{text-align:center;padding:14px 0 22px}
+.badge{display:inline-block;padding:6px 12px;border-radius:999px;background:var(--soft);color:var(--purple);font-weight:800;font-size:.82rem}
+h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq),var(--yellow));-webkit-background-clip:text;background-clip:text;color:transparent}
+.subtitle{color:var(--muted)}
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);display:flex;gap:7px;overflow:auto;padding:8px;border-bottom:1px solid var(--border)}
+nav button,.tab{border:1px solid var(--border);background:var(--card);color:var(--text);padding:9px 12px;border-radius:12px;cursor:pointer;white-space:nowrap;font-weight:750}
+nav button.active,.tab.active{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;border-color:transparent}
+section{display:none;padding-top:22px}
+section.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:0 7px 22px color-mix(in srgb,var(--purple) 10%,transparent)}
+.card h3{margin-top:0}
+.color-title{font-size:1.25rem;font-weight:900}
+.pink{color:var(--pink)}.purple{color:var(--purple)}.turq{color:var(--turq)}.blue{color:var(--blue)}.yellow{color:#a66a00}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden}
+th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+th{background:var(--soft);color:var(--purple)}
+.verb-card{margin-bottom:16px}
+.verb-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.verb{font-size:1.45rem;font-weight:900;color:var(--pink)}
+.tag{font-size:.78rem;font-weight:800;padding:4px 9px;border-radius:999px;background:var(--soft);color:var(--purple)}
+.speak{border:0;background:var(--soft);border-radius:10px;padding:7px 10px;cursor:pointer}
+.example{border-left:4px solid var(--turq);padding:9px 12px;background:color-mix(in srgb,var(--turq) 8%,var(--card));border-radius:0 12px 12px 0;margin:9px 0}
+.note{font-size:.9rem;color:var(--muted)}
+.choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:9px}
+.choice{padding:12px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;text-align:left}
+.choice.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card))}
+.choice.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card))}
+.feedback{margin-top:12px;font-weight:800}
+details{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px;margin:9px 0}
+summary{cursor:pointer;font-weight:800}
+.progress{height:10px;background:var(--soft);border-radius:99px;overflow:hidden}.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq));transition:.25s}
+.small{font-size:.88rem;color:var(--muted)}
+footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
+@media(max-width:600px){.container{padding:14px 10px 45px}th,td{padding:8px;font-size:.9rem}.card{padding:15px}}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <span class="badge">EOI · Español A2 · Aula individual</span>
+  <h1>Ficha Interactiva — 28/09/2026</h1>
+  <div class="subtitle">Relaciones, descripción de personas, <b>llevar / llevarse</b>, <b>caer bien/mal</b>, <b>parecer / parecerse</b> y <b>medir</b></div>
+</header>
+
+<nav>
+  <button class="active" onclick="showTab('resumo',this)">📚 Resumo</button>
+  <button onclick="showTab('vocab',this)">📝 Vocabulário</button>
+  <button onclick="showTab('gram',this)">🧠 Gramática</button>
+  <button onclick="showTab('verbos',this)">🔤 Verbos</button>
+  <button onclick="showTab('ex',this)">✏️ Exercícios</button>
+  <button onclick="showTab('pratica',this)">🎯 Prática</button>
+</nav>
+
+<section id="resumo" class="active">
+<div class="grid">
+ <div class="card"><div class="color-title pink">1. Describir personas</div><p>Se retomó la descripción física y de carácter de las personas de los anuncios de contactos.</p><p><b>Ser</b> se usa para características; <b>llevar</b>, para ropa, barba, gafas y estilo.</p></div>
+ <div class="card"><div class="color-title purple">2. Relaciones</div><p><b>Llevarse bien/mal/fatal con alguien</b> habla de la relación que existe con otra persona.</p><p><b>Caer bien/mal</b> expresa una valoración o impresión positiva/negativa.</p></div>
+ <div class="card"><div class="color-title turq">3. Parecer</div><p><b>Parecer + adjetivo</b>: impresión/opinión sobre una persona.</p><p><b>Parecerse a</b>: semejanza con otra persona; en clase apareció también <b>en los ojos</b>.</p></div>
+ <div class="card"><div class="color-title yellow">4. Medir</div><p>Se introdujo <b>medir</b> para expresar la altura: <b>mido 1,93</b>.</p></div>
+</div>
+<div class="card" style="margin-top:14px">
+<h3>⭐ Expressões-chave da aula</h3>
+<div class="example"><b>Me llevo bien con mi jefe.</b></div>
+<div class="example"><b>Mi jefa me cae bien.</b></div>
+<div class="example"><b>Luisa me cayó bien la primera semana.</b></div>
+<div class="example"><b>Mis estudiantes me cayeron bien el primer día.</b></div>
+<div class="example"><b>Él parece simpático.</b></div>
+<div class="example"><b>Se parece a su padre en los ojos.</b></div>
+<div class="example"><b>Yo mido 1,93.</b></div>
+</div>
+</section>
+
+<section id="vocab">
+<h2>📝 Vocabulário trabalhado</h2>
+<div class="grid">
+ <div class="card"><h3 class="pink">Relações</h3>
+  <p><b>compañero/a de clase</b> — compañero/a de clase.</p>
+  <p><b>compañero/a de trabajo</b> — compañero/a de trabajo.</p>
+  <p><b>compañero/a de viaje</b> — persona con la que viajas.</p>
+  <p><b>compañero/a de vida</b> — expresión usada para referirse a la pareja.</p>
+ </div>
+ <div class="card"><h3 class="purple">Impressões e relações</h3>
+  <p><b>primera impresión</b></p>
+  <p><b>chocar con alguien</b> — en la clase se explicó como una relación con conflicto/choque.</p>
+  <p><b>no soportar a alguien</b> — no poder verlo delante / no querer verlo.</p>
+  <p><b>pesimista</b> — negativo ante el futuro.</p>
+ </div>
+ <div class="card"><h3 class="turq">Caráter / estado</h3>
+  <p><b>prepotente</b> — trata a otra persona como si fuera mejor.</p>
+  <p><b>nervioso / estresado</b> — se trabajó como contrario de estar relajado.</p>
+  <p><b>divertido/a, guapo/a, alegre, activo/a, tranquilo/a</b> — aparecieron en los perfiles y textos.</p>
+ </div>
+ <div class="card"><h3 class="yellow">Outras palavras da aula</h3>
+  <p><b>teñido</b> — «tiene el pelo teñido».</p>
+  <p><b>físicamente</b> — se corrigió la forma usada para describir físicamente.</p>
+  <p><b>señor / señora</b> — tratamento formal/contextual; depende de la confianza y de la situación.</p>
+ </div>
+</div>
+</section>
+
+<section id="gram">
+<h2>🧠 Estruturas centrais</h2>
+<div class="card">
+<h3 class="pink">LLEVAR × LLEVARSE</h3>
+<table>
+<tr><th>Estrutura</th><th>Uso trabalhado na aula</th><th>Exemplo</th></tr>
+<tr><td><b>llevar + algo</b></td><td>Descrever roupa, barba, gafas, pelo e estilo.</td><td>Llevo barba.<br>Llevo las gafas.<br>Llevo el pelo corto.</td></tr>
+<tr><td><b>llevarse bien/mal/fatal + con</b></td><td>Falar da relação com outra pessoa.</td><td>Me llevo muy bien con mi jefe.</td></tr>
+</table>
+</div>
+
+<div class="card" style="margin-top:14px">
+<h3 class="purple">CAER × LLEVARSE</h3>
+<table>
+<tr><th>Expressão</th><th>Significado trabalhado</th><th>Exemplo</th></tr>
+<tr><td><b>me cae bien/mal/regular</b></td><td>Ideia/valoração positiva, negativa ou regular sobre alguém; não exige que exista uma relação próxima.</td><td>Mi jefa me cae bien.</td></tr>
+<tr><td><b>me llevo bien/mal con</b></td><td>Relação boa ou má com outra pessoa.</td><td>Me llevo bien con mi jefe.</td></tr>
+</table>
+</div>
+
+<div class="card" style="margin-top:14px">
+<h3 class="turq">PARECER × PARECERSE</h3>
+<div class="example"><b>Él parece simpático.</b> → impressão/opinião sobre a característica.</div>
+<div class="example"><b>Se parece a su padre en los ojos.</b> → semelhança com outra pessoa.</div>
+<p class="note">A professora destacou que retirar <b>se</b> muda o significado do verbo.</p>
+</div>
+
+<div class="card" style="margin-top:14px">
+<h3 class="blue">CAER + pronomes</h3>
+<p>Na aula foi explicado que <b>caer</b> funciona com a estrutura de <b>gustar</b>:</p>
+<div class="example"><b>A mí me cae bien ella.</b></div>
+<div class="example"><b>A ti te cae bien ella.</b></div>
+<div class="example"><b>A nosotros nos cae bien él.</b></div>
+<p class="note">No plural: <b>me caen bien</b>. No passado trabalhado: <b>me cayó bien</b> / <b>me cayeron bien</b>.</p>
+</div>
+</section>
+
+<section id="verbos">
+<h2>🔤 Verbos trabalhados na aula</h2>
+<p class="small">A ficha separa os verbos efetivamente trabalhados como foco/estrutura nesta aula dos verbos já existentes no mestre. Os dois verbos novos incorporados ao mestre são <b>llevarse</b> e <b>medir</b>.</p>
+
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">llevar</span><span class="tag">já estava no mestre · -AR</span></div>
+<table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
+<tr><td>llevo</td><td>llevas</td><td>lleva</td><td>llevamos</td><td>lleváis</td><td>llevan</td></tr></table>
+<div class="example">Llevo barba. · Llevo las gafas. · Llevo el pelo corto.</div>
+</div>
+
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">llevarse</span><span class="tag">NOVO NO MESTRE · reflexivo -AR</span><button class="speak" onclick="say('llevarse')">🔊</button></div>
+<table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
+<tr><td>me llevo</td><td>te llevas</td><td>se lleva</td><td>nos llevamos</td><td>os lleváis</td><td>se llevan</td></tr></table>
+<div class="example">Me llevo bien con mi jefe.</div>
+<div class="note">Na aula foi explicado como verbo reflexivo para falar de uma relação com outra pessoa.</div>
+</div>
+
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">caer</span><span class="tag">já estava no mestre</span></div>
+<table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
+<tr><td>caigo</td><td>caes</td><td>cae</td><td>caemos</td><td>caéis</td><td>caen</td></tr></table>
+<div class="example">Mi jefa me cae bien. · Me cayó bien el primer día. · Me cayeron bien mis estudiantes.</div>
+</div>
+
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">parecer</span><span class="tag">já estava no mestre</span></div>
+<table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
+<tr><td>parezco</td><td>pareces</td><td>parece</td><td>parecemos</td><td>parecéis</td><td>parecen</td></tr></table>
+<div class="example">Él parece simpático.</div>
+</div>
+
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">parecerse</span><span class="tag">já estava no mestre · reflexivo</span></div>
+<table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
+<tr><td>me parezco</td><td>te pareces</td><td>se parece</td><td>nos parecemos</td><td>os parecéis</td><td>se parecen</td></tr></table>
+<div class="example">Se parece a su padre en los ojos.</div>
+</div>
+
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">medir</span><span class="tag">NOVO NO MESTRE · -IR</span><button class="speak" onclick="say('medir')">🔊</button></div>
+<table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
+<tr><td>mido</td><td>mides</td><td>mide</td><td>medimos</td><td>medís</td><td>miden</td></tr></table>
+<div class="example">Mido 1,93.</div>
+<div class="note">A aula introduziu <b>medir</b> para dizer a altura e destacou a forma <b>mido</b>.</div>
+</div>
+</section>
+
+<section id="ex">
+<h2>✏️ Exercícios interativos</h2>
+<div class="card">
+<h3>1. Escolha a estrutura correta</h3>
+<div id="q1"></div>
+</div>
+<div class="card" style="margin-top:14px">
+<h3>2. Complete mentalmente e revele</h3>
+<details><summary>“Minha relação com meu chefe é boa.”</summary><p><b>Me llevo bien con mi jefe.</b></p></details>
+<details><summary>“Minha chefe me agrada / tenho uma impressão positiva dela.”</summary><p><b>Mi jefa me cae bien.</b></p></details>
+<details><summary>“Ele parece simpático.”</summary><p><b>Él parece simpático.</b></p></details>
+<details><summary>“Ela se parece com o pai nos olhos.”</summary><p><b>Se parece a su padre en los ojos.</b></p></details>
+<details><summary>“Eu meço 1,93.”</summary><p><b>Mido 1,93.</b></p></details>
+</div>
+<div class="card" style="margin-top:14px">
+<h3>3. Passado de caer trabalhado hoje</h3>
+<div class="choice-grid" id="q2"></div><div id="f2" class="feedback"></div>
+</div>
+</section>
+
+<section id="pratica">
+<h2>🎯 Missão de prática</h2>
+<div class="card">
+<h3>Escrita da aula</h3>
+<p>Responder ao anúncio de uma pessoa de uma web de citas usando o vocabulário e os verbos trabalhados na aula.</p>
+<p>A professora pediu que se utilizassem as estruturas já estudadas, incluindo <b>llevar</b>, <b>parecerse</b>, <b>me cae bien/mal</b> e <b>me llevo bien/mal</b>.</p>
+</div>
+<div class="card" style="margin-top:14px">
+<h3>Checklist antes de terminar</h3>
+<label><input type="checkbox" onchange="tick(this)"> Usei <b>llevar</b> para roupa/estilo.</label><br>
+<label><input type="checkbox" onchange="tick(this)"> Usei <b>llevarse bien/mal con</b> para relação.</label><br>
+<label><input type="checkbox" onchange="tick(this)"> Usei <b>caer bien/mal</b> para impressão/valoração.</label><br>
+<label><input type="checkbox" onchange="tick(this)"> Diferenciei <b>parecer</b> de <b>parecerse</b>.</label><br>
+<label><input type="checkbox" onchange="tick(this)"> Se precisei indicar altura, usei <b>medir</b>.</label>
+<div class="progress" style="margin-top:12px"><span id="bar"></span></div>
+<p id="count" class="small">0/5 concluído</p>
+</div>
+</section>
+
+<footer>Registro individual da aula de 28/09/2026. Conteúdo restrito ao material desta aula.</footer>
+</div>
+<script>
+function showTab(id,btn){
+ document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+ btn.classList.add('active');
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function say(txt){
+ if(!('speechSynthesis' in window)) return;
+ speechSynthesis.cancel();
+ const u=new SpeechSynthesisUtterance(txt);u.lang='es-ES';u.rate=.82;speechSynthesis.speak(u);
+}
+const qs=[
+ {text:'Quero falar da minha relação com o meu chefe. Qual é a frase?',opts:['Me llevo bien con mi jefe.','Me lleva bien con mi jefe.','Me caigo bien con mi jefe.'],ok:0},
+ {text:'Quero dizer que minha chefe me cai bem.',opts:['Me llevo bien mi jefa.','Mi jefa me cae bien.','Mi jefa me llevo bien.'],ok:1},
+ {text:'Qual expressa uma impressão sobre uma pessoa?',opts:['Él parece simpático.','Él lleva simpático.','Él se lleva simpático.'],ok:0},
+ {text:'Qual expressa semelhança com o pai?',opts:['Parece a su padre.','Se parece a su padre.','Se lleva a su padre.'],ok:1},
+ {text:'Como dizer “eu meço 1,93”?',opts:['Mido 1,93.','Medo 1,93.','Mido a 1,93.'],ok:0},
+ {text:'Qual é a forma passada trabalhada para uma pessoa?',opts:['Me caí bien.','Me cayó bien.','Me caí bien con.'],ok:1}
+];
+let qi=0, score=0;
+function renderQ(){
+ const q=qs[qi];
+ document.getElementById('q1').innerHTML='<p><b>'+q.text+'</b></p><div class="choice-grid">'+q.opts.map((o,i)=>'<button class="choice" onclick="ans('+i+',this)">'+o+'</button>').join('')+'</div><p class="small">Questão '+(qi+1)+' de '+qs.length+' · Pontos: '+score+'</p>';
+}
+function ans(i,btn){
+ const q=qs[qi];const bs=btn.parentElement.querySelectorAll('button');
+ bs.forEach(b=>b.disabled=true);
+ bs[q.ok].classList.add('correct');
+ if(i===q.ok){score++;}else{btn.classList.add('wrong');}
+ setTimeout(()=>{qi=(qi+1)%qs.length;renderQ();},900);
+}
+const past=[
+ ['me cayó bien','correta'],
+ ['me caí bien','incorreta'],
+ ['me cayeron bien','correta']
+];
+document.getElementById('q2').innerHTML=past.map((x,i)=>'<button class="choice" onclick="pastAns('+i+')">'+x[0]+'</button>').join('');
+function pastAns(i){
+ const ok=(i===0||i===2);
+ document.getElementById('f2').textContent=ok?'✅ Forma trabalhada: me cayó bien / me cayeron bien.':'❌ A forma trabalhada foi me cayó bien (singular) ou me cayeron bien (plural).';
+ document.getElementById('f2').style.color=ok?'var(--ok)':'var(--bad)';
+}
+let done=0;
+function tick(cb){
+ done+=cb.checked?1:-1;
+ document.getElementById('bar').style.width=(done/5*100)+'%';
+ document.getElementById('count').textContent=done+'/5 concluído';
+}
+renderQ();
+</script>
+</body>
+</html>
