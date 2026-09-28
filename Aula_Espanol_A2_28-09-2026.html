@@ -56,14 +56,12 @@ summary{cursor:pointer;font-weight:800}
 footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
 @media(max-width:600px){.container{padding:14px 10px 45px}th,td{padding:8px;font-size:.9rem}.card{padding:15px}}
 
-.home-nav{display:flex;justify-content:center;margin:0 0 14px}
-.home-btn{display:inline-flex;align-items:center;gap:7px;text-decoration:none;
-  background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;
-  border:0;border-radius:12px;padding:10px 16px;font-weight:800;
-  box-shadow:0 6px 18px color-mix(in srgb,var(--purple) 25%,transparent);
-  transition:.2s ease}
-.home-btn:hover{transform:translateY(-1px);filter:brightness(1.08)}
-.home-bottom{margin:28px 0 0}
+.home-nav{text-align:center;margin:14px 0 8px}
+.home-nav a{display:inline-block;padding:10px 18px;border-radius:12px;
+background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;
+text-decoration:none;font-weight:800;box-shadow:0 8px 22px color-mix(in srgb,var(--purple) 28%,transparent);
+transition:transform .15s ease,filter .15s ease}
+.home-nav a:hover{transform:translateY(-1px);filter:brightness(1.08)}
 
 </style>
 </head>
@@ -74,8 +72,8 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
   <h1>Ficha Interactiva — 28/09/2026</h1>
   <div class="subtitle">Relaciones, descripción de personas, <b>llevar / llevarse</b>, <b>caer bien/mal</b>, <b>parecer / parecerse</b> y <b>medir</b></div>
 </header>
+<div class="home-nav"><a href="index.html">🏠 Página inicial</a></div>
 
-<div class="home-nav"><a class="home-btn" href="./">🏠 Página inicial</a></div>
 <nav>
   <button class="active" onclick="showTab('resumo',this)">📚 Resumo</button>
   <button onclick="showTab('vocab',this)">📝 Vocabulário</button>
@@ -129,11 +127,30 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
   <p><b>físicamente</b> — se corrigió la forma usada para describir físicamente.</p>
   <p><b>señor / señora</b> — tratamento formal/contextual; depende de la confianza y de la situación.</p>
  </div>
+ <div class="card"><h3 class="blue">Tratamento e identificação</h3>
+  <p><b>tutear</b> — tratar a una persona de <b>tú</b>, en lugar de utilizar un tratamiento formal.</p>
+  <p><b>señor / señora</b> — formas de tratamiento que pueden aparecer en situaciones formales o según el contexto.</p>
+  <p><b>el de / la de</b> — identificar a una persona mediante una característica o elemento que permite reconocerla.</p>
+  <p><b>el del / la del</b> — identificación mediante <b>de + el/la</b>, como en <b>los del coche azul</b>.</p>
+  <p><b>los del coche azul</b> — ejemplo de identificación de un grupo de personas por un elemento visible.</p>
+  <p><b>compañero/a de clase</b> · <b>compañero/a de trabajo</b> · <b>compañero/a de viaje</b> — relaciones según el contexto compartido.</p>
+ </div>
 </div>
 </section>
 
 <section id="gram">
 <h2>🧠 Estruturas centrais</h2>
+<div class="card" style="margin-bottom:14px">
+<h3 class="blue">TUTear + identificar personas</h3>
+<table>
+<tr><th>Estrutura</th><th>Uso trabajado</th><th>Ejemplo</th></tr>
+<tr><td><b>tutear</b></td><td>Tratar a una persona de <b>tú</b>.</td><td>¿Nos podemos tutear?</td></tr>
+<tr><td><b>el de / la de</b></td><td>Identificar a una persona por una característica o elemento.</td><td>El de las gafas.</td></tr>
+<tr><td><b>el del / la del</b></td><td>Identificar mediante <b>de + el/la</b>.</td><td>Los del coche azul.</td></tr>
+</table>
+<p class="note">Esta parte quedó confirmada también por el contenido escrito en la pizarra de la clase.</p>
+</div>
+
 <div class="card">
 <h3 class="pink">LLEVAR × LLEVARSE</h3>
 <table>
@@ -238,6 +255,19 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
 </div>
 </section>
 
+<div class="card" style="margin-bottom:14px">
+<h3 class="yellow">🧩 Ejercicio añadido — identificación y tratamiento</h3>
+<p><b>1.</b> Completa: «Los ______ coche azul».</p>
+<button class="opt" onclick="checkExtra(this,true)">del</button>
+<button class="opt" onclick="checkExtra(this,false)">de la</button>
+<div class="feedback" id="extra1"></div>
+<p style="margin-top:16px"><b>2.</b> ¿Qué verbo expresa «tratar a alguien de tú»?</p>
+<button class="opt" onclick="checkExtra2(this,true)">tutear</button>
+<button class="opt" onclick="checkExtra2(this,false)">llevarse</button>
+<button class="opt" onclick="checkExtra2(this,false)">parecerse</button>
+<div class="feedback" id="extra2"></div>
+</div>
+
 <section id="pratica">
 <h2>🎯 Missão de prática</h2>
 <div class="card">
@@ -257,7 +287,7 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
 </div>
 </section>
 
-<div class="home-nav home-bottom"><a class="home-btn" href="./">🏠 Volver a la página inicial</a></div>
+<div class="home-nav"><a href="index.html">🏠 Volver a la página inicial</a></div>
 <footer>Registro individual da aula de 28/09/2026. Conteúdo restrito ao material desta aula.</footer>
 </div>
 <script>
@@ -311,6 +341,9 @@ function tick(cb){
  document.getElementById('count').textContent=done+'/5 concluído';
 }
 renderQ();
+
+function checkExtra(btn, ok){const box=document.getElementById('extra1');box.textContent=ok?'✅ Correcto: los del coche azul.':'❌ Revisa la estructura: los del coche azul.';box.className='feedback '+(ok?'ok':'bad');}
+function checkExtra2(btn, ok){const box=document.getElementById('extra2');box.textContent=ok?'✅ Correcto: tutear.':'❌ En esta aula, el verbo trabajado es tutear.';box.className='feedback '+(ok?'ok':'bad');}
 </script>
 </body>
 </html>
