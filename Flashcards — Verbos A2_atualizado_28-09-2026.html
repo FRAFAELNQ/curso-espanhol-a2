@@ -435,6 +435,46 @@
     box-shadow: 0 6px 18px color-mix(in srgb, var(--accent2) 28%, transparent);
   }
   .home-nav:hover { transform: translateY(-1px); }
+
+  .verb-sticker {
+    width: 86px;
+    height: 86px;
+    border-radius: 50%;
+    background: radial-gradient(circle, color-mix(in srgb, var(--accent2) 25%, transparent) 0%, color-mix(in srgb, var(--bg) 75%, transparent) 70%);
+    border: 2px solid color-mix(in srgb, var(--accent3) 55%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.8rem;
+    box-shadow: 0 8px 20px color-mix(in srgb, var(--accent2) 25%, transparent);
+    margin: 4px 0 2px;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: stickerFloat 2.8s ease-in-out infinite;
+  }
+  .card:hover .verb-sticker {
+    transform: scale(1.1) rotate(4deg);
+  }
+  @keyframes stickerFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-4px) rotate(2deg); }
+  }
+
+
+  .export-csv-btn {
+    background: #10b981;
+    color: #071b15;
+    border: none;
+    border-radius: 10px;
+    padding: 11px 18px;
+    font-family: inherit;
+    font-size: 0.92rem;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(16,185,129,.22);
+  }
+  .export-csv-btn:hover { background: #059669; transform: translateY(-1px); }
+  .export-csv-btn:active { transform: scale(.98); }
+
 </style>
 </head>
 <body>
@@ -484,6 +524,9 @@
 </div>
 
 <div id="catView" style="display:none; width:100%; flex-direction:column; align-items:center;"></div>
+<div id="catExport" style="display:none; width:100%; max-width:480px; justify-content:center; margin:0 0 18px;">
+  <button class="export-csv-btn" onclick="exportVerbsCSV()">📥 Baixar Excel (.csv)</button>
+</div>
 
 <div id="soundsView" style="display:none; width:100%; flex-direction:column; align-items:center;"></div>
 
@@ -610,107 +653,107 @@ const NOTES = {
 };
 
 const verbs = [
-  { word: "hablar", groupKey: "ar", forms: ["hablo","hablas","habla","hablamos","habláis","hablan"], noteKey: "rootHabl" },
-  { word: "comprar", groupKey: "ar", forms: ["compro","compras","compra","compramos","compráis","compran"], noteKey: "sameHablar" },
-  { word: "preguntar", groupKey: "ar", forms: ["pregunto","preguntas","pregunta","preguntamos","preguntáis","preguntan"], noteKey: "sameHablar" },
-  { word: "cenar", groupKey: "ar", forms: ["ceno","cenas","cena","cenamos","cenáis","cenan"], noteKey: "sameHablar" },
-  { word: "llorar", groupKey: "ar", forms: ["lloro","lloras","llora","lloramos","lloráis","lloran"], noteKey: "llFocus" },
-  { word: "terminar", groupKey: "ar", forms: ["termino","terminas","termina","terminamos","termináis","terminan"], noteKey: "sameHablar" },
-  { word: "tomar", groupKey: "ar", forms: ["tomo","tomas","toma","tomamos","tomáis","toman"], noteKey: "sameHablar" },
-  { word: "visitar", groupKey: "ar", forms: ["visito","visitas","visita","visitamos","visitáis","visitan"], noteKey: "sameHablar" },
-  { word: "entrar", groupKey: "ar", forms: ["entro","entras","entra","entramos","entráis","entran"], noteKey: "sameHablar" },
-  { word: "desayunar", groupKey: "ar", forms: ["desayuno","desayunas","desayuna","desayunamos","desayunáis","desayunan"], noteKey: "sameHablar" },
-  { word: "limpiar", groupKey: "ar", forms: ["limpio","limpias","limpia","limpiamos","limpiáis","limpian"], noteKey: "sameHablar" },
-  { word: "comparar", groupKey: "ar", forms: ["comparo","comparas","compara","comparamos","comparáis","comparan"], noteKey: "sameHablar" },
-  { word: "arreglar", groupKey: "ar", forms: ["arreglo","arreglas","arregla","arreglamos","arregláis","arreglan"], noteKey: "sameHablar" },
-  { word: "cocinar", groupKey: "ar", forms: ["cocino","cocinas","cocina","cocinamos","cocináis","cocinan"], noteKey: "sameHablar" },
-  { word: "marcar", groupKey: "ar", forms: ["marco","marcas","marca","marcamos","marcáis","marcan"], noteKey: "sameHablar" },
-  { word: "observar", groupKey: "ar", forms: ["observo","observas","observa","observamos","observáis","observan"], noteKey: "sameHablar" },
-  { word: "perdonar", groupKey: "ar", forms: ["perdono","perdonas","perdona","perdonamos","perdonáis","perdonan"], noteKey: "sameHablar" },
-  { word: "listar", groupKey: "ar", forms: ["listo","listas","lista","listamos","listáis","listan"], noteKey: "sameHablar" },
-  { word: "llevar", groupKey: "ar", forms: ["llevo","llevas","lleva","llevamos","lleváis","llevan"], noteKey: "llFocus" },
-  { word: "llevarse", groupKey: "ar-refl", forms: ["me llevo","te llevas","se lleva","nos llevamos","os lleváis","se llevan"], noteKey: "llevarseNote" },
+  { word: "hablar", meaning: "falar / conversar",sticker: "🗣️",groupKey: "ar", forms: ["hablo","hablas","habla","hablamos","habláis","hablan"], noteKey: "rootHabl" },
+  { word: "comprar", meaning: "",sticker: "🛒",groupKey: "ar", forms: ["compro","compras","compra","compramos","compráis","compran"], noteKey: "sameHablar" },
+  { word: "preguntar", meaning: "",sticker: "❓",groupKey: "ar", forms: ["pregunto","preguntas","pregunta","preguntamos","preguntáis","preguntan"], noteKey: "sameHablar" },
+  { word: "cenar", meaning: "",sticker: "🍽️",groupKey: "ar", forms: ["ceno","cenas","cena","cenamos","cenáis","cenan"], noteKey: "sameHablar" },
+  { word: "llorar", meaning: "",sticker: "😢",groupKey: "ar", forms: ["lloro","lloras","llora","lloramos","lloráis","lloran"], noteKey: "llFocus" },
+  { word: "terminar", meaning: "",sticker: "🏁",groupKey: "ar", forms: ["termino","terminas","termina","terminamos","termináis","terminan"], noteKey: "sameHablar" },
+  { word: "tomar", meaning: "",sticker: "🥤",groupKey: "ar", forms: ["tomo","tomas","toma","tomamos","tomáis","toman"], noteKey: "sameHablar" },
+  { word: "visitar", meaning: "",sticker: "📍",groupKey: "ar", forms: ["visito","visitas","visita","visitamos","visitáis","visitan"], noteKey: "sameHablar" },
+  { word: "entrar", meaning: "",sticker: "🚪",groupKey: "ar", forms: ["entro","entras","entra","entramos","entráis","entran"], noteKey: "sameHablar" },
+  { word: "desayunar", meaning: "",sticker: "🥐",groupKey: "ar", forms: ["desayuno","desayunas","desayuna","desayunamos","desayunáis","desayunan"], noteKey: "sameHablar" },
+  { word: "limpiar", meaning: "",sticker: "🧹",groupKey: "ar", forms: ["limpio","limpias","limpia","limpiamos","limpiáis","limpian"], noteKey: "sameHablar" },
+  { word: "comparar", meaning: "",sticker: "⚖️",groupKey: "ar", forms: ["comparo","comparas","compara","comparamos","comparáis","comparan"], noteKey: "sameHablar" },
+  { word: "arreglar", meaning: "",sticker: "🔧",groupKey: "ar", forms: ["arreglo","arreglas","arregla","arreglamos","arregláis","arreglan"], noteKey: "sameHablar" },
+  { word: "cocinar", meaning: "",sticker: "🍳",groupKey: "ar", forms: ["cocino","cocinas","cocina","cocinamos","cocináis","cocinan"], noteKey: "sameHablar" },
+  { word: "marcar", meaning: "",sticker: "📌",groupKey: "ar", forms: ["marco","marcas","marca","marcamos","marcáis","marcan"], noteKey: "sameHablar" },
+  { word: "observar", meaning: "",sticker: "👀",groupKey: "ar", forms: ["observo","observas","observa","observamos","observáis","observan"], noteKey: "sameHablar" },
+  { word: "perdonar", meaning: "",sticker: "🤝",groupKey: "ar", forms: ["perdono","perdonas","perdona","perdonamos","perdonáis","perdonan"], noteKey: "sameHablar" },
+  { word: "listar", meaning: "",sticker: "📋",groupKey: "ar", forms: ["listo","listas","lista","listamos","listáis","listan"], noteKey: "sameHablar" },
+  { word: "llevar", meaning: "",sticker: "👜",groupKey: "ar", forms: ["llevo","llevas","lleva","llevamos","lleváis","llevan"], noteKey: "llFocus" },
+  { word: "llevarse", meaning: "",sticker: "🤝",groupKey: "ar-refl", forms: ["me llevo","te llevas","se lleva","nos llevamos","os lleváis","se llevan"], noteKey: "llevarseNote" },
 
-  { word: "ducharse", groupKey: "ar-refl", forms: ["me ducho","te duchas","se ducha","nos duchamos","os ducháis","se duchan"], noteKey: "reflexive" },
-  { word: "levantarse", groupKey: "ar-refl", forms: ["me levanto","te levantas","se levanta","nos levantamos","os levantáis","se levantan"], noteKey: "reflexive" },
+  { word: "ducharse", meaning: "",sticker: "🚿",groupKey: "ar-refl", forms: ["me ducho","te duchas","se ducha","nos duchamos","os ducháis","se duchan"], noteKey: "reflexive" },
+  { word: "levantarse", meaning: "",sticker: "🌅",groupKey: "ar-refl", forms: ["me levanto","te levantas","se levanta","nos levantamos","os levantáis","se levantan"], noteKey: "reflexive" },
 
-  { word: "comer", groupKey: "er", forms: ["como","comes","come","comemos","coméis","comen"], noteKey: "rootCom" },
-  { word: "comprender", groupKey: "er", forms: ["comprendo","comprendes","comprende","comprendemos","comprendéis","comprenden"], noteKey: "sameComer" },
-  { word: "beber", groupKey: "er", forms: ["bebo","bebes","bebe","bebemos","bebéis","beben"], noteKey: "sameComer" },
-  { word: "responder", groupKey: "er", forms: ["respondo","respondes","responde","respondemos","respondéis","responden"], noteKey: "sameComer" },
-  { word: "leer", groupKey: "er", forms: ["leo","lees","lee","leemos","leéis","leen"], noteKey: "leerNote" },
+  { word: "comer", meaning: "comer / alimentar-se",sticker: "🍽️",groupKey: "er", forms: ["como","comes","come","comemos","coméis","comen"], noteKey: "rootCom" },
+  { word: "comprender", meaning: "",sticker: "💡",groupKey: "er", forms: ["comprendo","comprendes","comprende","comprendemos","comprendéis","comprenden"], noteKey: "sameComer" },
+  { word: "beber", meaning: "",sticker: "🥤",groupKey: "er", forms: ["bebo","bebes","bebe","bebemos","bebéis","beben"], noteKey: "sameComer" },
+  { word: "responder", meaning: "",sticker: "💬",groupKey: "er", forms: ["respondo","respondes","responde","respondemos","respondéis","responden"], noteKey: "sameComer" },
+  { word: "leer", meaning: "",sticker: "📖",groupKey: "er", forms: ["leo","lees","lee","leemos","leéis","leen"], noteKey: "leerNote" },
 
-  { word: "subir", groupKey: "ir", forms: ["subo","subes","sube","subimos","subís","suben"], noteKey: "rootSub" },
-  { word: "vivir", groupKey: "ir", forms: ["vivo","vives","vive","vivimos","vivís","viven"], noteKey: "vivirNote" },
-  { word: "medir", groupKey: "ei-ir", forms: ["mido","mides","mide","medimos","medís","miden"], noteKey: "medirNote" },
-  { word: "escribir", groupKey: "ir", forms: ["escribo","escribes","escribe","escribimos","escribís","escriben"], noteKey: "sameSubir" },
+  { word: "subir", meaning: "",sticker: "⬆️",groupKey: "ir", forms: ["subo","subes","sube","subimos","subís","suben"], noteKey: "rootSub" },
+  { word: "vivir", meaning: "viver / morar",sticker: "🏡",groupKey: "ir", forms: ["vivo","vives","vive","vivimos","vivís","viven"], noteKey: "vivirNote" },
+  { word: "medir", meaning: "",sticker: "📏",groupKey: "ei-ir", forms: ["mido","mides","mide","medimos","medís","miden"], noteKey: "medirNote" },
+  { word: "escribir", meaning: "",sticker: "✍️",groupKey: "ir", forms: ["escribo","escribes","escribe","escribimos","escribís","escriben"], noteKey: "sameSubir" },
 
-  { word: "merendar", groupKey: "eie", forms: ["meriendo","meriendas","merienda","merendamos","merendáis","meriendan"], noteKey: "dipDisap" },
-  { word: "cerrar", groupKey: "eie", forms: ["cierro","cierras","cierra","cerramos","cerráis","cierran"], noteKey: "dipDisap" },
-  { word: "entender", groupKey: "eie", forms: ["entiendo","entiendes","entiende","entendemos","entendéis","entienden"], noteKey: "sameCerrar" },
-  { word: "sentarse", groupKey: "eie-refl", forms: ["me siento","te sientas","se sienta","nos sentamos","os sentáis","se sientan"], noteKey: "reflexDip" },
-  { word: "despertarse", groupKey: "eie-refl", forms: ["me despierto","te despiertas","se despierta","nos despertamos","os despertáis","se despiertan"], noteKey: "reflexDip" },
+  { word: "merendar", meaning: "",sticker: "🍎",groupKey: "eie", forms: ["meriendo","meriendas","merienda","merendamos","merendáis","meriendan"], noteKey: "dipDisap" },
+  { word: "cerrar", meaning: "fechar",sticker: "🚪",groupKey: "eie", forms: ["cierro","cierras","cierra","cerramos","cerráis","cierran"], noteKey: "dipDisap" },
+  { word: "entender", meaning: "",sticker: "🧠",groupKey: "eie", forms: ["entiendo","entiendes","entiende","entendemos","entendéis","entienden"], noteKey: "sameCerrar" },
+  { word: "sentarse", meaning: "",sticker: "🪑",groupKey: "eie-refl", forms: ["me siento","te sientas","se sienta","nos sentamos","os sentáis","se sientan"], noteKey: "reflexDip" },
+  { word: "despertarse", meaning: "",sticker: "⏰",groupKey: "eie-refl", forms: ["me despierto","te despiertas","se despierta","nos despertamos","os despertáis","se despiertan"], noteKey: "reflexDip" },
 
-  { word: "sentirse", groupKey: "eie-ir", forms: ["me siento","te sientes","se siente","nos sentimos","os sentís","se sienten"], noteKey: "sentirse" },
-  { word: "invertir", groupKey: "eie-ir", forms: ["invierto","inviertes","invierte","invertimos","invertís","invierten"], noteKey: "invertir" },
-  { word: "preferir", groupKey: "eie-ir", forms: ["prefiero","prefieres","prefiere","preferimos","preferís","prefieren"], noteKey: "sameSentirse" },
+  { word: "sentirse", meaning: "",sticker: "❤️",groupKey: "eie-ir", forms: ["me siento","te sientes","se siente","nos sentimos","os sentís","se sienten"], noteKey: "sentirse" },
+  { word: "invertir", meaning: "",sticker: "💰",groupKey: "eie-ir", forms: ["invierto","inviertes","invierte","invertimos","invertís","invierten"], noteKey: "invertir" },
+  { word: "preferir", meaning: "",sticker: "⭐",groupKey: "eie-ir", forms: ["prefiero","prefieres","prefiere","preferimos","preferís","prefieren"], noteKey: "sameSentirse" },
 
-  { word: "convertirse", groupKey: "eie-ir-refl", forms: ["me convierto","te conviertes","se convierte","nos convertimos","os convertís","se convierten"], noteKey: "convertirseNote" },
+  { word: "convertirse", meaning: "",sticker: "🔄",groupKey: "eie-ir-refl", forms: ["me convierto","te conviertes","se convierte","nos convertimos","os convertís","se convierten"], noteKey: "convertirseNote" },
 
-  { word: "comprobar", groupKey: "oue", forms: ["compruebo","compruebas","comprueba","comprobamos","comprobáis","comprueban"], noteKey: "dipDisap" },
-  { word: "encontrar", groupKey: "oue", forms: ["encuentro","encuentras","encuentra","encontramos","encontráis","encuentran"], noteKey: "sameComprobar" },
-  { word: "recordar", groupKey: "oue", forms: ["recuerdo","recuerdas","recuerda","recordamos","recordáis","recuerdan"], noteKey: "recordarRR" },
-  { word: "volver", groupKey: "oue", forms: ["vuelvo","vuelves","vuelve","volvemos","volvéis","vuelven"], noteKey: "sameComprobar" },
-  { word: "volar", groupKey: "oue", forms: ["vuelo","vuelas","vuela","volamos","voláis","vuelan"], noteKey: "sameComprobar" },
-  { word: "resolver", groupKey: "oue", forms: ["resuelvo","resuelves","resuelve","resolvemos","resolvéis","resuelven"], noteKey: "sameComprobar" },
-  { word: "devolver", groupKey: "oue", forms: ["devuelvo","devuelves","devuelve","devolvemos","devolvéis","devuelven"], noteKey: "sameComprobar" },
-  { word: "costar", groupKey: "oue", forms: ["cuesto","cuestas","cuesta","costamos","costáis","cuestan"], noteKey: "sameComprobar" },
-  { word: "soñar", groupKey: "oue", forms: ["sueño","sueñas","sueña","soñamos","soñáis","sueñan"], noteKey: "sonarNote" },
-  { word: "colgar", groupKey: "oue", forms: ["cuelgo","cuelgas","cuelga","colgamos","colgáis","cuelgan"], noteKey: "sameComprobar" },
-  { word: "acostarse", groupKey: "oue-refl", forms: ["me acuesto","te acuestas","se acuesta","nos acostamos","os acostáis","se acuestan"], noteKey: "reflexDip" },
-  { word: "dormir", groupKey: "oue-ir", forms: ["duermo","duermes","duerme","dormimos","dormís","duermen"], noteKey: "dormirNote" },
+  { word: "comprobar", meaning: "",sticker: "🔎",groupKey: "oue", forms: ["compruebo","compruebas","comprueba","comprobamos","comprobáis","comprueban"], noteKey: "dipDisap" },
+  { word: "encontrar", meaning: "",sticker: "🔍",groupKey: "oue", forms: ["encuentro","encuentras","encuentra","encontramos","encontráis","encuentran"], noteKey: "sameComprobar" },
+  { word: "recordar", meaning: "",sticker: "🧠",groupKey: "oue", forms: ["recuerdo","recuerdas","recuerda","recordamos","recordáis","recuerdan"], noteKey: "recordarRR" },
+  { word: "volver", meaning: "voltar / retornar",sticker: "🔄",groupKey: "oue", forms: ["vuelvo","vuelves","vuelve","volvemos","volvéis","vuelven"], noteKey: "sameComprobar" },
+  { word: "volar", meaning: "",sticker: "✈️",groupKey: "oue", forms: ["vuelo","vuelas","vuela","volamos","voláis","vuelan"], noteKey: "sameComprobar" },
+  { word: "resolver", meaning: "",sticker: "🧩",groupKey: "oue", forms: ["resuelvo","resuelves","resuelve","resolvemos","resolvéis","resuelven"], noteKey: "sameComprobar" },
+  { word: "devolver", meaning: "",sticker: "📦",groupKey: "oue", forms: ["devuelvo","devuelves","devuelve","devolvemos","devolvéis","devuelven"], noteKey: "sameComprobar" },
+  { word: "costar", meaning: "",sticker: "💶",groupKey: "oue", forms: ["cuesto","cuestas","cuesta","costamos","costáis","cuestan"], noteKey: "sameComprobar" },
+  { word: "soñar", meaning: "",sticker: "💭",groupKey: "oue", forms: ["sueño","sueñas","sueña","soñamos","soñáis","sueñan"], noteKey: "sonarNote" },
+  { word: "colgar", meaning: "",sticker: "📎",groupKey: "oue", forms: ["cuelgo","cuelgas","cuelga","colgamos","colgáis","cuelgan"], noteKey: "sameComprobar" },
+  { word: "acostarse", meaning: "",sticker: "🌙",groupKey: "oue-refl", forms: ["me acuesto","te acuestas","se acuesta","nos acostamos","os acostáis","se acuestan"], noteKey: "reflexDip" },
+  { word: "dormir", meaning: "",sticker: "😴",groupKey: "oue-ir", forms: ["duermo","duermes","duerme","dormimos","dormís","duermen"], noteKey: "dormirNote" },
 
-  { word: "jugar", groupKey: "uue", forms: ["juego","juegas","juega","jugamos","jugáis","juegan"], noteKey: "jugarNote" },
+  { word: "jugar", meaning: "",sticker: "⚽",groupKey: "uue", forms: ["juego","juegas","juega","jugamos","jugáis","juegan"], noteKey: "jugarNote" },
 
-  { word: "seguir", groupKey: "ei-ir", forms: ["sigo","sigues","sigue","seguimos","seguís","siguen"], noteKey: "seguirNote" },
-  { word: "conseguir", groupKey: "ei-ir", forms: ["consigo","consigues","consigue","conseguimos","conseguís","consiguen"], noteKey: "sameSeguir" },
-  { word: "elegir", groupKey: "ei-ir", forms: ["elijo","eliges","elige","elegimos","elegís","eligen"], noteKey: "elegirNote" },
-  { word: "reír", groupKey: "ei-ir", forms: ["río","ríes","ríe","reímos","reís","ríen"], noteKey: "reirNote" },
-  { word: "perseguir", groupKey: "ei-ir", forms: ["persigo","persigues","persigue","perseguimos","perseguís","persiguen"], noteKey: "sameSeguir" },
-  { word: "vestir", groupKey: "ei-ir", forms: ["visto","vistes","viste","vestimos","vestís","visten"], noteKey: "vestirNote" },
-  { word: "corregir", groupKey: "ei-ir", forms: ["corrijo","corriges","corrige","corregimos","corregís","corrigen"], noteKey: "elegirNote" },
-  { word: "pedir", groupKey: "ei-ir", forms: ["pido","pides","pide","pedimos","pedís","piden"], noteKey: "vestirNote" },
-  { word: "repetir", groupKey: "ei-ir", forms: ["repito","repites","repite","repetimos","repetís","repiten"], noteKey: "vestirNote" },
-  { word: "sonreír", groupKey: "ei-ir", forms: ["sonrío","sonríes","sonríe","sonreímos","sonreís","sonríen"], noteKey: "sameReir" },
+  { word: "seguir", meaning: "",sticker: "➡️",groupKey: "ei-ir", forms: ["sigo","sigues","sigue","seguimos","seguís","siguen"], noteKey: "seguirNote" },
+  { word: "conseguir", meaning: "",sticker: "🏆",groupKey: "ei-ir", forms: ["consigo","consigues","consigue","conseguimos","conseguís","consiguen"], noteKey: "sameSeguir" },
+  { word: "elegir", meaning: "",sticker: "☑️",groupKey: "ei-ir", forms: ["elijo","eliges","elige","elegimos","elegís","eligen"], noteKey: "elegirNote" },
+  { word: "reír", meaning: "",sticker: "😂",groupKey: "ei-ir", forms: ["río","ríes","ríe","reímos","reís","ríen"], noteKey: "reirNote" },
+  { word: "perseguir", meaning: "",sticker: "🏃",groupKey: "ei-ir", forms: ["persigo","persigues","persigue","perseguimos","perseguís","persiguen"], noteKey: "sameSeguir" },
+  { word: "vestir", meaning: "",sticker: "👕",groupKey: "ei-ir", forms: ["visto","vistes","viste","vestimos","vestís","visten"], noteKey: "vestirNote" },
+  { word: "corregir", meaning: "",sticker: "✏️",groupKey: "ei-ir", forms: ["corrijo","corriges","corrige","corregimos","corregís","corrigen"], noteKey: "elegirNote" },
+  { word: "pedir", meaning: "pedir / encomendar",sticker: "🙋‍♂️",groupKey: "ei-ir", forms: ["pido","pides","pide","pedimos","pedís","piden"], noteKey: "vestirNote" },
+  { word: "repetir", meaning: "",sticker: "🔁",groupKey: "ei-ir", forms: ["repito","repites","repite","repetimos","repetís","repiten"], noteKey: "vestirNote" },
+  { word: "sonreír", meaning: "",sticker: "😊",groupKey: "ei-ir", forms: ["sonrío","sonríes","sonríe","sonreímos","sonreís","sonríen"], noteKey: "sameReir" },
 
-  { word: "vestirse", groupKey: "ei-ir-refl", forms: ["me visto","te vistes","se viste","nos vestimos","os vestís","se visten"], noteKey: "vestirseNote" },
-  { word: "despedirse", groupKey: "ei-ir-refl", forms: ["me despido","te despides","se despide","nos despedimos","os despedís","se despiden"], noteKey: "despedirseNote" },
+  { word: "vestirse", meaning: "",sticker: "👚",groupKey: "ei-ir-refl", forms: ["me visto","te vistes","se viste","nos vestimos","os vestís","se visten"], noteKey: "vestirseNote" },
+  { word: "despedirse", meaning: "",sticker: "👋",groupKey: "ei-ir-refl", forms: ["me despido","te despides","se despide","nos despedimos","os despedís","se despiden"], noteKey: "despedirseNote" },
 
-  { word: "construir", groupKey: "uir", forms: ["construyo","construyes","construye","construimos","construís","construyen"], noteKey: "uirNote" },
-  { word: "huir", groupKey: "uir", forms: ["huyo","huyes","huye","huimos","huís","huyen"], noteKey: "sameConstruir" },
+  { word: "construir", meaning: "",sticker: "🏗️",groupKey: "uir", forms: ["construyo","construyes","construye","construimos","construís","construyen"], noteKey: "uirNote" },
+  { word: "huir", meaning: "",sticker: "🏃‍♂️",groupKey: "uir", forms: ["huyo","huyes","huye","huimos","huís","huyen"], noteKey: "sameConstruir" },
 
-  { word: "hacer", groupKey: "yo-irr", forms: ["hago","haces","hace","hacemos","hacéis","hacen"], noteKey: "hacerNote" },
-  { word: "traer", groupKey: "yo-irr", forms: ["traigo","traes","trae","traemos","traéis","traen"], noteKey: "sameHacer" },
-  { word: "caer", groupKey: "yo-irr", forms: ["caigo","caes","cae","caemos","caéis","caen"], noteKey: "sameHacer" },
-  { word: "poner", groupKey: "yo-irr", forms: ["pongo","pones","pone","ponemos","ponéis","ponen"], noteKey: "sameHacer" },
-  { word: "salir", groupKey: "yo-irr", forms: ["salgo","sales","sale","salimos","salís","salen"], noteKey: "sameHacer" },
+  { word: "hacer", meaning: "fazer",sticker: "🛠️",groupKey: "yo-irr", forms: ["hago","haces","hace","hacemos","hacéis","hacen"], noteKey: "hacerNote" },
+  { word: "traer", meaning: "",sticker: "📦",groupKey: "yo-irr", forms: ["traigo","traes","trae","traemos","traéis","traen"], noteKey: "sameHacer" },
+  { word: "caer", meaning: "",sticker: "⬇️",groupKey: "yo-irr", forms: ["caigo","caes","cae","caemos","caéis","caen"], noteKey: "sameHacer" },
+  { word: "poner", meaning: "",sticker: "📍",groupKey: "yo-irr", forms: ["pongo","pones","pone","ponemos","ponéis","ponen"], noteKey: "sameHacer" },
+  { word: "salir", meaning: "",sticker: "🚪",groupKey: "yo-irr", forms: ["salgo","sales","sale","salimos","salís","salen"], noteKey: "sameHacer" },
 
-  { word: "darse", groupKey: "yo-irr-refl", forms: ["me doy","te das","se da","nos damos","os dais","se dan"], noteKey: "darseNote" },
+  { word: "darse", meaning: "",sticker: "🎁",groupKey: "yo-irr-refl", forms: ["me doy","te das","se da","nos damos","os dais","se dan"], noteKey: "darseNote" },
 
-  { word: "conocer", groupKey: "yo-irr-zc", forms: ["conozco","conoces","conoce","conocemos","conocéis","conocen"], noteKey: "conocerNote" },
-  { word: "conducir", groupKey: "yo-irr-zc", forms: ["conduzco","conduces","conduce","conducimos","conducís","conducen"], noteKey: "sameConocer" },
-  { word: "parecer", groupKey: "yo-irr-zc", forms: ["parezco","pareces","parece","parecemos","parecéis","parecen"], noteKey: "sameConocer" },
-  { word: "traducir", groupKey: "yo-irr-zc", forms: ["traduzco","traduces","traduce","traducimos","traducís","traducen"], noteKey: "sameConocer" },
+  { word: "conocer", meaning: "conhecer",sticker: "🤝",groupKey: "yo-irr-zc", forms: ["conozco","conoces","conoce","conocemos","conocéis","conocen"], noteKey: "conocerNote" },
+  { word: "conducir", meaning: "",sticker: "🚗",groupKey: "yo-irr-zc", forms: ["conduzco","conduces","conduce","conducimos","conducís","conducen"], noteKey: "sameConocer" },
+  { word: "parecer", meaning: "",sticker: "👤",groupKey: "yo-irr-zc", forms: ["parezco","pareces","parece","parecemos","parecéis","parecen"], noteKey: "sameConocer" },
+  { word: "traducir", meaning: "",sticker: "🌐",groupKey: "yo-irr-zc", forms: ["traduzco","traduces","traduce","traducimos","traducís","traducen"], noteKey: "sameConocer" },
 
-  { word: "parecerse", groupKey: "yo-irr-zc-refl", forms: ["me parezco","te pareces","se parece","nos parecemos","os parecéis","se parecen"], noteKey: "parecerseNote" },
+  { word: "parecerse", meaning: "",sticker: "👥",groupKey: "yo-irr-zc-refl", forms: ["me parezco","te pareces","se parece","nos parecemos","os parecéis","se parecen"], noteKey: "parecerseNote" },
 
-  { word: "oír", groupKey: "mix-y", forms: ["oigo","oyes","oye","oímos","oís","oyen"], noteKey: "oirNote" },
+  { word: "oír", meaning: "",sticker: "👂",groupKey: "mix-y", forms: ["oigo","oyes","oye","oímos","oís","oyen"], noteKey: "oirNote" },
 
-  { word: "tener", groupKey: "mix-eie", forms: ["tengo","tienes","tiene","tenemos","tenéis","tienen"], noteKey: "tenerNote" },
-  { word: "decir", groupKey: "mix-ei", forms: ["digo","dices","dice","decimos","decís","dicen"], noteKey: "decirNote" },
+  { word: "tener", meaning: "",sticker: "✋",groupKey: "mix-eie", forms: ["tengo","tienes","tiene","tenemos","tenéis","tienen"], noteKey: "tenerNote" },
+  { word: "decir", meaning: "",sticker: "💬",groupKey: "mix-ei", forms: ["digo","dices","dice","decimos","decís","dicen"], noteKey: "decirNote" },
 
-  { word: "ser", groupKey: "irr", forms: ["soy","eres","es","somos","sois","son"], noteKey: "serNote" },
-  { word: "estar", groupKey: "irr", forms: ["estoy","estás","está","estamos","estáis","están"], noteKey: "estarNote" }
+  { word: "ser", meaning: "ser (essência/identidade)",sticker: "👤",groupKey: "irr", forms: ["soy","eres","es","somos","sois","son"], noteKey: "serNote" },
+  { word: "estar", meaning: "estar (lugar/estado)",sticker: "📍",groupKey: "irr", forms: ["estoy","estás","está","estamos","estáis","están"], noteKey: "estarNote" }
 ];
 
 function gTxt(key) { return GROUPS[key][lang]; }
@@ -770,7 +813,8 @@ function render() {
   if (!flipped) {
     card.innerHTML = `
       <div class="group-tag">${gTxt(v.groupKey)}</div>
-      <div class="front-word">${v.word}</div>
+      <div class="verb-sticker" aria-label="Figurinha do verbo">${v.sticker}</div>
+       <div class="front-word">${v.word}</div>
       <button class="speak-front" onclick="event.stopPropagation(); speak('${v.word}')">🔊</button>
       <div class="hint">${t('hint')}</div>
     `;
@@ -806,6 +850,50 @@ function go(dir) {
   render();
 }
 
+
+function csvEscape(value) {
+  const s = String(value ?? "");
+  return '"' + s.replace(/"/g, '""').replace(/\r?\n/g, " ") + '"';
+}
+
+function exportVerbsCSV() {
+  const headers = [
+    "Padrão", "Figurinha", "Infinitivo", "Significado",
+    "Yo", "Tú", "Él/Ella", "Nosotros", "Vosotros", "Ellos",
+    "Regra/Observação"
+  ];
+
+  const rows = verbs.map(v => [
+    gTxt(v.groupKey),
+    v.sticker || "",
+    v.word,
+    v.meaning || "",
+    ...v.forms,
+    nTxt(v.noteKey)
+  ]);
+
+  const csvContent = [
+    headers.map(csvEscape).join(";"),
+    ...rows.map(row => row.map(csvEscape).join(";"))
+  ].join("\r\n");
+
+  const blob = new Blob(["\uFEFF", csvContent], {
+    type: "text/csv;charset=utf-8"
+  });
+
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "verbos_espanol_A2_matriz.csv";
+  link.style.display = "none";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+
+
 // ---------- Modo Quiz ----------
 let mode = 'study';
 let quizCorrect = 0;
@@ -822,6 +910,7 @@ function switchTab(m) {
   document.getElementById('quizView').style.display = (m === 'quiz') ? 'flex' : 'none';
   document.getElementById('catView').style.display = (m === 'cat') ? 'flex' : 'none';
   document.getElementById('soundsView').style.display = (m === 'sounds') ? 'flex' : 'none';
+  document.getElementById('catExport').style.display = (m === 'cat') ? 'flex' : 'none';
   if (m === 'quiz' && !currentQuestion) nextQuestion();
   else if (m === 'quiz') renderQuiz();
   if (m === 'cat') renderCategories();
