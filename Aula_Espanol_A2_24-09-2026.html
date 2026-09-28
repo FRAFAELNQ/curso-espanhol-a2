@@ -11,6 +11,9 @@
 main{max-width:1120px;margin:auto;padding:18px}
 .hero{padding:25px;border-radius:22px;border:1px solid #48598d;background:linear-gradient(135deg,#172c6c,#49237f 52%,#741c58);box-shadow:0 18px 50px #0008}
 .hero h1{margin:0;font-size:30px} .hero p{margin:7px 0 0;color:#e3e6ff}
+.home-wrap{display:flex;justify-content:flex-start;margin:14px 0 4px}
+.home-btn{display:inline-flex;align-items:center;gap:7px;text-decoration:none;border:1px solid #53658f;background:linear-gradient(135deg,#202b4c,#34245f);color:#fff;padding:10px 15px;border-radius:11px;font-weight:800;box-shadow:0 6px 18px #0005}
+.home-btn:hover{filter:brightness(1.12);transform:translateY(-1px)}
 .tabs{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
 .tab{border:1px solid var(--line);background:#10152b;color:#fff;padding:10px 14px;border-radius:12px;cursor:pointer;font-weight:800}
 .tab.active{background:linear-gradient(135deg,var(--blue),var(--purple));border-color:transparent}
@@ -37,6 +40,8 @@ table{width:100%;border-collapse:collapse} th,td{border:1px solid var(--line);pa
 <p><b>24/09/2026</b> · Verbos, demostrativos, descripción de personas y página 40.</p>
 <p class="muted">Ficha individual: únicamente contenido trabajado en esta aula.</p>
 </header>
+
+<div class="home-wrap"><a class="home-btn" href="./">🏠 Página inicial</a></div>
 
 <nav class="tabs">
 <button class="tab active" data-tab="resumen">📚 Aula</button>
@@ -319,6 +324,7 @@ table{width:100%;border-collapse:collapse} th,td{border:1px solid var(--line);pa
 </div>
 </section>
 
+<div class="home-wrap" style="justify-content:center;margin:22px 0 4px"><a class="home-btn" href="./">🏠 Volver a la página inicial</a></div>
 <footer>Ficha individual · Aula de Español A2 · 24/09/2026</footer>
 </main>
 <script>
