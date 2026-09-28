@@ -55,6 +55,16 @@ summary{cursor:pointer;font-weight:800}
 .small{font-size:.88rem;color:var(--muted)}
 footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
 @media(max-width:600px){.container{padding:14px 10px 45px}th,td{padding:8px;font-size:.9rem}.card{padding:15px}}
+
+.home-nav{display:flex;justify-content:center;margin:0 0 14px}
+.home-btn{display:inline-flex;align-items:center;gap:7px;text-decoration:none;
+  background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;
+  border:0;border-radius:12px;padding:10px 16px;font-weight:800;
+  box-shadow:0 6px 18px color-mix(in srgb,var(--purple) 25%,transparent);
+  transition:.2s ease}
+.home-btn:hover{transform:translateY(-1px);filter:brightness(1.08)}
+.home-bottom{margin:28px 0 0}
+
 </style>
 </head>
 <body>
@@ -65,6 +75,7 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
   <div class="subtitle">Relaciones, descripción de personas, <b>llevar / llevarse</b>, <b>caer bien/mal</b>, <b>parecer / parecerse</b> y <b>medir</b></div>
 </header>
 
+<div class="home-nav"><a class="home-btn" href="./">🏠 Página inicial</a></div>
 <nav>
   <button class="active" onclick="showTab('resumo',this)">📚 Resumo</button>
   <button onclick="showTab('vocab',this)">📝 Vocabulário</button>
@@ -246,6 +257,7 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
 </div>
 </section>
 
+<div class="home-nav home-bottom"><a class="home-btn" href="./">🏠 Volver a la página inicial</a></div>
 <footer>Registro individual da aula de 28/09/2026. Conteúdo restrito ao material desta aula.</footer>
 </div>
 <script>
