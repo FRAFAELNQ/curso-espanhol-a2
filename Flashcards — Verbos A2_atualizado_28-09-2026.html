@@ -421,9 +421,27 @@
     color: var(--accent2);
     border: 1.5px solid var(--accent2);
   }
+
+  .home-nav{
+    display:flex;justify-content:center;align-items:center;
+    margin:0 auto 14px;width:100%;max-width:480px;
+  }
+  .home-btn{
+    display:inline-flex;align-items:center;gap:7px;text-decoration:none;
+    background:linear-gradient(135deg,var(--accent2),var(--accent));
+    color:#fff;border:0;border-radius:11px;padding:10px 16px;
+    font-family:inherit;font-size:.9rem;font-weight:800;
+    box-shadow:0 6px 18px color-mix(in srgb,var(--accent2) 25%,transparent);
+    transition:.2s ease;
+  }
+  .home-btn:hover{transform:translateY(-1px);filter:brightness(1.08)}
+  .home-bottom{margin-top:24px}
+
 </style>
 </head>
 <body>
+
+<div class="home-nav"><a class="home-btn" href="./">🏠 Página inicial</a></div>
 
 <h1 id="titleEl">Verbos A2 — por padrão</h1>
 <div class="sub" id="subEl">Toque no cartão pra virar</div>
@@ -1013,6 +1031,8 @@ function setLang(l) {
 
 setLang('pt');
 </script>
+
+<div class="home-nav home-bottom"><a class="home-btn" href="./">🏠 Volver a la página inicial</a></div>
 
 </body>
 </html>
