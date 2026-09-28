@@ -1,16 +1,136 @@
-<!doctype html>
-<html lang="pt-BR"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Curso Español A2</title>
 <style>
-*{box-sizing:border-box}body{margin:0;min-height:100vh;color:#f8efff;font-family:Segoe UI,Arial,sans-serif;background:radial-gradient(circle at 15% 10%,#4b267355,transparent 30%),radial-gradient(circle at 85% 15%,#7b245555,transparent 30%),#120d19}main{max-width:1050px;margin:auto;padding:30px 18px 55px}.hero{padding:38px 22px;text-align:center;border:1px solid #654477;border-radius:28px;background:linear-gradient(135deg,#25143a,#35153a 55%,#17263b);box-shadow:0 20px 60px #0006}.badge{display:inline-block;padding:8px 16px;border-radius:999px;background:linear-gradient(90deg,#7c3aed,#ff4fb0);font-weight:700}h1{font-size:clamp(2.3rem,7vw,4.5rem);margin:18px 0 10px;background:linear-gradient(90deg,#ff62bd,#a78bfa,#45d8cb,#fbbf24);-webkit-background-clip:text;background-clip:text;color:transparent}.sub{color:#cbb9d8;font-size:1.08rem}section{margin-top:30px}.title{font-size:1.6rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px}.card{display:block;color:#f8efff;text-decoration:none;padding:24px;border-radius:20px;background:linear-gradient(145deg,#24172f,#2d1b3a);border:1px solid #654477;transition:.2s}.card:hover{transform:translateY(-4px);border-color:#ff4fb0;box-shadow:0 14px 35px #ff4fb025}.lesson{border-left:5px solid #ff4fb0}.verbs{border-left:5px solid #2dd4bf}.icon{font-size:2rem}.card h2{margin:10px 0 8px}.card p{color:#cbb9d8;line-height:1.5}.open{display:inline-block;margin-top:14px;padding:9px 14px;border-radius:10px;font-weight:800}.lesson .open{background:#ff4fb02d;color:#ff8dcc}.verbs .open{background:#2dd4bf26;color:#65e7d6}.foot{text-align:center;color:#9e8baa;margin-top:34px}
-</style></head><body><main>
-<header class="hero"><span class="badge">EOI · Español A2</span><h1>Curso Español A2</h1><div class="sub">Fichas interactivas · Verbos · Conjugación · Audio</div></header>
-<section><h2 class="title">📚 Aulas</h2><div class="grid">
-<a class="card lesson" href="Aula_Espanol_A2_24-09-2026.html"><div class="icon">📅</div><h2>Aula — 24/09/2026</h2><p>Ficha interactiva de la clase con resumen, vocabulario, gramática, verbos, ejercicios y práctica.</p></a>
-<a class="card lesson" href="Aula_Espanol_A2_28-09-2026.html"><div class="icon">📅</div><h2>Aula — 28/09/2026</h2><p>Ficha interactiva da aula com resumo, vocabulário, gramática, verbos, exercícios e prática.</p><span class="open">ABRIR AULA →</span></a>
-</div></section>
-<section><h2 class="title">🔤 Verbos A2</h2><div class="grid">
-<a class="card verbs" href="Flashcards%20%E2%80%94%20Verbos%20A2_atualizado_28-09-2026.html"><div class="icon">🔊</div><h2>Flashcards — Verbos A2</h2><p>Flashcards cumulativos com conjugação, prática e áudio dos verbos.</p><span class="open">ABRIR FLASHCARDS →</span></a>
-</div></section>
-<div class="foot">Curso Español A2 · Página principal</div></main></body></html>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:Arial,Helvetica,sans-serif;
+  color:#f8f4ff;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(130,70,190,.18), transparent 30%),
+    radial-gradient(circle at 90% 20%, rgba(255,50,150,.14), transparent 28%),
+    linear-gradient(135deg,#160d25 0%,#0d0914 55%,#170b1b 100%);
+}
+.container{width:min(100%,920px);margin:auto;padding:24px 20px 36px}
+.hero{
+  text-align:center;
+  padding:38px 24px 34px;
+  border:1px solid rgba(190,120,255,.38);
+  border-radius:28px;
+  background:linear-gradient(135deg,rgba(65,25,82,.78),rgba(28,35,58,.88));
+  box-shadow:0 20px 60px rgba(0,0,0,.28);
+}
+.badge{
+  display:inline-block;
+  padding:8px 18px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:14px;
+  background:linear-gradient(90deg,#8338ec,#ff3e9d);
+}
+h1{
+  margin:28px 0 12px;
+  font-size:clamp(42px,7vw,76px);
+  line-height:1;
+  background:linear-gradient(90deg,#d67af2,#7fb1ff,#39d8d0,#8be28b);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.subtitle{font-size:18px;color:#d9c8ec;margin:0}
+.section-title{font-size:30px;margin:38px 4px 18px}
+.card{
+  border:1px solid rgba(210,130,255,.35);
+  border-left:4px solid #ff3eaa;
+  border-radius:22px;
+  padding:26px 24px;
+  margin:16px 0;
+  background:linear-gradient(135deg,rgba(57,30,70,.86),rgba(31,25,46,.92));
+  box-shadow:0 12px 35px rgba(0,0,0,.18);
+}
+.card.verbs{border-left-color:#39d8d0}
+.icon{font-size:30px;margin-bottom:10px}
+h2{font-size:22px;margin:0 0 12px}
+p{color:#d9c8ec;line-height:1.55;margin:0 0 20px}
+.btn{
+  display:inline-block;
+  padding:13px 17px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:800;
+  font-size:14px;
+  letter-spacing:.2px;
+  background:rgba(255,62,157,.18);
+  color:#ff8ac6;
+  transition:.2s ease;
+}
+.btn:hover{transform:translateY(-2px);background:rgba(255,62,157,.3)}
+.verbs .btn{color:#55e7df;background:rgba(57,216,208,.13)}
+.verbs .btn:hover{background:rgba(57,216,208,.22)}
+footer{text-align:center;color:#a993bd;font-size:14px;margin-top:30px}
+@media(max-width:600px){
+  .container{padding:14px 12px 28px}
+  .hero{padding:30px 16px}
+  h1{font-size:43px}
+  .subtitle{font-size:15px}
+  .section-title{font-size:25px}
+  .card{padding:22px 18px}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header class="hero">
+    <div class="badge">EOI · Español A2</div>
+    <h1>Curso Español A2</h1>
+    <p class="subtitle">Fichas interactivas · Verbos · Conjugación · Audio</p>
+  </header>
+
+  <section>
+    <h2 class="section-title">📚 Aulas</h2>
+
+    <!--
+      AULAS:
+      Para una nova aula, copie um cartão abaixo e altere:
+      1. a data exibida;
+      2. o nome do arquivo no href.
+      Mantenha as aulas em ordem cronológica.
+    -->
+
+    <article class="card">
+      <div class="icon">📅</div>
+      <h2>Aula — 24/09/2026</h2>
+      <p>Ficha interactiva de la clase con resumen, vocabulario, gramática, verbos, ejercicios y práctica.</p>
+      <a class="btn" href="Aula_Espanol_A2_24-09-2026.html">ABRIR AULA →</a>
+    </article>
+
+    <article class="card">
+      <div class="icon">📅</div>
+      <h2>Aula — 28/09/2026</h2>
+      <p>Ficha interactiva de la clase con resumen, vocabulario, gramática, verbos, ejercicios y práctica.</p>
+      <a class="btn" href="Aula_Espanol_A2_28-09-2026.html">ABRIR AULA →</a>
+    </article>
+  </section>
+
+  <section>
+    <h2 class="section-title">🔤 Verbos A2</h2>
+
+    <article class="card verbs">
+      <div class="icon">🔊</div>
+      <h2>Flashcards — Verbos A2</h2>
+      <p>Flashcards acumulativos con conjugación, práctica y audio de los verbos.</p>
+      <a class="btn" href="Flashcards%20%E2%80%94%20Verbos%20A2_atualizado_28-09-2026.html">ABRIR FLASHCARDS →</a>
+    </article>
+  </section>
+
+  <footer>Curso Español A2 · Página principal</footer>
+</div>
+</body>
+</html>
