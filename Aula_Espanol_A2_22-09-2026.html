@@ -1,81 +1,347 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>Aula_Espanol_A2_22-09-2026</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080a18">
+<title>Clase de Español A2 — 22/09/2026</title>
 <style>
-:root{--bg:#080a18;--panel:#11162c;--panel2:#171d38;--text:#f8f9ff;--muted:#b8c0dd;--blue:#42a5ff;--purple:#a56cff;--pink:#ff5ca8;--cyan:#37e6d4;--green:#4be59a;--yellow:#ffd34e;--red:#ff6b7c;--line:#2d385e}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 10% 0,#1d2b66,transparent 38%),radial-gradient(circle at 90% 0,#5a174d,transparent 35%),var(--bg);color:var(--text);font:16px/1.55 Arial,sans-serif}main{max-width:1120px;margin:auto;padding:18px}.home{display:inline-block;margin:4px 0 14px;color:#fff;text-decoration:none;font-weight:800;padding:9px 13px;border:1px solid var(--line);border-radius:12px;background:#10152b}.hero{padding:25px;border-radius:22px;border:1px solid #48598d;background:linear-gradient(135deg,#172c6c,#49237f 52%,#741c58);box-shadow:0 18px 50px #0008}.hero h1{margin:0;font-size:30px}.hero p{margin:7px 0 0;color:#e3e6ff}.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}.tab{border:1px solid var(--line);background:#10152b;color:#fff;padding:10px 14px;border-radius:12px;cursor:pointer;font-weight:800}.tab.active{background:linear-gradient(135deg,var(--blue),var(--purple));border-color:transparent}.panel{background:linear-gradient(180deg,#12172f,#0d1124);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:15px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}.card,.verb-card{background:var(--panel2);border:1px solid var(--line);border-radius:15px;padding:15px}.blue{border-left:4px solid var(--blue)}.purple{border-left:4px solid var(--purple)}.pink{border-left:4px solid var(--pink)}.cyan{border-left:4px solid var(--cyan)}.green{border-left:4px solid var(--green)}.yellow{border-left:4px solid var(--yellow)}h2{margin-top:0}h3{margin:0 0 9px}.muted{color:var(--muted)}.chip{display:inline-block;padding:5px 9px;margin:3px;border-radius:99px;background:#252e50;border:1px solid #39476f}.verb-card{border-top:3px solid var(--blue)}.verb-head{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:10px}.verb-head h3{font-size:21px;color:#67b8ff;margin:0}.verb-head span{font-size:12px;color:#fff;background:#293458;border-radius:99px;padding:4px 8px}.conj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.conj{padding:9px;background:#0c1125;border:1px solid #273352;border-radius:9px;text-align:center}.conj span{display:block;color:#bba9ff;font-size:12px;text-transform:uppercase}.conj b{display:block;margin-top:3px}.example{margin:10px 0 0;color:#aeb8d7;font-size:13px}.note{padding:14px;border-radius:13px;background:#10182d;border-left:4px solid var(--cyan);margin-top:12px}.question{padding:15px;border-radius:13px;background:#151c36;border:1px solid var(--line);margin:10px 0}.question input,.question select{width:100%;padding:10px;border-radius:9px;border:1px solid #3a486f;background:#080d20;color:#fff;font:inherit;margin:5px 0}button.action{padding:9px 12px;border-radius:9px;border:1px solid #53658f;background:#202b4c;color:#fff;cursor:pointer;font-weight:700}.feedback{margin-top:8px;padding:9px;border-radius:9px;display:none}.ok{display:block;background:#123e2b;color:#78efb1}.no{display:block;background:#471d2a;color:#ff9cac}.quote{padding:14px 16px;border-left:4px solid var(--pink);background:#17152f;border-radius:12px;margin:10px 0}.formula{font-size:18px;font-weight:800;color:#fff;text-align:center;padding:12px;border-radius:12px;background:linear-gradient(135deg,#202c57,#3a2055)}table{width:100%;border-collapse:collapse}th,td{border:1px solid var(--line);padding:9px;text-align:left}th{background:#202a4c}[hidden]{display:none!important}footer{text-align:center;color:#9fa9c9;font-size:12px;padding:15px}@media(max-width:650px){main{padding:10px}.hero h1{font-size:23px}.conj-grid{grid-template-columns:repeat(2,1fr)}.panel{padding:15px}}
-</style>
-<style>
-.home-nav{
-  display:flex;
-  justify-content:flex-start;
-  margin:0 0 16px;
+:root{
+  color-scheme:dark;
+  --bg:#080a18;--card:#171d38;--text:#f8f9ff;--muted:#b8c0dd;
+  --pink:#ff5ca8;--purple:#a56cff;--turq:#37e6d4;--yellow:#ffd34e;
+  --blue:#42a5ff;--soft:#252e50;--border:#2d385e;--ok:#4be59a;--bad:#ff6b7c;
 }
-.home-nav.bottom{
-  margin:22px 0 0;
-  justify-content:center;
-}
-.home-nav a{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:10px 16px;
-  border-radius:12px;
-  text-decoration:none;
-  font-weight:700;
-  color:#fff;
-  background:linear-gradient(135deg,#7b2cbf,#ff3cac);
-  box-shadow:0 6px 18px rgba(0,0,0,.22);
-}
-.home-nav a:hover{
-  transform:translateY(-1px);
-  filter:brightness(1.08);
-}
-</style></head>
-<body><main>
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 10% 0,#1d2b66,transparent 38%),radial-gradient(circle at 90% 0,#5a174d,transparent 35%),var(--bg);background-attachment:fixed;color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}
+.container{max-width:1100px;margin:auto;padding:22px 16px 60px}
+header{text-align:center;padding:26px 20px;margin-bottom:6px;border-radius:22px;border:1px solid #48598d;background:linear-gradient(135deg,#172c6c,#49237f 52%,#741c58);box-shadow:0 18px 50px #0008}
+.badge{display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;font-weight:800;font-size:.82rem}
+h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);color:#fff}
+.subtitle{color:#e3e6ff}
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);display:flex;gap:7px;overflow:auto;padding:8px;border-bottom:1px solid var(--border)}
+nav button,.tab{border:1px solid var(--border);background:var(--card);color:var(--text);padding:9px 12px;border-radius:12px;cursor:pointer;white-space:nowrap;font-weight:750}
+nav button.active,.tab.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+section{display:none;padding-top:22px}
+section.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:0 7px 22px color-mix(in srgb,var(--purple) 10%,transparent)}
+.card h3{margin-top:0}
+.color-title{font-size:1.25rem;font-weight:900}
+.pink{color:var(--pink)}.purple{color:var(--purple)}.turq{color:var(--turq)}.blue{color:var(--blue)}.yellow{color:var(--yellow)}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden}
+th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+th{background:#202a4c;color:#cdbdff}
+.verb-card{margin-bottom:16px}
+.verb-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.verb{font-size:1.45rem;font-weight:900;color:var(--pink)}
+.tag{font-size:.78rem;font-weight:800;padding:4px 9px;border-radius:999px;background:var(--soft);color:#cdbdff}
+.speak{border:0;background:var(--soft);border-radius:10px;padding:7px 10px;cursor:pointer}
+.example{border-left:4px solid var(--turq);padding:9px 12px;background:color-mix(in srgb,var(--turq) 8%,var(--card));border-radius:0 12px 12px 0;margin:9px 0}
+.note{font-size:.9rem;color:var(--muted)}
+.choice{padding:12px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;text-align:left}
+.choice:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.feedback{margin-top:12px;font-weight:800;padding:10px;border-radius:8px;display:none}
+.feedback.ok{display:block;color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card));border:1px solid var(--ok)}
+.feedback.bad{display:block;color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card));border:1px solid var(--bad)}
+details{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px;margin:9px 0}
+summary{cursor:pointer;font-weight:800}
+.small{font-size:.88rem;color:var(--muted)}
+.example.sayable{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.example.sayable .speak{flex:0 0 auto;font-size:1.05rem}
+.sound-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:6px 0 12px}
+.speak:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.speak[aria-pressed="true"]{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff}
+footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
+@media(max-width:600px){.container{padding:14px 10px 45px}th,td{padding:8px;font-size:.9rem}.card{padding:15px}}
 
-<header class="hero"><h1>📚 Español A2 · Ficha interactiva</h1><p><b>22/09/2026</b> · Parecer, parecerse e identificación de personas.</p><p class="muted">Ficha individual basada únicamente en el material proporcionado para la clase.</p></header><div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
-<nav class="tabs">
-<button class="tab active" data-tab="resumen">📚 Clase</button><button class="tab" data-tab="verbos">🔤 Verbos</button><button class="tab" data-tab="parecer">👤 Parecer / parecerse</button><button class="tab" data-tab="identificar">🔎 Identificar</button><button class="tab" data-tab="ejercicios">✏️ Ejercicios</button>
+.home-nav{text-align:center;margin:14px 0 8px}
+.home-nav a{display:inline-block;padding:10px 18px;border-radius:12px;background:#10152b;border:1px solid var(--border);color:#fff;text-decoration:none;font-weight:800;transition:transform .15s ease,border-color .15s ease}
+.home-nav a:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.home-nav a:hover{transform:translateY(-1px);border-color:var(--blue)}
+
+.table-wrap{overflow-x:auto;border-radius:16px}
+.table-wrap table{min-width:520px}
+.chip{display:inline-block;padding:4px 10px;margin:3px 3px 3px 0;border-radius:999px;background:var(--soft);border:1px solid var(--border);font-weight:700}
+ul.clean{margin:8px 0;padding-left:20px}ul.clean li{margin:5px 0}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <span class="badge">EOI · Español A2 · Clase individual</span>
+  <h1>Ficha interactiva — 22/09/2026</h1>
+  <div class="subtitle">Parecer, parecerse e identificación de personas</div>
+  <div class="subtitle" style="font-size:.9rem;margin-top:6px">📖 Libro: Aula Plus 2 (pp. 44 y 139)</div>
+</header>
+<div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
+
+<nav>
+  <button class="active" onclick="showTab('resumen',this)">📚 Resumen</button>
+  <button onclick="showTab('vocab',this)">📝 Vocabulario</button>
+  <button onclick="showTab('gram',this)">🧠 Gramática</button>
+  <button onclick="showTab('verbos',this)">🔤 Verbos</button>
+  <button onclick="showTab('ex',this)">✏️ Ejercicios</button>
+  <button onclick="showTab('practica',this)">🎯 Práctica</button>
 </nav>
-<section class="panel" id="resumen"><h2>📚 Lo trabajado</h2><div class="grid">
-<div class="card blue"><h3>🔤 Caer</h3><p>O quadro registrou: <b>yo caigo</b> e <b>tú caes</b>.</p><span class="chip">caigo</span><span class="chip">caes</span></div>
-<div class="card purple"><h3>👤 Parecer</h3><p>Usado para expresar una impresión/opinión: <b>Ella parece tímida.</b></p><p><b>Yo creo que es tímida.</b></p></div>
-<div class="card pink"><h3>👥 Parecerse</h3><p>Usado para indicar semejanza: <b>Yo me parezco a ti.</b> · <b>Tú te pareces a él.</b> · <b>Él se parece a...</b></p></div>
-<div class="card cyan"><h3>🔎 Identificar personas</h3><p>Estructuras con <b>el/la/los/las</b> + adjetivo, <b>de</b> + substantivo e <b>que</b> + verbo.</p></div>
-</div><div class="note"><b>Preguntas trabajadas:</b> <span class="chip">¿A quién se parece?</span> <span class="chip">¿En qué se parece?</span></div></section>
-<section class="panel" hidden="" id="verbos"><h2>🔤 Verbos y formas registradas en la pizarra</h2><div class="grid">
-<article class="verb-card"><div class="verb-head"><h3>caer</h3><span>forma trabajada</span></div><div class="conj-grid"><div class="conj"><span>yo</span><b>caigo</b></div><div class="conj"><span>tú</span><b>caes</b></div><div class="conj"><span>él / ella / usted</span><b>cae</b></div><div class="conj"><span>nosotros / nosotras</span><b>caemos</b></div><div class="conj"><span>vosotros / vosotras</span><b>caéis</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>caen</b></div></div><p class="example">En la pizarra se destacaron especialmente: <b>yo caigo</b> · <b>tú caes</b>.</p></article>
-<article class="verb-card"><div class="verb-head"><h3>parecer</h3><span>e → ezc em yo</span></div><div class="conj-grid"><div class="conj"><span>yo</span><b>parezco</b></div><div class="conj"><span>tú</span><b>pareces</b></div><div class="conj"><span>él / ella / usted</span><b>parece</b></div><div class="conj"><span>nosotros / nosotras</span><b>parecemos</b></div><div class="conj"><span>vosotros / vosotras</span><b>parecéis</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>parecen</b></div></div><p class="example">Ejemplo del cuadro: <b>Ella parece tímida.</b></p></article>
-<article class="verb-card"><div class="verb-head"><h3>parecerse</h3><span>pronominal</span></div><div class="conj-grid"><div class="conj"><span>yo</span><b>me parezco</b></div><div class="conj"><span>tú</span><b>te pareces</b></div><div class="conj"><span>él / ella / usted</span><b>se parece</b></div><div class="conj"><span>nosotros / nosotras</span><b>nos parecemos</b></div><div class="conj"><span>vosotros / vosotras</span><b>os parecéis</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>se parecen</b></div></div><p class="example">Ejemplos del cuadro: <b>Yo me parezco a ti.</b> · <b>Tú te pareces a él.</b></p></article>
-</div><div class="note"><b>También apareció en la pizarra:</b> referência a terminações <b>-cer / -uir</b> e o pronome <b>se</b>. Esta ficha no amplía esa anotación más allá de lo que aparece en el material.</div></section>
-<section class="panel" hidden="" id="parecer"><h2>👤 Parecer × parecerse</h2><div class="grid">
-<div class="card purple"><h3>Parecer</h3><p>Expresa la impresión que alguien/algo causa.</p><div class="formula">Ella parece tímida.</div><p class="muted">En la pizarra también: <b>Yo creo que es tímida.</b></p></div>
-<div class="card pink"><h3>Parecerse a</h3><p>Expresa semejanza con otra persona.</p><div class="formula">Yo me parezco a ti.</div><div class="formula">Tú te pareces a él.</div><p class="muted">Pregunta: <b>¿A quién se parece?</b></p></div>
-<div class="card cyan"><h3>¿En qué aspecto?</h3><div class="formula">Se parece en la piel.</div><p class="muted">Pregunta registrada en la pizarra: <b>¿En qué se parece?</b></p></div>
-</div></section>
-<section class="panel" hidden="" id="identificar"><h2>🔎 Identificar personas dentro de um grupo</h2><p>As fotos e o quadro mostram estas estruturas:</p><div class="grid">
-<div class="card blue"><h3>el / la / los / las + adjetivo</h3><p><b>La rubia</b> es mi prima.</p></div>
-<div class="card purple"><h3>el / la / los / las + de + substantivo</h3><p><b>El de la barba</b> es mi hermano.</p><p><b>La de la falda verde</b> es mi tía.</p><p><b>Los de las gafas</b> son mis amigos.</p></div>
-<div class="card pink"><h3>el / la / los / las + que + verbo</h3><p><b>La que canta</b> es mi madre.</p><p><b>La que lleva una falda verde</b> es mi tía.</p></div>
-</div><div class="note"><b>Ejemplo da página 139:</b> <i>Rosa es la de los ojos verdes.</i> · <i>La de los pendientes largos.</i> · <i>La que está a su lado es Ana.</i> · <i>El de la camiseta rosa...</i> · <i>El otro chico, el de la barba...</i> · <i>Y el que está detrás...</i></div><div class="card green"><h3>Características trabajadas</h3><p><b>soy zurdo</b> · <b>ser diestro</b></p></div></section>
-<section class="panel" hidden="" id="ejercicios"><h2>✏️ Ejercicios de la clase</h2>
-<div class="question"><h3>Ejercicio — completar la estructura</h3><p>Elige la opción que completa correctamente:</p><p><b>La ___ canta es mi madre.</b></p><select id="q1"><option value="">Elige...</option><option value="de">de</option><option value="que">que</option><option value="rubia">rubia</option></select><button class="action" onclick="check('q1','que','f1','✅ Correcto: La que canta es mi madre.','❌ Observa la estructura: la + que + verbo.')">Corregir</button><div class="feedback" id="f1"></div></div>
-<div class="question"><h3>Ejercicio — parecer o parecerse</h3><p><b>Yo ___ a ti.</b></p><select id="q2"><option value="">Elige...</option><option value="parezco">parezco</option><option value="me parezco">me parezco</option><option value="parece">parece</option></select><button class="action" onclick="check('q2','me parezco','f2','✅ Correcto: Yo me parezco a ti.','❌ Aquí se indica semejanza con otra persona: me parezco a...')">Corregir</button><div class="feedback" id="f2"></div></div>
-<div class="question"><h3>Ejercicio — identificar</h3><p><b>___ de la barba es mi hermano.</b></p><select id="q3"><option value="">Elige...</option><option value="El">El</option><option value="La">La</option><option value="Los">Los</option></select><button class="action" onclick="check('q3','El','f3','✅ Correcto: El de la barba es mi hermano.','❌ La frase de la pizarra es: El de la barba es mi hermano.')">Corregir</button><div class="feedback" id="f3"></div></div>
-<div class="question"><h3>Ejercicio — pregunta</h3><p>¿Qué pregunta se escribió en la pizarra para saber <b>con quién</b> alguien se parece?</p><select id="q4"><option value="">Elige...</option><option value="quien">¿A quién se parece?</option><option value="que">¿En qué se parece?</option></select><button class="action" onclick="check('q4','quien','f4','✅ Correcto: ¿A quién se parece?','❌ La pregunta para saber con quién se parece alguien es: ¿A quién se parece?')">Corregir</button><div class="feedback" id="f4"></div></div>
-<div class="question"><h3>Ejercicio — página 44, pregunta 6C</h3><p>El ejercicio pide completar frases con otras características de las personas de la foto:</p><ol><li>Diego es el que __________.</li><li>Leila es la que __________.</li><li>Abigail es la __________.</li><li>Sandra es la de __________.</li></ol><p class="muted">Las respuestas dependen de las características observadas en la fotografía del ejercicio.</p></div>
-<div class="question"><h3>Ejercicio — página 139, pregunta 10</h3><p>Nuria identifica personas de una fotografía usando las estructuras trabajadas: <b>la de...</b>, <b>la que...</b>, <b>el de...</b>, <b>el que...</b>.</p><p class="muted">La actividad consiste en asociar los nombres con las personas de la fotografía.</p></div>
-<div class="question"><h3>Ejercicio — página 139, pregunta 12</h3><p>Completar conversaciones con: <b>el de · el que · el · los de · los que · los · la que · la de · la</b>.</p><p>Ejemplo visível: <b>¿Cuál? ¿___ la camiseta roja?</b></p><p class="muted">Usa únicamente las expresiones proporcionadas en el ejercicio.</p></div>
+
+<section id="resumen" class="active">
+<div class="grid">
+ <div class="card"><div class="color-title pink">1. Parecer</div><p>Se utiliza para expresar una impresión o una opinión sobre alguien. Equivalente a dar una valoración personal.</p></div>
+ <div class="card"><div class="color-title purple">2. Parecerse (a)</div><p>Se usa de forma reflexiva para indicar <b>semejanza</b> (física o de carácter) con otra persona.</p></div>
+ <div class="card"><div class="color-title turq">3. Identificar personas</div><p>Se trabajaron las estructuras necesarias para identificar a una persona dentro de un grupo usando características, objetos o acciones.</p></div>
+ <div class="card"><div class="color-title yellow">4. Caer</div><p>En la pizarra se revisó la conjugación irregular de este verbo, destacando las formas <b>yo</b> y <b>tú</b>.</p></div>
+</div>
+<div class="card" style="margin-top:14px">
+<h3>⭐ Frases clave de la clase</h3>
+<div class="sound-bar"><span class="small">🔊 Toca el botón de cada frase para escucharla.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
+<div class="example"><b>Ella parece tímida.</b></div>
+<div class="example"><b>Yo creo que es tímida.</b></div>
+<div class="example"><b>Yo me parezco a ti.</b></div>
+<div class="example"><b>¿A quién se parece?</b></div>
+<div class="example"><b>Se parece en la piel.</b></div>
+<div class="example"><b>La rubia es mi prima.</b></div>
+<div class="example"><b>El de la barba es mi hermano.</b></div>
+<div class="example"><b>La que canta es mi madre.</b></div>
+</div>
 </section>
-<div class="home-nav bottom"><a href="index.html">🏠 Volver al inicio</a></div><footer>EOI · Español A2 · Aula individual · 22/09/2026<br/></footer>
-</main>
+
+<section id="vocab">
+<h2>📝 Vocabulario y características</h2>
+<div class="grid">
+ <div class="card"><div class="color-title pink">Lateralidad</div>
+  <ul class="clean">
+   <li><b>ser zurdo/a</b>: persona que usa preferentemente la mano izquierda.</li>
+   <li><b>ser diestro/a</b>: persona que usa preferentemente la mano derecha.</li>
+  </ul>
+ </div>
+ <div class="card"><div class="color-title purple">Características para identificar</div>
+  <p>Ejemplos de elementos utilizados en la clase para reconocer a una persona en una fotografía:</p>
+  <ul class="clean">
+   <li><b>la rubia</b>: color de pelo.</li>
+   <li><b>la barba</b>: vello facial.</li>
+   <li><b>las gafas</b>: para ver mejor.</li>
+   <li><b>los ojos verdes</b>: color de ojos.</li>
+   <li><b>la camiseta rosa / la falda verde</b>: ropa.</li>
+   <li><b>los pendientes largos</b>: joyas.</li>
+  </ul>
+ </div>
+</div>
+</section>
+
+<section id="gram">
+<h2>🧠 Gramática</h2>
+<div class="sound-bar"><span class="small">🔊 Toca el botón de cada ejemplo para escucharlo.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
+
+<h3 class="color-title pink">1 · Parecer × Parecerse</h3>
+<div class="grid">
+ <div class="card"><div class="color-title purple">Parecer</div><p>Expresa la impresión que alguien o algo causa. Funciona de manera similar a «creer que».</p>
+ <div class="example"><b>Ella parece tímida.</b></div>
+ <div class="example"><b>Yo creo que es tímida.</b></div>
+ </div>
+ <div class="card"><div class="color-title turq">Parecerse (a)</div><p>Expresa semejanza con otra persona. Se usa con pronombre reflexivo y la preposición <b>a</b>.</p>
+ <div class="example"><b>Yo me parezco a ti.</b></div>
+ <div class="example"><b>Tú te pareces a él.</b></div>
+ <p class="note">Para preguntar usamos: <b>¿A quién se parece?</b></p>
+ </div>
+ <div class="card"><div class="color-title yellow">¿En qué aspecto?</div><p>Para hablar del rasgo en común, se usa la preposición <b>en</b>.</p>
+ <div class="example"><b>Se parece en la piel.</b></div>
+ <p class="note">Para preguntar usamos: <b>¿En qué se parece?</b></p>
+ </div>
+</div>
+
+<h3 class="color-title turq" style="margin-top:24px">2 · Identificar personas dentro de un grupo</h3>
+<div class="card">
+<p>Para señalar o identificar a alguien, usamos el artículo (el, la, los, las) seguido de diferentes estructuras:</p>
+
+<div class="table-wrap"><table>
+<tr><th>Estructura</th><th>Regla</th><th>Ejemplos de la pizarra</th></tr>
+<tr><td><b>el / la / los / las + adjetivo</b></td><td>Característica propia y directa de la persona.</td><td><b>La rubia</b> es mi prima.</td></tr>
+<tr><td><b>el / la / los / las + de + sustantivo</b></td><td>Un objeto, ropa, parte del cuerpo o complemento que tiene la persona.</td><td><b>El de la barba</b> es mi hermano.<br><b>La de la falda verde</b> es mi tía.<br><b>Los de las gafas</b> son mis amigos.</td></tr>
+<tr><td><b>el / la / los / las + que + verbo</b></td><td>Una acción que está realizando la persona o una frase completa.</td><td><b>La que canta</b> es mi madre.<br><b>La que lleva una falda verde</b> es mi tía.</td></tr>
+</table></div>
+
+<p class="note" style="margin-top:14px"><b>Ejemplos del libro (p. 139):</b> Rosa es la de los ojos verdes. · La de los pendientes largos. · La que está a su lado es Ana. · El de la camiseta rosa... · El otro chico, el de la barba... · Y el que está detrás...</p>
+</div>
+</section>
+
+<section id="verbos">
+<h2>🔤 Verbos trabajados en la clase</h2>
+<p class="small">Verbos registrados en la pizarra durante la sesión. En los <a href="flashcards-verbos-a2.html">flashcards</a> puedes encontrar la pronunciación de los infinitivos.</p>
+
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">caer</span><span class="tag">irregular en «yo»</span><button type="button" class="speak" aria-label="Escuchar: caer" onclick="say('caer')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>caigo</td><td>caes</td><td>cae</td><td>caemos</td><td>caéis</td><td>caen</td></tr></table></div>
+<p class="note">La profesora destacó especialmente las formas <b>yo caigo</b> y <b>tú caes</b>.</p>
+</div>
+
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">parecer</span><span class="tag">irregular en «yo»: -zco</span><button type="button" class="speak" aria-label="Escuchar: parecer" onclick="say('parecer')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>parezco</td><td>pareces</td><td>parece</td><td>parecemos</td><td>parecéis</td><td>parecen</td></tr></table></div>
+<div class="example"><b>Ella parece tímida.</b></div>
+</div>
+
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">parecerse</span><span class="tag">verbo reflexivo</span><button type="button" class="speak" aria-label="Escuchar: parecerse" onclick="say('parecerse')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>me parezco</td><td>te pareces</td><td>se parece</td><td>nos parecemos</td><td>os parecéis</td><td>se parecen</td></tr></table></div>
+<div class="example"><b>Yo me parezco a ti.</b></div>
+</div>
+</section>
+
+<section id="ex">
+<h2>✏️ Ejercicios interactivos</h2>
+
+<div class="card">
+<h3 class="pink">1 · Completar la estructura</h3>
+<p>Elige la opción que completa correctamente:</p>
+<p><b>La ___ canta es mi madre.</b></p>
+<select id="q1" style="width:100%;padding:10px;border-radius:9px;border:1px solid var(--border);background:var(--card);color:var(--text);font:inherit;margin:5px 0">
+  <option value="">Elige...</option>
+  <option value="de">de</option>
+  <option value="que">que</option>
+  <option value="rubia">rubia</option>
+</select>
+<button class="choice" style="margin-top:8px; padding:8px 16px" onclick="checkEx('q1','que','f1','✅ Correcto: La que canta es mi madre.','❌ Observa la estructura: la + que + verbo.')">Corregir</button>
+<div id="f1" class="feedback"></div>
+</div>
+
+<div class="card" style="margin-top:14px">
+<h3 class="purple">2 · Parecer o parecerse</h3>
+<p><b>Yo ___ a ti.</b></p>
+<select id="q2" style="width:100%;padding:10px;border-radius:9px;border:1px solid var(--border);background:var(--card);color:var(--text);font:inherit;margin:5px 0">
+  <option value="">Elige...</option>
+  <option value="parezco">parezco</option>
+  <option value="me parezco">me parezco</option>
+  <option value="parece">parece</option>
+</select>
+<button class="choice" style="margin-top:8px; padding:8px 16px" onclick="checkEx('q2','me parezco','f2','✅ Correcto: Yo me parezco a ti.','❌ Aquí se indica semejanza con otra persona: me parezco a...')">Corregir</button>
+<div id="f2" class="feedback"></div>
+</div>
+
+<div class="card" style="margin-top:14px">
+<h3 class="turq">3 · Identificar</h3>
+<p><b>___ de la barba es mi hermano.</b></p>
+<select id="q3" style="width:100%;padding:10px;border-radius:9px;border:1px solid var(--border);background:var(--card);color:var(--text);font:inherit;margin:5px 0">
+  <option value="">Elige...</option>
+  <option value="El">El</option>
+  <option value="La">La</option>
+  <option value="Los">Los</option>
+</select>
+<button class="choice" style="margin-top:8px; padding:8px 16px" onclick="checkEx('q3','El','f3','✅ Correcto: El de la barba es mi hermano.','❌ La frase de la pizarra es: El de la barba es mi hermano.')">Corregir</button>
+<div id="f3" class="feedback"></div>
+</div>
+
+<div class="card" style="margin-top:14px">
+<h3 class="yellow">4 · Pregunta de semejanza</h3>
+<p>¿Qué pregunta se escribió en la pizarra para saber <b>con quién</b> alguien se parece?</p>
+<select id="q4" style="width:100%;padding:10px;border-radius:9px;border:1px solid var(--border);background:var(--card);color:var(--text);font:inherit;margin:5px 0">
+  <option value="">Elige...</option>
+  <option value="quien">¿A quién se parece?</option>
+  <option value="que">¿En qué se parece?</option>
+</select>
+<button class="choice" style="margin-top:8px; padding:8px 16px" onclick="checkEx('q4','quien','f4','✅ Correcto: ¿A quién se parece?','❌ La pregunta correcta es: ¿A quién se parece?')">Corregir</button>
+<div id="f4" class="feedback"></div>
+</div>
+</section>
+
+<section id="practica">
+<h2>🎯 Práctica (Ejercicios del libro)</h2>
+<div class="card">
+<h3>📝 Página 44, ejercicio 6C</h3>
+<p>El ejercicio pide completar las frases con características de las personas de la foto:</p>
+<ul class="clean">
+ <li>Diego es el que __________.</li>
+ <li>Leila es la que __________.</li>
+ <li>Abigail es la __________.</li>
+ <li>Sandra es la de __________.</li>
+</ul>
+<p class="small">Las respuestas dependen de la observación de la fotografía del libro.</p>
+</div>
+
+<div class="card" style="margin-top:14px">
+<h3>📝 Página 139, ejercicio 10</h3>
+<p>Nuria identifica personas de una fotografía usando las estructuras trabajadas en clase: <b>la de...</b>, <b>la que...</b>, <b>el de...</b> y <b>el que...</b>. El objetivo de la actividad es asociar los nombres a las personas de la imagen.</p>
+</div>
+
+<div class="card" style="margin-top:14px">
+<h3>📝 Página 139, ejercicio 12</h3>
+<p>Completar las conversaciones con las expresiones correctas: <b>el de, el que, el, los de, los que, los, la que, la de, la</b>.</p>
+<p>Ejemplo visible:</p>
+<div class="example"><b>¿Cuál? ¿La de la camiseta roja?</b></div>
+</div>
+</section>
+
+<div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
+<footer>Registro individual de la clase del 22/09/2026. Basado en la pizarra, las páginas del libro y las notas de la clase.</footer>
+</div>
+
 <script>
-const tabs=document.querySelectorAll('.tab');const panels=document.querySelectorAll('.panel');tabs.forEach(t=>t.addEventListener('click',()=>{tabs.forEach(x=>x.classList.remove('active'));panels.forEach(x=>x.hidden=true);t.classList.add('active');document.getElementById(t.dataset.tab).hidden=false;window.scrollTo({top:0,behavior:'smooth'})}));
-function check(id,answer,feed,ok,no){const v=document.getElementById(id).value;const el=document.getElementById(feed);el.className='feedback '+(v===answer?'ok':'no');el.textContent=v===answer?ok:no;}
+function showTab(id,btn){
+ document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+ btn.classList.add('active');
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+
+let slow=false, esVoice=null;
+function pickEs(){
+ const vs=speechSynthesis.getVoices();
+ esVoice=vs.find(v=>v.lang==='es-ES')||vs.find(v=>v.lang&&v.lang.startsWith('es'))||null;
+}
+if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=pickEs;pickEs();}
+function say(txt){
+ if(!('speechSynthesis' in window)) return;
+ speechSynthesis.cancel();
+ const u=new SpeechSynthesisUtterance(txt);
+ u.lang='es-ES';if(esVoice)u.voice=esVoice;
+ u.rate=slow?.6:.85;
+ speechSynthesis.speak(u);
+}
+function toggleSlow(){
+ slow=!slow;
+ document.querySelectorAll('.slowBtn').forEach(b=>{
+  b.textContent=slow?'🐢 Lento: encendido':'🐢 Lento: apagado';
+  b.setAttribute('aria-pressed',slow);
+ });
+}
+
+// Botón 🔊 en cada frase de ejemplo
+document.querySelectorAll('.example').forEach(el=>{
+ const b=el.querySelector('b'); if(!b) return;
+ const txt=b.textContent.trim();
+ const wrap=document.createElement('span');
+ while(el.firstChild) wrap.appendChild(el.firstChild);
+ el.appendChild(wrap);
+ el.classList.add('sayable');
+ const btn=document.createElement('button');
+ btn.type='button';btn.className='speak';btn.textContent='🔊';
+ btn.setAttribute('aria-label','Escuchar: '+txt);
+ btn.onclick=()=>say(txt);
+ el.appendChild(btn);
+});
+if(!('speechSynthesis' in window)) document.querySelectorAll('.sound-bar').forEach(x=>x.style.display='none');
+
+// Lógica de corrección de los ejercicios
+function checkEx(id, answer, feedId, okText, noText) {
+  const v = document.getElementById(id).value;
+  const el = document.getElementById(feedId);
+  if (v === "") {
+    el.className = 'feedback bad';
+    el.textContent = 'Selecciona una opción.';
+    return;
+  }
+  if (v === answer) {
+    el.className = 'feedback ok';
+    el.textContent = okText;
+  } else {
+    el.className = 'feedback bad';
+    el.textContent = noText;
+  }
+}
 </script>
-</body></html>
+</body>
+</html>
