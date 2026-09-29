@@ -606,7 +606,8 @@ const GROUPS = {
   "yo-irr-zc-refl": { pt: "1ª pessoa irregular (c→zc) + reflexivo", es: "1ª persona irregular (c→zc) + reflexivo", en: "Irregular 1st person (c→zc) + reflexive" },
   "uir":       { pt: "Verbos -uir (inserção de 'y')", es: "Verbos -uir (inserción de 'y')", en: "-uir verbs ('y' insertion)" },
   "eie-ir-refl": { pt: "Reflexivo e→ie (-IR especial)", es: "Reflexivo e→ie (-IR especial)", en: "Reflexive e→ie (special -IR)" },
-  "yo-irr-refl": { pt: "1ª pessoa irregular + reflexivo", es: "1ª persona irregular + reflexivo", en: "Irregular 1st person + reflexive" }
+  "yo-irr-refl": { pt: "1ª pessoa irregular + reflexivo", es: "1ª persona irregular + reflexivo", en: "Irregular 1st person + reflexive" },
+  uar: { pt: "-UAR (acento no u)", es: "-UAR (acento en la u)", en: "-UAR (accent on the u)" }
 };
 
 const NOTES = {
@@ -655,7 +656,16 @@ const NOTES = {
   sameReir: { pt: "Mesmo padrão de reír (acento no í).", es: "Mismo patrón que reír (acento en í).", en: "Same pattern as reír (accent on í)." },
   llevarseNote: { pt: "Verbo reflexivo para falar de uma relação com outra pessoa: me llevo bien/mal/fatal con...", es: "Verbo reflexivo para hablar de una relación con otra persona: me llevo bien/mal/fatal con...", en: "Reflexive verb for talking about a relationship with another person: me llevo bien/mal/fatal con..." },
   medirNote: { pt: "Na aula foi introduzido para dizer a altura: mido 1,93.", es: "En clase se introdujo para indicar la altura: mido 1,93.", en: "Introduced in class to state height: mido 1,93." },
-  tutearNote: { pt: "Regular. Tratar alguém de 'tú' em vez de 'usted': ¿Nos podemos tutear?", es: "Regular. Tratar a alguien de 'tú' en lugar de 'usted': ¿Nos podemos tutear?", en: "Regular. To address someone as 'tú' instead of 'usted': ¿Nos podemos tutear?" }
+  tutearNote: { pt: "Regular. Tratar alguém de 'tú' em vez de 'usted': ¿Nos podemos tutear?", es: "Regular. Tratar a alguien de 'tú' en lugar de 'usted': ¿Nos podemos tutear?", en: "Regular. To address someone as 'tú' instead of 'usted': ¿Nos podemos tutear?" },
+  pasarNote: { pt: "Regular. Atenção: paso (presente) × pasó (pretérito): o acento muda o tempo.", es: "Regular. Ojo: paso (presente) × pasó (pretérito): la tilde cambia el tiempo.", en: "Regular. Careful: paso (present) × pasó (preterite): the accent changes the tense." },
+  publicarNote: { pt: "Presente regular. No pretérito indefinido: publiqué (c→qu).", es: "Presente regular. En pretérito indefinido: publiqué (c→qu).", en: "Regular in the present. In the preterite: publiqué (c→qu)." },
+  pagarNote: { pt: "Presente regular. No pretérito indefinido: pagué (g→gu).", es: "Presente regular. En pretérito indefinido: pagué (g→gu).", en: "Regular in the present. In the preterite: pagué (g→gu)." },
+  cruzarNote: { pt: "Presente regular. No pretérito (yo): crucé (z→c).", es: "Presente regular. En pretérito (yo): crucé (z→c).", en: "Regular in the present. Preterite (yo): crucé (z→c)." },
+  organizarNote: { pt: "Presente regular. No pretérito (yo): organicé (z→c).", es: "Presente regular. En pretérito (yo): organicé (z→c).", en: "Regular in the present. Preterite (yo): organicé (z→c)." },
+  tocarNote: { pt: "Presente regular. No pretérito (yo): toqué (c→qu).", es: "Presente regular. En pretérito (yo): toqué (c→qu).", en: "Regular in the present. Preterite (yo): toqué (c→qu)." },
+  empezarNote: { pt: "Mesmo padrão de cerrar. No pretérito (yo): empecé (z→c).", es: "Mismo patrón que cerrar. En pretérito (yo): empecé (z→c).", en: "Same pattern as cerrar. Preterite (yo): empecé (z→c)." },
+  ganarNote: { pt: "Ganar: o processo/a competição (ganar las elecciones). Conseguir: o objetivo (el título, la medalla).", es: "Ganar: el proceso/la competición (ganar las elecciones). Conseguir: el objetivo (el título, la medalla).", en: "Ganar: the process/competition (ganar las elecciones). Conseguir: the goal (el título, la medalla)." },
+  actuarNote: { pt: "Presente com acento no u: actúo, actúas, actúa, actúan (nosotros e vosotros sem acento).", es: "Presente con tilde en la u: actúo, actúas, actúa, actúan (nosotros y vosotros sin tilde).", en: "Present with an accent on the u: actúo, actúas, actúa, actúan (no accent in nosotros/vosotros)." }
 };
 
 const verbs = [
@@ -678,6 +688,17 @@ const verbs = [
   { word: "perdonar", meaning: "",sticker: "🤝",groupKey: "ar", forms: ["perdono","perdonas","perdona","perdonamos","perdonáis","perdonan"], noteKey: "sameHablar" },
   { word: "listar", meaning: "",sticker: "📋",groupKey: "ar", forms: ["listo","listas","lista","listamos","listáis","listan"], noteKey: "sameHablar" },
   { word: "tutear", meaning: "",sticker: "🙋",groupKey: "ar", forms: ["tuteo","tuteas","tutea","tuteamos","tuteáis","tutean"], noteKey: "tutearNote" },
+  { word: "pasar", meaning: "",sticker: "⏳",groupKey: "ar", forms: ["paso","pasas","pasa","pasamos","pasáis","pasan"], noteKey: "pasarNote" },
+  { word: "publicar", meaning: "",sticker: "📰",groupKey: "ar", forms: ["publico","publicas","publica","publicamos","publicáis","publican"], noteKey: "publicarNote" },
+  { word: "pagar", meaning: "",sticker: "💶",groupKey: "ar", forms: ["pago","pagas","paga","pagamos","pagáis","pagan"], noteKey: "pagarNote" },
+  { word: "cruzar", meaning: "",sticker: "🚸",groupKey: "ar", forms: ["cruzo","cruzas","cruza","cruzamos","cruzáis","cruzan"], noteKey: "cruzarNote" },
+  { word: "organizar", meaning: "",sticker: "🗂️",groupKey: "ar", forms: ["organizo","organizas","organiza","organizamos","organizáis","organizan"], noteKey: "organizarNote" },
+  { word: "tocar", meaning: "",sticker: "🎸",groupKey: "ar", forms: ["toco","tocas","toca","tocamos","tocáis","tocan"], noteKey: "tocarNote" },
+  { word: "viajar", meaning: "",sticker: "✈️",groupKey: "ar", forms: ["viajo","viajas","viaja","viajamos","viajáis","viajan"], noteKey: "sameHablar" },
+  { word: "ganar", meaning: "",sticker: "🥇",groupKey: "ar", forms: ["gano","ganas","gana","ganamos","ganáis","ganan"], noteKey: "ganarNote" },
+  { word: "pintar", meaning: "",sticker: "🎨",groupKey: "ar", forms: ["pinto","pintas","pinta","pintamos","pintáis","pintan"], noteKey: "sameHablar" },
+  { word: "escalar", meaning: "",sticker: "🧗",groupKey: "ar", forms: ["escalo","escalas","escala","escalamos","escaláis","escalan"], noteKey: "sameHablar" },
+  { word: "actuar", meaning: "",sticker: "🎭",groupKey: "uar", forms: ["actúo","actúas","actúa","actuamos","actuáis","actúan"], noteKey: "actuarNote" },
   { word: "llevar", meaning: "",sticker: "👜",groupKey: "ar", forms: ["llevo","llevas","lleva","llevamos","lleváis","llevan"], noteKey: "llFocus" },
   { word: "llevarse", meaning: "",sticker: "🤝",groupKey: "ar-refl", forms: ["me llevo","te llevas","se lleva","nos llevamos","os lleváis","se llevan"], noteKey: "llevarseNote" },
 
@@ -689,14 +710,17 @@ const verbs = [
   { word: "beber", meaning: "",sticker: "🥤",groupKey: "er", forms: ["bebo","bebes","bebe","bebemos","bebéis","beben"], noteKey: "sameComer" },
   { word: "responder", meaning: "",sticker: "💬",groupKey: "er", forms: ["respondo","respondes","responde","respondemos","respondéis","responden"], noteKey: "sameComer" },
   { word: "leer", meaning: "",sticker: "📖",groupKey: "er", forms: ["leo","lees","lee","leemos","leéis","leen"], noteKey: "leerNote" },
+  { word: "aprender", meaning: "",sticker: "🎓",groupKey: "er", forms: ["aprendo","aprendes","aprende","aprendemos","aprendéis","aprenden"], noteKey: "sameComer" },
 
   { word: "subir", meaning: "",sticker: "⬆️",groupKey: "ir", forms: ["subo","subes","sube","subimos","subís","suben"], noteKey: "rootSub" },
   { word: "vivir", meaning: "viver / morar",sticker: "🏡",groupKey: "ir", forms: ["vivo","vives","vive","vivimos","vivís","viven"], noteKey: "vivirNote" },
   { word: "escribir", meaning: "",sticker: "✍️",groupKey: "ir", forms: ["escribo","escribes","escribe","escribimos","escribís","escriben"], noteKey: "sameSubir" },
+  { word: "recibir", meaning: "",sticker: "📬",groupKey: "ir", forms: ["recibo","recibes","recibe","recibimos","recibís","reciben"], noteKey: "sameSubir" },
 
   { word: "merendar", meaning: "",sticker: "🍎",groupKey: "eie", forms: ["meriendo","meriendas","merienda","merendamos","merendáis","meriendan"], noteKey: "dipDisap" },
   { word: "cerrar", meaning: "fechar",sticker: "🚪",groupKey: "eie", forms: ["cierro","cierras","cierra","cerramos","cerráis","cierran"], noteKey: "dipDisap" },
   { word: "entender", meaning: "",sticker: "🧠",groupKey: "eie", forms: ["entiendo","entiendes","entiende","entendemos","entendéis","entienden"], noteKey: "sameCerrar" },
+  { word: "empezar", meaning: "",sticker: "🚦",groupKey: "eie", forms: ["empiezo","empiezas","empieza","empezamos","empezáis","empiezan"], noteKey: "empezarNote" },
   { word: "sentarse", meaning: "",sticker: "🪑",groupKey: "eie-refl", forms: ["me siento","te sientas","se sienta","nos sentamos","os sentáis","se sientan"], noteKey: "reflexDip" },
   { word: "despertarse", meaning: "",sticker: "⏰",groupKey: "eie-refl", forms: ["me despierto","te despiertas","se despierta","nos despertamos","os despertáis","se despiertan"], noteKey: "reflexDip" },
 
@@ -851,7 +875,21 @@ const MEAN = {
   "tener": { pt: "ter", en: "to have" },
   "decir": { pt: "dizer", en: "to say" },
   "ser": { pt: "ser (essência/identidade)", en: "to be (essence / identity)" },
-  "estar": { pt: "estar (lugar/estado)", en: "to be (place / state)" }
+  "estar": { pt: "estar (lugar/estado)", en: "to be (place / state)" },
+  "pasar": { pt: "passar / passar (tempo)", en: "to pass / to spend (time)" },
+  "publicar": { pt: "publicar", en: "to publish" },
+  "pagar": { pt: "pagar", en: "to pay" },
+  "cruzar": { pt: "cruzar / atravessar", en: "to cross" },
+  "organizar": { pt: "organizar", en: "to organize" },
+  "tocar": { pt: "tocar / tocar (instrumento)", en: "to touch / to play (instrument)" },
+  "viajar": { pt: "viajar", en: "to travel" },
+  "ganar": { pt: "ganhar / vencer", en: "to win / to earn" },
+  "pintar": { pt: "pintar", en: "to paint" },
+  "escalar": { pt: "escalar (montanha)", en: "to climb (a mountain)" },
+  "actuar": { pt: "atuar", en: "to act / to perform" },
+  "aprender": { pt: "aprender", en: "to learn" },
+  "recibir": { pt: "receber", en: "to receive" },
+  "empezar": { pt: "começar", en: "to start / to begin" }
 };
 
 function mTxt(v) {
