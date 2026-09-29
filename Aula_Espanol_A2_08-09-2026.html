@@ -5,6 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Aula de Español A2 — 08/09/2026</title>
+
 <style>
 :root{
   --bg:#fef6ff;--card:#fff;--text:#2b1a2e;--muted:#76577d;
@@ -12,7 +13,8 @@
   --blue:#2563eb;--soft:#fbe3f4;--border:#ead3e7;--ok:#087f5b;--bad:#b42318;
 }
 @media(prefers-color-scheme:dark){
- :root{--bg:#160d1c;--card:#27182f;--text:#f7eafb;--muted:#c9acd1;--soft:#3a2148;--border:#50345b;--pink:#ff4fb0;--purple:#a78bfa;--turq:#2dd4bf;--yellow:#fbbf24;--blue:#60a5fa;}
+ :root{--bg:#160d1c;--card:#27182f;--text:#f7eafb;--muted:#c9acd1;--soft:#3a2148;--border:#50345b;--pink:#ff4fb0;--purple:#a78bfa;--turq:#2dd4bf;--yellow:#fbbf24;--blue:#60a5fa;--ok:#34d399;--bad:#f87171;}
+ .yellow{color:var(--yellow)}
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}
@@ -26,17 +28,23 @@ header{text-align:center;padding:14px 0 22px}
 h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq),var(--yellow));-webkit-background-clip:text;background-clip:text;color:transparent}
 .subtitle{color:var(--muted)}
 nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);display:flex;gap:7px;overflow:auto;padding:8px;border-bottom:1px solid var(--border)}
-nav button{border:1px solid var(--border);background:var(--card);color:var(--text);padding:9px 12px;border-radius:12px;cursor:pointer;white-space:nowrap;font-weight:750}
-nav button.active{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;border-color:transparent}
+nav button,.tab{border:1px solid var(--border);background:var(--card);color:var(--text);padding:9px 12px;border-radius:12px;cursor:pointer;white-space:nowrap;font-weight:750}
+nav button.active,.tab.active{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;border-color:transparent}
 section{display:none;padding-top:22px}
 section.active{display:block}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:0 7px 22px color-mix(in srgb,var(--purple) 10%,transparent);margin-bottom:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:0 7px 22px color-mix(in srgb,var(--purple) 10%,transparent)}
 .card h3{margin-top:0}
+.color-title{font-size:1.25rem;font-weight:900}
 .pink{color:var(--pink)}.purple{color:var(--purple)}.turq{color:var(--turq)}.blue{color:var(--blue)}.yellow{color:#a66a00}
 table{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden}
 th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
 th{background:var(--soft);color:var(--purple)}
+.verb-card{margin-bottom:16px}
+.verb-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.verb{font-size:1.45rem;font-weight:900;color:var(--pink)}
+.tag{font-size:.78rem;font-weight:800;padding:4px 9px;border-radius:999px;background:var(--soft);color:var(--purple)}
+.speak{border:0;background:var(--soft);border-radius:10px;padding:7px 10px;cursor:pointer}
 .example{border-left:4px solid var(--turq);padding:9px 12px;background:color-mix(in srgb,var(--turq) 8%,var(--card));border-radius:0 12px 12px 0;margin:9px 0}
 .note{font-size:.9rem;color:var(--muted)}
 .choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:9px}
@@ -44,39 +52,30 @@ th{background:var(--soft);color:var(--purple)}
 .choice.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card))}
 .choice.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card))}
 .feedback{margin-top:12px;font-weight:800}
+.feedback.ok{color:var(--ok)}.feedback.bad{color:var(--bad)}
 details{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px;margin:9px 0}
 summary{cursor:pointer;font-weight:800}
 .progress{height:10px;background:var(--soft);border-radius:99px;overflow:hidden}.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq));transition:.25s}
 .small{font-size:.88rem;color:var(--muted)}
+.example.sayable{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.example.sayable .speak{flex:0 0 auto;font-size:1.05rem}
+.sound-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:6px 0 12px}
+.speak:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.speak[aria-pressed="true"]{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff}
 footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
 @media(max-width:600px){.container{padding:14px 10px 45px}th,td{padding:8px;font-size:.9rem}.card{padding:15px}}
-</style>
-<style>
-.home-nav{
-  display:flex;
-  justify-content:flex-start;
-  margin:0 0 16px;
-}
-.home-nav.bottom{
-  margin:22px 0 0;
-  justify-content:center;
-}
-.home-nav a{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:10px 16px;
-  border-radius:12px;
-  text-decoration:none;
-  font-weight:700;
-  color:#fff;
-  background:linear-gradient(135deg,#7b2cbf,#ff3cac);
-  box-shadow:0 6px 18px rgba(0,0,0,.22);
-}
-.home-nav a:hover{
-  transform:translateY(-1px);
-  filter:brightness(1.08);
-}
+
+.home-nav{text-align:center;margin:14px 0 8px}
+.home-nav a{display:inline-block;padding:10px 18px;border-radius:12px;
+background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;
+text-decoration:none;font-weight:800;box-shadow:0 8px 22px color-mix(in srgb,var(--purple) 28%,transparent);
+transition:transform .15s ease,filter .15s ease}
+.home-nav a:hover{transform:translateY(-1px);filter:brightness(1.08)}
+
+</style><style>
+.activity-list p { margin: 10px 0; padding: 10px 12px; border-left: 4px solid var(--turq); background: rgba(255,255,255,.04); border-radius: 10px; }
+.homework { padding: 14px 16px; border-radius: 14px; background: linear-gradient(135deg, rgba(255,214,102,.12), rgba(126,87,194,.10)); }
+.homework ul { margin-top: 6px; }
 </style></head>
 <body>
 <div class="container">
@@ -85,13 +84,7 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
 <h1>Ficha Interactiva — 08/09/2026</h1>
 <div class="subtitle">Inicio del curso, presentaciones, preguntas personales, intereses y tiempo libre</div>
 </header><div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
-<nav>
-<button class="active" onclick="showTab('resumen',this)">📚 Resumen</button>
-<button onclick="showTab('curso',this)">🏫 Curso</button>
-<button onclick="showTab('preguntas',this)">❓ Preguntas</button>
-<button onclick="showTab('intereses',this)">⭐ Intereses</button>
-<button onclick="showTab('quiz',this)">✏️ Ejercicios</button>
-</nav>
+<nav><button class="active" onclick="showTab('resumen',this)">📚 Resumen</button><button onclick="showTab('curso',this)">🏫 Curso</button><button onclick="showTab('preguntas',this)">❓ Preguntas</button><button onclick="showTab('intereses',this)">⭐ Intereses</button><button onclick="showTab('quiz',this)">✏️ Ejercicios</button></nav>
 <section class="active" id="resumen">
 <div class="grid">
 <div class="card"><h3 class="pink">👋 Inicio y presentaciones</h3><p>Presentación de la profesora y de los compañeros. La clase comenzó con preguntas para conocerse y con la intención de aprender los nombres y algunos datos personales.</p></div>
@@ -104,7 +97,7 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
 <p>Esta ficha corresponde únicamente a la clase del <b>8 de septiembre de 2026</b>. El contenido se ha organizado a partir de la grabación/transcripción de esta clase.</p>
 </div>
 </section>
-<section id="curso">
+<section class="" id="curso">
 <div class="card">
 <h2 class="purple">🏫 Información del curso</h2>
 <ul>
@@ -127,7 +120,7 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
 <p class="small">La grabación contiene algunos fragmentos transcritos de forma imperfecta; se conserva aquí la información que aparece claramente en la explicación de la clase.</p>
 </div>
 </section>
-<section id="preguntas">
+<section class="" id="preguntas">
 <div class="card">
 <h2 class="pink">❓ Preguntas para conocer a una persona</h2>
 <div class="example"><b>¿Cómo te llamas?</b></div>
@@ -154,7 +147,7 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
 </table>
 </div>
 </section>
-<section id="intereses">
+<section class="" id="intereses">
 <div class="card">
 <h2 class="turq">⭐ Tiempo libre e intereses</h2>
 <p>Se trabajó cómo preguntar y responder sobre lo que hacemos en nuestro tiempo libre.</p>
@@ -180,7 +173,7 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
 <div class="example"><b>Mi peor manía...</b></div>
 </div>
 </section>
-<section id="quiz">
+<section class="" id="quiz">
 <div class="card">
 <h2 class="pink">✏️ Comprueba lo aprendido</h2>
 <div class="progress"><span id="bar"></span></div>
@@ -245,9 +238,10 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
 let score=0,done=0,total=4;
 function showTab(id,btn){
   document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+  const target=document.getElementById(id);
+  if(target) target.classList.add('active');
   document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
+  if(btn) btn.classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
 }
 function answer(btn,correct,id){
@@ -255,9 +249,18 @@ function answer(btn,correct,id){
   if(box.dataset.done==='1') return;
   box.dataset.done='1';
   done++;
-  if(correct){score++;btn.classList.add('correct');box.textContent='✅ Correcto.';box.style.color='var(--ok)';}
-  else{btn.classList.add('wrong');box.textContent='❌ No. Revisa el contenido de esta aula.';box.style.color='var(--bad)';}
-  document.getElementById('bar').style.width=(done/total*100)+'%';
+  if(correct){
+    score++;
+    btn.classList.add('correct');
+    box.textContent='✅ Correcto.';
+    box.style.color='var(--ok)';
+  }else{
+    btn.classList.add('wrong');
+    box.textContent='❌ No. Revisa el contenido de esta clase.';
+    box.style.color='var(--bad)';
+  }
+  const bar=document.getElementById('bar');
+  if(bar) bar.style.width=(done/total*100)+'%';
 }
 </script>
 </body>
