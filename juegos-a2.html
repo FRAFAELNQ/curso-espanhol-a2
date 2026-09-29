@@ -16,13 +16,14 @@ body{margin:0;background:radial-gradient(circle at 10% 0,#1d2b66,transparent 38%
 header{padding:26px 20px;margin-bottom:20px;border-radius:22px;border:1px solid #48598d;background:linear-gradient(135deg,#172c6c,#49237f 52%,#741c58);box-shadow:0 18px 50px #0008}
 h1{margin:0 0 10px;font-size:clamp(1.8rem,5vw,2.5rem);color:#fff}
 .subtitle{color:#e3e6ff}
-.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:20px;display:none} /* Escondido até carregar os verbos */
-.game-btn{background:var(--card);border:2px solid var(--border);color:var(--text);padding:30px 20px;border-radius:20px;cursor:pointer;transition:transform 0.2s, border-color 0.2s;text-align:center}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:20px;display:none} 
+.game-btn{background:var(--card);border:2px solid var(--border);color:var(--text);padding:30px 20px;border-radius:20px;cursor:pointer;transition:transform 0.2s, border-color 0.2s;text-align:center;display:block;width:100%}
 .game-btn:hover{transform:translateY(-5px);border-color:var(--turq)}
-.game-btn h2{margin:0 0 10px;font-size:1.5rem}
+.game-btn h2{margin:0 0 10px;font-size:1.5rem;pointer-events:none}
 .game-btn.pink h2{color:var(--pink)}.game-btn.purple h2{color:var(--purple)}.game-btn.turq h2{color:var(--turq)}
+.game-btn p{pointer-events:none}
 .game-view{display:none;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:20px;margin-top:20px}
-.active-view{display:block}
+.active-view{display:block !important}
 .back-btn{display:inline-block;padding:10px 18px;border-radius:12px;background:#10152b;border:1px solid var(--border);color:#fff;cursor:pointer;font-weight:800;margin-bottom:20px;text-decoration:none}
 
 /* Estado de Carregamento */
@@ -32,7 +33,7 @@ h1{margin:0 0 10px;font-size:clamp(1.8rem,5vw,2.5rem);color:#fff}
 .mem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:600px;margin:20px auto}
 @media(max-width:500px){.mem-grid{grid-template-columns:repeat(3,1fr)}}
 .mem-card{aspect-ratio:1;perspective:1000px;cursor:pointer}
-.mem-inner{width:100%;height:100%;position:relative;transition:transform 0.5s;transform-style:preserve-3d}
+.mem-inner{width:100%;height:100%;position:relative;transition:transform 0.5s;transform-style:preserve-3d;pointer-events:none}
 .mem-card.flipped .mem-inner{transform:rotateY(180deg)}
 .mem-front, .mem-back{width:100%;height:100%;position:absolute;backface-visibility:hidden;display:flex;align-items:center;justify-content:center;border-radius:12px;font-weight:800;padding:5px;font-size:1.1rem;word-break:break-word}
 .mem-front{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff}
@@ -63,21 +64,19 @@ h1{margin:0 0 10px;font-size:clamp(1.8rem,5vw,2.5rem);color:#fff}
   <div class="subtitle">Aprende y memoriza verbos jugando</div>
 </header>
 
-<!-- Menú Principal -->
-<div id="menuView" class="active-view">
-  
-  <div id="loadingMsg">⏳ Conectando con flashcards-verbos-a2.html para leer tus verbos...</div>
+<div id="loadingMsg">⏳ Conectando con flashcards-verbos-a2.html para leer tus verbos...</div>
 
+<div id="menuView" class="game-view">
   <div class="menu-grid" id="menuGrid">
-    <button class="game-btn pink" onclick="startMemoria()">
+    <button class="game-btn pink" onclick="abrirJuego('memoriaView')">
       <h2>🃏 Parejas de Memoria</h2>
       <p class="muted">Encuentra el verbo en español y su traducción. ¡Sin prisa!</p>
     </button>
-    <button class="game-btn purple" onclick="startReloj()">
+    <button class="game-btn purple" onclick="abrirJuego('relojView')">
       <h2>⏳ Contrarreloj</h2>
       <p class="muted">10 segundos para elegir la traducción correcta. ¿Cuántas aciertas?</p>
     </button>
-    <button class="game-btn turq" onclick="startLluvia()">
+    <button class="game-btn turq" onclick="abrirJuego('lluviaView')">
       <h2>🌧️ Lluvia de Verbos</h2>
       <p class="muted">¡Que no caigan al suelo! Haz clic en la traducción antes del impacto.</p>
     </button>
@@ -85,35 +84,32 @@ h1{margin:0 0 10px;font-size:clamp(1.8rem,5vw,2.5rem);color:#fff}
   <a href="index.html" class="back-btn" style="margin-top:30px">🏠 Volver al inicio</a>
 </div>
 
-<!-- Juego 1: Memoria -->
 <div id="memoriaView" class="game-view">
-  <button class="back-btn" onclick="showMenu()">← Volver al menú</button>
+  <button class="back-btn" onclick="abrirMenu()">← Volver al menú</button>
   <h2 class="pink">🃏 Parejas de Memoria</h2>
   <div class="score-board">Parejas encontradas: <span id="memScore">0</span> / 6</div>
   <div class="mem-grid" id="memGrid"></div>
-  <button class="btn-start" onclick="startMemoria()">Jugar otra vez</button>
+  <button class="btn-start" onclick="iniciarMemoria()">Jugar otra vez</button>
 </div>
 
-<!-- Juego 2: Contrarreloj -->
 <div id="relojView" class="game-view">
-  <button class="back-btn" onclick="showMenu()">← Volver al menú</button>
+  <button class="back-btn" onclick="abrirMenu()">← Volver al menú</button>
   <h2 class="purple">⏳ Contrarreloj</h2>
   <div class="score-board">Puntos: <span id="relojScore">0</span></div>
   <div class="timer-container"><div class="timer-bar" id="relojTimer"></div></div>
   <div class="reloj-word" id="relojWord">¿Preparado?</div>
   <div class="reloj-options" id="relojOptions">
-    <button class="btn-start" style="grid-column: span 2;" onclick="nextReloj()">Empezar</button>
+    <button class="btn-start" style="grid-column: span 2;" onclick="siguienteReloj()">Empezar</button>
   </div>
 </div>
 
-<!-- Juego 3: Lluvia -->
 <div id="lluviaView" class="game-view">
-  <button class="back-btn" onclick="showMenu()">← Volver al menú</button>
+  <button class="back-btn" onclick="abrirMenu()">← Volver al menú</button>
   <h2 class="turq">🌧️ Lluvia de Verbos</h2>
   <div class="score-board">Puntos: <span id="lluviaScore">0</span> | Vidas: <span id="lluviaVidas">❤️❤️❤️</span></div>
   <div class="lluvia-area" id="lluviaArea">
     <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)">
-      <button class="btn-start" onclick="nextLluvia()">Empezar lluvia</button>
+      <button class="btn-start" onclick="siguienteLluvia()">Empezar lluvia</button>
     </div>
   </div>
   <div class="lluvia-options" id="lluviaOptions"></div>
@@ -121,27 +117,23 @@ h1{margin:0 0 10px;font-size:clamp(1.8rem,5vw,2.5rem);color:#fff}
 </div>
 
 <script>
-let db = []; // Onde os verbos vão ficar guardados após a leitura
+let db = []; 
 
-// Função que lê o ficheiro flashcards-verbos-a2.html em segundo plano
 async function extrairVerbosDoMestre() {
   try {
     const response = await fetch('flashcards-verbos-a2.html');
     if (!response.ok) throw new Error('Ficheiro não encontrado');
     const htmlText = await response.text();
 
-    // Regex para caçar o padrão de palavras {esp: "...", pt: "..."} ou {es: "..."} dentro do ficheiro
     const regex = /{\s*(?:esp|es|espanol)\s*:\s*["']([^"']+)["']\s*,\s*(?:pt|portugues)\s*:\s*["']([^"']+)["']/g;
     let match;
     
     while ((match = regex.exec(htmlText)) !== null) {
-      // Impede palavras repetidas
       if (!db.some(v => v.esp === match[1])) {
         db.push({ esp: match[1], pt: match[2] });
       }
     }
 
-    // Se a extração falhar ou o ficheiro estiver vazio, carrega uma lista de emergência
     if (db.length < 6) {
       db = [
         {esp:"caer", pt:"cair"}, {esp:"empezar", pt:"começar"}, {esp:"jugar", pt:"jogar"},
@@ -150,24 +142,49 @@ async function extrairVerbosDoMestre() {
       ];
     }
   } catch (error) {
-    console.log("Aviso: A executar localmente sem servidor, a carregar lista de reserva.");
     db = [
       {esp:"caer", pt:"cair"}, {esp:"empezar", pt:"começar"}, {esp:"jugar", pt:"jogar"},
       {esp:"conocer", pt:"conhecer"}, {esp:"ganar", pt:"ganhar"}, {esp:"actuar", pt:"atuar"}
     ];
   } finally {
-    // Esconde a mensagem de carregamento e mostra o menu de jogos
     document.getElementById('loadingMsg').style.display = 'none';
+    document.getElementById('menuView').classList.add('active-view');
     document.getElementById('menuGrid').style.display = 'grid';
   }
 }
 
-// Inicia a extração assim que a página abre
 window.addEventListener('load', extrairVerbosDoMestre);
 
-// ==========================================
-// UTILIDADES E NAVEGAÇÃO
-// ==========================================
+// Rotas de Navegação (Menu)
+function abrirJuego(id) {
+  document.querySelectorAll('.game-view').forEach(v => v.classList.remove('active-view'));
+  document.getElementById(id).classList.add('active-view');
+  
+  if(id === 'memoriaView') iniciarMemoria();
+  if(id === 'relojView') {
+    relojScore = 0; document.getElementById('relojScore').textContent = "0";
+    document.getElementById('relojWord').textContent = "¿Preparado?";
+    document.getElementById('relojOptions').innerHTML = `<button class="btn-start" style="grid-column: span 2;" onclick="siguienteReloj()">Empezar</button>`;
+    document.getElementById('relojTimer').style.width = "100%";
+    clearInterval(relojInterval);
+  }
+  if(id === 'lluviaView') {
+    lluviaScore = 0; vidas = 3; 
+    document.getElementById('lluviaScore').textContent = "0";
+    document.getElementById('lluviaVidas').textContent = "❤️❤️❤️";
+    document.getElementById('lluviaArea').innerHTML = `<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)"><button class="btn-start" onclick="siguienteLluvia()">Empezar lluvia</button></div>`;
+    document.getElementById('lluviaOptions').innerHTML = '';
+    cancelAnimationFrame(lluviaFrame);
+  }
+}
+
+function abrirMenu() {
+  document.querySelectorAll('.game-view').forEach(v => v.classList.remove('active-view'));
+  document.getElementById('menuView').classList.add('active-view');
+  cancelAnimationFrame(lluviaFrame); clearInterval(relojInterval);
+}
+
+// Utilitários
 function shuffle(array) { return array.sort(() => Math.random() - 0.5); }
 
 function say(txt){
@@ -178,21 +195,11 @@ function say(txt){
   window.speechSynthesis.speak(u);
 }
 
-function showMenu() {
-  document.querySelectorAll('.game-view').forEach(v => v.classList.remove('active-view'));
-  document.getElementById('menuView').classList.add('active-view');
-  cancelAnimationFrame(lluviaFrame); clearInterval(relojInterval);
-}
-
-// ==========================================
-// JUEGO 1: MEMORIA
-// ==========================================
+// ---------------- Memoria ----------------
 let memFlipped = [], memMatches = 0;
 
-function startMemoria() {
-  document.getElementById('menuView').classList.remove('active-view');
-  document.getElementById('memoriaView').classList.add('active-view');
-  memMatches = 0; document.getElementById('memScore').textContent = memMatches;
+function iniciarMemoria() {
+  memMatches = 0; document.getElementById('memScore').textContent = "0";
   
   let selected = shuffle([...db]).slice(0, 6);
   let cards = [];
@@ -207,9 +214,7 @@ function startMemoria() {
   cards.forEach((c) => {
     const el = document.createElement('div');
     el.className = 'mem-card';
-    el.dataset.id = c.id;
-    el.dataset.type = c.type;
-    el.dataset.text = c.text;
+    el.dataset.id = c.id; 
     el.innerHTML = `<div class="mem-inner"><div class="mem-front">?</div><div class="mem-back">${c.text}</div></div>`;
     el.onclick = () => flipCard(el);
     grid.appendChild(el);
@@ -222,7 +227,8 @@ function flipCard(card) {
   card.classList.add('flipped');
   memFlipped.push(card);
   
-  if(card.dataset.type === 'esp') say(card.dataset.text);
+  // Toca sempre a palavra em espanhol (evita que a voz espanhola tente ler a tradução em português)
+  say(card.dataset.id);
 
   if(memFlipped.length === 2) setTimeout(checkMatch, 800);
 }
@@ -239,21 +245,10 @@ function checkMatch() {
   memFlipped = [];
 }
 
-// ==========================================
-// JUEGO 2: CONTRARRELOJ
-// ==========================================
+// ---------------- Contrarreloj ----------------
 let relojScore = 0, relojInterval, timeLeft = 100;
 
-function startReloj() {
-  document.getElementById('menuView').classList.remove('active-view');
-  document.getElementById('relojView').classList.add('active-view');
-  relojScore = 0; document.getElementById('relojScore').textContent = relojScore;
-  document.getElementById('relojWord').textContent = "¿Preparado?";
-  document.getElementById('relojOptions').innerHTML = `<button class="btn-start" style="grid-column: span 2;" onclick="nextReloj()">Empezar</button>`;
-  document.getElementById('relojTimer').style.width = "100%";
-}
-
-function nextReloj() {
+function siguienteReloj() {
   clearInterval(relojInterval);
   timeLeft = 100;
   document.getElementById('relojTimer').style.width = "100%";
@@ -269,7 +264,18 @@ function nextReloj() {
     let btn = document.createElement('button');
     btn.className = 'reloj-btn';
     btn.textContent = o.esp;
-    btn.onclick = () => checkReloj(o.esp === correct.esp, o.esp);
+    btn.onclick = () => {
+      if(o.esp === correct.esp) {
+        say(o.esp);
+        relojScore++; document.getElementById('relojScore').textContent = relojScore;
+        document.getElementById('relojTimer').style.background = "var(--ok)";
+        setTimeout(() => { document.getElementById('relojTimer').style.background = ""; siguienteReloj(); }, 300);
+      } else {
+        clearInterval(relojInterval);
+        alert("❌ ¡Incorrecto! Puntuación final: " + relojScore);
+        abrirJuego('relojView');
+      }
+    };
     optsDiv.appendChild(btn);
   });
 
@@ -279,49 +285,25 @@ function nextReloj() {
     if(timeLeft <= 0) {
       clearInterval(relojInterval);
       alert("⏳ ¡Tiempo agotado! Puntuación final: " + relojScore);
-      startReloj();
+      abrirJuego('relojView');
     }
   }, 100);
 }
 
-function checkReloj(isCorrect, wordEsp) {
-  if(isCorrect) {
-    say(wordEsp);
-    relojScore++; document.getElementById('relojScore').textContent = relojScore;
-    document.getElementById('relojTimer').style.background = "var(--ok)";
-    setTimeout(() => { document.getElementById('relojTimer').style.background = ""; nextReloj(); }, 300);
-  } else {
-    clearInterval(relojInterval);
-    alert("❌ ¡Incorrecto! Puntuación final: " + relojScore);
-    startReloj();
-  }
-}
-
-// ==========================================
-// JUEGO 3: LLUVIA DE VERBOS
-// ==========================================
+// ---------------- Lluvia ----------------
 let lluviaScore = 0, vidas = 3, lluviaFrame;
 let fallY = 0, speed = 1.5, currentLluvia = null;
-
-function startLluvia() {
-  document.getElementById('menuView').classList.remove('active-view');
-  document.getElementById('lluviaView').classList.add('active-view');
-  lluviaScore = 0; vidas = 3; speed = 1.5;
-  updateLluviaUI();
-  document.getElementById('lluviaArea').innerHTML = `<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)"><button class="btn-start" onclick="nextLluvia()">Empezar lluvia</button></div>`;
-  document.getElementById('lluviaOptions').innerHTML = '';
-}
 
 function updateLluviaUI() {
   document.getElementById('lluviaScore').textContent = lluviaScore;
   document.getElementById('lluviaVidas').textContent = "❤️".repeat(vidas) + "🖤".repeat(3 - vidas);
 }
 
-function nextLluvia() {
+function siguienteLluvia() {
   cancelAnimationFrame(lluviaFrame);
   if(vidas <= 0) {
     alert("💀 ¡Juego terminado! Puntuación: " + lluviaScore);
-    startLluvia(); return;
+    abrirJuego('lluviaView'); return;
   }
   
   let options = shuffle([...db]).slice(0, 3);
@@ -339,7 +321,19 @@ function nextLluvia() {
     let btn = document.createElement('button');
     btn.className = 'reloj-btn';
     btn.textContent = o.pt;
-    btn.onclick = () => checkLluvia(o.pt === currentLluvia.pt);
+    btn.onclick = () => {
+      cancelAnimationFrame(lluviaFrame);
+      if(o.pt === currentLluvia.pt) {
+        lluviaScore++; speed += 0.2;
+        updateLluviaUI();
+        area.innerHTML = `<div style="color:var(--ok);font-size:3rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)">✨</div>`;
+        setTimeout(siguienteLluvia, 500);
+      } else {
+        vidas--; updateLluviaUI();
+        area.innerHTML = `<div style="color:var(--bad);font-size:3rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)">❌</div>`;
+        setTimeout(siguienteLluvia, 1000);
+      }
+    };
     optsDiv.appendChild(btn);
   });
 
@@ -354,23 +348,9 @@ function animateLluvia() {
   if(fallY > 400) {
     vidas--; updateLluviaUI();
     document.getElementById('lluviaArea').innerHTML = `<div style="color:var(--bad);font-size:2rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)">¡Cayó!</div>`;
-    setTimeout(nextLluvia, 1000);
+    setTimeout(siguienteLluvia, 1000);
   } else {
     lluviaFrame = requestAnimationFrame(animateLluvia);
-  }
-}
-
-function checkLluvia(isCorrect) {
-  cancelAnimationFrame(lluviaFrame);
-  if(isCorrect) {
-    lluviaScore++; speed += 0.2;
-    updateLluviaUI();
-    document.getElementById('lluviaArea').innerHTML = `<div style="color:var(--ok);font-size:3rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)">✨</div>`;
-    setTimeout(nextLluvia, 500);
-  } else {
-    vidas--; updateLluviaUI();
-    document.getElementById('lluviaArea').innerHTML = `<div style="color:var(--bad);font-size:3rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)">❌</div>`;
-    setTimeout(nextLluvia, 1000);
   }
 }
 </script>
