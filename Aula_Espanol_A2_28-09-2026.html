@@ -11,7 +11,8 @@
   --blue:#2563eb;--soft:#fbe3f4;--border:#ead3e7;--ok:#087f5b;--bad:#b42318;
 }
 @media(prefers-color-scheme:dark){
- :root{--bg:#160d1c;--card:#27182f;--text:#f7eafb;--muted:#c9acd1;--soft:#3a2148;--border:#50345b;--pink:#ff4fb0;--purple:#a78bfa;--turq:#2dd4bf;--yellow:#fbbf24;--blue:#60a5fa;}
+ :root{--bg:#160d1c;--card:#27182f;--text:#f7eafb;--muted:#c9acd1;--soft:#3a2148;--border:#50345b;--pink:#ff4fb0;--purple:#a78bfa;--turq:#2dd4bf;--yellow:#fbbf24;--blue:#60a5fa;--ok:#34d399;--bad:#f87171;}
+ .yellow{color:var(--yellow)}
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}
@@ -49,10 +50,16 @@ th{background:var(--soft);color:var(--purple)}
 .choice.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card))}
 .choice.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card))}
 .feedback{margin-top:12px;font-weight:800}
+.feedback.ok{color:var(--ok)}.feedback.bad{color:var(--bad)}
 details{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px;margin:9px 0}
 summary{cursor:pointer;font-weight:800}
 .progress{height:10px;background:var(--soft);border-radius:99px;overflow:hidden}.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq));transition:.25s}
 .small{font-size:.88rem;color:var(--muted)}
+.example.sayable{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.example.sayable .speak{flex:0 0 auto;font-size:1.05rem}
+.sound-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:6px 0 12px}
+.speak:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.speak[aria-pressed="true"]{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff}
 footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
 @media(max-width:600px){.container{padding:14px 10px 45px}th,td{padding:8px;font-size:.9rem}.card{padding:15px}}
 
@@ -72,7 +79,7 @@ transition:transform .15s ease,filter .15s ease}
   <h1>Ficha Interactiva — 28/09/2026</h1>
   <div class="subtitle">Relaciones, descripción de personas, <b>llevar / llevarse</b>, <b>caer bien/mal</b>, <b>parecer / parecerse</b> y <b>medir</b></div>
 </header>
-<div class="home-nav"><a href="index.html">🏠 Página inicial</a></div>
+<div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
 
 <nav>
   <button class="active" onclick="showTab('resumo',this)">📚 Resumo</button>
@@ -92,6 +99,7 @@ transition:transform .15s ease,filter .15s ease}
 </div>
 <div class="card" style="margin-top:14px">
 <h3>⭐ Expressões-chave da aula</h3>
+<div class="sound-bar"><span class="small">🔊 Toque no botão de cada frase para ouvir.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: desligado</button></div>
 <div class="example"><b>Me llevo bien con mi jefe.</b></div>
 <div class="example"><b>Mi jefa me cae bien.</b></div>
 <div class="example"><b>Luisa me cayó bien la primera semana.</b></div>
@@ -106,8 +114,8 @@ transition:transform .15s ease,filter .15s ease}
 <h2>📝 Vocabulário trabalhado</h2>
 <div class="grid">
  <div class="card"><h3 class="pink">Relações</h3>
-  <p><b>compañero/a de clase</b> — compañero/a de clase.</p>
-  <p><b>compañero/a de trabajo</b> — compañero/a de trabajo.</p>
+  <p><b>compañero/a de clase</b> — persona con la que compartes clase.</p>
+  <p><b>compañero/a de trabajo</b> — persona con la que trabajas.</p>
   <p><b>compañero/a de viaje</b> — persona con la que viajas.</p>
   <p><b>compañero/a de vida</b> — expresión usada para referirse a la pareja.</p>
  </div>
@@ -140,6 +148,7 @@ transition:transform .15s ease,filter .15s ease}
 
 <section id="gram">
 <h2>🧠 Estruturas centrais</h2>
+<div class="sound-bar"><span class="small">🔊 Toque no botão de cada frase para ouvir.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: desligado</button></div>
 <div class="card" style="margin-bottom:14px">
 <h3 class="blue">TUTear + identificar personas</h3>
 <table>
@@ -188,17 +197,17 @@ transition:transform .15s ease,filter .15s ease}
 
 <section id="verbos">
 <h2>🔤 Verbos trabalhados na aula</h2>
-<p class="small">A ficha separa os verbos efetivamente trabalhados como foco/estrutura nesta aula dos verbos já existentes no mestre. Os dois verbos novos incorporados ao mestre são <b>llevarse</b> e <b>medir</b>.</p>
+<p class="small">A ficha separa os verbos efetivamente trabalhados como foco/estrutura nesta aula dos verbos já existentes nos flashcards. Os três verbos novos incorporados aos flashcards são <b>llevarse</b>, <b>medir</b> e <b>tutear</b>. <a href="flashcards-verbos-a2.html">Abrir os flashcards →</a></p>
 
 <div class="verb-card card">
-<div class="verb-head"><span class="verb">llevar</span><span class="tag">já estava no mestre · -AR</span></div>
+<div class="verb-head"><span class="verb">llevar</span><span class="tag">já estava nos flashcards · -AR</span></div>
 <table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
 <tr><td>llevo</td><td>llevas</td><td>lleva</td><td>llevamos</td><td>lleváis</td><td>llevan</td></tr></table>
 <div class="example">Llevo barba. · Llevo las gafas. · Llevo el pelo corto.</div>
 </div>
 
 <div class="verb-card card">
-<div class="verb-head"><span class="verb">llevarse</span><span class="tag">NOVO NO MESTRE · reflexivo -AR</span><button class="speak" onclick="say('llevarse')">🔊</button></div>
+<div class="verb-head"><span class="verb">llevarse</span><span class="tag">NOVO NOS FLASHCARDS · reflexivo -AR</span><button class="speak" onclick="say('llevarse')">🔊</button></div>
 <table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
 <tr><td>me llevo</td><td>te llevas</td><td>se lleva</td><td>nos llevamos</td><td>os lleváis</td><td>se llevan</td></tr></table>
 <div class="example">Me llevo bien con mi jefe.</div>
@@ -206,28 +215,36 @@ transition:transform .15s ease,filter .15s ease}
 </div>
 
 <div class="verb-card card">
-<div class="verb-head"><span class="verb">caer</span><span class="tag">já estava no mestre</span></div>
+<div class="verb-head"><span class="verb">tutear</span><span class="tag">NOVO NOS FLASHCARDS · regular -AR</span><button class="speak" onclick="say('tutear')">🔊</button></div>
+<table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
+<tr><td>tuteo</td><td>tuteas</td><td>tutea</td><td>tuteamos</td><td>tuteáis</td><td>tutean</td></tr></table>
+<div class="example">¿Nos podemos tutear?</div>
+<div class="note">Tratar alguém de <b>tú</b> em vez de <b>usted</b>.</div>
+</div>
+
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">caer</span><span class="tag">já estava nos flashcards</span></div>
 <table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
 <tr><td>caigo</td><td>caes</td><td>cae</td><td>caemos</td><td>caéis</td><td>caen</td></tr></table>
 <div class="example">Mi jefa me cae bien. · Me cayó bien el primer día. · Me cayeron bien mis estudiantes.</div>
 </div>
 
 <div class="verb-card card">
-<div class="verb-head"><span class="verb">parecer</span><span class="tag">já estava no mestre</span></div>
+<div class="verb-head"><span class="verb">parecer</span><span class="tag">já estava nos flashcards</span></div>
 <table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
 <tr><td>parezco</td><td>pareces</td><td>parece</td><td>parecemos</td><td>parecéis</td><td>parecen</td></tr></table>
 <div class="example">Él parece simpático.</div>
 </div>
 
 <div class="verb-card card">
-<div class="verb-head"><span class="verb">parecerse</span><span class="tag">já estava no mestre · reflexivo</span></div>
+<div class="verb-head"><span class="verb">parecerse</span><span class="tag">já estava nos flashcards · reflexivo</span></div>
 <table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
 <tr><td>me parezco</td><td>te pareces</td><td>se parece</td><td>nos parecemos</td><td>os parecéis</td><td>se parecen</td></tr></table>
 <div class="example">Se parece a su padre en los ojos.</div>
 </div>
 
 <div class="verb-card card">
-<div class="verb-head"><span class="verb">medir</span><span class="tag">NOVO NO MESTRE · -IR</span><button class="speak" onclick="say('medir')">🔊</button></div>
+<div class="verb-head"><span class="verb">medir</span><span class="tag">NOVO NOS FLASHCARDS · -IR</span><button class="speak" onclick="say('medir')">🔊</button></div>
 <table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
 <tr><td>mido</td><td>mides</td><td>mide</td><td>medimos</td><td>medís</td><td>miden</td></tr></table>
 <div class="example">Mido 1,93.</div>
@@ -253,20 +270,23 @@ transition:transform .15s ease,filter .15s ease}
 <h3>3. Passado de caer trabalhado hoje</h3>
 <div class="choice-grid" id="q2"></div><div id="f2" class="feedback"></div>
 </div>
-</section>
-
-<div class="card" style="margin-bottom:14px">
+<div class="card" style="margin-top:14px">
 <h3 class="yellow">🧩 Ejercicio añadido — identificación y tratamiento</h3>
 <p><b>1.</b> Completa: «Los ______ coche azul».</p>
-<button class="opt" onclick="checkExtra(this,true)">del</button>
-<button class="opt" onclick="checkExtra(this,false)">de la</button>
+<div class="choice-grid">
+<button class="choice" onclick="checkExtra(this,true)">del</button>
+<button class="choice" onclick="checkExtra(this,false)">de la</button>
+</div>
 <div class="feedback" id="extra1"></div>
 <p style="margin-top:16px"><b>2.</b> ¿Qué verbo expresa «tratar a alguien de tú»?</p>
-<button class="opt" onclick="checkExtra2(this,true)">tutear</button>
-<button class="opt" onclick="checkExtra2(this,false)">llevarse</button>
-<button class="opt" onclick="checkExtra2(this,false)">parecerse</button>
+<div class="choice-grid">
+<button class="choice" onclick="checkExtra2(this,true)">tutear</button>
+<button class="choice" onclick="checkExtra2(this,false)">llevarse</button>
+<button class="choice" onclick="checkExtra2(this,false)">parecerse</button>
+</div>
 <div class="feedback" id="extra2"></div>
 </div>
+</section>
 
 <section id="pratica">
 <h2>🎯 Missão de prática</h2>
@@ -287,7 +307,7 @@ transition:transform .15s ease,filter .15s ease}
 </div>
 </section>
 
-<div class="home-nav"><a href="index.html">🏠 Volver a la página inicial</a></div>
+<div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
 <footer>Registro individual da aula de 28/09/2026. Conteúdo restrito ao material desta aula.</footer>
 </div>
 <script>
@@ -298,11 +318,42 @@ function showTab(id,btn){
  btn.classList.add('active');
  window.scrollTo({top:0,behavior:'smooth'});
 }
+let slow=false, esVoice=null;
+function pickEs(){
+ const vs=speechSynthesis.getVoices();
+ esVoice=vs.find(v=>v.lang==='es-ES')||vs.find(v=>v.lang&&v.lang.startsWith('es'))||null;
+}
+if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=pickEs;pickEs();}
 function say(txt){
  if(!('speechSynthesis' in window)) return;
  speechSynthesis.cancel();
- const u=new SpeechSynthesisUtterance(txt);u.lang='es-ES';u.rate=.82;speechSynthesis.speak(u);
+ const u=new SpeechSynthesisUtterance(txt);
+ u.lang='es-ES';if(esVoice)u.voice=esVoice;
+ u.rate=slow?.6:.85;
+ speechSynthesis.speak(u);
 }
+function toggleSlow(){
+ slow=!slow;
+ document.querySelectorAll('.slowBtn').forEach(b=>{
+  b.textContent=slow?'🐢 Lento: ligado':'🐢 Lento: desligado';
+  b.setAttribute('aria-pressed',slow);
+ });
+}
+// botón 🔊 en cada frase de ejemplo (usa solo el texto en español, dentro de <b>)
+document.querySelectorAll('#resumo .example, #gram .example').forEach(el=>{
+ const b=el.querySelector('b'); if(!b) return;
+ const txt=b.textContent.trim();
+ const wrap=document.createElement('span');
+ while(el.firstChild) wrap.appendChild(el.firstChild);
+ el.appendChild(wrap);
+ el.classList.add('sayable');
+ const btn=document.createElement('button');
+ btn.type='button';btn.className='speak';btn.textContent='🔊';
+ btn.setAttribute('aria-label','Escuchar: '+txt);
+ btn.onclick=()=>say(txt);
+ el.appendChild(btn);
+});
+if(!('speechSynthesis' in window)) document.querySelectorAll('.sound-bar').forEach(x=>x.style.display='none');
 const qs=[
  {text:'Quero falar da minha relação com o meu chefe. Qual é a frase?',opts:['Me llevo bien con mi jefe.','Me lleva bien con mi jefe.','Me caigo bien con mi jefe.'],ok:0},
  {text:'Quero dizer que minha chefe me cai bem.',opts:['Me llevo bien mi jefa.','Mi jefa me cae bien.','Mi jefa me llevo bien.'],ok:1},
@@ -321,8 +372,12 @@ function ans(i,btn){
  bs.forEach(b=>b.disabled=true);
  bs[q.ok].classList.add('correct');
  if(i===q.ok){score++;}else{btn.classList.add('wrong');}
- setTimeout(()=>{qi=(qi+1)%qs.length;renderQ();},900);
+ setTimeout(()=>{if(qi===qs.length-1){showEnd();return;}qi++;renderQ();},900);
 }
+function showEnd(){
+ document.getElementById('q1').innerHTML='<p><b>🎉 Fim! Você acertou '+score+' de '+qs.length+'.</b></p><button class="choice" onclick="restartQ()">Recomeçar ↺</button>';
+}
+function restartQ(){qi=0;score=0;renderQ();}
 const past=[
  ['me cayó bien','correta'],
  ['me caí bien','incorreta'],
