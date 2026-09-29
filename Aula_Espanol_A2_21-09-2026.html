@@ -1,60 +1,56 @@
 <!DOCTYPE html>
-
-<html lang="pt-BR">
+<html lang="es">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Aula de Español A2 — 21/09/2026</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080a18">
+<title>Clase de Español A2 — 21/09/2026</title>
 <style>
 :root{
-  --bg:#fef6ff;--card:#fff;--text:#2b1a2e;--muted:#76577d;
-  --pink:#e0218a;--purple:#7c3aed;--turq:#00a992;--yellow:#ffb703;
-  --blue:#2563eb;--soft:#fbe3f4;--border:#ead3e7;--ok:#087f5b;--bad:#b42318;
-}
-@media(prefers-color-scheme:dark){
- :root{--bg:#160d1c;--card:#27182f;--text:#f7eafb;--muted:#c9acd1;--soft:#3a2148;--border:#50345b;--pink:#ff4fb0;--purple:#a78bfa;--turq:#2dd4bf;--yellow:#fbbf24;--blue:#60a5fa;--ok:#34d399;--bad:#f87171;}
- .yellow{color:var(--yellow)}
+  color-scheme:dark;
+  --bg:#080a18;--card:#171d38;--text:#f8f9ff;--muted:#b8c0dd;
+  --pink:#ff5ca8;--purple:#a56cff;--turq:#37e6d4;--yellow:#ffd34e;
+  --blue:#42a5ff;--soft:#252e50;--border:#2d385e;--ok:#4be59a;--bad:#ff6b7c;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}
-body:before{content:"";position:fixed;inset:0;z-index:-1;background:
-radial-gradient(circle at 10% 5%,color-mix(in srgb,var(--purple) 18%,transparent),transparent 35%),
-radial-gradient(circle at 90% 10%,color-mix(in srgb,var(--pink) 15%,transparent),transparent 35%),
-radial-gradient(circle at 50% 100%,color-mix(in srgb,var(--turq) 12%,transparent),transparent 45%)}
+body{margin:0;background:radial-gradient(circle at 10% 0,#1d2b66,transparent 38%),radial-gradient(circle at 90% 0,#5a174d,transparent 35%),var(--bg);background-attachment:fixed;color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}
 .container{max-width:1100px;margin:auto;padding:22px 16px 60px}
-header{text-align:center;padding:14px 0 22px}
-.badge{display:inline-block;padding:6px 12px;border-radius:999px;background:var(--soft);color:var(--purple);font-weight:800;font-size:.82rem}
-h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq),var(--yellow));-webkit-background-clip:text;background-clip:text;color:transparent}
-.subtitle{color:var(--muted)}
+header{text-align:center;padding:26px 20px;margin-bottom:6px;border-radius:22px;border:1px solid #48598d;background:linear-gradient(135deg,#172c6c,#49237f 52%,#741c58);box-shadow:0 18px 50px #0008}
+.badge{display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;font-weight:800;font-size:.82rem}
+h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);color:#fff}
+.subtitle{color:#e3e6ff}
 nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);display:flex;gap:7px;overflow:auto;padding:8px;border-bottom:1px solid var(--border)}
 nav button,.tab{border:1px solid var(--border);background:var(--card);color:var(--text);padding:9px 12px;border-radius:12px;cursor:pointer;white-space:nowrap;font-weight:750}
-nav button.active,.tab.active{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;border-color:transparent}
+nav button.active,.tab.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
 section{display:none;padding-top:22px}
 section.active{display:block}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:0 7px 22px color-mix(in srgb,var(--purple) 10%,transparent)}
 .card h3{margin-top:0}
 .color-title{font-size:1.25rem;font-weight:900}
-.pink{color:var(--pink)}.purple{color:var(--purple)}.turq{color:var(--turq)}.blue{color:var(--blue)}.yellow{color:#a66a00}
+.pink{color:var(--pink)}.purple{color:var(--purple)}.turq{color:var(--turq)}.blue{color:var(--blue)}.yellow{color:var(--yellow)}
 table{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden}
 th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
-th{background:var(--soft);color:var(--purple)}
+th{background:#202a4c;color:#cdbdff}
 .verb-card{margin-bottom:16px}
 .verb-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
 .verb{font-size:1.45rem;font-weight:900;color:var(--pink)}
-.tag{font-size:.78rem;font-weight:800;padding:4px 9px;border-radius:999px;background:var(--soft);color:var(--purple)}
+.tag{font-size:.78rem;font-weight:800;padding:4px 9px;border-radius:999px;background:var(--soft);color:#cdbdff}
 .speak{border:0;background:var(--soft);border-radius:10px;padding:7px 10px;cursor:pointer}
 .example{border-left:4px solid var(--turq);padding:9px 12px;background:color-mix(in srgb,var(--turq) 8%,var(--card));border-radius:0 12px 12px 0;margin:9px 0}
 .note{font-size:.9rem;color:var(--muted)}
 .choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:9px}
-.choice{padding:12px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;text-align:left}
-.choice.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card))}
-.choice.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card))}
-.feedback{margin-top:12px;font-weight:800}
-.feedback.ok{color:var(--ok)}.feedback.bad{color:var(--bad)}
+.choice{padding:12px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;text-align:center;font-weight:700;font-size:1rem;transition:0.2s}
+.choice:hover{border-color:var(--turq)}
+.choice.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card));color:var(--ok)}
+.choice.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card));color:var(--bad)}
+.feedback{margin-top:12px;font-weight:800;padding:10px;border-radius:8px;display:none}
+.feedback.ok{display:block;color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card));border:1px solid var(--ok)}
+.feedback.bad{display:block;color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card));border:1px solid var(--bad)}
 details{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px;margin:9px 0}
 summary{cursor:pointer;font-weight:800}
-.progress{height:10px;background:var(--soft);border-radius:99px;overflow:hidden}.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq));transition:.25s}
+.progress{height:12px;background:var(--soft);border-radius:99px;overflow:hidden;margin-top:12px;border:1px solid var(--border)}
+.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq));transition:width .3s ease}
 .small{font-size:.88rem;color:var(--muted)}
 .example.sayable{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .example.sayable .speak{flex:0 0 auto;font-size:1.05rem}
@@ -65,342 +61,399 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
 @media(max-width:600px){.container{padding:14px 10px 45px}th,td{padding:8px;font-size:.9rem}.card{padding:15px}}
 
 .home-nav{text-align:center;margin:14px 0 8px}
-.home-nav a{display:inline-block;padding:10px 18px;border-radius:12px;
-background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;
-text-decoration:none;font-weight:800;box-shadow:0 8px 22px color-mix(in srgb,var(--purple) 28%,transparent);
-transition:transform .15s ease,filter .15s ease}
-.home-nav a:hover{transform:translateY(-1px);filter:brightness(1.08)}
-
+.home-nav a{display:inline-block;padding:10px 18px;border-radius:12px;background:#10152b;border:1px solid var(--border);color:#fff;text-decoration:none;font-weight:800;transition:transform .15s ease,border-color .15s ease}
+.home-nav a:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.home-nav a:hover{transform:translateY(-1px);border-color:var(--blue)}
 </style>
 </head>
+
 <body>
 <div class="container">
 <header>
-<span class="badge">EOI · Español A2 · Aula individual</span>
-<h1>Ficha Interactiva — 21/09/2026</h1>
-<div class="subtitle">Demostrativos, descripción física, <b>ser / estar / tener / llevar</b>, <b>parecer / parecerse</b> y actividades de las páginas 41, 137 y 138</div>
-</header><div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
+  <span class="badge">EOI · Español A2 · Clase individual</span>
+  <h1>Ficha interactiva — 21/09/2026</h1>
+  <div class="subtitle">Demostrativos, descripción física, <b>ser / estar / tener / llevar</b>, <b>parecer / parecerse</b> y actividades de las páginas 41, 137 y 138</div>
+</header>
+
+<div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
 
 <nav>
-<button class="active" onclick="showTab('resumo',this)">📚 Resumen</button>
-<button onclick="showTab('vocab',this)">📝 Vocabulario</button>
-<button onclick="showTab('gram',this)">🧠 Gramática</button>
-<button onclick="showTab('verbos',this)">🔤 Verbos</button>
-<button onclick="showTab('ex',this)">✏️ Ejercicios</button>
-<button onclick="showTab('pratica',this)">🎯 Práctica</button>
+  <button class="active" onclick="showTab('resumen',this)">📚 Resumen</button>
+  <button onclick="showTab('vocab',this)">📝 Vocabulario</button>
+  <button onclick="showTab('gram',this)">🧠 Gramática</button>
+  <button onclick="showTab('verbos',this)">🔤 Verbos</button>
+  <button onclick="showTab('ex',this)">✏️ Ejercicios</button>
+  <button onclick="showTab('practica',this)">🎯 Práctica</button>
 </nav>
-<section class="active" id="resumo">
-<div class="grid">
-<div class="card">
-<div class="color-title pink">1. Demostrativos</div>
-<p>Se trabajaron las formas para señalar personas o cosas según la distancia:</p>
-<p><b>este / esta / estos / estas</b> · <b>ese / esa / esos / esas</b> · <b>aquel / aquella / aquellos / aquellas</b>.</p>
-</div>
-<div class="card">
-<div class="color-title purple">2. Descripción física</div>
-<p>Se trabajó la descripción del aspecto físico mediante vocabulario relacionado con la persona, el pelo, los ojos y otras características.</p>
-<p>Pregunta de referencia: <b>¿Cómo es él?</b></p>
-</div>
-<div class="card">
-<div class="color-title turq">3. Ser, estar, tener y llevar</div>
-<p>En el ejercicio 9 de la página 138 se practicó la elección entre <b>ser</b>, <b>estar</b>, <b>tener</b> y <b>llevar</b> para describir a una persona.</p>
-</div>
-<div class="card">
-<div class="color-title yellow">4. Parecer y parecerse</div>
-<p>En el material de la página 46 se trabajó <b>parecerse a</b> para expresar semejanza y <b>parecerse en</b> para indicar en qué aspecto existe la semejanza.</p>
-</div>
-<div class="card">
-<div class="color-title blue">5. Actividades de clase</div>
-<p><b>Página 41, ejercicio 3A:</b> escucha del audio 08 e identificación en la ilustración de las personas de las que hablan.</p>
-<p><b>Página 137, ejercicio 5:</b> relación de preguntas y respuestas.</p>
-<p><b>Página 138, ejercicios 7 y 9:</b> práctica de descripción física y elección de <b>ser / estar / tener / llevar</b>.</p>
-</div>
-</div>
-<div class="card" style="margin-top:14px">
-<h3>⭐ Expresiones y estructuras de referencia</h3>
-<div class="sound-bar">
-<span class="small">🔊 Pulsa el botón de cada frase para escuchar.</span>
-<button aria-pressed="false" class="speak slowBtn" onclick="toggleSlow()" type="button">🐢 Lento: desactivado</button>
-</div>
-<div class="example"><b>¿Cómo es él?</b></div>
-<div class="example"><b>Yo me parezco a mi padre.</b></div>
-<div class="example"><b>Mi padre y yo nos parecemos.</b></div>
-<div class="example"><b>Se parece a su padre en los ojos.</b></div>
-<div class="example"><b>A todo el mundo le parece muy simpática.</b></div>
-</div>
-</section>
-<section id="vocab">
-<h2>📝 Vocabulario trabajado / para estudiar</h2>
-<div class="grid">
-<div class="card">
-<h3 class="pink">Demonstrativos</h3>
-<p><b>este / esta / estos / estas</b></p>
-<p><b>ese / esa / esos / esas</b></p>
-<p><b>aquel / aquella / aquellos / aquellas</b></p>
-</div>
-<div class="card">
-<h3 class="purple">Aspecto físico</h3>
-<p><b>guapo/a</b> · <b>feo/a</b> · <b>alto/a</b> · <b>bajo/a</b></p>
-<p><b>gordo/a</b> · <b>delgado/a</b> · <b>atlético/a</b></p>
-<p><b>rubio/a</b> · <b>moreno/a</b> · <b>pelirrojo/a</b> · <b>castaño/a</b> · <b>canoso/a</b> · <b>calvo/a</b></p>
-</div>
-<div class="card">
-<h3 class="turq">El pelo</h3>
-<p><b>rubio</b> · <b>castaño</b> · <b>negro</b> · <b>gris</b> · <b>blanco</b></p>
-<p><b>liso</b> · <b>ondulado</b> · <b>rizado</b></p>
-<p><b>largo</b> · <b>corto</b> · <b>teñido</b> · <b>recogido</b></p>
-</div>
-<div class="card">
-<h3 class="blue">Los ojos</h3>
-<p><b>negros</b> · <b>marrones</b> · <b>verdes</b> · <b>azules</b></p>
-<p><b>claros</b> · <b>oscuros</b> · <b>grandes</b> · <b>pequeños</b></p>
-</div>
-<div class="card">
-<h3 class="yellow">Semejanza</h3>
-<p><b>parecerse a</b> — ser similar a otra persona.</p>
-<p><b>parecerse en</b> — indicar el aspecto en el que existe la semejanza.</p>
-<p><b>tener la nariz / los ojos / una sonrisa / una mirada parecida</b></p>
-<p><b>ser como</b> — comparación con otra persona.</p>
-</div>
-</div>
-<div class="card" style="margin-top:14px">
-<h3>📌 Estudio en casa — página 46</h3>
-<p>La página 46 se indicó para estudiar el vocabulario del aspecto físico. Esta ficha separa ese contenido como <b>estudio en casa</b> para no confundirlo con un ejercicio hecho en clase.</p>
-</div>
-</section>
-<section id="gram">
-<h2>🧠 Estructuras centrales</h2>
-<div class="sound-bar">
-<span class="small">🔊 Pulsa el botón de cada frase para escuchar.</span>
-<button aria-pressed="false" class="speak slowBtn" onclick="toggleSlow()" type="button">🐢 Lento: desactivado</button>
-</div>
-<div class="card" style="margin-bottom:14px">
-<h3 class="pink">DEMOSTRATIVOS</h3>
-<table>
-<tr><th>Distância</th><th>Masculino</th><th>Femenino</th></tr>
-<tr><td>Cerca</td><td><b>este / estos</b></td><td><b>esta / estas</b></td></tr>
-<tr><td>Distancia media</td><td><b>ese / esos</b></td><td><b>esa / esas</b></td></tr>
-<tr><td>Lejos</td><td><b>aquel / aquellos</b></td><td><b>aquella / aquellas</b></td></tr>
-</table>
-</div>
-<div class="card">
-<h3 class="purple">SER × ESTAR × TENER × LLEVAR</h3>
-<table>
-<tr><th>Verbo</th><th>Uso del ejercicio 9</th><th>Ejemplo</th></tr>
-<tr><td><b>ser</b></td><td>Profesión y característica física.</td><td><b>Soy fotógrafo.</b><br/><b>Soy bastante alto.</b></td></tr>
-<tr><td><b>estar</b></td><td>Estado civil.</td><td><b>Estoy divorciado.</b></td></tr>
-<tr><td><b>tener</b></td><td>Edad, hijos, pelo, barba y características que se tienen.</td><td><b>Tengo 32 años.</b><br/><b>Tengo el pelo castaño.</b><br/><b>Tengo barba.</b></td></tr>
-<tr><td><b>llevar</b></td><td>Verbo incluido entre las opciones del ejercicio para describir lo que una persona lleva.</td><td><b>Llevar</b> aparece como opción del ejercicio.</td></tr>
-</table>
-</div>
-<div class="card" style="margin-top:14px">
-<h3 class="turq">PARECERSE</h3>
-<div class="example"><b>Yo me parezco a mi padre.</b></div>
-<div class="example"><b>Mi padre y yo nos parecemos.</b></div>
-<div class="example"><b>Se parece a su padre en los ojos.</b></div>
-<p class="note"><b>Parecerse a</b> expresa semejanza con otra persona. <b>Parecerse en</b> indica el aspecto en el que las personas son similares.</p>
-</div>
-<div class="card" style="margin-top:14px">
-<h3 class="blue">PARECER</h3>
-<div class="example"><b>A todo el mundo le parece muy simpática.</b></div>
-<p class="note">En el material de la página 46, <b>parecer</b> aparece para expresar una opinión o impresión.</p>
-</div>
-</section>
-<section id="verbos">
-<h2>🔤 Verbos trabajados / presentes en el material</h2>
-<p class="small">Aquí aparecen únicamente los verbos directamente respaldados por el contenido de la clase y por los ejercicios/material indicado para el 21/09/2026.</p>
-<div class="verb-card card">
-<div class="verb-head"><span class="verb">ser</span><span class="tag">irregular</span><button class="speak" onclick="say('ser')">🔊</button></div>
-<table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
-<tr><td>soy</td><td>eres</td><td>es</td><td>somos</td><td>sois</td><td>son</td></tr></table>
-<div class="example">Soy fotógrafo. · Soy bastante alto.</div>
-</div>
-<div class="verb-card card">
-<div class="verb-head"><span class="verb">estar</span><span class="tag">irregular</span><button class="speak" onclick="say('estar')">🔊</button></div>
-<table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
-<tr><td>estoy</td><td>estás</td><td>está</td><td>estamos</td><td>estáis</td><td>están</td></tr></table>
-<div class="example">Estoy divorciado.</div>
-</div>
-<div class="verb-card card">
-<div class="verb-head"><span class="verb">tener</span><span class="tag">irregular</span><button class="speak" onclick="say('tener')">🔊</button></div>
-<table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
-<tr><td>tengo</td><td>tienes</td><td>tiene</td><td>tenemos</td><td>tenéis</td><td>tienen</td></tr></table>
-<div class="example">Tengo el pelo castaño. · Tengo barba.</div>
-</div>
-<div class="verb-card card">
-<div class="verb-head"><span class="verb">llevar</span><span class="tag">regular -AR</span><button class="speak" onclick="say('llevar')">🔊</button></div>
-<table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
-<tr><td>llevo</td><td>llevas</td><td>lleva</td><td>llevamos</td><td>lleváis</td><td>llevan</td></tr></table>
-<div class="example">Llevar es una de las opciones indicadas en el ejercicio 9.</div>
-</div>
-<div class="verb-card card">
-<div class="verb-head"><span class="verb">parecer</span><span class="tag">-ER</span><button class="speak" onclick="say('parecer')">🔊</button></div>
-<table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
-<tr><td>parezco</td><td>pareces</td><td>parece</td><td>parecemos</td><td>parecéis</td><td>parecen</td></tr></table>
-<div class="example">A todo el mundo le parece muy simpática.</div>
-</div>
-<div class="verb-card card">
-<div class="verb-head"><span class="verb">parecerse</span><span class="tag">reflexivo · -ER</span><button class="speak" onclick="say('parecerse')">🔊</button></div>
-<table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
-<tr><td>me parezco</td><td>te pareces</td><td>se parece</td><td>nos parecemos</td><td>os parecéis</td><td>se parecen</td></tr></table>
-<div class="example">Yo me parezco a mi padre. · Mi padre y yo nos parecemos.</div>
-</div>
-</section>
-<section id="ex">
-<h2>✏️ Ejercicios y actividades de la clase</h2>
-<div class="card">
-<h3>1. Página 41 — Ejercicio 3A · Audio 08</h3>
-<p><b>La boda del hermano de María del Mar.</b> En la actividad de clase se escuchó el audio e identificaron en la ilustración a las personas de las que hablan María del Mar y su amigo.</p>
-<div class="example"><b>Escucha e identifica en la ilustración a las personas de las que hablan.</b></div>
-<p class="small">Personas que aparecen en el apartado B de la misma actividad: <b>Juan José · Isabel · Ricardo · Aurora · Felipe · Leonor</b>.</p>
-<div class="card" style="margin-top:12px;background:var(--soft)">
-<h4>🎧 Registro de la actividad realizada en clase</h4>
-<p>Usa el <b>Audio 08</b> del libro para identificar, en la ilustración, a las personas mencionadas. Como el archivo de audio no está incorporado en esta ficha, esta actividad queda registrada para repetirla con el audio original.</p>
-<p class="small">No se ha creado una solución automática para no inventar la identificación de los personajes sin escuchar el audio.</p>
-</div>
-</div>
-<div class="card" style="margin-top:14px">
-<h3>2. Página 137 — Ejercicio 5</h3>
-<p><b>Relaciona cada pregunta con su respuesta.</b></p>
-<table>
-<tr><th>N.º</th><th>Pregunta</th><th>Respuesta correcta</th></tr>
-<tr><td><b>1.</b></td><td>¿Quién es Juan?</td><td><b>g.</b> Muy simpática.</td></tr>
-<tr><td><b>2.</b></td><td>¿Cómo es tu prima?</td><td><b>b.</b> Alto, delgado, tiene los ojos verdes…</td></tr>
-<tr><td><b>3.</b></td><td>¿Quiénes son aquellos de azul?</td><td><b>j.</b> Esa que está en la puerta.</td></tr>
-<tr><td><b>4.</b></td><td>¿Qué lleva Penélope?</td><td><b>e.</b> Un vestido gris y unos zapatos negros.</td></tr>
-<tr><td><b>5.</b></td><td>Aquella de negro, ¿quién es?</td><td><b>d.</b> El de la chaqueta marrón.</td></tr>
-<tr><td><b>6.</b></td><td>¿Son los que están en la puerta?</td><td><b>c.</b> Sí, son ellos.</td></tr>
-<tr><td><b>7.</b></td><td>¿Quiénes son esas?</td><td><b>h.</b> ¿Las morenas? Mis hermanas.</td></tr>
-<tr><td><b>8.</b></td><td>¿Qué es tu novio?</td><td><b>f.</b> Una compañera de la facultad.</td></tr>
-<tr><td><b>9.</b></td><td>¿Quién es tu madre?</td><td><b>a.</b> Mis abuelos.</td></tr>
-<tr><td><b>10.</b></td><td>¿Y tú? ¿A quién te pareces?</td><td><b>i.</b> A mi padre. Tenemos los mismos ojos.</td></tr>
-</table>
-<div class="card" style="margin-top:12px;background:var(--soft)">
-<h4>🎯 Gabarito</h4>
-<p><b>1-g · 2-b · 3-j · 4-e · 5-d · 6-c · 7-h · 8-f · 9-a · 10-i</b></p>
-</div>
-</div>
-<div class="card" style="margin-top:14px">
-<h3>3. Página 138 — Ejercicio 7</h3>
-<p>Elige la forma correcta. <b>Agora todas as seis estruturas aparecem juntas</b>, como en el ejercicio 9, para que puedas estudiar y repasar el conjunto completo.</p>
-<div class="card" style="margin-top:10px;background:var(--soft)">
-<p><b>1.</b> Elena y Julia tienen el pelo ____.</p>
-<div class="choice-grid">
-<button class="choice" onclick="checkQ7(this,'q71','rubio')">rubio</button>
-<button class="choice" onclick="checkQ7(this,'q71','rubia')">rubia</button>
-<button class="choice" onclick="checkQ7(this,'q71','rubios')">rubios</button>
-<button class="choice" onclick="checkQ7(this,'q71','rubias')">rubias</button>
-</div>
-<div class="feedback" id="q71"></div>
-<p><b>2.</b> Elena y Julia son ____.</p>
-<div class="choice-grid">
-<button class="choice" onclick="checkQ7(this,'q72','rubio')">rubio</button>
-<button class="choice" onclick="checkQ7(this,'q72','rubia')">rubia</button>
-<button class="choice" onclick="checkQ7(this,'q72','rubios')">rubios</button>
-<button class="choice" onclick="checkQ7(this,'q72','rubias')">rubias</button>
-</div>
-<div class="feedback" id="q72"></div>
-<p><b>3.</b> Ana tiene los ojos muy ____.</p>
-<div class="choice-grid">
-<button class="choice" onclick="checkQ7(this,'q73','negro')">negro</button>
-<button class="choice" onclick="checkQ7(this,'q73','negra')">negra</button>
-<button class="choice" onclick="checkQ7(this,'q73','negros')">negros</button>
-<button class="choice" onclick="checkQ7(this,'q73','negras')">negras</button>
-</div>
-<div class="feedback" id="q73"></div>
-<p><b>4.</b> Ana tiene el pelo ____.</p>
-<div class="choice-grid">
-<button class="choice" onclick="checkQ7(this,'q74','negro')">negro</button>
-<button class="choice" onclick="checkQ7(this,'q74','negra')">negra</button>
-<button class="choice" onclick="checkQ7(this,'q74','negros')">negros</button>
-<button class="choice" onclick="checkQ7(this,'q74','negras')">negras</button>
-</div>
-<div class="feedback" id="q74"></div>
-<p><b>5.</b> Víctor tiene la piel muy ____.</p>
-<div class="choice-grid">
-<button class="choice" onclick="checkQ7(this,'q75','blanco')">blanco</button>
-<button class="choice" onclick="checkQ7(this,'q75','blanca')">blanca</button>
-<button class="choice" onclick="checkQ7(this,'q75','blancos')">blancos</button>
-<button class="choice" onclick="checkQ7(this,'q75','blancas')">blancas</button>
-</div>
-<div class="feedback" id="q75"></div>
-<p><b>6.</b> Víctor es muy ____ de piel, ¿no?</p>
-<div class="choice-grid">
-<button class="choice" onclick="checkQ7(this,'q76','blanco')">blanco</button>
-<button class="choice" onclick="checkQ7(this,'q76','blanca')">blanca</button>
-<button class="choice" onclick="checkQ7(this,'q76','blancos')">blancos</button>
-<button class="choice" onclick="checkQ7(this,'q76','blancas')">blancas</button>
-</div>
-<div class="feedback" id="q76"></div>
-</div>
-</div>
-<div class="card" style="margin-top:14px">
-<h3>4. Página 138 — Ejercicio 9</h3>
-<p>Completa el texto con <b>ser, estar, tener o llevar</b>.</p>
-<div class="example"><b>Me llamo Rafa y tengo 32 años.</b></div>
-<div class="card" style="margin-top:10px;background:var(--soft)">
-<p><b>1.</b> ______ fotógrafo y también escribo un blog sobre fotografía.</p>
-<div class="choice-grid">
-<button class="choice" onclick="fill9(this,'soy')">soy</button>
-<button class="choice" onclick="fill9(this,'estoy')">estoy</button>
-<button class="choice" onclick="fill9(this,'tengo')">tengo</button>
-</div>
-<div class="feedback" id="f91"></div>
-<p><b>2.</b> ______ divorciado y no ______ hijos.</p>
-<div class="choice-grid">
-<button class="choice" onclick="fill9b(this,'estoy,tengo')">estoy / tengo</button>
-<button class="choice" onclick="fill9b(this,'soy,tengo')">soy / tengo</button>
-<button class="choice" onclick="fill9b(this,'tengo,estoy')">tengo / estoy</button>
-</div>
-<div class="feedback" id="f92"></div>
-<p><b>3.</b> ______ bastante alto (mido casi 2 metros) y muy delgado.</p>
-<div class="choice-grid">
-<button class="choice" onclick="fill9c(this,'soy')">soy</button>
-<button class="choice" onclick="fill9c(this,'estoy')">estoy</button>
-<button class="choice" onclick="fill9c(this,'tengo')">tengo</button>
-</div>
-<div class="feedback" id="f93"></div>
-<p><b>4.</b> ______ el pelo castaño, los ojos verdes y ______ barba.</p>
-<div class="choice-grid">
-<button class="choice" onclick="fill9d(this,'tengo,tengo')">tengo / tengo</button>
-<button class="choice" onclick="fill9d(this,'llevo,tengo')">llevo / tengo</button>
-<button class="choice" onclick="fill9d(this,'soy,tengo')">soy / tengo</button>
-</div>
-<div class="feedback" id="f94"></div>
-<p><b>5.</b> ______ una personalidad muy fuerte.</p>
-<div class="choice-grid">
-<button class="choice" onclick="fill9e(this,'tengo')">tengo</button>
-<button class="choice" onclick="fill9e(this,'soy')">soy</button>
-<button class="choice" onclick="fill9e(this,'estoy')">estoy</button>
-</div>
-<div class="feedback" id="f95"></div>
-</div>
-</div>
-</section>
-<section id="pratica">
-<h2>🎯 Misión de práctica</h2>
-<div class="card">
-<h3>Estudio en casa — página 46</h3>
-<p>Estudia el vocabulario del <b>aspecto físico</b> de la página 46 y practica la pregunta:</p>
-<div class="example"><b>¿Cómo es él?</b></div>
-<p>Después, practica las estructuras de semejanza:</p>
-<div class="example"><b>Me parezco a...</b></div>
-<div class="example"><b>Me parezco a ... en los ojos / en el pelo...</b></div>
-</div>
-<div class="card" style="margin-top:14px">
-<h3>Checklist</h3>
-<label><input onchange="tick(this)" type="checkbox"/> Reconheço os demonstrativos: <b>este / ese / aquel</b>.</label><br/>
-<label><input onchange="tick(this)" type="checkbox"/> Consigo descrever o aspecto físico básico.</label><br/>
-<label><input onchange="tick(this)" type="checkbox"/> Diferencio <b>ser / estar / tener / llevar</b>.</label><br/>
-<label><input onchange="tick(this)" type="checkbox"/> Sé usar <b>parecerse a</b>.</label><br/>
-<label><input onchange="tick(this)" type="checkbox"/> Sé indicar en qué aspecto se parecen dos personas.</label>
-<div class="progress" style="margin-top:12px"><span id="bar"></span></div>
-<p class="small" id="count">0/5 completados</p>
-</div>
+
+<section id="resumen" class="active">
+  <div class="grid">
+    <div class="card">
+      <div class="color-title pink">1. Demostrativos</div>
+      <p>Se trabajaron las formas para señalar personas o cosas según la distancia:</p>
+      <p><b>este / esta / estos / estas</b> · <b>ese / esa / esos / esas</b> · <b>aquel / aquella / aquellos / aquellas</b>.</p>
+    </div>
+    <div class="card">
+      <div class="color-title purple">2. Descripción física</div>
+      <p>Se trabajó la descripción del aspecto físico mediante vocabulario relacionado con la persona, el pelo, los ojos y otras características.</p>
+      <p>Pregunta de referencia: <b>¿Cómo es él?</b></p>
+    </div>
+    <div class="card">
+      <div class="color-title turq">3. Ser, estar, tener y llevar</div>
+      <p>En el ejercicio 9 de la página 138 se practicó la elección entre <b>ser</b>, <b>estar</b>, <b>tener</b> y <b>llevar</b> para describir a una persona.</p>
+    </div>
+    <div class="card">
+      <div class="color-title yellow">4. Parecer y parecerse</div>
+      <p>En el material de la página 46 se trabajó <b>parecerse a</b> para expresar semejanza y <b>parecerse en</b> para indicar en qué aspecto existe la semejanza.</p>
+    </div>
+    <div class="card">
+      <div class="color-title blue">5. Actividades de clase</div>
+      <p><b>Página 41, ejercicio 3A:</b> escucha del audio 08 e identificación en la ilustración de las personas de las que hablan.</p>
+      <p><b>Página 137, ejercicio 5:</b> relación de preguntas y respuestas.</p>
+      <p><b>Página 138, ejercicios 7 y 9:</b> práctica de descripción física y elección de <b>ser / estar / tener / llevar</b>.</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h3>⭐ Expresiones y estructuras clave</h3>
+    <div class="sound-bar">
+      <span class="small">🔊 Toca el botón de cada frase para escucharla.</span>
+      <button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button>
+    </div>
+    <div class="example"><b>¿Cómo es él?</b></div>
+    <div class="example"><b>Yo me parezco a mi padre.</b></div>
+    <div class="example"><b>Mi padre y yo nos parecemos.</b></div>
+    <div class="example"><b>Se parece a su padre en los ojos.</b></div>
+    <div class="example"><b>A todo el mundo le parece muy simpática.</b></div>
+  </div>
 </section>
 
-<div class="home-nav bottom"><a href="index.html">🏠 Volver al inicio</a></div><footer>Registro individual de la clase del 21/09/2026. Contenido organizado según el material disponible para esta clase.</footer>
+<section id="vocab">
+  <h2>📝 Vocabulario y características</h2>
+  <div class="grid">
+    <div class="card">
+      <h3 class="pink">Demostrativos</h3>
+      <p><b>este / esta / estos / estas</b></p>
+      <p><b>ese / esa / esos / esas</b></p>
+      <p><b>aquel / aquella / aquellos / aquellas</b></p>
+    </div>
+
+    <div class="card">
+      <h3 class="purple">Aspecto físico</h3>
+      <p><b>guapo/a</b> · <b>feo/a</b> · <b>alto/a</b> · <b>bajo/a</b></p>
+      <p><b>gordo/a</b> · <b>delgado/a</b> · <b>atlético/a</b></p>
+      <p><b>rubio/a</b> · <b>moreno/a</b> · <b>pelirrojo/a</b> · <b>castaño/a</b> · <b>canoso/a</b> · <b>calvo/a</b></p>
+    </div>
+
+    <div class="card">
+      <h3 class="turq">El pelo</h3>
+      <p><b>rubio</b> · <b>castaño</b> · <b>negro</b> · <b>gris</b> · <b>blanco</b></p>
+      <p><b>liso</b> · <b>ondulado</b> · <b>rizado</b></p>
+      <p><b>largo</b> · <b>corto</b> · <b>teñido</b> · <b>recogido</b></p>
+    </div>
+
+    <div class="card">
+      <h3 class="blue">Los ojos</h3>
+      <p><b>negros</b> · <b>marrones</b> · <b>verdes</b> · <b>azules</b></p>
+      <p><b>claros</b> · <b>oscuros</b> · <b>grandes</b> · <b>pequeños</b></p>
+    </div>
+
+    <div class="card">
+      <h3 class="yellow">Semejanza</h3>
+      <p><b>parecerse a</b> — ser similar a otra persona.</p>
+      <p><b>parecerse en</b> — indicar el aspecto en el que existe la semejanza.</p>
+      <p><b>tener la nariz / los ojos / una sonrisa / una mirada parecida</b></p>
+      <p><b>ser como</b> — comparación con otra persona.</p>
+    </div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <h3>📌 Estudio en casa — página 46</h3>
+    <p>La página 46 se indicó para estudiar el vocabulario del aspecto físico. Esta ficha separa ese contenido como <b>estudio en casa</b> para no confundirlo con un ejercicio hecho en clase.</p>
+  </div>
+</section>
+
+<section id="gram">
+  <h2>🧠 Gramática</h2>
+  <div class="sound-bar">
+    <span class="small">🔊 Toca el botón de cada ejemplo para escucharlo.</span>
+    <button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button>
+  </div>
+
+  <div class="card" style="margin-bottom:14px">
+    <h3 class="pink">DEMOSTRATIVOS</h3>
+    <div style="overflow-x:auto;">
+    <table>
+      <tr><th>Distancia</th><th>Masculino</th><th>Femenino</th></tr>
+      <tr><td>Cerca</td><td><b>este / estos</b></td><td><b>esta / estas</b></td></tr>
+      <tr><td>Distancia media</td><td><b>ese / esos</b></td><td><b>esa / esas</b></td></tr>
+      <tr><td>Lejos</td><td><b>aquel / aquellos</b></td><td><b>aquella / aquellas</b></td></tr>
+    </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 class="purple">SER × ESTAR × TENER × LLEVAR</h3>
+    <div style="overflow-x:auto;">
+    <table>
+      <tr><th>Verbo</th><th>Uso del ejercicio 9</th><th>Ejemplo</th></tr>
+      <tr><td><b>ser</b></td><td>Profesión y característica física.</td><td><b>Soy fotógrafo.</b><br><b>Soy bastante alto.</b></td></tr>
+      <tr><td><b>estar</b></td><td>Estado civil.</td><td><b>Estoy divorciado.</b></td></tr>
+      <tr><td><b>tener</b></td><td>Edad, hijos, pelo, barba y características que se tienen.</td><td><b>Tengo 32 años.</b><br><b>Tengo el pelo castaño.</b><br><b>Tengo barba.</b></td></tr>
+      <tr><td><b>llevar</b></td><td>Verbo incluido entre las opciones del ejercicio para describir lo que una persona lleva puesta (ropa/accesorios).</td><td><b>Lleva gafas.</b></td></tr>
+    </table>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h3 class="turq">PARECERSE</h3>
+    <div class="example"><b>Yo me parezco a mi padre.</b></div>
+    <div class="example"><b>Mi padre y yo nos parecemos.</b></div>
+    <div class="example"><b>Se parece a su padre en los ojos.</b></div>
+    <p class="note"><b>Parecerse a</b> expresa semejanza con otra persona. <b>Parecerse en</b> indica el aspecto en el que las personas son similares.</p>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h3 class="blue">PARECER</h3>
+    <div class="example"><b>A todo el mundo le parece muy simpática.</b></div>
+    <p class="note">En el material de la página 46, <b>parecer</b> aparece para expresar una opinión o impresión.</p>
+  </div>
+</section>
+
+<section id="verbos">
+  <h2>🔤 Verbos trabajados en la clase</h2>
+  <p class="small">Aquí se presentan solo los verbos directamente apoyados por el contenido de la clase y los ejercicios del 21/09/2026.</p>
+
+  <div class="verb-card card">
+    <div class="verb-head"><span class="verb">ser</span><span class="tag">irregular</span><button class="speak" onclick="say('ser')">🔊</button></div>
+    <div style="overflow-x:auto;">
+    <table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
+    <tr><td>soy</td><td>eres</td><td>es</td><td>somos</td><td>sois</td><td>son</td></tr></table>
+    </div>
+    <div class="example">Soy fotógrafo. · Soy bastante alto.</div>
+  </div>
+
+  <div class="verb-card card">
+    <div class="verb-head"><span class="verb">estar</span><span class="tag">irregular</span><button class="speak" onclick="say('estar')">🔊</button></div>
+    <div style="overflow-x:auto;">
+    <table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
+    <tr><td>estoy</td><td>estás</td><td>está</td><td>estamos</td><td>estáis</td><td>están</td></tr></table>
+    </div>
+    <div class="example">Estoy divorciado.</div>
+  </div>
+
+  <div class="verb-card card">
+    <div class="verb-head"><span class="verb">tener</span><span class="tag">irregular</span><button class="speak" onclick="say('tener')">🔊</button></div>
+    <div style="overflow-x:auto;">
+    <table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
+    <tr><td>tengo</td><td>tienes</td><td>tiene</td><td>tenemos</td><td>tenéis</td><td>tienen</td></tr></table>
+    </div>
+    <div class="example">Tengo el pelo castaño. · Tengo barba.</div>
+  </div>
+
+  <div class="verb-card card">
+    <div class="verb-head"><span class="verb">llevar</span><span class="tag">regular -AR</span><button class="speak" onclick="say('llevar')">🔊</button></div>
+    <div style="overflow-x:auto;">
+    <table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
+    <tr><td>llevo</td><td>llevas</td><td>lleva</td><td>llevamos</td><td>lleváis</td><td>llevan</td></tr></table>
+    </div>
+    <div class="example">Llevar es una de las opciones indicadas en el ejercicio 9.</div>
+  </div>
+
+  <div class="verb-card card">
+    <div class="verb-head"><span class="verb">parecer</span><span class="tag">-ER</span><button class="speak" onclick="say('parecer')">🔊</button></div>
+    <div style="overflow-x:auto;">
+    <table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
+    <tr><td>parezco</td><td>pareces</td><td>parece</td><td>parecemos</td><td>parecéis</td><td>parecen</td></tr></table>
+    </div>
+    <div class="example">A todo el mundo le parece muy simpática.</div>
+  </div>
+
+  <div class="verb-card card">
+    <div class="verb-head"><span class="verb">parecerse</span><span class="tag">reflexivo · -ER</span><button class="speak" onclick="say('parecerse')">🔊</button></div>
+    <div style="overflow-x:auto;">
+    <table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
+    <tr><td>me parezco</td><td>te pareces</td><td>se parece</td><td>nos parecemos</td><td>os parecéis</td><td>se parecen</td></tr></table>
+    </div>
+    <div class="example">Yo me parezco a mi padre. · Mi padre y yo nos parecemos.</div>
+  </div>
+</section>
+
+<section id="ex">
+  <h2>✏️ Ejercicios interactivos</h2>
+
+  <div class="card">
+    <h3 class="pink">1. Página 41 — Ejercicio 3A · Audio 08</h3>
+    <p><b>La boda del hermano de María del Mar.</b> En la actividad de clase se escuchó el audio e identificaron en la ilustración a las personas de las que hablan María del Mar y su amigo.</p>
+    <div class="example"><b>Escucha e identifica en la ilustración a las personas de las que hablan.</b></div>
+    <p class="small">Personas que aparecen en el apartado B de la misma actividad: <b>Juan José · Isabel · Ricardo · Aurora · Felipe · Leonor</b>.</p>
+    <div class="card" style="margin-top:12px;background:var(--soft);border:none;">
+      <h4>🎧 Registro de la actividad realizada en clase</h4>
+      <p>Usa el <b>Audio 08</b> del libro para identificar en la ilustración a las personas mencionadas. Como el archivo de audio no está incorporado en esta ficha, esta actividad queda registrada para ser repetida con el material original.</p>
+      <p class="small">No se creó una corrección automática para evitar inventar la identificación de los personajes sin escuchar el audio.</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h3 class="purple">2. Página 137 — Ejercicio 5</h3>
+    <p><b>Relaciona cada pregunta con su respuesta.</b></p>
+    <div style="overflow-x:auto;">
+    <table>
+      <tr><th>N.º</th><th>Pregunta</th><th>Respuesta correcta</th></tr>
+      <tr><td><b>1.</b></td><td>¿Quién es Juan?</td><td><b>g.</b> Muy simpática.</td></tr>
+      <tr><td><b>2.</b></td><td>¿Cómo es tu prima?</td><td><b>b.</b> Alto, delgado, tiene los ojos verdes…</td></tr>
+      <tr><td><b>3.</b></td><td>¿Quiénes son aquellos de azul?</td><td><b>j.</b> Esa que está en la puerta.</td></tr>
+      <tr><td><b>4.</b></td><td>¿Qué lleva Penélope?</td><td><b>e.</b> Un vestido gris y unos zapatos negros.</td></tr>
+      <tr><td><b>5.</b></td><td>Aquella de negro, ¿quién es?</td><td><b>d.</b> El de la chaqueta marrón.</td></tr>
+      <tr><td><b>6.</b></td><td>¿Son los que están en la puerta?</td><td><b>c.</b> Sí, son ellos.</td></tr>
+      <tr><td><b>7.</b></td><td>¿Quiénes son esas?</td><td><b>h.</b> ¿Las morenas? Mis hermanas.</td></tr>
+      <tr><td><b>8.</b></td><td>¿Qué es tu novio?</td><td><b>f.</b> Una compañera de la facultad.</td></tr>
+      <tr><td><b>9.</b></td><td>¿Quién es tu madre?</td><td><b>a.</b> Mis abuelos.</td></tr>
+      <tr><td><b>10.</b></td><td>¿Y tú? ¿A quién te pareces?</td><td><b>i.</b> A mi padre. Tenemos los mismos ojos.</td></tr>
+    </table>
+    </div>
+    <div class="card" style="margin-top:12px;background:var(--soft);border:none;">
+      <h4>🎯 Respuestas</h4>
+      <p><b>1-d · 2-g · 3-a · 4-e · 5-f · 6-c · 7-h · 8-b · 9-j · 10-i</b></p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h3 class="turq">3. Página 138 — Ejercicio 7</h3>
+    <p>Elige la forma correcta de los adjetivos.</p>
+
+    <div class="card" style="margin-top:10px;background:var(--soft);border:none;">
+      <p><b>1.</b> Elena y Julia tienen el pelo ____.</p>
+      <div class="choice-grid">
+        <button class="choice" onclick="checkQ7(this,'q71','rubio')">rubio</button>
+        <button class="choice" onclick="checkQ7(this,'q71','rubia')">rubia</button>
+        <button class="choice" onclick="checkQ7(this,'q71','rubios')">rubios</button>
+        <button class="choice" onclick="checkQ7(this,'q71','rubias')">rubias</button>
+      </div>
+      <div class="feedback" id="q71"></div>
+
+      <p style="margin-top:20px;"><b>2.</b> Elena y Julia son ____.</p>
+      <div class="choice-grid">
+        <button class="choice" onclick="checkQ7(this,'q72','rubio')">rubio</button>
+        <button class="choice" onclick="checkQ7(this,'q72','rubia')">rubia</button>
+        <button class="choice" onclick="checkQ7(this,'q72','rubios')">rubios</button>
+        <button class="choice" onclick="checkQ7(this,'q72','rubias')">rubias</button>
+      </div>
+      <div class="feedback" id="q72"></div>
+
+      <p style="margin-top:20px;"><b>3.</b> Ana tiene los ojos muy ____.</p>
+      <div class="choice-grid">
+        <button class="choice" onclick="checkQ7(this,'q73','negro')">negro</button>
+        <button class="choice" onclick="checkQ7(this,'q73','negra')">negra</button>
+        <button class="choice" onclick="checkQ7(this,'q73','negros')">negros</button>
+        <button class="choice" onclick="checkQ7(this,'q73','negras')">negras</button>
+      </div>
+      <div class="feedback" id="q73"></div>
+
+      <p style="margin-top:20px;"><b>4.</b> Ana tiene el pelo ____.</p>
+      <div class="choice-grid">
+        <button class="choice" onclick="checkQ7(this,'q74','negro')">negro</button>
+        <button class="choice" onclick="checkQ7(this,'q74','negra')">negra</button>
+        <button class="choice" onclick="checkQ7(this,'q74','negros')">negros</button>
+        <button class="choice" onclick="checkQ7(this,'q74','negras')">negras</button>
+      </div>
+      <div class="feedback" id="q74"></div>
+
+      <p style="margin-top:20px;"><b>5.</b> Víctor tiene la piel muy ____.</p>
+      <div class="choice-grid">
+        <button class="choice" onclick="checkQ7(this,'q75','blanco')">blanco</button>
+        <button class="choice" onclick="checkQ7(this,'q75','blanca')">blanca</button>
+        <button class="choice" onclick="checkQ7(this,'q75','blancos')">blancos</button>
+        <button class="choice" onclick="checkQ7(this,'q75','blancas')">blancas</button>
+      </div>
+      <div class="feedback" id="q75"></div>
+
+      <p style="margin-top:20px;"><b>6.</b> Víctor es muy ____ de piel, ¿no?</p>
+      <div class="choice-grid">
+        <button class="choice" onclick="checkQ7(this,'q76','blanco')">blanco</button>
+        <button class="choice" onclick="checkQ7(this,'q76','blanca')">blanca</button>
+        <button class="choice" onclick="checkQ7(this,'q76','blancos')">blancos</button>
+        <button class="choice" onclick="checkQ7(this,'q76','blancas')">blancas</button>
+      </div>
+      <div class="feedback" id="q76"></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h3 class="blue">4. Página 138 — Ejercicio 9</h3>
+    <p>Completa el texto con <b>ser, estar, tener o llevar</b>.</p>
+    <div class="example"><b>Me llamo Rafa y tengo 32 años.</b></div>
+
+    <div class="card" style="margin-top:10px;background:var(--soft);border:none;">
+      <p><b>1.</b> ______ fotógrafo y también escribo un blog sobre fotografía.</p>
+      <div class="choice-grid">
+        <button class="choice" onclick="fill9(this,'soy')">soy</button>
+        <button class="choice" onclick="fill9(this,'estoy')">estoy</button>
+        <button class="choice" onclick="fill9(this,'tengo')">tengo</button>
+      </div>
+      <div class="feedback" id="f91"></div>
+
+      <p style="margin-top:20px;"><b>2.</b> ______ divorciado y no ______ hijos.</p>
+      <div class="choice-grid">
+        <button class="choice" onclick="fill9b(this,'estoy,tengo')">estoy / tengo</button>
+        <button class="choice" onclick="fill9b(this,'soy,tengo')">soy / tengo</button>
+        <button class="choice" onclick="fill9b(this,'tengo,estoy')">tengo / estoy</button>
+      </div>
+      <div class="feedback" id="f92"></div>
+
+      <p style="margin-top:20px;"><b>3.</b> ______ bastante alto (mido casi 2 metros) y muy delgado.</p>
+      <div class="choice-grid">
+        <button class="choice" onclick="fill9c(this,'soy')">soy</button>
+        <button class="choice" onclick="fill9c(this,'estoy')">estoy</button>
+        <button class="choice" onclick="fill9c(this,'tengo')">tengo</button>
+      </div>
+      <div class="feedback" id="f93"></div>
+
+      <p style="margin-top:20px;"><b>4.</b> ______ el pelo castaño, los ojos verdes y ______ barba.</p>
+      <div class="choice-grid">
+        <button class="choice" onclick="fill9d(this,'tengo,tengo')">tengo / tengo</button>
+        <button class="choice" onclick="fill9d(this,'llevo,tengo')">llevo / tengo</button>
+        <button class="choice" onclick="fill9d(this,'soy,tengo')">soy / tengo</button>
+      </div>
+      <div class="feedback" id="f94"></div>
+
+      <p style="margin-top:20px;"><b>5.</b> ______ una personalidad muy fuerte.</p>
+      <div class="choice-grid">
+        <button class="choice" onclick="fill9e(this,'tengo')">tengo</button>
+        <button class="choice" onclick="fill9e(this,'soy')">soy</button>
+        <button class="choice" onclick="fill9e(this,'estoy')">estoy</button>
+      </div>
+      <div class="feedback" id="f95"></div>
+    </div>
+  </div>
+</section>
+
+<section id="practica">
+  <h2>🎯 Práctica (Estudio en casa)</h2>
+  <div class="card">
+    <h3>Página 46</h3>
+    <p>Estudia el vocabulario del <b>aspecto físico</b> de la página 46 y practica la pregunta:</p>
+    <div class="example"><b>¿Cómo es él?</b></div>
+    <p>Después, practica las estructuras de semejanza:</p>
+    <div class="example"><b>Me parezco a...</b></div>
+    <div class="example"><b>Me parezco a ... en los ojos / en el pelo...</b></div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h3>✅ Lista de control</h3>
+    <label><input type="checkbox" onchange="tick(this)"> Reconozco los demostrativos: <b>este / ese / aquel</b>.</label><br>
+    <label><input type="checkbox" onchange="tick(this)"> Puedo describir el aspecto físico básico.</label><br>
+    <label><input type="checkbox" onchange="tick(this)"> Diferencio <b>ser / estar / tener / llevar</b>.</label><br>
+    <label><input type="checkbox" onchange="tick(this)"> Sé usar <b>parecerse a</b>.</label><br>
+    <label><input type="checkbox" onchange="tick(this)"> Sé indicar en qué aspecto dos personas se parecen.</label>
+    <div class="progress" style="margin-top:12px"><span id="bar"></span></div>
+    <p id="count" class="small" style="font-weight:700">0/5 completado</p>
+  </div>
+</section>
+
+<div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
+<footer>Registro individual de la clase del 21/09/2026. Basado en la pizarra y el material de estudio.</footer>
 </div>
+
 <script>
 function showTab(id,btn){
   document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
@@ -427,11 +480,11 @@ function say(txt){
 function toggleSlow(){
   slow=!slow;
   document.querySelectorAll('.slowBtn').forEach(b=>{
-    b.textContent=slow?'🐢 Lento: activado':'🐢 Lento: desactivado';
+    b.textContent=slow?'🐢 Lento: encendido':'🐢 Lento: apagado';
     b.setAttribute('aria-pressed',slow);
   });
 }
-document.querySelectorAll('#resumo .example, #gram .example').forEach(el=>{
+document.querySelectorAll('#resumen .example, #gram .example').forEach(el=>{
   const b=el.querySelector('b'); if(!b) return;
   const txt=b.textContent.trim();
   const wrap=document.createElement('span');
@@ -446,6 +499,7 @@ document.querySelectorAll('#resumo .example, #gram .example').forEach(el=>{
 });
 if(!('speechSynthesis' in window)) document.querySelectorAll('.sound-bar').forEach(x=>x.style.display='none');
 
+// Lógica de corrección - Ejercicio 7
 const q7answers={
   q71:'rubio',
   q72:'rubias',
@@ -457,7 +511,7 @@ const q7answers={
 function checkQ7(btn,id,value){
   const box=document.getElementById(id);
   const buttons=btn.parentElement.querySelectorAll('button');
-  buttons.forEach(b=>b.disabled=true);
+  buttons.forEach(b=>b.disabled=true); // Bloqueia botões após clique
   const ok=q7answers[id]===value;
   if(ok){
     btn.classList.add('correct');
@@ -465,33 +519,60 @@ function checkQ7(btn,id,value){
     box.className='feedback ok';
   }else{
     btn.classList.add('wrong');
-    buttons.forEach(b=>{if(b.textContent.trim()===q7answers[id])b.classList.add('correct');});
+    buttons.forEach(b=>{if(b.textContent.trim()===q7answers[id])b.classList.add('correct');}); // Mostra a certa
     box.textContent='❌ Revisa la concordancia. Respuesta: '+q7answers[id]+'.';
     box.className='feedback bad';
   }
 }
 
+// Lógica de corrección - Ejercicio 9
 function feedback(id,ok,msgOk,msgBad){
   const box=document.getElementById(id);
   box.textContent=ok?'✅ '+msgOk:'❌ '+msgBad;
   box.className='feedback '+(ok?'ok':'bad');
 }
 function fill9(btn,v){
-  feedback('f91',v==='soy','Correcto: soy fotógrafo.','La forma correcta es soy fotógrafo.');
+  const buttons=btn.parentElement.querySelectorAll('button');
+  buttons.forEach(b=>b.disabled=true);
+  const ok = v==='soy';
+  btn.classList.add(ok ? 'correct' : 'wrong');
+  if(!ok) buttons.forEach(b=>{if(b.textContent.trim()==='soy')b.classList.add('correct');});
+  feedback('f91',ok,'Correcto: soy fotógrafo.','La forma correcta es: soy fotógrafo.');
 }
 function fill9b(btn,v){
-  feedback('f92',v==='estoy,tengo','Correcto: estoy divorciado y no tengo hijos.','La secuencia correcta es estoy / tengo.');
+  const buttons=btn.parentElement.querySelectorAll('button');
+  buttons.forEach(b=>b.disabled=true);
+  const ok = v==='estoy,tengo';
+  btn.classList.add(ok ? 'correct' : 'wrong');
+  if(!ok) buttons.forEach(b=>{if(b.textContent.trim()==='estoy / tengo')b.classList.add('correct');});
+  feedback('f92',ok,'Correcto: estoy divorciado y no tengo hijos.','La secuencia correcta es: estoy / tengo.');
 }
 function fill9c(btn,v){
-  feedback('f93',v==='soy','Correcto: soy bastante alto y muy delgado.','La forma correcta es soy.');
+  const buttons=btn.parentElement.querySelectorAll('button');
+  buttons.forEach(b=>b.disabled=true);
+  const ok = v==='soy';
+  btn.classList.add(ok ? 'correct' : 'wrong');
+  if(!ok) buttons.forEach(b=>{if(b.textContent.trim()==='soy')b.classList.add('correct');});
+  feedback('f93',ok,'Correcto: soy bastante alto y muy delgado.','La forma correcta es: soy.');
 }
 function fill9d(btn,v){
-  feedback('f94',v==='tengo,tengo','Correcto: tengo el pelo castaño... y tengo barba.','La secuencia correcta es tengo / tengo.');
+  const buttons=btn.parentElement.querySelectorAll('button');
+  buttons.forEach(b=>b.disabled=true);
+  const ok = v==='tengo,tengo';
+  btn.classList.add(ok ? 'correct' : 'wrong');
+  if(!ok) buttons.forEach(b=>{if(b.textContent.trim()==='tengo / tengo')b.classList.add('correct');});
+  feedback('f94',ok,'Correcto: tengo el pelo castaño... y tengo barba.','La secuencia correcta es: tengo / tengo.');
 }
 function fill9e(btn,v){
-  feedback('f95',v==='tengo','Correcto: tengo una personalidad muy fuerte.','La forma correcta es tengo.');
+  const buttons=btn.parentElement.querySelectorAll('button');
+  buttons.forEach(b=>b.disabled=true);
+  const ok = v==='tengo';
+  btn.classList.add(ok ? 'correct' : 'wrong');
+  if(!ok) buttons.forEach(b=>{if(b.textContent.trim()==='tengo')b.classList.add('correct');});
+  feedback('f95',ok,'Correcto: tengo una personalidad muy fuerte.','La forma correcta es: tengo.');
 }
 
+// Barra de progreso
 let done=0;
 function tick(cb){
   done+=cb.checked?1:-1;
