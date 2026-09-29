@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
 <title>EOI · Español A2 · Aula individual · 14/09/2026</title>
 <style>
 :root{--bg:#10131b;--card:#171b26;--soft:#202637;--text:#f4f6fb;--muted:#b7bdcb;--border:#30384d;--pink:#ff4fa3;--purple:#a56bff;--turq:#25d6d1;--blue:#5da9ff;--yellow:#ffd45c;--ok:#54d68a;--bad:#ff6678}
@@ -19,15 +20,40 @@ table{width:100%;border-collapse:collapse;background:var(--card);border-radius:1
 .choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:9px}.choice{padding:12px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;text-align:left}.choice.correct{border-color:var(--ok);background:#54d68a18}.choice.wrong{border-color:var(--bad);background:#ff667818}.feedback{margin-top:12px;font-weight:800}.progress{height:10px;background:var(--soft);border-radius:99px;overflow:hidden}.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq));transition:.25s}
 footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}@media(max-width:600px){.container{padding:14px 10px 45px}th,td{padding:8px;font-size:.9rem}.card{padding:15px}}
 </style>
-</head>
+<style>
+.home-nav{
+  display:flex;
+  justify-content:flex-start;
+  margin:0 0 16px;
+}
+.home-nav.bottom{
+  margin:22px 0 0;
+  justify-content:center;
+}
+.home-nav a{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 16px;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:700;
+  color:#fff;
+  background:linear-gradient(135deg,#7b2cbf,#ff3cac);
+  box-shadow:0 6px 18px rgba(0,0,0,.22);
+}
+.home-nav a:hover{
+  transform:translateY(-1px);
+  filter:brightness(1.08);
+}
+</style></head>
 <body>
 <div class="container">
 <header>
 <span class="badge">EOI · Español A2 · Aula individual</span>
 <h1>Ficha Interactiva — 14/09/2026</h1>
 <div class="subtitle">Vivir en otro país · Sentimientos y emociones</div>
-</header>
-
+</header><div class="home-nav"><a href="index.html">🏠 Página inicial</a></div>
 <nav>
 <button class="active" onclick="tab('resumen',this)">📚 Resumen</button>
 <button onclick="tab('video',this)">🎧 Vídeo</button>
@@ -35,8 +61,7 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}@m
 <button onclick="tab('estructuras',this)">💬 Estructuras</button>
 <button onclick="tab('quiz',this)">✏️ Ejercicios</button>
 </nav>
-
-<section id="resumen" class="active">
+<section class="active" id="resumen">
 <div class="grid">
 <div class="card"><h3 class="pink">🌍 Vivir en otro país</h3><p>La clase trabajó la experiencia de vivir en el extranjero, con aspectos positivos y negativos y situaciones que producen distintas emociones.</p></div>
 <div class="card"><h3 class="purple">😊 Sentimientos</h3><p>Se practicó cómo expresar emociones mediante <b>sentirse</b>, <b>dar</b> y <b>pasarlo</b>.</p></div>
@@ -45,7 +70,6 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}@m
 </div>
 <div class="card"><h3 class="yellow">🎯 Objetivo de la clase</h3><p>Aprender a comunicar cómo nos sentimos y expresar experiencias positivas y negativas de vivir en otro país.</p></div>
 </section>
-
 <section id="video">
 <div class="card">
 <h2 class="purple">🎧 Vídeo: una venezolana en Barcelona</h2>
@@ -87,7 +111,6 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}@m
 </ol>
 </div>
 </section>
-
 <section id="sentirse">
 <div class="card">
 <h2 class="purple">😊 Sentirse</h2>
@@ -127,7 +150,6 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}@m
 <div class="example"><b>Estoy muerto/a.</b> → estado, no sentimiento.</div>
 </div>
 </section>
-
 <section id="estructuras">
 <div class="card">
 <h2 class="pink">💬 Tres formas de expresar cómo te sientes</h2>
@@ -165,28 +187,21 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}@m
 <div class="example"><b>Lo paso bien cuando...</b></div>
 </div>
 </section>
-
 <section id="quiz">
 <div class="card">
 <h2 class="pink">✏️ Comprueba lo aprendido</h2>
 <div class="progress"><span id="bar"></span></div>
-
 <div class="card"><p><b>1. Completa: «Cuando hablo español con nativos, me ______ inseguro».</b></p>
-<div class="choice-grid"><button class="choice" onclick="ans(this,true,'f1')">siento</button><button class="choice" onclick="ans(this,false,'f1')">doy</button><button class="choice" onclick="ans(this,false,'f1')">paso</button></div><div id="f1" class="feedback"></div></div>
-
+<div class="choice-grid"><button class="choice" onclick="ans(this,true,'f1')">siento</button><button class="choice" onclick="ans(this,false,'f1')">doy</button><button class="choice" onclick="ans(this,false,'f1')">paso</button></div><div class="feedback" id="f1"></div></div>
 <div class="card"><p><b>2. ¿Cuál es la estructura trabajada con «vergüenza»?</b></p>
-<div class="choice-grid"><button class="choice" onclick="ans(this,false,'f2')">me siento vergüenza</button><button class="choice" onclick="ans(this,true,'f2')">me da vergüenza</button><button class="choice" onclick="ans(this,false,'f2')">me paso vergüenza</button></div><div id="f2" class="feedback"></div></div>
-
+<div class="choice-grid"><button class="choice" onclick="ans(this,false,'f2')">me siento vergüenza</button><button class="choice" onclick="ans(this,true,'f2')">me da vergüenza</button><button class="choice" onclick="ans(this,false,'f2')">me paso vergüenza</button></div><div class="feedback" id="f2"></div></div>
 <div class="card"><p><b>3. Completa: «Cuando estoy con mis amigos, lo paso ______».</b></p>
-<div class="choice-grid"><button class="choice" onclick="ans(this,true,'f3')">bien</button><button class="choice" onclick="ans(this,false,'f3')">vergüenza</button><button class="choice" onclick="ans(this,false,'f3')">inseguro</button></div><div id="f3" class="feedback"></div></div>
-
+<div class="choice-grid"><button class="choice" onclick="ans(this,true,'f3')">bien</button><button class="choice" onclick="ans(this,false,'f3')">vergüenza</button><button class="choice" onclick="ans(this,false,'f3')">inseguro</button></div><div class="feedback" id="f3"></div></div>
 <div class="card"><p><b>4. ¿Qué significa «A la tierra que fueres, haz lo que vieres» en el contexto trabajado?</b></p>
-<div class="choice-grid"><button class="choice" onclick="ans(this,true,'f4')">Observar las costumbres del lugar y adaptarse a ellas.</button><button class="choice" onclick="ans(this,false,'f4')">No cambiar nunca las propias costumbres.</button><button class="choice" onclick="ans(this,false,'f4')">Viajar solamente a países conocidos.</button></div><div id="f4" class="feedback"></div></div>
-
+<div class="choice-grid"><button class="choice" onclick="ans(this,true,'f4')">Observar las costumbres del lugar y adaptarse a ellas.</button><button class="choice" onclick="ans(this,false,'f4')">No cambiar nunca las propias costumbres.</button><button class="choice" onclick="ans(this,false,'f4')">Viajar solamente a países conocidos.</button></div><div class="feedback" id="f4"></div></div>
 <div class="card"><p><b>5. ¿Cuál expresa un estado y no un sentimiento?</b></p>
-<div class="choice-grid"><button class="choice" onclick="ans(this,false,'f5')">Me siento ridículo.</button><button class="choice" onclick="ans(this,false,'f5')">Me siento inseguro.</button><button class="choice" onclick="ans(this,true,'f5')">Estoy muerto.</button></div><div id="f5" class="feedback"></div></div>
+<div class="choice-grid"><button class="choice" onclick="ans(this,false,'f5')">Me siento ridículo.</button><button class="choice" onclick="ans(this,false,'f5')">Me siento inseguro.</button><button class="choice" onclick="ans(this,true,'f5')">Estoy muerto.</button></div><div class="feedback" id="f5"></div></div>
 </div>
-
 <div class="card">
 <h3 class="turq">🗣️ Misión de práctica</h3>
 <p>Responde oralmente, utilizando las estructuras de esta aula:</p>
@@ -201,8 +216,7 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}@m
 <p><b>Objetivo:</b> usar <i>me siento</i>, <i>me da</i> y <i>lo paso</i> de forma natural.</p>
 </div>
 </section>
-
-<footer>EOI · Español A2 · Aula individual · 14/09/2026</footer>
+<div class="home-nav bottom"><a href="index.html">🏠 Volver a la página inicial</a></div><footer>EOI · Español A2 · Aula individual · 14/09/2026</footer>
 </div>
 <script>
 let done=0,total=5;

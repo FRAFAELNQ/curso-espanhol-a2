@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1.0" name="viewport"/>
 <title>EOI · Español A2 · Aula individual · 23/09/2026</title>
 <style>
 :root{--bg:#10131b;--card:#171b26;--soft:#202637;--text:#f4f6fb;--muted:#b7bdcb;--border:#30384d;--pink:#ff4fa3;--purple:#a56bff;--turq:#25d6d1;--blue:#5da9ff;--yellow:#ffd45c;--ok:#54d68a;--bad:#ff6678}
@@ -14,8 +15,34 @@ section{display:none;padding-top:22px}section.active{display:block}.grid{display
 table{width:100%;border-collapse:collapse}th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}th{color:var(--purple);background:var(--soft)}.table-wrap{overflow:auto;border-radius:15px}
 .choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:9px}.choice{padding:12px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;text-align:left}.choice.correct{border-color:var(--ok);background:#54d68a18}.choice.wrong{border-color:var(--bad);background:#ff667818}.feedback{margin-top:12px;font-weight:800}.progress{height:10px;background:var(--soft);border-radius:99px;overflow:hidden}.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq));transition:.25s}
 footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}@media(max-width:600px){.container{padding:14px 10px 45px}.card{padding:15px}}
+</style><style>
+.home-nav{
+  display:flex;
+  justify-content:flex-start;
+  margin:0 0 16px;
+}
+.home-nav.bottom{
+  margin:22px 0 0;
+  justify-content:center;
+}
+.home-nav a{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 16px;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:700;
+  color:#fff;
+  background:linear-gradient(135deg,#7b2cbf,#ff3cac);
+  box-shadow:0 6px 18px rgba(0,0,0,.22);
+}
+.home-nav a:hover{
+  transform:translateY(-1px);
+  filter:brightness(1.08);
+}
 </style></head><body><div class="container">
-<header><span class="badge">EOI · Español A2 · Aula individual</span><h1>Ficha Interactiva — 23/09/2026</h1><div class="subtitle">Parecer / parecerse · Demostrativos · Descripción de personas</div></header>
+<header><span class="badge">EOI · Español A2 · Aula individual</span><h1>Ficha Interactiva — 23/09/2026</h1><div class="subtitle">Parecer / parecerse · Demostrativos · Descripción de personas</div></header><div class="home-nav"><a href="index.html">🏠 Página inicial</a></div>
 <nav>
 <button class="active" onclick="tab('resumen',this)">📚 Resumen</button>
 <button onclick="tab('parecer',this)">💬 Parecer</button>
@@ -23,8 +50,7 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}@m
 <button onclick="tab('personas',this)">👤 Personas</button>
 <button onclick="tab('quiz',this)">✏️ Ejercicios</button>
 </nav>
-
-<section id="resumen" class="active">
+<section class="active" id="resumen">
 <div class="grid">
 <div class="card"><h3 class="pink">💬 Parecer</h3><p>Se trabajó <b>parecer + adjetivo</b> para expresar una impresión, y <b>parecerse a alguien</b> para hablar de semejanza.</p></div>
 <div class="card"><h3 class="purple">👉 Demostrativos</h3><p><b>este/esta · ese/esa · aquel/aquella</b>, relacionados con <b>aquí · ahí · allí</b>.</p></div>
@@ -33,7 +59,6 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}@m
 </div>
 <div class="card"><h3 class="yellow">🎯 Objetivo</h3><p>Aprender a describir y localizar personas de forma más precisa, y expresar semejanzas utilizando estructuras naturales en español.</p></div>
 </section>
-
 <section id="parecer">
 <div class="card"><h2 class="pink">💬 Parecer × parecerse</h2>
 <div class="example"><b>Parecer + adjetivo:</b> Parece simpático.</div>
@@ -49,7 +74,6 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}@m
 <div class="example">¿A quién se parece?</div>
 </div>
 </section>
-
 <section id="demo">
 <div class="card"><h2 class="purple">👉 Demostrativos</h2>
 <table><tr><th>Forma</th><th>Referencia espacial trabajada</th></tr>
@@ -67,7 +91,6 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}@m
 </div>
 <div class="card"><h3 class="yellow">📍 Perspectiva</h3><p>La elección entre <b>ese</b> y <b>aquel</b> puede depender de la perspectiva del hablante. No se trata solamente de memorizar una distancia rígida.</p></div>
 </section>
-
 <section id="personas">
 <div class="card"><h2 class="pink">👤 Descripción de personas</h2>
 <div class="grid">
@@ -87,19 +110,17 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}@m
 <p><b>sincero · carismático · reservado · canoso · fuerte · generoso · inexpresivo · elegante · ondulado · pálido · descuidado · atrevido · amable · castaño · miedoso · rasgado · impaciente · arrugado · borde · atlético · moderno</b></p>
 </div>
 </section>
-
 <section id="quiz">
 <div class="card"><h2 class="pink">✏️ Comprueba lo aprendido</h2><div class="progress"><span id="bar"></span></div>
-<div class="card"><p><b>1. ¿Qué expresa «Me parezco a mi madre»?</b></p><div class="choice-grid"><button class="choice" onclick="ans(this,true,'f1')">Semejanza</button><button class="choice" onclick="ans(this,false,'f1')">Una acción futura</button><button class="choice" onclick="ans(this,false,'f1')">Una emoción</button></div><div id="f1" class="feedback"></div></div>
-<div class="card"><p><b>2. Completa: «Parece ______».</b></p><div class="choice-grid"><button class="choice" onclick="ans(this,true,'f2')">simpático</button><button class="choice" onclick="ans(this,false,'f2')">a mi madre</button><button class="choice" onclick="ans(this,false,'f2')">en los ojos</button></div><div id="f2" class="feedback"></div></div>
-<div class="card"><p><b>3. ¿Cuál es la forma neutra?</b></p><div class="choice-grid"><button class="choice" onclick="ans(this,true,'f3')">esto</button><button class="choice" onclick="ans(this,false,'f3')">esta</button><button class="choice" onclick="ans(this,false,'f3')">aquella</button></div><div id="f3" class="feedback"></div></div>
-<div class="card"><p><b>4. Para ropa y gafas, ¿qué verbo se trabajó?</b></p><div class="choice-grid"><button class="choice" onclick="ans(this,true,'f4')">llevar</button><button class="choice" onclick="ans(this,false,'f4')">tenerse</button><button class="choice" onclick="ans(this,false,'f4')">parecerse</button></div><div id="f4" class="feedback"></div></div>
-<div class="card"><p><b>5. ¿Cuál identifica correctamente a una persona?</b></p><div class="choice-grid"><button class="choice" onclick="ans(this,true,'f5')">La que lleva gafas.</button><button class="choice" onclick="ans(this,false,'f5')">La que lleva ser gafas.</button><button class="choice" onclick="ans(this,false,'f5')">La parecerse gafas.</button></div><div id="f5" class="feedback"></div></div>
+<div class="card"><p><b>1. ¿Qué expresa «Me parezco a mi madre»?</b></p><div class="choice-grid"><button class="choice" onclick="ans(this,true,'f1')">Semejanza</button><button class="choice" onclick="ans(this,false,'f1')">Una acción futura</button><button class="choice" onclick="ans(this,false,'f1')">Una emoción</button></div><div class="feedback" id="f1"></div></div>
+<div class="card"><p><b>2. Completa: «Parece ______».</b></p><div class="choice-grid"><button class="choice" onclick="ans(this,true,'f2')">simpático</button><button class="choice" onclick="ans(this,false,'f2')">a mi madre</button><button class="choice" onclick="ans(this,false,'f2')">en los ojos</button></div><div class="feedback" id="f2"></div></div>
+<div class="card"><p><b>3. ¿Cuál es la forma neutra?</b></p><div class="choice-grid"><button class="choice" onclick="ans(this,true,'f3')">esto</button><button class="choice" onclick="ans(this,false,'f3')">esta</button><button class="choice" onclick="ans(this,false,'f3')">aquella</button></div><div class="feedback" id="f3"></div></div>
+<div class="card"><p><b>4. Para ropa y gafas, ¿qué verbo se trabajó?</b></p><div class="choice-grid"><button class="choice" onclick="ans(this,true,'f4')">llevar</button><button class="choice" onclick="ans(this,false,'f4')">tenerse</button><button class="choice" onclick="ans(this,false,'f4')">parecerse</button></div><div class="feedback" id="f4"></div></div>
+<div class="card"><p><b>5. ¿Cuál identifica correctamente a una persona?</b></p><div class="choice-grid"><button class="choice" onclick="ans(this,true,'f5')">La que lleva gafas.</button><button class="choice" onclick="ans(this,false,'f5')">La que lleva ser gafas.</button><button class="choice" onclick="ans(this,false,'f5')">La parecerse gafas.</button></div><div class="feedback" id="f5"></div></div>
 </div>
 <div class="card"><h3 class="turq">🎯 Misión</h3><p>Describe una persona de una foto utilizando <b>ser + tener + llevar</b>. Después añade una frase con <b>parecer</b> y otra con <b>parecerse a</b>.</p></div>
 </section>
-
-<footer>EOI · Español A2 · Aula individual · 23/09/2026</footer>
+<div class="home-nav bottom"><a href="index.html">🏠 Volver a la página inicial</a></div><footer>EOI · Español A2 · Aula individual · 23/09/2026</footer>
 </div>
 <script>
 let done=0,total=5;

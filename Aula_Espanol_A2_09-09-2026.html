@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>EOI · Español A2 · Aula individual · 09/09/2026</title>
 <style>
 :root{--bg:#fef6ff;--card:#fff;--text:#2b1a2e;--muted:#76577d;--pink:#e0218a;--purple:#7c3aed;--turq:#00a992;--yellow:#ffb703;--blue:#2563eb;--soft:#fbe3f4;--border:#ead3e7;--ok:#087f5b;--bad:#b42318}
@@ -22,15 +23,40 @@ table{width:100%;border-collapse:collapse;background:var(--card);border-radius:1
 .progress{height:10px;background:var(--soft);border-radius:99px;overflow:hidden}.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq));transition:.25s}
 footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}@media(max-width:600px){.container{padding:14px 10px 45px}th,td{padding:8px;font-size:.9rem}.card{padding:15px}}
 </style>
-</head>
+<style>
+.home-nav{
+  display:flex;
+  justify-content:flex-start;
+  margin:0 0 16px;
+}
+.home-nav.bottom{
+  margin:22px 0 0;
+  justify-content:center;
+}
+.home-nav a{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 16px;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:700;
+  color:#fff;
+  background:linear-gradient(135deg,#7b2cbf,#ff3cac);
+  box-shadow:0 6px 18px rgba(0,0,0,.22);
+}
+.home-nav a:hover{
+  transform:translateY(-1px);
+  filter:brightness(1.08);
+}
+</style></head>
 <body>
 <div class="container">
 <header>
 <span class="badge">EOI · Español A2 · Aula individual</span>
 <h1>Ficha Interactiva — 09/09/2026</h1>
 <div class="subtitle">Presente, verbos irregulares, verbos pronominales, gustar/interesar/costar y biografía lingüística</div>
-</header>
-
+</header><div class="home-nav"><a href="index.html">🏠 Página inicial</a></div>
 <nav>
 <button class="active" onclick="tab('resumen',this)">📚 Resumen</button>
 <button onclick="tab('verbos',this)">🔤 Verbos</button>
@@ -38,8 +64,7 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}@m
 <button onclick="tab('biografia',this)">🌍 Biografía lingüística</button>
 <button onclick="tab('quiz',this)">✏️ Ejercicios</button>
 </nav>
-
-<section id="resumen" class="active">
+<section class="active" id="resumen">
 <div class="grid">
 <div class="card"><h3 class="pink">🔤 Presente</h3><p>La clase comenzó revisando el presente y los verbos irregulares, como preparación para trabajar posteriormente los tiempos del pasado.</p></div>
 <div class="card"><h3 class="purple">🔁 Verbos pronominales</h3><p>Se repasaron estructuras como <b>me levanto</b> y <b>me ducho</b>.</p></div>
@@ -48,7 +73,6 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}@m
 </div>
 <div class="card"><h3>🎯 Objetivo de la actividad</h3><p>La profesora explicó que conocer bien el presente es importante porque los tiempos del pasado contienen muchas irregularidades.</p></div>
 </section>
-
 <section id="verbos">
 <div class="card">
 <h2 class="purple">🔤 Verbos y estructuras trabajadas</h2>
@@ -77,7 +101,6 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}@m
 <p class="small">Estas expresiones aparecieron al hablar de cómo pedir aclaraciones o repeticiones durante la clase.</p>
 </div>
 </section>
-
 <section id="gustar">
 <div class="card">
 <h2 class="pink">💗 Gustar · interesar · costar</h2>
@@ -99,7 +122,6 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}@m
 <p class="small">También se comentó que es una expresión coloquial y que no siempre resulta apropiada en todos los contextos formales.</p>
 </div>
 </section>
-
 <section id="biografia">
 <div class="card">
 <h2 class="turq">🌍 Biografía lingüística</h2>
@@ -130,7 +152,6 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}@m
 <div class="example"><b>Lengua → nivel → con quién → dónde → qué hago en esa lengua.</b></div>
 </div>
 </section>
-
 <section id="quiz">
 <div class="card">
 <h2 class="pink">✏️ Comprueba lo aprendido</h2>
@@ -141,7 +162,7 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}@m
 <button class="choice" onclick="ans(this,false,'f1')">soler</button>
 <button class="choice" onclick="ans(this,true,'f1')">gustar</button>
 <button class="choice" onclick="ans(this,false,'f1')">ser</button>
-</div><div id="f1" class="feedback"></div>
+</div><div class="feedback" id="f1"></div>
 </div>
 <div class="card">
 <p><b>2. Completa: «Me ___ aprender español».</b></p>
@@ -149,7 +170,7 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}@m
 <button class="choice" onclick="ans(this,true,'f2')">cuesta</button>
 <button class="choice" onclick="ans(this,false,'f2')">cuestan</button>
 <button class="choice" onclick="ans(this,false,'f2')">costamos</button>
-</div><div id="f2" class="feedback"></div>
+</div><div class="feedback" id="f2"></div>
 </div>
 <div class="card">
 <p><b>3. ¿Qué significa «un montón» en el uso explicado en clase?</b></p>
@@ -157,7 +178,7 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}@m
 <button class="choice" onclick="ans(this,false,'f3')">muy poco</button>
 <button class="choice" onclick="ans(this,true,'f3')">mucho / una cantidad grande</button>
 <button class="choice" onclick="ans(this,false,'f3')">nunca</button>
-</div><div id="f3" class="feedback"></div>
+</div><div class="feedback" id="f3"></div>
 </div>
 <div class="card">
 <p><b>4. La biografía lingüística incluye...</b></p>
@@ -165,13 +186,12 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}@m
 <button class="choice" onclick="ans(this,false,'f4')">solo el nombre de una lengua</button>
 <button class="choice" onclick="ans(this,true,'f4')">lenguas, nivel, con quién, dónde y qué hacemos con ellas</button>
 <button class="choice" onclick="ans(this,false,'f4')">solo la gramática</button>
-</div><div id="f4" class="feedback"></div>
+</div><div class="feedback" id="f4"></div>
 </div>
 </div>
 <div class="card"><h3 class="turq">🗣️ Misión</h3><p>Prepara oralmente tu propia biografía lingüística siguiendo esta secuencia:</p><ol><li>¿Qué lenguas hablas?</li><li>¿Qué nivel tienes en cada una?</li><li>¿Con quién las hablas?</li><li>¿Dónde las hablas?</li><li>¿Qué haces en cada lengua?</li></ol></div>
 </section>
-
-<footer>EOI · Español A2 · Aula individual · 09/09/2026</footer>
+<div class="home-nav bottom"><a href="index.html">🏠 Volver a la página inicial</a></div><footer>EOI · Español A2 · Aula individual · 09/09/2026</footer>
 </div>
 <script>
 let done=0,total=4;
