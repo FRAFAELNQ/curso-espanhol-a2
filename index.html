@@ -147,6 +147,18 @@ h1{
 .date-box p{margin:0;color:#e6d9f2;font-size:15px}
 .date-box strong{color:#ffd166}
 
+/* Cronómetro */
+.countdown-badge{
+  display:inline-block;
+  margin-top:10px;
+  padding:4px 10px;
+  background:rgba(255,209,102,0.15);
+  border:1px solid rgba(255,209,102,0.4);
+  border-radius:8px;
+  font-size:13px;
+  color:#ffd166;
+}
+
 .book-info{margin:18px 4px 0;font-size:15px;color:#d9c8ec}
 .book-info strong{color:#ffd166}
 
@@ -192,7 +204,6 @@ footer{text-align:center;color:#b7a2ca;font-size:14px;margin-top:36px}
           </div>
           <span class="arrow" aria-hidden="true">→</span>
         </a>
-        <!-- El archivo se llama siempre flashcards-verbos-a2.html: al actualizar los verbos, sobrescríbelo y el enlace no cambia. -->
         <a class="card featured verbs" href="flashcards-verbos-a2.html">
           <div class="icon" aria-hidden="true">🔊</div>
           <div>
@@ -201,7 +212,6 @@ footer{text-align:center;color:#b7a2ca;font-size:14px;margin-top:36px}
           </div>
           <span class="arrow" aria-hidden="true">→</span>
         </a>
-        <!-- Nueva tarjeta para la Zona de Juegos -->
         <a class="card featured games" href="juegos-a2.html">
           <div class="icon" aria-hidden="true">🎮</div>
           <div>
@@ -213,17 +223,19 @@ footer{text-align:center;color:#b7a2ca;font-size:14px;margin-top:36px}
       </div>
     </section>
 
-    <!-- Fechas y Evaluación -->
+    <!-- Fechas y Evaluación con Cronómetro -->
     <section aria-labelledby="t-fechas">
       <h2 class="section-title" id="t-fechas">🗓️ Evaluación y Fechas</h2>
       <div class="dates">
         <div class="date-box">
           <h3>1ª Prueba</h3>
           <p><strong>19 y 20 de octubre</strong> · 40% de la nota</p>
+          <div class="countdown-badge" id="cd-prueba1">Calculando...</div>
         </div>
         <div class="date-box">
           <h3>2ª Prueba</h3>
           <p><strong>9 y 10 de diciembre</strong> · 60% de la nota</p>
+          <div class="countdown-badge" id="cd-prueba2">Calculando...</div>
         </div>
         <div class="date-box">
           <h3>Prueba Extraordinaria</h3>
@@ -286,5 +298,58 @@ footer{text-align:center;color:#b7a2ca;font-size:14px;margin-top:36px}
 
   <footer>Curso Español A2 · Actualizado el 30/09/2026</footer>
 </div>
+
+<script>
+// Script para el Cronómetro de las Pruebas
+function actualizarCronometros() {
+  const hoy = new Date();
+  hoy.setHours(0,0,0,0); // Ignora a hora, foca apenas no dia
+
+  // Data de início das provas (Formato: YYYY-MM-DD)
+  const fechaPrueba1 = new Date('2026-10-19T00:00:00');
+  const fechaPrueba2 = new Date('2026-12-09T00:00:00');
+
+  // Cálculos Prueba 1
+  const diffTiempo1 = fechaPrueba1 - hoy;
+  const diffDias1 = Math.ceil(diffTiempo1 / (1000 * 60 * 60 * 24));
+  const el1 = document.getElementById('cd-prueba1');
+  
+  if (el1) {
+    if (diffDias1 > 0) {
+      el1.innerHTML = `Faltan <b>${diffDias1}</b> días ⏳`;
+    } else if (diffDias1 === 0 || diffDias1 === -1) { // 19 e 20 são dias de prova
+      el1.innerHTML = `<span style="color:#4be59a; font-weight:800;">¡Es hoy! 📝</span>`;
+      el1.style.borderColor = "#4be59a";
+      el1.style.background = "rgba(75, 229, 154, 0.15)";
+    } else {
+      el1.innerHTML = `<span style="color:#b8c0dd;">Completada ✅</span>`;
+      el1.style.borderColor = "#2d385e";
+      el1.style.background = "transparent";
+    }
+  }
+
+  // Cálculos Prueba 2
+  const diffTiempo2 = fechaPrueba2 - hoy;
+  const diffDias2 = Math.ceil(diffTiempo2 / (1000 * 60 * 60 * 24));
+  const el2 = document.getElementById('cd-prueba2');
+  
+  if (el2) {
+    if (diffDias2 > 0) {
+      el2.innerHTML = `Faltan <b>${diffDias2}</b> días ⏳`;
+    } else if (diffDias2 === 0 || diffDias2 === -1) { // 9 e 10 são dias de prova
+      el2.innerHTML = `<span style="color:#4be59a; font-weight:800;">¡Es hoy! 📝</span>`;
+      el2.style.borderColor = "#4be59a";
+      el2.style.background = "rgba(75, 229, 154, 0.15)";
+    } else {
+      el2.innerHTML = `<span style="color:#b8c0dd;">Completada ✅</span>`;
+      el2.style.borderColor = "#2d385e";
+      el2.style.background = "transparent";
+    }
+  }
+}
+
+// Executa a função assim que a página carrega
+window.addEventListener('load', actualizarCronometros);
+</script>
 </body>
 </html>
