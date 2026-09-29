@@ -41,7 +41,7 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
   filter:brightness(1.08);
 }
 </style></head><body><div class="container">
-<header><span class="badge">EOI · Español A2 · Aula individual</span><h1>Ficha Interactiva — 10/09/2026</h1><div class="subtitle">Desde · desde hace · desde que</div></header><div class="home-nav"><a href="index.html">🏠 Página inicial</a></div>
+<header><span class="badge">EOI · Español A2 · Aula individual</span><h1>Ficha Interactiva — 10/09/2026</h1><div class="subtitle">Desde · desde hace · desde que</div></header><div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
 <nav><button class="active" onclick="tab('resumen',this)">📚 Resumen</button><button onclick="tab('desde',this)">📍 Desde</button><button onclick="tab('preguntas',this)">❓ Preguntas</button><button onclick="tab('practica',this)">✏️ Práctica</button></nav>
 <section class="active" id="resumen"><div class="grid">
 <div class="card"><h3 class="pink">📍 DESDE</h3><p>Se utiliza para situar el inicio en un <b>momento concreto</b>: una fecha, un día, un mes, un año, una estación o un momento determinado.</p></div>
@@ -65,7 +65,7 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
 <div class="card"><p><b>3. Te conozco ___ vivimos en Madrid.</b></p><div class="choice-grid"><button class="choice" onclick="ans(this,false,'f3')">desde</button><button class="choice" onclick="ans(this,false,'f3')">desde hace</button><button class="choice" onclick="ans(this,true,'f3')">desde que</button></div><div class="feedback" id="f3"></div></div>
 <div class="card"><p><b>4. ¿___ vives en Madrid?</b></p><div class="choice-grid"><button class="choice" onclick="ans(this,true,'f4')">¿Desde cuándo...?</button><button class="choice" onclick="ans(this,false,'f4')">¿Desde cuánto...?</button><button class="choice" onclick="ans(this,false,'f4')">¿Desde qué cantidad...?</button></div><div class="feedback" id="f4"></div></div></div>
 <div class="card"><h3 class="turq">🗣️ Misión</h3><p>Responde oralmente usando las tres estructuras:</p><ol><li>¿Desde cuándo vives en Madrid?</li><li>¿Cuánto tiempo llevas estudiando español?</li><li>¿Desde qué año estudias español?</li><li>¿Desde cuándo conoces a tu mejor amigo?</li><li>¿Desde cuándo haces tu actividad favorita?</li></ol></div></section>
-<div class="home-nav bottom"><a href="index.html">🏠 Volver a la página inicial</a></div><footer>EOI · Español A2 · Aula individual · 10/09/2026</footer></div>
+<div class="home-nav bottom"><a href="index.html">🏠 Volver al inicio</a></div><footer>EOI · Español A2 · Aula individual · 10/09/2026</footer></div>
 <script>
 let done=0,total=4;function tab(id,b){document.querySelectorAll('section').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');scrollTo({top:0,behavior:'smooth'})}
 function ans(b,ok,id){let f=document.getElementById(id);if(f.dataset.done)return;f.dataset.done=1;done++;b.classList.add(ok?'correct':'wrong');f.textContent=ok?'✅ Correcto.':'❌ Revisa la regla: desde / desde hace / desde que.';f.style.color=ok?'var(--ok)':'var(--bad)';document.getElementById('bar').style.width=(done/total*100)+'%'}

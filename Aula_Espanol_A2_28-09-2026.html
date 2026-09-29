@@ -84,7 +84,7 @@ transition:transform .15s ease,filter .15s ease}
 <span class="badge">EOI · Español A2 · Aula individual</span>
 <h1>Ficha Interactiva — 28/09/2026</h1>
 <div class="subtitle">Relaciones, descripción de personas, <b>llevar / llevarse</b>, <b>caer bien/mal</b>, <b>parecer / parecerse</b> y <b>medir</b></div>
-</header><div class="home-nav"><a href="index.html">🏠 Página inicial</a></div>
+</header><div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
 
 <nav>
 <button class="active" onclick="showTab('resumo',this)">📚 Resumen</button>
@@ -182,21 +182,21 @@ transition:transform .15s ease,filter .15s ease}
 <h3 class="pink">LLEVAR × LLEVARSE</h3>
 <table>
 <tr><th>Estructura</th><th>Uso trabajado en la clase</th><th>Ejemplo</th></tr>
-<tr><td><b>llevar + algo</b></td><td>Descrever roupa, barba, gafas, pelo e estilo.</td><td>Llevo barba.<br/>Llevo las gafas.<br/>Llevo el pelo corto.</td></tr>
+<tr><td><b>llevar + algo</b></td><td>Describir ropa, barba, gafas, pelo y estilo.</td><td>Llevo barba.<br/>Llevo las gafas.<br/>Llevo el pelo corto.</td></tr>
 <tr><td><b>llevarse bien/mal/fatal + con</b></td><td>Hablar de la relación con otra persona.</td><td>Me llevo muy bien con mi jefe.</td></tr>
 </table>
 </div>
 <div class="card" style="margin-top:14px">
 <h3 class="purple">CAER × LLEVARSE</h3>
 <table>
-<tr><th>Expressão</th><th>Significado trabajado</th><th>Ejemplo</th></tr>
+<tr><th>Expresión</th><th>Significado trabajado</th><th>Ejemplo</th></tr>
 <tr><td><b>me cae bien/mal/regular</b></td><td>Idea/valoración positiva, negativa o regular sobre alguien; no exige que exista una relación cercana.</td><td>Mi jefa me cae bien.</td></tr>
 <tr><td><b>me llevo bien/mal con</b></td><td>Relación buena o mala con otra persona.</td><td>Me llevo bien con mi jefe.</td></tr>
 </table>
 </div>
 <div class="card" style="margin-top:14px">
 <h3 class="turq">PARECER × PARECERSE</h3>
-<div class="example"><b>Él parece simpático.</b> → impressão/opinião sobre a característica.</div>
+<div class="example"><b>Él parece simpático.</b> → impresión/opinión sobre a característica.</div>
 <div class="example"><b>Se parece a su padre en los ojos.</b> → semejanza con otra persona.</div>
 <p class="note">La profesora destacó que quitar <b>se</b> muda o significado do verbo.</p>
 </div>
@@ -327,7 +327,7 @@ transition:transform .15s ease,filter .15s ease}
 <h3>Lista de comprobación antes de terminar</h3>
 <label><input onchange="tick(this)" type="checkbox"/> Usé <b>llevar</b> para roupa/estilo.</label><br/>
 <label><input onchange="tick(this)" type="checkbox"/> Usé <b>llevarse bien/mal con</b> para hablar de la relación.</label><br/>
-<label><input onchange="tick(this)" type="checkbox"/> Usé <b>caer bien/mal</b> para impressão/valoração.</label><br/>
+<label><input onchange="tick(this)" type="checkbox"/> Usé <b>caer bien/mal</b> para impresión/valoración.</label><br/>
 <label><input onchange="tick(this)" type="checkbox"/> Diferencié <b>parecer</b> de <b>parecerse</b>.</label><br/>
 <label><input onchange="tick(this)" type="checkbox"/> Si necesité indicar la altura, usé <b>medir</b>.</label>
 <div class="progress" style="margin-top:12px"><span id="bar"></span></div>
@@ -335,7 +335,7 @@ transition:transform .15s ease,filter .15s ease}
 </div>
 </section>
 
-<div class="home-nav bottom"><a href="index.html">🏠 Volver a la página inicial</a></div><footer>Registro individual de la clase del 28/09/2026. Incluye las actividades realizadas en clase y la tarea para casa indicada por la profesora.</footer>
+<div class="home-nav bottom"><a href="index.html">🏠 Volver al inicio</a></div><footer>Registro individual de la clase del 28/09/2026. Incluye las actividades realizadas en clase y la tarea para casa indicada por la profesora.</footer>
 </div>
 <script>
 function showTab(id,btn){
@@ -385,7 +385,7 @@ const qs=[
  {text:'Quero falar da minha relação com o meu chefe. Qual é a frase?',opts:['Me llevo bien con mi jefe.','Me lleva bien con mi jefe.','Me caigo bien con mi jefe.'],ok:0},
  {text:'Quero dizer que minha chefe me cai bem.',opts:['Me llevo bien mi jefa.','Mi jefa me cae bien.','Mi jefa me llevo bien.'],ok:1},
  {text:'Qual expressa uma impressão sobre uma pessoa?',opts:['Él parece simpático.','Él lleva simpático.','Él se lleva simpático.'],ok:0},
- {text:'Qual expressa semelhança com o pai?',opts:['Parece a su padre.','Se parece a su padre.','Se lleva a su padre.'],ok:1},
+ {text:'Qual expressa semejanza com o pai?',opts:['Parece a su padre.','Se parece a su padre.','Se lleva a su padre.'],ok:1},
  {text:'Como dizer “eu meço 1,93”?',opts:['Mido 1,93.','Medo 1,93.','Mido a 1,93.'],ok:0},
  {text:'¿Cuál es la forma pasada trabajada para una persona?',opts:['Me caí bien.','Me cayó bien.','Me caí bien con.'],ok:1}
 ];
@@ -406,9 +406,9 @@ function showEnd(){
 }
 function restartQ(){qi=0;score=0;renderQ();}
 const past=[
- ['me cayó bien','correta'],
- ['me caí bien','incorreta'],
- ['me cayeron bien','correta']
+ ['me cayó bien','correcta'],
+ ['me caí bien','incorrecta'],
+ ['me cayeron bien','correcta']
 ];
 document.getElementById('q2').innerHTML=past.map((x,i)=>'<button class="choice" onclick="pastAns('+i+')">'+x[0]+'</button>').join('');
 function pastAns(i){
