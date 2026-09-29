@@ -13,23 +13,31 @@
 *{box-sizing:border-box}
 body{margin:0;background:radial-gradient(circle at 10% 0,#1d2b66,transparent 38%),radial-gradient(circle at 90% 0,#5a174d,transparent 35%),var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;line-height:1.55;overflow-x:hidden}
 .container{max-width:900px;margin:auto;padding:22px 16px 60px;text-align:center}
-header{padding:26px 20px;margin-bottom:20px;border-radius:22px;border:1px solid #48598d;background:linear-gradient(135deg,#172c6c,#49237f 52%,#741c58);box-shadow:0 18px 50px #0008}
+header{padding:26px 20px;margin-bottom:15px;border-radius:22px;border:1px solid #48598d;background:linear-gradient(135deg,#172c6c,#49237f 52%,#741c58);box-shadow:0 18px 50px #0008}
 h1{margin:0 0 10px;font-size:clamp(1.8rem,5vw,2.5rem);color:#fff}
 .subtitle{color:#e3e6ff}
-.menu-grid{display:none;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:20px} 
-.game-btn{background:var(--card);border:2px solid var(--border);color:var(--text);padding:30px 20px;border-radius:20px;cursor:pointer;transition:transform 0.2s, border-color 0.2s;text-align:center;display:block;width:100%}
+
+.back-btn{display:inline-block;padding:10px 18px;border-radius:12px;background:#10152b;border:1px solid var(--border);color:#fff;cursor:pointer;font-weight:800;margin-bottom:20px;text-decoration:none}
+.back-btn:hover{border-color:var(--blue)}
+
+/* Menu Fixo no Topo */
+.menu-grid{display:none;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-bottom:30px} 
+.game-btn{background:var(--card);border:2px solid var(--border);color:var(--text);padding:30px 20px;border-radius:20px;cursor:pointer;transition:transform 0.2s, border-color 0.2s, box-shadow 0.2s;text-align:center;display:block;width:100%}
 .game-btn:hover{transform:translateY(-5px);border-color:var(--turq)}
+.game-btn.active-btn{transform:translateY(-5px);box-shadow:0 10px 25px rgba(0,0,0,0.4)}
+.game-btn.active-btn.pink{border-color:var(--pink)}
+.game-btn.active-btn.purple{border-color:var(--purple)}
+.game-btn.active-btn.turq{border-color:var(--turq)}
 .game-btn h2{margin:0 0 10px;font-size:1.5rem;pointer-events:none}
 .game-btn.pink h2{color:var(--pink)}.game-btn.purple h2{color:var(--purple)}.game-btn.turq h2{color:var(--turq)}
 .game-btn p{pointer-events:none}
-.game-view{display:none;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:20px;margin-top:20px}
-.active-view{display:block !important}
-.back-btn{display:inline-block;padding:10px 18px;border-radius:12px;background:#10152b;border:1px solid var(--border);color:#fff;cursor:pointer;font-weight:800;margin-bottom:20px;text-decoration:none}
+
+.game-view{display:none;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:20px;margin-bottom:20px;scroll-margin-top:20px}
 
 /* Estado de Carregamento */
 #loadingMsg{padding:40px;font-size:1.2rem;font-weight:800;color:var(--turq);border:1px solid var(--border);background:var(--soft);border-radius:16px;margin-top:20px}
 
-/* Juego 1: Memoria - Com Correção de Espelhamento (Safari/iOS) */
+/* Juego 1: Memoria */
 .mem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:600px;margin:20px auto}
 @media(max-width:500px){.mem-grid{grid-template-columns:repeat(3,1fr)}}
 .mem-card{aspect-ratio:1;perspective:1000px;cursor:pointer}
@@ -63,31 +71,28 @@ h1{margin:0 0 10px;font-size:clamp(1.8rem,5vw,2.5rem);color:#fff}
   <h1>🎮 Zona de Juegos</h1>
   <div class="subtitle">Aprende y memoriza verbos jugando</div>
 </header>
+<div style="text-align:center;"><a href="index.html" class="back-btn">🏠 Volver al inicio</a></div>
 
 <div id="loadingMsg">⏳ Conectando con flashcards-verbos-a2.html para leer tus verbos...</div>
 
-<!-- MENU PRINCIPAL -->
-<div id="menuView" class="game-view" style="display:none;">
-  <div class="menu-grid" id="menuGrid">
-    <button class="game-btn pink" onclick="abrirJuego('memoriaView')">
-      <h2>🃏 Parejas de Memoria</h2>
-      <p class="muted">Encuentra el verbo en español y su traducción. ¡Sin prisa!</p>
-    </button>
-    <button class="game-btn purple" onclick="abrirJuego('relojView')">
-      <h2>⏳ Contrarreloj</h2>
-      <p class="muted">10 segundos para elegir la traducción correcta. ¿Cuántas aciertas?</p>
-    </button>
-    <button class="game-btn turq" onclick="abrirJuego('lluviaView')">
-      <h2>🌧️ Lluvia de Verbos</h2>
-      <p class="muted">¡Que no caigan al suelo! Haz clic en la traducción antes del impacto.</p>
-    </button>
-  </div>
-  <a href="index.html" class="back-btn" style="margin-top:30px">🏠 Volver al inicio</a>
+<!-- MENU PRINCIPAL FIXO -->
+<div class="menu-grid" id="menuGrid">
+  <button id="btnMemoria" class="game-btn pink" onclick="abrirJuego('memoriaView', 'btnMemoria')">
+    <h2>🃏 Parejas de Memoria</h2>
+    <p class="muted">Encuentra el verbo en español y su traducción. ¡Sin prisa!</p>
+  </button>
+  <button id="btnReloj" class="game-btn purple" onclick="abrirJuego('relojView', 'btnReloj')">
+    <h2>⏳ Contrarreloj</h2>
+    <p class="muted">10 s. para elegir la traducción correcta. ¿Cuántas aciertas?</p>
+  </button>
+  <button id="btnLluvia" class="game-btn turq" onclick="abrirJuego('lluviaView', 'btnLluvia')">
+    <h2>🌧️ Lluvia de Verbos</h2>
+    <p class="muted">¡Que no caigan al suelo! Haz clic en la traducción antes del impacto.</p>
+  </button>
 </div>
 
 <!-- JUEGO 1 -->
-<div id="memoriaView" class="game-view" style="display:none;">
-  <button class="back-btn" onclick="abrirMenu()">← Volver al menú</button>
+<div id="memoriaView" class="game-view">
   <h2 class="pink">🃏 Parejas de Memoria</h2>
   <div class="score-board">Parejas encontradas: <span id="memScore">0</span> / 6</div>
   <div class="mem-grid" id="memGrid"></div>
@@ -95,8 +100,7 @@ h1{margin:0 0 10px;font-size:clamp(1.8rem,5vw,2.5rem);color:#fff}
 </div>
 
 <!-- JUEGO 2 -->
-<div id="relojView" class="game-view" style="display:none;">
-  <button class="back-btn" onclick="abrirMenu()">← Volver al menú</button>
+<div id="relojView" class="game-view">
   <h2 class="purple">⏳ Contrarreloj</h2>
   <div class="score-board">Puntos: <span id="relojScore">0</span></div>
   <div class="timer-container"><div class="timer-bar" id="relojTimer"></div></div>
@@ -107,8 +111,7 @@ h1{margin:0 0 10px;font-size:clamp(1.8rem,5vw,2.5rem);color:#fff}
 </div>
 
 <!-- JUEGO 3 -->
-<div id="lluviaView" class="game-view" style="display:none;">
-  <button class="back-btn" onclick="abrirMenu()">← Volver al menú</button>
+<div id="lluviaView" class="game-view">
   <h2 class="turq">🌧️ Lluvia de Verbos</h2>
   <div class="score-board">Puntos: <span id="lluviaScore">0</span> | Vidas: <span id="lluviaVidas">❤️❤️❤️</span></div>
   <div class="lluvia-area" id="lluviaArea">
@@ -153,25 +156,25 @@ async function extrairVerbosDoMestre() {
     ];
   } finally {
     document.getElementById('loadingMsg').style.display = 'none';
-    abrirMenu(); // Força a abertura APENAS do menu
-    document.getElementById('menuGrid').style.display = 'grid';
+    document.getElementById('menuGrid').style.display = 'grid'; // O Menu Fica Visível Sempre!
   }
 }
 
 window.addEventListener('load', extrairVerbosDoMestre);
 
-// ---------------- Navegação Blindada ----------------
-function abrirJuego(id) {
-  // 1. Esconde TODAS as vistas de jogo violentamente
-  document.querySelectorAll('.game-view').forEach(v => {
-    v.style.display = 'none';
-    v.classList.remove('active-view');
-  });
-  // 2. Mostra APENAS a selecionada
+// ---------------- Navegação Nova ----------------
+function abrirJuego(id, btnId) {
+  // 1. Esconde todos os jogos e tira o destaque dos botões
+  document.querySelectorAll('.game-view').forEach(v => v.style.display = 'none');
+  document.querySelectorAll('.game-btn').forEach(b => b.classList.remove('active-btn'));
+  
+  // 2. Destaca o botão selecionado no menu e mostra o jogo
+  document.getElementById(btnId).classList.add('active-btn');
   const activeView = document.getElementById(id);
   activeView.style.display = 'block';
-  activeView.classList.add('active-view');
+  activeView.scrollIntoView({ behavior: 'smooth', block: 'start' });
   
+  // 3. Reinicia os dados do jogo escolhido
   if(id === 'memoriaView') iniciarMemoria();
   if(id === 'relojView') {
     relojScore = 0; document.getElementById('relojScore').textContent = "0";
@@ -188,17 +191,6 @@ function abrirJuego(id) {
     document.getElementById('lluviaOptions').innerHTML = '';
     cancelAnimationFrame(lluviaFrame);
   }
-}
-
-function abrirMenu() {
-  document.querySelectorAll('.game-view').forEach(v => {
-    v.style.display = 'none';
-    v.classList.remove('active-view');
-  });
-  const menu = document.getElementById('menuView');
-  menu.style.display = 'block';
-  menu.classList.add('active-view');
-  cancelAnimationFrame(lluviaFrame); clearInterval(relojInterval);
 }
 
 // ---------------- Utilitários ----------------
@@ -244,7 +236,7 @@ function flipCard(card) {
   card.classList.add('flipped');
   memFlipped.push(card);
   
-  say(card.dataset.id);
+  say(card.dataset.id); // Pronuncia sempre a palavra em espanhol (o ID invisível)
 
   if(memFlipped.length === 2) setTimeout(checkMatch, 800);
 }
@@ -289,7 +281,7 @@ function siguienteReloj() {
       } else {
         clearInterval(relojInterval);
         alert("❌ ¡Incorrecto! Puntuación final: " + relojScore);
-        abrirJuego('relojView');
+        iniciarJuego('relojView', 'btnReloj');
       }
     };
     optsDiv.appendChild(btn);
@@ -301,7 +293,7 @@ function siguienteReloj() {
     if(timeLeft <= 0) {
       clearInterval(relojInterval);
       alert("⏳ ¡Tiempo agotado! Puntuación final: " + relojScore);
-      abrirJuego('relojView');
+      document.getElementById('relojOptions').innerHTML = `<button class="btn-start" style="grid-column: span 2;" onclick="siguienteReloj()">Intentar de nuevo</button>`;
     }
   }, 100);
 }
@@ -319,7 +311,8 @@ function siguienteLluvia() {
   cancelAnimationFrame(lluviaFrame);
   if(vidas <= 0) {
     alert("💀 ¡Juego terminado! Puntuación: " + lluviaScore);
-    abrirJuego('lluviaView'); return;
+    document.getElementById('lluviaArea').innerHTML = `<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)"><button class="btn-start" onclick="abrirJuego('lluviaView', 'btnLluvia')">Intentar de nuevo</button></div>`;
+    return;
   }
   
   let options = shuffle([...db]).slice(0, 3);
