@@ -13,17 +13,8 @@ section{display:none;padding-top:22px}section.active{display:block}.grid{display
 .example{border-left:4px solid var(--turq);padding:9px 12px;background:color-mix(in srgb,var(--turq) 8%,var(--card));border-radius:0 12px 12px 0;margin:9px 0}.small{font-size:.9rem;color:var(--muted)}
 .choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:9px}.choice{padding:12px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;text-align:left}.choice.correct{border-color:var(--ok)}.choice.wrong{border-color:var(--bad)}.feedback{margin-top:12px;font-weight:800}.progress{height:10px;background:var(--soft);border-radius:99px;overflow:hidden}.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq));transition:.25s}
 footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
-
-.home-nav{text-align:center;margin:14px 0 8px}
-.home-nav a{display:inline-block;padding:10px 18px;border-radius:12px;
-background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;
-text-decoration:none;font-weight:800;box-shadow:0 8px 22px color-mix(in srgb,var(--purple) 28%,transparent);
-transition:transform .15s ease,filter .15s ease}
-.home-nav a:hover{transform:translateY(-1px);filter:brightness(1.08)}
-
 </style></head><body><div class="container">
 <header><span class="badge">EOI · Español A2 · Aula individual</span><h1>Ficha Interactiva — 10/09/2026</h1><div class="subtitle">Desde · desde hace · desde que</div></header>
-<div class="home-nav"><a href="index.html">🏠 Página inicial</a></div>
 <nav><button class="active" onclick="tab('resumen',this)">📚 Resumen</button><button onclick="tab('desde',this)">📍 Desde</button><button onclick="tab('preguntas',this)">❓ Preguntas</button><button onclick="tab('practica',this)">✏️ Práctica</button></nav>
 
 <section id="resumen" class="active"><div class="grid">
@@ -51,7 +42,6 @@ transition:transform .15s ease,filter .15s ease}
 <div class="card"><p><b>3. Te conozco ___ vivimos en Madrid.</b></p><div class="choice-grid"><button class="choice" onclick="ans(this,false,'f3')">desde</button><button class="choice" onclick="ans(this,false,'f3')">desde hace</button><button class="choice" onclick="ans(this,true,'f3')">desde que</button></div><div id="f3" class="feedback"></div></div>
 <div class="card"><p><b>4. ¿___ vives en Madrid?</b></p><div class="choice-grid"><button class="choice" onclick="ans(this,true,'f4')">¿Desde cuándo...?</button><button class="choice" onclick="ans(this,false,'f4')">¿Desde cuánto...?</button><button class="choice" onclick="ans(this,false,'f4')">¿Desde qué cantidad...?</button></div><div id="f4" class="feedback"></div></div></div>
 <div class="card"><h3 class="turq">🗣️ Misión</h3><p>Responde oralmente usando las tres estructuras:</p><ol><li>¿Desde cuándo vives en Madrid?</li><li>¿Cuánto tiempo llevas estudiando español?</li><li>¿Desde qué año estudias español?</li><li>¿Desde cuándo conoces a tu mejor amigo?</li><li>¿Desde cuándo haces tu actividad favorita?</li></ol></div></section>
-<div class="home-nav"><a href="index.html">🏠 Volver a la página inicial</a></div>
 <footer>EOI · Español A2 · Aula individual · 10/09/2026</footer></div>
 <script>
 let done=0,total=4;function tab(id,b){document.querySelectorAll('section').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');scrollTo({top:0,behavior:'smooth'})}
