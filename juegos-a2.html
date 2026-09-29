@@ -16,7 +16,7 @@ body{margin:0;background:radial-gradient(circle at 10% 0,#1d2b66,transparent 38%
 header{padding:26px 20px;margin-bottom:20px;border-radius:22px;border:1px solid #48598d;background:linear-gradient(135deg,#172c6c,#49237f 52%,#741c58);box-shadow:0 18px 50px #0008}
 h1{margin:0 0 10px;font-size:clamp(1.8rem,5vw,2.5rem);color:#fff}
 .subtitle{color:#e3e6ff}
-.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:20px;display:none} 
+.menu-grid{display:none;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:20px} 
 .game-btn{background:var(--card);border:2px solid var(--border);color:var(--text);padding:30px 20px;border-radius:20px;cursor:pointer;transition:transform 0.2s, border-color 0.2s;text-align:center;display:block;width:100%}
 .game-btn:hover{transform:translateY(-5px);border-color:var(--turq)}
 .game-btn h2{margin:0 0 10px;font-size:1.5rem;pointer-events:none}
@@ -29,15 +29,15 @@ h1{margin:0 0 10px;font-size:clamp(1.8rem,5vw,2.5rem);color:#fff}
 /* Estado de Carregamento */
 #loadingMsg{padding:40px;font-size:1.2rem;font-weight:800;color:var(--turq);border:1px solid var(--border);background:var(--soft);border-radius:16px;margin-top:20px}
 
-/* Juego 1: Memoria */
+/* Juego 1: Memoria - Com Correção de Espelhamento (Safari/iOS) */
 .mem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:600px;margin:20px auto}
 @media(max-width:500px){.mem-grid{grid-template-columns:repeat(3,1fr)}}
 .mem-card{aspect-ratio:1;perspective:1000px;cursor:pointer}
-.mem-inner{width:100%;height:100%;position:relative;transition:transform 0.5s;transform-style:preserve-3d;pointer-events:none}
-.mem-card.flipped .mem-inner{transform:rotateY(180deg)}
-.mem-front, .mem-back{width:100%;height:100%;position:absolute;backface-visibility:hidden;display:flex;align-items:center;justify-content:center;border-radius:12px;font-weight:800;padding:5px;font-size:1.1rem;word-break:break-word}
+.mem-inner{width:100%;height:100%;position:relative;transition:transform 0.5s;-webkit-transform-style:preserve-3d;transform-style:preserve-3d;pointer-events:none}
+.mem-card.flipped .mem-inner{-webkit-transform:rotateY(180deg);transform:rotateY(180deg)}
+.mem-front, .mem-back{width:100%;height:100%;position:absolute;-webkit-backface-visibility:hidden;backface-visibility:hidden;display:flex;align-items:center;justify-content:center;border-radius:12px;font-weight:800;padding:5px;font-size:1.1rem;word-break:break-word}
 .mem-front{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff}
-.mem-back{background:var(--soft);border:2px solid var(--turq);color:var(--turq);transform:rotateY(180deg)}
+.mem-back{background:var(--soft);border:2px solid var(--turq);color:var(--turq);-webkit-transform:rotateY(180deg);transform:rotateY(180deg)}
 .mem-card.matched .mem-back{background:var(--ok);color:#fff;border-color:var(--ok)}
 
 /* Juego 2: Contrarreloj */
@@ -66,7 +66,8 @@ h1{margin:0 0 10px;font-size:clamp(1.8rem,5vw,2.5rem);color:#fff}
 
 <div id="loadingMsg">⏳ Conectando con flashcards-verbos-a2.html para leer tus verbos...</div>
 
-<div id="menuView" class="game-view">
+<!-- MENU PRINCIPAL -->
+<div id="menuView" class="game-view" style="display:none;">
   <div class="menu-grid" id="menuGrid">
     <button class="game-btn pink" onclick="abrirJuego('memoriaView')">
       <h2>🃏 Parejas de Memoria</h2>
@@ -84,7 +85,8 @@ h1{margin:0 0 10px;font-size:clamp(1.8rem,5vw,2.5rem);color:#fff}
   <a href="index.html" class="back-btn" style="margin-top:30px">🏠 Volver al inicio</a>
 </div>
 
-<div id="memoriaView" class="game-view">
+<!-- JUEGO 1 -->
+<div id="memoriaView" class="game-view" style="display:none;">
   <button class="back-btn" onclick="abrirMenu()">← Volver al menú</button>
   <h2 class="pink">🃏 Parejas de Memoria</h2>
   <div class="score-board">Parejas encontradas: <span id="memScore">0</span> / 6</div>
@@ -92,7 +94,8 @@ h1{margin:0 0 10px;font-size:clamp(1.8rem,5vw,2.5rem);color:#fff}
   <button class="btn-start" onclick="iniciarMemoria()">Jugar otra vez</button>
 </div>
 
-<div id="relojView" class="game-view">
+<!-- JUEGO 2 -->
+<div id="relojView" class="game-view" style="display:none;">
   <button class="back-btn" onclick="abrirMenu()">← Volver al menú</button>
   <h2 class="purple">⏳ Contrarreloj</h2>
   <div class="score-board">Puntos: <span id="relojScore">0</span></div>
@@ -103,7 +106,8 @@ h1{margin:0 0 10px;font-size:clamp(1.8rem,5vw,2.5rem);color:#fff}
   </div>
 </div>
 
-<div id="lluviaView" class="game-view">
+<!-- JUEGO 3 -->
+<div id="lluviaView" class="game-view" style="display:none;">
   <button class="back-btn" onclick="abrirMenu()">← Volver al menú</button>
   <h2 class="turq">🌧️ Lluvia de Verbos</h2>
   <div class="score-board">Puntos: <span id="lluviaScore">0</span> | Vidas: <span id="lluviaVidas">❤️❤️❤️</span></div>
@@ -119,6 +123,7 @@ h1{margin:0 0 10px;font-size:clamp(1.8rem,5vw,2.5rem);color:#fff}
 <script>
 let db = []; 
 
+// Extração de Verbos
 async function extrairVerbosDoMestre() {
   try {
     const response = await fetch('flashcards-verbos-a2.html');
@@ -148,17 +153,24 @@ async function extrairVerbosDoMestre() {
     ];
   } finally {
     document.getElementById('loadingMsg').style.display = 'none';
-    document.getElementById('menuView').classList.add('active-view');
+    abrirMenu(); // Força a abertura APENAS do menu
     document.getElementById('menuGrid').style.display = 'grid';
   }
 }
 
 window.addEventListener('load', extrairVerbosDoMestre);
 
-// Rotas de Navegação (Menu)
+// ---------------- Navegação Blindada ----------------
 function abrirJuego(id) {
-  document.querySelectorAll('.game-view').forEach(v => v.classList.remove('active-view'));
-  document.getElementById(id).classList.add('active-view');
+  // 1. Esconde TODAS as vistas de jogo violentamente
+  document.querySelectorAll('.game-view').forEach(v => {
+    v.style.display = 'none';
+    v.classList.remove('active-view');
+  });
+  // 2. Mostra APENAS a selecionada
+  const activeView = document.getElementById(id);
+  activeView.style.display = 'block';
+  activeView.classList.add('active-view');
   
   if(id === 'memoriaView') iniciarMemoria();
   if(id === 'relojView') {
@@ -179,12 +191,17 @@ function abrirJuego(id) {
 }
 
 function abrirMenu() {
-  document.querySelectorAll('.game-view').forEach(v => v.classList.remove('active-view'));
-  document.getElementById('menuView').classList.add('active-view');
+  document.querySelectorAll('.game-view').forEach(v => {
+    v.style.display = 'none';
+    v.classList.remove('active-view');
+  });
+  const menu = document.getElementById('menuView');
+  menu.style.display = 'block';
+  menu.classList.add('active-view');
   cancelAnimationFrame(lluviaFrame); clearInterval(relojInterval);
 }
 
-// Utilitários
+// ---------------- Utilitários ----------------
 function shuffle(array) { return array.sort(() => Math.random() - 0.5); }
 
 function say(txt){
@@ -195,7 +212,7 @@ function say(txt){
   window.speechSynthesis.speak(u);
 }
 
-// ---------------- Memoria ----------------
+// ---------------- Jogo 1: Memoria ----------------
 let memFlipped = [], memMatches = 0;
 
 function iniciarMemoria() {
@@ -227,7 +244,6 @@ function flipCard(card) {
   card.classList.add('flipped');
   memFlipped.push(card);
   
-  // Toca sempre a palavra em espanhol (evita que a voz espanhola tente ler a tradução em português)
   say(card.dataset.id);
 
   if(memFlipped.length === 2) setTimeout(checkMatch, 800);
@@ -245,7 +261,7 @@ function checkMatch() {
   memFlipped = [];
 }
 
-// ---------------- Contrarreloj ----------------
+// ---------------- Jogo 2: Contrarreloj ----------------
 let relojScore = 0, relojInterval, timeLeft = 100;
 
 function siguienteReloj() {
@@ -290,7 +306,7 @@ function siguienteReloj() {
   }, 100);
 }
 
-// ---------------- Lluvia ----------------
+// ---------------- Jogo 3: Lluvia ----------------
 let lluviaScore = 0, vidas = 3, lluviaFrame;
 let fallY = 0, speed = 1.5, currentLluvia = null;
 
