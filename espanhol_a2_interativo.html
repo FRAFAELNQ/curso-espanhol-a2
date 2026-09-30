@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula Internacional Plus 2 - Explorador Interativo A2</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        mergulho: {
+                            50: '#f2fafa',
+                            100: '#e0f3f5',
+                            200: '#c1e8ec',
+                            300: '#93d7df',
+                            400: '#69c5d1',
+                            500: '#5dc0cd',
+                            600: '#51bdca',
+                            700: '#42a2af',
+                            800: '#35818d',
+                            900: '#2d6871',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <style>
+        .chart-container { position: relative; width: 100%; max-width: 600px; margin-left: auto; margin-right: auto; height: 300px; max-height: 400px; }
+        @media (min-width: 768px) { .chart-container { height: 350px; } }
+        
+        .flashcard-inner { transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1); transform-style: preserve-3d; }
+        .flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+        .flashcard-front, .flashcard-back { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+        .flashcard-back { transform: rotateY(180deg); }
+        
+        body { background-color: #fafaf9; color: #292524; }
+        @keyframes gentle-pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.8; } }
+        .speaking-icon { animation: gentle-pulse 1.5s infinite; }
+
+        .custom-scrollbar::-webkit-scrollbar { width: 8px; height: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        
+        .typing-indicator span { display: inline-block; width: 6px; height: 6px; background-color: #94a3b8; border-radius: 50%; animation: typing 1.4s infinite ease-in-out both; margin: 0 2px; }
+        .typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
+        .typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes typing { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+
+        /* Modo Escuro */
+        body, .bg-white, .bg-stone-50 { transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+        .dark body { background-color: #1c1917; color: #f5f5f4; }
+        .dark .bg-white { background-color: #292524 !important; border-color: #44403c !important; color: #f5f5f4 !important; }
+        .dark .bg-stone-50 { background-color: #1c1917 !important; border-color: #44403c !important; }
+        .dark .text-stone-800, .dark .text-stone-700, .dark .text-stone-600 { color: #f5f5f4 !important; }
+        .dark .border-stone-200, .dark .border-stone-100 { border-color: #44403c !important; }
+        .dark input, .dark select { background-color: #1c1917 !important; color: white !important; border-color: #44403c !important; }
+        .dark .flashcard-front { background-color: #292524 !important; border-color: #44403c !important; }
+        .dark .flashcard-front .bg-white { background-color: #292524 !important; }
+        .dark th { background-color: #1c1917 !important; border-color: #44403c !important; }
+        .dark td { border-color: #44403c !important; }
+        .dark tr.hover\:bg-stone-50:hover { background-color: #44403c !important; }
+        .dark .text-mergulho-700 { color: #93d7df !important; }
+    </style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col">
+
+    <header class="bg-mergulho-700 text-stone-50 shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl" id="header-icon">🇪🇸</span>
+                    <h1 class="text-xl font-bold tracking-tight hidden sm:block" data-i18n="appTitle">Espanhol A2 Interativo</h1>
+                    <h1 class="text-xl font-bold tracking-tight sm:hidden">A2</h1>
+                    <span class="bg-mergulho-900/50 text-mergulho-100 text-[10px] font-mono px-2 py-0.5 rounded-full border border-mergulho-600/50 ml-1" id="app-version">v1.0 ✨</span>
+                </div>
+                <nav class="hidden lg:flex space-x-2" id="desktop-nav">
+                    <button data-target="visao-geral" class="nav-btn bg-mergulho-800 text-white px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-mergulho-600" data-i18n="navOverview">📊 Visão Geral</button>
+                    <button data-target="unidades" class="nav-btn text-mergulho-100 hover:bg-mergulho-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors" data-i18n="navUnits">📚 Unidades 1-8</button>
+                    <button data-target="matriz-verbos" class="nav-btn text-mergulho-100 hover:bg-mergulho-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors" data-i18n="navMatrix">⚙️ Matriz de Verbos</button>
+                    <button data-target="exercicios" class="nav-btn text-mergulho-100 hover:bg-mergulho-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors" data-i18n="navQuiz">✍️ Exercícios</button>
+                    <button data-target="pronuncia" class="nav-btn text-mergulho-100 hover:bg-mergulho-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors" data-i18n="navPronuncia">🗣️ Pronúncia</button>
+                    <button data-target="tutor-ia" class="nav-btn text-amber-200 hover:bg-mergulho-600 hover:text-amber-100 px-3 py-2 rounded-md text-sm font-bold transition-colors" data-i18n="navTutor">✨ Tutor IA</button>
+                </nav>
+                <div class="flex items-center gap-3">
+                    <div class="lg:hidden">
+                        <select id="mobile-nav" class="bg-mergulho-800 text-white border-none rounded p-1.5 text-sm focus:ring-2 focus:ring-mergulho-400">
+                            <option value="visao-geral" data-i18n="navOverview">📊 Visão</option>
+                            <option value="unidades" data-i18n="navUnits">📚 Unidades</option>
+                            <option value="matriz-verbos" data-i18n="navMatrix">⚙️ Verbos</option>
+                            <option value="exercicios" data-i18n="navQuiz">✍️ Quiz</option>
+                            <option value="pronuncia" data-i18n="navPronuncia">🗣️ Pronúncia</option>
+                            <option value="tutor-ia" data-i18n="navTutor">✨ Tutor IA</option>
+                        </select>
+                    </div>
+                    <button onclick="toggleTheme()" class="bg-white/20 hover:bg-white/30 text-white p-2 w-9 h-9 flex items-center justify-center rounded-full text-sm transition-all shadow-sm" id="theme-btn" title="Alternar Modo Escuro">🌙</button>
+                    
+                    <!-- Language Pill -->
+                    <div class="flex bg-stone-900/50 rounded-full p-1 border border-white/10 shadow-inner">
+                        <button id="btn-lang-pt" onclick="setLanguage('pt')" class="px-3 py-1.5 rounded-full text-sm font-bold transition-all flex items-center gap-2 bg-gradient-to-r from-teal-400 to-indigo-400 text-white shadow-md">
+                            🇧🇷 <span class="hidden sm:inline">BR</span>
+                        </button>
+                        <button id="btn-lang-es" onclick="setLanguage('es')" class="px-3 py-1.5 rounded-full text-sm font-bold transition-all flex items-center gap-2 text-stone-300 hover:text-white hover:bg-white/10">
+                            🇪🇸 <span class="hidden sm:inline">ES</span>
+                        </button>
+                        <button id="btn-lang-en" onclick="setLanguage('en')" class="px-3 py-1.5 rounded-full text-sm font-bold transition-all flex items-center gap-2 text-stone-300 hover:text-white hover:bg-white/10">
+                            🇬🇧 <span class="hidden sm:inline">EN</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
+        
+        <section id="visao-geral" class="view-section block">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-stone-800 dark:text-stone-100 mb-4" data-i18n="overviewTitle">Visão Geral do Curso (A2)</h2>
+                <p class="text-lg text-stone-600 dark:text-stone-300 leading-relaxed bg-white dark:bg-stone-800 p-6 rounded-xl shadow-sm border border-stone-200 dark:border-stone-700" data-i18n="overviewDesc">
+                    Bem-vindo ao Nível A2! Nesta etapa daremos um grande salto: vamos deixar o presente e dominar a capacidade de contar histórias no passado (Indefinido e Perfecto). Também aprenderemos a expressar obrigações, dar conselhos médicos, comparar objetos e usar pronomes diretos. Interaja com o gráfico para ver os tipos de verbos que usaremos.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white dark:bg-stone-800 p-6 rounded-xl shadow-sm border border-stone-200 dark:border-stone-700 flex flex-col">
+                    <h3 class="text-xl font-semibold mb-2 text-center text-stone-800 dark:text-stone-100" data-i18n="distTitle">Distribuição de Verbos por Tipo</h3>
+                    <p class="text-sm text-stone-500 dark:text-stone-400 mb-6 text-center" data-i18n="distSub">Passe o mouse ou toque nas fatias para detalhes.</p>
+                    <div class="flex-grow flex items-center justify-center">
+                        <div class="chart-container">
+                            <canvas id="verbsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-stone-800 p-6 rounded-xl shadow-sm border border-stone-200 dark:border-stone-700">
+                    <h3 class="text-xl font-semibold mb-4 text-stone-800 dark:text-stone-100" data-i18n="statsTitle">Estatísticas de Aprendizado</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-mergulho-50 dark:bg-mergulho-900/30 p-4 rounded-lg text-center border border-mergulho-100 dark:border-mergulho-800">
+                            <div class="text-4xl font-bold text-mergulho-600 dark:text-mergulho-400 mb-1">8</div>
+                            <div class="text-sm font-medium text-stone-600 dark:text-stone-300" data-i18n="statUnits">Unidades de Estudo</div>
+                        </div>
+                        <div class="bg-emerald-50 dark:bg-emerald-900/30 p-4 rounded-lg text-center border border-emerald-100 dark:border-emerald-800">
+                            <div class="text-4xl font-bold text-emerald-600 dark:text-emerald-400 mb-1" id="statVerbsTotal">60</div>
+                            <div class="text-sm font-medium text-stone-600 dark:text-stone-300" data-i18n="statTotalVerbs">Verbos Chave (A2)</div>
+                        </div>
+                        <div class="bg-amber-50 dark:bg-amber-900/30 p-4 rounded-lg text-center border border-amber-100 dark:border-amber-800">
+                            <div class="text-4xl font-bold text-amber-600 dark:text-amber-400 mb-1" id="statIrregCount">28</div>
+                            <div class="text-sm font-medium text-stone-600 dark:text-stone-300" data-i18n="statIrreg">Irregulares no Passado</div>
+                        </div>
+                        <div class="bg-purple-50 dark:bg-purple-900/30 p-4 rounded-lg text-center border border-purple-100 dark:border-purple-800">
+                            <div class="text-4xl font-bold text-purple-600 dark:text-purple-400 mb-1">80</div>
+                            <div class="text-sm font-medium text-stone-600 dark:text-stone-300" data-i18n="statQuiz">Exercícios no Quiz</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="font-semibold text-stone-800 dark:text-stone-200 mb-2" data-i18n="nextSteps">Próximos Passos Recomendados:</h4>
+                        <ul class="space-y-2 text-stone-600 dark:text-stone-300">
+                            <li class="flex items-start gap-2"><span class="text-mergulho-500 mt-0.5">▶</span><span data-i18n="step1">Acesse a aba <strong>Unidades 1-8</strong> e pratique o novo vocabulário.</span></li>
+                            <li class="flex items-start gap-2"><span class="text-mergulho-500 mt-0.5">▶</span><span data-i18n="step2">Acesse <strong>Exercícios</strong> para testar as regras do Pretérito Indefinido vs Perfecto.</span></li>
+                            <li class="flex items-start gap-2"><span class="text-mergulho-500 mt-0.5">▶</span><span data-i18n="step3">Baixe a planilha na <strong>Matriz de Verbos</strong>: ela contém as conjugações essenciais do passado.</span></li>
+                            <li class="flex items-start gap-2"><span class="text-amber-500 mt-0.5">▶</span><span data-i18n="step4">Pratique contar o que você fez ontem com o <strong>✨ Tutor IA</strong>.</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-white dark:bg-stone-800 p-6 rounded-xl shadow-sm border border-stone-200 dark:border-stone-700">
+                <h3 class="text-xl font-semibold mb-4 flex items-center gap-2 text-stone-800 dark:text-stone-100" data-i18n="settingsTitle">⚙️ Configurações e Backup (Dados A2)</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-stone-50 dark:bg-stone-700/50 p-5 rounded-lg border border-stone-100 dark:border-stone-600 flex flex-col">
+                        <h4 class="font-bold text-stone-700 dark:text-stone-200 mb-2 flex items-center gap-2"><span>💾</span> <span data-i18n="backupTitle">Segurança dos Dados</span></h4>
+                        <p class="text-sm text-stone-500 dark:text-stone-400 mb-4 flex-grow" data-i18n="backupDesc">Baixe o backup para não perder o progresso caso limpe os dados do navegador.</p>
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <button onclick="exportarBackup()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2 flex-1 shadow-sm" data-i18n="btnExport">📥 Baixar Backup</button>
+                            <button onclick="document.getElementById('import-file').click()" class="bg-white dark:bg-stone-600 hover:bg-stone-100 dark:hover:bg-stone-500 text-stone-700 dark:text-stone-200 border border-stone-300 dark:border-stone-500 px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2 flex-1 shadow-sm" data-i18n="btnImport">📤 Restaurar Backup</button>
+                            <input type="file" id="import-file" class="hidden" accept=".json" onchange="importarBackup(event)">
+                        </div>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/30 p-5 rounded-lg border border-amber-100 dark:border-amber-800 flex flex-col">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-400 mb-2 flex items-center gap-2"><span>🔄</span> <span data-i18n="resetTitle">Nova Etapa A2</span></h4>
+                        <p class="text-sm text-amber-700/80 dark:text-amber-200/80 mb-4 flex-grow" data-i18n="resetDesc">Apaga o histórico de exercícios resolvidos para refazer as unidades deste livro.</p>
+                        <button onclick="resetProgress()" class="w-full bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg text-sm font-bold transition-colors flex items-center justify-center gap-2 shadow-sm" data-i18n="btnReset">✨ Zerar Progresso do Quiz</button>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/30 p-5 rounded-lg border border-indigo-100 dark:border-indigo-800 flex flex-col col-span-1 md:col-span-2">
+                        <h4 class="font-bold text-indigo-800 dark:text-indigo-300 mb-2 flex items-center gap-2"><span>🔔</span> <span data-i18n="alertTitle">Rotina & Alertas (22:10)</span></h4>
+                        <div class="flex items-center gap-3 mb-4 mt-2">
+                            <input type="checkbox" id="daily-study-check" onchange="toggleDailyStudy()" class="w-6 h-6 accent-indigo-600 cursor-pointer rounded">
+                            <label for="daily-study-check" class="text-stone-700 dark:text-stone-300 font-bold cursor-pointer text-lg select-none" data-i18n="alertStudy">Estudo do Dia Concluído ✅</label>
+                        </div>
+                        <div class="flex gap-3">
+                            <button id="alert-btn" onclick="toggleAlerts()" class="w-full sm:w-auto bg-indigo-500 hover:bg-indigo-600 text-white px-5 py-2.5 rounded-lg text-sm font-bold transition-colors flex items-center justify-center gap-2 shadow-sm">
+                                <span data-i18n="btnAlert">🔔 Ativar Alertas</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="unidades" class="view-section hidden">
+            <div class="mb-6">
+                <h2 class="text-3xl font-bold text-stone-800 dark:text-stone-100 mb-4" data-i18n="unitsTitle">Módulos de Estudo Visual e Auditivo</h2>
+                <p class="text-lg text-stone-600 dark:text-stone-300 bg-white dark:bg-stone-800 p-6 rounded-xl shadow-sm border border-stone-200 dark:border-stone-700 flex items-start gap-3">
+                    <span class="text-2xl mt-1">💡</span>
+                    <span data-i18n="unitsDesc"><strong>Dica:</strong> Clique nos flashcards para virá-los e ouvir a pronúncia em áudio do espanhol nativo.</span>
+                </p>
+            </div>
+            <div class="flex flex-wrap gap-2 mb-8" id="unit-tabs"></div>
+            <div id="unit-content-area" class="bg-transparent min-h-[500px]"></div>
+        </section>
+
+        <section id="matriz-verbos" class="view-section hidden">
+            <div class="mb-6">
+                <h2 class="text-3xl font-bold text-stone-800 dark:text-stone-100 mb-4" data-i18n="matrixTitle">Matriz Dinâmica de Verbos (Foco A2)</h2>
+                <p class="text-lg text-stone-600 dark:text-stone-300 bg-white dark:bg-stone-800 p-6 rounded-xl shadow-sm border border-stone-200 dark:border-stone-700" data-i18n="matrixDesc">
+                    Explore os verbos chave do A2. <strong>Ao baixar a planilha, a coluna "Regra/Observação" exibirá como formar o Pretérito Indefinido e o Particípio!</strong> Clique na palavra para ouvir.
+                </p>
+            </div>
+            <div class="bg-white dark:bg-stone-800 rounded-xl shadow-sm border border-stone-200 dark:border-stone-700 p-6">
+                <div class="flex flex-col lg:flex-row gap-4 justify-between items-start lg:items-center mb-6">
+                    <div class="w-full lg:w-auto flex flex-col sm:flex-row gap-2">
+                        <input type="text" id="verb-search" placeholder="🔍 Buscar verbo..." class="w-full sm:w-64 px-4 py-2 border border-stone-300 dark:border-stone-600 rounded-lg bg-transparent focus:ring-2 focus:ring-mergulho-500 focus:border-mergulho-500 outline-none transition-shadow text-stone-800 dark:text-stone-100">
+                        <button onclick="exportVerbsToCSV()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg font-bold transition-colors shadow-sm whitespace-nowrap flex items-center gap-2" data-i18n="exportVerbsBtn">📥 Baixar Planilha</button>
+                    </div>
+                    <div class="flex flex-wrap gap-2 justify-start lg:justify-end" id="verb-filters"></div>
+                </div>
+                <div class="overflow-x-auto rounded-lg border border-stone-200 dark:border-stone-700">
+                    <table class="w-full text-left border-collapse whitespace-nowrap min-w-[800px]">
+                        <thead>
+                            <tr class="bg-stone-50 dark:bg-stone-700 text-stone-600 dark:text-stone-200 text-xs uppercase tracking-wider border-b border-stone-200 dark:border-stone-600">
+                                <th class="p-4 font-semibold w-56" data-i18n="colVerb">Verbo (Tipo)</th>
+                                <th class="p-4 font-semibold text-mergulho-700 dark:text-mergulho-300 bg-mergulho-50/50 dark:bg-mergulho-900/30">Yo</th>
+                                <th class="p-4 font-semibold">Tú</th>
+                                <th class="p-4 font-semibold">Él/Ella</th>
+                                <th class="p-4 font-semibold">Nosotros</th>
+                                <th class="p-4 font-semibold">Vosotros</th>
+                                <th class="p-4 font-semibold">Ellos/Uds.</th>
+                            </tr>
+                        </thead>
+                        <tbody id="verb-table-body" class="text-sm divide-y divide-stone-100 dark:divide-stone-700"></tbody>
+                    </table>
+                </div>
+                <div id="no-results-msg" class="hidden text-center py-8 text-stone-500 dark:text-stone-400" data-i18n="noResults">Nenhum verbo encontrado.</div>
+            </div>
+        </section>
+
+        <section id="exercicios" class="view-section hidden">
+            <div class="mb-6">
+                <h2 class="text-3xl font-bold text-stone-800 dark:text-stone-100 mb-4" data-i18n="exTitle">Exercícios Práticos (Quiz A2)</h2>
+                <p class="text-lg text-stone-600 dark:text-stone-300 bg-white dark:bg-stone-800 p-6 rounded-xl shadow-sm border border-stone-200 dark:border-stone-700 flex items-start gap-3">
+                    <span class="text-2xl mt-1">📝</span>
+                    <span data-i18n="exDesc">Resolva questões criadas para testar a gramática e o vocabulário de cada unidade do nível A2.</span>
+                </p>
+            </div>
+            <div class="flex flex-wrap gap-2 mb-8" id="exercise-tabs"></div>
+            <div id="exercise-content-area" class="bg-transparent min-h-[400px]">
+                <div class="bg-white dark:bg-stone-800 rounded-xl shadow-sm border border-stone-200 dark:border-stone-700 p-12 text-center text-stone-500" data-i18n="exSelect">Selecione uma unidade acima.</div>
+            </div>
+        </section>
+
+        <section id="pronuncia" class="view-section hidden">
+            <div class="mb-6">
+                <h2 class="text-3xl font-bold text-stone-800 dark:text-stone-100 mb-4" data-i18n="proTitle">Guia de Pronúncia (Avançando no A2)</h2>
+                <p class="text-lg text-stone-600 dark:text-stone-300 bg-white dark:bg-stone-800 p-6 rounded-xl shadow-sm border border-stone-200 dark:border-stone-700" data-i18n="proDesc">
+                    No nível A2, além dos sons básicos, focamos na entonação de frases exclamativas, ritmo, a letra Ñ e sotaques latinos.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white dark:bg-stone-800 rounded-xl shadow-sm border border-stone-200 dark:border-stone-700 p-6 flex flex-col h-full">
+                    <h3 class="text-xl font-bold text-stone-800 dark:text-stone-100 mb-4 flex items-center gap-2"><span>🗣️</span> <span data-i18n="proDictTitle">Sons e Entonações (Exemplos)</span></h3>
+                    <div class="overflow-y-auto max-h-[600px] flex-grow rounded-lg border border-stone-200 dark:border-stone-700 custom-scrollbar">
+                        <table class="w-full text-left border-collapse whitespace-nowrap">
+                            <thead class="sticky top-0 bg-stone-50 dark:bg-stone-700 text-stone-600 dark:text-stone-200 text-sm border-b border-stone-200 dark:border-stone-600 z-10 shadow-sm">
+                                <tr>
+                                    <th class="p-3 font-semibold" data-i18n="proColSound">Foco / Som</th>
+                                    <th class="p-3 font-semibold" data-i18n="proColWord">Exemplo</th>
+                                    <th class="p-3 font-semibold text-center w-16" data-i18n="proColListen">Ouvir</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm divide-y divide-stone-100 dark:divide-stone-700">
+                                <tr class="hover:bg-stone-50 dark:hover:bg-stone-700 transition-colors">
+                                    <td class="p-3 font-bold text-stone-800 dark:text-stone-200">A letra Ñ (eñe)</td>
+                                    <td class="p-3 text-mergulho-700 dark:text-mergulho-300 italic">Español / Mañana</td>
+                                    <td class="p-3 text-center"><button onclick="playAudio('El español se estudia por la mañana.')" class="text-xl hover:scale-110 transition-transform">🔊</button></td>
+                                </tr>
+                                <tr class="hover:bg-stone-50 dark:hover:bg-stone-700 transition-colors">
+                                    <td class="p-3 font-bold text-stone-800 dark:text-stone-200">Grupos Consonânticos</td>
+                                    <td class="p-3 text-mergulho-700 dark:text-mergulho-300 italic">Estudiante / Frustrado</td>
+                                    <td class="p-3 text-center"><button onclick="playAudio('El estudiante está frustrado.')" class="text-xl hover:scale-110 transition-transform">🔊</button></td>
+                                </tr>
+                                <tr class="hover:bg-stone-50 dark:hover:bg-stone-700 transition-colors">
+                                    <td class="p-3 font-bold text-stone-800 dark:text-stone-200">B, D e G Suaves</td>
+                                    <td class="p-3 text-mergulho-700 dark:text-mergulho-300 italic">Abogado / Madrid</td>
+                                    <td class="p-3 text-center"><button onclick="playAudio('El abogado viaja a Madrid.')" class="text-xl hover:scale-110 transition-transform">🔊</button></td>
+                                </tr>
+                                <tr class="hover:bg-stone-50 dark:hover:bg-stone-700 transition-colors">
+                                    <td class="p-3 font-bold text-stone-800 dark:text-stone-200">Entonação de Pedido</td>
+                                    <td class="p-3 text-mergulho-700 dark:text-mergulho-300 italic">¿Me pasas la sal, por favor?</td>
+                                    <td class="p-3 text-center"><button onclick="playAudio('¿Me pasas la sal, por favor?')" class="text-xl hover:scale-110 transition-transform">🔊</button></td>
+                                </tr>
+                                <tr class="hover:bg-stone-50 dark:hover:bg-stone-700 transition-colors">
+                                    <td class="p-3 font-bold text-stone-800 dark:text-stone-200">Exclamativas</td>
+                                    <td class="p-3 text-mergulho-700 dark:text-mergulho-300 italic">¡Qué maravilla de película!</td>
+                                    <td class="p-3 text-center"><button onclick="playAudio('¡Qué maravilla de película!')" class="text-xl hover:scale-110 transition-transform">🔊</button></td>
+                                </tr>
+                                <tr class="hover:bg-stone-50 dark:hover:bg-stone-700 transition-colors">
+                                    <td class="p-3 font-bold text-stone-800 dark:text-stone-200">Sheísmo (Argentina)</td>
+                                    <td class="p-3 text-mergulho-700 dark:text-mergulho-300 italic">Yo me llamo (Xo me Xamo)</td>
+                                    <td class="p-3 text-center"><button onclick="playAudio('Yo me llamo')" class="text-xl hover:scale-110 transition-transform">🔊</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-6">
+                    <div class="bg-white dark:bg-stone-800 rounded-xl shadow-sm border border-stone-200 dark:border-stone-700 p-6">
+                        <h3 class="text-xl font-bold text-amber-600 mb-4 flex items-center gap-2"><span>⚡</span> <span data-i18n="proTipsTitle">Dicas do Livro Aula Plus 2:</span></h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <span class="bg-amber-100 text-amber-700 p-1.5 px-2.5 rounded-md font-bold mt-0.5 shadow-sm text-xs">Ñ</span>
+                                <span class="text-stone-700 dark:text-stone-300" data-i18n="proTip1">A letra <strong>Ñ</strong> não existe em português ou inglês, mas o som é idêntico ao nosso <strong>NH</strong>.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="bg-amber-100 text-amber-700 p-1.5 px-2.5 rounded-md font-bold mt-0.5 shadow-sm text-xs">Y/LL</span>
+                                <span class="text-stone-700 dark:text-stone-300" data-i18n="proTip2">O <strong>Sheísmo</strong> é comum no Rio da Prata (Argentina/Uruguai), onde o "Y" e "LL" ganham som de "X" ou "CH".</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="bg-amber-100 text-amber-700 p-1.5 px-2.5 rounded-md font-bold mt-0.5 shadow-sm text-xs">D</span>
+                                <span class="text-stone-700 dark:text-stone-300" data-i18n="proTip3">O <strong>D final</strong> (ex: Madrid) é extremamente suave, quase mudo.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tutor-ia" class="view-section hidden flex flex-col h-[calc(100vh-140px)]">
+            <div class="mb-4 shrink-0">
+                <h2 class="text-3xl font-bold text-stone-800 dark:text-stone-100 mb-2" data-i18n="tutorTitle">✨ Tutor Virtual (Nível A2)</h2>
+                <p class="text-stone-600 dark:text-stone-300 bg-amber-50 dark:bg-amber-900/30 p-4 rounded-xl border border-amber-200 dark:border-amber-800" data-i18n="tutorDesc">
+                    A IA agora espera que você use o passado! Conte o que você fez no final de semana, peça desculpas por um atraso ou faça comparações.
+                </p>
+            </div>
+            <div class="flex-grow bg-white dark:bg-stone-800 rounded-xl shadow-sm border border-stone-200 dark:border-stone-700 flex flex-col overflow-hidden">
+                <div id="chat-messages" class="flex-grow p-6 overflow-y-auto custom-scrollbar flex flex-col gap-4 bg-stone-50/50 dark:bg-stone-900/50">
+                    <div class="flex gap-3">
+                        <div class="w-10 h-10 rounded-full bg-mergulho-100 dark:bg-mergulho-900 flex items-center justify-center text-xl shrink-0 border border-mergulho-200 dark:border-mergulho-700">🤖</div>
+                        <div class="bg-white dark:bg-stone-700 p-4 rounded-2xl rounded-tl-sm border border-stone-200 dark:border-stone-600 shadow-sm max-w-[85%]">
+                            <p class="text-stone-800 dark:text-stone-100" data-i18n="tutorWelcome">¡Hola! Soy tu profesor. En el nivel A2 ya sabemos hablar del pasado. Cuéntame, ¿qué hiciste el fin de semana pasado?</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex gap-2 p-4 bg-stone-50 dark:bg-stone-800 border-t border-stone-200 dark:border-stone-700 overflow-x-auto custom-scrollbar shrink-0" id="chat-suggestions">
+                    <button onclick="sendSuggestion('El fin de semana pasado fui al cine con mis amigos.')" class="whitespace-nowrap text-sm font-medium bg-white dark:bg-stone-700 border border-stone-300 dark:border-stone-600 text-stone-600 dark:text-stone-200 px-4 py-2 rounded-full hover:bg-amber-50 dark:hover:bg-amber-900/50 hover:text-amber-700 dark:hover:text-amber-300 shadow-sm" data-i18n="sug1">🍿 Fui al cine</button>
+                    <button onclick="sendSuggestion('He trabajado mucho esta semana y estoy cansado.')" class="whitespace-nowrap text-sm font-medium bg-white dark:bg-stone-700 border border-stone-300 dark:border-stone-600 text-stone-600 dark:text-stone-200 px-4 py-2 rounded-full hover:bg-amber-50 dark:hover:bg-amber-900/50 hover:text-amber-700 dark:hover:text-amber-300 shadow-sm" data-i18n="sug2">💼 He trabajado mucho</button>
+                    <button onclick="sendSuggestion('Perdona, es que he tenido un problema con el autobús.')" class="whitespace-nowrap text-sm font-medium bg-white dark:bg-stone-700 border border-stone-300 dark:border-stone-600 text-stone-600 dark:text-stone-200 px-4 py-2 rounded-full hover:bg-amber-50 dark:hover:bg-amber-900/50 hover:text-amber-700 dark:hover:text-amber-300 shadow-sm" data-i18n="sug3">🚌 Dar excusa</button>
+                </div>
+                <div class="p-4 bg-white dark:bg-stone-800 border-t border-stone-200 dark:border-stone-700 shrink-0">
+                    <form id="chat-form" class="flex gap-2" onsubmit="handleChatSubmit(event)">
+                        <input type="text" id="chat-input" class="flex-grow px-4 py-3 border border-stone-300 dark:border-stone-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-mergulho-500 bg-transparent text-stone-800 dark:text-stone-100" placeholder="Escreva em espanhol aqui..." autocomplete="off">
+                        <button type="submit" id="chat-submit-btn" class="bg-mergulho-600 hover:bg-mergulho-700 text-white px-6 py-3 rounded-lg font-bold transition-colors disabled:opacity-50 flex items-center gap-2">
+                            <span data-i18n="tutorSend">Enviar</span> ✨
+                        </button>
+                    </form>
+                    <div class="mt-2 text-right">
+                        <button type="button" onclick="clearChat()" class="text-xs text-stone-400 hover:text-red-500 transition-colors" data-i18n="tutorClear">Limpar conversa</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="ai-modal" class="fixed inset-0 bg-stone-900/60 z-[100] hidden items-center justify-center p-4 backdrop-blur-sm transition-opacity">
+        <div class="bg-white dark:bg-stone-800 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col transform transition-transform">
+            <div class="p-5 border-b border-stone-200 dark:border-stone-700 flex justify-between items-center bg-stone-50 dark:bg-stone-900">
+                <h3 class="font-bold text-stone-800 dark:text-stone-100 flex items-center gap-2 text-lg"><span>✨</span> <span data-i18n="aiModalTitle">Assistente IA</span></h3>
+                <button onclick="closeModal()" class="text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 text-2xl font-bold leading-none">&times;</button>
+            </div>
+            <div id="modal-content" class="p-6 overflow-y-auto max-h-[60vh] text-stone-700 dark:text-stone-300"></div>
+        </div>
+    </div>
+
+    <div id="toast-alert" class="fixed bottom-[-150px] right-4 bg-stone-800 text-white px-6 py-4 rounded-xl shadow-2xl transition-all duration-500 z-[200] flex items-center gap-4 opacity-0 border-l-4 border-amber-500">
+        <span class="text-3xl animate-bounce">⏰</span>
+        <div>
+            <h4 class="font-bold text-base text-amber-400" data-i18n="toastTitle">Lembrete de Estudo!</h4>
+            <p class="text-sm opacity-90 mt-1" data-i18n="toastDesc">Já são 22:10 e você ainda não marcou o Estudo do Dia.</p>
+        </div>
+        <button onclick="closeToastAlert()" class="ml-4 text-2xl font-bold opacity-70 hover:opacity-100 hover:text-red-400">&times;</button>
+    </div>
+
+    <script>
+        let currentLang = 'pt';
+        let currentFilter = 'Todos';
+        let isDarkMode = false;
+        let alertsEnabled = false;
+        let hasAlertedToday = false;
+
+        const uiTranslations = {
+            'pt': {
+                appTitle: "Espanhol A2 Interativo",
+                navOverview: "📊 Visão Geral",
+                navUnits: "📚 Unidades 1-8",
+                navMatrix: "⚙️ Matriz de Verbos",
+                navQuiz: "✍️ Exercícios",
+                navPronuncia: "🗣️ Pronúncia",
+                navTutor: "✨ Tutor IA",
+                overviewTitle: "Visão Geral do Curso (A2)",
+                overviewDesc: "Bem-vindo ao Nível A2! Nesta etapa daremos um grande salto: vamos deixar o presente e dominar a capacidade de contar histórias no passado (Indefinido e Perfecto). Também aprenderemos a expressar obrigações, dar conselhos médicos, comparar objetos e usar pronomes diretos. Interaja com o gráfico para ver os tipos de verbos que usaremos.",
+                distTitle: "Distribuição de Verbos por Tipo",
+                distSub: "Passe o mouse ou toque nas fatias para detalhes.",
+                statsTitle: "Estatísticas de Aprendizado",
+                statUnits: "Unidades de Estudo",
+                statTotalVerbs: "Verbos Chave (A2)",
+                statIrreg: "Irregulares no Passado",
+                statQuiz: "Exercícios no Quiz",
+                nextSteps: "Próximos Passos Recomendados:",
+                step1: "Acesse a aba <strong>Unidades 1-8</strong> e pratique o novo vocabulário com áudio.",
+                step2: "Acesse <strong>Exercícios</strong> para testar as regras do Pretérito Indefinido vs Perfecto.",
+                step3: "Baixe a planilha na <strong>Matriz de Verbos</strong>: ela contém as conjugações essenciais do passado.",
+                step4: "Pratique contar o que você fez ontem com o <strong>✨ Tutor IA</strong>.",
+                settingsTitle: "⚙️ Configurações e Backup (Dados A2)",
+                backupTitle: "Segurança dos Dados",
+                backupDesc: "Seu progresso é salvo no navegador. Baixe um arquivo de backup para não perder nada caso limpe seu histórico.",
+                btnExport: "📥 Baixar Backup",
+                btnImport: "📤 Restaurar Backup",
+                resetTitle: "Nova Etapa A2",
+                resetDesc: "Apaga as marcações dos exercícios resolvidos para você começar um novo ciclo de estudos no A2.",
+                btnReset: "✨ Zerar Progresso do Quiz",
+                alertTitle: "Rotina & Alertas (22:10)",
+                alertStudy: "Estudo do Dia Concluído ✅",
+                btnAlert: "🔔 Ativar Alertas",
+                btnAlertActive: "Alertas Ativos",
+                toastTitle: "Lembrete de Estudo!",
+                toastDesc: "Já são 22:10 e você ainda não marcou o Estudo do Dia.",
+                unitsTitle: "Módulos de Estudo Visual e Auditivo",
+                unitsDesc: "<strong>Dica:</strong> Clique nos flashcards para virá-los e ouvir a pronúncia em áudio do espanhol nativo.",
+                matrixTitle: "Matriz Dinâmica de Verbos (Foco A2)",
+                matrixDesc: "Explore os verbos chave do A2. <strong>Ao baixar a planilha, a coluna 'Regra/Observação' exibirá como formar o Pretérito Indefinido e o Particípio!</strong> Clique na palavra para ouvir.",
+                colVerb: "Verbo (Tipo)",
+                noResults: "Nenhum verbo encontrado para esta busca.",
+                exTitle: "Exercícios Práticos (Quiz A2)",
+                exDesc: "Resolva questões criadas para testar a gramática e o vocabulário de cada unidade do nível A2.",
+                exSelect: "Selecione uma unidade acima para começar os exercícios.",
+                objTitle: "Objetivo da Unidade",
+                gramTitle: "Foco Gramatical",
+                cardsTitle: "Flashcards Interativos",
+                cardsSub: "Clique para virar e ouvir 🔊",
+                quizTest: "Teste Rápido",
+                feedbackCorrect: "<span>✅</span> ¡Correcto! Muito bem.",
+                feedbackWrong: "<span>❌</span> ¡Incorrecto! A resposta correta está destacada em verde.",
+                proTitle: "Guia de Pronúncia (Avançando no A2)",
+                proDesc: "No nível A2, além dos sons básicos, focamos na entonação de frases exclamativas, ritmo, a letra Ñ e sotaques latinos.",
+                proDictTitle: "Sons e Entonações (Exemplos)",
+                proColSound: "Foco / Som",
+                proColWord: "Exemplo",
+                proColListen: "Ouvir",
+                proTipsTitle: "Dicas do Livro Aula Plus 2:",
+                proTip1: "A letra <strong>Ñ</strong> não existe em português, mas o som é idêntico ao nosso <strong>NH</strong>.",
+                proTip2: "O <strong>Sheísmo</strong> é comum no Rio da Prata (Argentina/Uruguai), onde o 'Y' e 'LL' ganham som de 'X' ou 'CH'.",
+                proTip3: "O <strong>D final</strong> (ex: Madrid) é extremamente suave, quase mudo.",
+                tutorTitle: "✨ Tutor Virtual (Nível A2)",
+                tutorDesc: "A IA agora espera que você use o passado! Conte o que você fez no final de semana, peça desculpas por um atraso ou faça comparações.",
+                tutorWelcome: "¡Hola! Soy tu profesor. En el nivel A2 ya sabemos hablar del pasado. Cuéntame, ¿qué hiciste el fin de semana pasado?",
+                tutorSend: "Enviar",
+                tutorClear: "Limpar conversa",
+                tutorPlaceholder: "Escreva em espanhol aqui...",
+                aiModalTitle: "Assistente IA",
+                exportVerbsBtn: "📥 Baixar Planilha",
+                sug1: "🍿 Fui al cine",
+                sug2: "💼 He trabajado mucho",
+                sug3: "🚌 Dar excusa"
+            },
+            'es': {
+                appTitle: "Español A2 Interactivo",
+                navOverview: "📊 Visión General",
+                navUnits: "📚 Unidades 1-8",
+                navMatrix: "⚙️ Matriz de Verbos",
+                navQuiz: "✍️ Ejercicios",
+                navPronuncia: "🗣️ Pronunciación",
+                navTutor: "✨ Tutor IA",
+                overviewTitle: "Visión General del Curso (A2)",
+                overviewDesc: "¡Bienvenido al Nivel A2! En esta etapa daremos un gran salto: dejaremos el presente para dominar la capacidad de contar historias en el pasado (Indefinido y Perfecto). También aprenderemos a dar consejos, comparar objetos y usar pronombres.",
+                distTitle: "Distribución de Verbos por Tipo",
+                distSub: "Pasa el ratón o toca las porciones para ver detalles.",
+                statsTitle: "Estadísticas de Aprendizaje",
+                statUnits: "Unidades de Estudio",
+                statTotalVerbs: "Verbos Clave (A2)",
+                statIrreg: "Irregulares en Pasado",
+                statQuiz: "Ejercicios en el Quiz",
+                nextSteps: "Próximos Pasos Recomendados:",
+                step1: "Accede a la pestaña <strong>Unidades 1-8</strong> y practica el nuevo vocabulario.",
+                step2: "Accede a <strong>Ejercicios</strong> para poner a prueba la gramática del pasado.",
+                step3: "Descarga la planilla en la <strong>Matriz de Verbos</strong> con las conjugaciones del pasado.",
+                step4: "Practica conversación real en pasado con el <strong>✨ Tutor IA</strong>.",
+                settingsTitle: "⚙️ Configuración y Copia de Seguridad (Datos A2)",
+                backupTitle: "Seguridad de Datos",
+                backupDesc: "Tu progreso se guarda en el navegador. Descarga un archivo de respaldo para no perder nada.",
+                btnExport: "📥 Descargar Respaldo",
+                btnImport: "📤 Restaurar Respaldo",
+                resetTitle: "Nueva Etapa A2",
+                resetDesc: "Borra el historial de los ejercicios resueltos para reiniciar el nivel A2.",
+                btnReset: "✨ Reiniciar Progreso del Quiz",
+                alertTitle: "Rutina y Alertas (22:10)",
+                alertStudy: "Estudio del Día Completado ✅",
+                btnAlert: "🔔 Activar Alertas",
+                btnAlertActive: "Alertas Activas",
+                toastTitle: "¡Recordatorio de Estudio!",
+                toastDesc: "Ya son las 22:10 y aún no has marcado el Estudio del Día.",
+                unitsTitle: "Módulos de Estudio Visual y Auditivo",
+                unitsDesc: "<strong>Consejo:</strong> ¡Haz clic en las tarjetas para girarlas y escuchar la pronunciación en español nativo!",
+                matrixTitle: "Matriz Dinámica de Verbos (Foco A2)",
+                matrixDesc: "Explora los verbos clave del A2. <strong>¡Al descargar la planilla, verás cómo se forma el Pretérito Indefinido y el Participio!</strong>",
+                colVerb: "Verbo (Tipo)",
+                noResults: "Ningún verbo encontrado para esta búsqueda.",
+                exTitle: "Ejercicios Prácticos (Quiz A2)",
+                exDesc: "Resuelve cuestiones para poner a prueba la gramática de cada unidad del nivel A2.",
+                exSelect: "Selecciona una unidad arriba para empezar los ejercicios.",
+                objTitle: "Objetivo de la Unidad",
+                gramTitle: "Foco Gramatical",
+                cardsTitle: "Tarjetas Interactivas",
+                cardsSub: "Haz clic para girar y escuchar 🔊",
+                quizTest: "Prueba Rápida",
+                feedbackCorrect: "<span>✅</span> ¡Correcto! Muy bien.",
+                feedbackWrong: "<span>❌</span> ¡Incorrecto! La respuesta correcta está destacada en verde.",
+                proTitle: "Guía de Pronunciación (Avanzando en A2)",
+                proDesc: "En el nivel A2 nos enfocamos en la entonación exclamativa, el ritmo, la eñe y acentos latinos.",
+                proDictTitle: "Sonidos y Entonaciones",
+                proColSound: "Foco / Sonido",
+                proColWord: "Ejemplo",
+                proColListen: "Escuchar",
+                proTipsTitle: "Consejos del Libro Aula Plus 2:",
+                proTip1: "La letra <strong>Ñ</strong> es un sonido palatal nasal.",
+                proTip2: "El <strong>Sheísmo</strong> es común en el Río de la Plata (Argentina/Uruguay), donde la 'Y' y 'LL' tienen un sonido fricativo.",
+                proTip3: "La <strong>D final</strong> (ej: Madrid) es extremadamente suave, casi muda.",
+                tutorTitle: "✨ Tutor Virtual (Nivel A2)",
+                tutorDesc: "¡La IA espera que uses el pasado! Cuenta qué hiciste el fin de semana o da excusas.",
+                tutorWelcome: "¡Hola! Soy tu profesor. En el nivel A2 ya sabemos hablar del pasado. Cuéntame, ¿qué hiciste el fin de semana pasado?",
+                tutorSend: "Enviar",
+                tutorClear: "Limpiar conversación",
+                tutorPlaceholder: "Escribe en español aquí...",
+                aiModalTitle: "Asistente IA",
+                exportVerbsBtn: "📥 Descargar Planilla",
+                sug1: "🍿 Fui al cine",
+                sug2: "💼 He trabajado mucho",
+                sug3: "🚌 Dar excusa"
+            },
+            'en': {
+                appTitle: "Interactive Spanish A2",
+                navOverview: "📊 Overview",
+                navUnits: "📚 Units 1-8",
+                navMatrix: "⚙️ Verb Matrix",
+                navQuiz: "✍️ Exercises",
+                navPronuncia: "🗣️ Pronunciation",
+                navTutor: "✨ AI Tutor",
+                overviewTitle: "Course Overview (Units 1-8)",
+                overviewDesc: "Welcome to A2! The focus shifts to mastering past narratives (Indefinido and Perfecto), describing habits, and making social interactions.",
+                distTitle: "Verb Distribution by Type",
+                distSub: "Hover or tap on slices for details.",
+                statsTitle: "Learning Statistics",
+                statUnits: "Study Units",
+                statTotalVerbs: "Total Verbs",
+                statIrreg: "Irregular Verbs",
+                statQuiz: "Quiz Exercises",
+                nextSteps: "Recommended Next Steps:",
+                step1: "Go to the <strong>Units 1-8</strong> tab. Use the images and audio to memorize vocabulary.",
+                step2: "Go to <strong>Exercises</strong> to test your grammar (Indefinido, Perfecto, Imperative).",
+                step3: "Use the <strong>Verb Matrix</strong> and download the spreadsheet to review conjugations.",
+                step4: "Practice real conversation with the <strong>✨ AI Tutor</strong>.",
+                settingsTitle: "⚙️ Settings & Backup (A2 Data)",
+                backupTitle: "Data Security",
+                backupDesc: "Your progress is saved in the browser. Download a backup file so you don't lose anything.",
+                btnExport: "📥 Download Backup",
+                btnImport: "📤 Restore Backup",
+                resetTitle: "New A2 Cycle",
+                resetDesc: "Clears the history of completed exercises so you can restart the A2 level.",
+                btnReset: "✨ Reset Quiz Progress",
+                alertTitle: "Routine & Alerts (22:10)",
+                alertStudy: "Daily Study Completed ✅",
+                btnAlert: "🔔 Enable Alerts",
+                btnAlertActive: "Active Alerts",
+                toastTitle: "Study Reminder!",
+                toastDesc: "It's already 10:10 PM and you haven't checked off your Daily Study.",
+                unitsTitle: "Visual and Audio Study Modules",
+                unitsDesc: "<strong>Tip:</strong> Click the flashcards below! They will flip to show the translation and your browser will <strong>read aloud</strong> the phrase in Spanish.",
+                matrixTitle: "Dynamic Verb Matrix",
+                matrixDesc: "This section organizes Spanish verbs. <strong>Click any word in the table to hear the pronunciation.</strong>",
+                colVerb: "Verb (Type)",
+                noResults: "No verbs found for this search.",
+                exTitle: "Practical Exercises (A2 Quiz)",
+                exDesc: "<strong>Time to test your knowledge!</strong> Select a unit below to solve multiple-choice exercises focused on A2 grammar.",
+                exSelect: "Select a unit above to start the exercises.",
+                objTitle: "Unit Objective",
+                gramTitle: "Grammar Focus",
+                cardsTitle: "Interactive Flashcards",
+                cardsSub: "Click to flip and listen 🔊",
+                quizTest: "Quick Test",
+                feedbackCorrect: "<span>✅</span> Correct! Well done.",
+                feedbackWrong: "<span>❌</span> Incorrect! The correct answer is highlighted in green.",
+                proTitle: "Pronunciation Guide (A2 Level)",
+                proDesc: "Perfect your accent and fluency. Check the table of common sounds studied in the A2 level.",
+                proDictTitle: "A2 Phonetic Dictionary",
+                proColSound: "Focus / Sound",
+                proColWord: "Example",
+                proColListen: "Listen",
+                proTipsTitle: "A2 Pronunciation Tips:",
+                proTip1: "The letter <strong>Ñ</strong> sounds like the 'ny' in canyon.",
+                proTip2: "<strong>Sheísmo</strong> is common in Argentina/Uruguay, where 'Y' and 'LL' get a 'sh' sound.",
+                proTip3: "The <strong>final D</strong> (e.g., Madrid) is extremely soft, almost silent.",
+                tutorTitle: "✨ Virtual A2 Tutor",
+                tutorDesc: "Practice your Spanish with the AI! At the A2 level, you can now try telling stories in the past.",
+                tutorWelcome: "Hello! I am your A2 Spanish tutor. We can talk about your last vacation. What did you do last weekend?",
+                tutorSend: "Send",
+                tutorClear: "Clear chat",
+                tutorPlaceholder: "Write in Spanish here...",
+                aiModalTitle: "AI Assistant",
+                exportVerbsBtn: "📥 Download Spreadsheet",
+                sug1: "🍿 I went to the movies",
+                sug2: "💼 I worked a lot",
+                sug3: "🚌 Give an excuse"
+            }
+        };
+
+        const appData = {
+            units: [
+                {
+                    id: 1,
+                    title: { pt: "Unidade 1: El español y tú", es: "Unidad 1: El español y tú", en: "Unit 1: Spanish and You" },
+                    theme: { pt: "Hábitos de estudo e sentimentos", es: "Hábitos de estudio y sentimientos", en: "Study habits and feelings" },
+                    intro: { pt: "Dar conselhos, falar sobre hábitos de aprendizagem e expressar dificuldades.", es: "Dar consejos, hablar sobre hábitos de aprendizaje y expresar dificultades.", en: "Give advice, talk about learning habits and express difficulties." },
+                    grammar: { pt: "Presentes irregulares, verbos pronominais, COSTAR, SENTIRSE e Desde / Desde hace.", es: "Presentes irregulares, verbos pronominales, COSTAR, SENTIRSE y Desde / Desde hace.", en: "Irregular presents, pronominal verbs, COSTAR, SENTIRSE and Desde / Desde hace." },
+                    flashcards: [
+                        { front: { pt: "Eu me sinto inseguro.", es: "Me siento inseguro.", en: "I feel insecure." }, back: "Me siento inseguro.", emoji: "😟" },
+                        { front: { pt: "Me dá vergonha.", es: "Me da vergüenza.", en: "I feel embarrassed." }, back: "Me da vergüenza.", emoji: "😳" },
+                        { front: { pt: "É difícil para mim falar.", es: "Me cuesta hablar.", en: "It's hard for me to speak." }, back: "Me cuesta hablar.", emoji: "🗣️" },
+                        { front: { pt: "Estudo desde maio.", es: "Estudio desde mayo.", en: "I've been studying since May." }, back: "Estudio desde mayo.", emoji: "📅" },
+                        { front: { pt: "Estudo há dois meses.", es: "Estudio desde hace dos meses.", en: "I've been studying for two months." }, back: "Estudio desde hace dos meses.", emoji: "⏳" },
+                        { front: { pt: "Aprender as regras.", es: "Aprender las reglas.", en: "To learn the rules." }, back: "Aprender las reglas.", emoji: "📖" },
+                        { front: { pt: "Trabalhar em grupo.", es: "Trabajar en grupo.", en: "To work in groups." }, back: "Trabajar en grupo.", emoji: "👥" },
+                        { front: { pt: "Cometer erros.", es: "Cometer errores.", en: "To make mistakes." }, back: "Cometer errores.", emoji: "❌" },
+                        { front: { pt: "Lembrar do vocabulário.", es: "Recordar el vocabulario.", en: "To remember vocabulary." }, back: "Recordar el vocabulario.", emoji: "🧠" },
+                        { front: { pt: "Acho difícil a gramática.", es: "Me cuesta la gramática.", en: "I find grammar difficult." }, back: "Me cuesta la gramática.", emoji: "🤯" },
+                        { front: { pt: "Eu me sinto frustrado.", es: "Me siento frustrado.", en: "I feel frustrated." }, back: "Me siento frustrado.", emoji: "😫" },
+                        { front: { pt: "Levo muito tempo.", es: "Tardo mucho tiempo.", en: "It takes me a long time." }, back: "Tardo mucho tiempo.", emoji: "🕰️" }
+                    ]
+                },
+                {
+                    id: 2,
+                    title: { pt: "Unidade 2: Una vida de película", es: "Unidad 2: Una vida de película", en: "Unit 2: A Movie Life" },
+                    theme: { pt: "Biografias e conquistas", es: "Biografías y logros", en: "Biographies and achievements" },
+                    intro: { pt: "Relatar acontecimentos no passado, falar de durações e inícios de ações.", es: "Relatar acontecimientos en el pasado, hablar de duraciones e inicios de acciones.", en: "Relate past events, talk about duration and the beginning of actions." },
+                    grammar: { pt: "Pretérito Indefinido (ações pontuais), marcadores do passado e Desde/Durante/Hasta.", es: "Pretérito Indefinido (acciones puntuales), marcadores temporales y Desde/Durante/Hasta.", en: "Pretérito Indefinido (specific actions), past markers and Desde/Durante/Hasta." },
+                    flashcards: [
+                        { front: { pt: "Ganhou uma medalha.", es: "Ganó una medalla.", en: "Won a medal." }, back: "Ganó una medalla.", emoji: "🥇" },
+                        { front: { pt: "Eles se casaram em 2016.", es: "Se casaron en 2016.", en: "They got married in 2016." }, back: "Se casaron en 2016.", emoji: "💍" },
+                        { front: { pt: "Diretor de cinema.", es: "Director de cine.", en: "Film director." }, back: "Director de cine.", emoji: "🎬" },
+                        { front: { pt: "Nasceu na Argentina.", es: "Nació en Argentina.", en: "Born in Argentina." }, back: "Nació en Argentina.", emoji: "👶" },
+                        { front: { pt: "Começou a trabalhar.", es: "Empezó a trabajar.", en: "Started working." }, back: "Empezó a trabajar.", emoji: "💼" },
+                        { front: { pt: "Morreu faz dois anos.", es: "Murió hace dos años.", en: "Died two years ago." }, back: "Murió hace dos años.", emoji: "🪦" },
+                        { front: { pt: "Descobriu a verdade.", es: "Descubrió la verdad.", en: "Discovered the truth." }, back: "Descubrió la verdad.", emoji: "🔍" },
+                        { front: { pt: "Atuou em um filme.", es: "Actuó en una película.", en: "Acted in a movie." }, back: "Actuó en una película.", emoji: "🎭" },
+                        { front: { pt: "Foi um sucesso.", es: "Fue un éxito.", en: "It was a success." }, back: "Fue un éxito.", emoji: "🌟" },
+                        { front: { pt: "De 2006 a 2012.", es: "De 2006 a 2012.", en: "From 2006 to 2012." }, back: "De 2006 a 2012.", emoji: "🗓️" },
+                        { front: { pt: "Teve três filhos.", es: "Tuvo tres hijos.", en: "Had three children." }, back: "Tuvo tres hijos.", emoji: "👨‍👧‍👦" },
+                        { front: { pt: "Foi muito famoso.", es: "Fue muy famoso.", en: "Was very famous." }, back: "Fue muy famoso.", emoji: "📸" }
+                    ]
+                },
+                {
+                    id: 3,
+                    title: { pt: "Unidade 3: Yo soy así", es: "Unidad 3: Yo soy así", en: "Unit 3: I am like this" },
+                    theme: { pt: "Aparência e relações", es: "Apariencia y relaciones", en: "Appearance and relationships" },
+                    intro: { pt: "Descrever fisicamente, comparar personalidades e falar de relações pessoais.", es: "Describir físicamente, comparar personalidades y hablar de relaciones.", en: "Describe physically, compare personalities and talk about personal relationships." },
+                    grammar: { pt: "Verbos PARECERSE, LLEVARSE, CAER. Pronomes este/ese/aquel e El que...", es: "Verbos PARECERSE, LLEVARSE, CAER. Demostrativos y el relativo El que...", en: "Verbs PARECERSE, LLEVARSE, CAER. Demonstratives and the relative El que..." },
+                    flashcards: [
+                        { front: { pt: "Me dou bem com ele.", es: "Me llevo bien con él.", en: "I get along well with him." }, back: "Me llevo bien con él.", emoji: "🤝" },
+                        { front: { pt: "Não suporto ela.", es: "Me cae fatal.", en: "I can't stand her." }, back: "Me cae fatal.", emoji: "😠" },
+                        { front: { pt: "Se parece com a mãe.", es: "Se parece a su madre.", en: "Looks like her mother." }, back: "Se parece a su madre.", emoji: "👯" },
+                        { front: { pt: "Ele é careca.", es: "Es calvo.", en: "He is bald." }, back: "Es calvo.", emoji: "👨‍🦲" },
+                        { front: { pt: "Usa óculos e tem barba.", es: "Lleva gafas y barba.", en: "Wears glasses and a beard." }, back: "Lleva gafas y barba.", emoji: "👓" },
+                        { front: { pt: "Este garoto aqui.", es: "Este chico de aquí.", en: "This boy here." }, back: "Este chico de aquí.", emoji: "👇" },
+                        { front: { pt: "Aquela garota lá longe.", es: "Aquella chica de allí.", en: "That girl over there." }, back: "Aquella chica de allí.", emoji: "👉" },
+                        { front: { pt: "Aquele de camisa vermelha.", es: "El de la camisa roja.", en: "The one in the red shirt." }, back: "El de la camisa roja.", emoji: "👕" },
+                        { front: { pt: "A que está na porta.", es: "La que está en la puerta.", en: "The one at the door." }, back: "La que está en la puerta.", emoji: "🚪" },
+                        { front: { pt: "É minha tia.", es: "Es mi tía.", en: "She is my aunt." }, back: "Es mi tía.", emoji: "👩" },
+                        { front: { pt: "Tem o cabelo cacheado.", es: "Tiene el pelo rizado.", en: "Has curly hair." }, back: "Tiene el pelo rizado.", emoji: "👩‍🦱" },
+                        { front: { pt: "Aquele de bigode.", es: "El del bigote.", en: "The one with the mustache." }, back: "El del bigote.", emoji: "🧔" }
+                    ]
+                },
+                {
+                    id: 4,
+                    title: { pt: "Unidade 4: Hogar, dulce hogar", es: "Unidad 4: Hogar, dulce hogar", en: "Unit 4: Home, sweet home" },
+                    theme: { pt: "Casas e imóveis", es: "Casas e inmuebles", en: "Houses and real estate" },
+                    intro: { pt: "Descrever residências, comparar coisas e localizar objetos no espaço.", es: "Describir viviendas, comparar cosas y ubicar objetos en el espacio.", en: "Describe homes, compare things and locate objects in space." },
+                    grammar: { pt: "Comparativos (mais/menos/tão), preposições de lugar e Pronomes Possessivos.", es: "Comparativos (más/menos/tan), preposiciones de lugar y Pronombres Posesivos.", en: "Comparatives (more/less/as), prepositions of place and Possessive Pronouns." },
+                    flashcards: [
+                        { front: { pt: "Um apartamento iluminado.", es: "Un piso luminoso.", en: "A bright apartment." }, back: "Un piso luminoso.", emoji: "☀️" },
+                        { front: { pt: "Embaixo da mesa.", es: "Debajo de la mesa.", en: "Under the table." }, back: "Debajo de la mesa.", emoji: "⬇️" },
+                        { front: { pt: "À direita da janela.", es: "A la derecha de la ventana.", en: "To the right of the window." }, back: "A la derecha de la ventana.", emoji: "➡️" },
+                        { front: { pt: "A minha casa e a sua.", es: "Mi casa y la tuya.", en: "My house and yours." }, back: "Mi casa y la tuya.", emoji: "🏠" },
+                        { front: { pt: "Este sofá é o nosso.", es: "Este sofá es el nuestro.", en: "This sofa is ours." }, back: "Este sofá es el nuestro.", emoji: "🛋️️" },
+                        { front: { pt: "Mais caro que o outro.", es: "Más caro que el otro.", en: "More expensive than the other." }, back: "Más caro que el otro.", emoji: "💸" },
+                        { front: { pt: "Tanta luz como aqui.", es: "Tanta luz como aquí.", en: "As much light as here." }, back: "Tanta luz como aquí.", emoji: "💡" },
+                        { front: { pt: "Tem ar condicionado.", es: "Tiene aire acondicionado.", en: "Has air conditioning." }, back: "Tiene aire acondicionado.", emoji: "❄️" },
+                        { front: { pt: "Está nas redondezas.", es: "Está en las afueras.", en: "It's in the outskirts." }, back: "Está en las afueras.", emoji: "🌳" },
+                        { front: { pt: "Mesa de madeira.", es: "Mesa de madera.", en: "Wooden table." }, back: "Mesa de madera.", emoji: "🪑" },
+                        { front: { pt: "Atrás da porta.", es: "Detrás de la puerta.", en: "Behind the door." }, back: "Detrás de la puerta.", emoji: "🚪" },
+                        { front: { pt: "Menos barulhento que...", es: "Menos ruidoso que...", en: "Less noisy than..." }, back: "Menos ruidoso que...", emoji: "🤫" }
+                    ]
+                },
+                {
+                    id: 5,
+                    title: { pt: "Unidade 5: ¿Cómo va todo?", es: "Unidad 5: ¿Cómo va todo?", en: "Unit 5: How is everything going?" },
+                    theme: { pt: "Contato social e favores", es: "Contacto social y favores", en: "Social contact and favors" },
+                    intro: { pt: "Interagir socialmente, pedir favores, permissões e dar desculpas.", es: "Interactuar socialmente, pedir favores, dar permisos y excusas.", en: "Interact socially, ask for favors, permissions and make excuses." },
+                    grammar: { pt: "Gerúndio, Estar + Gerúndio e Condicional (Poder/Importar).", es: "Gerundio, Estar + Gerundio y Condicional (Poder/Importar).", en: "Gerund, Estar + Gerund and Conditional (Poder/Importar)." },
+                    flashcards: [
+                        { front: { pt: "Quanto tempo!", es: "¡Cuánto tiempo!", en: "Long time no see!" }, back: "¡Cuánto tiempo!", emoji: "⏳" },
+                        { front: { pt: "Você me passa o sal?", es: "¿Me pasas la sal?", en: "Can you pass the salt?" }, back: "¿Me pasas la sal?", emoji: "🧂" },
+                        { front: { pt: "Se importa se eu abrir?", es: "¿Te importa si abro?", en: "Do you mind if I open?" }, back: "¿Te importa si abro?", emoji: "🪟" },
+                        { front: { pt: "Estou estudando.", es: "Estoy estudiando.", en: "I am studying." }, back: "Estoy estudiando.", emoji: "📚" },
+                        { front: { pt: "Poderia me ajudar?", es: "¿Podría ayudarme?", en: "Could you help me?" }, back: "¿Podría ayudarme?", emoji: "🆘" },
+                        { front: { pt: "É que tenho pressa.", es: "Es que tengo prisa.", en: "It's just that I'm in a hurry." }, back: "Es que tengo prisa.", emoji: "🏃" },
+                        { front: { pt: "Te apresento ao Juan.", es: "Te presento a Juan.", en: "This is Juan." }, back: "Te presento a Juan.", emoji: "🤝" },
+                        { front: { pt: "O que vai pedir? (no bar)", es: "¿Qué le pongo?", en: "What can I get you?" }, back: "¿Qué le pongo?", emoji: "☕" },
+                        { front: { pt: "Me empresta dinheiro?", es: "¿Me prestas dinero?", en: "Can you lend me money?" }, back: "¿Me prestas dinero?", emoji: "💶" },
+                        { front: { pt: "Desculpe, tenho que ir.", es: "Perdona, me tengo que ir.", en: "Sorry, I have to go." }, back: "Perdona, me tengo que ir.", emoji: "👋" },
+                        { front: { pt: "Você se importa de fechar?", es: "¿Te importa cerrar?", en: "Do you mind closing?" }, back: "¿Te importa cerrar?", emoji: "🪟" },
+                        { front: { pt: "Sinto muito, não posso.", es: "Lo siento, no puedo.", en: "I'm sorry, I can't." }, back: "Lo siento, no puedo.", emoji: "🚫" }
+                    ]
+                },
+                {
+                    id: 6,
+                    title: { pt: "Unidade 6: Guía del ocio", es: "Unidad 6: Guía del ocio", en: "Unit 6: Leisure guide" },
+                    theme: { pt: "Lazer e experiências", es: "Ocio y experiencias", en: "Leisure and experiences" },
+                    intro: { pt: "Falar de experiências, intenções futuras e valorizar lugares.", es: "Hablar de experiencias, intenciones y valorar lugares.", en: "Talk about experiences, future intentions and evaluate places." },
+                    grammar: { pt: "Pretérito Perfecto (Ya/Todavía no), Ir a + Infinitivo e frases exclamativas.", es: "Pretérito Perfecto (Ya/Todavía no), Ir a + Infinitivo y exclamativas.", en: "Pretérito Perfecto (Ya/Todavía no), Ir a + Infinitive and exclamatory phrases." },
+                    flashcards: [
+                        { front: { pt: "Ainda não fiz isso.", es: "Todavía no lo he hecho.", en: "I haven't done it yet." }, back: "Todavía no lo he hecho.", emoji: "❌" },
+                        { front: { pt: "Já vi esse filme.", es: "Ya he visto esa película.", en: "I've already seen that movie." }, back: "Ya he visto esa película.", emoji: "✅" },
+                        { front: { pt: "Vou viajar amanhã.", es: "Voy a viajar mañana.", en: "I'm going to travel tomorrow." }, back: "Voy a viajar mañana.", emoji: "✈️" },
+                        { front: { pt: "Que maravilha!", es: "¡Qué maravilla!", en: "How wonderful!" }, back: "¡Qué maravilla!", emoji: "✨" },
+                        { front: { pt: "O restaurante me pareceu ótimo.", es: "El restaurante me pareció estupendo.", en: "I thought the restaurant was great." }, back: "El restaurante me pareció estupendo.", emoji: "🍽️" },
+                        { front: { pt: "Esta semana trabalhei muito.", es: "Esta semana he trabajado mucho.", en: "I've worked a lot this week." }, back: "Esta semana he trabajado mucho.", emoji: "💼" },
+                        { front: { pt: "Nunca estive em Roma.", es: "Nunca he estado en Roma.", en: "I've never been to Rome." }, back: "Nunca he estado en Roma.", emoji: "🏛" },
+                        { front: { pt: "Penso em sair hoje.", es: "Pienso salir hoy.", en: "I'm thinking of going out today." }, back: "Pienso salir hoy.", emoji: "🚪" },
+                        { front: { pt: "Fazer trilha.", es: "Hacer senderismo.", en: "To go hiking." }, back: "Hacer senderismo.", emoji: "🥾" },
+                        { front: { pt: "Que tédio!", es: "¡Qué aburrimiento!", en: "How boring!" }, back: "¡Qué aburrimiento!", emoji: "🥱" },
+                        { front: { pt: "Foi uma viagem incrível.", es: "Fue un viaje increíble.", en: "It was an incredible trip." }, back: "Fue un viaje increíble.", emoji: "🤩" },
+                        { front: { pt: "Ainda não comi.", es: "Todavía no he comido.", en: "I haven't eaten yet." }, back: "Todavía no he comido.", emoji: "🍽️" }
+                    ]
+                },
+                {
+                    id: 7,
+                    title: { pt: "Unidade 7: ¿Comes de todo?", es: "Unidad 7: ¿Comes de todo?", en: "Unit 7: Do you eat everything?" },
+                    theme: { pt: "Alimentação e receitas", es: "Alimentación y recetas", en: "Food and recipes" },
+                    intro: { pt: "Falar de hábitos alimentares e explicar como preparar receitas.", es: "Hablar de hábitos alimentarios y explicar recetas.", en: "Talk about eating habits and explain how to prepare recipes." },
+                    grammar: { pt: "Pronomes de Objeto Direto (OD), SE impessoal, Conectores e Soler + infinitivo.", es: "Pronombres OD, SE impersonal, Conectores y Soler + infinitivo.", en: "Direct Object (OD) pronouns, impersonal SE, Connectors and Soler + infinitive." },
+                    flashcards: [
+                        { front: { pt: "Corta-se a cebola.", es: "Se corta la cebolla.", en: "You cut the onion." }, back: "Se corta la cebolla.", emoji: "🔪" },
+                        { front: { pt: "Frita-se no azeite.", es: "Se fríe en aceite.", en: "Fry in oil." }, back: "Se fríe en aceite.", emoji: "🍳" },
+                        { front: { pt: "Costumo tomar café.", es: "Suelo desayunar.", en: "I usually have breakfast." }, back: "Suelo desayunar.", emoji: "☕" },
+                        { front: { pt: "Eu as comprei (as maçãs).", es: "Las he comprado yo.", en: "I bought them (the apples)." }, back: "Las he comprado yo.", emoji: "🍎" },
+                        { front: { pt: "Tem que bater os ovos.", es: "Hay que batir los huevos.", en: "You have to beat the eggs." }, back: "Hay que batir los huevos.", emoji: "🥣" },
+                        { front: { pt: "Não como carne.", es: "No como carne.", en: "I don't eat meat." }, back: "No como carne.", emoji: "🥗" },
+                        { front: { pt: "Sou alérgico a frutos secos.", es: "Soy alérgico a los frutos secos.", en: "I am allergic to nuts." }, back: "Soy alérgico a los frutos secos.", emoji: "🥜" },
+                        { front: { pt: "É gostoso, mas caro.", es: "Está rico, pero es caro.", en: "It's tasty, but expensive." }, back: "Está rico, pero es caro.", emoji: "💸" },
+                        { front: { pt: "Um litro de leite.", es: "Un litro de leche.", en: "A liter of milk." }, back: "Un litro de leche.", emoji: "🥛" },
+                        { front: { pt: "Meio quilo de tomates.", es: "Medio kilo de tomates.", en: "Half a kilo of tomatoes." }, back: "Medio kilo de tomates.", emoji: "🍅" },
+                        { front: { pt: "Tem que ferver a água.", es: "Hay que hervir el agua.", en: "You have to boil the water." }, back: "Hay que hervir el agua.", emoji: "♨️" },
+                        { front: { pt: "Lava-se muito bem.", es: "Se lava muy bien.", en: "It is washed very well." }, back: "Se lava muy bien.", emoji: "💧" }
+                    ]
+                },
+                {
+                    id: 8,
+                    title: { pt: "Unidade 8: Estamos muy bien", es: "Unidad 8: Estamos muy bien", en: "Unit 8: We are doing great" },
+                    theme: { pt: "Saúde e conselhos", es: "Salud y consejos", en: "Health and advice" },
+                    intro: { pt: "Descrever sintomas, dores e dar conselhos de saúde.", es: "Describir síntomas, dolores y dar consejos de salud.", en: "Describe symptoms, pain and give health advice." },
+                    grammar: { pt: "Verbo DOLER, Ser vs Estar (saúde) e Imperativo Afirmativo.", es: "Verbo DOLER, Ser/Estar y Imperativo Afirmativo.", en: "Verb DOLER, Ser vs Estar (health) and Affirmative Imperative." },
+                    flashcards: [
+                        { front: { pt: "Estou com dor de cabeça.", es: "Me duele la cabeza.", en: "I have a headache." }, back: "Me duele la cabeza.", emoji: "🤕" },
+                        { front: { pt: "Dói as costas.", es: "Me duele la espalda.", en: "My back hurts." }, back: "Me duele la espalda.", emoji: "🔙" },
+                        { front: { pt: "Tome um comprimido.", es: "Tómate una pastilla.", en: "Take a pill." }, back: "Tómate una pastilla.", emoji: "💊" },
+                        { front: { pt: "Descanse muito.", es: "Descansa mucho.", en: "Rest a lot." }, back: "Descansa mucho.", emoji: "🛌" },
+                        { front: { pt: "Estou doente.", es: "Estoy enfermo.", en: "I am sick." }, back: "Estoy enfermo.", emoji: "🤒" },
+                        { front: { pt: "É uma pessoa estressada.", es: "Es una persona estresada.", en: "Is a stressed person." }, back: "Es una persona estresada.", emoji: "🤯" },
+                        { front: { pt: "Beba muita água.", es: "Bebe mucha agua.", en: "Drink plenty of water." }, back: "Bebe mucha agua.", emoji: "💧" },
+                        { front: { pt: "Tenho tosse.", es: "Tengo tos.", en: "I have a cough." }, back: "Tengo tos.", emoji: "🗣️️" },
+                        { front: { pt: "Estou tonto.", es: "Estoy mareado.", en: "I am dizzy." }, back: "Estoy mareado.", emoji: "🌀" },
+                        { front: { pt: "Faça esporte.", es: "Haz deporte.", en: "Do sports." }, back: "Haz deporte.", emoji: "🏃" },
+                        { front: { pt: "Dói a garganta.", es: "Me duele la garganta.", en: "My throat hurts." }, back: "Me duele la garganta.", emoji: "🤧" },
+                        { front: { pt: "Não saia de casa.", es: "No salgas de casa.", en: "Don't leave the house." }, back: "No salgas de casa.", emoji: "🏠" }
+                    ]
+                }
+            ],
+            // Matriz de Verbos do A2 - Focada no presente mas com regras claras do pasado
+            verbs: [
+                { inf: "Acostarse", type: "Irregular o>ue (Reflexivo)", yo: "Me acuesto", tu: "Te acuestas", el: "Se acuesta", nos: "Nos acostamos", vos: "Os acostáis", ellos: "Se acuestan", emoji: "🛌", pt: "deitar-se", regra: "Muda O por UE (menos nosotros/vosotros). Indefinido: me acosté, te acostaste..." },
+                { inf: "Andar", type: "Regular -AR (Indefinido Irregular)", yo: "Ando", tu: "Andas", el: "Anda", nos: "Andamos", vos: "Andáis", ellos: "Andan", emoji: "🚶", pt: "andar", regra: "Cuidado! Indefinido Irregular: anduve, anduviste, anduvo..." },
+                { inf: "Caer", type: "Irregular (1ª P -go)", yo: "Caigo", tu: "Caes", el: "Cae", nos: "Caemos", vos: "Caéis", ellos: "Caen", emoji: "🍂", pt: "cair (ou 'ir com a cara')", regra: "Usado para 'caer bien/mal'. Indefinido: caí, caíste, cayó." },
+                { inf: "Conocer", type: "Irregular c>zc", yo: "Conozco", tu: "Conoces", el: "Conoce", nos: "Conocemos", vos: "Conocéis", ellos: "Conocen", emoji: "🤝", pt: "conhecer", regra: "Indefinido regular (conocí). Particípio: conocido." },
+                { inf: "Conducir", type: "Irregular c>zc", yo: "Conduzco", tu: "Conduces", el: "Conduce", nos: "Conducimos", vos: "Conducís", ellos: "Conducen", emoji: "🚗", pt: "dirigir (carro)", regra: "Indefinido Irregular: conduje, condujiste, condujo." },
+                { inf: "Costar", type: "Irregular o>ue", yo: "-", tu: "Cuestas", el: "Cuesta", nos: "Costamos", vos: "-", ellos: "Cuestan", emoji: "💰", pt: "custar (ou 'ser difícil')", regra: "Muda O por UE. Indefinido: costó, costaron." },
+                { inf: "Dar", type: "Irregular", yo: "Doy", tu: "Das", el: "Da", nos: "Damos", vos: "Dais", ellos: "Dan", emoji: "🎁", pt: "dar", regra: "Indefinido forte: di, diste, dio, dimos, disteis, dieron." },
+                { inf: "Decir", type: "Irregular e>i (-go)", yo: "Digo", tu: "Dices", el: "Dice", nos: "Decimos", vos: "Decís", ellos: "Dicen", emoji: "🗣️", pt: "dizer", regra: "Indefinido: dije, dijiste, dijo. Particípio: dicho." },
+                { inf: "Doler", type: "Irregular o>ue", yo: "-", tu: "-", el: "Duele", nos: "-", vos: "-", ellos: "Duelen", emoji: "🤕", pt: "doer", regra: "Funciona como 'gustar' (me duele la cabeza, me duelen los pies)." },
+                { inf: "Dormir", type: "Irregular o>ue", yo: "Duermo", tu: "Duermes", el: "Duerme", nos: "Dormimos", vos: "Dormís", ellos: "Duermen", emoji: "😴", pt: "dormir", regra: "Indefinido (o>u na 3ª pessoa): dormí, dormiste, durmió, durmieron." },
+                { inf: "Empezar", type: "Irregular e>ie", yo: "Empiezo", tu: "Empiezas", el: "Empieza", nos: "Empezamos", vos: "Empezáis", ellos: "Empiezan", emoji: "🏁", pt: "começar", regra: "Indefinido com 'c': empecé, empezaste, empezó." },
+                { inf: "Escribir", type: "Regular -IR", yo: "Escribo", tu: "Escribes", el: "Escribe", nos: "Escribimos", vos: "Escribís", ellos: "Escriben", emoji: "✍", pt: "escrever", regra: "Presente e Indefinido regulares, mas Particípio irregular: escrito." },
+                { inf: "Estar", type: "Irregular", yo: "Estoy", tu: "Estás", el: "Está", nos: "Estamos", vos: "Estáis", ellos: "Están", emoji: "📍", pt: "estar", regra: "Indefinido forte: estuve, estuviste, estuvo." },
+                { inf: "Hacer", type: "Irregular (1ª P -go)", yo: "Hago", tu: "Haces", el: "Hace", nos: "Hacemos", vos: "Hacéis", ellos: "Hacen", emoji: "🛠", pt: "fazer", regra: "Indefinido: hice, hiciste, hizo. Particípio: hecho." },
+                { inf: "Ir", type: "Totalmente Irregular", yo: "Voy", tu: "Vas", el: "Va", nos: "Vamos", vos: "Vais", ellos: "Van", emoji: "🚶", pt: "ir", regra: "Indefinido igual ao verbo SER: fui, fuiste, fue, fuimos, fuisteis, fueron." },
+                { inf: "Leer", type: "Regular -ER", yo: "Leo", tu: "Lees", el: "Lee", nos: "Leemos", vos: "Leéis", ellos: "Leen", emoji: "📖", pt: "ler", regra: "Indefinido com Y na 3ª P: leí, leíste, leyó, leyeron." },
+                { inf: "Llevarse", type: "Regular -AR (Reflexivo)", yo: "Me llevo", tu: "Te llevas", el: "Se lleva", nos: "Nos llevamos", vos: "Os lleváis", ellos: "Se llevan", emoji: "🤝", pt: "dar-se bem/mal com alguém", regra: "Exige pronome: 'Me llevo bien con él'. Indefinido: me llevé." },
+                { inf: "Morir", type: "Irregular o>ue", yo: "Muero", tu: "Mueres", el: "Muere", nos: "Morimos", vos: "Morís", ellos: "Mueren", emoji: "🪦", pt: "morrer", regra: "Indefinido (o>u): morí, murió. Particípio: muerto." },
+                { inf: "Parecer", type: "Irregular c>zc", yo: "Parezco", tu: "Pareces", el: "Parece", nos: "Parecemos", vos: "Parecéis", ellos: "Parecen", emoji: "🎭", pt: "parecer / achar", regra: "Funciona como 'gustar' (Me pareció buena la película)." },
+                { inf: "Pedir", type: "Irregular e>i", yo: "Pido", tu: "Pides", el: "Pide", nos: "Pedimos", vos: "Pedís", ellos: "Piden", emoji: "🙋", pt: "pedir", regra: "Indefinido (e>i na 3ª P): pedí, pediste, pidió, pidieron." },
+                { inf: "Poder", type: "Irregular o>ue", yo: "Puedo", tu: "Puedes", el: "Puede", nos: "Podemos", vos: "Podéis", ellos: "Pueden", emoji: "💪", pt: "poder", regra: "Indefinido forte: pude, pudiste, pudo." },
+                { inf: "Poner", type: "Irregular (1ª P -go)", yo: "Pongo", tu: "Pones", el: "Pone", nos: "Ponemos", vos: "Ponéis", ellos: "Ponen", emoji: "📥", pt: "pôr / servir (bar)", regra: "Indefinido: puse, pusiste, puso. Particípio: puesto." },
+                { inf: "Querer", type: "Irregular e>ie", yo: "Quiero", tu: "Quieres", el: "Quiere", nos: "Queremos", vos: "Queréis", ellos: "Quieren", emoji: "❤️", pt: "querer", regra: "Indefinido forte: quise, quisiste, quiso." },
+                { inf: "Reír", type: "Irregular e>i", yo: "Río", tu: "Ríes", el: "Ríe", nos: "Reímos", vos: "Reís", ellos: "Ríen", emoji: "😂", pt: "rir", regra: "Indefinido: reí, reíste, rió, rieron." },
+                { inf: "Saber", type: "Irregular", yo: "Sé", tu: "Sabes", el: "Sabe", nos: "Sabemos", vos: "Sabéis", ellos: "Saben", emoji: "🧠", pt: "saber", regra: "Indefinido forte: supe, supiste, supo." },
+                { inf: "Salir", type: "Irregular (1ª P -go)", yo: "Salgo", tu: "Sales", el: "Sale", nos: "Salimos", vos: "Salís", ellos: "Salen", emoji: "🚪", pt: "sair", regra: "Indefinido regular: salí, saliste, salió." },
+                { inf: "Sentirse", type: "Irregular e>ie (Reflex.)", yo: "Me siento", tu: "Te sientes", el: "Se siente", nos: "Nos sentimos", vos: "Os sentís", ellos: "Se sienten", emoji: "🤒", pt: "sentir-se", regra: "Indefinido (e>i na 3ª P): me sentí, te sentiste, se sintió." },
+                { inf: "Ser", type: "Totalmente Irregular", yo: "Soy", tu: "Eres", el: "Es", nos: "Somos", vos: "Sois", ellos: "Son", emoji: "👤", pt: "ser", regra: "Indefinido igual ao verbo IR: fui, fuiste, fue..." },
+                { inf: "Tener", type: "Irregular (1ª P -go, e>ie)", yo: "Tengo", tu: "Tienes", el: "Tiene", nos: "Tenemos", vos: "Tenéis", ellos: "Tienen", emoji: "🤲", pt: "ter", regra: "Indefinido forte: tuve, tuviste, tuvo." },
+                { inf: "Traer", type: "Irregular (1ª P -go)", yo: "Traigo", tu: "Traes", el: "Trae", nos: "Traemos", vos: "Traéis", ellos: "Traen", emoji: "🤲", pt: "trazer", regra: "Indefinido forte: traje, trajiste, trajo, trajeron." },
+                { inf: "Venir", type: "Irregular (1ª P -go, e>ie)", yo: "Vengo", tu: "Vienes", el: "Viene", nos: "Venimos", vos: "Venís", ellos: "Vienen", emoji: "🚶", pt: "vir", regra: "Indefinido forte: vine, viniste, vino." },
+                { inf: "Ver", type: "Irregular", yo: "Veo", tu: "Ves", el: "Ve", nos: "Vemos", vos: "Veis", ellos: "Ven", emoji: "👀", pt: "ver", regra: "Indefinido: vi, viste, vio. Particípio: visto." },
+                { inf: "Volver", type: "Irregular o>ue", yo: "Vuelvo", tu: "Vuelves", el: "Vuelve", nos: "Volvemos", vos: "Volvéis", ellos: "Vuelven", emoji: "🔄", pt: "voltar", regra: "Indefinido regular (volví). Particípio irregular: vuelto." }
+            ],
+            exercises: {
+                1: [
+                    { q: { pt: "Qual verbo se usa para expressar dificuldade: 'É difícil para mim falar'?", es: "¿Qué verbo se usa para expresar dificultad: 'Es difícil para mí hablar'?", en: "Which verb is used to express difficulty: 'It's hard for me to speak'?" }, options: { pt: ["Sentir", "Costar", "Poder", "Hacer"], es: ["Sentir", "Costar", "Poder", "Hacer"], en: ["Sentir", "Costar", "Poder", "Hacer"] }, correct: 1 },
+                    { q: { pt: "Complete: 'A mí me _______ mucho los verbos irregulares.'", es: "Completa: 'A mí me _______ mucho los verbos irregulares.'", en: "Complete: 'A mí me _______ mucho los verbos irregulares.'" }, options: { pt: ["cuesto", "cuestas", "cuesta", "cuestan"], es: ["cuesto", "cuestas", "cuesta", "cuestan"], en: ["cuesto", "cuestas", "cuesta", "cuestan"] }, correct: 3 },
+                    { q: { pt: "Tradução de 'Me dá vergonha falar em público':", es: "Traducción de 'Me dá vergonha falar em público':", en: "Translation of 'I feel embarrassed speaking in public':" }, options: { pt: ["Tengo vergüenza hablar", "Me da vergüenza hablar", "Soy vergüenza", "Me llevo vergüenza"], es: ["Tengo vergüenza hablar", "Me da vergüenza hablar", "Soy vergüenza", "Me llevo vergüenza"], en: ["Tengo vergüenza hablar", "Me da vergüenza hablar", "Soy vergüenza", "Me llevo vergüenza"] }, correct: 1 },
+                    { q: { pt: "Qual preposição indica a duração até hoje? 'Estudo _______ dois meses.'", es: "¿Qué preposición indica duración? 'Estudio _______ dos meses.'", en: "Which preposition indicates duration up to today? 'Estudio _______ dos meses.'" }, options: { pt: ["desde hace", "hace", "desde", "para"], es: ["desde hace", "hace", "desde", "para"], en: ["desde hace", "hace", "desde", "para"] }, correct: 0 },
+                    { q: { pt: "Complete: '¿_______ cuándo conoces a Pedro?'", es: "Completa: '¿_______ cuándo conoces a Pedro?'", en: "Complete: '¿_______ cuándo conoces a Pedro?'" }, options: { pt: ["Por", "Desde", "Hace", "Desde hace"], es: ["Por", "Desde", "Hace", "Desde hace"], en: ["Por", "Desde", "Hace", "Desde hace"] }, correct: 1 },
+                    { q: { pt: "Se eu erro muito, eu:", es: "Si yo me equivoco mucho, yo:", en: "If I make a lot of mistakes, I:" }, options: { pt: ["Hago errores", "Cometo errores", "Tengo errores", "Digo errores"], es: ["Hago errores", "Cometo errores", "Tengo errores", "Digo errores"], en: ["Hago errores", "Cometo errores", "Tengo errores", "Digo errores"] }, correct: 1 },
+                    { q: { pt: "Para dar um conselho forte (obrigação):", es: "Para dar un consejo fuerte (obligación):", en: "To give strong advice (obligation):" }, options: { pt: ["Lo mejor es", "Va bien", "Tienes que", "Es recomendable"], es: ["Lo mejor es", "Va bien", "Tienes que", "Es recomendable"], en: ["Lo mejor es", "Va bien", "Tienes que", "Es recomendable"] }, correct: 2 },
+                    { q: { pt: "Complete: '¿_______ a qué hora estudiaste ayer?'", es: "Completa: '¿_______ a qué hora estudiaste ayer?'", en: "Complete: '¿_______ a qué hora estudiaste ayer?'" }, options: { pt: ["Desde", "Hace", "Hasta", "Durante"], es: ["Desde", "Hace", "Hasta", "Durante"], en: ["Desde", "Hace", "Hasta", "Durante"] }, correct: 2 },
+                    { q: { pt: "O oposto de 'seguro' é:", es: "El opuesto de 'seguro' es:", en: "The opposite of 'secure/sure' is:" }, options: { pt: ["Asegurado", "Peligroso", "Inseguro", "Mal"], es: ["Asegurado", "Peligroso", "Inseguro", "Mal"], en: ["Asegurado", "Peligroso", "Inseguro", "Mal"] }, correct: 2 },
+                    { q: { pt: "Complete: 'Lo paso _______ quando não entendo as piadas.'", es: "Completa: 'Lo paso _______ cuando no entiendo las bromas.'", en: "Complete: 'Lo paso _______ cuando no entiendo las bromas.'" }, options: { pt: ["bien", "fatal", "genial", "seguro"], es: ["bien", "fatal", "genial", "seguro"], en: ["bien", "fatal", "genial", "seguro"] }, correct: 1 }
+                ],
+                2: [
+                    { q: { pt: "Qual marcador de tempo é comum com o Pretérito Indefinido?", es: "¿Qué marcador de tiempo es común con el Pretérito Indefinido?", en: "Which time marker is common with the Pretérito Indefinido?" }, options: { pt: ["Hoy", "Esta semana", "Ayer", "Últimamente"], es: ["Hoy", "Esta semana", "Ayer", "Últimamente"], en: ["Hoy", "Esta semana", "Ayer", "Últimamente"] }, correct: 2 },
+                    { q: { pt: "Indefinido de IR (Nós fomos): 'Nosotros _______ a Bolivia.'", es: "Indefinido de IR: 'Nosotros _______ a Bolivia.'", en: "Indefinite of IR (We went): 'Nosotros _______ a Bolivia.'" }, options: { pt: ["fuimos", "vamos", "fueron", "imos"], es: ["fuimos", "vamos", "fueron", "imos"], en: ["fuimos", "vamos", "fueron", "imos"] }, correct: 0 },
+                    { q: { pt: "Tradução de 'Ela nasceu em 1990':", es: "Traducción de 'Ela nasceu em 1990':", en: "Translation of 'She was born in 1990':" }, options: { pt: ["Ella nació en 1990", "Ella nací en 1990", "Ella nacio en 1990", "Ella nace en 1990"], es: ["Ella nació en 1990", "Ella nací en 1990", "Ella nacio en 1990", "Ella nace en 1990"], en: ["Ella nació en 1990", "Ella nací en 1990", "Ella nacio en 1990", "Ella nace en 1990"] }, correct: 0 },
+                    { q: { pt: "Complete o Indefinido irregular: 'Yo _______ (estar) en París.'", es: "Completa el Indefinido irregular: 'Yo _______ (estar) en París.'", en: "Complete the irregular Indefinido: 'Yo _______ (estar) en París.'" }, options: { pt: ["estuvo", "estuví", "estoy", "estuve"], es: ["estuvo", "estuví", "estoy", "estuve"], en: ["estuvo", "estuví", "estoy", "estuve"] }, correct: 3 },
+                    { q: { pt: "Complete: 'Viví en Colombia _______ diez años.' (duração inteira)", es: "Completa: 'Viví en Colombia _______ diez años.' (duración entera)", en: "Complete: 'Viví en Colombia _______ diez años.' (entire duration)" }, options: { pt: ["desde hace", "durante", "hasta", "hace"], es: ["desde hace", "durante", "hasta", "hace"], en: ["desde hace", "durante", "hasta", "hace"] }, correct: 1 },
+                    { q: { pt: "Indefinido de TENER (ele teve): 'Él _______ un problema.'", es: "Indefinido de TENER: 'Él _______ un problema.'", en: "Indefinite of TENER (he had): 'Él _______ un problema.'" }, options: { pt: ["tenió", "tuve", "tuvo", "tuvó"], es: ["tenió", "tuve", "tuvo", "tuvó"], en: ["tenió", "tuve", "tuvo", "tuvó"] }, correct: 2 },
+                    { q: { pt: "Qual verbo significa o mesmo que 'filmar' (um filme)?", es: "¿Qué verbo significa lo mismo que 'filmar' (una película)?", en: "Which verb means the same as 'to shoot' (a movie)?" }, options: { pt: ["Actuar", "Rodar", "Estrenar", "Protagonizar"], es: ["Actuar", "Rodar", "Estrenar", "Protagonizar"], en: ["Actuar", "Rodar", "Estrenar", "Protagonizar"] }, correct: 1 },
+                    { q: { pt: "Como se diz 'Aconteceu faz três anos'?", es: "¿Cómo se dice 'Aconteceu faz tres anos'?", en: "How do you say 'It happened three years ago'?" }, options: { pt: ["Pasó hace tres años", "Pasó desde tres años", "Pasó durante tres años", "Pasó hasta tres años"], es: ["Pasó hace tres años", "Pasó desde tres años", "Pasó durante tres años", "Pasó hasta tres años"], en: ["Pasó hace tres años", "Pasó desde tres años", "Pasó durante tres años", "Pasó hasta tres años"] }, correct: 0 },
+                    { q: { pt: "O oposto de 'casar-se' é:", es: "El opuesto de 'casarse' es:", en: "The opposite of 'to get married' is:" }, options: { pt: ["Empezar", "Separarse/Divorciarse", "Nacer", "Mudarse"], es: ["Empezar", "Separarse/Divorciarse", "Nacer", "Mudarse"], en: ["Empezar", "Separarse/Divorciarse", "Nacer", "Mudarse"] }, correct: 1 },
+                    { q: { pt: "Complete o Indefinido (eles fizeram): 'Ellos _______ un buen trabajo.'", es: "Completa el Indefinido: 'Ellos _______ un buen trabajo.'", en: "Complete the Indefinido (they did): 'Ellos _______ un buen trabajo.'" }, options: { pt: ["hacieron", "hicieron", "hicimos", "haceron"], es: ["hacieron", "hicieron", "hicimos", "haceron"], en: ["hacieron", "hicieron", "hicimos", "haceron"] }, correct: 1 }
+                ],
+                3: [
+                    { q: { pt: "Para dizer que duas pessoas se parecem, usamos:", es: "Para decir que dos personas se parecen, usamos:", en: "To say that two people look alike, we use:" }, options: { pt: ["Él se parece su hermano", "Él parece con su hermano", "Él se parece a su hermano", "Él parece a su hermano"], es: ["Él se parece su hermano", "Él parece con su hermano", "Él se parece a su hermano", "Él parece a su hermano"], en: ["Él se parece su hermano", "Él parece con su hermano", "Él se parece a su hermano", "Él parece a su hermano"] }, correct: 2 },
+                    { q: { pt: "Para expressar que você detesta alguém logo de cara:", es: "Para expresar que detestas a alguien de primera impresión:", en: "To express that you dislike someone right away:" }, options: { pt: ["Me cae bien", "Me llevo mal", "Me cae fatal", "Me cae mal"], es: ["Me cae bien", "Me llevo mal", "Me cae fatal", "Me cae mal"], en: ["Me cae bien", "Me llevo mal", "Me cae fatal", "Me cae mal"] }, correct: 2 },
+                    { q: { pt: "Pronome demonstrativo (aquele ali longe): '_______ chico de gafas.'", es: "Pronombre demostrativo (lejos): '_______ chico de gafas.'", en: "Demonstrative pronoun (that one far away): '_______ chico de gafas.'" }, options: { pt: ["Ese", "Aquel", "Este", "Aquellos"], es: ["Ese", "Aquel", "Este", "Aquellos"], en: ["Ese", "Aquel", "Este", "Aquellos"] }, correct: 1 },
+                    { q: { pt: "Identificar no grupo: 'A garota de vermelho é _______ usa óculos.'", es: "Identificar: 'La chica de rojo es _______ lleva gafas.'", en: "Identify in the group: 'The girl in red is _______ wears glasses.'" }, options: { pt: ["el que", "la que", "que", "de"], es: ["el que", "la que", "que", "de"], en: ["el que", "la que", "que", "de"] }, correct: 1 },
+                    { q: { pt: "O plural de 'Este' é:", es: "El plural de 'Este' es:", en: "The plural of 'Este' is:" }, options: { pt: ["Estes", "Estos", "Esos", "Aquellos"], es: ["Estes", "Estos", "Esos", "Aquellos"], en: ["Estes", "Estos", "Esos", "Aquellos"] }, correct: 1 },
+                    { q: { pt: "Qual verbo se usa para cor dos olhos e cabelo?", es: "¿Qué verbo se usa para el color de los ojos y pelo?", en: "Which verb is used for eye and hair color?" }, options: { pt: ["Ser", "Estar", "Tener / Llevar", "Haber"], es: ["Ser", "Estar", "Tener / Llevar", "Haber"], en: ["Ser", "Estar", "Tener / Llevar", "Haber"] }, correct: 2 },
+                    { q: { pt: "Complete: 'Mis primos _______ muy bien.' (São amigos)", es: "Completa: 'Mis primos _______ muy bien.' (Son amigos)", en: "Complete: 'Mis primos _______ muy bien.' (They are friends)" }, options: { pt: ["caen", "llevan", "se llevan", "se caen"], es: ["caen", "llevan", "se llevan", "se caen"], en: ["caen", "llevan", "se llevan", "se caen"] }, correct: 2 },
+                    { q: { pt: "A primeira pessoa de CONOCER é:", es: "La primera persona de CONOCER es:", en: "The first person of CONOCER is:" }, options: { pt: ["Conoco", "Conozco", "Conosco", "Conoço"], es: ["Conoco", "Conozco", "Conosco", "Conoço"], en: ["Conoco", "Conozco", "Conosco", "Conoço"] }, correct: 1 },
+                    { q: { pt: "Tradução de 'Ele tem barba':", es: "Traducción de 'Ele tem barba':", en: "Translation of 'He has a beard':" }, options: { pt: ["Él tiene bigote", "Él tiene perilla", "Él tiene barba", "Él lleva peinado"], es: ["Él tiene bigote", "Él tiene perilla", "Él tiene barba", "Él lleva peinado"], en: ["Él tiene bigote", "Él tiene perilla", "Él tiene barba", "Él lleva peinado"] }, correct: 2 },
+                    { q: { pt: "Para dizer 'Acho a ideia boa' (opinião), usamos:", es: "Para decir 'Acho a ideia boa' (opinión), usamos:", en: "To say 'I think the idea is good' (opinion), we use:" }, options: { pt: ["Parecer", "Parecerse", "Llevarse", "Caer"], es: ["Parecer", "Parecerse", "Llevarse", "Caer"], en: ["Parecer", "Parecerse", "Llevarse", "Caer"] }, correct: 0 }
+                ],
+                4: [
+                    { q: { pt: "Comparativo de superioridade: 'Mi casa es _______ grande que la tuya.'", es: "Comparativo de superioridad: 'Mi casa es _______ grande que la tuya.'", en: "Comparative of superiority: 'Mi casa es _______ grande que la tuya.'" }, options: { pt: ["tan", "más", "mucho", "muy"], es: ["tan", "más", "mucho", "muy"], en: ["tan", "más", "mucho", "muy"] }, correct: 1 },
+                    { q: { pt: "Comparativo de igualdade (adjetivo): 'Esta casa es _______ luminosa como la otra.'", es: "Comparativo de igualdad (adjetivo): 'Esta casa es _______ luminosa como la otra.'", en: "Comparative of equality (adjective): 'Esta casa es _______ luminosa como la otra.'" }, options: { pt: ["tanta", "tan", "tanto", "igual"], es: ["tanta", "tan", "tanto", "igual"], en: ["tanta", "tan", "tanto", "igual"] }, correct: 1 },
+                    { q: { pt: "Pronome possessivo: 'Tu coche es rojo, _______ (o meu) es blanco.'", es: "Pronombre posesivo: 'Tu coche es rojo, _______ es blanco.'", en: "Possessive pronoun: 'Tu coche es rojo, _______ (mine) es blanco.'" }, options: { pt: ["el mio", "lo mio", "el mío", "mi"], es: ["el mio", "lo mio", "el mío", "mi"], en: ["el mio", "lo mio", "el mío", "mi"] }, correct: 2 },
+                    { q: { pt: "Preposição: 'La lámpara está _______ del sofá.' (em cima)", es: "Preposición: 'La lámpara está _______ del sofá.' (em cima)", en: "Preposition: 'La lámpara está _______ del sofá.' (on top)" }, options: { pt: ["debajo", "detrás", "delante", "encima"], es: ["debajo", "detrás", "delante", "encima"], en: ["debajo", "detrás", "delante", "encima"] }, correct: 3 },
+                    { q: { pt: "Tradução de 'Longe daqui':", es: "Traducción de 'Longe daqui':", en: "Translation of 'Far from here':" }, options: { pt: ["Cerca de aquí", "Al lado", "Lejos de aquí", "En el centro"], es: ["Cerca de aquí", "Al lado", "Lejos de aquí", "En el centro"], en: ["Cerca de aquí", "Al lado", "Lejos de aquí", "En el centro"] }, correct: 2 },
+                    { q: { pt: "Qual verbo se usa para expressar gostos intensos (adorar)?", es: "¿Qué verbo se usa para expresar gustos intensos?", en: "Which verb is used to express intense likes (to love)?" }, options: { pt: ["Gustar", "Encantar", "Preferir", "Odiar"], es: ["Gustar", "Encantar", "Preferir", "Odiar"], en: ["Gustar", "Encantar", "Preferir", "Odiar"] }, correct: 1 },
+                    { q: { pt: "Diferença Ser/Estar: 'La casa _______ en el centro.'", es: "Diferencia Ser/Estar: 'La casa _______ en el centro.'", en: "Ser/Estar difference: 'La casa _______ en el centro.'" }, options: { pt: ["es", "está", "hay", "tiene"], es: ["es", "está", "hay", "tiene"], en: ["es", "está", "hay", "tiene"] }, correct: 1 },
+                    { q: { pt: "Irregular de 'más bueno':", es: "Irregular de 'más bueno':", en: "Irregular of 'más bueno':" }, options: { pt: ["Más bien", "Menor", "Mayor", "Mejor"], es: ["Más bien", "Menor", "Mayor", "Mejor"], en: ["Más bien", "Menor", "Mayor", "Mejor"] }, correct: 3 },
+                    { q: { pt: "Complete: 'Tiene _______ habitaciones como mi casa.'", es: "Completa: 'Tiene _______ habitaciones como mi casa.'", en: "Complete: 'Tiene _______ habitaciones como mi casa.'" }, options: { pt: ["tantas", "tan", "tantos", "tanto"], es: ["tantas", "tan", "tantos", "tanto"], en: ["tantas", "tan", "tantos", "tanto"] }, correct: 0 },
+                    { q: { pt: "Um lugar sem barulho é:", es: "Un lugar sin ruido es:", en: "A place without noise is:" }, options: { pt: ["Ruidoso", "Luminoso", "Tranquilo", "Pequeño"], es: ["Ruidoso", "Luminoso", "Tranquilo", "Pequeño"], en: ["Ruidoso", "Luminoso", "Tranquilo", "Pequeño"] }, correct: 2 }
+                ],
+                5: [
+                    { q: { pt: "O gerúndio do verbo LEER é:", es: "El gerundio del verbo LEER es:", en: "The gerund of the verb LEER is:" }, options: { pt: ["Leiendo", "Leyendo", "Lendo", "Leendo"], es: ["Leiendo", "Leyendo", "Lendo", "Leendo"], en: ["Leiendo", "Leyendo", "Lendo", "Leendo"] }, correct: 1 },
+                    { q: { pt: "Qual estrutura expressa uma ação ocorrendo agora mesmo?", es: "¿Qué estructura expresa una acción ocurriendo ahora mismo?", en: "Which structure expresses an action happening right now?" }, options: { pt: ["Ir a + infinitivo", "Estar + gerundio", "Tener que + infinitivo", "Poder + infinitivo"], es: ["Ir a + infinitivo", "Estar + gerundio", "Tener que + infinitivo", "Poder + infinitivo"], en: ["Ir a + infinitivo", "Estar + gerundio", "Tener que + infinitivo", "Poder + infinitivo"] }, correct: 1 },
+                    { q: { pt: "Para pedir um favor formalmente:", es: "Para pedir un favor formalmente:", en: "To ask a favor formally:" }, options: { pt: ["¿Me pasas la sal?", "¿Me abres la puerta?", "¿Le importaría abrirme la puerta?", "Abre la puerta."], es: ["¿Me pasas la sal?", "¿Me abres la puerta?", "¿Le importaría abrirme la puerta?", "Abre la puerta."], en: ["¿Me pasas la sal?", "¿Me abres la puerta?", "¿Le importaría abrirme la puerta?", "Abre la puerta."] }, correct: 2 },
+                    { q: { pt: "Complete: 'No puedo ir. _______ tengo que estudiar.' (Justificativa)", es: "Completa: 'No puedo ir. _______ tengo que estudiar.' (Justificación)", en: "Complete: 'No puedo ir. _______ tengo que estudiar.' (Justification)" }, options: { pt: ["Por qué", "Es que", "Para que", "Como"], es: ["Por qué", "Es que", "Para que", "Como"], en: ["Por qué", "Es que", "Para que", "Como"] }, correct: 1 },
+                    { q: { pt: "Como se diz 'Você me empresta o carro?'", es: "¿Cómo se dice 'Você me empresta o carro?'", en: "How do you say 'Can you lend me the car?'" }, options: { pt: ["¿Me das tu coche?", "¿Me pasas tu coche?", "¿Me prestas tu coche?", "¿Me tienes tu coche?"], es: ["¿Me das tu coche?", "¿Me pasas tu coche?", "¿Me prestas tu coche?", "¿Me tienes tu coche?"], en: ["¿Me das tu coche?", "¿Me pasas tu coche?", "¿Me prestas tu coche?", "¿Me tienes tu coche?"] }, correct: 2 },
+                    { q: { pt: "No restaurante, para pedir a conta:", es: "En el restaurante, para pedir la cuenta:", en: "In the restaurant, to ask for the bill:" }, options: { pt: ["¿Me trae la cuenta?", "¿Me da la cuenta?", "¿Me pasa la cuenta?", "¿Me pone la cuenta?"], es: ["¿Me trae la cuenta?", "¿Me da la cuenta?", "¿Me pasa la cuenta?", "¿Me pone la cuenta?"], en: ["¿Me trae la cuenta?", "¿Me da la cuenta?", "¿Me pasa la cuenta?", "¿Me pone la cuenta?"] }, correct: 0 },
+                    { q: { pt: "Para apresentar alguém:", es: "Para presentar a alguien:", en: "To introduce someone:" }, options: { pt: ["Te digo a Juan.", "Te presento a Juan.", "Aquí está Juan.", "Este es el Juan."], es: ["Te digo a Juan.", "Te presento a Juan.", "Aquí está Juan.", "Este es el Juan."], en: ["Te digo a Juan.", "Te presento a Juan.", "Aquí está Juan.", "Este es el Juan."] }, correct: 1 },
+                    { q: { pt: "Despedida comum para 'até a próxima':", es: "Despedida común para 'até a próxima':", en: "Common farewell for 'see you next time':" }, options: { pt: ["¡Cuánto tiempo!", "¡Qué tal!", "Hasta la próxima.", "Un placer."], es: ["¡Cuánto tiempo!", "¡Qué tal!", "Hasta la próxima.", "Un placer."], en: ["¡Cuánto tiempo!", "¡Qué tal!", "Hasta la próxima.", "Un placer."] }, correct: 2 },
+                    { q: { pt: "O gerúndio de DORMIR é:", es: "El gerundio de DORMIR es:", en: "The gerund of DORMIR is:" }, options: { pt: ["Dormiendo", "Duermiendo", "Durmiendo", "Dormiendo"], es: ["Dormiendo", "Duermiendo", "Durmiendo", "Dormiendo"], en: ["Dormiendo", "Duermiendo", "Durmiendo", "Dormiendo"] }, correct: 2 },
+                    { q: { pt: "Complete com o pronome: 'Las llaves, ¿ _______ tienes?'", es: "Completa con el pronombre: 'Las llaves, ¿ _______ tienes?'", en: "Complete with the pronoun: 'Las llaves, ¿ _______ tienes?'" }, options: { pt: ["lo", "la", "los", "las"], es: ["lo", "la", "los", "las"], en: ["lo", "la", "los", "las"] }, correct: 3 }
+                ],
+                6: [
+                    { q: { pt: "O Pretérito Perfecto usa o verbo auxiliar:", es: "El Pretérito Perfecto usa el verbo auxiliar:", en: "The Pretérito Perfecto uses the auxiliary verb:" }, options: { pt: ["Estar", "Ser", "Tener", "Haber"], es: ["Estar", "Ser", "Tener", "Haber"], en: ["Estar", "Ser", "Tener", "Haber"] }, correct: 3 },
+                    { q: { pt: "Particípio irregular de HACER:", es: "Participio irregular de HACER:", en: "Irregular participle of HACER:" }, options: { pt: ["Hacido", "Hecho", "Hago", "Haciendo"], es: ["Hacido", "Hecho", "Hago", "Haciendo"], en: ["Hacido", "Hecho", "Hago", "Haciendo"] }, correct: 1 },
+                    { q: { pt: "Tradução de 'Ainda não vi o filme':", es: "Traducción de 'Ainda não vi o filme':", en: "Translation of 'I haven't seen the movie yet':" }, options: { pt: ["Ya he visto la película.", "Todavía no he visto la película.", "Nunca veo la película.", "Aún vi la película."], es: ["Ya he visto la película.", "Todavía no he visto la película.", "Nunca veo la película.", "Aún vi la película."], en: ["Ya he visto la película.", "Todavía no he visto la película.", "Nunca veo la película.", "Aún vi la película."] }, correct: 1 },
+                    { q: { pt: "Qual marcador de tempo usamos com o Pretérito Perfecto?", es: "¿Qué marcador temporal usamos con el Pretérito Perfecto?", en: "Which time marker do we use with the Pretérito Perfecto?" }, options: { pt: ["Ayer", "El año pasado", "Esta semana", "Hace dos días"], es: ["Ayer", "El año pasado", "Esta semana", "Hace dos días"], en: ["Ayer", "El año pasado", "Esta semana", "Hace dos días"] }, correct: 2 },
+                    { q: { pt: "Para expressar planos ou intenções:", es: "Para expresar planes o intenciones:", en: "To express plans or intentions:" }, options: { pt: ["Ir a + infinitivo", "Pensar + infinitivo", "Querer + infinitivo", "Todas estão corretas"], es: ["Ir a + infinitivo", "Pensar + infinitivo", "Querer + infinitivo", "Todas son correctas"], en: ["Ir a + infinitivo", "Pensar + infinitivo", "Querer + infinitivo", "All are correct"] }, correct: 3 },
+                    { q: { pt: "Complete: 'A mí me _______ (parecer) un horror la obra.'", es: "Completa: 'A mí me _______ (parecer) un horror la obra.'", en: "Complete: 'A mí me _______ (parecer) un horror la obra.'" }, options: { pt: ["parecieron", "parecí", "pareció", "parece"], es: ["parecieron", "parecí", "pareció", "parece"], en: ["parecieron", "parecí", "pareció", "parece"] }, correct: 2 },
+                    { q: { pt: "Frase exclamativa correta:", es: "Frase exclamativa correcta:", en: "Correct exclamatory phrase:" }, options: { pt: ["¡Qué maravilla!", "¡Cuál maravilla!", "¡Cómo maravilla!", "¡Cuánto maravilla!"], es: ["¡Qué maravilla!", "¡Cuál maravilla!", "¡Cómo maravilla!", "¡Cuánto maravilla!"], en: ["¡Qué maravilla!", "¡Cuál maravilla!", "¡Cómo maravilla!", "¡Cuánto maravilla!"] }, correct: 0 },
+                    { q: { pt: "Particípio irregular de ESCRIBIR:", es: "Participio irregular de ESCRIBIR:", en: "Irregular participle of ESCRIBIR:" }, options: { pt: ["Escribido", "Escrito", "Escripto", "Escribiendo"], es: ["Escribido", "Escrito", "Escripto", "Escribiendo"], en: ["Escribido", "Escrito", "Escripto", "Escribiendo"] }, correct: 1 },
+                    { q: { pt: "Diferença Perfecto x Indefinido: Ação num tempo NÃO finalizado (hoje, este ano) exige...", es: "Diferencia Perfecto x Indefinido: Acción en tiempo NO finalizado (hoy, este año) exige...", en: "Perfecto vs Indefinido diff: Action in an UNFINISHED time (today, this year) requires..." }, options: { pt: ["Pretérito Indefinido", "Pretérito Perfecto", "Presente", "Gerundio"], es: ["Pretérito Indefinido", "Pretérito Perfecto", "Presente", "Gerundio"], en: ["Pretérito Indefinido", "Pretérito Perfecto", "Presente", "Gerundio"] }, correct: 1 },
+                    { q: { pt: "Complete (Vosotros): '¿Ya _______ comido?'", es: "Completa (Vosotros): '¿Ya _______ comido?'", en: "Complete (Vosotros): '¿Ya _______ comido?'" }, options: { pt: ["hemos", "habéis", "han", "has"], es: ["hemos", "habéis", "han", "has"], en: ["hemos", "habéis", "han", "has"] }, correct: 1 }
+                ],
+                7: [
+                    { q: { pt: "Para não repetir 'el libro', qual pronome de Objeto Direto (OD) usamos?", es: "Para no repetir 'el libro', ¿qué pronombre de Objeto Directo (OD) usamos?", en: "To not repeat 'el libro', which Direct Object (OD) pronoun do we use?" }, options: { pt: ["Lo", "La", "Los", "Las"], es: ["Lo", "La", "Los", "Las"], en: ["Lo", "La", "Los", "Las"] }, correct: 0 },
+                    { q: { pt: "Complete: '¿Has comprado las manzanas? - Sí, ya _______ he comprado.'", es: "Completa: '¿Has comprado las manzanas? - Sí, ya _______ he comprado.'", en: "Complete: '¿Has comprado las manzanas? - Sí, ya _______ he comprado.'" }, options: { pt: ["los", "lo", "la", "las"], es: ["los", "lo", "la", "las"], en: ["los", "lo", "la", "las"] }, correct: 3 },
+                    { q: { pt: "Para explicar uma receita de forma impessoal (ex: Frita-se a batata):", es: "Para explicar una receta de forma impersonal:", en: "To explain a recipe impersonally:" }, options: { pt: ["Se fríe la patata.", "Fríe la patata.", "Se fríen la patata.", "Frito la patata."], es: ["Se fríe la patata.", "Fríe la patata.", "Se fríen la patata.", "Frito la patata."], en: ["Se fríe la patata.", "Fríe la patata.", "Se fríen la patata.", "Frito la patata."] }, correct: 0 },
+                    { q: { pt: "Verbo SOLER (Costumar) no 'Yo':", es: "Verbo SOLER (Acostumbrar) en 'Yo':", en: "Verb SOLER (to be accustomed to) in 'Yo':" }, options: { pt: ["Solo", "Suelo", "Solgo", "Suelgo"], es: ["Solo", "Suelo", "Solgo", "Suelgo"], en: ["Solo", "Suelo", "Solgo", "Suelgo"] }, correct: 1 },
+                    { q: { pt: "Onde o pronome OD é colocado se o verbo está no Infinitivo (ex: Preparar)?", es: "¿Dónde se coloca el pronombre OD si el verbo está en Infinitivo (ej: Preparar)?", en: "Where is the OD pronoun placed if the verb is in the Infinitive?" }, options: { pt: ["Antes separado: lo preparar", "Depois junto: prepararlo", "Não se usa", "Antes junto: lopreparar"], es: ["Antes separado: lo preparar", "Después junto: prepararlo", "No se usa", "Antes junto: lopreparar"], en: ["Antes separado: lo preparar", "Después junto: prepararlo", "No se usa", "Antes junto: lopreparar"] }, correct: 1 },
+                    { q: { pt: "Conector de adição para continuar uma ideia positiva:", es: "Conector de adición para continuar una idea positiva:", en: "Addition connector to continue a positive idea:" }, options: { pt: ["Pero", "Ni", "Además", "Sin embargo"], es: ["Pero", "Ni", "Además", "Sin embargo"], en: ["Pero", "Ni", "Además", "Sin embargo"] }, correct: 2 },
+                    { q: { pt: "Uma dieta sem carne, mas com derivados de animais (leite, ovos) é:", es: "Una dieta sin carne, pero con derivados de animales (leche, huevos) es:", en: "A diet without meat, but with animal derivatives (milk, eggs) is:" }, options: { pt: ["Vegana", "Vegetariana (Ovolactovegetariana)", "Crudivegana", "Flexitariana"], es: ["Vegana", "Vegetariana (Ovolactovegetariana)", "Crudivegana", "Flexitariana"], en: ["Vegana", "Vegetariana (Ovolactovegetariana)", "Crudivegana", "Flexitariana"] }, correct: 1 },
+                    { q: { pt: "Para dizer 'Tem que...' (obrigação geral):", es: "Para decir 'Tem que...' (obligación general):", en: "To say 'One has to...' (general obligation):" }, options: { pt: ["Hay que + Infinitivo", "Tener que + Infinitivo", "Deber + Infinitivo", "Se tiene + Infinitivo"], es: ["Hay que + Infinitivo", "Tener que + Infinitivo", "Deber + Infinitivo", "Se tiene + Infinitivo"], en: ["Hay que + Infinitivo", "Tener que + Infinitivo", "Deber + Infinitivo", "Se tiene + Infinitivo"] }, correct: 0 },
+                    { q: { pt: "Um quarto de quilo é:", es: "Un cuarto de kilo es:", en: "A quarter of a kilo is:" }, options: { pt: ["500g", "250g", "100g", "750g"], es: ["500g", "250g", "100g", "750g"], en: ["500g", "250g", "100g", "750g"] }, correct: 1 },
+                    { q: { pt: "Para avaliar a textura/sabor de uma comida agora:", es: "Para evaluar la textura/sabor de una comida ahora:", en: "To evaluate the texture/taste of a food now:" }, options: { pt: ["La sopa es buena.", "La sopa está buena.", "La sopa tiene buena.", "La sopa hay buena."], es: ["La sopa es buena.", "La sopa está buena.", "La sopa tiene buena.", "La sopa hay buena."], en: ["La sopa es buena.", "La sopa está buena.", "La sopa tiene buena.", "La sopa hay buena."] }, correct: 1 }
+                ],
+                8: [
+                    { q: { pt: "O verbo DOLER concorda com:", es: "El verbo DOLER concuerda con:", en: "The verb DOLER agrees with:" }, options: { pt: ["A pessoa", "A coisa que dói", "O sujeito oculto", "O pronome"], es: ["La persona", "La cosa que duele", "El sujeto tácito", "El pronombre"], en: ["La persona", "La cosa que duele", "El sujeto tácito", "El pronombre"] }, correct: 1 },
+                    { q: { pt: "Como se diz 'Estou com dor de cabeça'?", es: "¿Cómo se dice 'Estou com dor de cabeça'?", en: "How do you say 'I have a headache'?" }, options: { pt: ["Tengo dolor la cabeza.", "Me duele la cabeza.", "Duele mi cabeza.", "Yo duelo la cabeza."], es: ["Tengo dolor la cabeza.", "Me duele la cabeza.", "Duele mi cabeza.", "Yo duelo la cabeza."], en: ["Tengo dolor la cabeza.", "Me duele la cabeza.", "Duele mi cabeza.", "Yo duelo la cabeza."] }, correct: 1 },
+                    { q: { pt: "Imperativo afirmativo (Tú) de DESCANSAR:", es: "Imperativo afirmativo (Tú) de DESCANSAR:", en: "Affirmative imperative (Tú) of DESCANSAR:" }, options: { pt: ["Descansa", "Descanse", "Descansas", "Descanses"], es: ["Descansa", "Descanse", "Descansas", "Descanses"], en: ["Descansa", "Descanse", "Descansas", "Descanses"] }, correct: 0 },
+                    { q: { pt: "Imperativo afirmativo irregular (Tú) de TENER:", es: "Imperativo afirmativo irregular (Tú) de TENER:", en: "Irregular affirmative imperative (Tú) of TENER:" }, options: { pt: ["Tiene", "Tene", "Ten", "Tenga"], es: ["Tiene", "Tene", "Ten", "Tenga"], en: ["Tiene", "Tene", "Ten", "Tenga"] }, correct: 2 },
+                    { q: { pt: "Imperativo de HACER (Tú):", es: "Imperativo de HACER (Tú):", en: "Imperative of HACER (Tú):" }, options: { pt: ["Hace", "Haga", "Haz", "Hacé"], es: ["Hace", "Haga", "Haz", "Hacé"], en: ["Hace", "Haga", "Haz", "Hacé"] }, correct: 2 },
+                    { q: { pt: "Para dizer 'Tome um comprimido' (reflexivo TÓMATE):", es: "Para decir 'Tome um comprimido' (reflexivo TÓMATE):", en: "To say 'Take a pill' (reflexive TÓMATE):" }, options: { pt: ["Tómate una pastilla.", "Toma te una pastilla.", "Te toma una pastilla.", "Tomate una pastilla."], es: ["Tómate una pastilla.", "Toma te una pastilla.", "Te toma una pastilla.", "Tomate una pastilla."], en: ["Tómate una pastilla.", "Toma te una pastilla.", "Te toma una pastilla.", "Tomate una pastilla."] }, correct: 0 },
+                    { q: { pt: "Um estado passageiro de saúde ('Estou doente') usa o verbo:", es: "Un estado pasajero de salud ('Estou doente') usa el verbo:", en: "A temporary state of health ('I am sick') uses the verb:" }, options: { pt: ["Ser (Soy enfermo)", "Tener (Tengo enfermo)", "Estar (Estoy enfermo)", "Sentir (Siento enfermo)"], es: ["Ser (Soy enfermo)", "Tener (Tengo enfermo)", "Estar (Estoy enfermo)", "Sentir (Siento enfermo)"], en: ["Ser (Soy enfermo)", "Tener (Tengo enfermo)", "Estar (Estoy enfermo)", "Sentir (Siento enfermo)"] }, correct: 2 },
+                    { q: { pt: "Se a garganta inflama, você tem problemas para:", es: "Si la garganta se inflama, tienes problemas para:", en: "If the throat is inflamed, you have problems to:" }, options: { pt: ["Caminar", "Tragar", "Mirar", "Oír"], es: ["Caminar", "Tragar", "Mirar", "Oír"], en: ["Caminar", "Tragar", "Mirar", "Oír"] }, correct: 1 },
+                    { q: { pt: "Complete: 'Mis hijos están _______ porque mañana vamos de viaje.'", es: "Completa: 'Mis hijos están _______ porque mañana vamos de viaje.'", en: "Complete: 'Mis hijos están _______ porque mañana vamos de viaje.'" }, options: { pt: ["nerviosos", "nerviosos", "nerviosos", "nerviosos"], es: ["nerviosos", "nerviosos", "nerviosos", "nerviosos"], en: ["nerviosos", "nerviosos", "nerviosos", "nerviosos"] }, correct: 0 },
+                    { q: { pt: "Imperativo formal (Usted) de COMER:", es: "Imperativo formal (Usted) de COMER:", en: "Formal imperative (Usted) of COMER:" }, options: { pt: ["Come", "Coma", "Comas", "Coman"], es: ["Come", "Coma", "Comas", "Coman"], en: ["Come", "Coma", "Comas", "Coman"] }, correct: 1 }
+                ]
+            }
+        };
+
+        let currentChart = null;
+
+        function exportarBackup() {
+            const dados = JSON.stringify(localStorage);
+            const blob = new Blob([dados], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            const dataHoje = new Date().toISOString().split('T')[0];
+            a.download = `espanhol_A2_backup_${dataHoje}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function importarBackup(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const dados = JSON.parse(e.target.result);
+                    const confirmMsg = currentLang === 'pt' ? "Substituir seus dados atuais pelo backup?" : (currentLang === 'es' ? "¿Reemplazar datos con los del respaldo?" : "Replace current data with backup?");
+                    if(confirm(confirmMsg)) {
+                        localStorage.clear();
+                        for (let key in dados) { localStorage.setItem(key, dados[key]); }
+                        alert(currentLang === 'pt' ? "✅ Restaurado!" : (currentLang === 'es' ? "✅ ¡Restaurado!" : "✅ Restored!"));
+                        location.reload();
+                    }
+                } catch (error) { alert("❌ Error."); }
+            };
+            reader.readAsText(file);
+            event.target.value = ''; 
+        }
+
+        function resetProgress() {
+            const confirmMsg = currentLang === 'pt' ? "⚠️ Apagar histórico de exercícios do A2?" : (currentLang === 'es' ? "⚠️ ¿Borrar historial de ejercicios A2?" : "⚠️ Delete A2 exercise history?");
+            if(confirm(confirmMsg)) {
+                const currentLangPref = localStorage.getItem('appLang') || 'pt';
+                const currentTheme = localStorage.getItem('appTheme') || 'light';
+                const currentAlerts = localStorage.getItem('appAlertsA2') || 'false';
+                localStorage.clear();
+                localStorage.setItem('appLang', currentLangPref);
+                localStorage.setItem('appTheme', currentTheme);
+                localStorage.setItem('appAlertsA2', currentAlerts);
+                alert("✨ Reset!");
+                location.reload(); 
+            }
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            html.classList.toggle('dark');
+            const isDark = html.classList.contains('dark');
+            localStorage.setItem('appTheme', isDark ? 'dark' : 'light');
+            document.getElementById('theme-btn').textContent = isDark ? '☀️' : '🌙';
+        }
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('appLang', currentLang);
+            
+            const headerIcon = document.getElementById('header-icon');
+            if(headerIcon) {
+                if(lang === 'pt') headerIcon.textContent = '🇧🇷';
+                else if(lang === 'en') headerIcon.textContent = '🇬🇧';
+                else headerIcon.textContent = '🇪🇸';
+            }
+            
+            updateUI();
+        }
+
+        function toggleDailyStudy() {
+            const isChecked = document.getElementById('daily-study-check').checked;
+            const today = new Date().toISOString().split('T')[0];
+            if (isChecked) { localStorage.setItem('lastStudyDateA2', today); } 
+            else { localStorage.removeItem('lastStudyDateA2'); }
+        }
+
+        function updateDailyStudyUI() {
+            const today = new Date().toISOString().split('T')[0];
+            const lastStudy = localStorage.getItem('lastStudyDateA2');
+            document.getElementById('daily-study-check').checked = (lastStudy === today);
+        }
+
+        function toggleAlerts(isInit = false) {
+            if (!isInit) alertsEnabled = !alertsEnabled;
+            else alertsEnabled = true;
+            localStorage.setItem('appAlertsA2', alertsEnabled);
+            const btn = document.getElementById('alert-btn');
+            if (alertsEnabled) {
+                if (!isInit && "Notification" in window && Notification.permission !== "granted") { Notification.requestPermission(); }
+                btn.innerHTML = `✅ <span data-i18n="btnAlertActive">${uiTranslations[currentLang].btnAlertActive}</span>`;
+                btn.classList.replace('bg-indigo-500', 'bg-emerald-600');
+                btn.classList.replace('hover:bg-indigo-600', 'hover:bg-emerald-700');
+            } else {
+                btn.innerHTML = `🔔 <span data-i18n="btnAlert">${uiTranslations[currentLang].btnAlert}</span>`;
+                btn.classList.replace('bg-emerald-600', 'bg-indigo-500');
+                btn.classList.replace('hover:bg-emerald-700', 'hover:bg-indigo-600');
+            }
+        }
+
+        function showToastAlert() {
+            const toast = document.getElementById('toast-alert');
+            toast.classList.remove('bottom-[-150px]', 'opacity-0');
+            toast.classList.add('bottom-8', 'opacity-100');
+            setTimeout(closeToastAlert, 12000); 
+        }
+
+        function closeToastAlert() {
+            const toast = document.getElementById('toast-alert');
+            toast.classList.remove('bottom-8', 'opacity-100');
+            toast.classList.add('bottom-[-150px]', 'opacity-0');
+        }
+
+        function checkRoutineAlert() {
+            if (!alertsEnabled) return;
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            if (hours === 0 && minutes === 0) hasAlertedToday = false;
+            if (hours === 22 && minutes === 10 && !hasAlertedToday) {
+                const today = now.toISOString().split('T')[0];
+                const lastStudy = localStorage.getItem('lastStudyDateA2');
+                if (lastStudy !== today) {
+                    showToastAlert();
+                    if ("Notification" in window && Notification.permission === "granted") {
+                        const title = currentLang === 'pt' ? '⏰ Lembrete de Estudo!' : (currentLang === 'es' ? '⏰ ¡Recordatorio de Estudio!' : '⏰ Study Reminder!');
+                        const bodyMsg = currentLang === 'pt' ? 'Já são 22:10 e você ainda não marcou o Estudo do Dia.' : (currentLang === 'es' ? 'Ya son las 22:10 y aún no has marcado el Estudio del Día.' : "It's 10:10 PM and you haven't studied today.");
+                        new Notification(title, { body: bodyMsg });
+                    }
+                    hasAlertedToday = true;
+                }
+            }
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            html.classList.toggle('dark');
+            const isDark = html.classList.contains('dark');
+            localStorage.setItem('appTheme', isDark ? 'dark' : 'light');
+            document.getElementById('theme-btn').textContent = isDark ? '☀️' : '🌙';
+        }
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('appLang', currentLang);
+            
+            const headerIcon = document.getElementById('header-icon');
+            if(headerIcon) {
+                if(lang === 'pt') headerIcon.textContent = '🇧🇷';
+                else if(lang === 'en') headerIcon.textContent = '🇬🇧';
+                else headerIcon.textContent = '🇪🇸';
+            }
+            
+            updateUI();
+        }
+        
+        function exportarBackup() {
+            const dados = JSON.stringify(localStorage);
+            const blob = new Blob([dados], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            const dataHoje = new Date().toISOString().split('T')[0];
+            a.download = `espanhol_A2_backup_${dataHoje}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function importarBackup(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const dados = JSON.parse(e.target.result);
+                    const confirmMsg = currentLang === 'pt' ? "Substituir seus dados atuais pelo backup?" : (currentLang === 'es' ? "¿Reemplazar datos con los del respaldo?" : "Replace current data with backup?");
+                    if(confirm(confirmMsg)) {
+                        localStorage.clear();
+                        for (let key in dados) { localStorage.setItem(key, dados[key]); }
+                        alert(currentLang === 'pt' ? "✅ Restaurado!" : (currentLang === 'es' ? "✅ ¡Restaurado!" : "✅ Restored!"));
+                        location.reload();
+                    }
+                } catch (error) { alert("❌ Error."); }
+            };
+            reader.readAsText(file);
+            event.target.value = ''; 
+        }
+
+        function resetProgress() {
+            const confirmMsg = currentLang === 'pt' ? "⚠️ Apagar histórico de exercícios do A2?" : (currentLang === 'es' ? "⚠️ ¿Borrar historial de ejercicios A2?" : "⚠️ Delete A2 exercise history?");
+            if(confirm(confirmMsg)) {
+                const currentLangPref = localStorage.getItem('appLang') || 'pt';
+                const currentTheme = localStorage.getItem('appTheme') || 'light';
+                const currentAlerts = localStorage.getItem('appAlertsA2') || 'false';
+                localStorage.clear();
+                localStorage.setItem('appLang', currentLangPref);
+                localStorage.setItem('appTheme', currentTheme);
+                localStorage.setItem('appAlertsA2', currentAlerts);
+                alert("✨ Reset!");
+                location.reload(); 
+            }
+        }
+
+        function toggleDailyStudy() {
+            const isChecked = document.getElementById('daily-study-check').checked;
+            const today = new Date().toISOString().split('T')[0];
+            if (isChecked) { localStorage.setItem('lastStudyDateA2', today); } 
+            else { localStorage.removeItem('lastStudyDateA2'); }
+        }
+
+        function toggleAlerts(isInit = false) {
+            if (!isInit) alertsEnabled = !alertsEnabled;
+            else alertsEnabled = true;
+            localStorage.setItem('appAlertsA2', alertsEnabled);
+            const btn = document.getElementById('alert-btn');
+            if (alertsEnabled) {
+                if (!isInit && "Notification" in window && Notification.permission !== "granted") { Notification.requestPermission(); }
+                btn.innerHTML = `✅ <span data-i18n="btnAlertActive">${uiTranslations[currentLang].btnAlertActive}</span>`;
+                btn.classList.replace('bg-indigo-500', 'bg-emerald-600');
+                btn.classList.replace('hover:bg-indigo-600', 'hover:bg-emerald-700');
+            } else {
+                btn.innerHTML = `🔔 <span data-i18n="btnAlert">${uiTranslations[currentLang].btnAlert}</span>`;
+                btn.classList.replace('bg-emerald-600', 'bg-indigo-500');
+                btn.classList.replace('hover:bg-emerald-700', 'hover:bg-indigo-600');
+            }
+        }
+
+        function playAudio(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'es-ES';
+                utterance.rate = 0.65;
+                const voices = window.speechSynthesis.getVoices();
+                const esVoice = voices.find(voice => voice.lang.includes('es-ES') || voice.lang.includes('es'));
+                if (esVoice) utterance.voice = esVoice;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        function toggleFlashcard(element, textToRead) {
+            element.classList.toggle('flipped');
+            if (element.classList.contains('flipped')) { playAudio(textToRead); } 
+            else { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); }
+        }
+
+        function initCharts() {
+            const canvas = document.getElementById('verbsChart');
+            if(!canvas) return;
+            if(currentChart) currentChart.destroy();
+
+            const typeCounts = {};
+            appData.verbs.forEach(v => {
+                let simplifiedType = v.type;
+                if(simplifiedType.startsWith('Regular')) simplifiedType = currentLang === 'pt' ? 'Regulares' : (currentLang === 'es' ? 'Regulares' : 'Regular');
+                else if(simplifiedType.startsWith('Irregular') && simplifiedType.includes('Reflexivo')) simplifiedType = currentLang === 'en' ? 'Irregular (Reflexive)' : 'Irregulares (Reflexivos)';
+                else if(simplifiedType.startsWith('Irregular')) simplifiedType = currentLang === 'en' ? 'Irregular' : 'Irregulares';
+                else if(simplifiedType.startsWith('Totalmente')) simplifiedType = currentLang === 'pt' ? 'Totalmente Irregulares' : (currentLang === 'es' ? 'Totalmente Irregulares' : 'Totally Irregular');
+                typeCounts[simplifiedType] = (typeCounts[simplifiedType] || 0) + 1;
+            });
+
+            const labels = Object.keys(typeCounts);
+            const data = Object.values(typeCounts);
+            const bgColors = ['#51bdca', '#f59e0b', '#10b981', '#8b5cf6', '#64748b'];
+
+            currentChart = new Chart(canvas, {
+                type: 'doughnut',
+                data: { labels: labels, datasets: [{ data: data, backgroundColor: bgColors, borderWidth: 2, borderColor: '#ffffff' }] },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } }, cutout: '65%' }
+            });
+        }
+
+        function setupNavigation() {
+            const buttons = document.querySelectorAll('.nav-btn');
+            const mobileSelect = document.getElementById('mobile-nav');
+            const sections = document.querySelectorAll('.view-section');
+
+            const switchView = (targetId) => {
+                sections.forEach(sec => sec.classList.add('hidden'));
+                document.getElementById(targetId).classList.remove('hidden');
+                buttons.forEach(btn => {
+                    if(btn.dataset.target === targetId) {
+                        if(targetId === 'tutor-ia') { btn.classList.add('bg-mergulho-800', 'text-amber-100'); btn.classList.remove('text-amber-200'); } 
+                        else { btn.classList.add('bg-mergulho-800', 'text-white'); btn.classList.remove('text-mergulho-100'); }
+                    } else {
+                        btn.classList.remove('bg-mergulho-800', 'text-white', 'text-amber-100');
+                        if(btn.dataset.target === 'tutor-ia') { btn.classList.add('text-amber-200'); } 
+                        else { btn.classList.add('text-mergulho-100'); }
+                    }
+                });
+                mobileSelect.value = targetId;
+                if(targetId === 'visao-geral' && !currentChart) initCharts();
+                if(targetId === 'tutor-ia') { const chatMessages = document.getElementById('chat-messages'); chatMessages.scrollTop = chatMessages.scrollHeight; }
+            };
+
+            buttons.forEach(btn => btn.addEventListener('click', (e) => switchView(e.target.dataset.target)));
+            mobileSelect.addEventListener('change', (e) => switchView(e.target.value));
+        }
+
+        function renderUnitTabs(activeId = 1) {
+            const container = document.getElementById('unit-tabs');
+            container.innerHTML = '';
+            appData.units.forEach((unit) => {
+                const btn = document.createElement('button');
+                const isActive = unit.id === activeId;
+                const langContent = unit.title[currentLang] ? currentLang : 'pt';
+                btn.className = `unit-tab-btn px-4 py-2 rounded-lg font-medium text-sm transition-colors ${isActive ? 'bg-mergulho-600 text-white shadow-sm' : 'bg-stone-100 text-stone-600 hover:bg-stone-200 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600'}`;
+                btn.textContent = langContent === 'es' ? `Unidad ${unit.id}` : (currentLang === 'en' ? `Unit ${unit.id}` : `Unidade ${unit.id}`);
+                btn.onclick = () => {
+                    document.querySelectorAll('.unit-tab-btn').forEach(b => {
+                        b.classList.remove('bg-mergulho-600', 'text-white', 'shadow-sm');
+                        b.classList.add('bg-stone-100', 'text-stone-600', 'dark:bg-stone-700', 'dark:text-stone-300');
+                    });
+                    btn.classList.remove('bg-stone-100', 'text-stone-600', 'dark:bg-stone-700', 'dark:text-stone-300');
+                    btn.classList.add('bg-mergulho-600', 'text-white', 'shadow-sm');
+                    renderUnit(unit.id);
+                };
+                container.appendChild(btn);
+            });
+            renderUnit(activeId);
+        }
+
+        function renderUnit(id) {
+            const unit = appData.units.find(u => u.id === id);
+            if(!unit) return;
+            const container = document.getElementById('unit-content-area');
+            const langContent = unit.title[currentLang] ? currentLang : 'pt';
+            
+            let frontLabelText = '';
+            if (currentLang === 'pt') frontLabelText = '🇧🇷 Português';
+            else if (currentLang === 'en') frontLabelText = '🇬🇧 English';
+            else if (currentLang === 'es') frontLabelText = '🇪🇸 Español';
+
+            let flashcardsHtml = '';
+            unit.flashcards.forEach(card => {
+                const safeBackText = card.back.replace(/'/g, "\\'");
+                const frontText = typeof card.front === 'object' ? (card.front[currentLang] || card.front['pt']) : card.front;
+
+                flashcardsHtml += `
+                    <div class="flashcard bg-transparent w-full h-64 sm:h-72 cursor-pointer perspective-1000" onclick="toggleFlashcard(this, '${safeBackText}')">
+                        <div class="flashcard-inner relative w-full h-full text-center shadow-lg rounded-xl hover:shadow-xl transition-shadow">
+                            <div class="flashcard-front absolute w-full h-full bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl flex flex-col overflow-hidden">
+                                <div class="h-3/5 w-full bg-gradient-to-br from-stone-100 to-stone-200 dark:from-stone-700 dark:to-stone-800 flex items-center justify-center relative">
+                                    <span class="text-7xl filter drop-shadow-md transform hover:scale-110 transition-transform">${card.emoji}</span>
+                                </div>
+                                <div class="h-2/5 flex flex-col items-center justify-center p-3 bg-white dark:bg-stone-800 border-t border-stone-100 dark:border-stone-700">
+                                    <div class="text-[10px] sm:text-xs text-stone-400 font-bold uppercase tracking-widest mb-1">${frontLabelText}</div>
+                                    <div class="text-stone-800 dark:text-stone-200 font-bold text-sm sm:text-base leading-tight">${frontText}</div>
+                                </div>
+                            </div>
+                            <div class="flashcard-back absolute w-full h-full bg-mergulho-600 border border-mergulho-700 rounded-xl flex flex-col items-center justify-center p-6 text-white overflow-hidden relative">
+                                <div class="absolute -right-8 -top-8 text-8xl opacity-10">🇪🇸</div>
+                                <div class="relative z-10 flex flex-col items-center">
+                                    <div class="text-[10px] sm:text-xs text-mergulho-200 font-bold uppercase tracking-widest mb-3">🇪🇸 Español</div>
+                                    <div class="text-xl sm:text-2xl font-bold mb-6 leading-tight">${card.back}</div>
+                                    <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center speaking-icon backdrop-blur-sm shadow-inner"><span class="text-2xl">🔊</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+            });
+            container.innerHTML = `
+                <div class="bg-white dark:bg-stone-800 rounded-xl shadow-sm border border-stone-200 dark:border-stone-700 p-6 lg:p-8">
+                    <div class="mb-6 border-b border-stone-100 dark:border-stone-700 pb-4">
+                        <h3 class="text-2xl font-bold text-stone-800 dark:text-stone-100">${unit.title[langContent]}</h3>
+                        <p class="text-mergulho-600 dark:text-mergulho-400 font-medium">${unit.theme[langContent]}</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h4 class="text-lg font-semibold text-stone-800 dark:text-stone-200 mb-2 flex items-center gap-2"><span>🎯</span> ${uiTranslations[currentLang].objTitle}</h4>
+                            <p class="text-stone-600 dark:text-stone-400 leading-relaxed">${unit.intro[langContent]}</p>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-stone-800 dark:text-stone-200 mb-2 flex items-center gap-2"><span>📐</span> ${uiTranslations[currentLang].gramTitle}</h4>
+                            <p class="text-stone-700 dark:text-stone-300 leading-relaxed bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 p-4 rounded-lg shadow-inner">${unit.grammar[langContent]}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold text-stone-800 dark:text-stone-200 mb-4 flex items-center gap-2"><span>🗂️</span> ${uiTranslations[currentLang].cardsTitle} <span class="text-xs font-normal text-stone-500 dark:text-stone-400 bg-stone-100 dark:bg-stone-700 px-2 py-1 rounded border border-stone-200 dark:border-stone-600">${uiTranslations[currentLang].cardsSub}</span></h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">${flashcardsHtml}</div>
+                    </div>
+                </div>`;
+        }
+
+        function renderVerbFilters() {
+            const types = ['Todos', ...new Set(appData.verbs.map(v => v.type))];
+            const container = document.getElementById('verb-filters');
+            container.innerHTML = '';
+            types.forEach(type => {
+                const btn = document.createElement('button');
+                btn.className = `filter-btn px-3 py-1 text-sm rounded-full transition-colors ${type === currentFilter ? 'bg-mergulho-600 text-white shadow-sm' : 'bg-stone-100 text-stone-600 hover:bg-stone-200 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600 border border-stone-200 dark:border-stone-600'}`;
+                btn.textContent = type;
+                btn.onclick = () => {
+                    document.querySelectorAll('.filter-btn').forEach(b => {
+                        b.classList.remove('bg-mergulho-600', 'text-white', 'shadow-sm', 'border-transparent');
+                        b.classList.add('bg-stone-100', 'text-stone-600', 'border-stone-200', 'dark:bg-stone-700', 'dark:text-stone-300', 'dark:border-stone-600');
+                    });
+                    btn.classList.remove('bg-stone-100', 'text-stone-600', 'border-stone-200', 'dark:bg-stone-700', 'dark:text-stone-300', 'dark:border-stone-600');
+                    btn.classList.add('bg-mergulho-600', 'text-white', 'shadow-sm');
+                    currentFilter = type;
+                    renderVerbTable();
+                };
+                container.appendChild(btn);
+            });
+            const searchInput = document.getElementById('verb-search');
+            searchInput.removeEventListener('input', renderVerbTable);
+            searchInput.addEventListener('input', renderVerbTable);
+        }
+
+        function renderVerbTable() {
+            const tbody = document.getElementById('verb-table-body');
+            const searchInput = document.getElementById('verb-search').value.toLowerCase();
+            const msg = document.getElementById('no-results-msg');
+            
+            let filteredVerbs = appData.verbs.filter(v => {
+                const matchFilter = currentFilter === 'Todos' || v.type === currentFilter;
+                const matchSearch = v.inf.toLowerCase().includes(searchInput) || v.yo.toLowerCase().includes(searchInput) || v.type.toLowerCase().includes(searchInput);
+                return matchFilter && matchSearch;
+            });
+
+            tbody.innerHTML = '';
+            
+            if(filteredVerbs.length === 0) {
+                msg.classList.remove('hidden');
+                tbody.parentElement.classList.add('hidden');
+            } else {
+                msg.classList.add('hidden');
+                tbody.parentElement.classList.remove('hidden');
+                filteredVerbs.forEach(v => {
+                    const colorClass = v.type.includes('Irregular') ? 'text-amber-600 dark:text-amber-500' : 'text-stone-800 dark:text-stone-200';
+                    const cleanAudio = (text) => text.replace(/\(n\)/g, 'n');
+                    tbody.innerHTML += `
+                        <tr class="hover:bg-stone-50 dark:hover:bg-stone-700/50 transition-colors group border-b border-stone-100 dark:border-stone-700">
+                            <td class="p-4 border-r border-stone-100 dark:border-stone-700">
+                                <div class="font-bold ${colorClass} cursor-pointer hover:underline inline-flex items-center gap-1" onclick="playAudio('${v.inf}')" title="Ouvir">
+                                    ${v.emoji} ${v.inf} <span class="text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">🔊</span>
+                                </div>
+                                <div class="text-xs text-stone-500 dark:text-stone-400 mt-0.5">${v.type}</div>
+                            </td>
+                            <td class="p-4 font-semibold text-mergulho-700 dark:text-mergulho-300 bg-mergulho-50/30 dark:bg-mergulho-900/30 cursor-pointer hover:bg-mergulho-100 dark:hover:bg-mergulho-800 transition-colors" onclick="playAudio('${cleanAudio(v.yo)}')">${v.yo}</td>
+                            <td class="p-4 cursor-pointer hover:bg-stone-200 dark:hover:bg-stone-600 transition-colors" onclick="playAudio('${cleanAudio(v.tu)}')">${v.tu}</td>
+                            <td class="p-4 cursor-pointer hover:bg-stone-200 dark:hover:bg-stone-600 transition-colors" onclick="playAudio('${cleanAudio(v.el)}')">${v.el}</td>
+                            <td class="p-4 cursor-pointer hover:bg-stone-200 dark:hover:bg-stone-600 transition-colors" onclick="playAudio('${cleanAudio(v.nos)}')">${v.nos}</td>
+                            <td class="p-4 cursor-pointer hover:bg-stone-200 dark:hover:bg-stone-600 transition-colors" onclick="playAudio('${cleanAudio(v.vos)}')">${v.vos}</td>
+                            <td class="p-4 cursor-pointer hover:bg-stone-200 dark:hover:bg-stone-600 transition-colors" onclick="playAudio('${cleanAudio(v.ellos)}')">${v.ellos}</td>
+                        </tr>`;
+                });
+            }
+        }
+
+        function exportVerbsToCSV() {
+            let csvContent = "\uFEFF"; 
+            csvContent += "Padrão;Figurinha;Infinitivo;Significado;Yo;Tú;Él/Ella;Nosotros;Vosotros;Ellos;Regra/Observação\n";
+            appData.verbs.forEach(v => {
+                const row = [
+                    v.type,
+                    v.emoji || '🔹',
+                    v.inf.toLowerCase(), 
+                    v.pt || '-',
+                    v.yo.toLowerCase(), 
+                    v.tu.toLowerCase(),
+                    v.el.toLowerCase(),
+                    v.nos.toLowerCase(),
+                    v.vos.toLowerCase(),
+                    v.ellos.toLowerCase(),
+                    v.regra || '-'
+                ].map(text => `"${String(text).replace(/"/g, '""')}"`).join(";");
+                csvContent += row + "\n";
+            });
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.setAttribute("href", url);
+            link.setAttribute("download", "matriz_verbos_a2.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function renderExerciseTabs(activeId = 1) {
+            const container = document.getElementById('exercise-tabs');
+            container.innerHTML = '';
+            appData.units.forEach((unit) => {
+                if(!appData.exercises[unit.id]) return;
+                
+                const btn = document.createElement('button');
+                const isActive = unit.id === activeId;
+                const langContent = unit.title[currentLang] ? currentLang : 'pt';
+                btn.className = `ex-tab-btn px-4 py-2 rounded-lg font-medium text-sm transition-colors ${isActive ? 'bg-mergulho-600 text-white shadow-sm' : 'bg-stone-100 text-stone-600 hover:bg-stone-200 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600'}`;
+                btn.textContent = langContent === 'es' ? `Unidad ${unit.id}` : (currentLang === 'en' ? `Unit ${unit.id}` : `Unidade ${unit.id}`);
+                btn.onclick = () => {
+                    document.querySelectorAll('.ex-tab-btn').forEach(b => {
+                        b.classList.remove('bg-mergulho-600', 'text-white', 'shadow-sm');
+                        b.classList.add('bg-stone-100', 'text-stone-600', 'dark:bg-stone-700', 'dark:text-stone-300');
+                    });
+                    btn.classList.remove('bg-stone-100', 'text-stone-600', 'dark:bg-stone-700', 'dark:text-stone-300');
+                    btn.classList.add('bg-mergulho-600', 'text-white', 'shadow-sm');
+                    renderExercises(unit.id);
+                };
+                container.appendChild(btn);
+            });
+            renderExercises(activeId);
+        }
+
+        function renderExercises(unitId) {
+            const container = document.getElementById('exercise-content-area');
+            const questions = appData.exercises[unitId];
+            const langContent = appData.units.find(u => u.id === unitId).title[currentLang] ? currentLang : 'pt';
+            const unitTitle = appData.units.find(u => u.id === unitId).title[langContent];
+            
+            const savedAnswers = JSON.parse(localStorage.getItem(`quiz_answers_A2_unit_${unitId}`) || '{}');
+            
+            if (!questions || questions.length === 0) {
+                container.innerHTML = `<div class="bg-white dark:bg-stone-800 rounded-xl shadow-sm border border-stone-200 dark:border-stone-700 p-12 text-center text-stone-500">${currentLang === 'pt' ? 'Em breve' : 'Próximamente'}</div>`;
+                return;
+            }
+
+            let html = `<div class="bg-white dark:bg-stone-800 rounded-xl shadow-sm border border-stone-200 dark:border-stone-700 p-6 lg:p-8">
+                <h3 class="text-2xl font-bold text-stone-800 dark:text-stone-100 mb-6">${unitTitle} - ${uiTranslations[currentLang].quizTest}</h3><div class="space-y-8">`;
+            
+            questions.forEach((q, qIndex) => {
+                const questionText = q.q[langContent] || q.q['pt'];
+                let opts = q.options;
+                if(q.options.pt && q.options.es) opts = q.options[langContent] || q.options['pt'];
+                
+                const hasAnswered = savedAnswers[qIndex] !== undefined;
+                const answeredCorrectly = hasAnswered && savedAnswers[qIndex] === q.correct;
+                
+                html += `<div class="bg-stone-50 dark:bg-stone-700/30 border border-stone-200 dark:border-stone-700 p-5 rounded-xl">
+                        <p class="font-bold text-stone-800 dark:text-stone-200 mb-4 text-lg"><span class="text-mergulho-600 dark:text-mergulho-400">${qIndex + 1}.</span> ${questionText}</p>
+                        <div class="flex flex-col gap-2">`;
+                
+                opts.forEach((opt, oIndex) => {
+                    let btnClasses = 'text-left px-4 py-3 rounded-lg border border-stone-300 dark:border-stone-600 transition-all bg-white dark:bg-stone-800 font-medium text-stone-700 dark:text-stone-300 focus:outline-none';
+                    let spanClasses = 'inline-block w-6 h-6 text-center rounded-full border mr-2 text-sm leading-5';
+                    
+                    if (hasAnswered) {
+                        if (oIndex === q.correct) {
+                            btnClasses = 'text-left px-4 py-3 rounded-lg border border-emerald-400 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-300 font-medium focus:outline-none';
+                            spanClasses = 'inline-block w-6 h-6 text-center rounded-full border-emerald-500 bg-emerald-500 text-white mr-2 text-sm leading-5';
+                        } else if (oIndex === savedAnswers[qIndex] && !answeredCorrectly) {
+                            btnClasses = 'text-left px-4 py-3 rounded-lg border border-red-500 bg-red-100 dark:bg-red-900/30 text-red-900 dark:text-red-300 font-medium focus:outline-none';
+                            spanClasses = 'inline-block w-6 h-6 text-center rounded-full border-red-500 bg-red-500 text-white mr-2 text-sm leading-5';
+                        } else { btnClasses += ' opacity-60 cursor-default'; spanClasses += ' border-stone-300 dark:border-stone-600'; }
+                    } else {
+                        btnClasses += ` ex-opt-${unitId}-${qIndex} hover:bg-mergulho-50 dark:hover:bg-mergulho-900/50 hover:border-mergulho-400 dark:hover:border-mergulho-600 cursor-pointer`;
+                        spanClasses += ' border-stone-300 dark:border-stone-600';
+                    }
+                    html += `<button ${hasAnswered ? 'disabled' : `onclick="checkAnswer(${unitId}, ${qIndex}, ${oIndex}, this)"`} class="${btnClasses}">
+                            <span class="${spanClasses}">${String.fromCharCode(65 + oIndex)}</span> ${opt}</button>`;
+                });
+                
+                let feedbackHtml = '';
+                if (hasAnswered) {
+                    feedbackHtml = answeredCorrectly 
+                        ? `<div id="feedback-${unitId}-${qIndex}" class="mt-4 font-bold text-sm px-4 py-3 rounded-lg flex items-center gap-2 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-800 dark:text-emerald-200 border border-emerald-200 dark:border-emerald-800">${uiTranslations[currentLang].feedbackCorrect}</div>`
+                        : `<div id="feedback-${unitId}-${qIndex}" class="mt-4 font-bold text-sm px-4 py-3 rounded-lg flex items-center gap-2 bg-red-50 dark:bg-red-900/50 text-red-800 dark:text-red-200 border border-red-200 dark:border-red-800">${uiTranslations[currentLang].feedbackWrong}</div>`;
+                } else {
+                    feedbackHtml = `<div id="feedback-${unitId}-${qIndex}" class="mt-4 hidden font-bold text-sm px-4 py-3 rounded-lg flex items-center gap-2 transition-all"></div>`;
+                }
+                html += `</div>${feedbackHtml}</div>`;
+            });
+            html += `</div></div>`;
+            container.innerHTML = html;
+        }
+
+        window.checkAnswer = function(unitId, qIndex, selectedOpt, btnElement) {
+            const question = appData.exercises[unitId][qIndex];
+            const isCorrect = (selectedOpt === question.correct);
+            const feedbackDiv = document.getElementById(`feedback-${unitId}-${qIndex}`);
+            const allOptions = document.querySelectorAll(`.ex-opt-${unitId}-${qIndex}`);
+            
+            const savedAnswers = JSON.parse(localStorage.getItem(`quiz_answers_A2_unit_${unitId}`) || '{}');
+            savedAnswers[qIndex] = selectedOpt;
+            localStorage.setItem(`quiz_answers_A2_unit_${unitId}`, JSON.stringify(savedAnswers));
+            
+            allOptions.forEach(btn => {
+                btn.disabled = true;
+                btn.classList.remove('hover:bg-mergulho-50', 'hover:border-mergulho-400', 'dark:hover:bg-mergulho-900/50', 'cursor-pointer');
+                btn.classList.add('opacity-60', 'cursor-default');
+            });
+            btnElement.classList.remove('opacity-60');
+            
+            if (isCorrect) {
+                btnElement.classList.add('bg-emerald-100', 'dark:bg-emerald-900/30', 'border-emerald-500', 'text-emerald-900', 'dark:text-emerald-300', 'shadow-sm');
+                btnElement.querySelector('span').classList.add('bg-emerald-500', 'text-white', 'border-emerald-500');
+                feedbackDiv.innerHTML = uiTranslations[currentLang].feedbackCorrect;
+                feedbackDiv.classList.remove('hidden');
+                feedbackDiv.classList.add('bg-emerald-100', 'dark:bg-emerald-900/50', 'text-emerald-800', 'dark:text-emerald-200', 'border', 'border-emerald-200', 'dark:border-emerald-800');
+            } else {
+                btnElement.classList.add('bg-red-100', 'dark:bg-red-900/30', 'border-red-500', 'text-red-900', 'dark:text-red-300');
+                btnElement.querySelector('span').classList.add('bg-red-500', 'text-white', 'border-red-500');
+                allOptions[question.correct].classList.remove('opacity-60');
+                allOptions[question.correct].classList.add('bg-emerald-50', 'dark:bg-emerald-900/20', 'border-emerald-400', 'text-emerald-800', 'dark:text-emerald-300');
+                allOptions[question.correct].querySelector('span').classList.add('bg-emerald-500', 'text-white', 'border-emerald-500');
+                feedbackDiv.innerHTML = uiTranslations[currentLang].feedbackWrong;
+                feedbackDiv.classList.remove('hidden');
+                feedbackDiv.classList.add('bg-red-50', 'dark:bg-red-900/50', 'text-red-800', 'dark:text-red-200', 'border', 'border-red-200', 'dark:border-red-800');
+            }
+        };
+
+        const apiKey = "";
+        let chatHistory = [];
+
+        function appendMessage(text, isUser = false) {
+            const messagesContainer = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `flex gap-3 ${isUser ? 'justify-end' : ''}`;
+            if (isUser) {
+                messageDiv.innerHTML = `<div class="bg-mergulho-600 text-white p-4 rounded-2xl rounded-tr-sm shadow-sm max-w-[85%]"><p>${text}</p></div>
+                                        <div class="w-10 h-10 rounded-full bg-stone-200 dark:bg-stone-600 flex items-center justify-center text-xl shrink-0 border border-stone-300 dark:border-stone-500">👤</div>`;
+            } else {
+                messageDiv.innerHTML = `<div class="w-10 h-10 rounded-full bg-mergulho-100 dark:bg-mergulho-900 flex items-center justify-center text-xl shrink-0 border border-mergulho-200 dark:border-mergulho-700">🤖</div>
+                                        <div class="bg-white dark:bg-stone-700 p-4 rounded-2xl rounded-tl-sm border border-stone-200 dark:border-stone-600 shadow-sm max-w-[85%] text-stone-800 dark:text-stone-100">
+                                        <p>${text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</p></div>`;
+            }
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const messagesContainer = document.getElementById('chat-messages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'flex gap-3';
+            typingDiv.id = 'typing-indicator';
+            typingDiv.innerHTML = `<div class="w-10 h-10 rounded-full bg-mergulho-100 dark:bg-mergulho-900 flex items-center justify-center text-xl shrink-0 border border-mergulho-200 dark:border-mergulho-700">🤖</div>
+                                   <div class="bg-white dark:bg-stone-700 p-4 rounded-2xl rounded-tl-sm border border-stone-200 dark:border-stone-600 shadow-sm max-w-[85%] flex items-center"><div class="typing-indicator"><span></span><span></span><span></span></div></div>`;
+            messagesContainer.appendChild(typingDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function removeTypingIndicator() { const typingDiv = document.getElementById('typing-indicator'); if (typingDiv) typingDiv.remove(); }
+        
+        function clearChat() {
+            chatHistory = [];
+            const messagesContainer = document.getElementById('chat-messages');
+            const welcomeMsg = currentLang === 'pt' ? uiTranslations['pt'].tutorWelcome : (currentLang === 'es' ? uiTranslations['es'].tutorWelcome : uiTranslations['en'].tutorWelcome);
+            messagesContainer.innerHTML = `<div class="flex gap-3"><div class="w-10 h-10 rounded-full bg-mergulho-100 dark:bg-mergulho-900 flex items-center justify-center text-xl shrink-0 border border-mergulho-200 dark:border-mergulho-700">🤖</div>
+                                           <div class="bg-white dark:bg-stone-700 p-4 rounded-2xl rounded-tl-sm border border-stone-200 dark:border-stone-600 shadow-sm max-w-[85%]"><p class="text-stone-800 dark:text-stone-100">${welcomeMsg}</p></div></div>`;
+        }
+
+        function sendSuggestion(text) {
+            const inputEl = document.getElementById('chat-input');
+            inputEl.value = text;
+            document.getElementById('chat-form').dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+        }
+
+        async function fetchWithBackoff(url, options, maxRetries = 5) {
+            let retries = 0;
+            const delays = [1000, 2000, 4000, 8000, 16000];
+            while (retries < maxRetries) {
+                try {
+                    const response = await fetch(url, options);
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    return await response.json();
+                } catch (error) {
+                    if (retries === maxRetries - 1) throw error;
+                    await new Promise(resolve => setTimeout(resolve, delays[retries]));
+                    retries++;
+                }
+            }
+        }
+
+        async function handleChatSubmit(e) {
+            e.preventDefault();
+            const inputEl = document.getElementById('chat-input');
+            const submitBtn = document.getElementById('chat-submit-btn');
+            const userText = inputEl.value.trim();
+            if (!userText) return;
+            
+            inputEl.value = '';
+            inputEl.disabled = true;
+            submitBtn.disabled = true;
+            appendMessage(userText, true);
+            showTypingIndicator();
+            chatHistory.push({ role: "user", parts: [{ text: userText }] });
+
+            try {
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+                const systemPrompt = `Eres un profesor de español virtual para estudiantes de nivel A2. Tu objetivo es ayudar al usuario a practicar conversación y afianzar la gramática A2 (Pretérito Indefinido, Perfecto, Imperativo, Comparativos). Reglas: 1. Usa SIEMPRE un vocabulario y estructuras de nivel A2. 2. Si el usuario comete un error gramatical, corrígelo amablemente antes de responder. 3. Hazle siempre una pregunta al final para mantener la conversación, animándolo a usar el pasado o dar consejos. 4. Usa un tono amigable, paciente y motivador. 5. Tus respuestas no deben superar las 2 o 3 oraciones.`;
+                const payload = { systemInstruction: { parts: [{ text: systemPrompt }] }, contents: chatHistory };
+                const options = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) };
+
+                const data = await fetchWithBackoff(url, options);
+                removeTypingIndicator();
+                
+                if (data && data.candidates && data.candidates[0] && data.candidates[0].content) {
+                    const aiText = data.candidates[0].content.parts[0].text;
+                    appendMessage(aiText, false);
+                    chatHistory.push({ role: "model", parts: [{ text: aiText }] });
+                } else { throw new Error("Resposta inválida da API"); }
+            } catch (error) {
+                removeTypingIndicator();
+                appendMessage("Lo siento, estoy teniendo problemas de conexión. Por favor, revisa tu conexión. 🔌", false);
+                chatHistory.pop();
+            } finally {
+                inputEl.disabled = false; submitBtn.disabled = false; inputEl.focus();
+            }
+        }
+
+        function closeModal() { document.getElementById('ai-modal').classList.replace('flex', 'hidden'); }
+
+        function updateUI() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (uiTranslations[currentLang][key]) el.innerHTML = uiTranslations[currentLang][key];
+            });
+            const chatInput = document.getElementById('chat-input');
+            if(chatInput) chatInput.placeholder = uiTranslations[currentLang].tutorPlaceholder;
+
+            const btnPt = document.getElementById('btn-lang-pt');
+            const btnEs = document.getElementById('btn-lang-es');
+            const btnEn = document.getElementById('btn-lang-en');
+            const activeClasses = ['bg-gradient-to-r', 'from-teal-400', 'to-indigo-400', 'text-white', 'shadow-md'];
+            const inactiveClasses = ['text-stone-300', 'hover:text-white', 'hover:bg-white/10'];
+
+            if(btnPt && btnEs && btnEn) {
+                [btnPt, btnEs, btnEn].forEach(btn => {
+                    btn.classList.remove(...activeClasses);
+                    btn.classList.add(...inactiveClasses);
+                });
+
+                if (currentLang === 'pt') {
+                    btnPt.classList.add(...activeClasses); btnPt.classList.remove(...inactiveClasses);
+                } else if (currentLang === 'es') {
+                    btnEs.classList.add(...activeClasses); btnEs.classList.remove(...inactiveClasses);
+                } else if (currentLang === 'en') {
+                    btnEn.classList.add(...activeClasses); btnEn.classList.remove(...inactiveClasses);
+                }
+            }
+
+            let activeUnitId = 1, activeExId = 1;
+            const activeUnitBtn = document.querySelector('.unit-tab-btn.bg-mergulho-600');
+            if(activeUnitBtn) { const match = activeUnitBtn.textContent.match(/\d+/); if(match) activeUnitId = parseInt(match[0]); }
+            renderUnitTabs(activeUnitId);
+
+            const activeExBtn = document.querySelector('.ex-tab-btn.bg-mergulho-600');
+            if(activeExBtn) { const match = activeExBtn.textContent.match(/\d+/); if(match) activeExId = parseInt(match[0]); }
+            renderExerciseTabs(activeExId);
+            
+            renderVerbFilters(); renderVerbTable();
+        }
+
+        function initApp() {
+            const savedLang = localStorage.getItem('appLang'); 
+            if(savedLang) setLanguage(savedLang); 
+            else setLanguage('pt');
+
+            const savedTheme = localStorage.getItem('appTheme');
+            if(savedTheme === 'dark') { isDarkMode = true; document.documentElement.classList.add('dark'); document.getElementById('theme-btn').textContent = '☀️'; }
+
+            updateDailyStudyUI();
+            const savedAlerts = localStorage.getItem('appAlertsA2');
+            if(savedAlerts === 'true') toggleAlerts(true); 
+
+            setInterval(checkRoutineAlert, 60000);
+            setupNavigation(); updateUI();
+            initCharts();
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initApp();
+            if ('speechSynthesis' in window) window.speechSynthesis.getVoices();
+        });
+    </script>
+</body>
+</html>
