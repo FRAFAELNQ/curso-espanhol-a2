@@ -1,48 +1,41 @@
 <!DOCTYPE html>
-
-<html lang="pt-BR">
+<html lang="es">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Aula de Español A2 — 28/09/2026</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080a18">
+<title>Clase de Español A2 — 28/09/2026</title>
 <style>
 :root{
-  --bg:#fef6ff;--card:#fff;--text:#2b1a2e;--muted:#76577d;
-  --pink:#e0218a;--purple:#7c3aed;--turq:#00a992;--yellow:#ffb703;
-  --blue:#2563eb;--soft:#fbe3f4;--border:#ead3e7;--ok:#087f5b;--bad:#b42318;
-}
-@media(prefers-color-scheme:dark){
- :root{--bg:#160d1c;--card:#27182f;--text:#f7eafb;--muted:#c9acd1;--soft:#3a2148;--border:#50345b;--pink:#ff4fb0;--purple:#a78bfa;--turq:#2dd4bf;--yellow:#fbbf24;--blue:#60a5fa;--ok:#34d399;--bad:#f87171;}
- .yellow{color:var(--yellow)}
+  color-scheme:dark;
+  --bg:#080a18;--card:#171d38;--text:#f8f9ff;--muted:#b8c0dd;
+  --pink:#ff5ca8;--purple:#a56cff;--turq:#37e6d4;--yellow:#ffd34e;
+  --blue:#42a5ff;--soft:#252e50;--border:#2d385e;--ok:#4be59a;--bad:#ff6b7c;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}
-body:before{content:"";position:fixed;inset:0;z-index:-1;background:
-radial-gradient(circle at 10% 5%,color-mix(in srgb,var(--purple) 18%,transparent),transparent 35%),
-radial-gradient(circle at 90% 10%,color-mix(in srgb,var(--pink) 15%,transparent),transparent 35%),
-radial-gradient(circle at 50% 100%,color-mix(in srgb,var(--turq) 12%,transparent),transparent 45%)}
+body{margin:0;background:radial-gradient(circle at 10% 0,#1d2b66,transparent 38%),radial-gradient(circle at 90% 0,#5a174d,transparent 35%),var(--bg);background-attachment:fixed;color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}
 .container{max-width:1100px;margin:auto;padding:22px 16px 60px}
-header{text-align:center;padding:14px 0 22px}
-.badge{display:inline-block;padding:6px 12px;border-radius:999px;background:var(--soft);color:var(--purple);font-weight:800;font-size:.82rem}
-h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq),var(--yellow));-webkit-background-clip:text;background-clip:text;color:transparent}
-.subtitle{color:var(--muted)}
+header{text-align:center;padding:26px 20px;margin-bottom:6px;border-radius:22px;border:1px solid #48598d;background:linear-gradient(135deg,#172c6c,#49237f 52%,#741c58);box-shadow:0 18px 50px #0008}
+.badge{display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;font-weight:800;font-size:.82rem}
+h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);color:#fff}
+.subtitle{color:#e3e6ff}
 nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);display:flex;gap:7px;overflow:auto;padding:8px;border-bottom:1px solid var(--border)}
 nav button,.tab{border:1px solid var(--border);background:var(--card);color:var(--text);padding:9px 12px;border-radius:12px;cursor:pointer;white-space:nowrap;font-weight:750}
-nav button.active,.tab.active{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;border-color:transparent}
+nav button.active,.tab.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
 section{display:none;padding-top:22px}
 section.active{display:block}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:0 7px 22px color-mix(in srgb,var(--purple) 10%,transparent)}
 .card h3{margin-top:0}
 .color-title{font-size:1.25rem;font-weight:900}
-.pink{color:var(--pink)}.purple{color:var(--purple)}.turq{color:var(--turq)}.blue{color:var(--blue)}.yellow{color:#a66a00}
+.pink{color:var(--pink)}.purple{color:var(--purple)}.turq{color:var(--turq)}.blue{color:var(--blue)}.yellow{color:var(--yellow)}
 table{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden}
 th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
-th{background:var(--soft);color:var(--purple)}
+th{background:#202a4c;color:#cdbdff}
 .verb-card{margin-bottom:16px}
 .verb-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
 .verb{font-size:1.45rem;font-weight:900;color:var(--pink)}
-.tag{font-size:.78rem;font-weight:800;padding:4px 9px;border-radius:999px;background:var(--soft);color:var(--purple)}
+.tag{font-size:.78rem;font-weight:800;padding:4px 9px;border-radius:999px;background:var(--soft);color:#cdbdff}
 .speak{border:0;background:var(--soft);border-radius:10px;padding:7px 10px;cursor:pointer}
 .example{border-left:4px solid var(--turq);padding:9px 12px;background:color-mix(in srgb,var(--turq) 8%,var(--card));border-radius:0 12px 12px 0;margin:9px 0}
 .note{font-size:.9rem;color:var(--muted)}
@@ -65,45 +58,61 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
 @media(max-width:600px){.container{padding:14px 10px 45px}th,td{padding:8px;font-size:.9rem}.card{padding:15px}}
 
 .home-nav{text-align:center;margin:14px 0 8px}
-.home-nav a{display:inline-block;padding:10px 18px;border-radius:12px;
-background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;
-text-decoration:none;font-weight:800;box-shadow:0 8px 22px color-mix(in srgb,var(--purple) 28%,transparent);
-transition:transform .15s ease,filter .15s ease}
-.home-nav a:hover{transform:translateY(-1px);filter:brightness(1.08)}
+.home-nav a{display:inline-block;padding:10px 18px;border-radius:12px;background:#10152b;border:1px solid var(--border);color:#fff;text-decoration:none;font-weight:800;transition:transform .15s ease,border-color .15s ease}
+.home-nav a:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.home-nav a:hover{transform:translateY(-1px);border-color:var(--blue)}
 
-</style>
-<style>
-.activity-list p { margin: 10px 0; padding: 10px 12px; border-left: 4px solid var(--turq); background: rgba(255,255,255,.04); border-radius: 10px; }
-.homework { padding: 14px 16px; border-radius: 14px; background: linear-gradient(135deg, rgba(255,214,102,.12), rgba(126,87,194,.10)); }
-.homework ul { margin-top: 6px; }
+
+.table-wrap{overflow-x:auto;border-radius:16px}
+.table-wrap table{min-width:520px}
+select{background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:8px 10px;font:inherit;max-width:100%}
+select:focus-visible,.choice:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.ex-row{margin:12px 0;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.ex-row:last-of-type{border-bottom:0}
+.ex-fb{display:inline-block;margin-left:8px;font-weight:800}
+.ex-fb.ok{color:var(--ok)}.ex-fb.bad{color:var(--bad)}
+.chip{display:inline-block;padding:4px 10px;margin:3px 3px 3px 0;border-radius:999px;background:var(--soft);border:1px solid var(--border);font-weight:700}
+.mini-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.mini-grid .verb-card{margin-bottom:0}
+.form-big{font-size:1.25rem;font-weight:900;color:var(--turq);margin:10px 0 4px}
+ul.clean{margin:8px 0;padding-left:20px}ul.clean li{margin:5px 0}
+.choice:disabled{cursor:default}
+
+.activity-list p{margin:10px 0;padding:10px 12px;border-left:4px solid var(--turq);background:rgba(255,255,255,.04);border-radius:10px}
+.homework{padding:14px 16px;border-radius:14px;background:linear-gradient(135deg,rgba(255,211,78,.12),rgba(165,108,255,.10))}
+.homework ul{margin-top:6px}
+.pending{border-left:4px solid var(--yellow);padding:10px 12px;background:rgba(255,211,78,.08);border-radius:10px;margin:10px 0}
 </style>
 </head>
 <body>
 <div class="container">
 <header>
-<span class="badge">EOI · Español A2 · Aula individual</span>
-<h1>Ficha Interactiva — 28/09/2026</h1>
-<div class="subtitle">Relaciones, descripción de personas, <b>llevar / llevarse</b>, <b>caer bien/mal</b>, <b>parecer / parecerse</b> y <b>medir</b></div>
-</header><div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
+  <span class="badge">EOI · Español A2 · Clase individual</span>
+  <h1>Ficha interactiva — 28/09/2026</h1>
+  <div class="subtitle">Relaciones, descripción de personas, <b>llevar / llevarse</b>, <b>caer bien/mal</b>, <b>parecer / parecerse</b> y <b>medir</b></div>
+  <div class="subtitle" style="font-size:.9rem;margin-top:6px">📖 Libro: Aula Plus 2 · pp. 44, 45, 50, 140 y 142</div>
+</header>
+<div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
 
 <nav>
-<button class="active" onclick="showTab('resumo',this)">📚 Resumen</button>
-<button onclick="showTab('vocab',this)">📝 Vocabulario</button>
-<button onclick="showTab('gram',this)">🧠 Gramática</button>
-<button onclick="showTab('verbos',this)">🔤 Verbos</button>
-<button onclick="showTab('ex',this)">✏️ Ejercicios</button>
-<button onclick="showTab('pratica',this)">🎯 Práctica</button>
+  <button class="active" onclick="showTab('resumen',this)">📚 Resumen</button>
+  <button onclick="showTab('vocab',this)">📝 Vocabulario</button>
+  <button onclick="showTab('gram',this)">🧠 Gramática</button>
+  <button onclick="showTab('verbos',this)">🔤 Verbos</button>
+  <button onclick="showTab('ex',this)">✏️ Ejercicios</button>
+  <button onclick="showTab('practica',this)">🎯 Práctica</button>
 </nav>
-<section class="active" id="resumo">
+
+<section id="resumen" class="active">
 <div class="grid">
-<div class="card"><div class="color-title pink">1. Describir personas</div><p>Se retomó la descripción física y de carácter de las personas de los anuncios de contactos.</p><p><b>Ser</b> se usa para características; <b>llevar</b>, para ropa, barba, gafas y estilo.</p></div>
-<div class="card"><div class="color-title purple">2. Relaciones</div><p><b>Llevarse bien/mal/fatal con alguien</b> habla de la relación que existe con otra persona.</p><p><b>Caer bien/mal</b> expresa una valoración o impresión positiva/negativa.</p></div>
-<div class="card"><div class="color-title turq">3. Parecer</div><p><b>Parecer + adjetivo</b>: impresión/opinión sobre una persona.</p><p><b>Parecerse a</b>: semejanza con otra persona; en clase apareció también <b>en los ojos</b>.</p></div>
-<div class="card"><div class="color-title yellow">4. Medir</div><p>Se introdujo <b>medir</b> para expresar la altura: <b>mido 1,93</b>.</p></div>
+ <div class="card"><div class="color-title pink">1. Describir personas</div><p>Se retomó la descripción física y de carácter de las personas de los anuncios de contactos.</p><p><b>Ser</b> se usa para características; <b>llevar</b>, para ropa, barba, gafas y estilo.</p></div>
+ <div class="card"><div class="color-title purple">2. Relaciones</div><p><b>Llevarse bien/mal/fatal con alguien</b> habla de la relación que existe con otra persona.</p><p><b>Caer bien/mal</b> expresa una valoración o impresión positiva/negativa.</p></div>
+ <div class="card"><div class="color-title turq">3. Parecer</div><p><b>Parecer + adjetivo</b>: impresión u opinión sobre una persona.</p><p><b>Parecerse a</b>: semejanza con otra persona; en clase apareció también <b>en los ojos</b>.</p></div>
+ <div class="card"><div class="color-title yellow">4. Medir</div><p>Se introdujo <b>medir</b> para expresar la altura: <b>mido 1,93</b>.</p></div>
 </div>
 <div class="card" style="margin-top:14px">
-<h3>⭐ Expresiones clave de la clase</h3>
-<div class="sound-bar"><span class="small">🔊 Pulsa el botón de cada frase para escuchar.</span><button aria-pressed="false" class="speak slowBtn" onclick="toggleSlow()" type="button">🐢 Lento: desactivado</button></div>
+<h3>⭐ Frases clave de la clase</h3>
+<div class="sound-bar"><span class="small">🔊 Toca el botón de cada frase para escucharla.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
 <div class="example"><b>Me llevo bien con mi jefe.</b></div>
 <div class="example"><b>Mi jefa me cae bien.</b></div>
 <div class="example"><b>Luisa me cayó bien la primera semana.</b></div>
@@ -111,231 +120,231 @@ transition:transform .15s ease,filter .15s ease}
 <div class="example"><b>Él parece simpático.</b></div>
 <div class="example"><b>Se parece a su padre en los ojos.</b></div>
 <div class="example"><b>Yo mido 1,93.</b></div>
+
 </div>
 <div class="card" style="margin-top:14px">
-<h3>📚 Actividades realizadas en clase — 28/09/2026</h3>
-<div class="grid">
-<div>
-<p><b>Pág. 44 · Pregunta 7A</b><br/>Análisis en clase de los aspectos positivos y negativos de las opiniones sobre las personas.</p>
-<p><b>Pág. 45 · Pregunta 7B</b><br/>Trabajo sobre <b>caer bien/mal</b> e <b>llevarse bien/mal</b>.</p>
+<h3>📋 Actividades del libro hechas en clase</h3>
+<div class="activity-list">
+<p><b>✓ p. 44 · pregunta 7A</b><br>Análisis en clase de los aspectos positivos y negativos de las personas.</p>
+<p><b>✓ p. 45 · pregunta 7B</b><br>Trabajo con <b>caer bien / mal</b> y <b>llevarse bien / mal</b>.</p>
+<p><b>✓ p. 140 · pregunta 13</b><br>Identificar cuándo se usa <b>llevar</b> y cuándo <b>llevarse</b>.</p>
+<p><b>✓ p. 142 · pregunta 20</b><br>Simulación con un compañero de las respuestas para las diferentes características de las personas.</p>
+<p><b>✓ p. 142 · pregunta 21</b><br>En pareja: relacionar cada frase con su continuación lógica.</p>
+<p><b>✓ p. 50 · pregunta 11B</b><br>Redactar con un compañero un anuncio para encontrar una pareja que se ajuste al perfil del apartado.</p>
 </div>
-<div>
-<p><b>Pág. 140 · Pregunta 13</b><br/>Identificar cuándo usar <b>llevar</b> ou <b>llevarse</b>.</p>
-<p><b>Pág. 142 · Preguntas 20 e 21</b><br/>Simulación de la pregunta 20 con un compañero y realización de la pregunta 21 en pareja/con un compañero.</p>
-</div>
-<div>
-<p><b>Pág. 50 · Pregunta 11B</b><br/>Redacción, junto con un compañero de clase, de un anuncio para encontrar una pareja que se ajuste al perfil solicitado.</p>
-<p><b>Entrega:</b> no dio tiempo de terminarlo en clase; el texto se entregará mañana en papel, únicamente con el anuncio.</p>
-</div>
-</div>
+<div class="pending"><b>⏳ Pendiente:</b> no dio tiempo de terminar el anuncio en clase. Se entrega el 29/09 en papel, solo con ese texto.</div>
 </div>
 </section>
+
 <section id="vocab">
-<h2>📝 Vocabulario trabajado</h2>
+<h2>📝 Vocabulario</h2>
 <div class="grid">
-<div class="card"><h3 class="pink">Relaciones</h3>
-<p><b>compañero/a de clase</b> — persona con la que compartes clase.</p>
-<p><b>compañero/a de trabajo</b> — persona con la que trabajas.</p>
-<p><b>compañero/a de viaje</b> — persona con la que viajas.</p>
-<p><b>compañero/a de vida</b> — expresión usada para referirse a la pareja.</p>
-</div>
-<div class="card"><h3 class="purple">Impresiones y relaciones</h3>
-<p><b>primera impresión</b></p>
-<p><b>chocar con alguien</b> — en la clase se explicó como una relación con conflicto/choque.</p>
-<p><b>no soportar a alguien</b> — no poder verlo delante / no querer verlo.</p>
-<p><b>pesimista</b> — negativo ante el futuro.</p>
-</div>
-<div class="card"><h3 class="turq">Carácter / estado</h3>
-<p><b>prepotente</b> — trata a otra persona como si fuera mejor.</p>
-<p><b>nervioso / estresado</b> — se trabajó como contrario de estar relajado.</p>
-<p><b>divertido/a, guapo/a, alegre, activo/a, tranquilo/a</b> — aparecieron en los perfiles y textos.</p>
-</div>
-<div class="card"><h3 class="yellow">Otras palabras de la clase</h3>
-<p><b>teñido</b> — «tiene el pelo teñido».</p>
-<p><b>físicamente</b> — se corrigió la forma usada para describir físicamente.</p>
-<p><b>señor / señora</b> — tratamento formal/contextual; depende de la confianza y de la situación.</p>
-</div>
-<div class="card"><h3 class="blue">Tratamiento e identificación</h3>
-<p><b>tutear</b> — tratar a una persona de <b>tú</b>, en lugar de utilizar un tratamiento formal.</p>
-<p><b>señor / señora</b> — formas de tratamiento que pueden aparecer en situaciones formales o según el contexto.</p>
-<p><b>el de / la de</b> — identificar a una persona mediante una característica o elemento que permite reconocerla.</p>
-<p><b>el del / la del</b> — identificación mediante <b>de + el/la</b>, como en <b>los del coche azul</b>.</p>
-<p><b>los del coche azul</b> — ejemplo de identificación de un grupo de personas por un elemento visible.</p>
-<p><b>compañero/a de clase</b> · <b>compañero/a de trabajo</b> · <b>compañero/a de viaje</b> — relaciones según el contexto compartido.</p>
-</div>
+ <div class="card"><h3 class="pink">Relaciones</h3>
+  <p><b>compañero/a de clase</b> — persona con la que compartes clase.</p>
+  <p><b>compañero/a de trabajo</b> — persona con la que trabajas.</p>
+  <p><b>compañero/a de viaje</b> — persona con la que viajas.</p>
+  <p><b>compañero/a de vida</b> — expresión para referirse a la pareja.</p>
+ </div>
+ <div class="card"><h3 class="purple">Impresiones y relaciones</h3>
+  <p><b>primera impresión</b></p>
+  <p><b>chocar con alguien</b> — tener una relación de conflicto.</p>
+  <p><b>no soportar a alguien</b> — no poder verlo delante; no querer verlo. <span class="small">(PT: não suportar)</span></p>
+  <p><b>pesimista</b> — negativo ante el futuro.</p>
+ </div>
+ <div class="card"><h3 class="turq">Carácter y estado</h3>
+  <p><b>prepotente</b> — trata a otra persona como si fuera mejor. <span class="small">(PT: arrogante)</span></p>
+  <p><b>nervioso / estresado</b> — lo contrario de estar relajado.</p>
+  <p><b>divertido/a, guapo/a, alegre, activo/a, tranquilo/a</b> — aparecieron en los perfiles y textos.</p>
+ </div>
+ <div class="card"><h3 class="yellow">Otras palabras</h3>
+  <p><b>teñido</b> — «tiene el pelo teñido». <span class="small">(PT: tingido)</span></p>
+  <p><b>físicamente</b> — adverbio para describir el aspecto de una persona; en clase se corrigió su forma.</p>
+  <p><b>señor / señora</b> — tratamiento formal; depende de la confianza y de la situación.</p>
+ </div>
+ <div class="card"><h3 class="blue">Tratamiento e identificación</h3>
+  <p><b>tutear</b> — tratar a una persona de <b>tú</b>, en lugar de usar un tratamiento formal.</p>
+  <p><b>el de / la de</b> — identificar a una persona con una característica o un elemento que permite reconocerla.</p>
+  <p><b>el del / la del</b> — identificación con <b>de + el/la</b>, como en <b>los del coche azul</b>.</p>
+ </div>
 </div>
 </section>
+
 <section id="gram">
 <h2>🧠 Estructuras centrales</h2>
-<div class="sound-bar"><span class="small">🔊 Pulsa el botón de cada frase para escuchar.</span><button aria-pressed="false" class="speak slowBtn" onclick="toggleSlow()" type="button">🐢 Lento: desactivado</button></div>
+<div class="sound-bar"><span class="small">🔊 Toca el botón de cada ejemplo para escucharlo.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
+
 <div class="card" style="margin-bottom:14px">
-<h3 class="blue">TUTear + identificar personas</h3>
-<table>
+<h3 class="blue">Tutear + identificar personas</h3>
+<div class="table-wrap"><table>
 <tr><th>Estructura</th><th>Uso trabajado</th><th>Ejemplo</th></tr>
-<tr><td><b>tutear</b></td><td>Tratar a una persona de <b>tú</b>.</td><td>¿Nos podemos tutear?</td></tr>
-<tr><td><b>el de / la de</b></td><td>Identificar a una persona por una característica o elemento.</td><td>El de las gafas.</td></tr>
-<tr><td><b>el del / la del</b></td><td>Identificar mediante <b>de + el/la</b>.</td><td>Los del coche azul.</td></tr>
-</table>
-<p class="note">Esta parte quedó confirmada también por el contenido escrito en la pizarra de la clase.</p>
+<tr><td><b>tutear</b></td><td>Tratar a una persona de <b>tú</b>.</td><td><div class="example"><b>¿Nos podemos tutear?</b></div>
+</td></tr>
+<tr><td><b>el de / la de</b></td><td>Identificar a una persona por una característica o elemento.</td><td><div class="example"><b>El de las gafas.</b></div>
+</td></tr>
+<tr><td><b>el del / la del</b></td><td>Identificar con <b>de + el/la</b>.</td><td><div class="example"><b>Los del coche azul.</b></div>
+</td></tr>
+</table></div>
+<p class="note">Esta parte también está escrita en la pizarra de la clase.</p>
 </div>
+
 <div class="card">
 <h3 class="pink">LLEVAR × LLEVARSE</h3>
-<table>
-<tr><th>Estructura</th><th>Uso trabajado en la clase</th><th>Ejemplo</th></tr>
-<tr><td><b>llevar + algo</b></td><td>Describir ropa, barba, gafas, pelo y estilo.</td><td>Llevo barba.<br/>Llevo las gafas.<br/>Llevo el pelo corto.</td></tr>
-<tr><td><b>llevarse bien/mal/fatal + con</b></td><td>Hablar de la relación con otra persona.</td><td>Me llevo muy bien con mi jefe.</td></tr>
-</table>
+<div class="table-wrap"><table>
+<tr><th>Estructura</th><th>Uso trabajado en clase</th><th>Ejemplo</th></tr>
+<tr><td><b>llevar + algo</b></td><td>Describir ropa, barba, gafas, pelo y estilo.</td><td><div class="example"><b>Llevo barba.</b></div>
+<div class="example"><b>Llevo las gafas.</b></div>
+<div class="example"><b>Llevo el pelo corto.</b></div>
+</td></tr>
+<tr><td><b>llevarse bien/mal/fatal + con</b></td><td>Hablar de la relación con otra persona.</td><td><div class="example"><b>Me llevo muy bien con mi jefe.</b></div>
+</td></tr>
+</table></div>
 </div>
+
 <div class="card" style="margin-top:14px">
 <h3 class="purple">CAER × LLEVARSE</h3>
-<table>
+<div class="table-wrap"><table>
 <tr><th>Expresión</th><th>Significado trabajado</th><th>Ejemplo</th></tr>
-<tr><td><b>me cae bien/mal/regular</b></td><td>Idea/valoración positiva, negativa o regular sobre alguien; no exige que exista una relación cercana.</td><td>Mi jefa me cae bien.</td></tr>
-<tr><td><b>me llevo bien/mal con</b></td><td>Relación buena o mala con otra persona.</td><td>Me llevo bien con mi jefe.</td></tr>
-</table>
+<tr><td><b>me cae bien/mal/regular</b></td><td>Valoración positiva, negativa o regular sobre alguien; no exige una relación cercana.</td><td><div class="example"><b>Mi jefa me cae bien.</b></div>
+</td></tr>
+<tr><td><b>me llevo bien/mal con</b></td><td>Relación buena o mala con otra persona.</td><td><div class="example"><b>Me llevo bien con mi jefe.</b></div>
+</td></tr>
+</table></div>
 </div>
+
 <div class="card" style="margin-top:14px">
 <h3 class="turq">PARECER × PARECERSE</h3>
-<div class="example"><b>Él parece simpático.</b> → impresión/opinión sobre a característica.</div>
+<div class="example"><b>Él parece simpático.</b> → impresión u opinión sobre una característica.</div>
 <div class="example"><b>Se parece a su padre en los ojos.</b> → semejanza con otra persona.</div>
-<p class="note">La profesora destacó que quitar <b>se</b> muda o significado do verbo.</p>
+<p class="note">La profesora destacó que quitar <b>se</b> cambia el significado del verbo.</p>
 </div>
+
 <div class="card" style="margin-top:14px">
-<h3 class="blue">CAER + pronomes</h3>
+<h3 class="blue">CAER + pronombres</h3>
 <p>En clase se explicó que <b>caer</b> funciona con la estructura de <b>gustar</b>:</p>
 <div class="example"><b>A mí me cae bien ella.</b></div>
 <div class="example"><b>A ti te cae bien ella.</b></div>
 <div class="example"><b>A nosotros nos cae bien él.</b></div>
-<p class="note">En plural: <b>me caen bien</b>. En el pasado trabajado: <b>me cayó bien</b> / <b>me cayeron bien</b>.</p>
+<p class="note">En plural: <b>me caen bien</b>. En pasado: <b>me cayó bien</b> / <b>me cayeron bien</b>.</p>
 </div>
 </section>
+
 <section id="verbos">
 <h2>🔤 Verbos trabajados en la clase</h2>
-<p class="small">La ficha separa los verbos trabajados como foco/estructura en esta clase de los verbos que ya estaban en los flashcards. Los tres verbos nuevos incorporados a los flashcards son <b>llevarse</b>, <b>medir</b> e <b>tutear</b>. <a href="flashcards-verbos-a2.html">Abrir los flashcards →</a></p>
+<p class="small">Aquí aparecen los verbos que se trabajaron como foco de la clase. Los tres verbos nuevos que se añadieron a los flashcards son <b>llevarse</b>, <b>medir</b> y <b>tutear</b>. <a href="flashcards-verbos-a2.html">Abrir los flashcards →</a></p>
+<div class="sound-bar"><span class="small">🔊 Cada verbo tiene su botón para escuchar el infinitivo.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
 <div class="verb-card card">
-<div class="verb-head"><span class="verb">llevar</span><span class="tag">ya estaba en los flashcards · -AR</span></div>
-<table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
-<tr><td>llevo</td><td>llevas</td><td>lleva</td><td>llevamos</td><td>lleváis</td><td>llevan</td></tr></table>
-<div class="example">Llevo barba. · Llevo las gafas. · Llevo el pelo corto.</div>
+<div class="verb-head"><span class="verb">llevar</span><span class="tag">ya estaba en los flashcards · -AR</span><button type="button" class="speak" aria-label="Escuchar: llevar" onclick="say('llevar')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>llevo</td><td>llevas</td><td>lleva</td><td>llevamos</td><td>lleváis</td><td>llevan</td></tr></table></div>
+<div class="example"><b>Llevo barba.</b></div>
+<div class="example"><b>Llevo las gafas.</b></div>
+<div class="example"><b>Llevo el pelo corto.</b></div>
 </div>
 <div class="verb-card card">
-<div class="verb-head"><span class="verb">llevarse</span><span class="tag">NUEVO EN LOS FLASHCARDS · reflexivo -AR</span><button class="speak" onclick="say('llevarse')">🔊</button></div>
-<table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
-<tr><td>me llevo</td><td>te llevas</td><td>se lleva</td><td>nos llevamos</td><td>os lleváis</td><td>se llevan</td></tr></table>
-<div class="example">Me llevo bien con mi jefe.</div>
-<div class="note">En clase se explicó como verbo reflexivo para hablar de una relación con otra persona.</div>
+<div class="verb-head"><span class="verb">llevarse</span><span class="tag">NUEVO EN LOS FLASHCARDS · reflexivo -AR</span><button type="button" class="speak" aria-label="Escuchar: llevarse" onclick="say('llevarse')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>me llevo</td><td>te llevas</td><td>se lleva</td><td>nos llevamos</td><td>os lleváis</td><td>se llevan</td></tr></table></div>
+<div class="example"><b>Me llevo bien con mi jefe.</b></div>
+<div class="note">En clase se explicó como verbo reflexivo para hablar de la relación con otra persona.</div>
 </div>
 <div class="verb-card card">
-<div class="verb-head"><span class="verb">tutear</span><span class="tag">NUEVO EN LOS FLASHCARDS · regular -AR</span><button class="speak" onclick="say('tutear')">🔊</button></div>
-<table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
-<tr><td>tuteo</td><td>tuteas</td><td>tutea</td><td>tuteamos</td><td>tuteáis</td><td>tutean</td></tr></table>
-<div class="example">¿Nos podemos tutear?</div>
+<div class="verb-head"><span class="verb">tutear</span><span class="tag">NUEVO EN LOS FLASHCARDS · regular -AR</span><button type="button" class="speak" aria-label="Escuchar: tutear" onclick="say('tutear')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>tuteo</td><td>tuteas</td><td>tutea</td><td>tuteamos</td><td>tuteáis</td><td>tutean</td></tr></table></div>
+<div class="example"><b>¿Nos podemos tutear?</b></div>
 <div class="note">Tratar a alguien de <b>tú</b> en lugar de <b>usted</b>.</div>
 </div>
 <div class="verb-card card">
-<div class="verb-head"><span class="verb">caer</span><span class="tag">ya estaba en los flashcards</span></div>
-<table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
-<tr><td>caigo</td><td>caes</td><td>cae</td><td>caemos</td><td>caéis</td><td>caen</td></tr></table>
-<div class="example">Mi jefa me cae bien. · Me cayó bien el primer día. · Me cayeron bien mis estudiantes.</div>
+<div class="verb-head"><span class="verb">caer</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: caer" onclick="say('caer')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>caigo</td><td>caes</td><td>cae</td><td>caemos</td><td>caéis</td><td>caen</td></tr></table></div>
+<div class="example"><b>Mi jefa me cae bien.</b></div>
+<div class="example"><b>Me cayó bien el primer día.</b></div>
+<div class="example"><b>Me cayeron bien mis estudiantes.</b></div>
 </div>
 <div class="verb-card card">
-<div class="verb-head"><span class="verb">parecer</span><span class="tag">ya estaba en los flashcards</span></div>
-<table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
-<tr><td>parezco</td><td>pareces</td><td>parece</td><td>parecemos</td><td>parecéis</td><td>parecen</td></tr></table>
-<div class="example">Él parece simpático.</div>
+<div class="verb-head"><span class="verb">parecer</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: parecer" onclick="say('parecer')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>parezco</td><td>pareces</td><td>parece</td><td>parecemos</td><td>parecéis</td><td>parecen</td></tr></table></div>
+<div class="example"><b>Él parece simpático.</b></div>
 </div>
 <div class="verb-card card">
-<div class="verb-head"><span class="verb">parecerse</span><span class="tag">ya estaba en los flashcards · reflexivo</span></div>
-<table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
-<tr><td>me parezco</td><td>te pareces</td><td>se parece</td><td>nos parecemos</td><td>os parecéis</td><td>se parecen</td></tr></table>
-<div class="example">Se parece a su padre en los ojos.</div>
+<div class="verb-head"><span class="verb">parecerse</span><span class="tag">ya estaba en los flashcards · reflexivo</span><button type="button" class="speak" aria-label="Escuchar: parecerse" onclick="say('parecerse')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>me parezco</td><td>te pareces</td><td>se parece</td><td>nos parecemos</td><td>os parecéis</td><td>se parecen</td></tr></table></div>
+<div class="example"><b>Se parece a su padre en los ojos.</b></div>
 </div>
 <div class="verb-card card">
-<div class="verb-head"><span class="verb">medir</span><span class="tag">NUEVO EN LOS FLASHCARDS · -IR</span><button class="speak" onclick="say('medir')">🔊</button></div>
-<table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
-<tr><td>mido</td><td>mides</td><td>mide</td><td>medimos</td><td>medís</td><td>miden</td></tr></table>
-<div class="example">Mido 1,93.</div>
-<div class="note">La clase introdujo <b>medir</b> para indicar la altura y destacó la forma <b>mido</b>.</div>
+<div class="verb-head"><span class="verb">medir</span><span class="tag">NUEVO EN LOS FLASHCARDS · e → i</span><button type="button" class="speak" aria-label="Escuchar: medir" onclick="say('medir')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>mido</td><td>mides</td><td>mide</td><td>medimos</td><td>medís</td><td>miden</td></tr></table></div>
+<div class="example"><b>Mido 1,93.</b></div>
+<div class="note">En clase se introdujo <b>medir</b> para decir la altura y se destacó la forma <b>mido</b>.</div>
 </div>
+
 </section>
+
 <section id="ex">
-<h2>✏️ Ejercicios interativos</h2>
-<div class="card">
-<h3>1. Elige la estructura correcta</h3>
-<div id="q1"></div>
+<h2>✏️ Ejercicios interactivos</h2>
+<div class="card"><h3>1. Elige la estructura correcta</h3><div id="q1"></div></div>
+<div class="card" style="margin-top:14px">
+<h3>2. Piensa la frase y comprueba</h3>
+<p class="small">Lee la situación, piensa cómo se dice y abre la respuesta.</p>
+<details><summary>Tu relación con tu jefe es buena.</summary><p><b>Me llevo bien con mi jefe.</b></p></details>
+<details><summary>Tu jefa te cae bien (tienes buena impresión de ella).</summary><p><b>Mi jefa me cae bien.</b></p></details>
+<details><summary>Tu jefe te parece simpático.</summary><p><b>Él parece simpático.</b></p></details>
+<details><summary>Ella tiene los ojos de su padre.</summary><p><b>Se parece a su padre en los ojos.</b></p></details>
+<details><summary>Tu altura es 1,93 m.</summary><p><b>Mido 1,93.</b></p></details>
 </div>
 <div class="card" style="margin-top:14px">
-<h3>2. Complete mentalmente e revele</h3>
-<details><summary>“Mi relación con mi jefe es buena.”</summary><p><b>Me llevo bien con mi jefe.</b></p></details>
-<details><summary>“Mi jefa me cae bien / tengo una impresión positiva de ella.”</summary><p><b>Mi jefa me cae bien.</b></p></details>
-<details><summary>“Él parece simpático.”</summary><p><b>Él parece simpático.</b></p></details>
-<details><summary>“Se parece a su padre en los ojos.”</summary><p><b>Se parece a su padre en los ojos.</b></p></details>
-<details><summary>“Mido 1,93.”</summary><p><b>Mido 1,93.</b></p></details>
-</div>
-<div class="card" style="margin-top:14px">
-<h3>3. Pasado de caer trabajado hoy</h3>
-<div class="choice-grid" id="q2"></div><div class="feedback" id="f2"></div>
+<h3>3. Pasado de <i>caer bien</i></h3>
+<p class="small">Toca las formas correctas (hay dos).</p>
+<div class="choice-grid" id="q2"></div><div id="f2" class="feedback" aria-live="polite"></div>
 </div>
 <div class="card" style="margin-top:14px">
 <h3 class="yellow">🧩 Ejercicio añadido — identificación y tratamiento</h3>
 <p><b>1.</b> Completa: «Los ______ coche azul».</p>
 <div class="choice-grid">
-<button class="choice" onclick="checkExtra(this,true)">del</button>
-<button class="choice" onclick="checkExtra(this,false)">de la</button>
+<button type="button" class="choice" onclick="checkExtra(true)">del</button>
+<button type="button" class="choice" onclick="checkExtra(false)">de la</button>
 </div>
-<div class="feedback" id="extra1"></div>
+<div class="feedback" id="extra1" aria-live="polite"></div>
 <p style="margin-top:16px"><b>2.</b> ¿Qué verbo expresa «tratar a alguien de tú»?</p>
 <div class="choice-grid">
-<button class="choice" onclick="checkExtra2(this,true)">tutear</button>
-<button class="choice" onclick="checkExtra2(this,false)">llevarse</button>
-<button class="choice" onclick="checkExtra2(this,false)">parecerse</button>
+<button type="button" class="choice" onclick="checkExtra2(true)">tutear</button>
+<button type="button" class="choice" onclick="checkExtra2(false)">llevarse</button>
+<button type="button" class="choice" onclick="checkExtra2(false)">parecerse</button>
 </div>
-<div class="feedback" id="extra2"></div>
+<div class="feedback" id="extra2" aria-live="polite"></div>
 </div>
 </section>
-<section id="pratica">
-<h2>🎯 Misión de práctica</h2>
+
+<section id="practica">
+<h2>🎯 Práctica y tarea</h2>
 <div class="card">
-<h3>📋 Registro de las actividades realizadas en clase</h3>
-<div class="activity-list">
-<p><b>✓ Página 44 — pregunta 7, apartado A</b><br/>Realizamos un análisis en clase sobre los aspectos positivos y negativos de las personas.</p>
-<p><b>✓ Página 45 — pregunta 7, apartado B</b><br/>Trabajamos las expresiones <b>caer bien / mal</b> y <b>llevarse bien / mal</b>.</p>
-<p><b>✓ Página 140 — pregunta 13</b><br/>Identificamos cuándo corresponde usar <b>llevar</b> y cuándo <b>llevarse</b>.</p>
-<p><b>✓ Página 142 — pregunta 21</b><br/>La hicimos en pareja / con un compañero, relacionando cada frase con su continuación lógica.</p>
-<p><b>✓ Página 142 — pregunta 20</b><br/>Simulamos con el compañero las respuestas para las diferentes características de las personas.</p>
-<p><b>✓ Página 50 — pregunta 11, apartado B</b><br/>Redactamos junto con un compañero de clase un anuncio para encontrar una pareja que se ajuste al perfil del apartado.</p>
-<p><b>⏳ Pendiente de entrega:</b> no dio tiempo de terminar el anuncio en clase. Mañana se entregará en papel, solamente con ese texto.</p>
-</div>
-</div>
-<div class="card" style="margin-top:14px">
 <h3>🏠 Tarea para casa</h3>
 <div class="homework">
 <p><b>📖 Página 141</b></p>
-<ul>
-<li>Ejercicio <b>15</b></li>
-<li>Ejercicio <b>16</b></li>
-</ul>
+<ul><li>Ejercicio <b>15</b></li><li>Ejercicio <b>16</b></li></ul>
 <p><b>📖 Página 142</b></p>
-<ul>
-<li>Ejercicio <b>17</b></li>
-<li>Ejercicio <b>18</b></li>
-</ul>
+<ul><li>Ejercicio <b>17</b></li><li>Ejercicio <b>18</b></li></ul>
 </div>
 <p class="note"><b>Importante:</b> estos son los ejercicios indicados para hacer en casa.</p>
 </div>
 <div class="card" style="margin-top:14px">
-<h3>Lista de comprobación antes de terminar</h3>
-<label><input onchange="tick(this)" type="checkbox"/> Usé <b>llevar</b> para roupa/estilo.</label><br/>
-<label><input onchange="tick(this)" type="checkbox"/> Usé <b>llevarse bien/mal con</b> para hablar de la relación.</label><br/>
-<label><input onchange="tick(this)" type="checkbox"/> Usé <b>caer bien/mal</b> para impresión/valoración.</label><br/>
-<label><input onchange="tick(this)" type="checkbox"/> Diferencié <b>parecer</b> de <b>parecerse</b>.</label><br/>
-<label><input onchange="tick(this)" type="checkbox"/> Si necesité indicar la altura, usé <b>medir</b>.</label>
+<h3>📝 Lista de comprobación para el anuncio (p. 50 · 11B)</h3>
+<label><input type="checkbox" onchange="tick(this)"> Usé <b>llevar</b> para ropa o estilo.</label><br>
+<label><input type="checkbox" onchange="tick(this)"> Usé <b>llevarse bien/mal con</b> para la relación con otras personas.</label><br>
+<label><input type="checkbox" onchange="tick(this)"> Usé <b>caer bien/mal</b> para la impresión sobre alguien.</label><br>
+<label><input type="checkbox" onchange="tick(this)"> Diferencié <b>parecer</b> de <b>parecerse</b>.</label><br>
+<label><input type="checkbox" onchange="tick(this)"> Si indiqué la altura, usé <b>medir</b>.</label>
 <div class="progress" style="margin-top:12px"><span id="bar"></span></div>
-<p class="small" id="count">0/5 completados</p>
+<p id="count" class="small">0/5 completado</p>
 </div>
 </section>
 
-<div class="home-nav bottom"><a href="index.html">🏠 Volver al inicio</a></div><footer>Registro individual de la clase del 28/09/2026. Incluye las actividades realizadas en clase y la tarea para casa indicada por la profesora.</footer>
+<div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
+<footer>Registro individual de la clase del 28/09/2026, con las actividades hechas en clase y la tarea indicada por la profesora.</footer>
 </div>
 <script>
 function showTab(id,btn){
@@ -362,12 +371,12 @@ function say(txt){
 function toggleSlow(){
  slow=!slow;
  document.querySelectorAll('.slowBtn').forEach(b=>{
-  b.textContent=slow?'🐢 Lento: activado':'🐢 Lento: desactivado';
+  b.textContent=slow?'🐢 Lento: encendido':'🐢 Lento: apagado';
   b.setAttribute('aria-pressed',slow);
  });
 }
-// botón 🔊 en cada frase de ejemplo (usa solo el texto en español, dentro de <b>)
-document.querySelectorAll('#resumo .example, #gram .example').forEach(el=>{
+// botón 🔊 en cada frase de ejemplo de TODAS las pestañas (solo el texto en español, dentro de <b>)
+document.querySelectorAll('.example').forEach(el=>{
  const b=el.querySelector('b'); if(!b) return;
  const txt=b.textContent.trim();
  const wrap=document.createElement('span');
@@ -381,40 +390,39 @@ document.querySelectorAll('#resumo .example, #gram .example').forEach(el=>{
  el.appendChild(btn);
 });
 if(!('speechSynthesis' in window)) document.querySelectorAll('.sound-bar').forEach(x=>x.style.display='none');
-const qs=[
- {text:'Quero falar da minha relação com o meu chefe. Qual é a frase?',opts:['Me llevo bien con mi jefe.','Me lleva bien con mi jefe.','Me caigo bien con mi jefe.'],ok:0},
- {text:'Quero dizer que minha chefe me cai bem.',opts:['Me llevo bien mi jefa.','Mi jefa me cae bien.','Mi jefa me llevo bien.'],ok:1},
- {text:'Qual expressa uma impressão sobre uma pessoa?',opts:['Él parece simpático.','Él lleva simpático.','Él se lleva simpático.'],ok:0},
- {text:'Qual expressa semejanza com o pai?',opts:['Parece a su padre.','Se parece a su padre.','Se lleva a su padre.'],ok:1},
- {text:'Como dizer “eu meço 1,93”?',opts:['Mido 1,93.','Medo 1,93.','Mido a 1,93.'],ok:0},
- {text:'¿Cuál es la forma pasada trabajada para una persona?',opts:['Me caí bien.','Me cayó bien.','Me caí bien con.'],ok:1}
-];
-let qi=0, score=0;
+
+const qs=[{"t": "Quieres hablar de tu relación con tu jefe. ¿Cuál es la frase correcta?", "o": ["Me llevo bien con mi jefe.", "Me lleva bien con mi jefe.", "Me caigo bien con mi jefe."], "a": 0, "e": "Llevarse bien con alguien = tener buena relación."}, {"t": "Quieres decir que tu jefa te parece simpática (buena impresión). ¿Cuál es la frase?", "o": ["Me llevo bien mi jefa.", "Mi jefa me cae bien.", "Mi jefa me llevo bien."], "a": 1, "e": "Caer bien = impresión positiva sobre alguien."}, {"t": "¿Qué frase expresa una impresión sobre una persona?", "o": ["Él parece simpático.", "Él lleva simpático.", "Él se lleva simpático."], "a": 0, "e": "Parecer + adjetivo = impresión u opinión."}, {"t": "¿Qué frase expresa parecido con el padre?", "o": ["Parece a su padre.", "Se parece a su padre.", "Se lleva a su padre."], "a": 1, "e": "Parecerse a = tener semejanza con alguien."}, {"t": "¿Cómo se dice «eu meço 1,93»?", "o": ["Mido 1,93.", "Medo 1,93.", "Mido a 1,93."], "a": 0, "e": "Medir: yo mido (e → i)."}, {"t": "¿Qué frase está en pasado y expresa una buena impresión sobre una persona?", "o": ["Me caí bien.", "Me cayó bien.", "Me caigo bien."], "a": 1, "e": "Me cayó bien (singular) · me cayeron bien (plural)."}];
+let qi=0, score=0, locked=false;
 function renderQ(){
- const q=qs[qi];
- document.getElementById('q1').innerHTML='<p><b>'+q.text+'</b></p><div class="choice-grid">'+q.opts.map((o,i)=>'<button class="choice" onclick="ans('+i+',this)">'+o+'</button>').join('')+'</div><p class="small">Pregunta '+(qi+1)+' de '+qs.length+' · Puntos: '+score+'</p>';
+ const q=qs[qi];locked=false;
+ document.getElementById('q1').innerHTML='<p><b>'+q.t+'</b></p><div class="choice-grid">'+q.o.map((o,i)=>'<button type="button" class="choice" data-i="'+i+'">'+o+'</button>').join('')+'</div><p class="small">Pregunta '+(qi+1)+' de '+qs.length+' · Puntos: '+score+'</p><div class="feedback" aria-live="polite"></div>';
+ document.querySelectorAll('#q1 .choice').forEach(b=>b.addEventListener('click',()=>ans(+b.dataset.i,b)));
 }
 function ans(i,btn){
- const q=qs[qi];const bs=btn.parentElement.querySelectorAll('button');
+ if(locked) return; locked=true;
+ const q=qs[qi];const bs=document.querySelectorAll('#q1 .choice');
  bs.forEach(b=>b.disabled=true);
- bs[q.ok].classList.add('correct');
- if(i===q.ok){score++;}else{btn.classList.add('wrong');}
- setTimeout(()=>{if(qi===qs.length-1){showEnd();return;}qi++;renderQ();},900);
+ bs[q.a].classList.add('correct');
+ const fb=document.querySelector('#q1 .feedback');
+ if(i===q.a){score++;fb.textContent='✅ Correcto. '+q.e;fb.className='feedback ok';}
+ else{btn.classList.add('wrong');fb.textContent='❌ Casi. '+q.e;fb.className='feedback bad';}
+ setTimeout(()=>{if(qi===qs.length-1){showEnd();}else{qi++;renderQ();}},1300);
 }
 function showEnd(){
- document.getElementById('q1').innerHTML='<p><b>🎉 ¡Fin! Has acertado '+score+' de '+qs.length+'.</b></p><button class="choice" onclick="restartQ()">Reiniciar ↺</button>';
+ document.getElementById('q1').innerHTML='<p><b>🎉 ¡Fin! Acertaste '+score+' de '+qs.length+'.</b></p><button type="button" class="choice" id="again">Empezar de nuevo ↺</button>';
+ document.getElementById('again').addEventListener('click',()=>{qi=0;score=0;renderQ();});
 }
-function restartQ(){qi=0;score=0;renderQ();}
 const past=[
- ['me cayó bien','correcta'],
- ['me caí bien','incorrecta'],
- ['me cayeron bien','correcta']
+ ['me cayó bien',true],
+ ['me caí bien',false],
+ ['me cayeron bien',true]
 ];
-document.getElementById('q2').innerHTML=past.map((x,i)=>'<button class="choice" onclick="pastAns('+i+')">'+x[0]+'</button>').join('');
-function pastAns(i){
- const ok=(i===0||i===2);
- document.getElementById('f2').textContent=ok?'✅ Forma trabajada: me cayó bien / me cayeron bien.':'❌ La forma trabajada fue me cayó bien (singular) o me cayeron bien (plural).';
- document.getElementById('f2').style.color=ok?'var(--ok)':'var(--bad)';
+document.getElementById('q2').innerHTML=past.map((x,i)=>'<button type="button" class="choice" onclick="pastAns('+i+',this)">'+x[0]+'</button>').join('');
+function pastAns(i,btn){
+ const ok=past[i][1];const f=document.getElementById('f2');
+ btn.classList.add(ok?'correct':'wrong');
+ f.textContent=ok?'✅ Correcto: '+past[i][0]+'. Formas trabajadas: me cayó bien / me cayeron bien.':'❌ «Me caí» significa que te caíste al suelo. Para opinar sobre alguien: me cayó bien (singular) o me cayeron bien (plural).';
+ f.className='feedback '+(ok?'ok':'bad');
 }
 let done=0;
 function tick(cb){
@@ -422,10 +430,8 @@ function tick(cb){
  document.getElementById('bar').style.width=(done/5*100)+'%';
  document.getElementById('count').textContent=done+'/5 completado';
 }
+function checkExtra(ok){const box=document.getElementById('extra1');box.textContent=ok?'✅ Correcto: los del coche azul.':'❌ Casi. Revisa la estructura: los del coche azul.';box.className='feedback '+(ok?'ok':'bad');}
+function checkExtra2(ok){const box=document.getElementById('extra2');box.textContent=ok?'✅ Correcto: tutear.':'❌ Casi. En esta clase, el verbo trabajado es tutear.';box.className='feedback '+(ok?'ok':'bad');}
 renderQ();
-
-function checkExtra(btn, ok){const box=document.getElementById('extra1');box.textContent=ok?'✅ Correcto: los del coche azul.':'❌ Revisa la estructura: los del coche azul.';box.className='feedback '+(ok?'ok':'bad');}
-function checkExtra2(btn, ok){const box=document.getElementById('extra2');box.textContent=ok?'✅ Correcto: tutear.':'❌ En esta aula, el verbo trabajado es tutear.';box.className='feedback '+(ok?'ok':'bad');}
 </script>
-</body>
-</html>
+</body></html>
