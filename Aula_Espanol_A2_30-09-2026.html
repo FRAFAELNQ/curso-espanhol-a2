@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080a18">
+<title>Clase de Español A2 — 30/09/2026</title>
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#080a18;--card:#171d38;--text:#f8f9ff;--muted:#b8c0dd;
+  --pink:#ff5ca8;--purple:#a56cff;--turq:#37e6d4;--yellow:#ffd34e;
+  --blue:#42a5ff;--soft:#252e50;--border:#2d385e;--ok:#4be59a;--bad:#ff6b7c;
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 10% 0,#1d2b66,transparent 38%),radial-gradient(circle at 90% 0,#5a174d,transparent 35%),var(--bg);background-attachment:fixed;color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}
+.container{max-width:1100px;margin:auto;padding:22px 16px 60px}
+header{text-align:center;padding:26px 20px;margin-bottom:6px;border-radius:22px;border:1px solid #48598d;background:linear-gradient(135deg,#172c6c,#49237f 52%,#741c58);box-shadow:0 18px 50px #0008}
+.badge{display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;font-weight:800;font-size:.82rem}
+h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);color:#fff}
+.subtitle{color:#e3e6ff}
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);display:flex;gap:7px;overflow:auto;padding:8px;border-bottom:1px solid var(--border)}
+nav button,.tab{border:1px solid var(--border);background:var(--card);color:var(--text);padding:9px 12px;border-radius:12px;cursor:pointer;white-space:nowrap;font-weight:750}
+nav button.active,.tab.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+section{display:none;padding-top:22px}
+section.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:0 7px 22px color-mix(in srgb,var(--purple) 10%,transparent)}
+.card h3{margin-top:0}
+.color-title{font-size:1.25rem;font-weight:900}
+.pink{color:var(--pink)}.purple{color:var(--purple)}.turq{color:var(--turq)}.blue{color:var(--blue)}.yellow{color:var(--yellow)}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden}
+th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+th{background:#202a4c;color:#cdbdff}
+.verb-card{margin-bottom:16px}
+.verb-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.verb{font-size:1.45rem;font-weight:900;color:var(--pink)}
+.tag{font-size:.78rem;font-weight:800;padding:4px 9px;border-radius:999px;background:var(--soft);color:#cdbdff}
+.speak{border:0;background:var(--soft);border-radius:10px;padding:7px 10px;cursor:pointer}
+.example{border-left:4px solid var(--turq);padding:9px 12px;background:color-mix(in srgb,var(--turq) 8%,var(--card));border-radius:0 12px 12px 0;margin:9px 0}
+.note{font-size:.9rem;color:var(--muted)}
+.choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:9px}
+.choice{padding:12px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;text-align:center;font-weight:700;font-size:1rem;transition:0.2s}
+.choice:hover{border-color:var(--turq)}
+.choice:disabled{cursor:default}
+.choice.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card));color:var(--ok)}
+.choice.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card));color:var(--bad)}
+.feedback{margin-top:12px;font-weight:800;padding:12px;border-radius:10px;display:none}
+.feedback.ok{display:block;color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card));border:1px solid var(--ok)}
+.feedback.bad{display:block;color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card));border:1px solid var(--bad)}
+details{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px;margin:9px 0}
+summary{cursor:pointer;font-weight:800}
+.progress{height:12px;background:var(--soft);border-radius:99px;overflow:hidden;margin-top:12px;border:1px solid var(--border)}
+.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq));transition:width .3s ease}
+.small{font-size:.88rem;color:var(--muted)}
+.example.sayable{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.example.sayable .speak{flex:0 0 auto;font-size:1.05rem}
+.sound-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:6px 0 12px}
+.speak:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.speak[aria-pressed="true"]{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff}
+footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
+@media(max-width:600px){.container{padding:14px 10px 45px}th,td{padding:8px;font-size:.9rem}.card{padding:15px}}
+
+.home-nav{text-align:center;margin:14px 0 8px}
+.home-nav a{display:inline-block;padding:10px 18px;border-radius:12px;background:#10152b;border:1px solid var(--border);color:#fff;text-decoration:none;font-weight:800;transition:transform .15s ease,border-color .15s ease}
+.home-nav a:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.home-nav a:hover{transform:translateY(-1px);border-color:var(--blue)}
+
+.table-wrap{overflow-x:auto;border-radius:16px}
+.table-wrap table{min-width:520px}
+.mini-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.mini-grid .verb-card{margin-bottom:0}
+.form-big{font-size:1.25rem;font-weight:900;color:var(--turq);margin:10px 0 4px}
+ul.clean{margin:8px 0;padding-left:20px}ul.clean li{margin:5px 0}
+
+.mini-forms{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.mini-forms div{flex:1 1 90px;background:#0c1125;border:1px solid var(--border);border-radius:10px;padding:7px 9px;text-align:center}
+.mini-forms small{display:block;color:var(--muted);font-size:.7rem;text-transform:uppercase}
+.mini-forms b{font-size:1.05rem;color:var(--turq)}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <span class="badge">EOI · Español A2 · Clase individual</span>
+  <h1>Ficha interactiva — 30/09/2026</h1>
+  <div class="subtitle">Pretérito indefinido irregular, expresiones de tiempo y biografías</div>
+  <div class="subtitle" style="font-size:.9rem;margin-top:6px">📖 Libro: Aula Plus 2 · unidad 2 (pp. 29-32 y 36) y más ejercicios (p. 132)</div>
+</header>
+<div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
+
+<nav>
+  <button class="active" onclick="showTab('resumen',this)">📚 Resumen</button>
+  <button onclick="showTab('vocab',this)">📝 Vocabulario</button>
+  <button onclick="showTab('gram',this)">🧠 Gramática</button>
+  <button onclick="showTab('verbos',this)">🔤 Verbos</button>
+  <button onclick="showTab('ex',this)">✏️ Ejercicios</button>
+  <button onclick="showTab('practica',this)">🎯 Práctica</button>
+</nav>
+
+<section id="resumen" class="active">
+<div class="grid">
+ <div class="card"><div class="color-title pink">1. Repaso</div><p>Se repasaron los verbos <b>regulares</b> del pretérito indefinido y los <b>cambios ortográficos en «yo»</b> (<b>busqué</b>, <b>pagué</b>, <b>empecé</b>).</p></div>
+ <div class="card"><div class="color-title purple">2. Verbos irregulares</div><p>Se presentaron cinco familias de irregulares: <b>ir/ser</b> y <b>dar</b>; cambio vocal en -IR; <b>caer, leer, huir</b>; raíz irregular (<b>estuve, tuve, hice…</b>) y <b>decir/conducir</b>.</p></div>
+ <div class="card"><div class="color-title turq">3. Expresiones de tiempo</div><p><b>de… a…</b>, <b>al año siguiente</b>, <b>durante</b>, <b>X años después</b>, <b>hace</b>, <b>desde… hasta…</b> y <b>desde hace</b>.</p></div>
+ <div class="card"><div class="color-title yellow">4. Números y años</div><p>Cómo se dice un año: <b>1983 → mil novecientos ochenta y tres</b>.</p></div>
+</div>
+
+<div class="card" style="margin-top:14px">
+<h3>🗺️ Las 5 familias del pretérito indefinido</h3>
+<ul class="clean">
+ <li><b>1 · Regulares:</b> -é, -aste, -ó, -amos, -asteis, -aron (-AR) · -í, -iste, -ió, -imos, -isteis, -ieron (-ER/-IR).</li>
+ <li><b>2 · Completamente irregulares:</b> ir/ser y dar.</li>
+ <li><b>3 · Cambio vocal en -IR:</b> e → i (pedir, sentir, conseguir, mentir, elegir, preferir) y o → u (dormir, morir), solo en <b>él/ella y ellos/ellas</b>.</li>
+ <li><b>4 · Cambio de raíz en -aer, -eer, -uir:</b> caer, leer, huir (i → y en él/ellos).</li>
+ <li><b>5 · Raíz y terminación irregulares:</b> estar, tener, poder, poner, querer, saber, venir, hacer; y decir/conducir (terminación -eron).</li>
+</ul>
+</div>
+
+<div class="card" style="margin-top:14px">
+<h3>⭐ Frases clave de la clase</h3>
+<div class="sound-bar"><span class="small">🔊 Toca el botón de cada frase para escucharla.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
+<div class="example"><b>Mil novecientos ochenta y tres.</b></div>
+<div class="example"><b>Estuve en el cine.</b></div>
+<div class="example"><b>Tuve gripe.</b></div>
+<div class="example"><b>No pude venir.</b></div>
+<div class="example"><b>Estuve casada desde 2010 hasta 2015.</b></div>
+<div class="example"><b>Estoy casada desde hace 16 años.</b></div>
+<div class="example"><b>Empezó la carrera en 2003 y cuatro años después la terminó.</b></div>
+<div class="example"><b>Pasé cinco años trabajando de camarera.</b></div>
+
+</div>
+
+<div class="card" style="margin-top:14px">
+<h3>📋 Actividades del libro hechas en clase</h3>
+<div class="activity-list">
+<p><b>✓ p. 29 · pregunta 5A</b><br>Se hizo en clase, con su corrección: qué hicieron los personajes famosos.</p>
+<p><b>✓ p. 30 · pregunta 6 (A, C y D)</b><br>«Una información falsa»: en parejas o en grupo, con corrección en clase.</p>
+<p><b>✓ p. 32 · «Biografías»</b><br>La profesora dio las orientaciones para hacer la actividad.</p>
+<p><b>🟡 p. 36 · pregunta 10A</b><br>Se intentó en parejas o en grupo: identificar las respuestas a partir del audio que escuchó toda la clase.</p>
+<p><b>🟡 p. 31 · pregunta 7A</b><br>Se intentó en parejas o en grupo. La profesora pidió además una actividad parecida sobre uno mismo o sobre un perfil ficticio, adaptando las preguntas.</p>
+</div>
+</div>
+</section>
+
+<section id="vocab">
+<h2>📝 Vocabulario</h2>
+<div class="grid">
+ <div class="card"><div class="color-title pink">Biografías (p. 32)</div>
+  <ul class="clean">
+   <li><b>nacer</b> · <b>estudiar</b> · <b>hacer amigos/as</b></li>
+   <li><b>encontrar trabajo</b> · <b>empezar a trabajar</b></li>
+   <li><b>enamorarse</b> · <b>casarse (con)</b> · <b>separarse / divorciarse</b></li>
+   <li><b>ir a vivir con la pareja / con amigos</b> · <b>mudarse</b></li>
+   <li><b>tener hijos</b> · <b>cambiar de trabajo / ciudad / país</b></li>
+   <li><b>perder / dejar el trabajo</b> · <b>jubilarse</b> · <b>morir</b></li>
+   <li><b>conocer a gente interesante / maravillosa</b></li>
+   <li><b>pasar unos años / un tiempo en un lugar</b></li>
+  </ul></div>
+ <div class="card"><div class="color-title turq">Trabajos (audio de Verónica)</div>
+  <ul class="clean">
+   <li><b>camarero/a</b> — trabaja en un restaurante o bar. <span class="small">(PT: garçom/garçonete)</span></li>
+   <li><b>canguro</b> — persona que cuida a un niño cuando los padres no están. <span class="small">(PT: babá)</span></li>
+   <li><b>dependiente/a</b> — persona que vende en una tienda. <span class="small">(PT: vendedor/a de loja)</span></li>
+   <li><b>fotógrafo/a</b> · <b>traductor/a</b> · <b>profesor/a</b></li>
+  </ul></div>
+ <div class="card"><div class="color-title yellow">Números y años</div>
+  <div class="table-wrap"><table>
+  <tr><th>Año</th><th>Se dice</th></tr>
+  <tr><td>1929</td><td>mil novecientos veintinueve</td></tr>
+  <tr><td>1983</td><td>mil novecientos ochenta y tres</td></tr>
+  </table></div>
+  <p class="note">La <b>y</b> solo va entre decenas y unidades (ochenta <b>y</b> tres); no va después de «mil» ni de «novecientos».</p></div>
+ <div class="card"><div class="color-title purple">ir / irse · empezar a</div>
+  <ul class="clean">
+   <li><b>ir</b> = ir a un lugar. <b>irse</b> = abandonar un lugar.</li>
+   <li><div class="example"><b>Llegué a las diez y a las once me fui de la fiesta.</b></div>
+</li>
+   <li><b>empezar a + infinitivo</b> para hablar del inicio de una acción.</li>
+   <li><div class="example"><b>Empecé a estudiar español en 2025.</b></div>
+</li>
+  </ul></div>
+</div>
+</section>
+
+<section id="gram">
+<h2>🧠 Gramática</h2>
+<div class="sound-bar"><span class="small">🔊 Toca el botón de cada ejemplo para escucharlo.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
+
+<h3 class="color-title pink">1 · Repaso: pretérito indefinido regular</h3>
+<div class="card">
+<div class="table-wrap"><table>
+<tr><th></th><th>-AR · cantar</th><th>-ER · comer</th><th>-IR · vivir</th></tr>
+<tr><td>yo</td><td>canté</td><td>comí</td><td>viví</td></tr>
+<tr><td>tú</td><td>cantaste</td><td>comiste</td><td>viviste</td></tr>
+<tr><td>él / ella / usted</td><td>cantó</td><td>comió</td><td>vivió</td></tr>
+<tr><td>nosotros/as</td><td>cantamos</td><td>comimos</td><td>vivimos</td></tr>
+<tr><td>vosotros/as</td><td>cantasteis</td><td>comisteis</td><td>vivisteis</td></tr>
+<tr><td>ellos/as, ustedes</td><td>cantaron</td><td>comieron</td><td>vivieron</td></tr>
+</table></div>
+<ul class="clean">
+ <li>Con <b>nosotros</b>, -AR (<b>cantamos</b>) y -IR (<b>vivimos</b>) son iguales que en presente. Con -ER cambia: <b>comemos</b> (presente) ≠ <b>comimos</b> (pretérito).</li>
+ <li>Las formas de «yo» y «él» llevan tilde: <b>canté</b>, <b>cantó</b>, <b>comí</b>, <b>comió</b>.</li>
+</ul>
+</div>
+
+<h3 class="color-title yellow" style="margin-top:24px">2 · Cambios ortográficos en «yo»</h3>
+<div class="grid">
+ <div class="card"><div class="color-title pink">-car → -qué</div><div class="example"><b>Busqué las llaves.</b></div>
+<p><b>buscar → busqué</b> · publicar → publiqué</p></div>
+ <div class="card"><div class="color-title turq">-gar → -gué</div><div class="example"><b>Pagué la cuenta.</b></div>
+<p><b>pagar → pagué</b> · jugar → jugué</p></div>
+ <div class="card"><div class="color-title yellow">-zar → -cé</div><div class="example"><b>Empecé a estudiar en septiembre.</b></div>
+<p><b>empezar → empecé</b> · organizar → organicé</p></div>
+</div>
+<p class="note">Se cambia la ortografía para conservar el sonido: que/qui, gue/gui, ce/ci. <b>Atención:</b> en la diapositiva de clase los ejemplos de -CAR y -GAR aparecen intercambiados; la regla correcta es la de arriba.</p>
+
+<h3 class="color-title purple" style="margin-top:24px">3 · Verbos irregulares</h3>
+<div class="card">
+<div class="color-title pink">① Completamente irregulares</div>
+<div class="table-wrap"><table>
+<tr><th></th><th>ir / ser</th><th>dar</th></tr>
+<tr><td>yo</td><td>fui</td><td>di</td></tr>
+<tr><td>tú</td><td>fuiste</td><td>diste</td></tr>
+<tr><td>él / ella / usted</td><td>fue</td><td>dio</td></tr>
+<tr><td>nosotros/as</td><td>fuimos</td><td>dimos</td></tr>
+<tr><td>vosotros/as</td><td>fuisteis</td><td>disteis</td></tr>
+<tr><td>ellos/as, ustedes</td><td>fueron</td><td>dieron</td></tr>
+</table></div>
+<p class="note"><b>Ir</b> y <b>ser</b> tienen las mismas formas en pretérito.</p>
+</div>
+
+<div class="card" style="margin-top:14px">
+<div class="color-title yellow">② Cambio vocal en -IR: solo él/ella y ellos/ellas</div>
+<div class="table-wrap"><table>
+<tr><th></th><th>e → i · pedir</th><th>o → u · dormir</th></tr>
+<tr><td>yo</td><td>pedí</td><td>dormí</td></tr>
+<tr><td>tú</td><td>pediste</td><td>dormiste</td></tr>
+<tr><td>él / ella / usted</td><td><b>pidió</b></td><td><b>durmió</b></td></tr>
+<tr><td>nosotros/as</td><td>pedimos</td><td>dormimos</td></tr>
+<tr><td>vosotros/as</td><td>pedisteis</td><td>dormisteis</td></tr>
+<tr><td>ellos/as, ustedes</td><td><b>pidieron</b></td><td><b>durmieron</b></td></tr>
+</table></div>
+<ul class="clean">
+ <li><b>e → i:</b> pedir, sentir(se), conseguir, mentir, elegir, preferir (se sintió, consiguió, eligió, prefirió).</li>
+ <li><b>o → u:</b> dormir y morir (murió, murieron). Solo hay estos dos.</li>
+ <li>En presente el cambio afecta a más personas; en pretérito solo a la 3.ª persona.</li>
+</ul>
+</div>
+
+<div class="card" style="margin-top:14px">
+<div class="color-title turq">③ -aer, -eer, -uir: i → y</div>
+<div class="table-wrap"><table>
+<tr><th></th><th>caer</th><th>leer</th><th>huir</th></tr>
+<tr><td>yo</td><td>caí</td><td>leí</td><td>huí</td></tr>
+<tr><td>tú</td><td>caíste</td><td>leíste</td><td>huiste</td></tr>
+<tr><td>él / ella / usted</td><td><b>cayó</b></td><td><b>leyó</b></td><td><b>huyó</b></td></tr>
+<tr><td>nosotros/as</td><td>caímos</td><td>leímos</td><td>huimos</td></tr>
+<tr><td>vosotros/as</td><td>caísteis</td><td>leísteis</td><td>huisteis</td></tr>
+<tr><td>ellos/as, ustedes</td><td><b>cayeron</b></td><td><b>leyeron</b></td><td><b>huyeron</b></td></tr>
+</table></div>
+<p class="note">La «i» entre vocales se escribe «y» en -ió / -ieron: cayó, leyeron.</p>
+</div>
+
+<div class="card" style="margin-top:14px">
+<div class="color-title purple">④ Raíz irregular + terminaciones especiales</div>
+<div class="table-wrap"><table>
+<tr><th>Infinitivo</th><th>Raíz</th><th>Ejemplo (yo)</th></tr>
+<tr><td>estar</td><td>estuv-</td><td>estuve</td></tr>
+<tr><td>tener</td><td>tuv-</td><td>tuve</td></tr>
+<tr><td>poder</td><td>pud-</td><td>pude</td></tr>
+<tr><td>poner</td><td>pus-</td><td>puse</td></tr>
+<tr><td>querer</td><td>quis-</td><td>quise</td></tr>
+<tr><td>saber</td><td>sup-</td><td>supe</td></tr>
+<tr><td>venir</td><td>vin-</td><td>vine</td></tr>
+<tr><td>hacer</td><td>hic-</td><td>hice (él: <b>hizo</b>)</td></tr>
+<tr><td>obtener</td><td>obtuv-</td><td>obtuve</td></tr>
+<tr><td>componer</td><td>compus-</td><td>compuse</td></tr>
+</table></div>
+<p><b>Terminaciones (sin tilde):</b> -e, -iste, -o, -imos, -isteis, -ieron.</p>
+<div class="example"><b>Estuve en el cine.</b></div>
+<div class="example"><b>Tuve gripe.</b></div>
+<div class="example"><b>No pude venir.</b></div>
+
+</div>
+
+<div class="card" style="margin-top:14px">
+<div class="color-title pink">⑤ -decir y -ducir: raíz con j</div>
+<p><b>decir → dij-</b> · <b>conducir → conduj-</b> con las terminaciones de ④, pero en «ellos» es <b>-eron</b> (sin «i»).</p>
+<div class="example"><b>Ellos dijeron la verdad.</b></div>
+<div class="example"><b>Ella condujo hasta la playa.</b></div>
+
+</div>
+
+<h3 class="color-title turq" style="margin-top:24px">4 · Expresiones de tiempo (p. 31)</h3>
+<div class="card">
+<div class="table-wrap"><table>
+<tr><th>Expresión</th><th>Uso trabajado</th><th>Ejemplo</th></tr>
+<tr><td><b>de … a … · entre … y …</b></td><td>Periodo con inicio y final.</td><td><div class="example"><b>Estudió de 2003 a 2007.</b></div>
+</td></tr>
+<tr><td><b>al año / mes siguiente</b></td><td>En un relato del pasado: un año después de otro momento del pasado. No se usa «el año que viene» (es futuro).</td><td><div class="example"><b>Me fui a Londres en 2015 y al año siguiente volví a casa.</b></div>
+</td></tr>
+<tr><td><b>X años después</b></td><td>Tiempo entre dos hechos del pasado.</td><td><div class="example"><b>Empezó la carrera en 2003 y cuatro años después la terminó.</b></div>
+</td></tr>
+<tr><td><b>durante + tiempo</b></td><td>Cuánto duró algo. Con «estar» también: estuve casada cinco años.</td><td><div class="example"><b>Trabajó de profesor durante dos años.</b></div>
+</td></tr>
+<tr><td><b>hace + tiempo</b></td><td>Cuenta hacia atrás desde hoy hasta el momento en que terminó.</td><td><div class="example"><b>Terminó el máster hace 17 años.</b></div>
+</td></tr>
+<tr><td><b>desde … hasta …</b></td><td>Fecha de inicio y fecha de final (algo ya terminado).</td><td><div class="example"><b>Estuve casada desde 2010 hasta 2015.</b></div>
+</td></tr>
+<tr><td><b>desde (hace) …</b></td><td>La situación continúa ahora (presente).</td><td><div class="example"><b>Estoy casada desde hace 16 años.</b></div>
+</td></tr>
+</table></div>
+<p class="note"><b>hace 17 años</b> (terminó) ≠ <b>desde hace 17 años</b> (todavía continúa).</p>
+</div>
+
+<div class="card" style="margin-top:14px">
+<h3 class="yellow">✅ Corrección del ejercicio 6C (p. 30)</h3>
+<div class="table-wrap"><table>
+<tr><th>Infinitivo</th><th>Forma en pretérito</th></tr>
+<tr><td>ser</td><td>fue</td></tr><tr><td>obtener</td><td>obtuvo</td></tr><tr><td>morir</td><td>murió</td></tr><tr><td>componer</td><td>compuso</td></tr>
+<tr><td>tener</td><td>tuvo</td></tr><tr><td>hacer</td><td>hizo</td></tr><tr><td>ir</td><td>fue</td></tr><tr><td>estar</td><td>estuvo</td></tr>
+</table></div>
+<ul class="clean">
+ <li><b>6D-1:</b> <b>ser</b> e <b>ir</b> tienen la misma forma (fue).</li>
+ <li><b>6D-2:</b> <b>murió</b> y <b>vivió</b> terminan igual (-ió), pero <b>morir</b> es irregular porque cambia la vocal de la raíz (o → u).</li>
+ <li><b>6D-3:</b> los demás verbos son irregulares porque cambia la raíz y, además, las terminaciones.</li>
+ <li>Si la pregunta dice solo «tercera persona», incluye singular y plural.</li>
+</ul>
+</div>
+</section>
+
+<section id="verbos">
+<h2>🔤 Verbos trabajados en la clase</h2>
+<p class="small">Aquí se muestra el <b>pretérito indefinido</b> trabajado hoy. Los verbos nuevos (en los flashcards aparecen en presente): <b>morir, obtener, componer, ir, dar, mentir, poder, querer, saber, venir, buscar, nacer, dirigir, casarse, protagonizar</b> e <b>inventar</b>. <a href="flashcards-verbos-a2.html" style="color:var(--turq);">Abrir los flashcards →</a></p>
+<div class="sound-bar"><span class="small">🔊 Cada verbo tiene su botón para escuchar el infinitivo.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
+<h3 class="color-title turq" style="margin-top:22px">A · Completamente irregulares</h3>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">ir / ser</span><span class="tag">NUEVO EN LOS FLASHCARDS (ir) · ya estaba (ser)</span><button type="button" class="speak" aria-label="Escuchar: ir" onclick="say('ir')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>fui</td><td>fuiste</td><td>fue</td><td>fuimos</td><td>fuisteis</td><td>fueron</td></tr></table></div>
+<div class="example"><b>Ayer fui al cine.</b></div>
+<div class="example"><b>Fue un profesor muy interesante.</b></div>
+<div class="note">Con el mismo verbo en pretérito, <b>ir</b> y <b>ser</b> tienen las mismas formas; el contexto indica cuál es.</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">dar</span><span class="tag">NUEVO EN LOS FLASHCARDS</span><button type="button" class="speak" aria-label="Escuchar: dar" onclick="say('dar')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>di</td><td>diste</td><td>dio</td><td>dimos</td><td>disteis</td><td>dieron</td></tr></table></div>
+<div class="note">Solo conserva la <b>d</b>; las terminaciones no llevan tilde.</div>
+</div>
+<h3 class="color-title yellow" style="margin-top:22px">B · Cambio vocal en -IR (solo él/ella y ellos/ellas)</h3>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">pedir</span><span class="tag">ya estaba en los flashcards · e → i</span><button type="button" class="speak" aria-label="Escuchar: pedir" onclick="say('pedir')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>pedí</td><td>pediste</td><td>pidió</td><td>pedimos</td><td>pedisteis</td><td>pidieron</td></tr></table></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">dormir</span><span class="tag">ya estaba en los flashcards · o → u</span><button type="button" class="speak" aria-label="Escuchar: dormir" onclick="say('dormir')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>dormí</td><td>dormiste</td><td>durmió</td><td>dormimos</td><td>dormisteis</td><td>durmieron</td></tr></table></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">sentirse</span><span class="tag">ya estaba en los flashcards · e → i</span><button type="button" class="speak" aria-label="Escuchar: sentirse" onclick="say('sentirse')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>me sentí</td><td>te sentiste</td><td>se sintió</td><td>nos sentimos</td><td>os sentisteis</td><td>se sintieron</td></tr></table></div>
+<div class="example"><b>Me sentí muy bien.</b></div>
+</div>
+<div class="mini-grid">
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">conseguir</span><span class="tag">ya estaba en los flashcards · e → i</span><button type="button" class="speak" aria-label="Escuchar: conseguir" onclick="say('conseguir')">🔊</button></div>
+<div class="mini-forms"><div><small>yo</small><b>conseguí</b></div><div><small>él / ella</small><b>consiguió</b></div><div><small>ellos / ellas</small><b>consiguieron</b></div></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">elegir</span><span class="tag">ya estaba en los flashcards · e → i</span><button type="button" class="speak" aria-label="Escuchar: elegir" onclick="say('elegir')">🔊</button></div>
+<div class="mini-forms"><div><small>yo</small><b>elegí</b></div><div><small>él / ella</small><b>eligió</b></div><div><small>ellos / ellas</small><b>eligieron</b></div></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">preferir</span><span class="tag">ya estaba en los flashcards · e → i</span><button type="button" class="speak" aria-label="Escuchar: preferir" onclick="say('preferir')">🔊</button></div>
+<div class="mini-forms"><div><small>yo</small><b>preferí</b></div><div><small>él / ella</small><b>prefirió</b></div><div><small>ellos / ellas</small><b>prefirieron</b></div></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">mentir</span><span class="tag">NUEVO EN LOS FLASHCARDS · e → i</span><button type="button" class="speak" aria-label="Escuchar: mentir" onclick="say('mentir')">🔊</button></div>
+<div class="mini-forms"><div><small>yo</small><b>mentí</b></div><div><small>él / ella</small><b>mintió</b></div><div><small>ellos / ellas</small><b>mintieron</b></div></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">morir</span><span class="tag">NUEVO EN LOS FLASHCARDS · o → u</span><button type="button" class="speak" aria-label="Escuchar: morir" onclick="say('morir')">🔊</button></div>
+<div class="mini-forms"><div><small>yo</small><b>morí</b></div><div><small>él / ella</small><b>murió</b></div><div><small>ellos / ellas</small><b>murieron</b></div></div>
+</div>
+</div>
+<h3 class="color-title pink" style="margin-top:22px">C · Verbos en -aer, -eer, -uir (i → y entre vocales)</h3>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">caer</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: caer" onclick="say('caer')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>caí</td><td>caíste</td><td>cayó</td><td>caímos</td><td>caísteis</td><td>cayeron</td></tr></table></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">leer</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: leer" onclick="say('leer')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>leí</td><td>leíste</td><td>leyó</td><td>leímos</td><td>leísteis</td><td>leyeron</td></tr></table></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">huir</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: huir" onclick="say('huir')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>huí</td><td>huiste</td><td>huyó</td><td>huimos</td><td>huisteis</td><td>huyeron</td></tr></table></div>
+</div>
+<h3 class="color-title purple" style="margin-top:22px">D · Raíz irregular y terminaciones sin tilde (-e, -iste, -o, -imos, -isteis, -ieron)</h3>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">estar</span><span class="tag">ya estaba en los flashcards · estuv-</span><button type="button" class="speak" aria-label="Escuchar: estar" onclick="say('estar')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>estuve</td><td>estuviste</td><td>estuvo</td><td>estuvimos</td><td>estuvisteis</td><td>estuvieron</td></tr></table></div>
+<div class="example"><b>Estuve en el cine.</b></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">tener</span><span class="tag">ya estaba en los flashcards · tuv-</span><button type="button" class="speak" aria-label="Escuchar: tener" onclick="say('tener')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>tuve</td><td>tuviste</td><td>tuvo</td><td>tuvimos</td><td>tuvisteis</td><td>tuvieron</td></tr></table></div>
+<div class="example"><b>Tuve gripe.</b></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">hacer</span><span class="tag">ya estaba en los flashcards · hic- (él: hizo)</span><button type="button" class="speak" aria-label="Escuchar: hacer" onclick="say('hacer')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>hice</td><td>hiciste</td><td>hizo</td><td>hicimos</td><td>hicisteis</td><td>hicieron</td></tr></table></div>
+</div>
+<div class="mini-grid">
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">poder</span><span class="tag">NUEVO EN LOS FLASHCARDS · pud-</span><button type="button" class="speak" aria-label="Escuchar: poder" onclick="say('poder')">🔊</button></div>
+<div class="mini-forms"><div><small>yo</small><b>pude</b></div><div><small>él / ella</small><b>pudo</b></div><div><small>ellos / ellas</small><b>pudieron</b></div></div>
+<div class="example"><b>No pude venir.</b></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">poner</span><span class="tag">ya estaba en los flashcards · pus-</span><button type="button" class="speak" aria-label="Escuchar: poner" onclick="say('poner')">🔊</button></div>
+<div class="mini-forms"><div><small>yo</small><b>puse</b></div><div><small>él / ella</small><b>puso</b></div><div><small>ellos / ellas</small><b>pusieron</b></div></div>
+<div class="example"><b>Me puse la chaqueta.</b></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">querer</span><span class="tag">NUEVO EN LOS FLASHCARDS · quis-</span><button type="button" class="speak" aria-label="Escuchar: querer" onclick="say('querer')">🔊</button></div>
+<div class="mini-forms"><div><small>yo</small><b>quise</b></div><div><small>él / ella</small><b>quiso</b></div><div><small>ellos / ellas</small><b>quisieron</b></div></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">saber</span><span class="tag">NUEVO EN LOS FLASHCARDS · sup-</span><button type="button" class="speak" aria-label="Escuchar: saber" onclick="say('saber')">🔊</button></div>
+<div class="mini-forms"><div><small>yo</small><b>supe</b></div><div><small>él / ella</small><b>supo</b></div><div><small>ellos / ellas</small><b>supieron</b></div></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">venir</span><span class="tag">NUEVO EN LOS FLASHCARDS · vin-</span><button type="button" class="speak" aria-label="Escuchar: venir" onclick="say('venir')">🔊</button></div>
+<div class="mini-forms"><div><small>yo</small><b>vine</b></div><div><small>él / ella</small><b>vino</b></div><div><small>ellos / ellas</small><b>vinieron</b></div></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">obtener</span><span class="tag">NUEVO EN LOS FLASHCARDS · obtuv-</span><button type="button" class="speak" aria-label="Escuchar: obtener" onclick="say('obtener')">🔊</button></div>
+<div class="mini-forms"><div><small>yo</small><b>obtuve</b></div><div><small>él / ella</small><b>obtuvo</b></div><div><small>ellos / ellas</small><b>obtuvieron</b></div></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">componer</span><span class="tag">NUEVO EN LOS FLASHCARDS · compus-</span><button type="button" class="speak" aria-label="Escuchar: componer" onclick="say('componer')">🔊</button></div>
+<div class="mini-forms"><div><small>yo</small><b>compuse</b></div><div><small>él / ella</small><b>compuso</b></div><div><small>ellos / ellas</small><b>compusieron</b></div></div>
+</div>
+</div>
+<h3 class="color-title turq" style="margin-top:22px">E · Verbos en -decir y -ducir (raíz con j; terminación -eron)</h3>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">decir</span><span class="tag">ya estaba en los flashcards · dij-</span><button type="button" class="speak" aria-label="Escuchar: decir" onclick="say('decir')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>dije</td><td>dijiste</td><td>dijo</td><td>dijimos</td><td>dijisteis</td><td>dijeron</td></tr></table></div>
+<div class="note">Con <b>j</b> la terminación pierde la «i»: <b>dijeron</b> (no «dijieron»).</div>
+</div>
+<div class="mini-grid">
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">conducir</span><span class="tag">ya estaba en los flashcards · conduj-</span><button type="button" class="speak" aria-label="Escuchar: conducir" onclick="say('conducir')">🔊</button></div>
+<div class="mini-forms"><div><small>yo</small><b>conduje</b></div><div><small>él / ella</small><b>condujo</b></div><div><small>ellos / ellas</small><b>condujeron</b></div></div>
+</div>
+</div>
+<h3 class="color-title yellow" style="margin-top:22px">F · Ortografía en «yo» (ejercicio de repaso)</h3>
+<div class="mini-grid">
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">buscar</span><span class="tag">NUEVO EN LOS FLASHCARDS · -AR</span><button type="button" class="speak" aria-label="Escuchar: buscar" onclick="say('buscar')">🔊</button></div>
+<div class="small">Yo, pretérito · c → qu</div><div class="form-big">busqué</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">pagar</span><span class="tag">ya estaba en los flashcards · -AR</span><button type="button" class="speak" aria-label="Escuchar: pagar" onclick="say('pagar')">🔊</button></div>
+<div class="small">Yo, pretérito · g → gu</div><div class="form-big">pagué</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">empezar</span><span class="tag">ya estaba en los flashcards · -AR</span><button type="button" class="speak" aria-label="Escuchar: empezar" onclick="say('empezar')">🔊</button></div>
+<div class="small">Yo, pretérito · z → c</div><div class="form-big">empecé</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">publicar</span><span class="tag">ya estaba en los flashcards · -AR</span><button type="button" class="speak" aria-label="Escuchar: publicar" onclick="say('publicar')">🔊</button></div>
+<div class="small">Yo, pretérito · c → qu</div><div class="form-big">publiqué</div>
+</div>
+</div>
+<h3 class="color-title pink" style="margin-top:22px">G · Ejercicio 5A (p. 29): qué hicieron</h3>
+<div class="mini-grid">
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">dirigir</span><span class="tag">NUEVO EN LOS FLASHCARDS</span><button type="button" class="speak" aria-label="Escuchar: dirigir" onclick="say('dirigir')">🔊</button></div>
+<div class="small">3.ª persona, pretérito</div><div class="form-big">dirigió</div>
+<div class="example"><b>Claudia Llosa dirigió una película.</b></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">escribir</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: escribir" onclick="say('escribir')">🔊</button></div>
+<div class="small">3.ª persona, pretérito</div><div class="form-big">escribió</div>
+<div class="example"><b>Isabel Allende escribió novelas.</b></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">casarse</span><span class="tag">NUEVO EN LOS FLASHCARDS</span><button type="button" class="speak" aria-label="Escuchar: casarse" onclick="say('casarse')">🔊</button></div>
+<div class="small">3.ª persona, pretérito</div><div class="form-big">se casaron</div>
+<div class="example"><b>Frida Kahlo y Diego Rivera se casaron.</b></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">jugar</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: jugar" onclick="say('jugar')">🔊</button></div>
+<div class="small">3.ª persona, pretérito</div><div class="form-big">jugó</div>
+<div class="example"><b>Pau Gasol jugó al baloncesto.</b></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">ganar</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: ganar" onclick="say('ganar')">🔊</button></div>
+<div class="small">3.ª persona, pretérito</div><div class="form-big">ganó</div>
+<div class="example"><b>Guillermo del Toro ganó un Óscar.</b></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">protagonizar</span><span class="tag">NUEVO EN LOS FLASHCARDS</span><button type="button" class="speak" aria-label="Escuchar: protagonizar" onclick="say('protagonizar')">🔊</button></div>
+<div class="small">3.ª persona, pretérito</div><div class="form-big">protagonizaron</div>
+<div class="example"><b>Penélope Cruz y Javier Bardem protagonizaron una película.</b></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">inventar</span><span class="tag">NUEVO EN LOS FLASHCARDS</span><button type="button" class="speak" aria-label="Escuchar: inventar" onclick="say('inventar')">🔊</button></div>
+<div class="small">3.ª persona, pretérito</div><div class="form-big">inventó</div>
+<div class="example"><b>Manuel Elkin inventó una vacuna.</b></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">nacer</span><span class="tag">NUEVO EN LOS FLASHCARDS</span><button type="button" class="speak" aria-label="Escuchar: nacer" onclick="say('nacer')">🔊</button></div>
+<div class="small">3.ª persona, pretérito</div><div class="form-big">nació</div>
+<div class="example"><b>Lupita Nyong'o nació en México.</b></div>
+</div>
+</div>
+
+</section>
+
+<section id="ex">
+<h2>✏️ Ejercicios interactivos</h2>
+<div class="card"><h3 class="pink">1 · Los años</h3><div id="q-anios"></div></div>
+<div class="card" style="margin-top:14px"><h3 class="purple">2 · Pretérito indefinido irregular</h3><div id="q-irr"></div></div>
+<div class="card" style="margin-top:14px"><h3 class="yellow">3 · Ortografía en «yo»</h3><div id="q-orto"></div></div>
+<div class="card" style="margin-top:14px"><h3 class="turq">4 · Expresiones de tiempo</h3><div id="q-tiempo"></div></div>
+<div class="card" style="margin-top:14px"><h3 class="blue">5 · Audio del ejercicio 10A (p. 36)</h3><p class="small">Según el audio que se escuchó en clase.</p><div id="q-vero"></div></div>
+</section>
+
+<section id="practica">
+<h2>🎯 Práctica y tarea</h2>
+<div class="card">
+<h3 class="pink">🏠 Tarea para casa</h3>
+<div class="homework">
+<p><b>📖 Página 132</b></p>
+<ul class="clean"><li>Ejercicio <b>9</b>: ¿de quién hablan las frases?</li><li>Ejercicio <b>10</b>: marcar las formas del pretérito indefinido y completar las tablas.</li></ul>
+</div>
+<p class="note">Consejo: usa la pestaña <b>Verbos</b> para revisar las terminaciones y los verbos irregulares.</p>
+</div>
+<div class="card" style="margin-top:14px">
+<h3 class="purple">📝 Actividad parecida a 7A (perfil propio o ficticio)</h3>
+<p>La profesora pidió una actividad parecida al currículum de Nicolás, sobre ti o sobre un perfil ficticio, adaptando las preguntas al perfil elegido.</p>
+<p class="small">Lista de comprobación: usa todas las expresiones de tiempo.</p>
+<label><input type="checkbox" onchange="tick(this)"> de … a … / entre … y …</label><br>
+<label><input type="checkbox" onchange="tick(this)"> al año siguiente</label><br>
+<label><input type="checkbox" onchange="tick(this)"> X años después</label><br>
+<label><input type="checkbox" onchange="tick(this)"> durante …</label><br>
+<label><input type="checkbox" onchange="tick(this)"> hace …</label><br>
+<label><input type="checkbox" onchange="tick(this)"> desde … hasta …</label><br>
+<label><input type="checkbox" onchange="tick(this)"> desde hace …</label>
+<div class="progress" style="margin-top:12px"><span id="bar"></span></div>
+<p id="count" class="small" style="font-weight:700">0/7 completado</p>
+</div>
+</section>
+
+<div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
+<footer>Registro individual de la clase del 30/09/2026. Basado en la pizarra, las diapositivas, las páginas del libro y las notas de la clase.</footer>
+</div>
+<script>
+function showTab(id,btn){
+ document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+ btn.classList.add('active');
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+let slow=false, esVoice=null;
+function pickEs(){
+ const vs=speechSynthesis.getVoices();
+ esVoice=vs.find(v=>v.lang==='es-ES')||vs.find(v=>v.lang&&v.lang.startsWith('es'))||null;
+}
+if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=pickEs;pickEs();}
+function say(txt){
+ if(!('speechSynthesis' in window)) return;
+ speechSynthesis.cancel();
+ const u=new SpeechSynthesisUtterance(txt);
+ u.lang='es-ES';if(esVoice)u.voice=esVoice;
+ u.rate=slow?.6:.85;
+ speechSynthesis.speak(u);
+}
+function toggleSlow(){
+ slow=!slow;
+ document.querySelectorAll('.slowBtn').forEach(b=>{
+  b.textContent=slow?'🐢 Lento: encendido':'🐢 Lento: apagado';
+  b.setAttribute('aria-pressed',slow);
+ });
+}
+document.querySelectorAll('.example').forEach(el=>{
+ const b=el.querySelector('b'); if(!b) return;
+ const txt=b.textContent.trim();
+ const wrap=document.createElement('span');
+ while(el.firstChild) wrap.appendChild(el.firstChild);
+ el.appendChild(wrap);
+ el.classList.add('sayable');
+ const btn=document.createElement('button');
+ btn.type='button';btn.className='speak';btn.textContent='🔊';
+ btn.setAttribute('aria-label','Escuchar: '+txt);
+ btn.onclick=()=>say(txt);
+ el.appendChild(btn);
+});
+if(!('speechSynthesis' in window)) document.querySelectorAll('.sound-bar').forEach(x=>x.style.display='none');
+
+// Mejoras en el Quiz interactivo
+function makeQuiz(id,qs){
+ const box=document.getElementById(id);let qi=0,score=0,locked=false;
+ function render(){
+  const q=qs[qi];locked=false;
+  box.innerHTML='<p style="font-size:1.1rem;"><b>'+q.t+'</b></p><div class="choice-grid">'+q.o.map((o,i)=>'<button type="button" class="choice" data-i="'+i+'">'+o+'</button>').join('')+'</div><p class="small" style="margin-top:15px; font-weight:700;">Pregunta '+(qi+1)+' de '+qs.length+' · Puntos: '+score+'</p><div class="feedback" aria-live="polite"></div>';
+  box.querySelectorAll('.choice').forEach(b=>b.addEventListener('click',()=>ans(+b.dataset.i,b)));
+ }
+ function ans(i,btn){
+  if(locked) return; locked=true;
+  const q=qs[qi];const bs=box.querySelectorAll('.choice');
+  bs.forEach(b=>b.disabled=true);
+  bs[q.a].classList.add('correct');
+  const fb=box.querySelector('.feedback');
+  
+  // Botón Siguiente que te permite leer la explicación con calma
+  let btnNext = '<button type="button" class="choice" style="margin-top:15px; padding:8px 16px; width:100%; font-size:1rem; border:none; background:rgba(0,0,0,0.2);" onclick="this.parentElement.dispatchEvent(new CustomEvent(\'next\'))">Siguiente ➔</button>';
+  
+  if(i===q.a){
+   score++;
+   fb.innerHTML='<div style="margin-bottom:8px;">✅ Correcto.</div>'+(q.e||'') + btnNext;
+   fb.className='feedback ok';
+  } else{
+   btn.classList.add('wrong');
+   fb.innerHTML='<div style="margin-bottom:8px;">❌ Casi.</div>'+(q.e||'') + btnNext;
+   fb.className='feedback bad';
+  }
+  
+  fb.addEventListener('next', function handler() {
+   fb.removeEventListener('next', handler);
+   if(qi===qs.length-1){end();}else{qi++;render();}
+  });
+ }
+ function end(){
+  box.innerHTML='<p style="font-size:1.2rem;"><b>🎉 ¡Fin! Acertaste '+score+' de '+qs.length+'.</b></p><button type="button" class="choice" data-again="1" style="background:var(--turq); color:#000; border:none;">Empezar de nuevo ↺</button>';
+  box.querySelector('[data-again]').addEventListener('click',()=>{qi=0;score=0;render();});
+ }
+ render();
+}
+
+makeQuiz('q-anios',[{"t": "¿Cómo se dice el año 1983?", "o": ["mil novecientos ochenta y tres", "mil novecientos y ochenta y tres", "mil novecientos ochenta tres"], "a": 0, "e": "La «y» solo va entre las decenas y las unidades: ochenta y tres."}, {"t": "¿Cómo se dice el año 1929?", "o": ["mil novecientos y veintinueve", "novecientos veintinueve mil", "mil novecientos veintinueve"], "a": 2, "e": "mil + novecientos + veintinueve."}, {"t": "¿Qué año es «mil novecientos noventa y dos»?", "o": ["1992", "1929", "1299"], "a": 0, "e": "mil (1000) + novecientos (900) + noventa y dos (92)."}]);
+makeQuiz('q-irr',[{"t": "Yo ___ al cine ayer. (ir)", "o": ["fui", "fue", "fuí"], "a": 0, "e": "Yo + ir: fui (sin tilde)."}, {"t": "Él ___ muy simpático con nosotros. (ser)", "o": ["fui", "fue", "fueron"], "a": 1, "e": "Ser e ir tienen las mismas formas: fue."}, {"t": "Ellos ___ una pizza en el restaurante. (pedir)", "o": ["pedieron", "pidieron", "pedirón"], "a": 1, "e": "Pedir: e → i en ellos: pidieron."}, {"t": "Ana ___ diez horas ayer. (dormir)", "o": ["dormió", "durmió", "dorme"], "a": 1, "e": "Dormir: o → u en él/ella: durmió."}, {"t": "Tú ___ un libro en una tarde. (leer)", "o": ["leyiste", "leiste", "leíste"], "a": 2, "e": "Con tú: leíste (con tilde). La «y» aparece en él/ellos: leyó, leyeron."}, {"t": "El vaso ___ al suelo. (caer)", "o": ["caió", "cayó", "cayo"], "a": 1, "e": "Él/ella: cayó (i → y entre vocales)."}, {"t": "Nosotros ___ en casa toda la tarde. (estar)", "o": ["estuvimos", "estamos", "estavimos"], "a": 0, "e": "Estar: estuv- + -imos."}, {"t": "Yo no ___ venir ayer. (poder)", "o": ["podí", "puedo", "pude"], "a": 2, "e": "Poder: pud- + -e (sin tilde): pude."}, {"t": "Ella ___ un pastel para mi cumpleaños. (hacer)", "o": ["hizo", "hació", "hiço"], "a": 0, "e": "Hacer: hic-; en «él/ella» la c pasa a z: hizo."}, {"t": "Ellos me ___ que llegaban tarde. (decir)", "o": ["dijieron", "dijeron", "dicieron"], "a": 1, "e": "Decir: dij- + -eron (sin «i»)."}, {"t": "Yo ___ hablar con ella. (querer)", "o": ["quise", "quisí", "quiero"], "a": 0, "e": "Querer: quis- + -e: quise."}, {"t": "Ellos ___ en tren. (venir)", "o": ["venieron", "vienieron", "vinieron"], "a": 2, "e": "Venir: vin- + -ieron."}]);
+makeQuiz('q-orto',[{"t": "Yo (buscar) →", "o": ["buscé", "busqué", "busco"], "a": 1, "e": "-car → -qué: busqué."}, {"t": "Yo (pagar) →", "o": ["pagué", "pagé", "pago"], "a": 0, "e": "-gar → -gué: pagué."}, {"t": "Yo (empezar) →", "o": ["empezé", "empiezo", "empecé"], "a": 2, "e": "-zar → -cé: empecé."}, {"t": "Yo (publicar) →", "o": ["publicé", "publiqué", "publico"], "a": 1, "e": "-car → -qué: publiqué."}, {"t": "Yo (jugar) →", "o": ["jugué", "jugé", "jugo"], "a": 0, "e": "-gar → -gué: jugué."}, {"t": "Yo (organizar) →", "o": ["organizé", "organicé", "organizo"], "a": 1, "e": "-zar → -cé: organicé."}]);
+makeQuiz('q-tiempo',[{"t": "Empecé la carrera en 2003 y cuatro años ___ la terminé.", "o": ["hace", "después", "desde"], "a": 1, "e": "X años después: cuenta desde otro momento del pasado."}, {"t": "Estuve casada ___ 2010 hasta 2015.", "o": ["desde", "durante", "hace"], "a": 0, "e": "Desde + fecha de inicio (+ hasta + fecha de final)."}, {"t": "Estoy casada ___ hace 16 años.", "o": ["hasta", "desde", "durante"], "a": 1, "e": "La acción continúa ahora: desde hace + tiempo."}, {"t": "Me fui a Londres en 2015 y ___ volví a casa.", "o": ["el año que viene", "hace un año", "al año siguiente"], "a": 2, "e": "En el relato del pasado: al año siguiente. «El año que viene» es futuro."}, {"t": "Trabajó como profesor ___ dos años.", "o": ["durante", "desde", "hace"], "a": 0, "e": "Durante + periodo de tiempo."}, {"t": "Terminó el máster ___ 17 años.", "o": ["durante", "hace", "desde hace"], "a": 1, "e": "Hace + tiempo: cuenta hacia atrás desde hoy."}, {"t": "Estudió en Salamanca ___ 2003 ___ 2007.", "o": ["de … a", "desde … durante", "hace … después"], "a": 0, "e": "De … a … (o entre … y …)."}]);
+makeQuiz('q-vero',[{"t": "Según el audio del ejercicio 10A: ¿hasta qué año vivió Verónica en Argentina?", "o": ["2008", "2009", "2020"], "a": 0, "e": "Vivió en Argentina hasta 2008 y después se fue a México."}, {"t": "¿Adónde viajó en 2009 para estudiar inglés?", "o": ["a México", "a Londres", "a Bruselas"], "a": 1, "e": "En 2009 viajó a Londres."}]);
+
+let done=0;
+function tick(cb){
+ done+=cb.checked?1:-1;
+ document.getElementById('bar').style.width=(done/7*100)+'%';
+ document.getElementById('count').textContent=done+'/7 completado';
+}
+</script>
+</body></html>
