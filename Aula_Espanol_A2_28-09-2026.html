@@ -40,14 +40,18 @@ th{background:#202a4c;color:#cdbdff}
 .example{border-left:4px solid var(--turq);padding:9px 12px;background:color-mix(in srgb,var(--turq) 8%,var(--card));border-radius:0 12px 12px 0;margin:9px 0}
 .note{font-size:.9rem;color:var(--muted)}
 .choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:9px}
-.choice{padding:12px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;text-align:left}
-.choice.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card))}
-.choice.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card))}
-.feedback{margin-top:12px;font-weight:800}
-.feedback.ok{color:var(--ok)}.feedback.bad{color:var(--bad)}
+.choice{padding:12px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;text-align:center;font-weight:700;font-size:1rem;transition:0.2s}
+.choice:hover{border-color:var(--turq)}
+.choice:disabled{cursor:default}
+.choice.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card));color:var(--ok)}
+.choice.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card));color:var(--bad)}
+.feedback{margin-top:12px;font-weight:800;padding:12px;border-radius:10px;display:none}
+.feedback.ok{display:block;color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card));border:1px solid var(--ok)}
+.feedback.bad{display:block;color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card));border:1px solid var(--bad)}
 details{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px;margin:9px 0}
 summary{cursor:pointer;font-weight:800}
-.progress{height:10px;background:var(--soft);border-radius:99px;overflow:hidden}.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq));transition:.25s}
+.progress{height:12px;background:var(--soft);border-radius:99px;overflow:hidden;margin-top:12px;border:1px solid var(--border)}
+.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq));transition:width .3s ease}
 .small{font-size:.88rem;color:var(--muted)}
 .example.sayable{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .example.sayable .speak{flex:0 0 auto;font-size:1.05rem}
@@ -62,21 +66,12 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
 .home-nav a:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
 .home-nav a:hover{transform:translateY(-1px);border-color:var(--blue)}
 
-
 .table-wrap{overflow-x:auto;border-radius:16px}
 .table-wrap table{min-width:520px}
-select{background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:8px 10px;font:inherit;max-width:100%}
-select:focus-visible,.choice:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
-.ex-row{margin:12px 0;padding-bottom:12px;border-bottom:1px solid var(--border)}
-.ex-row:last-of-type{border-bottom:0}
-.ex-fb{display:inline-block;margin-left:8px;font-weight:800}
-.ex-fb.ok{color:var(--ok)}.ex-fb.bad{color:var(--bad)}
-.chip{display:inline-block;padding:4px 10px;margin:3px 3px 3px 0;border-radius:999px;background:var(--soft);border:1px solid var(--border);font-weight:700}
 .mini-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
 .mini-grid .verb-card{margin-bottom:0}
 .form-big{font-size:1.25rem;font-weight:900;color:var(--turq);margin:10px 0 4px}
 ul.clean{margin:8px 0;padding-left:20px}ul.clean li{margin:5px 0}
-.choice:disabled{cursor:default}
 
 .activity-list p{margin:10px 0;padding:10px 12px;border-left:4px solid var(--turq);background:rgba(255,255,255,.04);border-radius:10px}
 .homework{padding:14px 16px;border-radius:14px;background:linear-gradient(135deg,rgba(255,211,78,.12),rgba(165,108,255,.10))}
@@ -230,7 +225,7 @@ ul.clean{margin:8px 0;padding-left:20px}ul.clean li{margin:5px 0}
 
 <section id="verbos">
 <h2>🔤 Verbos trabajados en la clase</h2>
-<p class="small">Aquí aparecen los verbos que se trabajaron como foco de la clase. Los tres verbos nuevos que se añadieron a los flashcards son <b>llevarse</b>, <b>medir</b> y <b>tutear</b>. <a href="flashcards-verbos-a2.html">Abrir los flashcards →</a></p>
+<p class="small">Aquí aparecen los verbos que se trabajaron como foco de la clase. Los tres verbos nuevos que se añadieron a los flashcards son <b>llevarse</b>, <b>medir</b> y <b>tutear</b>. <a href="flashcards-verbos-a2.html" style="color:var(--turq);">Abrir los flashcards →</a></p>
 <div class="sound-bar"><span class="small">🔊 Cada verbo tiene su botón para escuchar el infinitivo.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
 <div class="verb-card card">
 <div class="verb-head"><span class="verb">llevar</span><span class="tag">ya estaba en los flashcards · -AR</span><button type="button" class="speak" aria-label="Escuchar: llevar" onclick="say('llevar')">🔊</button></div>
@@ -286,9 +281,9 @@ ul.clean{margin:8px 0;padding-left:20px}ul.clean li{margin:5px 0}
 
 <section id="ex">
 <h2>✏️ Ejercicios interactivos</h2>
-<div class="card"><h3>1. Elige la estructura correcta</h3><div id="q1"></div></div>
+<div class="card"><h3 class="pink">1. Elige la estructura correcta</h3><div id="q1"></div></div>
 <div class="card" style="margin-top:14px">
-<h3>2. Piensa la frase y comprueba</h3>
+<h3 class="turq">2. Piensa la frase y comprueba</h3>
 <p class="small">Lee la situación, piensa cómo se dice y abre la respuesta.</p>
 <details><summary>Tu relación con tu jefe es buena.</summary><p><b>Me llevo bien con mi jefe.</b></p></details>
 <details><summary>Tu jefa te cae bien (tienes buena impresión de ella).</summary><p><b>Mi jefa me cae bien.</b></p></details>
@@ -297,7 +292,7 @@ ul.clean{margin:8px 0;padding-left:20px}ul.clean li{margin:5px 0}
 <details><summary>Tu altura es 1,93 m.</summary><p><b>Mido 1,93.</b></p></details>
 </div>
 <div class="card" style="margin-top:14px">
-<h3>3. Pasado de <i>caer bien</i></h3>
+<h3 class="purple">3. Pasado de <i>caer bien</i></h3>
 <p class="small">Toca las formas correctas (hay dos).</p>
 <div class="choice-grid" id="q2"></div><div id="f2" class="feedback" aria-live="polite"></div>
 </div>
@@ -305,15 +300,15 @@ ul.clean{margin:8px 0;padding-left:20px}ul.clean li{margin:5px 0}
 <h3 class="yellow">🧩 Ejercicio añadido — identificación y tratamiento</h3>
 <p><b>1.</b> Completa: «Los ______ coche azul».</p>
 <div class="choice-grid">
-<button type="button" class="choice" onclick="checkExtra(true)">del</button>
-<button type="button" class="choice" onclick="checkExtra(false)">de la</button>
+<button type="button" class="choice" onclick="checkExtra(this, true)">del</button>
+<button type="button" class="choice" onclick="checkExtra(this, false)">de la</button>
 </div>
 <div class="feedback" id="extra1" aria-live="polite"></div>
 <p style="margin-top:16px"><b>2.</b> ¿Qué verbo expresa «tratar a alguien de tú»?</p>
 <div class="choice-grid">
-<button type="button" class="choice" onclick="checkExtra2(true)">tutear</button>
-<button type="button" class="choice" onclick="checkExtra2(false)">llevarse</button>
-<button type="button" class="choice" onclick="checkExtra2(false)">parecerse</button>
+<button type="button" class="choice" onclick="checkExtra2(this, true)">tutear</button>
+<button type="button" class="choice" onclick="checkExtra2(this, false)">llevarse</button>
+<button type="button" class="choice" onclick="checkExtra2(this, false)">parecerse</button>
 </div>
 <div class="feedback" id="extra2" aria-live="polite"></div>
 </div>
@@ -322,24 +317,24 @@ ul.clean{margin:8px 0;padding-left:20px}ul.clean li{margin:5px 0}
 <section id="practica">
 <h2>🎯 Práctica y tarea</h2>
 <div class="card">
-<h3>🏠 Tarea para casa</h3>
+<h3 class="pink">🏠 Tarea para casa</h3>
 <div class="homework">
 <p><b>📖 Página 141</b></p>
-<ul><li>Ejercicio <b>15</b></li><li>Ejercicio <b>16</b></li></ul>
+<ul class="clean"><li>Ejercicio <b>15</b></li><li>Ejercicio <b>16</b></li></ul>
 <p><b>📖 Página 142</b></p>
-<ul><li>Ejercicio <b>17</b></li><li>Ejercicio <b>18</b></li></ul>
+<ul class="clean"><li>Ejercicio <b>17</b></li><li>Ejercicio <b>18</b></li></ul>
 </div>
 <p class="note"><b>Importante:</b> estos son los ejercicios indicados para hacer en casa.</p>
 </div>
 <div class="card" style="margin-top:14px">
-<h3>📝 Lista de comprobación para el anuncio (p. 50 · 11B)</h3>
+<h3 class="purple">📝 Lista de comprobación para el anuncio (p. 50 · 11B)</h3>
 <label><input type="checkbox" onchange="tick(this)"> Usé <b>llevar</b> para ropa o estilo.</label><br>
 <label><input type="checkbox" onchange="tick(this)"> Usé <b>llevarse bien/mal con</b> para la relación con otras personas.</label><br>
 <label><input type="checkbox" onchange="tick(this)"> Usé <b>caer bien/mal</b> para la impresión sobre alguien.</label><br>
 <label><input type="checkbox" onchange="tick(this)"> Diferencié <b>parecer</b> de <b>parecerse</b>.</label><br>
 <label><input type="checkbox" onchange="tick(this)"> Si indiqué la altura, usé <b>medir</b>.</label>
 <div class="progress" style="margin-top:12px"><span id="bar"></span></div>
-<p id="count" class="small">0/5 completado</p>
+<p id="count" class="small" style="font-weight:700">0/5 completado</p>
 </div>
 </section>
 
@@ -375,7 +370,6 @@ function toggleSlow(){
   b.setAttribute('aria-pressed',slow);
  });
 }
-// botón 🔊 en cada frase de ejemplo de TODAS las pestañas (solo el texto en español, dentro de <b>)
 document.querySelectorAll('.example').forEach(el=>{
  const b=el.querySelector('b'); if(!b) return;
  const txt=b.textContent.trim();
@@ -391,27 +385,48 @@ document.querySelectorAll('.example').forEach(el=>{
 });
 if(!('speechSynthesis' in window)) document.querySelectorAll('.sound-bar').forEach(x=>x.style.display='none');
 
-const qs=[{"t": "Quieres hablar de tu relación con tu jefe. ¿Cuál es la frase correcta?", "o": ["Me llevo bien con mi jefe.", "Me lleva bien con mi jefe.", "Me caigo bien con mi jefe."], "a": 0, "e": "Llevarse bien con alguien = tener buena relación."}, {"t": "Quieres decir que tu jefa te parece simpática (buena impresión). ¿Cuál es la frase?", "o": ["Me llevo bien mi jefa.", "Mi jefa me cae bien.", "Mi jefa me llevo bien."], "a": 1, "e": "Caer bien = impresión positiva sobre alguien."}, {"t": "¿Qué frase expresa una impresión sobre una persona?", "o": ["Él parece simpático.", "Él lleva simpático.", "Él se lleva simpático."], "a": 0, "e": "Parecer + adjetivo = impresión u opinión."}, {"t": "¿Qué frase expresa parecido con el padre?", "o": ["Parece a su padre.", "Se parece a su padre.", "Se lleva a su padre."], "a": 1, "e": "Parecerse a = tener semejanza con alguien."}, {"t": "¿Cómo se dice «eu meço 1,93»?", "o": ["Mido 1,93.", "Medo 1,93.", "Mido a 1,93."], "a": 0, "e": "Medir: yo mido (e → i)."}, {"t": "¿Qué frase está en pasado y expresa una buena impresión sobre una persona?", "o": ["Me caí bien.", "Me cayó bien.", "Me caigo bien."], "a": 1, "e": "Me cayó bien (singular) · me cayeron bien (plural)."}];
-let qi=0, score=0, locked=false;
-function renderQ(){
- const q=qs[qi];locked=false;
- document.getElementById('q1').innerHTML='<p><b>'+q.t+'</b></p><div class="choice-grid">'+q.o.map((o,i)=>'<button type="button" class="choice" data-i="'+i+'">'+o+'</button>').join('')+'</div><p class="small">Pregunta '+(qi+1)+' de '+qs.length+' · Puntos: '+score+'</p><div class="feedback" aria-live="polite"></div>';
- document.querySelectorAll('#q1 .choice').forEach(b=>b.addEventListener('click',()=>ans(+b.dataset.i,b)));
+// Motor de Quiz Melhorado com o botão Siguiente
+function makeQuiz(id,qs){
+ const box=document.getElementById(id);let qi=0,score=0,locked=false;
+ function render(){
+  const q=qs[qi];locked=false;
+  box.innerHTML='<p style="font-size:1.1rem;"><b>'+q.t+'</b></p><div class="choice-grid">'+q.o.map((o,i)=>'<button type="button" class="choice" data-i="'+i+'">'+o+'</button>').join('')+'</div><p class="small" style="margin-top:15px; font-weight:700;">Pregunta '+(qi+1)+' de '+qs.length+' · Puntos: '+score+'</p><div class="feedback" aria-live="polite"></div>';
+  box.querySelectorAll('.choice').forEach(b=>b.addEventListener('click',()=>ans(+b.dataset.i,b)));
+ }
+ function ans(i,btn){
+  if(locked) return; locked=true;
+  const q=qs[qi];const bs=box.querySelectorAll('.choice');
+  bs.forEach(b=>b.disabled=true);
+  bs[q.a].classList.add('correct');
+  const fb=box.querySelector('.feedback');
+  
+  let btnNext = '<button type="button" class="choice" style="margin-top:15px; padding:8px 16px; width:100%; font-size:1rem; border:none; background:rgba(0,0,0,0.2);" onclick="this.parentElement.dispatchEvent(new CustomEvent(\'next\'))">Siguiente ➔</button>';
+  
+  if(i===q.a){
+   score++;
+   fb.innerHTML='<div style="margin-bottom:8px;">✅ Correcto.</div>'+(q.e||'') + btnNext;
+   fb.className='feedback ok';
+  } else{
+   btn.classList.add('wrong');
+   fb.innerHTML='<div style="margin-bottom:8px;">❌ Casi.</div>'+(q.e||'') + btnNext;
+   fb.className='feedback bad';
+  }
+  
+  fb.addEventListener('next', function handler() {
+   fb.removeEventListener('next', handler);
+   if(qi===qs.length-1){end();}else{qi++;render();}
+  });
+ }
+ function end(){
+  box.innerHTML='<p style="font-size:1.2rem;"><b>🎉 ¡Fin! Acertaste '+score+' de '+qs.length+'.</b></p><button type="button" class="choice" data-again="1" style="background:var(--turq); color:#000; border:none;">Empezar de nuevo ↺</button>';
+  box.querySelector('[data-again]').addEventListener('click',()=>{qi=0;score=0;render();});
+ }
+ render();
 }
-function ans(i,btn){
- if(locked) return; locked=true;
- const q=qs[qi];const bs=document.querySelectorAll('#q1 .choice');
- bs.forEach(b=>b.disabled=true);
- bs[q.a].classList.add('correct');
- const fb=document.querySelector('#q1 .feedback');
- if(i===q.a){score++;fb.textContent='✅ Correcto. '+q.e;fb.className='feedback ok';}
- else{btn.classList.add('wrong');fb.textContent='❌ Casi. '+q.e;fb.className='feedback bad';}
- setTimeout(()=>{if(qi===qs.length-1){showEnd();}else{qi++;renderQ();}},1300);
-}
-function showEnd(){
- document.getElementById('q1').innerHTML='<p><b>🎉 ¡Fin! Acertaste '+score+' de '+qs.length+'.</b></p><button type="button" class="choice" id="again">Empezar de nuevo ↺</button>';
- document.getElementById('again').addEventListener('click',()=>{qi=0;score=0;renderQ();});
-}
+
+makeQuiz('q1',[{"t": "¿Cómo expresas que tu relación con tu jefe es buena?", "o": ["Me llevo bien con mi jefe.", "Me lleva bien con mi jefe.", "Me caigo bien con mi jefe."], "a": 0, "e": "Llevarse bien con alguien = tener buena relación."}, {"t": "Quieres decir que tu jefa te da una buena impresión (valoración). ¿Cuál es la frase?", "o": ["Me llevo bien mi jefa.", "Mi jefa me cae bien.", "Mi jefa me llevo bien."], "a": 1, "e": "Caer bien = impresión positiva sobre alguien."}, {"t": "¿Qué frase expresa una impresión o característica sobre una persona?", "o": ["Él parece simpático.", "Él lleva simpático.", "Él se lleva simpático."], "a": 0, "e": "Parecer + adjetivo = impresión u opinión."}, {"t": "¿Qué frase expresa parecido físico con el padre?", "o": ["Parece a su padre.", "Se parece a su padre.", "Se lleva a su padre."], "a": 1, "e": "Parecerse a = tener semejanza con alguien."}, {"t": "¿Cómo se dice «eu meço 1,93»?", "o": ["Mido 1,93.", "Medo 1,93.", "Mido a 1,93."], "a": 0, "e": "Medir: yo mido (e → i)."}, {"t": "¿Qué frase está en pasado y expresa una buena impresión sobre una persona?", "o": ["Me caí bien.", "Me cayó bien.", "Me caigo bien."], "a": 1, "e": "Me cayó bien (singular) · me cayeron bien (plural)."}]);
+
+// Pasado de caer bien
 const past=[
  ['me cayó bien',true],
  ['me caí bien',false],
@@ -421,17 +436,39 @@ document.getElementById('q2').innerHTML=past.map((x,i)=>'<button type="button" c
 function pastAns(i,btn){
  const ok=past[i][1];const f=document.getElementById('f2');
  btn.classList.add(ok?'correct':'wrong');
- f.textContent=ok?'✅ Correcto: '+past[i][0]+'. Formas trabajadas: me cayó bien / me cayeron bien.':'❌ «Me caí» significa que te caíste al suelo. Para opinar sobre alguien: me cayó bien (singular) o me cayeron bien (plural).';
+ f.innerHTML='<div style="margin-bottom:8px;">'+(ok?'✅ Correcto':'❌ Error')+'</div>'+(ok?'Formas trabajadas: me cayó bien / me cayeron bien.':'«Me caí» significa que te caíste al suelo. Para opinar sobre alguien: me cayó bien (singular) o me cayeron bien (plural).');
  f.className='feedback '+(ok?'ok':'bad');
+ f.style.display = 'block';
 }
+
+// Ejercicios Extra
+function checkExtra(btn, ok){
+ const buttons=btn.parentElement.querySelectorAll('button');
+ buttons.forEach(b=>b.disabled=true);
+ btn.classList.add(ok ? 'correct' : 'wrong');
+ if(!ok) buttons[0].classList.add('correct');
+ const box=document.getElementById('extra1');
+ box.innerHTML='<div style="margin-bottom:8px;">'+(ok?'✅ Correcto':'❌ Casi')+'</div>'+(ok?'los del coche azul.':'Revisa la estructura: los del coche azul.');
+ box.className='feedback '+(ok?'ok':'bad');
+ box.style.display='block';
+}
+
+function checkExtra2(btn, ok){
+ const buttons=btn.parentElement.querySelectorAll('button');
+ buttons.forEach(b=>b.disabled=true);
+ btn.classList.add(ok ? 'correct' : 'wrong');
+ if(!ok) buttons[0].classList.add('correct');
+ const box=document.getElementById('extra2');
+ box.innerHTML='<div style="margin-bottom:8px;">'+(ok?'✅ Correcto':'❌ Casi')+'</div>'+(ok?'tutear.':'En esta clase, el verbo trabajado es tutear.');
+ box.className='feedback '+(ok?'ok':'bad');
+ box.style.display='block';
+}
+
 let done=0;
 function tick(cb){
  done+=cb.checked?1:-1;
  document.getElementById('bar').style.width=(done/5*100)+'%';
  document.getElementById('count').textContent=done+'/5 completado';
 }
-function checkExtra(ok){const box=document.getElementById('extra1');box.textContent=ok?'✅ Correcto: los del coche azul.':'❌ Casi. Revisa la estructura: los del coche azul.';box.className='feedback '+(ok?'ok':'bad');}
-function checkExtra2(ok){const box=document.getElementById('extra2');box.textContent=ok?'✅ Correcto: tutear.':'❌ Casi. En esta clase, el verbo trabajado es tutear.';box.className='feedback '+(ok?'ok':'bad');}
-renderQ();
 </script>
 </body></html>
