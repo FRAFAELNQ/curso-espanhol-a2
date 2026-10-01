@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080a18">
+<title>Clase de Español A2 — 01/10/2026</title>
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#080a18;--card:#171d38;--text:#f8f9ff;--muted:#b8c0dd;
+  --pink:#ff5ca8;--purple:#a56cff;--turq:#37e6d4;--yellow:#ffd34e;
+  --blue:#42a5ff;--soft:#252e50;--border:#2d385e;--ok:#4be59a;--bad:#ff6b7c;
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 10% 0,#1d2b66,transparent 38%),radial-gradient(circle at 90% 0,#5a174d,transparent 35%),var(--bg);background-attachment:fixed;color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}
+.container{max-width:1100px;margin:auto;padding:22px 16px 60px}
+header{text-align:center;padding:26px 20px;margin-bottom:6px;border-radius:22px;border:1px solid #48598d;background:linear-gradient(135deg,#172c6c,#49237f 52%,#741c58);box-shadow:0 18px 50px #0008}
+.badge{display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;font-weight:800;font-size:.82rem}
+h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);color:#fff}
+.subtitle{color:#e3e6ff}
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);display:flex;gap:7px;overflow:auto;padding:8px;border-bottom:1px solid var(--border)}
+nav button,.tab{border:1px solid var(--border);background:var(--card);color:var(--text);padding:9px 12px;border-radius:12px;cursor:pointer;white-space:nowrap;font-weight:750}
+nav button.active,.tab.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+section{display:none;padding-top:22px}
+section.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:0 7px 22px color-mix(in srgb,var(--purple) 10%,transparent)}
+.card h3{margin-top:0}
+.color-title{font-size:1.25rem;font-weight:900}
+.pink{color:var(--pink)}.purple{color:var(--purple)}.turq{color:var(--turq)}.blue{color:var(--blue)}.yellow{color:var(--yellow)}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden}
+th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+th{background:#202a4c;color:#cdbdff}
+.verb-card{margin-bottom:16px}
+.verb-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.verb{font-size:1.45rem;font-weight:900;color:var(--pink)}
+.tag{font-size:.78rem;font-weight:800;padding:4px 9px;border-radius:999px;background:var(--soft);color:#cdbdff}
+.speak{border:0;background:var(--soft);border-radius:10px;padding:7px 10px;cursor:pointer}
+.example{border-left:4px solid var(--turq);padding:9px 12px;background:color-mix(in srgb,var(--turq) 8%,var(--card));border-radius:0 12px 12px 0;margin:9px 0}
+.note{font-size:.9rem;color:var(--muted)}
+.choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:9px}
+.choice{padding:12px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;text-align:left}
+.choice.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card))}
+.choice.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card))}
+.feedback{margin-top:12px;font-weight:800}
+.feedback.ok{color:var(--ok)}.feedback.bad{color:var(--bad)}
+details{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px;margin:9px 0}
+summary{cursor:pointer;font-weight:800}
+.progress{height:10px;background:var(--soft);border-radius:99px;overflow:hidden}.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq));transition:.25s}
+.small{font-size:.88rem;color:var(--muted)}
+.example.sayable{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.example.sayable .speak{flex:0 0 auto;font-size:1.05rem}
+.sound-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:6px 0 12px}
+.speak:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.speak[aria-pressed="true"]{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff}
+footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
+@media(max-width:600px){.container{padding:14px 10px 45px}th,td{padding:8px;font-size:.9rem}.card{padding:15px}}
+
+.home-nav{text-align:center;margin:14px 0 8px}
+.home-nav a{display:inline-block;padding:10px 18px;border-radius:12px;background:#10152b;border:1px solid var(--border);color:#fff;text-decoration:none;font-weight:800;transition:transform .15s ease,border-color .15s ease}
+.home-nav a:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.home-nav a:hover{transform:translateY(-1px);border-color:var(--blue)}
+
+
+.table-wrap{overflow-x:auto;border-radius:16px}
+.table-wrap table{min-width:520px}
+select{background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:8px 10px;font:inherit;max-width:100%}
+select:focus-visible,.choice:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.ex-row{margin:12px 0;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.ex-row:last-of-type{border-bottom:0}
+.ex-fb{display:inline-block;margin-left:8px;font-weight:800}
+.ex-fb.ok{color:var(--ok)}.ex-fb.bad{color:var(--bad)}
+.chip{display:inline-block;padding:4px 10px;margin:3px 3px 3px 0;border-radius:999px;background:var(--soft);border:1px solid var(--border);font-weight:700}
+.mini-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.mini-grid .verb-card{margin-bottom:0}
+.form-big{font-size:1.25rem;font-weight:900;color:var(--turq);margin:10px 0 4px}
+ul.clean{margin:8px 0;padding-left:20px}ul.clean li{margin:5px 0}
+.choice:disabled{cursor:default}
+
+.pill{display:inline-block;padding:3px 9px;border-radius:999px;background:var(--soft);border:1px solid var(--border);font-size:.78rem;font-weight:800;margin-left:6px}
+.mini-forms{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.mini-forms div{flex:1 1 90px;background:#0c1125;border:1px solid var(--border);border-radius:10px;padding:7px 9px;text-align:center}
+.mini-forms small{display:block;color:var(--muted);font-size:.7rem;text-transform:uppercase}
+.mini-forms b{font-size:1.05rem;color:var(--turq)}
+
+.dict-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:10px 0}
+.num-input{background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:10px 12px;font:inherit;font-size:1.2rem;width:min(100%,240px)}
+.num-input:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.big-num{font-size:1.6rem;font-weight:900;color:var(--turq)}
+.num-table td.n{font-weight:900;color:var(--yellow);width:46px}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <span class="badge">EOI · Español A2 · Clase individual</span>
+  <h1>Ficha interactiva — 01/10/2026</h1>
+  <div class="subtitle">Números, expresiones de tiempo (hace, desde, hasta, después de) y repaso del pretérito</div>
+  <div class="subtitle" style="font-size:.9rem;margin-top:6px">📖 Libro: Aula Plus 2 · pp. 131, 132 y 134</div>
+</header>
+<div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
+
+<nav>
+  <button class="active" onclick="showTab('resumen',this)">📚 Resumen</button>
+  <button onclick="showTab('vocab',this)">📝 Vocabulario</button>
+  <button onclick="showTab('gram',this)">🧠 Gramática</button>
+  <button onclick="showTab('verbos',this)">🔤 Verbos</button>
+  <button onclick="showTab('ex',this)">✏️ Ejercicios</button>
+  <button onclick="showTab('practica',this)">🎯 Práctica</button>
+</nav>
+
+<section id="resumen" class="active">
+<div class="grid">
+ <div class="card"><div class="color-title pink">1. Los números</div><p>Repaso de los números hasta el millón, con la pronunciación en la pantalla y un <b>dictado en parejas</b>.</p></div>
+ <div class="card"><div class="color-title purple">2. Corrección</div><p>Se corrigieron los ejercicios <b>9</b> y <b>10</b> de la p. 132 (pretérito indefinido de verbos regulares e irregulares).</p></div>
+ <div class="card"><div class="color-title turq">3. Expresiones de tiempo</div><p><b>hace</b>, <b>desde</b>, <b>hasta</b>, <b>después de</b> y <b>durante</b>. Se trabajaron con el ejercicio <b>15</b> de la p. 134.</p></div>
+ <div class="card"><div class="color-title yellow">4. Juego de la mentira</div><p>Preguntas en pasado para descubrir la información falsa y, después, cinco frases propias (una falsa).</p></div>
+</div>
+
+<div class="card" style="margin-top:14px">
+<h3>⭐ Frases clave de la clase</h3>
+<div class="sound-bar"><span class="small">🔊 Toca el botón de cada frase para escucharla.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
+<div class="example"><b>Viví en Francia de 2024 a 2025.</b></div>
+<div class="example"><b>Hago yoga desde enero.</b></div>
+<div class="example"><b>Terminé la carrera hace cuatro meses.</b></div>
+<div class="example"><b>Te esperé hasta las siete.</b></div>
+<div class="example"><b>Estuve en Mallorca hasta la semana pasada.</b></div>
+<div class="example"><b>Encontré trabajo dos meses después de llegar a España.</b></div>
+<div class="example"><b>Me encontré con María.</b></div>
+<div class="example"><b>Me casé en 2010.</b></div>
+<div class="example"><b>Empecé a enseñar español.</b></div>
+
+</div>
+
+<div class="card" style="margin-top:14px">
+<h3>📋 Actividades de la clase</h3>
+<div class="activity-list">
+<p><b>✓ Números</b><br>La profesora puso la pronunciación en la pantalla. Después, en parejas: un alumno dicta una secuencia de números y el otro los escribe sin verlos; luego se comparan.</p>
+<p><b>✓ p. 132 · preguntas 9 y 10</b><br>Corrección en clase.</p>
+<p><b>✓ Tarjetas de verbos</b><br>Cada alumno dijo una frase en pasado con el verbo de su tarjeta.</p>
+<p><b>✓ p. 134 · pregunta 15</b><br>Se hizo de forma individual, se comparó con un compañero y se corrigió entre todos.</p>
+<p><b>✓ ¿Qué información es falsa?</b><br>La profesora presentó siete frases sobre su vida; había que hacerle preguntas en pasado para encontrar la falsa. Después, cada alumno escribió cinco frases sobre sí mismo (una falsa) para que otros adivinaran.</p>
+</div>
+<div class="pending"><b>🏠 Tarea:</b> p. 131 · ejercicios <b>6</b>, <b>7</b> y <b>8</b> (presente o pretérito indefinido).</div>
+</div>
+</section>
+
+<section id="vocab">
+<h2>📝 Vocabulario: los números</h2>
+<div class="grid">
+ <div class="card"><div class="color-title pink">0 – 15</div><div class="table-wrap"><table class="num-table"><tr><td class="n">0</td><td>cero</td></tr><tr><td class="n">1</td><td>uno / un / una</td></tr><tr><td class="n">2</td><td>dos</td></tr><tr><td class="n">3</td><td>tres</td></tr><tr><td class="n">4</td><td>cuatro</td></tr><tr><td class="n">5</td><td>cinco</td></tr><tr><td class="n">6</td><td>seis</td></tr><tr><td class="n">7</td><td>siete</td></tr><tr><td class="n">8</td><td>ocho</td></tr><tr><td class="n">9</td><td>nueve</td></tr><tr><td class="n">10</td><td>diez</td></tr><tr><td class="n">11</td><td>once</td></tr><tr><td class="n">12</td><td>doce</td></tr><tr><td class="n">13</td><td>trece</td></tr><tr><td class="n">14</td><td>catorce</td></tr><tr><td class="n">15</td><td>quince</td></tr></table></div></div>
+ <div class="card"><div class="color-title purple">16 – 30</div><div class="table-wrap"><table class="num-table"><tr><td class="n">16</td><td>dieciséis</td></tr><tr><td class="n">17</td><td>diecisiete</td></tr><tr><td class="n">18</td><td>dieciocho</td></tr><tr><td class="n">19</td><td>diecinueve</td></tr><tr><td class="n">20</td><td>veinte</td></tr><tr><td class="n">21</td><td>veintiuno / veintiún / veintiuna</td></tr><tr><td class="n">22</td><td>veintidós</td></tr><tr><td class="n">23</td><td>veintitrés</td></tr><tr><td class="n">24</td><td>veinticuatro</td></tr><tr><td class="n">25</td><td>veinticinco</td></tr><tr><td class="n">26</td><td>veintiséis</td></tr><tr><td class="n">27</td><td>veintisiete</td></tr><tr><td class="n">28</td><td>veintiocho</td></tr><tr><td class="n">29</td><td>veintinueve</td></tr><tr><td class="n">30</td><td>treinta</td></tr></table></div>
+  <p class="note">De 0 a 30 se escribe en <b>una sola palabra</b>.</p></div>
+ <div class="card"><div class="color-title turq">31 – 102</div><div class="table-wrap"><table class="num-table"><tr><td class="n">31</td><td>treinta y uno</td></tr><tr><td class="n">32</td><td>treinta y dos</td></tr><tr><td class="n">40</td><td>cuarenta</td></tr><tr><td class="n">50</td><td>cincuenta</td></tr><tr><td class="n">60</td><td>sesenta</td></tr><tr><td class="n">70</td><td>setenta</td></tr><tr><td class="n">80</td><td>ochenta</td></tr><tr><td class="n">90</td><td>noventa</td></tr><tr><td class="n">100</td><td>cien</td></tr><tr><td class="n">101</td><td>ciento uno</td></tr><tr><td class="n">102</td><td>ciento dos</td></tr></table></div>
+  <p class="note">A partir de 31 se escribe en varias palabras y entre decenas y unidades siempre va <b>y</b>: treinta <b>y</b> uno.</p></div>
+ <div class="card"><div class="color-title yellow">Centenas</div><div class="table-wrap"><table class="num-table"><tr><td class="n">200</td><td>doscientos / doscientas</td></tr><tr><td class="n">300</td><td>trescientos / trescientas</td></tr><tr><td class="n">400</td><td>cuatrocientos / cuatrocientas</td></tr><tr><td class="n">500</td><td>quinientos / quinientas</td></tr><tr><td class="n">600</td><td>seiscientos / seiscientas</td></tr><tr><td class="n">700</td><td>setecientos / setecientas</td></tr><tr><td class="n">800</td><td>ochocientos / ochocientas</td></tr><tr><td class="n">900</td><td>novecientos / novecientas</td></tr></table></div>
+  <p class="note">Desde 200 hay masculino y femenino: <b>doscientos</b> chicos, <b>doscientas</b> chicas.</p></div>
+ <div class="card"><div class="color-title pink">Miles y millones</div><div class="table-wrap"><table class="num-table"><tr><td class="n">1.000</td><td>mil</td></tr><tr><td class="n">2.000</td><td>dos mil</td></tr><tr><td class="n">10.000</td><td>diez mil</td></tr><tr><td class="n">100.000</td><td>cien mil</td></tr><tr><td class="n">200.000</td><td>doscientos/as mil</td></tr><tr><td class="n">1.000.000</td><td>un millón</td></tr><tr><td class="n">2.000.000</td><td>dos millones</td></tr><tr><td class="n">1.000.000.000</td><td>mil millones</td></tr></table></div>
+  <p class="note">No se dice «un mil»: 1.000 = <b>mil</b>. «Un millón» sí lleva «un».</p></div>
+ <div class="card"><div class="color-title turq">Los años</div>
+  <div class="table-wrap"><table><tr><th>Año</th><th>Se dice</th></tr>
+  <tr><td>1992</td><td>mil novecientos noventa y dos</td></tr>
+  <tr><td>2010</td><td>dos mil diez</td></tr>
+  <tr><td>2026</td><td>dos mil veintiséis</td></tr></table></div>
+  <p class="note"><b>cien</b> (100 exacto) · <b>ciento</b> + número (101, 126…). La <b>y</b> solo va entre decenas y unidades.</p></div>
+</div>
+</section>
+
+<section id="gram">
+<h2>🧠 Gramática</h2>
+<div class="sound-bar"><span class="small">🔊 Toca el botón de cada ejemplo para escucharlo.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
+
+<h3 class="color-title turq">1 · Expresiones de tiempo</h3>
+<div class="card">
+<div class="table-wrap"><table>
+<tr><th>Expresión</th><th>¿Qué indica?</th><th>Ejemplo</th></tr>
+<tr><td><b>de … a …</b> · <b>desde … hasta …</b></td><td>Un periodo con principio y final (ya terminado).</td><td><div class="example"><b>Viví en Francia de 2024 a 2025.</b></div>
+</td></tr>
+<tr><td><b>hasta + momento</b></td><td>El final: una fecha, una hora o una edad. Necesita un punto de referencia.</td><td><div class="example"><b>Viví con mis abuelos hasta los 15 años.</b></div>
+<div class="example"><b>Te esperé hasta las siete.</b></div>
+</td></tr>
+<tr><td><b>desde + momento</b></td><td>El principio de algo que <b>continúa</b> hoy (presente).</td><td><div class="example"><b>Hago yoga desde enero.</b></div>
+</td></tr>
+<tr><td><b>hace + cantidad de tiempo</b></td><td>Cuenta hacia atrás desde hoy: cuánto tiempo pasó.</td><td><div class="example"><b>Terminé la carrera hace cuatro meses.</b></div>
+</td></tr>
+<tr><td><b>desde hace + cantidad</b></td><td>Cuánto tiempo lleva algo que continúa hoy.</td><td><div class="example"><b>Hago yoga desde hace cuatro meses.</b></div>
+</td></tr>
+<tr><td><b>después de + hecho</b> · <b>X tiempo después</b></td><td>Tiempo entre dos hechos del pasado. Sin referencia, usa <b>hace</b>.</td><td><div class="example"><b>Encontré trabajo dos meses después de llegar a España.</b></div>
+</td></tr>
+<tr><td><b>durante + periodo</b></td><td>Cuánto duró algo.</td><td><div class="example"><b>Estudié piano durante siete años.</b></div>
+</td></tr>
+<tr><td><b>al año siguiente</b></td><td>En un relato del pasado: un año después de otro momento.</td><td><div class="example"><b>Terminé Economía y al año siguiente empecé Filología.</b></div>
+</td></tr>
+</table></div>
+</div>
+
+<div class="grid" style="margin-top:14px">
+ <div class="card"><div class="color-title pink">Momento ≠ cantidad de tiempo</div>
+  <ul class="clean">
+   <li><b>hasta las siete</b> · <b>hasta los 15 años</b> → un <b>momento</b>.</li>
+   <li><b>hace dos horas</b> · <b>hace cuatro meses</b> → una <b>cantidad</b> de tiempo.</li>
+   <li>No se dice «hasta 5 años»: con la edad, <b>hasta los 15</b>.</li>
+  </ul></div>
+ <div class="card"><div class="color-title yellow">Presente o pretérito</div>
+  <ul class="clean">
+   <li>Si todavía continúa: <b>presente</b> + desde. <div class="example"><b>Vivo en Madrid desde 2012.</b></div>
+</li>
+   <li>Si ya terminó: <b>pretérito</b> + hasta. <div class="example"><b>Estuve en Mallorca hasta la semana pasada.</b></div>
+</li>
+   <li><b>Estuve</b> significa que ya no estoy allí.</li>
+  </ul></div>
+ <div class="card"><div class="color-title turq">Estoy casado × me casé</div>
+  <ul class="clean">
+   <li><b>Estoy casado</b> = estado actual.</li>
+   <li><b>Me casé / nos casamos en 2010</b> = la acción, en el pasado.</li>
+   <li><div class="example"><b>Estoy casada desde hace quince años.</b></div>
+</li>
+  </ul></div>
+</div>
+
+<h3 class="color-title purple" style="margin-top:24px">2 · Encontrar × encontrarse</h3>
+<div class="card">
+<div class="table-wrap"><table>
+<tr><th>Verbo</th><th>Significado</th><th>Ejemplo</th></tr>
+<tr><td><b>encontrar algo</b></td><td>Hallar una cosa.</td><td><div class="example"><b>Encontré mi lápiz en la mochila.</b></div>
+</td></tr>
+<tr><td><b>encontrarse con alguien</b></td><td>Verse con una persona.</td><td><div class="example"><b>Me encontré con María.</b></div>
+</td></tr>
+</table></div>
+<p class="note">Con personas se necesita el pronombre <b>se</b> (me encontré con…).</p>
+</div>
+
+<h3 class="color-title yellow" style="margin-top:24px">3 · Empezar a + infinitivo</h3>
+<div class="card">
+<div class="example"><b>Empecé a trabajar en 2010.</b></div>
+<div class="example"><b>Empecé a enseñar español.</b></div>
+<div class="example"><b>Llegué a Madrid en 2015.</b></div>
+
+<p class="note">La estructura es <b>empezar a + infinitivo</b> (trabajar, salir, enseñar…). «Empecé» es el pretérito de «yo» (z → c).</p>
+</div>
+
+<h3 class="color-title pink" style="margin-top:24px">4 · Raíz irregular: tener, obtener, poder, componer</h3>
+<div class="card">
+<div class="table-wrap"><table>
+<tr><th>Infinitivo</th><th>Raíz</th><th>Yo</th></tr>
+<tr><td>tener → <b>obtener</b></td><td>tuv- / obtuv-</td><td>tuve · obtuve</td></tr>
+<tr><td>poder</td><td>pud-</td><td>pude</td></tr>
+<tr><td>poner → <b>componer</b></td><td>pus- / compus-</td><td>puse · compuse</td></tr>
+</table></div>
+<p class="note">Los verbos formados con <b>tener</b> y <b>poner</b> siguen la misma irregularidad.</p>
+</div>
+
+<h3 class="color-title turq" style="margin-top:24px">5 · Corrección del ejercicio 9 (p. 132): ¿de quién hablan?</h3>
+<div class="card">
+<div class="table-wrap"><table>
+<tr><th>Frase</th><th>Persona</th></tr>
+<tr><td>a · Obtuvo el Premio Nobel de la Paz en 1992.</td><td>Rigoberta Menchú</td></tr>
+<tr><td>b · Protagonizó «Diarios de motocicleta».</td><td>Gael García Bernal</td></tr>
+<tr><td>c · Nació en Costa Rica y vivió en México.</td><td>Chavela Vargas</td></tr>
+<tr><td>d · Recibieron un Grammy Latino especial.</td><td>Les Luthiers</td></tr>
+<tr><td>e · Iniciaron un movimiento de resistencia en 1976.</td><td>Las Abuelas de Plaza de Mayo</td></tr>
+<tr><td>f · Ganó cinco veces seguidas el Tour de Francia.</td><td>Miguel Indurain</td></tr>
+<tr><td>g · Dirigió «Birdman».</td><td>Alejandro G. Iñárritu</td></tr>
+<tr><td>h · Tuvo que huir de España por la Guerra Civil.</td><td>Clara Campoamor</td></tr>
+<tr><td>i · Compuso «Despacito».</td><td>Erika Ender</td></tr>
+</table></div>
+</div>
+</section>
+
+<section id="verbos">
+<h2>🔤 Verbos trabajados en la clase</h2>
+<p class="small">Aquí se muestra el <b>pretérito indefinido</b> que se trabajó hoy. Los verbos nuevos de los flashcards son <b>correr, coger, caminar, alquilar, trabajar, enseñar, llegar</b> y <b>encontrarse</b>. <a href="flashcards-verbos-a2.html">Abrir los flashcards →</a></p>
+<div class="sound-bar"><span class="small">🔊 Cada verbo tiene su botón para escuchar el infinitivo.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
+<h3 class="color-title turq" style="margin-top:22px">A · Tarjetas de verbos: la forma «yo» en pretérito indefinido</h3>
+<p class="small">La profesora sacó las tarjetas de verbos y cada alumno dijo una frase en pasado. Estas son las formas de «yo».</p>
+<div class="mini-grid">
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">correr</span><span class="tag">NUEVO EN LOS FLASHCARDS</span><button type="button" class="speak" aria-label="Escuchar: correr" onclick="say('correr')">🔊</button></div>
+<div class="small">Yo, pretérito indefinido</div><div class="form-big">corrí</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">coger</span><span class="tag">NUEVO EN LOS FLASHCARDS</span><button type="button" class="speak" aria-label="Escuchar: coger" onclick="say('coger')">🔊</button></div>
+<div class="small">Yo, pretérito indefinido</div><div class="form-big">cogí</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">caminar</span><span class="tag">NUEVO EN LOS FLASHCARDS</span><button type="button" class="speak" aria-label="Escuchar: caminar" onclick="say('caminar')">🔊</button></div>
+<div class="small">Yo, pretérito indefinido</div><div class="form-big">caminé</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">alquilar</span><span class="tag">NUEVO EN LOS FLASHCARDS</span><button type="button" class="speak" aria-label="Escuchar: alquilar" onclick="say('alquilar')">🔊</button></div>
+<div class="small">Yo, pretérito indefinido</div><div class="form-big">alquilé</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">limpiar</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: limpiar" onclick="say('limpiar')">🔊</button></div>
+<div class="small">Yo, pretérito indefinido</div><div class="form-big">limpié</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">cerrar</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: cerrar" onclick="say('cerrar')">🔊</button></div>
+<div class="small">Yo, pretérito indefinido</div><div class="form-big">cerré</div>
+<div class="note">No cambia la vocal en pretérito.</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">mentir</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: mentir" onclick="say('mentir')">🔊</button></div>
+<div class="small">Yo, pretérito indefinido</div><div class="form-big">mentí</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">resolver</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: resolver" onclick="say('resolver')">🔊</button></div>
+<div class="small">Yo, pretérito indefinido</div><div class="form-big">resolví</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">conducir</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: conducir" onclick="say('conducir')">🔊</button></div>
+<div class="small">Yo, pretérito indefinido</div><div class="form-big">conduje</div>
+<div class="note">Raíz irregular: conduj-.</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">venir</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: venir" onclick="say('venir')">🔊</button></div>
+<div class="small">Yo, pretérito indefinido</div><div class="form-big">vine</div>
+<div class="note">Raíz irregular: vin-.</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">dar</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: dar" onclick="say('dar')">🔊</button></div>
+<div class="small">Yo, pretérito indefinido</div><div class="form-big">di</div>
+<div class="note">Sin tilde.</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">jugar</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: jugar" onclick="say('jugar')">🔊</button></div>
+<div class="small">Yo, pretérito indefinido</div><div class="form-big">jugué</div>
+<div class="note">g → gu</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">merendar</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: merendar" onclick="say('merendar')">🔊</button></div>
+<div class="small">Yo, pretérito indefinido</div><div class="form-big">merendé</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">entender</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: entender" onclick="say('entender')">🔊</button></div>
+<div class="small">Yo, pretérito indefinido</div><div class="form-big">entendí</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">recordar</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: recordar" onclick="say('recordar')">🔊</button></div>
+<div class="small">Yo, pretérito indefinido</div><div class="form-big">recordé</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">devolver</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: devolver" onclick="say('devolver')">🔊</button></div>
+<div class="small">Yo, pretérito indefinido</div><div class="form-big">devolví</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">volver</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: volver" onclick="say('volver')">🔊</button></div>
+<div class="small">Yo, pretérito indefinido</div><div class="form-big">volví</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">conocer</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: conocer" onclick="say('conocer')">🔊</button></div>
+<div class="small">Yo, pretérito indefinido</div><div class="form-big">conocí</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">acostarse</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: acostarse" onclick="say('acostarse')">🔊</button></div>
+<div class="small">Yo, pretérito indefinido</div><div class="form-big">me acosté</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">encontrar</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: encontrar" onclick="say('encontrar')">🔊</button></div>
+<div class="small">Yo, pretérito indefinido</div><div class="form-big">encontré</div>
+<div class="note">Encontrar algo.</div>
+</div>
+</div>
+<h3 class="color-title yellow" style="margin-top:22px">B · Raíz irregular (pizarra): tener, obtener, poder, componer</h3>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">tener</span><span class="tag">ya estaba en los flashcards · tuv-</span><button type="button" class="speak" aria-label="Escuchar: tener" onclick="say('tener')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>tuve</td><td>tuviste</td><td>tuvo</td><td>tuvimos</td><td>tuvisteis</td><td>tuvieron</td></tr></table></div>
+<div class="example"><b>Tuve una reunión.</b></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">obtener</span><span class="tag">ya estaba en los flashcards · como tener</span><button type="button" class="speak" aria-label="Escuchar: obtener" onclick="say('obtener')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>obtuve</td><td>obtuviste</td><td>obtuvo</td><td>obtuvimos</td><td>obtuvisteis</td><td>obtuvieron</td></tr></table></div>
+<div class="example"><b>Obtuve el título en 2020.</b></div>
+<div class="note"><b>obtener</b> se conjuga como <b>tener</b>.</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">poder</span><span class="tag">ya estaba en los flashcards · pud-</span><button type="button" class="speak" aria-label="Escuchar: poder" onclick="say('poder')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>pude</td><td>pudiste</td><td>pudo</td><td>pudimos</td><td>pudisteis</td><td>pudieron</td></tr></table></div>
+<div class="example"><b>No pude venir ayer.</b></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">componer</span><span class="tag">ya estaba en los flashcards · como poner</span><button type="button" class="speak" aria-label="Escuchar: componer" onclick="say('componer')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>compuse</td><td>compusiste</td><td>compuso</td><td>compusimos</td><td>compusisteis</td><td>compusieron</td></tr></table></div>
+<div class="note"><b>componer</b> se conjuga como <b>poner</b> (puse): compuse.</div>
+</div>
+<h3 class="color-title pink" style="margin-top:22px">C · Encontrar / encontrarse · casarse · trabajar · enseñar · llegar</h3>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">encontrarse</span><span class="tag">NUEVO EN LOS FLASHCARDS · con alguien</span><button type="button" class="speak" aria-label="Escuchar: encontrarse" onclick="say('encontrarse')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>me encontré</td><td>te encontraste</td><td>se encontró</td><td>nos encontramos</td><td>os encontrasteis</td><td>se encontraron</td></tr></table></div>
+<div class="example"><b>Me encontré con María.</b></div>
+<div class="note"><b>Encontrar algo</b> (sin «se»): «Encontré mi lápiz en la mochila.»</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">casarse</span><span class="tag">ya estaba en los flashcards · reflexivo</span><button type="button" class="speak" aria-label="Escuchar: casarse" onclick="say('casarse')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>me casé</td><td>te casaste</td><td>se casó</td><td>nos casamos</td><td>os casasteis</td><td>se casaron</td></tr></table></div>
+<div class="example"><b>Me casé en 2010.</b></div>
+<div class="example"><b>Nos casamos en 2010.</b></div>
+<div class="note">«Estoy casado» = estado. «Me casé» = la acción de casarse.</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">trabajar</span><span class="tag">NUEVO EN LOS FLASHCARDS</span><button type="button" class="speak" aria-label="Escuchar: trabajar" onclick="say('trabajar')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>trabajé</td><td>trabajaste</td><td>trabajó</td><td>trabajamos</td><td>trabajasteis</td><td>trabajaron</td></tr></table></div>
+<div class="example"><b>Empecé a trabajar en 2010.</b></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">enseñar</span><span class="tag">NUEVO EN LOS FLASHCARDS</span><button type="button" class="speak" aria-label="Escuchar: enseñar" onclick="say('enseñar')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>enseñé</td><td>enseñaste</td><td>enseñó</td><td>enseñamos</td><td>enseñasteis</td><td>enseñaron</td></tr></table></div>
+<div class="example"><b>Empecé a enseñar español.</b></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">llegar</span><span class="tag">NUEVO EN LOS FLASHCARDS · g → gu en yo</span><button type="button" class="speak" aria-label="Escuchar: llegar" onclick="say('llegar')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>llegué</td><td>llegaste</td><td>llegó</td><td>llegamos</td><td>llegasteis</td><td>llegaron</td></tr></table></div>
+<div class="example"><b>Llegué a Madrid en 2015.</b></div>
+</div>
+<h3 class="color-title purple" style="margin-top:22px">D · Corrección del ejercicio 10 (p. 132)</h3>
+<div class="card"><div class="table-wrap"><table><tr><th></th><th>ganar</th><th>nacer</th><th>recibir</th><th>vivir</th><th>obtener</th></tr>
+<tr><td>Yo</td><td>gané</td><td>nací</td><td>recibí</td><td>viví</td><td>obtuve</td></tr>
+<tr><td>Tú</td><td>ganaste</td><td>naciste</td><td>recibiste</td><td>viviste</td><td>obtuviste</td></tr>
+<tr><td>Él / Ella / Usted</td><td>ganó</td><td>nació</td><td>recibió</td><td>vivió</td><td>obtuvo</td></tr>
+<tr><td>Nosotros / Nosotras</td><td>ganamos</td><td>nacimos</td><td>recibimos</td><td>vivimos</td><td>obtuvimos</td></tr>
+<tr><td>Vosotros / Vosotras</td><td>ganasteis</td><td>nacisteis</td><td>recibisteis</td><td>vivisteis</td><td>obtuvisteis</td></tr>
+<tr><td>Ellos / Ellas / Ustedes</td><td>ganaron</td><td>nacieron</td><td>recibieron</td><td>vivieron</td><td>obtuvieron</td></tr>
+</table></div><div class="table-wrap"><table><tr><th></th><th>iniciar</th><th>protagonizar</th><th>dirigir</th><th>trabajar</th><th>componer</th></tr>
+<tr><td>Yo</td><td>inicié</td><td>protagonicé</td><td>dirigí</td><td>trabajé</td><td>compuse</td></tr>
+<tr><td>Tú</td><td>iniciaste</td><td>protagonizaste</td><td>dirigiste</td><td>trabajaste</td><td>compusiste</td></tr>
+<tr><td>Él / Ella / Usted</td><td>inició</td><td>protagonizó</td><td>dirigió</td><td>trabajó</td><td>compuso</td></tr>
+<tr><td>Nosotros / Nosotras</td><td>iniciamos</td><td>protagonizamos</td><td>dirigimos</td><td>trabajamos</td><td>compusimos</td></tr>
+<tr><td>Vosotros / Vosotras</td><td>iniciasteis</td><td>protagonizasteis</td><td>dirigisteis</td><td>trabajasteis</td><td>compusisteis</td></tr>
+<tr><td>Ellos / Ellas / Ustedes</td><td>iniciaron</td><td>protagonizaron</td><td>dirigieron</td><td>trabajaron</td><td>compusieron</td></tr>
+</table></div><p class="note">Los cuatro primeros de cada tabla son <b>regulares</b>; el último (<b>obtener</b>, <b>componer</b>) es <b>irregular</b>.</p></div>
+<div class="mini-grid" style="margin-top:12px">
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">nacer</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: nacer" onclick="say('nacer')">🔊</button></div>
+<div class="small">Él / ella, pretérito</div><div class="form-big">nació</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">dirigir</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: dirigir" onclick="say('dirigir')">🔊</button></div>
+<div class="small">Él / ella, pretérito</div><div class="form-big">dirigió</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">protagonizar</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: protagonizar" onclick="say('protagonizar')">🔊</button></div>
+<div class="small">Él / ella, pretérito</div><div class="form-big">protagonizó</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">ganar</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: ganar" onclick="say('ganar')">🔊</button></div>
+<div class="small">Él / ella, pretérito</div><div class="form-big">ganó</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">recibir</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: recibir" onclick="say('recibir')">🔊</button></div>
+<div class="small">Él / ella, pretérito</div><div class="form-big">recibió</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">iniciar</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: iniciar" onclick="say('iniciar')">🔊</button></div>
+<div class="small">Él / ella, pretérito</div><div class="form-big">inició</div>
+</div>
+</div>
+
+</section>
+
+<section id="ex">
+<h2>✏️ Ejercicios interactivos</h2>
+
+<div class="card" id="dictado">
+<h3>1 · Dictado de números</h3>
+<p class="small">Pulsa 🔊, escucha el número y escríbelo con cifras. Como en clase: ¡sin mirar!</p>
+<div class="dict-row">
+ <label>Nivel:
+  <select id="dLevel"><option value="1">Hasta 100</option><option value="2" selected>100 – 999</option><option value="3">1000 – 2100 (años)</option></select>
+ </label>
+ <button type="button" class="speak" id="dPlay">🔊 Escuchar</button>
+ <button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button>
+</div>
+<div class="dict-row">
+ <input class="num-input" id="dInput" type="text" inputmode="numeric" autocomplete="off" placeholder="Escribe el número" aria-label="Escribe el número que escuchas">
+ <button type="button" class="choice" id="dCheck">Comprobar</button>
+ <button type="button" class="choice" id="dNext">Otro número ▶</button>
+</div>
+<div class="feedback" id="dFb" aria-live="polite"></div>
+<p class="small" id="dScore">Aciertos: 0 de 0</p>
+</div>
+
+<div class="card" style="margin-top:14px"><h3>2 · Lee el número</h3><div id="q-num"></div></div>
+<div class="card" style="margin-top:14px"><h3>3 · Ejercicio 9 (p. 132): ¿de quién hablan?</h3><div id="q-e9"></div></div>
+<div class="card" style="margin-top:14px"><h3>4 · Ejercicio 15 (p. 134): hace, desde, hasta…</h3><div id="q-e15"></div></div>
+<div class="card" style="margin-top:14px"><h3>5 · Más expresiones de tiempo</h3><div id="q-tiempo"></div></div>
+<div class="card" style="margin-top:14px"><h3>6 · Tarjetas de verbos: forma «yo»</h3><div id="q-yo"></div></div>
+<div class="card" style="margin-top:14px"><h3>7 · Encontrar, encontrarse y casarse</h3><div id="q-enc"></div></div>
+</section>
+
+<section id="practica">
+<h2>🎯 Práctica y tarea</h2>
+<div class="card">
+<h3>🏠 Tarea para casa</h3>
+<div class="homework">
+<p><b>📖 Página 131</b></p>
+<ul><li>Ejercicio <b>6</b>: ¿presente (P) o pretérito indefinido (I)?</li><li>Ejercicio <b>7</b>: completar la tabla con las formas que faltan.</li><li>Ejercicio <b>8</b>: presente o pretérito, según el contexto.</li></ul>
+</div>
+<p class="note"><b>Consejo:</b> con <b>nosotros</b> las formas de -AR e -IR son iguales en presente y en pretérito (hablamos, vivimos). El <b>contexto</b> te dice el tiempo: «casi siempre», «ahora» (presente) o «ayer», «aquellas vacaciones» (pretérito).</p>
+</div>
+<div class="card" style="margin-top:14px">
+<h3>🕵️ Juego: ¿qué información es falsa?</h3>
+<p>Escribe <b>cinco frases</b> sobre ti (puede ser un perfil inventado). <b>Una</b> es falsa. Tus compañeros te hacen preguntas <b>en pasado</b> para descubrirla.</p>
+<ul class="clean">
+ <li>¿Cuándo naciste? · ¿Dónde estudiaste? · ¿Durante cuánto tiempo viviste allí?</li>
+ <li>¿Hasta cuándo trabajaste en…? · ¿Cuándo empezaste a…?</li>
+</ul>
+<p class="small">Usa en tus frases:</p>
+<label><input type="checkbox" onchange="tick(this)"> durante …</label><br>
+<label><input type="checkbox" onchange="tick(this)"> al año siguiente</label><br>
+<label><input type="checkbox" onchange="tick(this)"> desde … hasta …</label><br>
+<label><input type="checkbox" onchange="tick(this)"> hace …</label><br>
+<label><input type="checkbox" onchange="tick(this)"> desde hace …</label>
+<div class="progress" style="margin-top:12px"><span id="bar"></span></div>
+<p id="count" class="small">0/5 completado</p>
+</div>
+</section>
+
+<div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
+<footer>Registro individual de la clase del 01/10/2026. Basado en la pizarra, las diapositivas, las páginas del libro y las notas de la clase.</footer>
+</div>
+<script>
+function showTab(id,btn){
+ document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+ btn.classList.add('active');
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+let slow=false, esVoice=null;
+function pickEs(){
+ const vs=speechSynthesis.getVoices();
+ esVoice=vs.find(v=>v.lang==='es-ES')||vs.find(v=>v.lang&&v.lang.startsWith('es'))||null;
+}
+if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=pickEs;pickEs();}
+function say(txt){
+ if(!('speechSynthesis' in window)) return;
+ speechSynthesis.cancel();
+ const u=new SpeechSynthesisUtterance(txt);
+ u.lang='es-ES';if(esVoice)u.voice=esVoice;
+ u.rate=slow?.6:.85;
+ speechSynthesis.speak(u);
+}
+function toggleSlow(){
+ slow=!slow;
+ document.querySelectorAll('.slowBtn').forEach(b=>{
+  b.textContent=slow?'🐢 Lento: encendido':'🐢 Lento: apagado';
+  b.setAttribute('aria-pressed',slow);
+ });
+}
+// botón 🔊 en cada frase de ejemplo de TODAS las pestañas (solo el texto en español, dentro de <b>)
+document.querySelectorAll('.example').forEach(el=>{
+ const b=el.querySelector('b'); if(!b) return;
+ const txt=b.textContent.trim();
+ const wrap=document.createElement('span');
+ while(el.firstChild) wrap.appendChild(el.firstChild);
+ el.appendChild(wrap);
+ el.classList.add('sayable');
+ const btn=document.createElement('button');
+ btn.type='button';btn.className='speak';btn.textContent='🔊';
+ btn.setAttribute('aria-label','Escuchar: '+txt);
+ btn.onclick=()=>say(txt);
+ el.appendChild(btn);
+});
+const HAS_TTS='speechSynthesis' in window;
+if(!HAS_TTS) document.querySelectorAll('.sound-bar').forEach(x=>x.style.display='none');
+
+/* ---------- números en palabras ---------- */
+const UNI=['cero','uno','dos','tres','cuatro','cinco','seis','siete','ocho','nueve','diez','once','doce','trece','catorce','quince','dieciséis','diecisiete','dieciocho','diecinueve','veinte','veintiuno','veintidós','veintitrés','veinticuatro','veinticinco','veintiséis','veintisiete','veintiocho','veintinueve'];
+const DEC=['','','','treinta','cuarenta','cincuenta','sesenta','setenta','ochenta','noventa'];
+const CEN=['','ciento','doscientos','trescientos','cuatrocientos','quinientos','seiscientos','setecientos','ochocientos','novecientos'];
+function menos1000(n){
+ if(n<30) return UNI[n];
+ if(n<100){const d=Math.floor(n/10),u=n%10;return DEC[d]+(u?' y '+UNI[u]:'');}
+ if(n===100) return 'cien';
+ const c=Math.floor(n/100),r=n%100;
+ return CEN[c]+(r?' '+menos1000(r):'');
+}
+function numToWords(n){
+ if(n<1000) return menos1000(n);
+ const m=Math.floor(n/1000),r=n%1000;
+ const mil=(m===1)?'mil':menos1000(m)+' mil';
+ return mil+(r?' '+menos1000(r):'');
+}
+/* ---------- dictado ---------- */
+let dN=null,dOk=0,dTot=0,dChecked=false;
+function randInt(a,b){return a+Math.floor(Math.random()*(b-a+1));}
+function newNumber(){
+ const lv=document.getElementById('dLevel').value;
+ dN = lv==='1'?randInt(1,100): lv==='2'?randInt(100,999): randInt(1000,2100);
+ dChecked=false;
+ document.getElementById('dInput').value='';
+ const fb=document.getElementById('dFb');fb.textContent='';fb.className='feedback';
+ playNumber();
+}
+function playNumber(){
+ if(dN===null){newNumber();return;}
+ if(HAS_TTS) say(numToWords(dN));
+ else {const fb=document.getElementById('dFb');fb.textContent='Tu navegador no tiene voz. Lee el número: '+numToWords(dN);fb.className='feedback';}
+}
+function checkNumber(){
+ if(dN===null||dChecked) return;
+ const v=document.getElementById('dInput').value.replace(/[.\s]/g,'');
+ if(v==='') return;
+ dChecked=true;dTot++;
+ const fb=document.getElementById('dFb');
+ if(parseInt(v,10)===dN){dOk++;fb.textContent='✅ Correcto: '+dN+' → '+numToWords(dN);fb.className='feedback ok';}
+ else{fb.textContent='❌ Casi. Era '+dN+' → '+numToWords(dN);fb.className='feedback bad';}
+ document.getElementById('dScore').textContent='Aciertos: '+dOk+' de '+dTot;
+}
+document.getElementById('dPlay').addEventListener('click',playNumber);
+document.getElementById('dCheck').addEventListener('click',checkNumber);
+document.getElementById('dNext').addEventListener('click',newNumber);
+document.getElementById('dLevel').addEventListener('change',()=>{dN=null;newNumber();});
+document.getElementById('dInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();checkNumber();}});
+
+function makeQuiz(id,qs){
+ const box=document.getElementById(id);let qi=0,score=0,locked=false;
+ function render(){
+  const q=qs[qi];locked=false;
+  box.innerHTML='<p><b>'+q.t+'</b></p><div class="choice-grid">'+q.o.map((o,i)=>'<button type="button" class="choice" data-i="'+i+'">'+o+'</button>').join('')+'</div><p class="small">Pregunta '+(qi+1)+' de '+qs.length+' · Puntos: '+score+'</p><div class="feedback" aria-live="polite"></div>';
+  box.querySelectorAll('.choice').forEach(b=>b.addEventListener('click',()=>ans(+b.dataset.i,b)));
+ }
+ function ans(i,btn){
+  if(locked) return; locked=true;
+  const q=qs[qi];const bs=box.querySelectorAll('.choice');
+  bs.forEach(b=>b.disabled=true);
+  bs[q.a].classList.add('correct');
+  const fb=box.querySelector('.feedback');
+  if(i===q.a){score++;fb.textContent='✅ Correcto. '+(q.e||'');fb.className='feedback ok';}
+  else{btn.classList.add('wrong');fb.textContent='❌ Casi. '+(q.e||'');fb.className='feedback bad';}
+  setTimeout(()=>{if(qi===qs.length-1){end();}else{qi++;render();}},1300);
+ }
+ function end(){
+  box.innerHTML='<p><b>🎉 ¡Fin! Acertaste '+score+' de '+qs.length+'.</b></p><button type="button" class="choice" data-again="1">Empezar de nuevo ↺</button>';
+  box.querySelector('[data-again]').addEventListener('click',()=>{qi=0;score=0;render();});
+ }
+ render();
+}
+makeQuiz('q-num',[{"t": "¿Cómo se dice 1564?", "o": ["mil quinientos sesenta y cuatro", "mil quinientos y sesenta y cuatro", "mil cinco cientos sesenta cuatro"], "a": 0, "e": "mil + quinientos + sesenta y cuatro. La «y» solo va entre decenas y unidades."}, {"t": "¿Cómo se dice 2026?", "o": ["dos mil y veintiséis", "dos mil veintiséis", "dos mil veinte y seis"], "a": 1, "e": "dos mil + veintiséis (de 0 a 30 es una sola palabra)."}, {"t": "¿Cómo se dice 101?", "o": ["cien uno", "ciento y uno", "ciento uno"], "a": 2, "e": "Cien es solo 100. Con más: ciento uno."}, {"t": "¿Cómo se dice 100?", "o": ["ciento", "cien", "cien y cero"], "a": 1, "e": "100 exacto = cien."}, {"t": "700 chicas →", "o": ["setecientas chicas", "setecientos chicas", "sietecientas chicas"], "a": 0, "e": "Desde 200 hay femenino: setecientas."}, {"t": "¿Cómo se dice 1983?", "o": ["mil novecientos ochenta y tres", "mil novecientos ochenta tres", "mil nueve cientos ochenta y tres"], "a": 0, "e": "mil + novecientos + ochenta y tres."}]);
+makeQuiz('q-e9',[{"t": "«Obtuvo el Premio Nobel de la Paz en 1992.»", "o": ["Rigoberta Menchú", "Clara Campoamor", "Chavela Vargas"], "a": 0, "e": "Rigoberta Menchú (obtuvo, de obtener)."}, {"t": "«Protagonizó Diarios de motocicleta.»", "o": ["Alejandro G. Iñárritu", "Miguel Indurain", "Gael García Bernal"], "a": 2, "e": "Gael García Bernal (protagonizó, de protagonizar)."}, {"t": "«Nació en Costa Rica, pero vivió toda su vida en México.»", "o": ["Erika Ender", "Chavela Vargas", "Rigoberta Menchú"], "a": 1, "e": "Chavela Vargas (nació y vivió)."}, {"t": "«Recibieron el Premio Grammy Latino Especial a la Excelencia Musical.»", "o": ["Les Luthiers", "Las Abuelas de Plaza de Mayo", "Erika Ender"], "a": 0, "e": "Les Luthiers (recibieron: ellos)."}, {"t": "«Iniciaron un movimiento de resistencia no violenta contra la dictadura en 1976.»", "o": ["Les Luthiers", "Las Abuelas de Plaza de Mayo", "Clara Campoamor"], "a": 1, "e": "Las Abuelas de Plaza de Mayo (iniciaron: ellas)."}, {"t": "«Ganó cinco veces seguidas el Tour de Francia.»", "o": ["Miguel Indurain", "Gael García Bernal", "Alejandro G. Iñárritu"], "a": 0, "e": "Miguel Indurain (ganó, de ganar)."}, {"t": "«Dirigió Birdman.»", "o": ["Gael García Bernal", "Alejandro G. Iñárritu", "Erika Ender"], "a": 1, "e": "Alejandro G. Iñárritu (dirigió, de dirigir)."}, {"t": "«Tuvo que huir de España a causa de la Guerra Civil.»", "o": ["Clara Campoamor", "Chavela Vargas", "Rigoberta Menchú"], "a": 0, "e": "Clara Campoamor (tuvo, de tener)."}, {"t": "«Compuso Despacito.»", "o": ["Erika Ender", "Les Luthiers", "Miguel Indurain"], "a": 0, "e": "Erika Ender (compuso, de componer)."}]);
+makeQuiz('q-e15',[{"t": "Viví en Milán ___ 2004.", "o": ["de", "hasta", "hace"], "a": 1, "e": "2004 es el final: hasta + fecha."}, {"t": "Estudio español ___ septiembre.", "o": ["hace", "hasta", "desde"], "a": 2, "e": "Todavía estudio: desde + el inicio."}, {"t": "Encontré trabajo ___ dos meses.", "o": ["después", "hace", "desde"], "a": 1, "e": "Cantidad de tiempo hacia atrás: hace. «Después» necesita una referencia (después de llegar)."}, {"t": "Te esperé en el bar ___ las siete.", "o": ["hace", "hasta", "desde"], "a": 1, "e": "Las siete es un momento del reloj: hasta las siete."}, {"t": "Estuve en Mallorca ___ la semana pasada.", "o": ["desde", "hace", "hasta"], "a": 2, "e": "«Estuve» = ya terminó: hasta + momento."}, {"t": "Terminé la carrera ___ cuatro meses.", "o": ["durante", "hace", "hasta"], "a": 1, "e": "Cuatro meses es una cantidad: hace."}, {"t": "Hago yoga ___ enero.", "o": ["desde", "de", "hasta"], "a": 0, "e": "Todavía hago yoga: desde + inicio."}, {"t": "En 2000 me fui a vivir a Italia, pero dos años ___ volví a España.", "o": ["hace", "después", "desde"], "a": 1, "e": "Dos años después del hecho anterior (en el relato)."}, {"t": "Llevan más de diez años casados. Se conocieron ___ el rodaje de una película.", "o": ["desde", "durante", "hasta"], "a": 1, "e": "Durante + un periodo (el rodaje)."}, {"t": "Viví con mis abuelos ___ los 15 años.", "o": ["después", "durante", "hasta"], "a": 2, "e": "La edad es un momento: hasta los 15."}]);
+makeQuiz('q-tiempo',[{"t": "Trabajo en esta empresa ___ 2019.", "o": ["hasta", "desde", "hace"], "a": 1, "e": "Continúa hoy: desde + inicio."}, {"t": "Viví en Francia ___ 2024 ___ 2025.", "o": ["de … a", "desde … hace", "hasta … después"], "a": 0, "e": "de … a … (o desde … hasta …)."}, {"t": "Me casé ___ quince años.", "o": ["hace", "desde", "durante"], "a": 0, "e": "Cantidad de tiempo hacia atrás: hace."}, {"t": "Estoy casada ___ hace quince años.", "o": ["hasta", "desde", "durante"], "a": 1, "e": "La situación continúa: desde hace."}, {"t": "Terminé el máster y ___ empecé a trabajar.", "o": ["hace un año", "al año siguiente", "desde un año"], "a": 1, "e": "En un relato del pasado: al año siguiente."}, {"t": "Trabajé de camarero ___ tres años.", "o": ["hasta", "desde", "durante"], "a": 2, "e": "Durante + periodo."}, {"t": "Encontré trabajo dos meses ___ de llegar a España.", "o": ["hace", "después", "desde"], "a": 1, "e": "Después de + hecho."}, {"t": "Vivo en Madrid ___ 2012.", "o": ["hasta", "desde", "durante"], "a": 1, "e": "Todavía vivo aquí: presente + desde."}]);
+makeQuiz('q-yo',[{"t": "Ayer yo ___ por el parque. (correr)", "o": ["corrí", "corro", "corrió"], "a": 0, "e": "Yo + -ER: corrí."}, {"t": "Yo ___ el metro. (coger)", "o": ["cogí", "cojí", "cogé"], "a": 0, "e": "Coger: cogí (sin cambio de ortografía en pretérito)."}, {"t": "Yo ___ por la calle. (caminar)", "o": ["caminó", "caminé", "camino"], "a": 1, "e": "-AR: caminé."}, {"t": "Yo ___ un piso en el centro. (alquilar)", "o": ["alquilé", "alquilí", "alquilo"], "a": 0, "e": "-AR: alquilé."}, {"t": "Ayer yo ___ mi casa. (limpiar)", "o": ["limpiaré", "limpié", "limpio"], "a": 1, "e": "-AR: limpié."}, {"t": "Yo ___ la puerta. (cerrar)", "o": ["cerré", "cierré", "cerro"], "a": 0, "e": "En pretérito no cambia la vocal: cerré."}, {"t": "Yo le ___ a mi hermana. (mentir)", "o": ["miento", "mentí", "mintí"], "a": 1, "e": "Con yo no cambia la vocal: mentí (cambia en él: mintió)."}, {"t": "Yo ___ un problema. (resolver)", "o": ["resolví", "resolvé", "resolvo"], "a": 0, "e": "-ER: resolví."}, {"t": "Yo ___ el coche hasta Madrid. (conducir)", "o": ["conducí", "conduje", "conduzco"], "a": 1, "e": "Raíz irregular: conduje."}, {"t": "Yo ___ a clase en metro. (venir)", "o": ["viní", "vine", "vengo"], "a": 1, "e": "Raíz irregular: vine."}, {"t": "Yo le ___ un regalo a mi amiga. (dar)", "o": ["di", "dé", "dí"], "a": 0, "e": "Dar: di (sin tilde)."}, {"t": "Ayer yo ___ con mi hija. (jugar)", "o": ["jugé", "jugué", "juego"], "a": 1, "e": "g → gu delante de -é: jugué."}, {"t": "Yo ___ café con pan. (merendar)", "o": ["merendé", "meriendé", "meriendo"], "a": 0, "e": "Merendar en pretérito: merendé (sin diptongo)."}, {"t": "Yo ___ tarde a casa. (llegar)", "o": ["llegé", "llegué", "llego"], "a": 1, "e": "g → gu: llegué."}]);
+makeQuiz('q-enc',[{"t": "___ mi lápiz en la mochila.", "o": ["Me encontré", "Encontré", "Encontró"], "a": 1, "e": "Encontrar algo: sin «se»."}, {"t": "___ con María en el mercado.", "o": ["Encontré", "Me encontré", "Te encontró"], "a": 1, "e": "Encontrarse con alguien: me encontré."}, {"t": "Ayer ___ con unos amigos en el cine.", "o": ["me encontré", "encontré", "se encontraron"], "a": 0, "e": "Con personas: me encontré con…"}, {"t": "¿Qué frase dice cuándo fue la boda?", "o": ["Estoy casado en 2010.", "Me casé en 2010.", "Casado en 2010."], "a": 1, "e": "«Me casé» es la acción en el pasado. «Estoy casado» es el estado actual."}]);
+let done=0;
+function tick(cb){
+ done+=cb.checked?1:-1;
+ document.getElementById('bar').style.width=(done/5*100)+'%';
+ document.getElementById('count').textContent=done+'/5 completado';
+}
+</script>
+</body></html>

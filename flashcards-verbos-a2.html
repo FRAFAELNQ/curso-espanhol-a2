@@ -680,7 +680,11 @@ const NOTES = {
   nacerNote: { pt: "Como conocer (yo nazco). Pretérito regular: nací, naciste, nació…", es: "Como conocer (yo nazco). Pretérito regular: nací, naciste, nació…", en: "Like conocer (yo nazco). Regular preterite: nací, naciste, nació…" },
   dirigirNote: { pt: "«Yo»: dirijo (g→j por ortografia). Pretérito regular: dirigí, dirigiste, dirigió…", es: "«Yo»: dirijo (g→j por ortografía). Pretérito regular: dirigí, dirigiste, dirigió…", en: "«Yo»: dirijo (g→j for spelling). Regular preterite: dirigí, dirigiste, dirigió…" },
   casarseNote: { pt: "Regular. Casarse con alguém. Pretérito: me casé, te casaste, se casó…", es: "Regular. Casarse con alguien. Pretérito: me casé, te casaste, se casó…", en: "Regular. Casarse con someone. Preterite: me casé, te casaste, se casó…" },
-  protagonizarNote: { pt: "Presente regular. No pretérito (yo): protagonicé (z→c).", es: "Presente regular. En pretérito (yo): protagonicé (z→c).", en: "Regular in the present. Preterite (yo): protagonicé (z→c)." }
+  protagonizarNote: { pt: "Presente regular. No pretérito (yo): protagonicé (z→c).", es: "Presente regular. En pretérito (yo): protagonicé (z→c).", en: "Regular in the present. Preterite (yo): protagonicé (z→c)." },
+  encontrarseNote: { pt: "Encontrarse con alguém = ver/encontrar uma pessoa. Encontrar algo = achar uma coisa. Pretérito: me encontré con María.", es: "Encontrarse con alguien = verse con una persona. Encontrar algo = hallar una cosa. Pretérito: me encontré con María.", en: "Encontrarse con someone = to meet someone. Encontrar algo = to find something. Preterite: me encontré con María." },
+  llegarNote: { pt: "Presente regular. No pretérito (yo): llegué (g→gu).", es: "Presente regular. En pretérito (yo): llegué (g→gu).", en: "Regular in the present. Preterite (yo): llegué (g→gu)." },
+  cogerNote: { pt: "Yo coJo (g→j por ortografia). Pretérito regular: cogí, cogiste, cogió… Em outros países pode ter outro significado.", es: "«Yo» cojo (g→j por ortografía). Pretérito regular: cogí, cogiste, cogió… En España: coger el metro/el autobús.", en: "«Yo» cojo (g→j for spelling). Regular preterite: cogí, cogiste, cogió… In Spain: coger el metro / el autobús." },
+  ensenarNote: { pt: "Presente regular. Enseñar = ensinar. Empezar a enseñar.", es: "Presente regular. Enseñar = dar clase o mostrar. Empezó a enseñar.", en: "Regular in the present. Enseñar = to teach or to show. Empezó a enseñar." }
 };
 
 const verbs = [
@@ -730,6 +734,14 @@ const verbs = [
   { word: "casarse", meaning: "",sticker: "💍",groupKey: "ar-refl", forms: ["me caso","te casas","se casa","nos casamos","os casáis","se casan"], noteKey: "casarseNote" },
   { word: "protagonizar", meaning: "",sticker: "⭐",groupKey: "ar", forms: ["protagonizo","protagonizas","protagoniza","protagonizamos","protagonizáis","protagonizan"], noteKey: "protagonizarNote" },
   { word: "inventar", meaning: "",sticker: "💡",groupKey: "ar", forms: ["invento","inventas","inventa","inventamos","inventáis","inventan"], noteKey: "sameHablar" },
+  { word: "correr", meaning: "",sticker: "🏃‍♂️",groupKey: "er", forms: ["corro","corres","corre","corremos","corréis","corren"], noteKey: "sameComer" },
+  { word: "coger", meaning: "",sticker: "🚌",groupKey: "yo-irr", forms: ["cojo","coges","coge","cogemos","cogéis","cogen"], noteKey: "cogerNote" },
+  { word: "caminar", meaning: "",sticker: "🚶‍♀️",groupKey: "ar", forms: ["camino","caminas","camina","caminamos","camináis","caminan"], noteKey: "sameHablar" },
+  { word: "alquilar", meaning: "",sticker: "🔑",groupKey: "ar", forms: ["alquilo","alquilas","alquila","alquilamos","alquiláis","alquilan"], noteKey: "sameHablar" },
+  { word: "trabajar", meaning: "",sticker: "💼",groupKey: "ar", forms: ["trabajo","trabajas","trabaja","trabajamos","trabajáis","trabajan"], noteKey: "sameHablar" },
+  { word: "enseñar", meaning: "",sticker: "👩‍🏫",groupKey: "ar", forms: ["enseño","enseñas","enseña","enseñamos","enseñáis","enseñan"], noteKey: "ensenarNote" },
+  { word: "llegar", meaning: "",sticker: "🛬",groupKey: "ar", forms: ["llego","llegas","llega","llegamos","llegáis","llegan"], noteKey: "llegarNote" },
+  { word: "encontrarse", meaning: "",sticker: "🤝",groupKey: "oue-refl", forms: ["me encuentro","te encuentras","se encuentra","nos encontramos","os encontráis","se encuentran"], noteKey: "encontrarseNote" },
   { word: "llevar", meaning: "",sticker: "👜",groupKey: "ar", forms: ["llevo","llevas","lleva","llevamos","lleváis","llevan"], noteKey: "llFocus" },
   { word: "llevarse", meaning: "",sticker: "🤝",groupKey: "ar-refl", forms: ["me llevo","te llevas","se lleva","nos llevamos","os lleváis","se llevan"], noteKey: "llevarseNote" },
 
@@ -936,7 +948,15 @@ const MEAN = {
   "dirigir": { pt: "dirigir (um filme)", en: "to direct (a film)" },
   "casarse": { pt: "casar-se", en: "to get married" },
   "protagonizar": { pt: "protagonizar", en: "to star in" },
-  "inventar": { pt: "inventar", en: "to invent" }
+  "inventar": { pt: "inventar", en: "to invent" },
+  "correr": { pt: "correr", en: "to run" },
+  "coger": { pt: "pegar / apanhar (transporte)", en: "to take / to catch (transport)" },
+  "caminar": { pt: "caminhar", en: "to walk" },
+  "alquilar": { pt: "alugar", en: "to rent" },
+  "trabajar": { pt: "trabalhar", en: "to work" },
+  "enseñar": { pt: "ensinar / mostrar", en: "to teach / to show" },
+  "llegar": { pt: "chegar", en: "to arrive" },
+  "encontrarse": { pt: "encontrar-se (com alguém)", en: "to meet (someone)" }
 };
 
 function mTxt(v) {

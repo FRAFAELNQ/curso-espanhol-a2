@@ -200,11 +200,11 @@ footer{text-align:center;color:#b7a2ca;font-size:14px;margin-top:36px}
     <section aria-labelledby="t-inicio">
       <h2 class="section-title" id="t-inicio">⭐ Empieza aquí</h2>
       <div class="grid">
-        <a class="card featured" href="Aula_Espanol_A2_30-09-2026.html">
+        <a class="card featured" href="Aula_Espanol_A2_01-10-2026.html">
           <div class="icon" aria-hidden="true">📅</div>
           <div>
             <h3>Última clase</h3>
-            <p>Miércoles 30 de septiembre</p>
+            <p>Jueves 1 de octubre</p>
           </div>
           <span class="arrow" aria-hidden="true">→</span>
         </a>
@@ -256,7 +256,7 @@ footer{text-align:center;color:#b7a2ca;font-size:14px;margin-top:36px}
         <div class="date-box">
           <h3>Certificado A2</h3>
           <p><strong>Enero 2027</strong> · Fechas por determinar</p>
-          <p style="margin-top: 4px; font-size: 13px;"><a href="https://www.educa2.madrid.org/web/centro.eoi.madridtribunal.madrid" target="_blank" style="color:#ffd166; text-decoration:none; font-weight:700;">🔗 Web EOI Tribunal</a></p>
+          <p style="margin-top: 4px; font-size: 13px;"><a href="https://www.educa2.madrid.org/web/centro.eoi.madridtribunal.madrid" target="_blank" rel="noopener noreferrer" style="color:#ffd166; text-decoration:none; font-weight:700;">🔗 Web EOI Tribunal</a></p>
         </div>
       </div>
       
@@ -279,6 +279,7 @@ footer{text-align:center;color:#b7a2ca;font-size:14px;margin-top:36px}
 
       <h3 class="week-title">Semana del 28 de septiembre</h3>
       <div class="grid">
+        <a class="card" href="Aula_Espanol_A2_01-10-2026.html"><div class="day"><strong>01</strong><span>oct</span></div><div><h3>Jueves 1 de octubre</h3><p>Números, hace / desde / hasta y repaso del pretérito.</p><p class="book">📖 Libro: pp. 131, 132 y 134</p></div><span class="arrow" aria-hidden="true">→</span></a>
         <a class="card" href="Aula_Espanol_A2_30-09-2026.html"><div class="day"><strong>30</strong><span>sep</span></div><div><h3>Miércoles 30 de septiembre</h3><p>Pretérito indefinido irregular, expresiones de tiempo y biografías.</p><p class="book">📖 Libro: pp. 29-32, 36 y 132</p></div><span class="arrow" aria-hidden="true">→</span></a>
         <a class="card" href="Aula_Espanol_A2_29-09-2026.html"><div class="day"><strong>29</strong><span>sep</span></div><div><h3>Martes 29 de septiembre</h3><p>Pretérito indefinido, convertirse y estado civil.</p><p class="book">📖 Libro: pp. 25, 28-29 y 141-143</p></div><span class="arrow" aria-hidden="true">→</span></a>
         <a class="card" href="Aula_Espanol_A2_28-09-2026.html"><div class="day"><strong>28</strong><span>sep</span></div><div><h3>Lunes 28 de septiembre</h3><p>Relaciones, descripción, llevar/llevarse, caer bien/mal, parecer y medir.</p><p class="book">📖 Libro: pp. 44-45, 50, 140, 142</p></div><span class="arrow" aria-hidden="true">→</span></a>
@@ -315,6 +316,7 @@ footer{text-align:center;color:#b7a2ca;font-size:14px;margin-top:36px}
 
 <script>
 // Script para el Cronómetro de las Pruebas
+function textoFaltan(n){return n===1?'Falta <b>1</b> día ⏳':'Faltan <b>'+n+'</b> días ⏳';}
 function actualizarCronometros() {
   const hoy = new Date();
   hoy.setHours(0,0,0,0); // Ignora a hora, foca apenas no dia
@@ -330,7 +332,7 @@ function actualizarCronometros() {
   
   if (el1) {
     if (diffDias1 > 0) {
-      el1.innerHTML = `Faltan <b>${diffDias1}</b> días ⏳`;
+      el1.innerHTML = textoFaltan(diffDias1);
     } else if (diffDias1 === 0 || diffDias1 === -1) { // 19 e 20 são dias de prova
       el1.innerHTML = `<span style="color:#4be59a; font-weight:800;">¡Es hoy! 📝</span>`;
       el1.style.borderColor = "#4be59a";
@@ -349,7 +351,7 @@ function actualizarCronometros() {
   
   if (el2) {
     if (diffDias2 > 0) {
-      el2.innerHTML = `Faltan <b>${diffDias2}</b> días ⏳`;
+      el2.innerHTML = textoFaltan(diffDias2);
     } else if (diffDias2 === 0 || diffDias2 === -1) { // 9 e 10 são dias de prova
       el2.innerHTML = `<span style="color:#4be59a; font-weight:800;">¡Es hoy! 📝</span>`;
       el2.style.borderColor = "#4be59a";
