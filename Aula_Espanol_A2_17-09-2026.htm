@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#080a18">
-<title>Clase de Español A2 — 09/09/2026</title>
+<title>Clase de Español A2 — 17/09/2026</title>
 <style>
 :root{
   color-scheme:dark;
@@ -29,9 +29,10 @@ section.active{display:block}
 .card h2,.card h3{margin-top:0}
 .color-title{font-size:1.25rem;font-weight:900}
 .pink{color:var(--pink)}.purple{color:var(--purple)}.turq{color:var(--turq)}.blue{color:var(--blue)}.yellow{color:var(--yellow)}
-table{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden;}
 th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
 th{background:#202a4c;color:#cdbdff}
+.table-wrap{overflow-x:auto;border-radius:16px;border:1px solid var(--border);}
 .speak{border:0;background:var(--soft);border-radius:10px;padding:7px 10px;cursor:pointer}
 .example{border-left:4px solid var(--turq);padding:9px 12px;background:color-mix(in srgb,var(--turq) 8%,var(--card));border-radius:0 12px 12px 0;margin:9px 0}
 .note{font-size:.9rem;color:var(--muted)}
@@ -67,126 +68,113 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
 <div class="container">
 <header>
   <span class="badge">EOI · Español A2 · Clase individual</span>
-  <h1>Ficha interactiva — 09/09/2026</h1>
-  <div class="subtitle">Presente, verbos irregulares, verbos pronominales, gustar/interesar/costar y biografía lingüística</div>
+  <h1>Ficha interactiva — 17/09/2026</h1>
+  <div class="subtitle">Expresar sentimientos · Dificultad · Consejos para aprender español · Pronunciación y fluidez</div>
 </header>
 
 <div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
 
 <nav>
   <button class="active" onclick="showTab('resumen',this)">📚 Resumen</button>
-  <button onclick="showTab('verbos',this)">🔤 Verbos</button>
-  <button onclick="showTab('gustar',this)">💗 Estructuras</button>
-  <button onclick="showTab('biografia',this)">🌍 Biografía lingüística</button>
+  <button onclick="showTab('estructuras',this)">💬 Estructuras</button>
+  <button onclick="showTab('consejos',this)">🎯 Consejos</button>
+  <button onclick="showTab('correcciones',this)">🧠 Correcciones</button>
   <button onclick="showTab('ex',this)">✏️ Ejercicios</button>
 </nav>
 
 <section id="resumen" class="active">
   <div class="grid">
-    <div class="card"><h3 class="color-title pink">🔤 Presente</h3><p>La clase comenzó revisando el presente y los verbos irregulares, como preparación para trabajar posteriormente los tiempos del pasado.</p></div>
-    <div class="card"><h3 class="color-title purple">🔁 Verbos pronominales</h3><p>Se repasaron estructuras como <b>me levanto</b> y <b>me ducho</b>.</p></div>
-    <div class="card"><h3 class="color-title turq">💗 Estructuras tipo gustar</h3><p>Se revisaron <b>gustar</b> y otros verbos con la misma estructura, especialmente <b>interesar</b> y <b>costar</b>.</p></div>
-    <div class="card"><h3 class="color-title blue">🌍 Biografía lingüística</h3><p>Se trabajó qué lenguas habla una persona, con quién las habla, dónde las utiliza, qué nivel tiene y qué sabe hacer en cada lengua.</p></div>
+    <div class="card"><h3 class="color-title pink">❤️ Sentimientos</h3><p>Repaso de <b>me siento + adjetivo + cuando...</b>, <b>me da vergüenza + infinitivo</b> y <b>lo paso bien/mal/fatal</b>.</p></div>
+    <div class="card"><h3 class="color-title purple">⚠️ Dificultad</h3><p><b>me cuesta / me cuestan</b> y <b>lo más difícil es / son...</b> para hablar de aquello que resulta difícil.</p></div>
+    <div class="card"><h3 class="color-title turq">🗣️ Conversación</h3><p>Se explicó el uso de <b>pues</b> para recoger lo que acaba de decir otra persona y añadir información propia.</p></div>
+    <div class="card"><h3 class="color-title blue">📈 Aprender mejor</h3><p>Se trabajaron consejos con <b>va bien / va muy bien / va genial + infinitivo</b> y estrategias para mejorar el español.</p></div>
   </div>
   <div class="card" style="margin-top:14px">
-    <h3>🎯 Objetivo de la actividad</h3>
-    <p>La profesora explicó que conocer bien el presente es importante porque los tiempos del pasado contienen muchas irregularidades.</p>
+    <h3 class="color-title yellow">📌 Idea central de la clase</h3>
+    <p>Para mejorar una lengua, la profesora insistió en practicar, repetir, escuchar, hablar con hispanohablantes y perder el miedo a cometer errores.</p>
   </div>
 </section>
 
-<section id="verbos">
+<section id="estructuras">
   <div class="card">
-    <h2 class="purple">🔤 Verbos y estructuras trabajadas</h2>
-    <div style="overflow-x:auto;">
-    <table>
-      <tr><th>Tipo</th><th>Ejemplos trabajados</th></tr>
-      <tr><td>Regular</td><td>comer → yo como</td></tr>
-      <tr><td>Pronominal</td><td>me levanto · me ducho</td></tr>
-      <tr><td>Tipo <i>gustar</i></td><td>me gusta · le gusta</td></tr>
-      <tr><td>Otros de la misma estructura</td><td>me cuesta · me interesa</td></tr>
-    </table>
+    <h2 class="pink">💬 Las 3 estructuras para expresar sentimientos</h2>
+    <div class="sound-bar"><span class="small">🔊 Toca el botón para escuchar los ejemplos.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
+    
+    <div class="example"><b>Me siento inseguro cuando hablo con nativos.</b></div>
+    <div class="example"><b>Me siento ridículo cuando hablo en español.</b></div>
+    <div class="example"><b>Me da vergüenza hablar con nativos.</b></div>
+    <div class="example"><b>Lo paso mal cuando no entiendo los documentos.</b></div>
+    <p class="small" style="margin-top:10px;">La profesora presentó estas tres posibilidades como estructuras útiles para expresar sentimientos en el nivel A2.</p>
+  </div>
+  
+  <div class="grid" style="margin-top:14px">
+    <div class="card">
+      <h3 class="turq">🧩 «Me da vergüenza»</h3>
+      <p>La construcción se relaciona con verbos que funcionan como <b>gustar</b>.</p>
+      <div class="example"><b>A mí me da vergüenza hablar con nativos.</b></div>
+      <div class="note" style="margin-top:10px;"><b>Corrección:</b> no se dice «a mí doy vergüenza». La estructura trabajada es <b>me da vergüenza + infinitivo</b>.</div>
+    </div>
+    <div class="card">
+      <h3 class="purple">🪑 «Me siento»</h3>
+      <p>La forma <b>me siento</b> puede pertenecer a <i>sentirse</i> o a <i>sentarse</i>; el contexto indica el significado.</p>
+      <div class="example"><b>Me siento frustrado.</b> → sentirse</div>
+      <div class="example"><b>Me siento en una silla.</b> → sentarse</div>
     </div>
   </div>
-  
-  <div class="card" style="margin-top:14px">
-    <h3 class="pink">🧩 Patrón que se repasó</h3>
-    <p>La profesora explicó que <b>gustar, interesar y costar</b> funcionan con una estructura diferente de los verbos regulares: el elemento que gusta, interesa o cuesta determina normalmente el singular/plural de la forma verbal.</p>
-    <div class="sound-bar"><span class="small">🔊 Toca el botón para escuchar la estructura.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
-    <div class="example"><b>Me gusta + singular</b></div>
-    <div class="example"><b>Me gustan + plural</b></div>
-    <div class="example"><b>Me interesa + singular</b></div>
-    <div class="example"><b>Me interesan + plural</b></div>
-    <div class="example"><b>Me cuesta + singular / infinitivo</b></div>
-  </div>
-  
-  <div class="card" style="margin-top:14px">
-    <h3 class="turq">🗣️ Para pedir ayuda en clase</h3>
-    <div class="example"><b>¿Puedes repetir, por favor?</b></div>
-    <div class="example"><b>¿Qué significa esto?</b></div>
-    <div class="example"><b>¿Cómo escribo ...?</b></div>
-    <p class="small">Estas expresiones aparecieron al hablar de cómo pedir aclaraciones o repeticiones durante la clase.</p>
-  </div>
 </section>
 
-<section id="gustar">
+<section id="consejos">
   <div class="card">
-    <h2 class="pink">💗 Gustar · interesar · costar</h2>
-    <p>Estos verbos se revisaron como estructuras que comparten un funcionamiento parecido.</p>
+    <h2 class="blue">🎯 Para mejorar el español</h2>
+    <p>La clase practicó consejos construidos con <b>va bien / va muy bien / va genial + infinitivo</b>.</p>
     <div style="overflow-x:auto;">
     <table>
-      <tr><th>Verbo</th><th>Ejemplo</th><th>Idea</th></tr>
-      <tr><td><b>gustar</b></td><td>Me gusta leer.</td><td>Algo produce gusto/interés.</td></tr>
-      <tr><td><b>interesar</b></td><td>Me interesa el español.</td><td>Algo resulta interesante.</td></tr>
-      <tr><td><b>costar</b></td><td>Me cuesta aprender.</td><td>Algo resulta difícil.</td></tr>
-    </table>
-    </div>
-    <div class="sound-bar" style="margin-top:10px;"><span class="small">🔊 Toca el botón para escuchar.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
-    <div class="example"><b>Me gusta un montón.</b></div>
-    <p class="small">Expresión coloquial para intensificar ("un montón" en lugar de "mucho").</p>
-  </div>
-  
-  <div class="card" style="margin-top:14px">
-    <h3 class="purple">🗣️ «Un montón»</h3>
-    <p>La profesora explicó <b>un montón</b> como una expresión coloquial muy usada para expresar una cantidad grande o intensidad.</p>
-    <div class="example"><b>Me gusta un montón.</b></div>
-    <div class="example"><b>Leo un montón.</b></div>
-    <div class="example"><b>Escucho un montón de música.</b></div>
-    <p class="small">También se comentó que es una expresión coloquial y que no siempre resulta apropiada en todos los contextos formales.</p>
-  </div>
-</section>
-
-<section id="biografia">
-  <div class="card">
-    <h2 class="turq">🌍 Biografía lingüística</h2>
-    <p>La profesora definió la <b>biografía lingüística</b> como las lenguas que una persona habla normalmente y, además, <b>cómo, con quién, dónde y para qué</b> las utiliza.</p>
-    <div style="overflow-x:auto;">
-    <table>
-      <tr><th>Aspecto</th><th>Pregunta útil</th></tr>
-      <tr><td>Lengua</td><td>¿Qué lengua hablas?</td></tr>
-      <tr><td>Nivel</td><td>¿Qué nivel tienes?</td></tr>
-      <tr><td>Persona</td><td>¿Con quién la hablas?</td></tr>
-      <tr><td>Lugar</td><td>¿Dónde la hablas?</td></tr>
-      <tr><td>Uso</td><td>¿Qué haces en esa lengua?</td></tr>
+      <tr><th>Objetivo</th><th>Consejo trabajado</th></tr>
+      <tr><td>Entender a la gente</td><td>Va muy bien <b>escuchar canciones y ver la tele</b>.</td></tr>
+      <tr><td>Hablar con fluidez</td><td>Va muy bien <b>hablar con hispanohablantes</b>.</td></tr>
+      <tr><td>Practicar los verbos</td><td>Va muy bien <b>hacer muchos ejercicios</b>.</td></tr>
+      <tr><td>Evitar problemas con el orden de las palabras</td><td>Va muy bien <b>leer mucho</b> y repetir muchas veces.</td></tr>
+      <tr><td>Pronunciar mejor</td><td>Va muy bien <b>hablar con hispanohablantes</b>, repetir muchas veces la misma frase y escuchar pódcast/canciones.</td></tr>
+      <tr><td>Escribir correctamente</td><td>Se recomendó <b>leer mucho</b>.</td></tr>
     </table>
     </div>
   </div>
   
   <div class="grid" style="margin-top:14px">
     <div class="card">
-      <h3 class="purple">🎧 Actividad de comprensión</h3>
-      <p>Se escuchó una conversación sobre una persona que hablaba varias lenguas. Después de escucharla, la clase debía identificar:</p>
-      <ul>
-        <li>las lenguas que hablaba;</li>
-        <li>su nivel en cada una;</li>
-        <li>con quién las hablaba;</li>
-        <li>dónde las utilizaba;</li>
-        <li>qué actividades podía realizar en cada lengua.</li>
-      </ul>
+      <h3 class="pink">🎵 Canciones y colocaciones</h3>
+      <p>La profesora explicó que las canciones pueden ayudar a aprender <b>colocaciones</b>: palabras que aparecen juntas con frecuencia.</p>
+      <div class="note" style="margin-top:10px;">Pero las canciones pueden usar <b>licencia poética</b>; por eso no siempre mantienen el orden natural de una frase.</div>
     </div>
     <div class="card">
-      <h3 class="pink">📝 Producción propia</h3>
-      <p>Después de la escucha, cada estudiante debía preparar una pequeña tabla sobre la biografía lingüística de su compañero y explicársela.</p>
-      <div class="example"><b>Lengua → nivel → con quién → dónde → qué hago en esa lengua.</b></div>
+      <h3 class="yellow">🔁 Repetición y exposición</h3>
+      <p>Entre las estrategias mencionadas estuvieron <b>repetir muchas veces la misma frase</b>, escuchar pódcast, escuchar canciones, ver la televisión, leer y hablar con personas hispanohablantes.</p>
+    </div>
+  </div>
+</section>
+
+<section id="correcciones">
+  <div class="card">
+    <h2 class="purple">🧠 Correcciones importantes</h2>
+    <div class="sound-bar"><span class="small">🔊</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢</button></div>
+    <div class="example"><b>Me da vergüenza hablar con nativos.</b><br><span class="small">No: «A mí doy vergüenza...»</span></div>
+    <div class="example"><b>Me doy crema / me doy protector solar.</b><br><span class="small">Este <i>darse</i> tiene otro significado: ponerse crema. No expresa el sentimiento de vergüenza.</span></div>
+    <div class="example"><b>Lo más difícil es la pronunciación.</b><br><b>Lo más difícil son los verbos.</b><br><span class="small">Singular → <b>es</b>; plural → <b>son</b>.</span></div>
+    <div class="example"><b>Para mí, es muy difícil la pronunciación.</b><br><b>Para mí, son muy difíciles los verbos.</b></div>
+    <div class="example"><b>Recordar las palabras.</b><br><span class="small">La profesora corrigió el uso de <i>recordar</i>: no es reflexivo en este sentido.</span></div>
+    <div class="example"><b>Listar</b> = hacer una lista.<br><b>Estar listo/a</b> = estar preparado/a.</div>
+  </div>
+  
+  <div class="grid" style="margin-top:14px">
+    <div class="card">
+      <h3 class="turq">🗣️ «Pues» en una conversación</h3>
+      <p><b>Pues</b> puede recoger la idea de la otra persona y añadir una información propia.</p>
+      <div class="example">—Yo lo paso fatal cuando tengo que hablar con mis clientes.<br>—<b>Pues yo también lo paso mal.</b></div>
+      <p class="small" style="margin-top:10px;">La profesora explicó que esta forma ayuda a conectar las ideas en un diálogo real.</p>
+    </div>
+    <div class="card">
+      <h3 class="pink">🔊 Pronunciación y miedo a hablar</h3>
+      <p>La clase relacionó la mejora de la pronunciación con exposición, repetición y conversación. También se insistió en <b>perder el miedo</b> a hablar y a cometer errores.</p>
     </div>
   </div>
 </section>
@@ -195,20 +183,14 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
   <h2>✏️ Ejercicios interactivos</h2>
   <div class="card"><h3 class="pink">1. Comprueba lo aprendido</h3><div id="q-aula"></div></div>
   <div class="card" style="margin-top:14px">
-    <h3 class="turq">🗣️ Misión</h3>
-    <p>Prepara oralmente tu propia biografía lingüística siguiendo esta secuencia:</p>
-    <ol style="line-height: 1.8;">
-      <li>¿Qué lenguas hablas?</li>
-      <li>¿Qué nivel tienes en cada una?</li>
-      <li>¿Con quién las hablas?</li>
-      <li>¿Dónde las hablas?</li>
-      <li>¿Qué haces en cada lengua?</li>
-    </ol>
+    <h3 class="turq">🎯 Misión</h3>
+    <p>Escribe o di en voz alta <b>5 frases sobre cómo aprender español</b>. Usa al menos una vez:</p>
+    <p style="margin-top:10px; font-weight:700; color:var(--pink);">me siento... · me da vergüenza... · lo paso... · me cuesta... · va muy bien + infinitivo</p>
   </div>
 </section>
 
 <div class="home-nav" style="justify-content:center; margin-top:22px;"><a href="index.html">🏠 Volver al inicio</a></div>
-<footer>Registro individual de la clase del 09/09/2026. Basado en la grabación y notas de la clase.</footer>
+<footer>Registro individual de la clase del 17/09/2026. Basado en las notas de la clase.</footer>
 </div>
 
 <script>
@@ -229,7 +211,11 @@ if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=pickEs;pickEs();
 function say(txt){
  if(!('speechSynthesis' in window)) return;
  speechSynthesis.cancel();
- const u=new SpeechSynthesisUtterance(txt);
+ // Limpar setas e notas menores para a leitura
+ let finalTxt = txt.replace(/→/g, '.').replace(/<br>.*?<\/span>/g, '').replace(/<span.*?>.*?<\/span>/g, '');
+ // Para o "Pues", tentar ler apenas o diálogo
+ if(finalTxt.includes('—Yo lo paso')){ finalTxt = "Yo lo paso fatal cuando tengo que hablar con mis clientes. Pues yo también lo paso mal."; }
+ const u=new SpeechSynthesisUtterance(finalTxt);
  u.lang='es-ES';if(esVoice)u.voice=esVoice;
  u.rate=slow?.6:.85;
  speechSynthesis.speak(u);
@@ -242,17 +228,17 @@ function toggleSlow(){
  });
 }
 
-// botón 🔊 en cada frase de ejemplo de TODAS las pestañas
+// botón 🔊 en cada frase de ejemplo
 document.querySelectorAll('.example').forEach(el=>{
  const b=el.querySelector('b'); if(!b) return;
- const txt=b.textContent.trim();
+ const txt=el.innerHTML; 
  const wrap=document.createElement('span');
  while(el.firstChild) wrap.appendChild(el.firstChild);
  el.appendChild(wrap);
  el.classList.add('sayable');
  const btn=document.createElement('button');
  btn.type='button';btn.className='speak';btn.textContent='🔊';
- btn.setAttribute('aria-label','Escuchar: '+txt);
+ btn.setAttribute('aria-label','Escuchar');
  btn.onclick=()=>say(txt);
  el.appendChild(btn);
 });
@@ -298,10 +284,11 @@ function makeQuiz(id,qs){
 }
 
 makeQuiz('q-aula',[
- {"t": "¿Qué verbo se trabajó con la estructura «me ...»?", "o": ["soler", "gustar", "ser"], "a": 1, "e": "Gustar, interesar y costar funcionan de manera similar, dependiendo del sujeto que produce el efecto (me gusta/gustan)."}, 
- {"t": "Completa: «Me ___ aprender español».", "o": ["cuesta", "cuestan", "costamos"], "a": 0, "e": "Cuando va seguido de un verbo en infinitivo (aprender), se usa la forma en singular: cuesta."}, 
- {"t": "¿Qué significa «un montón» en el uso explicado en clase?", "o": ["muy poco", "mucho / una cantidad grande", "nunca"], "a": 1, "e": "Es una expresión coloquial para indicar una gran cantidad o intensidad (Ej: Me gusta un montón)."}, 
- {"t": "La biografía lingüística incluye...", "o": ["solo el nombre de una lengua", "lenguas, nivel, con quién, dónde y qué hacemos con ellas", "solo la gramática"], "a": 1, "e": "Incluye no solo los idiomas, sino también el uso práctico y social de los mismos."}
+ {"t": "Completa: «Me ______ inseguro cuando hablo con nativos».", "o": ["siento", "doy", "paso"], "a": 0, "e": "Se utiliza «Me siento» acompañado de un adjetivo (inseguro)."},
+ {"t": "¿Cuál es la estructura correcta?", "o": ["Me da vergüenza hablar con nativos.", "A mí doy vergüenza hablar con nativos.", "Me vergüenza doy hablar."], "a": 0, "e": "La estructura correcta usa el verbo dar en 3ª persona: «Me da vergüenza»."},
+ {"t": "Completa: «Lo más difícil ______ la pronunciación».", "o": ["es", "son", "están"], "a": 0, "e": "Como «la pronunciación» es singular, usamos el verbo en singular: «es»."},
+ {"t": "¿Cuál expresa dificultad?", "o": ["Me cuesta memorizar palabras.", "Me siento memorizar palabras.", "Me da memorizar palabras."], "a": 0, "e": "El verbo «costar» se usa para indicar que algo nos resulta difícil."},
+ {"t": "¿Qué consejo apareció en clase para hablar con fluidez?", "o": ["Hablar con hispanohablantes.", "No hablar nunca.", "Evitar escuchar español."], "a": 0, "e": "Va muy bien hablar con hispanohablantes para ganar fluidez."}
 ]);
 
 </script>

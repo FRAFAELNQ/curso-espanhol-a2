@@ -1,349 +1,346 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>Aula_Espanol_A2_24-09-2026</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080a18">
+<title>Clase de Español A2 — 24/09/2026</title>
 <style>
-:root{--bg:#080a18;--panel:#11162c;--panel2:#171d38;--text:#f8f9ff;--muted:#b8c0dd;
---blue:#42a5ff;--purple:#a56cff;--pink:#ff5ca8;--cyan:#37e6d4;--green:#4be59a;--yellow:#ffd34e;--red:#ff6b7c;--line:#2d385e}
-*{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at 10% 0,#1d2b66,transparent 38%),radial-gradient(circle at 90% 0,#5a174d,transparent 35%),var(--bg);color:var(--text);font:16px/1.55 Arial,sans-serif}
-main{max-width:1120px;margin:auto;padding:18px}
-.hero{padding:25px;border-radius:22px;border:1px solid #48598d;background:linear-gradient(135deg,#172c6c,#49237f 52%,#741c58);box-shadow:0 18px 50px #0008}
-.hero h1{margin:0;font-size:30px} .hero p{margin:7px 0 0;color:#e3e6ff}
-.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
-.tab{border:1px solid var(--line);background:#10152b;color:#fff;padding:10px 14px;border-radius:12px;cursor:pointer;font-weight:800}
-.tab.active{background:linear-gradient(135deg,var(--blue),var(--purple));border-color:transparent}
-.panel{background:linear-gradient(180deg,#12172f,#0d1124);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:15px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
-.card,.verb-card{background:var(--panel2);border:1px solid var(--line);border-radius:15px;padding:15px}
-.blue{border-left:4px solid var(--blue)}.purple{border-left:4px solid var(--purple)}.pink{border-left:4px solid var(--pink)}.cyan{border-left:4px solid var(--cyan)}.green{border-left:4px solid var(--green)}.yellow{border-left:4px solid var(--yellow)}
-h2{margin-top:0} h3{margin:0 0 9px} .muted{color:var(--muted)} .chips{display:flex;flex-wrap:wrap;gap:7px} .chip{padding:5px 9px;border-radius:99px;background:#252e50;border:1px solid #39476f}
-.verb-card{border-top:3px solid var(--blue)} .verb-head{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:10px} .verb-head h3{font-size:21px;color:#67b8ff;margin:0} .verb-head span{font-size:12px;color:#fff;background:#293458;border-radius:99px;padding:4px 8px}
-.conj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px} .conj{padding:9px;background:#0c1125;border:1px solid #273352;border-radius:9px;text-align:center} .conj span{display:block;color:#bba9ff;font-size:12px;text-transform:uppercase} .conj b{display:block;margin-top:3px}
-.example{margin:10px 0 0;color:#aeb8d7;font-size:13px}
-.note{padding:14px;border-radius:13px;background:#10182d;border-left:4px solid var(--cyan);margin-top:12px}
-.question{padding:15px;border-radius:13px;background:#151c36;border:1px solid var(--line);margin:10px 0} select,input{width:100%;padding:10px;border-radius:9px;border:1px solid #3a486f;background:#080d20;color:#fff;font:inherit;margin:5px 0}
-button.action{padding:9px 12px;border-radius:9px;border:1px solid #53658f;background:#202b4c;color:#fff;cursor:pointer;font-weight:700}
-.feedback{margin-top:8px;padding:9px;border-radius:9px;display:none} .ok{display:block;background:#123e2b;color:#78efb1} .no{display:block;background:#471d2a;color:#ff9cac}
-table{width:100%;border-collapse:collapse} th,td{border:1px solid var(--line);padding:9px;text-align:left} th{background:#202a4c}
-[hidden]{display:none!important} footer{text-align:center;color:#9fa9c9;font-size:12px;padding:15px}
-@media(max-width:650px){main{padding:10px}.hero h1{font-size:23px}.conj-grid{grid-template-columns:repeat(2,1fr)}.panel{padding:15px}}
+:root{
+  color-scheme:dark;
+  --bg:#080a18;--card:#171d38;--text:#f8f9ff;--muted:#b8c0dd;
+  --pink:#ff5ca8;--purple:#a56cff;--turq:#37e6d4;--yellow:#ffd34e;
+  --blue:#42a5ff;--soft:#252e50;--border:#2d385e;--ok:#4be59a;--bad:#ff6b7c;
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 10% 0,#1d2b66,transparent 38%),radial-gradient(circle at 90% 0,#5a174d,transparent 35%),var(--bg);background-attachment:fixed;color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}
+.container{max-width:1100px;margin:auto;padding:22px 16px 60px}
+header{text-align:center;padding:26px 20px;margin-bottom:6px;border-radius:22px;border:1px solid #48598d;background:linear-gradient(135deg,#172c6c,#49237f 52%,#741c58);box-shadow:0 18px 50px #0008}
+.badge{display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;font-weight:800;font-size:.82rem}
+h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);color:#fff}
+.subtitle{color:#e3e6ff}
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);display:flex;gap:7px;overflow:auto;padding:8px;border-bottom:1px solid var(--border)}
+nav button,.tab{border:1px solid var(--border);background:var(--card);color:var(--text);padding:9px 12px;border-radius:12px;cursor:pointer;white-space:nowrap;font-weight:750}
+nav button.active,.tab.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+section{display:none;padding-top:22px}
+section.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:0 7px 22px color-mix(in srgb,var(--purple) 10%,transparent)}
+.card h2,.card h3{margin-top:0}
+.color-title{font-size:1.25rem;font-weight:900}
+.pink{color:var(--pink)}.purple{color:var(--purple)}.turq{color:var(--turq)}.blue{color:var(--blue)}.yellow{color:var(--yellow)}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden;min-width:600px;}
+th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+th{background:#202a4c;color:#cdbdff}
+.table-wrap{overflow-x:auto;border-radius:16px;border:1px solid var(--border);}
+.speak{border:0;background:var(--soft);border-radius:10px;padding:7px 10px;cursor:pointer}
+.example{border-left:4px solid var(--turq);padding:9px 12px;background:color-mix(in srgb,var(--turq) 8%,var(--card));border-radius:0 12px 12px 0;margin:9px 0}
+.note{font-size:.9rem;color:var(--muted)}
+.choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:9px}
+.choice{padding:12px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;text-align:center;font-weight:700;font-size:1rem;transition:0.2s}
+.choice:hover{border-color:var(--turq)}
+.choice:disabled{cursor:default}
+.choice.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card));color:var(--ok)}
+.choice.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card));color:var(--bad)}
+.feedback{margin-top:12px;font-weight:800;padding:12px;border-radius:10px;display:none}
+.feedback.ok{display:block;color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card));border:1px solid var(--ok)}
+.feedback.bad{display:block;color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card));border:1px solid var(--bad)}
+details{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px;margin:9px 0}
+summary{cursor:pointer;font-weight:800}
+.progress{height:12px;background:var(--soft);border-radius:99px;overflow:hidden;margin-top:12px;border:1px solid var(--border)}
+.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq));transition:width .3s ease}
+.small{font-size:.88rem;color:var(--muted)}
+.example.sayable{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.example.sayable .speak{flex:0 0 auto;font-size:1.05rem}
+.sound-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:6px 0 12px}
+.speak:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.speak[aria-pressed="true"]{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff}
+footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
+@media(max-width:600px){.container{padding:14px 10px 45px}th,td{padding:8px;font-size:.9rem}.card{padding:15px}}
+
+.home-nav{text-align:center;margin:14px 0 8px}
+.home-nav a{display:inline-block;padding:10px 18px;border-radius:12px;background:#10152b;border:1px solid var(--border);color:#fff;text-decoration:none;font-weight:800;transition:transform .15s ease,border-color .15s ease}
+.home-nav a:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.home-nav a:hover{transform:translateY(-1px);border-color:var(--blue)}
 </style>
-<style>
-.home-nav{
-  display:flex;
-  justify-content:flex-start;
-  margin:0 0 16px;
-}
-.home-nav.bottom{
-  margin:22px 0 0;
-  justify-content:center;
-}
-.home-nav a{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:10px 16px;
-  border-radius:12px;
-  text-decoration:none;
-  font-weight:700;
-  color:#fff;
-  background:linear-gradient(135deg,#7b2cbf,#ff3cac);
-  box-shadow:0 6px 18px rgba(0,0,0,.22);
-}
-.home-nav a:hover{
-  transform:translateY(-1px);
-  filter:brightness(1.08);
-}
-</style></head>
-<body><main>
-<header class="hero">
-<h1>📚 Español A2 · Ficha interactiva</h1>
-<p><b>24/09/2026</b> · Verbos, demostrativos, descripción de personas y página 40.</p>
-<p class="muted">Ficha individual: únicamente contenido trabajado en esta clase.</p>
-</header><div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
-<nav class="tabs">
-<button class="tab active" data-tab="resumen">📚 Clase</button>
-<button class="tab" data-tab="verbos">🔤 Verbos</button>
-<button class="tab" data-tab="demo">👉 Demostrativos</button>
-<button class="tab" data-tab="personas">👤 Personas</button>
-<button class="tab" data-tab="contactos">💚 Página 40</button>
-<button class="tab" data-tab="quiz">✏️ Ejercicios</button>
+</head>
+<body>
+<div class="container">
+<header>
+  <span class="badge">EOI · Español A2 · Clase individual</span>
+  <h1>Ficha interactiva — 24/09/2026</h1>
+  <div class="subtitle">Verbos, demostrativos, descripción de personas y página 40</div>
+</header>
+
+<div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
+
+<nav>
+  <button class="active" onclick="showTab('resumen',this)">📚 Resumen</button>
+  <button onclick="showTab('verbos',this)">🔤 Verbos</button>
+  <button onclick="showTab('demo',this)">👉 Demostrativos</button>
+  <button onclick="showTab('personas',this)">👤 Personas</button>
+  <button onclick="showTab('contactos',this)">💚 Página 40</button>
+  <button onclick="showTab('ex',this)">✏️ Ejercicios</button>
 </nav>
-<section class="panel" id="resumen">
-<h2>📚 ¿Qué trabajamos?</h2>
-<div class="grid">
-<div class="card blue"><h3>🃏 Actividad de tarjetas</h3><p>Trabajo en parejas: cada estudiante tenía un verbo, daba su respuesta y después la comparaba y corregía con la del compañero.</p></div>
-<div class="card purple"><h3>👉 Demostrativos</h3><p><b>este/esta · ese/esa · aquel/aquella</b> y las formas neutras <b>esto · eso · aquello</b>. También <b>aquí · ahí · allí</b>.</p></div>
-<div class="card pink"><h3>👤 Descripción</h3><p>Se trabajó la diferencia entre <b>ser, tener y llevar</b> para describir personas física y personalmente.</p></div>
-<div class="card green"><h3>💚 Página 40</h3><p>Una web de contactos: expresiones para describir carácter, aspecto y buscar una persona compatible.</p></div>
-</div>
-<div class="note"><b>Correcciones destacadas:</b> ❌ <b>consiegues</b> → ✅ <b>consigues</b> · ❌ <b>sigre</b> → ✅ <b>sigues</b>. <b>Sigue</b> también apareció como imperativo.</div>
+
+<section id="resumen" class="active">
+  <div class="grid">
+    <div class="card"><h3 class="color-title blue">🃏 Actividad de tarjetas</h3><p>Trabajo en parejas: cada estudiante tenía un verbo, daba su respuesta y después la comparaba y corregía con la del compañero.</p></div>
+    <div class="card"><h3 class="color-title purple">👉 Demostrativos</h3><p><b>este/esta · ese/esa · aquel/aquella</b> y las formas neutras <b>esto · eso · aquello</b>. También <b>aquí · ahí · allí</b>.</p></div>
+    <div class="card"><h3 class="color-title pink">👤 Descripción</h3><p>Se trabajó la diferencia entre <b>ser, tener y llevar</b> para describir personas física y personalmente.</p></div>
+    <div class="card"><h3 class="color-title turq">💚 Página 40</h3><p>Una web de contactos: expresiones para describir carácter, aspecto y buscar una persona compatible.</p></div>
+  </div>
+  <div class="card" style="margin-top:14px; border-left-color:var(--yellow); border-left-width:4px;">
+    <h3 class="color-title yellow">⚠️ Correcciones destacadas</h3>
+    <p>❌ <b>consiegues</b> → ✅ <b>consigues</b><br>❌ <b>sigre</b> → ✅ <b>sigues</b>.</p>
+    <p class="small" style="margin-top:5px;"><b>Sigue</b> también apareció como imperativo.</p>
+  </div>
 </section>
-<section class="panel" hidden="" id="verbos">
-<h2>🔤 Verbos trabajados en la actividad de tarjetas</h2>
-<p class="muted">Las tarjetas de esta aula se centraron principalmente en verbos irregulares. Se muestran aquí las seis personas para estudiar y practicar.</p>
-<div class="grid"><article class="verb-card">
-<div class="verb-head"><h3>hablar</h3><span>regular -AR</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>hablo</b></div><div class="conj"><span>tú</span><b>hablas</b></div><div class="conj"><span>él / ella / usted</span><b>habla</b></div><div class="conj"><span>nosotros / nosotras</span><b>hablamos</b></div><div class="conj"><span>vosotros / vosotras</span><b>habláis</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>hablan</b></div></div>
-<p class="example">yo hablo · tú hablas</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>tener</h3><span>Irregular</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>tengo</b></div><div class="conj"><span>tú</span><b>tienes</b></div><div class="conj"><span>él / ella / usted</span><b>tiene</b></div><div class="conj"><span>nosotros / nosotras</span><b>tenemos</b></div><div class="conj"><span>vosotros / vosotras</span><b>tenéis</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>tienen</b></div></div>
-<p class="example">yo tengo</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>despedirse</h3><span>e→i + reflexivo</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>me despido</b></div><div class="conj"><span>tú</span><b>te despides</b></div><div class="conj"><span>él / ella / usted</span><b>se despide</b></div><div class="conj"><span>nosotros / nosotras</span><b>nos despedimos</b></div><div class="conj"><span>vosotros / vosotras</span><b>os despedís</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>se despiden</b></div></div>
-<p class="example">yo me despido</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>despertarse</h3><span>e→ie + reflexivo</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>me despierto</b></div><div class="conj"><span>tú</span><b>te despiertas</b></div><div class="conj"><span>él / ella / usted</span><b>se despierta</b></div><div class="conj"><span>nosotros / nosotras</span><b>nos despertamos</b></div><div class="conj"><span>vosotros / vosotras</span><b>os despertáis</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>se despiertan</b></div></div>
-<p class="example">yo me despierto · usted se despierta · ¡despiértame!</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>oír</h3><span>Irregular</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>oigo</b></div><div class="conj"><span>tú</span><b>oyes</b></div><div class="conj"><span>él / ella / usted</span><b>oye</b></div><div class="conj"><span>nosotros / nosotras</span><b>oímos</b></div><div class="conj"><span>vosotros / vosotras</span><b>oís</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>oyen</b></div></div>
-<p class="example">yo oigo · tú oyes</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>salir</h3><span>Irregular</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>salgo</b></div><div class="conj"><span>tú</span><b>sales</b></div><div class="conj"><span>él / ella / usted</span><b>sale</b></div><div class="conj"><span>nosotros / nosotras</span><b>salimos</b></div><div class="conj"><span>vosotros / vosotras</span><b>salís</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>salen</b></div></div>
-<p class="example">nosotros salimos</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>acostarse</h3><span>o→ue + reflexivo</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>me acuesto</b></div><div class="conj"><span>tú</span><b>te acuestas</b></div><div class="conj"><span>él / ella / usted</span><b>se acuesta</b></div><div class="conj"><span>nosotros / nosotras</span><b>nos acostamos</b></div><div class="conj"><span>vosotros / vosotras</span><b>os acostáis</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>se acuestan</b></div></div>
-<p class="example">nosotras nos acostamos · vosotros os acostáis</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>poner</h3><span>Irregular</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>pongo</b></div><div class="conj"><span>tú</span><b>pones</b></div><div class="conj"><span>él / ella / usted</span><b>pone</b></div><div class="conj"><span>nosotros / nosotras</span><b>ponemos</b></div><div class="conj"><span>vosotros / vosotras</span><b>ponéis</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>ponen</b></div></div>
-<p class="example">vosotros ponéis</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>decir</h3><span>Irregular</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>digo</b></div><div class="conj"><span>tú</span><b>dices</b></div><div class="conj"><span>él / ella / usted</span><b>dice</b></div><div class="conj"><span>nosotros / nosotras</span><b>decimos</b></div><div class="conj"><span>vosotros / vosotras</span><b>decís</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>dicen</b></div></div>
-<p class="example">formas practicadas en la secuencia de tarjetas</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>devolver</h3><span>o→ue</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>devuelvo</b></div><div class="conj"><span>tú</span><b>devuelves</b></div><div class="conj"><span>él / ella / usted</span><b>devuelve</b></div><div class="conj"><span>nosotros / nosotras</span><b>devolvemos</b></div><div class="conj"><span>vosotros / vosotras</span><b>devolvéis</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>devuelven</b></div></div>
-<p class="example">forma practicada en la secuencia de tarjetas</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>volver</h3><span>o→ue</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>vuelvo</b></div><div class="conj"><span>tú</span><b>vuelves</b></div><div class="conj"><span>él / ella / usted</span><b>vuelve</b></div><div class="conj"><span>nosotros / nosotras</span><b>volvemos</b></div><div class="conj"><span>vosotros / vosotras</span><b>volvéis</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>vuelven</b></div></div>
-<p class="example">tú vuelves</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>reír</h3><span>e→i</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>río</b></div><div class="conj"><span>tú</span><b>ríes</b></div><div class="conj"><span>él / ella / usted</span><b>ríe</b></div><div class="conj"><span>nosotros / nosotras</span><b>reímos</b></div><div class="conj"><span>vosotros / vosotras</span><b>reís</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>ríen</b></div></div>
-<p class="example">ella ríe</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>preferir</h3><span>e→ie (-IR)</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>prefiero</b></div><div class="conj"><span>tú</span><b>prefieres</b></div><div class="conj"><span>él / ella / usted</span><b>prefiere</b></div><div class="conj"><span>nosotros / nosotras</span><b>preferimos</b></div><div class="conj"><span>vosotros / vosotras</span><b>preferís</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>prefieren</b></div></div>
-<p class="example">yo prefiero</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>conseguir</h3><span>e→i</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>consigo</b></div><div class="conj"><span>tú</span><b>consigues</b></div><div class="conj"><span>él / ella / usted</span><b>consigue</b></div><div class="conj"><span>nosotros / nosotras</span><b>conseguimos</b></div><div class="conj"><span>vosotros / vosotras</span><b>conseguís</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>consiguen</b></div></div>
-<p class="example">yo consigo · tú consigues</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>sonreír</h3><span>e→i</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>sonrío</b></div><div class="conj"><span>tú</span><b>sonríes</b></div><div class="conj"><span>él / ella / usted</span><b>sonríe</b></div><div class="conj"><span>nosotros / nosotras</span><b>sonreímos</b></div><div class="conj"><span>vosotros / vosotras</span><b>sonreís</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>sonríen</b></div></div>
-<p class="example">tú sonríes</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>sentirse</h3><span>e→ie + reflexivo</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>me siento</b></div><div class="conj"><span>tú</span><b>te sientes</b></div><div class="conj"><span>él / ella / usted</span><b>se siente</b></div><div class="conj"><span>nosotros / nosotras</span><b>nos sentimos</b></div><div class="conj"><span>vosotros / vosotras</span><b>os sentís</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>se sienten</b></div></div>
-<p class="example">ellos se sienten</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>conducir</h3><span>yo irregular</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>conduzco</b></div><div class="conj"><span>tú</span><b>conduces</b></div><div class="conj"><span>él / ella / usted</span><b>conduce</b></div><div class="conj"><span>nosotros / nosotras</span><b>conducimos</b></div><div class="conj"><span>vosotros / vosotras</span><b>conducís</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>conducen</b></div></div>
-<p class="example">ustedes conducen</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>encontrar</h3><span>o→ue</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>encuentro</b></div><div class="conj"><span>tú</span><b>encuentras</b></div><div class="conj"><span>él / ella / usted</span><b>encuentra</b></div><div class="conj"><span>nosotros / nosotras</span><b>encontramos</b></div><div class="conj"><span>vosotros / vosotras</span><b>encontráis</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>encuentran</b></div></div>
-<p class="example">tú encuentras</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>vestirse</h3><span>e→i + reflexivo</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>me visto</b></div><div class="conj"><span>tú</span><b>te vistes</b></div><div class="conj"><span>él / ella / usted</span><b>se viste</b></div><div class="conj"><span>nosotros / nosotras</span><b>nos vestimos</b></div><div class="conj"><span>vosotros / vosotras</span><b>os vestís</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>se visten</b></div></div>
-<p class="example">vosotras os vestís</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>huir</h3><span>-uir</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>huyo</b></div><div class="conj"><span>tú</span><b>huyes</b></div><div class="conj"><span>él / ella / usted</span><b>huye</b></div><div class="conj"><span>nosotros / nosotras</span><b>huimos</b></div><div class="conj"><span>vosotros / vosotras</span><b>huís</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>huyen</b></div></div>
-<p class="example">yo huyo · él huye · nosotros huimos</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>construir</h3><span>-uir</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>construyo</b></div><div class="conj"><span>tú</span><b>construyes</b></div><div class="conj"><span>él / ella / usted</span><b>construye</b></div><div class="conj"><span>nosotros / nosotras</span><b>construimos</b></div><div class="conj"><span>vosotros / vosotras</span><b>construís</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>construyen</b></div></div>
-<p class="example">yo construyo · tú construyes · él construye</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>pedir</h3><span>e→i</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>pido</b></div><div class="conj"><span>tú</span><b>pides</b></div><div class="conj"><span>él / ella / usted</span><b>pide</b></div><div class="conj"><span>nosotros / nosotras</span><b>pedimos</b></div><div class="conj"><span>vosotros / vosotras</span><b>pedís</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>piden</b></div></div>
-<p class="example">tú pides</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>sentarse</h3><span>e→ie + reflexivo</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>me siento</b></div><div class="conj"><span>tú</span><b>te sientas</b></div><div class="conj"><span>él / ella / usted</span><b>se sienta</b></div><div class="conj"><span>nosotros / nosotras</span><b>nos sentamos</b></div><div class="conj"><span>vosotros / vosotras</span><b>os sentáis</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>se sientan</b></div></div>
-<p class="example">nosotras nos sentamos</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>seguir</h3><span>e→i</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>sigo</b></div><div class="conj"><span>tú</span><b>sigues</b></div><div class="conj"><span>él / ella / usted</span><b>sigue</b></div><div class="conj"><span>nosotros / nosotras</span><b>seguimos</b></div><div class="conj"><span>vosotros / vosotras</span><b>seguís</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>siguen</b></div></div>
-<p class="example">él sigue · tú sigues</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>jugar</h3><span>u→ue</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>juego</b></div><div class="conj"><span>tú</span><b>juegas</b></div><div class="conj"><span>él / ella / usted</span><b>juega</b></div><div class="conj"><span>nosotros / nosotras</span><b>jugamos</b></div><div class="conj"><span>vosotros / vosotras</span><b>jugáis</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>juegan</b></div></div>
-<p class="example">ellos juegan</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>corregir</h3><span>e→i</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>corrijo</b></div><div class="conj"><span>tú</span><b>corriges</b></div><div class="conj"><span>él / ella / usted</span><b>corrige</b></div><div class="conj"><span>nosotros / nosotras</span><b>corregimos</b></div><div class="conj"><span>vosotros / vosotras</span><b>corregís</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>corrigen</b></div></div>
-<p class="example">ella corrige</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>convertirse</h3><span>e→ie + reflexivo</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>me convierto</b></div><div class="conj"><span>tú</span><b>te conviertes</b></div><div class="conj"><span>él / ella / usted</span><b>se convierte</b></div><div class="conj"><span>nosotros / nosotras</span><b>nos convertimos</b></div><div class="conj"><span>vosotros / vosotras</span><b>os convertís</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>se convierten</b></div></div>
-<p class="example">ustedes se convierten · convertirse en médico</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>colgar</h3><span>o→ue</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>cuelgo</b></div><div class="conj"><span>tú</span><b>cuelgas</b></div><div class="conj"><span>él / ella / usted</span><b>cuelga</b></div><div class="conj"><span>nosotros / nosotras</span><b>colgamos</b></div><div class="conj"><span>vosotros / vosotras</span><b>colgáis</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>cuelgan</b></div></div>
-<p class="example">él cuelga · voy a colgar</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>caer</h3><span>yo irregular</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>caigo</b></div><div class="conj"><span>tú</span><b>caes</b></div><div class="conj"><span>él / ella / usted</span><b>cae</b></div><div class="conj"><span>nosotros / nosotras</span><b>caemos</b></div><div class="conj"><span>vosotros / vosotras</span><b>caéis</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>caen</b></div></div>
-<p class="example">yo caigo</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>dormir</h3><span>o→ue</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>duermo</b></div><div class="conj"><span>tú</span><b>duermes</b></div><div class="conj"><span>él / ella / usted</span><b>duerme</b></div><div class="conj"><span>nosotros / nosotras</span><b>dormimos</b></div><div class="conj"><span>vosotros / vosotras</span><b>dormís</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>duermen</b></div></div>
-<p class="example">ellas duermen</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>merendar</h3><span>e→ie</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>meriendo</b></div><div class="conj"><span>tú</span><b>meriendas</b></div><div class="conj"><span>él / ella / usted</span><b>merienda</b></div><div class="conj"><span>nosotros / nosotras</span><b>merendamos</b></div><div class="conj"><span>vosotros / vosotras</span><b>merendáis</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>meriendan</b></div></div>
-<p class="example">usted merienda</p>
-</article>
-<article class="verb-card">
-<div class="verb-head"><h3>traer</h3><span>yo irregular</span></div>
-<div class="conj-grid"><div class="conj"><span>yo</span><b>traigo</b></div><div class="conj"><span>tú</span><b>traes</b></div><div class="conj"><span>él / ella / usted</span><b>trae</b></div><div class="conj"><span>nosotros / nosotras</span><b>traemos</b></div><div class="conj"><span>vosotros / vosotras</span><b>traéis</b></div><div class="conj"><span>ellos / ellas / ustedes</span><b>traen</b></div></div>
-<p class="example">yo traigo</p>
-</article></div>
-<div class="note"><b>Verbos en -uir:</b> la profesora explicó el patrón con <b>construir</b> y <b>huir</b>: <b>construyo, construyes, construye</b> / <b>huyo, huyes, huye</b>, mientras <b>construimos, construís / huimos, huís</b> no llevan esa inserción.</div>
-<div class="note" style="border-left-color:var(--yellow)"><b>Convertirse:</b> apareció con dos sentidos: <b>convertirse al cristianismo</b> y <b>convertirse en médico</b>.</div>
+
+<section id="verbos">
+  <div class="card">
+    <h2 class="purple">🔤 Verbos de la actividad de tarjetas</h2>
+    <p>Las tarjetas de esta clase se centraron principalmente en verbos irregulares. Se muestran aquí las seis personas para estudiar y practicar.</p>
+    
+    <div class="table-wrap">
+      <table>
+        <tr><th>Verbo</th><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/as / Ustedes</th></tr>
+        <tr><td><b>hablar</b></td><td>hablo</td><td>hablas</td><td>habla</td><td>hablamos</td><td>habláis</td><td>hablan</td></tr>
+        <tr><td><b>tener</b></td><td>tengo</td><td>tienes</td><td>tiene</td><td>tenemos</td><td>tenéis</td><td>tienen</td></tr>
+        <tr><td><b>despedirse</b></td><td>me despido</td><td>te despides</td><td>se despide</td><td>nos despedimos</td><td>os despedís</td><td>se despiden</td></tr>
+        <tr><td><b>despertarse</b></td><td>me despierto</td><td>te despiertas</td><td>se despierta</td><td>nos despertamos</td><td>os despertáis</td><td>se despiertan</td></tr>
+        <tr><td><b>oír</b></td><td>oigo</td><td>oyes</td><td>oye</td><td>oímos</td><td>oís</td><td>oyen</td></tr>
+        <tr><td><b>salir</b></td><td>salgo</td><td>sales</td><td>sale</td><td>salimos</td><td>salís</td><td>salen</td></tr>
+        <tr><td><b>acostarse</b></td><td>me acuesto</td><td>te acuestas</td><td>se acuesta</td><td>nos acostamos</td><td>os acostáis</td><td>se acuestan</td></tr>
+        <tr><td><b>poner</b></td><td>pongo</td><td>pones</td><td>pone</td><td>ponemos</td><td>ponéis</td><td>ponen</td></tr>
+        <tr><td><b>decir</b></td><td>digo</td><td>dices</td><td>dice</td><td>decimos</td><td>decís</td><td>dicen</td></tr>
+        <tr><td><b>devolver</b></td><td>devuelvo</td><td>devuelves</td><td>devuelve</td><td>devolvemos</td><td>devolvéis</td><td>devuelven</td></tr>
+        <tr><td><b>volver</b></td><td>vuelvo</td><td>vuelves</td><td>vuelve</td><td>volvemos</td><td>volvéis</td><td>vuelven</td></tr>
+        <tr><td><b>reír</b></td><td>río</td><td>ríes</td><td>ríe</td><td>reímos</td><td>reís</td><td>ríen</td></tr>
+        <tr><td><b>preferir</b></td><td>prefiero</td><td>prefieres</td><td>prefiere</td><td>preferimos</td><td>preferís</td><td>prefieren</td></tr>
+        <tr><td><b>conseguir</b></td><td>consigo</td><td>consigues</td><td>consigue</td><td>conseguimos</td><td>conseguís</td><td>consiguen</td></tr>
+        <tr><td><b>sonreír</b></td><td>sonrío</td><td>sonríes</td><td>sonríe</td><td>sonreímos</td><td>sonreís</td><td>sonríen</td></tr>
+        <tr><td><b>sentirse</b></td><td>me siento</td><td>te sientes</td><td>se siente</td><td>nos sentimos</td><td>os sentís</td><td>se sienten</td></tr>
+        <tr><td><b>conducir</b></td><td>conduzco</td><td>conduces</td><td>conduce</td><td>conducimos</td><td>conducís</td><td>conducen</td></tr>
+        <tr><td><b>encontrar</b></td><td>encuentro</td><td>encuentras</td><td>encuentra</td><td>encontramos</td><td>encontráis</td><td>encuentran</td></tr>
+        <tr><td><b>vestirse</b></td><td>me visto</td><td>te vistes</td><td>se viste</td><td>nos vestimos</td><td>os vestís</td><td>se visten</td></tr>
+        <tr><td><b>huir</b></td><td>huyo</td><td>huyes</td><td>huye</td><td>huimos</td><td>huís</td><td>huyen</td></tr>
+        <tr><td><b>construir</b></td><td>construyo</td><td>construyes</td><td>construye</td><td>construimos</td><td>construís</td><td>construyen</td></tr>
+        <tr><td><b>pedir</b></td><td>pido</td><td>pides</td><td>pide</td><td>pedimos</td><td>pedís</td><td>piden</td></tr>
+        <tr><td><b>sentarse</b></td><td>me siento</td><td>te sientas</td><td>se sienta</td><td>nos sentamos</td><td>os sentáis</td><td>se sientan</td></tr>
+        <tr><td><b>seguir</b></td><td>sigo</td><td>sigues</td><td>sigue</td><td>seguimos</td><td>seguís</td><td>siguen</td></tr>
+        <tr><td><b>jugar</b></td><td>juego</td><td>juegas</td><td>juega</td><td>jugamos</td><td>jugáis</td><td>juegan</td></tr>
+        <tr><td><b>corregir</b></td><td>corrijo</td><td>corriges</td><td>corrige</td><td>corregimos</td><td>corregís</td><td>corrigen</td></tr>
+        <tr><td><b>convertirse</b></td><td>me convierto</td><td>te conviertes</td><td>se convierte</td><td>nos convertimos</td><td>os convertís</td><td>se convierten</td></tr>
+        <tr><td><b>colgar</b></td><td>cuelgo</td><td>cuelgas</td><td>cuelga</td><td>colgamos</td><td>colgáis</td><td>cuelgan</td></tr>
+        <tr><td><b>caer</b></td><td>caigo</td><td>caes</td><td>cae</td><td>caemos</td><td>caéis</td><td>caen</td></tr>
+        <tr><td><b>dormir</b></td><td>duermo</td><td>duermes</td><td>duerme</td><td>dormimos</td><td>dormís</td><td>duermen</td></tr>
+        <tr><td><b>merendar</b></td><td>meriendo</td><td>meriendas</td><td>merienda</td><td>merendamos</td><td>merendáis</td><td>meriendan</td></tr>
+        <tr><td><b>traer</b></td><td>traigo</td><td>traes</td><td>trae</td><td>traemos</td><td>traéis</td><td>traen</td></tr>
+      </table>
+    </div>
+  </div>
+  
+  <div class="card" style="margin-top:14px">
+    <h3 class="pink">⚠️ Formas destacadas y errores comunes</h3>
+    <div class="sound-bar"><span class="small">🔊 Toca el botón para escuchar la forma correcta.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
+    <div class="example"><b>conseguir → tú consigues</b>, no «consiegues».</div>
+    <div class="example"><b>seguir → tú sigues / él sigue</b>.</div>
+  </div>
 </section>
-<section class="panel" hidden="" id="demo">
-<h2>👉 Demonstrativos</h2>
-<div class="grid">
-<div class="card purple"><h3>este / esta</h3><p>Algo cercano: <b>aquí</b>.</p></div>
-<div class="card purple"><h3>ese / esa</h3><p>Algo en una posición más intermedia: <b>ahí</b>. La elección puede depender de la perspectiva.</p></div>
-<div class="card purple"><h3>aquel / aquella</h3><p>Algo más lejano: <b>allí</b>.</p></div>
-</div>
-<div class="card cyan" style="margin-top:12px">
-<h3>Formas neutras</h3>
-<p><b>esto · eso · aquello</b> no son masculinas ni femeninas y no tienen singular/plural. Pueden referirse a una cosa, una idea o una situación.</p>
-<p>Ejemplos trabajados: <b>¿Qué es aquello?</b> · <b>¿Qué es eso?</b> · <b>Esto hay que celebrarlo.</b> · <b>Por eso</b> = <b>por esa razón</b>.</p>
-</div>
+
+<section id="demo">
+  <div class="card">
+    <h2 class="purple">👉 Demostrativos</h2>
+    <div class="grid">
+      <div class="card" style="border-left-color:var(--turq); border-left-width:4px;">
+        <h3 class="turq">este / esta</h3><p>Algo cercano: <b>aquí</b>.</p>
+      </div>
+      <div class="card" style="border-left-color:var(--purple); border-left-width:4px;">
+        <h3 class="purple">ese / esa</h3><p>Algo en una posición intermedia: <b>ahí</b>. La elección depende de la perspectiva.</p>
+      </div>
+      <div class="card" style="border-left-color:var(--pink); border-left-width:4px;">
+        <h3 class="pink">aquel / aquella</h3><p>Algo más lejano: <b>allí</b>.</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="card" style="margin-top:14px">
+    <h3 class="blue">⚪ Formas neutras</h3>
+    <p><b>esto · eso · aquello</b> no son masculinas ni femeninas y no tienen singular/plural. Pueden referirse a una cosa, una idea o una situación.</p>
+    <div class="sound-bar"><span class="small">🔊</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢</button></div>
+    <div class="example"><b>¿Qué es aquello?</b></div>
+    <div class="example"><b>¿Qué es eso?</b></div>
+    <div class="example"><b>Esto hay que celebrarlo.</b></div>
+    <div class="example"><b>Por eso</b> <span class="small">(por esa razón)</span></div>
+  </div>
 </section>
-<section class="panel" hidden="" id="personas">
-<h2>👤 Descripción física y carácter</h2>
-<div class="grid">
-<div class="card pink"><h3>SER</h3><p>Se utilizó para características como <b>alta, morena, bajita, rubia, tímida, amable, atlética, miedosa, moderna, elegante, impaciente, sincera, reservada, generosa, carismática, fuerte, atrevida, leal, tacaña, borde, cobarde, optimista, alegre, divertida, seria, exigente, deportista</b>.</p></div>
-<div class="card blue"><h3>TENER</h3><p>Ejemplos de la clase: <b>tener un móvil en la mano</b>, <b>tener una cana</b>, <b>tener los ojos...</b>, <b>tener la autoestima muy alta</b>.</p></div>
-<div class="card green"><h3>LLEVAR</h3><p><b>llevar gafas de sol, barba, pelo recogido, vaqueros, camiseta, una bolsa</b> y hasta <b>llevar una pizza</b> si la persona la lleva en la mano.</p></div>
-</div>
-<div class="card purple" style="margin-top:12px">
-<h3>Vocabulario explicado</h3>
-<div class="chips">
-<span class="chip">sincero</span><span class="chip">carismático</span><span class="chip">reservado</span><span class="chip">canoso</span><span class="chip">fuerte</span><span class="chip">generoso</span><span class="chip">inexpresivo</span><span class="chip">elegante</span><span class="chip">ondulado</span><span class="chip">pálido</span><span class="chip">descuidado</span><span class="chip">atrevido</span><span class="chip">amable</span><span class="chip">castaño</span><span class="chip">miedoso</span><span class="chip">rasgado</span><span class="chip">impaciente</span><span class="chip">arrugado</span><span class="chip">borde</span><span class="chip">atlético</span><span class="chip">moderno</span><span class="chip">flequillo</span><span class="chip">perilla</span>
-</div>
-</div>
-<div class="card yellow" style="margin-top:12px">
-<h3>Matices importantes</h3>
-<ul>
-<li><b>reservado</b>: se habló de una persona que no comparte fácilmente su vida personal; no es exactamente lo mismo que tímido.</li>
-<li><b>fuerte</b>: puede referirse al físico o al carácter.</li>
-<li><b>flaco</b> describe el cuerpo; <b>débil</b> no significa simplemente delgado.</li>
-<li><b>atrevido</b> se relacionó con <b>atreverse</b>.</li>
-<li><b>canoso</b>: pelo con muchos cabellos blancos; <b>una cana</b> es un cabello blanco.</li>
-<li><b>expresivo</b>: se puede hablar de una persona y también de <b>ojos expresivos</b>.</li>
-<li><b>borde</b>: carácter seco/rudo; también es el borde de una mesa.</li>
-<li>Los diminutivos como <b>gordita</b> o <b>bajita</b> se explicaron como una forma de suavizar o hacer más cariñosa la expresión.</li>
-</ul>
-</div>
+
+<section id="personas">
+  <div class="card">
+    <h2 class="pink">👤 Descripción física y carácter</h2>
+    <div class="grid">
+      <div class="card" style="border-left-color:var(--pink); border-left-width:4px;">
+        <h3 class="pink">SER</h3><p>Para características: <b>alta, morena, bajita, rubia, tímida, amable, atlética, miedosa, moderna, elegante, impaciente, sincera, reservada, generosa, fuerte, tacaña, optimista, alegre...</b></p>
+      </div>
+      <div class="card" style="border-left-color:var(--blue); border-left-width:4px;">
+        <h3 class="blue">TENER</h3><p>Para rasgos corporales o elementos: <b>tener un móvil en la mano</b>, <b>tener una cana</b>, <b>tener los ojos claros</b>, <b>tener la autoestima alta</b>.</p>
+      </div>
+      <div class="card" style="border-left-color:var(--turq); border-left-width:4px;">
+        <h3 class="turq">LLEVAR</h3><p>Para ropa y accesorios: <b>llevar gafas de sol, barba, pelo recogido, vaqueros, una camiseta, una bolsa</b> (o hasta <b>llevar una pizza</b> en la mano).</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="card" style="margin-top:14px">
+    <h3 class="purple">🧩 Matices importantes</h3>
+    <ul style="line-height: 1.8;">
+      <li><b>reservado</b>: no comparte fácilmente su vida personal; no es exactamente lo mismo que tímido.</li>
+      <li><b>fuerte</b>: puede referirse al físico o al carácter.</li>
+      <li><b>flaco</b> describe el cuerpo; <b>débil</b> no significa simplemente delgado.</li>
+      <li><b>atrevido</b> se relaciona con <i>atreverse</i>.</li>
+      <li><b>canoso</b>: pelo con muchos cabellos blancos; <b>una cana</b> es un cabello blanco.</li>
+      <li><b>borde</b>: carácter seco/rudo; también es el borde de una mesa.</li>
+      <li>Los diminutivos como <b>gordita</b> o <b>bajita</b> suavizan la expresión.</li>
+    </ul>
+  </div>
 </section>
-<section class="panel" hidden="" id="contactos">
-<h2>💚 Página 40 — Una web de contactos</h2>
-<div class="grid">
-<div class="card green"><h3>Daniel</h3><p>Se trabajó especialmente su carácter: <b>optimista</b>, <b>alegre</b> y <b>se lleva bien con todo el mundo</b>.</p></div>
-<div class="card green"><h3>Marcos</h3><p>Se destacó que <b>tiene la autoestima muy alta</b> y que es <b>nocturno</b>, porque le gusta más la noche que el día.</p></div>
-<div class="card green"><h3>Sergio</h3><p>Se identificó que <b>lleva barba</b>, es <b>atlético</b>, le gusta el deporte, busca una mujer <b>simpática</b> y su estado civil es <b>divorciado</b>.</p></div>
-<div class="card green"><h3>Otros perfiles</h3><p>La actividad trabajó las expresiones de los textos para describir el físico y el carácter. La tarea fue completar los datos de las cinco personas y después preparar una respuesta compatible.</p></div>
-</div>
-<div class="card cyan" style="margin-top:12px">
-<h3>Expresiones que quedaron para practicar</h3>
-<p><b>Se lleva bien con todo el mundo.</b> · <b>Es optimista.</b> · <b>Es alegre.</b> · <b>Es activa.</b> · <b>Es exigente.</b> · <b>Es seria.</b> · <b>Es deportista.</b> · <b>Tiene la autoestima muy alta.</b> · <b>Es nocturno/a.</b></p>
-</div>
-<div class="card pink" style="margin-top:12px">
-<h3>🎯 Tarea de la clase</h3>
-<p>Completar la ficha con los datos de las personas y elegir una para escribir un texto de una persona compatible, siguiendo la idea:</p>
-<p><b>«Yo soy perfecto para ti»</b> y explicar por qué el carácter y las características son compatibles.</p>
-</div>
+
+<section id="contactos">
+  <div class="card">
+    <h2 class="turq">💚 Página 40 — Una web de contactos</h2>
+    <div class="grid">
+      <div class="card" style="background:rgba(75, 229, 154, 0.05); border-color:rgba(75, 229, 154, 0.3);">
+        <h3 class="green" style="color:var(--green)">Daniel</h3>
+        <p>Se trabajó especialmente su carácter: <b>optimista</b>, <b>alegre</b> y <b>se lleva bien con todo el mundo</b>.</p>
+      </div>
+      <div class="card" style="background:rgba(75, 229, 154, 0.05); border-color:rgba(75, 229, 154, 0.3);">
+        <h3 class="green" style="color:var(--green)">Marcos</h3>
+        <p>Se destacó que <b>tiene la autoestima muy alta</b> y que es <b>nocturno</b>, porque le gusta más la noche que el día.</p>
+      </div>
+      <div class="card" style="background:rgba(75, 229, 154, 0.05); border-color:rgba(75, 229, 154, 0.3);">
+        <h3 class="green" style="color:var(--green)">Sergio</h3>
+        <p>Se identificó que <b>lleva barba</b>, es <b>atlético</b>, le gusta el deporte, busca una mujer <b>simpática</b> y su estado civil es <b>divorciado</b>.</p>
+      </div>
+      <div class="card" style="background:rgba(75, 229, 154, 0.05); border-color:rgba(75, 229, 154, 0.3);">
+        <h3 class="green" style="color:var(--green)">Otros perfiles</h3>
+        <p>La actividad trabajó las expresiones para describir el físico y el carácter y preparar una respuesta compatible.</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="card" style="margin-top:14px">
+    <h3 class="yellow">🎯 Tarea de la clase</h3>
+    <p>Completar la ficha con los datos de las personas y elegir una para escribir un texto de una persona compatible, siguiendo la idea:</p>
+    <div class="example"><b>«Yo soy perfecto para ti»</b> y explicar por qué el carácter y las características son compatibles.</div>
+  </div>
 </section>
-<section class="panel" hidden="" id="quiz">
-<h2>✏️ Ejercicios interactivos</h2>
-<div class="question">
-<h3>1. Verbos</h3>
-<p>Tú ________ (conseguir)</p>
-<select id="q1"><option value="">Selecciona...</option><option>consiegues</option><option>consigues</option><option>consigueses</option></select>
-<button class="action" onclick="check('q1','consigues','r1')">Comprobar</button><div class="feedback" id="r1"></div>
-</div>
-<div class="question">
-<p>Él ________ (seguir)</p>
-<select id="q2"><option value="">Selecciona...</option><option>sigre</option><option>sigue</option><option>sigues</option></select>
-<button class="action" onclick="check('q2','sigue','r2')">Comprobar</button><div class="feedback" id="r2"></div>
-</div>
-<div class="question">
-<h3>2. Demostrativos</h3>
-<p>«_____ hay que celebrarlo».</p>
-<select id="q3"><option value="">Selecciona...</option><option>Esto</option><option>Este</option><option>Esta</option></select>
-<button class="action" onclick="check('q3','Esto','r3')">Comprobar</button><div class="feedback" id="r3"></div>
-</div>
-<div class="question">
-<h3>3. Descripción</h3>
-<p>¿Qué verbo usamos en «_____ barba»?</p>
-<select id="q4"><option value="">Selecciona...</option><option>ser</option><option>tener</option><option>llevar</option></select>
-<button class="action" onclick="check('q4','llevar','r4')">Comprobar</button><div class="feedback" id="r4"></div>
-</div>
-<div class="question">
-<h3>4. Carácter</h3>
-<p>Completa: «Daniel es ________, alegre y se lleva bien con todo el mundo.»</p>
-<select id="q5"><option value="">Selecciona...</option><option>optimista</option><option>canoso</option><option>ondulado</option></select>
-<button class="action" onclick="check('q5','optimista','r5')">Comprobar</button><div class="feedback" id="r5"></div>
-</div>
+
+<section id="ex">
+  <h2>✏️ Ejercicios interactivos</h2>
+  <div class="card"><h3 class="pink">1. Comprueba lo aprendido</h3><div id="q-aula"></div></div>
 </section>
-<div class="home-nav bottom"><a href="index.html">🏠 Volver al inicio</a></div><footer>Ficha individual · Aula de Español A2 · 24/09/2026</footer>
-</main>
+
+<div class="home-nav" style="justify-content:center; margin-top:22px;"><a href="index.html">🏠 Volver al inicio</a></div>
+<footer>Registro individual de la clase del 24/09/2026. Basado en las notas de la clase.</footer>
+</div>
+
 <script>
-const tabs=document.querySelectorAll('.tab'), panels=document.querySelectorAll('.panel');
-tabs.forEach(t=>t.addEventListener('click',()=>{panels.forEach(p=>p.hidden=p.id!==t.dataset.tab);tabs.forEach(x=>x.classList.toggle('active',x===t));window.scrollTo({top:0,behavior:'smooth'})}));
-function check(id,expected,out){const value=document.getElementById(id).value;const box=document.getElementById(out);box.className='feedback '+(value===expected?'ok':'no');box.textContent=value===expected?'✓ Correcto.':'✗ Respuesta correcta: '+expected;}
+function showTab(id,btn){
+ document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+ btn.classList.add('active');
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+
+let slow=false, esVoice=null;
+function pickEs(){
+ const vs=speechSynthesis.getVoices();
+ esVoice=vs.find(v=>v.lang==='es-ES')||vs.find(v=>v.lang&&v.lang.startsWith('es'))||null;
+}
+if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=pickEs;pickEs();}
+function say(txt){
+ if(!('speechSynthesis' in window)) return;
+ speechSynthesis.cancel();
+ // Limpar setas para leitura
+ let finalTxt = txt.replace(/→/g, '.');
+ const u=new SpeechSynthesisUtterance(finalTxt);
+ u.lang='es-ES';if(esVoice)u.voice=esVoice;
+ u.rate=slow?.6:.85;
+ speechSynthesis.speak(u);
+}
+function toggleSlow(){
+ slow=!slow;
+ document.querySelectorAll('.slowBtn').forEach(b=>{
+  b.textContent=slow?'🐢 Lento: encendido':'🐢 Lento: apagado';
+  b.setAttribute('aria-pressed',slow);
+ });
+}
+
+// botón 🔊 en cada frase de ejemplo
+document.querySelectorAll('.example').forEach(el=>{
+ const b=el.querySelector('b'); if(!b) return;
+ const txt=el.textContent.trim();
+ const wrap=document.createElement('span');
+ while(el.firstChild) wrap.appendChild(el.firstChild);
+ el.appendChild(wrap);
+ el.classList.add('sayable');
+ const btn=document.createElement('button');
+ btn.type='button';btn.className='speak';btn.textContent='🔊';
+ btn.setAttribute('aria-label','Escuchar');
+ btn.onclick=()=>say(txt);
+ el.appendChild(btn);
+});
+if(!('speechSynthesis' in window)) document.querySelectorAll('.sound-bar').forEach(x=>x.style.display='none');
+
+// Motor de Quiz com botão Siguiente
+function makeQuiz(id,qs){
+ const box=document.getElementById(id);let qi=0,score=0,locked=false;
+ function render(){
+  const q=qs[qi];locked=false;
+  box.innerHTML='<p style="font-size:1.1rem;"><b>'+q.t+'</b></p><div class="choice-grid">'+q.o.map((o,i)=>'<button type="button" class="choice" data-i="'+i+'">'+o+'</button>').join('')+'</div><p class="small" style="margin-top:15px; font-weight:700;">Pregunta '+(qi+1)+' de '+qs.length+' · Puntos: '+score+'</p><div class="feedback" aria-live="polite"></div>';
+  box.querySelectorAll('.choice').forEach(b=>b.addEventListener('click',()=>ans(+b.dataset.i,b)));
+ }
+ function ans(i,btn){
+  if(locked) return; locked=true;
+  const q=qs[qi];const bs=box.querySelectorAll('.choice');
+  bs.forEach(b=>b.disabled=true);
+  bs[q.a].classList.add('correct');
+  const fb=box.querySelector('.feedback');
+  
+  let btnNext = '<button type="button" class="choice" style="margin-top:15px; padding:8px 16px; width:100%; font-size:1rem; border:none; background:rgba(0,0,0,0.2);" onclick="this.parentElement.dispatchEvent(new CustomEvent(\'next\'))">Siguiente ➔</button>';
+  
+  if(i===q.a){
+   score++;
+   fb.innerHTML='<div style="margin-bottom:8px;">✅ Correcto.</div>'+(q.e||'') + btnNext;
+   fb.className='feedback ok';
+  } else{
+   btn.classList.add('wrong');
+   fb.innerHTML='<div style="margin-bottom:8px;">❌ Casi.</div>'+(q.e||'') + btnNext;
+   fb.className='feedback bad';
+  }
+  
+  fb.addEventListener('next', function handler() {
+   fb.removeEventListener('next', handler);
+   if(qi===qs.length-1){end();}else{qi++;render();}
+  });
+ }
+ function end(){
+  box.innerHTML='<p style="font-size:1.2rem;"><b>🎉 ¡Fin! Acertaste '+score+' de '+qs.length+'.</b></p><button type="button" class="choice" data-again="1" style="background:var(--turq); color:#000; border:none;">Empezar de nuevo ↺</button>';
+  box.querySelector('[data-again]').addEventListener('click',()=>{qi=0;score=0;render();});
+ }
+ render();
+}
+
+makeQuiz('q-aula',[
+ {"t": "Tú ________ (conseguir)", "o": ["consiegues", "consigues", "consigueses"], "a": 1, "e": "La forma correcta es «consigues» (e → i)."},
+ {"t": "Él ________ (seguir)", "o": ["sigre", "sigue", "sigues"], "a": 1, "e": "La forma correcta para él/ella/usted es «sigue»."},
+ {"t": "Completa: «_____ hay que celebrarlo».", "o": ["Esto", "Este", "Esta"], "a": 0, "e": "Usamos la forma neutra «esto» para referirnos a una situación o idea."},
+ {"t": "¿Qué verbo usamos en «_____ barba»?", "o": ["ser", "tener", "llevar"], "a": 2, "e": "Usamos el verbo «llevar» para la ropa, el pelo y la barba."},
+ {"t": "Completa: «Daniel es ________, alegre y se lleva bien con todo el mundo.»", "o": ["optimista", "canoso", "ondulado"], "a": 0, "e": "Optimista describe su carácter (junto con alegre)."}
+]);
+
 </script>
 </body>
 </html>

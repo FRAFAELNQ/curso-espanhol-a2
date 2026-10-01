@@ -1,72 +1,275 @@
 <!DOCTYPE html>
-
-<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1.0" name="viewport"/>
-<title>EOI · Español A2 · Aula individual · 10/09/2026</title>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080a18">
+<title>Clase de Español A2 — 10/09/2026</title>
 <style>
-:root{--bg:#fef6ff;--card:#fff;--text:#2b1a2e;--muted:#76577d;--pink:#e0218a;--purple:#7c3aed;--turq:#00a992;--blue:#2563eb;--soft:#fbe3f4;--border:#ead3e7;--ok:#087f5b;--bad:#b42318}
-@media(prefers-color-scheme:dark){:root{--bg:#160d1c;--card:#27182f;--text:#f7eafb;--muted:#c9acd1;--soft:#3a2148;--border:#50345b;--pink:#ff4fb0;--purple:#a78bfa;--turq:#2dd4bf;--blue:#60a5fa}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}.container{max-width:1100px;margin:auto;padding:22px 16px 60px}
-header{text-align:center;padding:14px 0 22px}.badge{display:inline-block;padding:6px 12px;border-radius:999px;background:var(--soft);color:var(--purple);font-weight:800;font-size:.82rem}
-h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq));-webkit-background-clip:text;background-clip:text;color:transparent}.subtitle{color:var(--muted)}
-nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);display:flex;gap:7px;overflow:auto;padding:8px;border-bottom:1px solid var(--border)}nav button{border:1px solid var(--border);background:var(--card);color:var(--text);padding:9px 12px;border-radius:12px;cursor:pointer;white-space:nowrap;font-weight:750}nav button.active{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff}
-section{display:none;padding-top:22px}section.active{display:block}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:0 7px 22px color-mix(in srgb,var(--purple) 10%,transparent);margin-bottom:14px}
-.card h2,.card h3{margin-top:0}.pink{color:var(--pink)}.purple{color:var(--purple)}.turq{color:var(--turq)}.blue{color:var(--blue)}table{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden}th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}th{background:var(--soft);color:var(--purple)}
-.example{border-left:4px solid var(--turq);padding:9px 12px;background:color-mix(in srgb,var(--turq) 8%,var(--card));border-radius:0 12px 12px 0;margin:9px 0}.small{font-size:.9rem;color:var(--muted)}
-.choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:9px}.choice{padding:12px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;text-align:left}.choice.correct{border-color:var(--ok)}.choice.wrong{border-color:var(--bad)}.feedback{margin-top:12px;font-weight:800}.progress{height:10px;background:var(--soft);border-radius:99px;overflow:hidden}.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq));transition:.25s}
+:root{
+  color-scheme:dark;
+  --bg:#080a18;--card:#171d38;--text:#f8f9ff;--muted:#b8c0dd;
+  --pink:#ff5ca8;--purple:#a56cff;--turq:#37e6d4;--yellow:#ffd34e;
+  --blue:#42a5ff;--soft:#252e50;--border:#2d385e;--ok:#4be59a;--bad:#ff6b7c;
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 10% 0,#1d2b66,transparent 38%),radial-gradient(circle at 90% 0,#5a174d,transparent 35%),var(--bg);background-attachment:fixed;color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}
+.container{max-width:1100px;margin:auto;padding:22px 16px 60px}
+header{text-align:center;padding:26px 20px;margin-bottom:6px;border-radius:22px;border:1px solid #48598d;background:linear-gradient(135deg,#172c6c,#49237f 52%,#741c58);box-shadow:0 18px 50px #0008}
+.badge{display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;font-weight:800;font-size:.82rem}
+h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);color:#fff}
+.subtitle{color:#e3e6ff}
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);display:flex;gap:7px;overflow:auto;padding:8px;border-bottom:1px solid var(--border)}
+nav button,.tab{border:1px solid var(--border);background:var(--card);color:var(--text);padding:9px 12px;border-radius:12px;cursor:pointer;white-space:nowrap;font-weight:750}
+nav button.active,.tab.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+section{display:none;padding-top:22px}
+section.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:0 7px 22px color-mix(in srgb,var(--purple) 10%,transparent)}
+.card h2,.card h3{margin-top:0}
+.color-title{font-size:1.25rem;font-weight:900}
+.pink{color:var(--pink)}.purple{color:var(--purple)}.turq{color:var(--turq)}.blue{color:var(--blue)}.yellow{color:var(--yellow)}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden}
+th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+th{background:#202a4c;color:#cdbdff}
+.speak{border:0;background:var(--soft);border-radius:10px;padding:7px 10px;cursor:pointer}
+.example{border-left:4px solid var(--turq);padding:9px 12px;background:color-mix(in srgb,var(--turq) 8%,var(--card));border-radius:0 12px 12px 0;margin:9px 0}
+.note{font-size:.9rem;color:var(--muted)}
+.choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:9px}
+.choice{padding:12px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;text-align:center;font-weight:700;font-size:1rem;transition:0.2s}
+.choice:hover{border-color:var(--turq)}
+.choice:disabled{cursor:default}
+.choice.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card));color:var(--ok)}
+.choice.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card));color:var(--bad)}
+.feedback{margin-top:12px;font-weight:800;padding:12px;border-radius:10px;display:none}
+.feedback.ok{display:block;color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card));border:1px solid var(--ok)}
+.feedback.bad{display:block;color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card));border:1px solid var(--bad)}
+details{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px;margin:9px 0}
+summary{cursor:pointer;font-weight:800}
+.progress{height:12px;background:var(--soft);border-radius:99px;overflow:hidden;margin-top:12px;border:1px solid var(--border)}
+.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq));transition:width .3s ease}
+.small{font-size:.88rem;color:var(--muted)}
+.example.sayable{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.example.sayable .speak{flex:0 0 auto;font-size:1.05rem}
+.sound-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:6px 0 12px}
+.speak:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.speak[aria-pressed="true"]{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff}
 footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
-</style><style>
-.home-nav{
-  display:flex;
-  justify-content:flex-start;
-  margin:0 0 16px;
-}
-.home-nav.bottom{
-  margin:22px 0 0;
-  justify-content:center;
-}
-.home-nav a{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:10px 16px;
-  border-radius:12px;
-  text-decoration:none;
-  font-weight:700;
-  color:#fff;
-  background:linear-gradient(135deg,#7b2cbf,#ff3cac);
-  box-shadow:0 6px 18px rgba(0,0,0,.22);
-}
-.home-nav a:hover{
-  transform:translateY(-1px);
-  filter:brightness(1.08);
-}
-</style></head><body><div class="container">
-<header><span class="badge">EOI · Español A2 · Aula individual</span><h1>Ficha Interactiva — 10/09/2026</h1><div class="subtitle">Desde · desde hace · desde que</div></header><div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
-<nav><button class="active" onclick="tab('resumen',this)">📚 Resumen</button><button onclick="tab('desde',this)">📍 Desde</button><button onclick="tab('preguntas',this)">❓ Preguntas</button><button onclick="tab('practica',this)">✏️ Práctica</button></nav>
-<section class="active" id="resumen"><div class="grid">
-<div class="card"><h3 class="pink">📍 DESDE</h3><p>Se utiliza para situar el inicio en un <b>momento concreto</b>: una fecha, un día, un mes, un año, una estación o un momento determinado.</p></div>
-<div class="card"><h3 class="purple">⏱️ DESDE HACE</h3><p>Se utiliza para expresar <b>cuánto tiempo</b> ha pasado desde un punto del pasado.</p></div>
-<div class="card"><h3 class="turq">🔗 DESDE QUE</h3><p>Se utiliza cuando después de <b>desde</b> aparece una acción expresada con un verbo.</p></div>
-<div class="card"><h3 class="blue">❓ Dos preguntas diferentes</h3><p><b>¿Desde cuándo...?</b> pregunta por el momento de inicio. <b>¿Cuánto tiempo...?</b> pregunta por la duración.</p></div>
+@media(max-width:600px){.container{padding:14px 10px 45px}th,td{padding:8px;font-size:.9rem}.card{padding:15px}}
+
+.home-nav{text-align:center;margin:14px 0 8px}
+.home-nav a{display:inline-block;padding:10px 18px;border-radius:12px;background:#10152b;border:1px solid var(--border);color:#fff;text-decoration:none;font-weight:800;transition:transform .15s ease,border-color .15s ease}
+.home-nav a:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.home-nav a:hover{transform:translateY(-1px);border-color:var(--blue)}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <span class="badge">EOI · Español A2 · Clase individual</span>
+  <h1>Ficha interactiva — 10/09/2026</h1>
+  <div class="subtitle">Desde · desde hace · desde que</div>
+</header>
+
+<div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
+
+<nav>
+  <button class="active" onclick="showTab('resumen',this)">📚 Resumen</button>
+  <button onclick="showTab('desde',this)">📍 Desde</button>
+  <button onclick="showTab('preguntas',this)">❓ Preguntas</button>
+  <button onclick="showTab('ex',this)">✏️ Ejercicios</button>
+</nav>
+
+<section id="resumen" class="active">
+  <div class="grid">
+    <div class="card"><h3 class="color-title pink">📍 DESDE</h3><p>Se utiliza para situar el inicio en un <b>momento concreto</b>: una fecha, un día, un mes, un año, una estación o un momento determinado.</p></div>
+    <div class="card"><h3 class="color-title purple">⏱️ DESDE HACE</h3><p>Se utiliza para expresar <b>cuánto tiempo</b> ha pasado desde un punto del pasado.</p></div>
+    <div class="card"><h3 class="color-title turq">🔗 DESDE QUE</h3><p>Se utiliza cuando después de <b>desde</b> aparece una acción expresada con un verbo conjugado.</p></div>
+    <div class="card"><h3 class="color-title blue">❓ Dos preguntas diferentes</h3><p><b>¿Desde cuándo...?</b> pregunta por el momento de inicio. <b>¿Cuánto tiempo...?</b> pregunta por la duración.</p></div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <h3>🎯 Regla central de la clase</h3>
+    <p><b>DESDE = punto concreto</b> · <b>DESDE HACE = cantidad de tiempo</b> · <b>DESDE QUE = verbo</b>.</p>
+  </div>
+</section>
+
+<section id="desde">
+  <div class="card">
+    <h2 class="purple">📍 DESDE + punto concreto</h2>
+    <div style="overflow-x:auto;">
+    <table>
+      <tr><th>Tipo</th><th>Ejemplo</th></tr>
+      <tr><td>Fecha</td><td>Vivo en España <b>desde el 1 de septiembre</b>.</td></tr>
+      <tr><td>Día</td><td>Estoy aquí <b>desde el jueves</b>.</td></tr>
+      <tr><td>Mes</td><td>Vivo aquí <b>desde septiembre</b>.</td></tr>
+      <tr><td>Año</td><td>Estoy en España <b>desde 2016</b>.</td></tr>
+      <tr><td>Estación</td><td>Vivo aquí <b>desde la primavera</b>.</td></tr>
+    </table>
+    </div>
+    <p class="small" style="margin-top:10px;">La profesora destacó que con un día concreto se usa el artículo: <b>desde el 1 de septiembre</b>, <b>desde el 25...</b></p>
+  </div>
+  
+  <div class="card" style="margin-top:14px">
+    <h2 class="pink">⏱️️ DESDE HACE + duración</h2>
+    <div class="sound-bar"><span class="small">🔊 Toca el botón para escuchar el ejemplo.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
+    <div class="example"><b>Estoy en España desde hace 10 años.</b></div>
+    <div class="example"><b>Trabajo aquí desde hace 2 años.</b></div>
+    <div class="example"><b>Estoy estudiando desde hace 3 horas.</b></div>
+    <div class="example"><b>Vivo aquí desde hace una semana.</b></div>
+    <div class="example"><b>Conozco a mi marido desde hace 20 años.</b></div>
+  </div>
+  
+  <div class="card" style="margin-top:14px">
+    <h2 class="turq">🔗 DESDE QUE + verbo</h2>
+    <p>Cuando queremos relacionar el inicio con una acción, la profesora indicó que usamos <b>desde que</b> + verbo.</p>
+    <div class="example"><b>Te conozco desde que vivimos en Madrid.</b></div>
+    <div class="example"><b>Estudio español desde que vivo aquí.</b></div>
+    <p class="small">La estructura se trabajó en ejercicios de clase junto con <b>desde</b> y <b>desde hace</b>.</p>
+  </div>
+</section>
+
+<section id="preguntas">
+  <div class="card">
+    <h2 class="blue">❓ ¿Desde cuándo? / ¿Cuánto tiempo?</h2>
+    <div style="overflow-x:auto;">
+    <table>
+      <tr><th>Pregunta</th><th>Qué queremos saber</th><th>Respuesta</th></tr>
+      <tr><td><b>¿Desde cuándo vives en Madrid?</b></td><td>Un punto concreto</td><td>Vivo en Madrid <b>desde 2000</b>.</td></tr>
+      <tr><td><b>¿Cuánto tiempo llevas viviendo en Madrid?</b></td><td>Una duración</td><td>Vivo en Madrid <b>desde hace 10 años</b>.</td></tr>
+      <tr><td><b>¿Desde qué día estás aquí?</b></td><td>Un día determinado</td><td>Estoy aquí <b>desde el jueves</b>.</td></tr>
+      <tr><td><b>¿Desde qué año estudias español?</b></td><td>Un año concreto</td><td>Estudio español <b>desde 2003</b>.</td></tr>
+    </table>
+    </div>
+  </div>
+  
+  <div class="card" style="margin-top:14px">
+    <h3 class="purple">🧠 Pregunta → respuesta</h3>
+    <div class="sound-bar"><span class="small">🔊 Toca el botón para escuchar la frase.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
+    <div class="example"><b>¿Desde cuándo usas gafas?</b> → Desde hace 8 años.</div>
+    <div class="example"><b>¿Desde cuándo estudias español?</b> → Desde 2003.</div>
+    <div class="example"><b>¿Desde cuándo vives en esta casa?</b> → Desde este verano.</div>
+    <div class="example"><b>¿Desde cuándo ves fútbol?</b> → Desde que nací.</div>
+  </div>
+</section>
+
+<section id="ex">
+  <h2>✏️ Ejercicios interactivos</h2>
+  <div class="card"><h3 class="pink">1. Comprueba lo aprendido</h3><div id="q-aula"></div></div>
+  <div class="card" style="margin-top:14px">
+    <h3 class="turq">🗣️ Misión</h3>
+    <p>Responde oralmente usando las tres estructuras:</p>
+    <ol style="line-height: 1.8;">
+      <li>¿Desde cuándo vives en Madrid?</li>
+      <li>¿Cuánto tiempo llevas estudiando español?</li>
+      <li>¿Desde qué año estudias español?</li>
+      <li>¿Desde cuándo conoces a tu mejor amigo?</li>
+      <li>¿Desde cuándo haces tu actividad favorita?</li>
+    </ol>
+  </div>
+</section>
+
+<div class="home-nav" style="justify-content:center; margin-top:22px;"><a href="index.html">🏠 Volver al inicio</a></div>
+<footer>Registro individual de la clase del 10/09/2026. Basado en las notas de la clase.</footer>
 </div>
-<div class="card"><h3>🎯 Regla central de la clase</h3><p><b>DESDE = punto concreto</b> · <b>DESDE HACE = cantidad de tiempo</b> · <b>DESDE QUE = verbo</b>.</p></div></section>
-<section id="desde"><div class="card"><h2 class="purple">📍 DESDE + punto concreto</h2>
-<table><tr><th>Tipo</th><th>Ejemplo</th></tr><tr><td>Fecha</td><td>Vivo en España <b>desde el 1 de septiembre</b>.</td></tr><tr><td>Día</td><td>Estoy aquí <b>desde el jueves</b>.</td></tr><tr><td>Mes</td><td>Vivo aquí <b>desde septiembre</b>.</td></tr><tr><td>Año</td><td>Estoy en España <b>desde 2016</b>.</td></tr><tr><td>Estación</td><td>Vivo aquí <b>desde la primavera</b>.</td></tr></table>
-<p class="small">La profesora destacó que con un día concreto se usa el artículo: <b>desde el 1 de septiembre</b>, <b>desde el 25...</b></p></div>
-<div class="card"><h2 class="pink">⏱️ DESDE HACE + duración</h2>
-<div class="example">Estoy en España <b>desde hace 10 años</b>.</div><div class="example">Trabajo aquí <b>desde hace 2 años</b>.</div><div class="example">Estoy estudiando <b>desde hace 3 horas</b>.</div><div class="example">Vivo aquí <b>desde hace una semana</b>.</div><div class="example">Conozco a mi marido <b>desde hace 20 años</b>.</div></div>
-<div class="card"><h2 class="turq">🔗 DESDE QUE + verbo</h2><p>Cuando queremos relacionar el inicio con una acción, la profesora indicó que usamos <b>desde que</b> + verbo.</p><div class="example">Te conozco <b>desde que</b> vivimos en Madrid.</div><div class="example">Estudio español <b>desde que</b> vivo aquí.</div><p class="small">La estructura se trabajó en ejercicios de clase junto con <b>desde</b> y <b>desde hace</b>.</p></div></section>
-<section id="preguntas"><div class="card"><h2 class="blue">❓ ¿Desde cuándo? / ¿Cuánto tiempo?</h2>
-<table><tr><th>Pregunta</th><th>Qué queremos saber</th><th>Respuesta</th></tr><tr><td><b>¿Desde cuándo vives en Madrid?</b></td><td>Un punto concreto</td><td>Vivo en Madrid <b>desde 2000</b>.</td></tr><tr><td><b>¿Cuánto tiempo llevas viviendo en Madrid?</b></td><td>Una duración</td><td>Vivo en Madrid <b>desde hace 10 años</b>.</td></tr><tr><td><b>¿Desde qué día estás aquí?</b></td><td>Un día determinado</td><td>Estoy aquí <b>desde el jueves</b>.</td></tr><tr><td><b>¿Desde qué año estudias español?</b></td><td>Un año concreto</td><td>Estudio español <b>desde 2003</b>.</td></tr></table></div>
-<div class="card"><h3 class="purple">🧠 Pregunta → respuesta</h3><div class="example"><b>¿Desde cuándo usas gafas?</b> → Desde hace 8 años.</div><div class="example"><b>¿Desde cuándo estudias español?</b> → Desde 2003.</div><div class="example"><b>¿Desde cuándo vives en esta casa?</b> → Desde este verano.</div><div class="example"><b>¿Desde cuándo ves fútbol?</b> → Desde que nací.</div></div></section>
-<section id="practica"><div class="card"><h2 class="pink">✏️ Comprueba lo aprendido</h2><div class="progress"><span id="bar"></span></div>
-<div class="card"><p><b>1. Vivo en España ___ 2016.</b></p><div class="choice-grid"><button class="choice" onclick="ans(this,true,'f1')">desde</button><button class="choice" onclick="ans(this,false,'f1')">desde hace</button><button class="choice" onclick="ans(this,false,'f1')">desde que</button></div><div class="feedback" id="f1"></div></div>
-<div class="card"><p><b>2. Vivo en España ___ 10 años.</b></p><div class="choice-grid"><button class="choice" onclick="ans(this,false,'f2')">desde</button><button class="choice" onclick="ans(this,true,'f2')">desde hace</button><button class="choice" onclick="ans(this,false,'f2')">desde que</button></div><div class="feedback" id="f2"></div></div>
-<div class="card"><p><b>3. Te conozco ___ vivimos en Madrid.</b></p><div class="choice-grid"><button class="choice" onclick="ans(this,false,'f3')">desde</button><button class="choice" onclick="ans(this,false,'f3')">desde hace</button><button class="choice" onclick="ans(this,true,'f3')">desde que</button></div><div class="feedback" id="f3"></div></div>
-<div class="card"><p><b>4. ¿___ vives en Madrid?</b></p><div class="choice-grid"><button class="choice" onclick="ans(this,true,'f4')">¿Desde cuándo...?</button><button class="choice" onclick="ans(this,false,'f4')">¿Desde cuánto...?</button><button class="choice" onclick="ans(this,false,'f4')">¿Desde qué cantidad...?</button></div><div class="feedback" id="f4"></div></div></div>
-<div class="card"><h3 class="turq">🗣️ Misión</h3><p>Responde oralmente usando las tres estructuras:</p><ol><li>¿Desde cuándo vives en Madrid?</li><li>¿Cuánto tiempo llevas estudiando español?</li><li>¿Desde qué año estudias español?</li><li>¿Desde cuándo conoces a tu mejor amigo?</li><li>¿Desde cuándo haces tu actividad favorita?</li></ol></div></section>
-<div class="home-nav bottom"><a href="index.html">🏠 Volver al inicio</a></div><footer>EOI · Español A2 · Aula individual · 10/09/2026</footer></div>
+
 <script>
-let done=0,total=4;function tab(id,b){document.querySelectorAll('section').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');scrollTo({top:0,behavior:'smooth'})}
-function ans(b,ok,id){let f=document.getElementById(id);if(f.dataset.done)return;f.dataset.done=1;done++;b.classList.add(ok?'correct':'wrong');f.textContent=ok?'✅ Correcto.':'❌ Revisa la regla: desde / desde hace / desde que.';f.style.color=ok?'var(--ok)':'var(--bad)';document.getElementById('bar').style.width=(done/total*100)+'%'}
-</script></body></html>
+function showTab(id,btn){
+ document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+ btn.classList.add('active');
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+
+let slow=false, esVoice=null;
+function pickEs(){
+ const vs=speechSynthesis.getVoices();
+ esVoice=vs.find(v=>v.lang==='es-ES')||vs.find(v=>v.lang&&v.lang.startsWith('es'))||null;
+}
+if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=pickEs;pickEs();}
+function say(txt){
+ if(!('speechSynthesis' in window)) return;
+ speechSynthesis.cancel();
+ // Extrair texto da tag B ou usar o texto passado
+ let finalTxt = txt;
+ if(txt.includes('→')){
+    finalTxt = txt.replace('→', ' . ');
+ }
+ const u=new SpeechSynthesisUtterance(finalTxt);
+ u.lang='es-ES';if(esVoice)u.voice=esVoice;
+ u.rate=slow?.6:.85;
+ speechSynthesis.speak(u);
+}
+function toggleSlow(){
+ slow=!slow;
+ document.querySelectorAll('.slowBtn').forEach(b=>{
+  b.textContent=slow?'🐢 Lento: encendido':'🐢 Lento: apagado';
+  b.setAttribute('aria-pressed',slow);
+ });
+}
+
+// botón 🔊 en cada frase de ejemplo
+document.querySelectorAll('.example').forEach(el=>{
+ const b=el.querySelector('b'); if(!b) return;
+ const txt=el.textContent.trim();
+ const wrap=document.createElement('span');
+ while(el.firstChild) wrap.appendChild(el.firstChild);
+ el.appendChild(wrap);
+ el.classList.add('sayable');
+ const btn=document.createElement('button');
+ btn.type='button';btn.className='speak';btn.textContent='🔊';
+ btn.setAttribute('aria-label','Escuchar: '+txt);
+ btn.onclick=()=>say(txt);
+ el.appendChild(btn);
+});
+if(!('speechSynthesis' in window)) document.querySelectorAll('.sound-bar').forEach(x=>x.style.display='none');
+
+// Motor de Quiz com botão Siguiente
+function makeQuiz(id,qs){
+ const box=document.getElementById(id);let qi=0,score=0,locked=false;
+ function render(){
+  const q=qs[qi];locked=false;
+  box.innerHTML='<p style="font-size:1.1rem;"><b>'+q.t+'</b></p><div class="choice-grid">'+q.o.map((o,i)=>'<button type="button" class="choice" data-i="'+i+'">'+o+'</button>').join('')+'</div><p class="small" style="margin-top:15px; font-weight:700;">Pregunta '+(qi+1)+' de '+qs.length+' · Puntos: '+score+'</p><div class="feedback" aria-live="polite"></div>';
+  box.querySelectorAll('.choice').forEach(b=>b.addEventListener('click',()=>ans(+b.dataset.i,b)));
+ }
+ function ans(i,btn){
+  if(locked) return; locked=true;
+  const q=qs[qi];const bs=box.querySelectorAll('.choice');
+  bs.forEach(b=>b.disabled=true);
+  bs[q.a].classList.add('correct');
+  const fb=box.querySelector('.feedback');
+  
+  let btnNext = '<button type="button" class="choice" style="margin-top:15px; padding:8px 16px; width:100%; font-size:1rem; border:none; background:rgba(0,0,0,0.2);" onclick="this.parentElement.dispatchEvent(new CustomEvent(\'next\'))">Siguiente ➔</button>';
+  
+  if(i===q.a){
+   score++;
+   fb.innerHTML='<div style="margin-bottom:8px;">✅ Correcto.</div>'+(q.e||'') + btnNext;
+   fb.className='feedback ok';
+  } else{
+   btn.classList.add('wrong');
+   fb.innerHTML='<div style="margin-bottom:8px;">❌ Casi.</div>'+(q.e||'') + btnNext;
+   fb.className='feedback bad';
+  }
+  
+  fb.addEventListener('next', function handler() {
+   fb.removeEventListener('next', handler);
+   if(qi===qs.length-1){end();}else{qi++;render();}
+  });
+ }
+ function end(){
+  box.innerHTML='<p style="font-size:1.2rem;"><b>🎉 ¡Fin! Acertaste '+score+' de '+qs.length+'.</b></p><button type="button" class="choice" data-again="1" style="background:var(--turq); color:#000; border:none;">Empezar de nuevo ↺</button>';
+  box.querySelector('[data-again]').addEventListener('click',()=>{qi=0;score=0;render();});
+ }
+ render();
+}
+
+makeQuiz('q-aula',[
+ {"t": "Vivo en España ___ 2016.", "o": ["desde", "desde hace", "desde que"], "a": 0, "e": "«Desde» se usa con un punto concreto en el tiempo (un año, mes, día)."}, 
+ {"t": "Vivo en España ___ 10 años.", "o": ["desde", "desde hace", "desde que"], "a": 1, "e": "«Desde hace» se usa con una cantidad de tiempo (duración)."}, 
+ {"t": "Te conozco ___ vivimos en Madrid.", "o": ["desde", "desde hace", "desde que"], "a": 2, "e": "«Desde que» se usa cuando la acción va seguida de un verbo conjugado (vivimos)."}, 
+ {"t": "¿___ vives en Madrid?", "o": ["¿Desde cuándo...?", "¿Desde cuánto...?", "¿Desde qué cantidad...?"], "a": 0, "e": "Para preguntar por el inicio temporal de una acción usamos «¿Desde cuándo?»."}
+]);
+
+</script>
+</body>
+</html>
