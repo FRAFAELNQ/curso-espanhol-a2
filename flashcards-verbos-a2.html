@@ -684,7 +684,19 @@ const NOTES = {
   encontrarseNote: { pt: "Encontrarse con alguém = ver/encontrar uma pessoa. Encontrar algo = achar uma coisa. Pretérito: me encontré con María.", es: "Encontrarse con alguien = verse con una persona. Encontrar algo = hallar una cosa. Pretérito: me encontré con María.", en: "Encontrarse con someone = to meet someone. Encontrar algo = to find something. Preterite: me encontré con María." },
   llegarNote: { pt: "Presente regular. No pretérito (yo): llegué (g→gu).", es: "Presente regular. En pretérito (yo): llegué (g→gu).", en: "Regular in the present. Preterite (yo): llegué (g→gu)." },
   cogerNote: { pt: "Yo coJo (g→j por ortografia). Pretérito regular: cogí, cogiste, cogió… Em outros países pode ter outro significado.", es: "«Yo» cojo (g→j por ortografía). Pretérito regular: cogí, cogiste, cogió… En España: coger el metro/el autobús.", en: "«Yo» cojo (g→j for spelling). Regular preterite: cogí, cogiste, cogió… In Spain: coger el metro / el autobús." },
-  ensenarNote: { pt: "Presente regular. Enseñar = ensinar. Empezar a enseñar.", es: "Presente regular. Enseñar = dar clase o mostrar. Empezó a enseñar.", en: "Regular in the present. Enseñar = to teach or to show. Empezó a enseñar." }
+  ensenarNote: { pt: "Presente regular. Enseñar = ensinar. Empezar a enseñar.", es: "Presente regular. Enseñar = dar clase o mostrar. Empezó a enseñar.", en: "Regular in the present. Enseñar = to teach or to show. Empezó a enseñar." },
+  cambiarNote: { pt: "Cambiar de + colegio / universidad / barrio / trabajo.", es: "Cambiar de + colegio / universidad / barrio / trabajo.", en: "Cambiar de + colegio / universidad / barrio / trabajo." },
+  dejarNote: { pt: "Dejar + la carrera / los estudios / el trabajo = abandonar.", es: "Dejar + la carrera / los estudios / el trabajo = abandonar.", en: "Dejar + la carrera / los estudios / el trabajo = to quit." },
+  discutirNote: { pt: "Discutir = ter uma discussão com alguém. Não é «hablar sobre» algo.", es: "Discutir = tener una discusión con alguien. No es «hablar sobre» algo.", en: "Discutir = to argue with someone. It is not «hablar sobre» something." },
+  divorciarseNote: { pt: "Divorciarse de alguien. Pretérito: me divorcié, se divorció…", es: "Divorciarse de alguien. Pretérito: me divorcié, se divorció…", en: "Divorciarse de someone. Preterite: me divorcié, se divorció…" },
+  enamorarseNote: { pt: "Enamorarse de alguien. «Volverse a enamorar» = apaixonar-se outra vez.", es: "Enamorarse de alguien. «Volverse a enamorar» = enamorarse otra vez.", en: "Enamorarse de someone. «Volverse a enamorar» = to fall in love again." },
+  hacerseNote: { pt: "Hacerse + adjetivo/substantivo = chegar a ser: se hicieron buenos amigos. Pretérito: me hice, se hizo…", es: "Hacerse + adjetivo/sustantivo = llegar a ser: se hicieron buenos amigos. Pretérito: me hice, se hizo…", en: "Hacerse + adjective/noun = to become: se hicieron buenos amigos. Preterite: me hice, se hizo…" },
+  irseNote: { pt: "Irregular como ir (voy, vas, va…). Irse = abandonar um lugar; com «me» há ênfase: «Me voy a mi país». Pretérito: me fui, te fuiste, se fue…", es: "Irregular como ir (voy, vas, va…). Irse = abandonar un lugar; con «me» hay énfasis: «Me voy a mi país». Pretérito: me fui, te fuiste, se fue…", en: "Irregular like ir (voy, vas, va…). Irse = to leave a place; with «me» it is emphatic: «Me voy a mi país». Preterite: me fui, te fuiste, se fue…" },
+  jubilarseNote: { pt: "Jubilarse = deixar de trabalhar pela idade (a los 65 años). Pretérito: se jubiló.", es: "Jubilarse = dejar de trabajar por la edad (a los 65 años). Pretérito: se jubiló.", en: "Jubilarse = to stop working because of age (a los 65 años). Preterite: se jubiló." },
+  mudarseNote: { pt: "Mudarse a una ciudad/casa = mudar de residência: me mudé a Madrid en 1969.", es: "Mudarse a una ciudad/casa = cambiar de residencia: me mudé a Madrid en 1969.", en: "Mudarse a a city/house = to move: me mudé a Madrid en 1969." },
+  quedarNote: { pt: "Quedar con alguien = combinar um encontro: «Quedé con Diana». Não confundir com quedarse (ficar).", es: "Quedar con alguien = acordar un encuentro: «Quedé con Diana». No confundir con quedarse (permanecer).", en: "Quedar con someone = to arrange to meet: «Quedé con Diana». Not the same as quedarse (to stay)." },
+  quedarseNote: { pt: "Quedarse = ficar (me quedé en casa) ou perder: quedarse sin (me quedé sin casa). Também: quedarse viudo/ciego, en el paro.", es: "Quedarse = permanecer (me quedé en casa) o perder: quedarse sin (me quedé sin casa). También: quedarse viudo/ciego, en el paro.", en: "Quedarse = to stay (me quedé en casa) or to lose: quedarse sin (me quedé sin casa). Also: quedarse viudo/ciego, en el paro." },
+  separarseNote: { pt: "Separarse de alguien. Pretérito: me separé, se separó…", es: "Separarse de alguien. Pretérito: me separé, se separó…", en: "Separarse de someone. Preterite: me separé, se separó…" }
 };
 
 const verbs = [
@@ -742,6 +754,20 @@ const verbs = [
   { word: "enseñar", meaning: "",sticker: "👩‍🏫",groupKey: "ar", forms: ["enseño","enseñas","enseña","enseñamos","enseñáis","enseñan"], noteKey: "ensenarNote" },
   { word: "llegar", meaning: "",sticker: "🛬",groupKey: "ar", forms: ["llego","llegas","llega","llegamos","llegáis","llegan"], noteKey: "llegarNote" },
   { word: "encontrarse", meaning: "",sticker: "🤝",groupKey: "oue-refl", forms: ["me encuentro","te encuentras","se encuentra","nos encontramos","os encontráis","se encuentran"], noteKey: "encontrarseNote" },
+  { word: "irse", meaning: "",sticker: "🚪",groupKey: "irr", forms: ["me voy","te vas","se va","nos vamos","os vais","se van"], noteKey: "irseNote" },
+  { word: "quedarse", meaning: "",sticker: "🛋️",groupKey: "ar-refl", forms: ["me quedo","te quedas","se queda","nos quedamos","os quedáis","se quedan"], noteKey: "quedarseNote" },
+  { word: "quedar", meaning: "",sticker: "📅",groupKey: "ar", forms: ["quedo","quedas","queda","quedamos","quedáis","quedan"], noteKey: "quedarNote" },
+  { word: "jubilarse", meaning: "",sticker: "🧓",groupKey: "ar-refl", forms: ["me jubilo","te jubilas","se jubila","nos jubilamos","os jubiláis","se jubilan"], noteKey: "jubilarseNote" },
+  { word: "divorciarse", meaning: "",sticker: "💔",groupKey: "ar-refl", forms: ["me divorcio","te divorcias","se divorcia","nos divorciamos","os divorciáis","se divorcian"], noteKey: "divorciarseNote" },
+  { word: "enamorarse", meaning: "",sticker: "😍",groupKey: "ar-refl", forms: ["me enamoro","te enamoras","se enamora","nos enamoramos","os enamoráis","se enamoran"], noteKey: "enamorarseNote" },
+  { word: "discutir", meaning: "",sticker: "🗯️",groupKey: "ir", forms: ["discuto","discutes","discute","discutimos","discutís","discuten"], noteKey: "discutirNote" },
+  { word: "cambiar", meaning: "",sticker: "🔄",groupKey: "ar", forms: ["cambio","cambias","cambia","cambiamos","cambiáis","cambian"], noteKey: "cambiarNote" },
+  { word: "dejar", meaning: "",sticker: "🚪",groupKey: "ar", forms: ["dejo","dejas","deja","dejamos","dejáis","dejan"], noteKey: "dejarNote" },
+  { word: "mudarse", meaning: "",sticker: "📦",groupKey: "ar-refl", forms: ["me mudo","te mudas","se muda","nos mudamos","os mudáis","se mudan"], noteKey: "mudarseNote" },
+  { word: "estudiar", meaning: "",sticker: "📚",groupKey: "ar", forms: ["estudio","estudias","estudia","estudiamos","estudiáis","estudian"], noteKey: "sameHablar" },
+  { word: "preparar", meaning: "",sticker: "🛠️",groupKey: "ar", forms: ["preparo","preparas","prepara","preparamos","preparáis","preparan"], noteKey: "sameHablar" },
+  { word: "separarse", meaning: "",sticker: "🔀",groupKey: "ar-refl", forms: ["me separo","te separas","se separa","nos separamos","os separáis","se separan"], noteKey: "separarseNote" },
+  { word: "hacerse", meaning: "",sticker: "🌱",groupKey: "yo-irr-refl", forms: ["me hago","te haces","se hace","nos hacemos","os hacéis","se hacen"], noteKey: "hacerseNote" },
   { word: "llevar", meaning: "",sticker: "👜",groupKey: "ar", forms: ["llevo","llevas","lleva","llevamos","lleváis","llevan"], noteKey: "llFocus" },
   { word: "llevarse", meaning: "",sticker: "🤝",groupKey: "ar-refl", forms: ["me llevo","te llevas","se lleva","nos llevamos","os lleváis","se llevan"], noteKey: "llevarseNote" },
 
@@ -956,7 +982,21 @@ const MEAN = {
   "trabajar": { pt: "trabalhar", en: "to work" },
   "enseñar": { pt: "ensinar / mostrar", en: "to teach / to show" },
   "llegar": { pt: "chegar", en: "to arrive" },
-  "encontrarse": { pt: "encontrar-se (com alguém)", en: "to meet (someone)" }
+  "encontrarse": { pt: "encontrar-se (com alguém)", en: "to meet (someone)" },
+  "irse": { pt: "irse", en: "to leave / to go away" },
+  "quedarse": { pt: "ficar / perder (quedarse sin)", en: "to stay / to end up without" },
+  "quedar": { pt: "combinar um encontro (quedar con)", en: "to arrange to meet (quedar con)" },
+  "jubilarse": { pt: "aposentar-se", en: "to retire" },
+  "divorciarse": { pt: "divorciar-se", en: "to get divorced" },
+  "enamorarse": { pt: "apaixonar-se", en: "to fall in love" },
+  "discutir": { pt: "discutir / brigar", en: "to argue / to have a fight" },
+  "cambiar": { pt: "mudar / trocar", en: "to change" },
+  "dejar": { pt: "deixar / abandonar", en: "to leave / to quit" },
+  "mudarse": { pt: "mudar-se (de casa/cidade)", en: "to move (house / city)" },
+  "estudiar": { pt: "estudar", en: "to study" },
+  "preparar": { pt: "preparar", en: "to prepare" },
+  "separarse": { pt: "separar-se", en: "to split up / to separate" },
+  "hacerse": { pt: "tornar-se / ficar (amigos)", en: "to become (friends)" }
 };
 
 function mTxt(v) {
