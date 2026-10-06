@@ -696,7 +696,13 @@ const NOTES = {
   mudarseNote: { pt: "Mudarse a una ciudad/casa = mudar de residência: me mudé a Madrid en 1969.", es: "Mudarse a una ciudad/casa = cambiar de residencia: me mudé a Madrid en 1969.", en: "Mudarse a a city/house = to move: me mudé a Madrid en 1969." },
   quedarNote: { pt: "Quedar con alguien = combinar um encontro: «Quedé con Diana». Não confundir com quedarse (ficar).", es: "Quedar con alguien = acordar un encuentro: «Quedé con Diana». No confundir con quedarse (permanecer).", en: "Quedar con someone = to arrange to meet: «Quedé con Diana». Not the same as quedarse (to stay)." },
   quedarseNote: { pt: "Quedarse = ficar (me quedé en casa) ou perder: quedarse sin (me quedé sin casa). Também: quedarse viudo/ciego, en el paro.", es: "Quedarse = permanecer (me quedé en casa) o perder: quedarse sin (me quedé sin casa). También: quedarse viudo/ciego, en el paro.", en: "Quedarse = to stay (me quedé en casa) or to lose: quedarse sin (me quedé sin casa). Also: quedarse viudo/ciego, en el paro." },
-  separarseNote: { pt: "Separarse de alguien. Pretérito: me separé, se separó…", es: "Separarse de alguien. Pretérito: me separé, se separó…", en: "Separarse de someone. Preterite: me separé, se separó…" }
+  separarseNote: { pt: "Separarse de alguien. Pretérito: me separé, se separó…", es: "Separarse de alguien. Pretérito: me separé, se separó…", en: "Separarse de someone. Preterite: me separé, se separó…" },
+  adaptarNote: { pt: "Adaptar una novela al cine. Estar basada en una novela / un hecho real.", es: "Adaptar una novela al cine. Estar basada en una novela / un hecho real.", en: "Adaptar una novela al cine. Estar basada en una novela / un hecho real." },
+  contarNote: { pt: "Contar = narrar: «Cuenta la historia de…» (o→ue). Também significa contar números.", es: "Contar = narrar: «Cuenta la historia de…» (o→ue). También significa contar números.", en: "Contar = to tell: «Cuenta la historia de…» (o→ue). Also means to count." },
+  estrenarNote: { pt: "Estrenar una película = apresentá-la ao público pela primeira vez. Pretérito: estrenó.", es: "Estrenar una película = presentarla al público por primera vez. Pretérito: estrenó.", en: "Estrenar una película = to release it for the first time. Preterite: estrenó." },
+  interpretarNote: { pt: "Interpretar un papel = atuar como um personagem. Pretérito: interpretó.", es: "Interpretar un papel = actuar como un personaje. Pretérito: interpretó.", en: "Interpretar un papel = to play a character. Preterite: interpretó." },
+  lucharNote: { pt: "Luchar contra algo / por algo: luchar contra el Apartheid.", es: "Luchar contra algo / por algo: luchar contra el Apartheid.", en: "Luchar contra something / for something: luchar contra el Apartheid." },
+  rodarNote: { pt: "Rodar = filmar (o→ue no presente: ruedo). Pretérito regular: rodó.", es: "Rodar = filmar (o→ue en presente: ruedo). Pretérito regular: rodó.", en: "Rodar = to shoot a film (o→ue in the present: ruedo). Regular preterite: rodó." }
 };
 
 const verbs = [
@@ -768,6 +774,14 @@ const verbs = [
   { word: "preparar", meaning: "",sticker: "🛠️",groupKey: "ar", forms: ["preparo","preparas","prepara","preparamos","preparáis","preparan"], noteKey: "sameHablar" },
   { word: "separarse", meaning: "",sticker: "🔀",groupKey: "ar-refl", forms: ["me separo","te separas","se separa","nos separamos","os separáis","se separan"], noteKey: "separarseNote" },
   { word: "hacerse", meaning: "",sticker: "🌱",groupKey: "yo-irr-refl", forms: ["me hago","te haces","se hace","nos hacemos","os hacéis","se hacen"], noteKey: "hacerseNote" },
+  { word: "contar", meaning: "",sticker: "🗣️",groupKey: "oue", forms: ["cuento","cuentas","cuenta","contamos","contáis","cuentan"], noteKey: "contarNote" },
+  { word: "interpretar", meaning: "",sticker: "🎭",groupKey: "ar", forms: ["interpreto","interpretas","interpreta","interpretamos","interpretáis","interpretan"], noteKey: "interpretarNote" },
+  { word: "estrenar", meaning: "",sticker: "🎞️",groupKey: "ar", forms: ["estreno","estrenas","estrena","estrenamos","estrenáis","estrenan"], noteKey: "estrenarNote" },
+  { word: "adaptar", meaning: "",sticker: "📖",groupKey: "ar", forms: ["adapto","adaptas","adapta","adaptamos","adaptáis","adaptan"], noteKey: "adaptarNote" },
+  { word: "luchar", meaning: "",sticker: "🥊",groupKey: "ar", forms: ["lucho","luchas","lucha","luchamos","lucháis","luchan"], noteKey: "lucharNote" },
+  { word: "rodar", meaning: "",sticker: "🎥",groupKey: "oue", forms: ["ruedo","ruedas","rueda","rodamos","rodáis","ruedan"], noteKey: "rodarNote" },
+  { word: "filmar", meaning: "",sticker: "📹",groupKey: "ar", forms: ["filmo","filmas","filma","filmamos","filmáis","filman"], noteKey: "sameHablar" },
+  { word: "crear", meaning: "",sticker: "✨",groupKey: "ar", forms: ["creo","creas","crea","creamos","creáis","crean"], noteKey: "sameHablar" },
   { word: "llevar", meaning: "",sticker: "👜",groupKey: "ar", forms: ["llevo","llevas","lleva","llevamos","lleváis","llevan"], noteKey: "llFocus" },
   { word: "llevarse", meaning: "",sticker: "🤝",groupKey: "ar-refl", forms: ["me llevo","te llevas","se lleva","nos llevamos","os lleváis","se llevan"], noteKey: "llevarseNote" },
 
@@ -996,7 +1010,15 @@ const MEAN = {
   "estudiar": { pt: "estudar", en: "to study" },
   "preparar": { pt: "preparar", en: "to prepare" },
   "separarse": { pt: "separar-se", en: "to split up / to separate" },
-  "hacerse": { pt: "tornar-se / ficar (amigos)", en: "to become (friends)" }
+  "hacerse": { pt: "tornar-se / ficar (amigos)", en: "to become (friends)" },
+  "contar": { pt: "contar / narrar", en: "to tell / to count" },
+  "interpretar": { pt: "interpretar (um papel)", en: "to play (a role) / to interpret" },
+  "estrenar": { pt: "estrear", en: "to release / to premiere" },
+  "adaptar": { pt: "adaptar", en: "to adapt" },
+  "luchar": { pt: "lutar", en: "to fight / to struggle" },
+  "rodar": { pt: "filmar / rodar", en: "to shoot (a film)" },
+  "filmar": { pt: "filmar", en: "to film" },
+  "crear": { pt: "criar / criar (fundar)", en: "to create" }
 };
 
 function mTxt(v) {

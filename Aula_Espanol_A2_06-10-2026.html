@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080a18">
+<title>Clase de Español A2 — 06/10/2026</title>
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#080a18;--card:#171d38;--text:#f8f9ff;--muted:#b8c0dd;
+  --pink:#ff5ca8;--purple:#a56cff;--turq:#37e6d4;--yellow:#ffd34e;
+  --blue:#42a5ff;--soft:#252e50;--border:#2d385e;--ok:#4be59a;--bad:#ff6b7c;
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 10% 0,#1d2b66,transparent 38%),radial-gradient(circle at 90% 0,#5a174d,transparent 35%),var(--bg);background-attachment:fixed;color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}
+.container{max-width:1100px;margin:auto;padding:22px 16px 60px}
+header{text-align:center;padding:26px 20px;margin-bottom:6px;border-radius:22px;border:1px solid #48598d;background:linear-gradient(135deg,#172c6c,#49237f 52%,#741c58);box-shadow:0 18px 50px #0008}
+.badge{display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;font-weight:800;font-size:.82rem}
+h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);color:#fff}
+.subtitle{color:#e3e6ff}
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);display:flex;gap:7px;overflow:auto;padding:8px;border-bottom:1px solid var(--border)}
+nav button,.tab{border:1px solid var(--border);background:var(--card);color:var(--text);padding:9px 12px;border-radius:12px;cursor:pointer;white-space:nowrap;font-weight:750}
+nav button.active,.tab.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+section{display:none;padding-top:22px}
+section.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:0 7px 22px color-mix(in srgb,var(--purple) 10%,transparent)}
+.card h3{margin-top:0}
+.color-title{font-size:1.25rem;font-weight:900}
+.pink{color:var(--pink)}.purple{color:var(--purple)}.turq{color:var(--turq)}.blue{color:var(--blue)}.yellow{color:var(--yellow)}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden}
+th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+th{background:#202a4c;color:#cdbdff}
+.verb-card{margin-bottom:16px}
+.verb-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.verb{font-size:1.45rem;font-weight:900;color:var(--pink)}
+.tag{font-size:.78rem;font-weight:800;padding:4px 9px;border-radius:999px;background:var(--soft);color:#cdbdff}
+.speak{border:0;background:var(--soft);border-radius:10px;padding:7px 10px;cursor:pointer}
+.example{border-left:4px solid var(--turq);padding:9px 12px;background:color-mix(in srgb,var(--turq) 8%,var(--card));border-radius:0 12px 12px 0;margin:9px 0}
+.note{font-size:.9rem;color:var(--muted)}
+.choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:9px}
+.choice{padding:12px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;text-align:left}
+.choice.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card))}
+.choice.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card))}
+.feedback{margin-top:12px;font-weight:800}
+.feedback.ok{color:var(--ok)}.feedback.bad{color:var(--bad)}
+details{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px;margin:9px 0}
+summary{cursor:pointer;font-weight:800}
+.progress{height:10px;background:var(--soft);border-radius:99px;overflow:hidden}.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq));transition:.25s}
+.small{font-size:.88rem;color:var(--muted)}
+.example.sayable{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.example.sayable .speak{flex:0 0 auto;font-size:1.05rem}
+.sound-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:6px 0 12px}
+.speak:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.speak[aria-pressed="true"]{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff}
+footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
+@media(max-width:600px){.container{padding:14px 10px 45px}th,td{padding:8px;font-size:.9rem}.card{padding:15px}}
+
+.home-nav{text-align:center;margin:14px 0 8px}
+.home-nav a{display:inline-block;padding:10px 18px;border-radius:12px;background:#10152b;border:1px solid var(--border);color:#fff;text-decoration:none;font-weight:800;transition:transform .15s ease,border-color .15s ease}
+.home-nav a:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.home-nav a:hover{transform:translateY(-1px);border-color:var(--blue)}
+
+
+.table-wrap{overflow-x:auto;border-radius:16px}
+.table-wrap table{min-width:520px}
+select{background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:8px 10px;font:inherit;max-width:100%}
+select:focus-visible,.choice:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.ex-row{margin:12px 0;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.ex-row:last-of-type{border-bottom:0}
+.ex-fb{display:inline-block;margin-left:8px;font-weight:800}
+.ex-fb.ok{color:var(--ok)}.ex-fb.bad{color:var(--bad)}
+.chip{display:inline-block;padding:4px 10px;margin:3px 3px 3px 0;border-radius:999px;background:var(--soft);border:1px solid var(--border);font-weight:700}
+.mini-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.mini-grid .verb-card{margin-bottom:0}
+.form-big{font-size:1.25rem;font-weight:900;color:var(--turq);margin:10px 0 4px}
+ul.clean{margin:8px 0;padding-left:20px}ul.clean li{margin:5px 0}
+.choice:disabled{cursor:default}
+
+.pill{display:inline-block;padding:3px 9px;border-radius:999px;background:var(--soft);border:1px solid var(--border);font-size:.78rem;font-weight:800;margin-left:6px}
+.mini-forms{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.mini-forms div{flex:1 1 90px;background:#0c1125;border:1px solid var(--border);border-radius:10px;padding:7px 9px;text-align:center}
+.mini-forms small{display:block;color:var(--muted);font-size:.7rem;text-transform:uppercase}
+.mini-forms b{font-size:1.05rem;color:var(--turq)}
+
+.dict-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:10px 0}
+.num-input{background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:10px 12px;font:inherit;font-size:1.2rem;width:min(100%,240px)}
+.num-input:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.big-num{font-size:1.6rem;font-weight:900;color:var(--turq)}
+.num-table td.n{font-weight:900;color:var(--yellow);width:46px}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <span class="badge">EOI · Español A2 · Clase individual</span>
+  <h1>Ficha interactiva — 06/10/2026</h1>
+  <div class="subtitle">Cine y biografías, repaso del presente y vocabulario para hablar de películas</div>
+  <div class="subtitle" style="font-size:.9rem;margin-top:6px">📖 Libro: Aula Plus 2 · pp. 26, 27 y 133</div>
+</header>
+<div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
+
+<nav>
+  <button class="active" onclick="showTab('resumen',this)">📚 Resumen</button>
+  <button onclick="showTab('vocab',this)">📝 Vocabulario</button>
+  <button onclick="showTab('gram',this)">🧠 Gramática</button>
+  <button onclick="showTab('verbos',this)">🔤 Verbos</button>
+  <button onclick="showTab('ex',this)">✏️ Ejercicios</button>
+  <button onclick="showTab('practica',this)">🎯 Práctica</button>
+</nav>
+
+<section id="resumen" class="active">
+<div class="grid">
+ <div class="card"><div class="color-title pink">1. Corrección</div><p>Ejercicios <b>11</b> y <b>13</b> de la p. 133 (ser o ir; ordenar expresiones temporales). También el <b>12</b> (audio) y el <b>14</b> (A–H).</p></div>
+ <div class="card"><div class="color-title purple">2. Cine y biografías</div><p>Cuatro <b>biopics</b> (p. 26) y la biografía de <b>Isabel Coixet</b> (p. 27), con verdadero/falso y audio.</p></div>
+ <div class="card"><div class="color-title turq">3. Hablar de películas</div><p><b>Es una película sobre…</b>, <b>Cuenta la historia de…</b>, <b>Cuenta la vida de…</b>.</p></div>
+ <div class="card"><div class="color-title yellow">4. Presente de indicativo</div><p>Repaso en pantalla: regulares, cambios vocálicos e irregulares. Ejemplo de la pizarra: <b>comprobar</b>.</p></div>
+</div>
+
+<div class="card" style="margin-top:14px">
+<h3>⭐ Frases clave de la clase</h3>
+<div class="sound-bar"><span class="small">🔊 Toca el botón de cada frase para escucharla.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
+<div class="example"><b>Es una película sobre el amor.</b></div>
+<div class="example"><b>Cuenta la historia de una joven de familia humilde.</b></div>
+<div class="example"><b>Es una película sobre la vida de Frida.</b></div>
+<div class="example"><b>¿En qué año naciste?</b></div>
+<div class="example"><b>¿Dónde pasaste la infancia?</b></div>
+<div class="example"><b>Compruebo mis respuestas.</b></div>
+<div class="example"><b>La película fue un éxito.</b></div>
+<div class="example"><b>Mi hermano no fue a verla.</b></div>
+<div class="example"><b>Nelson Mandela luchó contra el Apartheid.</b></div>
+
+</div>
+
+<div class="card" style="margin-top:14px">
+<h3>📋 Actividades de la clase</h3>
+<div class="activity-list">
+<p><b>✓ Tarjetas de verbos</b><br>Se estudiaron con la profesora en clase.</p>
+<p><b>✓ p. 133 · preguntas 11 y 13</b><br>Corrección en clase.</p>
+<p><b>✓ p. 26 · pregunta 2A («Cuatro biopics»)</b><br>Se respondió y se comparó con un compañero o en grupo.</p>
+<p><b>✓ p. 27 · pregunta 3 (A y B)</b><br>Leer el texto de Isabel Coixet y marcar verdadero o falso (1–7); después escuchar el audio y responder (1–6).</p>
+<p><b>✓ Identificar personajes en pantalla</b><br>Actividad en parejas o grupos, con permiso para buscar en internet: directores del mundo hispano.</p>
+<p><b>✓ p. 133 · preguntas 12 (1–4) y 14 (A–H)</b><br>Corrección tras escuchar el audio y comparar con el compañero.</p>
+<p><b>✓ Tres frases</b><br>La profesora pidió escribir tres frases con los verbos que salían en la pantalla.</p>
+<p><b>✓ Presente de indicativo</b><br>La profesora mostró en la pantalla un resumen de los verbos en presente.</p>
+</div>
+<div class="pending"><b>🏠 Tarea para el jueves 8:</b> ficha «Directores, películas y sinopsis» (Comprensión lectora y vocabulario, partes A–D).</div>
+</div>
+</section>
+
+<section id="vocab">
+<h2>📝 Vocabulario</h2>
+<div class="grid">
+ <div class="card"><div class="color-title pink">Hablar de películas</div>
+  <ul class="clean">
+   <li><b>una película biográfica</b> (un <i>biopic</i>)</li>
+   <li><b>un largometraje</b> · <b>un cortometraje</b> · <b>un documental</b></li>
+   <li><b>dirigir</b> / <b>rodar</b> / <b>filmar</b> una película</li>
+   <li><b>estrenar</b> una película</li>
+   <li><b>protagonizar</b> una película · <b>interpretar</b> un papel</li>
+   <li><b>adaptar</b> una novela al cine</li>
+   <li><b>estar basada en</b> una novela / un hecho real</li>
+   <li><b>ganar</b> un Óscar · un Goya · <b>un premio</b> internacional</li>
+  </ul></div>
+ <div class="card"><div class="color-title turq">Para comunicar</div>
+  <ul class="clean">
+   <li><b>Cuenta la vida de…</b></li>
+   <li><b>Cuenta / Es la historia de…</b></li>
+   <li><b>Es una película sobre…</b> (el amor, la amistad… o la vida de una persona)</li>
+  </ul>
+  <p class="note">«Es una película sobre <b>el amor</b>» (tema) · «sobre <b>la vida de</b> Frida» (persona).</p></div>
+ <div class="card"><div class="color-title yellow">Biografía de una directora (p. 27)</div>
+  <ul class="clean">
+   <li><b>interesarse por</b> el cine · <b>de pequeña</b> · le regalaron <b>su primera cámara</b></li>
+   <li><b>colaborar en</b> medios de comunicación · <b>trabajar en publicidad</b></li>
+   <li><b>su debut cinematográfico</b> · <b>su primer largometraje</b></li>
+   <li><b>crear una productora</b> · <b>tener fama internacional</b></li>
+   <li><b>dirigir un documental</b> · <b>rodar en inglés</b></li>
+  </ul></div>
+ <div class="card"><div class="color-title purple">Directores del mundo hispano</div>
+  <ul class="clean">
+   <li><b>Pedro Almodóvar</b>: la vida, las emociones y la sociedad española.</li>
+   <li><b>Guillermo del Toro</b>: fantasía, terror y criaturas fantásticas.</li>
+   <li><b>Maite Alberdi</b>: cine documental, historias reales.</li>
+   <li><b>Carla Simón</b>: familia, infancia y memoria.</li>
+   <li><b>Juan José Campanella</b>: thrillers y dramas.</li>
+   <li><b>Isabel Coixet</b>: relaciones humanas, soledad y emociones.</li>
+  </ul></div>
+ <div class="card"><div class="color-title turq">Expresiones de la pizarra</div>
+  <ul class="clean">
+   <li><div class="example"><b>¿En qué año naciste?</b></div>
+</li>
+   <li><div class="example"><b>¿Dónde pasaste la infancia?</b></div>
+<div class="example"><b>¿Cómo pasaste la adolescencia?</b></div>
+</li>
+   <li><div class="example"><b>Cuando tenía 15 años, viajé a Francia.</b></div>
+</li>
+   <li><b>lecturas graduadas con audio</b>: libros por niveles con audio para practicar leyendo y escuchando.</li>
+  </ul></div>
+ <div class="card"><div class="color-title pink">Construimos el léxico</div>
+  <p>Piensa en personajes famosos y escribe qué hicieron:</p>
+  <div class="example"><b>Nelson Mandela luchó contra el Apartheid en Sudáfrica.</b></div>
+
+  <p class="small">Escribe tus propias frases con verbos como <b>luchar</b>, <b>ganar</b>, <b>crear</b>, <b>dirigir</b> o <b>interpretar</b>.</p></div>
+</div>
+</section>
+
+<section id="gram">
+<h2>🧠 Gramática</h2>
+<div class="sound-bar"><span class="small">🔊 Toca el botón de cada ejemplo para escucharlo.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
+
+<h3 class="color-title pink">1 · Hablar de una película</h3>
+<div class="card">
+<div class="table-wrap"><table>
+<tr><th>Estructura</th><th>Ejemplo</th></tr>
+<tr><td><b>Es una película sobre + tema</b></td><td><div class="example"><b>Es una película sobre el amor.</b></div>
+</td></tr>
+<tr><td><b>Es una película sobre la vida de + persona</b></td><td><div class="example"><b>Es una película sobre la vida de Frida.</b></div>
+</td></tr>
+<tr><td><b>Cuenta la historia de + persona / lugar</b></td><td><div class="example"><b>Evita cuenta la historia de una joven de familia humilde.</b></div>
+</td></tr>
+<tr><td><b>Cuenta la vida de + persona</b></td><td><div class="example"><b>Bohemian Rhapsody cuenta la vida de Freddie Mercury.</b></div>
+</td></tr>
+</table></div>
+<p class="note"><b>Cuenta</b> viene de <b>contar</b> (o → ue): yo cuento, tú cuentas, él <b>cuenta</b>.</p>
+</div>
+
+<h3 class="color-title yellow" style="margin-top:24px">2 · Verbos para hablar de cine</h3>
+<div class="card">
+<div class="table-wrap"><table>
+<tr><th>Expresión</th><th>Ejemplo</th></tr>
+<tr><td><b>ganar</b> un Óscar / un Goya</td><td><div class="example"><b>La actriz ganó un Goya.</b></div>
+</td></tr>
+<tr><td><b>estar basada en</b> una novela / un hecho real</td><td><div class="example"><b>Figuras ocultas está basada en hechos reales.</b></div>
+</td></tr>
+<tr><td><b>contar</b> una historia</td><td><div class="example"><b>La película cuenta una historia de amor.</b></div>
+</td></tr>
+<tr><td><b>interpretar</b> un papel</td><td><div class="example"><b>Interpretó el papel de una científica.</b></div>
+</td></tr>
+<tr><td><b>dirigir</b> una película</td><td><div class="example"><b>Dirigió su primer largometraje en 1988.</b></div>
+</td></tr>
+<tr><td><b>estrenar</b> una película</td><td><div class="example"><b>Estrenó su película en 2008.</b></div>
+</td></tr>
+<tr><td><b>adaptar</b> una novela al cine</td><td><div class="example"><b>Adaptó una novela al cine.</b></div>
+</td></tr>
+</table></div>
+</div>
+
+<h3 class="color-title turq" style="margin-top:24px">3 · Repaso del presente de indicativo</h3>
+<div class="card">
+<div class="color-title pink">① Regulares</div>
+<div class="table-wrap"><table>
+<tr><th></th><th>-AR · cantar</th><th>-ER · comer</th><th>-IR · vivir</th></tr>
+<tr><td>yo</td><td>canto</td><td>como</td><td>vivo</td></tr>
+<tr><td>tú</td><td>cantas</td><td>comes</td><td>vives</td></tr>
+<tr><td>él / ella / usted</td><td>canta</td><td>come</td><td>vive</td></tr>
+<tr><td>nosotros/as</td><td>cantamos</td><td>comemos</td><td>vivimos</td></tr>
+<tr><td>vosotros/as</td><td>cantáis</td><td>coméis</td><td>vivís</td></tr>
+<tr><td>ellos/as, ustedes</td><td>cantan</td><td>comen</td><td>viven</td></tr>
+</table></div>
+</div>
+
+<div class="card" style="margin-top:14px">
+<div class="color-title yellow">② Cambio vocálico (yo, tú, él y ellos)</div>
+<div class="table-wrap"><table><tr><th></th><th>e → ie · pensar</th><th>o → ue · dormir</th><th>e → i · pedir</th><th>u → ue · jugar</th></tr>
+<tr><td>Yo</td><td>pienso</td><td>duermo</td><td>pido</td><td>juego</td></tr>
+<tr><td>Tú</td><td>piensas</td><td>duermes</td><td>pides</td><td>juegas</td></tr>
+<tr><td>Él / Ella / Usted</td><td>piensa</td><td>duerme</td><td>pide</td><td>juega</td></tr>
+<tr><td>Nosotros / Nosotras</td><td>pensamos</td><td>dormimos</td><td>pedimos</td><td>jugamos</td></tr>
+<tr><td>Vosotros / Vosotras</td><td>pensáis</td><td>dormís</td><td>pedís</td><td>jugáis</td></tr>
+<tr><td>Ellos / Ellas / Ustedes</td><td>piensan</td><td>duermen</td><td>piden</td><td>juegan</td></tr>
+</table></div>
+<ul class="clean">
+ <li><b>e → ie:</b> querer, merendar, calentar, sentarse, cerrar, atender, convertirse, sentir(se), mentir, empezar, entender, perder, despertarse…</li>
+ <li><b>o → ue:</b> poder, volar, volver, devolver, resolver, encontrar, recordar, costar, morir, probar, soñar, contar, <b>comprobar</b>…</li>
+ <li><b>e → i:</b> medir, conseguir, repetir, sonreír, reír, vestirse, corregir, servir, elegir, despedirse…</li>
+</ul>
+<p class="note">Pizarra: <b>comprobar</b> → <b>compruebo, compruebas, comprueba</b>, comprobamos, comprobáis, <b>comprueban</b>.</p>
+</div>
+
+<div class="card" style="margin-top:14px">
+<div class="color-title turq">③ Irregular en «yo»</div>
+<ul class="clean">
+ <li><b>-cer / -ucir:</b> conocer → <b>conozco</b> · conducir → <b>conduzco</b> · agradecer, parecer, traducir, producir…</li>
+ <li><b>-uir:</b> construir → <b>construyo, construyes, construye, construimos, construís, construyen</b> · incluir, sustituir, destruir, influir…</li>
+</ul>
+</div>
+
+<div class="card" style="margin-top:14px">
+<div class="color-title purple">④ Completamente irregulares</div>
+<div class="table-wrap"><table><tr><th></th><th>ser</th><th>estar</th><th>ir</th><th>dar</th><th>tener</th><th>venir</th></tr>
+<tr><td>Yo</td><td>soy</td><td>estoy</td><td>voy</td><td>doy</td><td>tengo</td><td>vengo</td></tr>
+<tr><td>Tú</td><td>eres</td><td>estás</td><td>vas</td><td>das</td><td>tienes</td><td>vienes</td></tr>
+<tr><td>Él / Ella / Usted</td><td>es</td><td>está</td><td>va</td><td>da</td><td>tiene</td><td>viene</td></tr>
+<tr><td>Nosotros / Nosotras</td><td>somos</td><td>estamos</td><td>vamos</td><td>damos</td><td>tenemos</td><td>venimos</td></tr>
+<tr><td>Vosotros / Vosotras</td><td>sois</td><td>estáis</td><td>vais</td><td>dais</td><td>tenéis</td><td>venís</td></tr>
+<tr><td>Ellos / Ellas / Ustedes</td><td>son</td><td>están</td><td>van</td><td>dan</td><td>tienen</td><td>vienen</td></tr>
+</table></div>
+<div class="table-wrap"><table><tr><th></th><th>hacer</th><th>decir</th><th>traer</th><th>poner</th><th>ver</th></tr>
+<tr><td>Yo</td><td>hago</td><td>digo</td><td>traigo</td><td>pongo</td><td>veo</td></tr>
+<tr><td>Tú</td><td>haces</td><td>dices</td><td>traes</td><td>pones</td><td>ves</td></tr>
+<tr><td>Él / Ella / Usted</td><td>hace</td><td>dice</td><td>trae</td><td>pone</td><td>ve</td></tr>
+<tr><td>Nosotros / Nosotras</td><td>hacemos</td><td>decimos</td><td>traemos</td><td>ponemos</td><td>vemos</td></tr>
+<tr><td>Vosotros / Vosotras</td><td>hacéis</td><td>decís</td><td>traéis</td><td>ponéis</td><td>veis</td></tr>
+<tr><td>Ellos / Ellas / Ustedes</td><td>hacen</td><td>dicen</td><td>traen</td><td>ponen</td><td>ven</td></tr>
+</table></div>
+<ul class="clean">
+ <li><b>saber:</b> sé, sabes, sabe, sabemos, sabéis, saben</li>
+ <li><b>oír:</b> oigo, oyes, oye, oímos, oís, oyen</li>
+ <li><b>salir:</b> salgo, sales, sale, salimos, salís, salen</li>
+ <li><b>caer:</b> caigo, caes, cae, caemos, caéis, caen</li>
+ <li><b>valer:</b> valgo, vales, vale, valemos, valéis, valen</li>
+</ul>
+<p class="note"><b>Atención:</b> en la diapositiva hay tres erratas: en el cuadro de -UIR aparece «conducir – conduzco» (el ejemplo correcto es construir – construyo); <b>jugar</b> es u → ue (no «o > u»); y en <b>salir</b> la tercera persona es <b>sale</b> (no «salgo»).</p>
+</div>
+
+<h3 class="color-title pink" style="margin-top:24px">4 · Corrección de la p. 133 (ejercicios 11, 12 y 13)</h3>
+<div class="grid">
+ <div class="card"><div class="color-title turq">11 · ¿ser o ir?</div>
+  <p><b>ser:</b> a (la película fue un éxito) · c (fuimos los primeros de la clase) · f (mis padres fueron deportistas).</p>
+  <p><b>ir:</b> b (no fue a verla) · d (fuimos a un colegio) · e (fueron a Suecia).</p></div>
+ <div class="card"><div class="color-title yellow">12 · audio (1–4)</div>
+  <p>1 a · 2 b · 3 c · 4 c</p>
+  <p class="small">Respuestas de la corrección en clase.</p></div>
+ <div class="card"><div class="color-title pink">13 · orden cronológico</div>
+  <p>1 hace 5 minutos · 2 ayer · 3 anteayer · 4 hace 3 semanas · 5 el verano pasado · 6 el año pasado · 7 hace 4 años · 8 en 1975</p></div>
+</div>
+
+<h3 class="color-title purple" style="margin-top:24px">5 · Corrección de las pp. 26 y 27</h3>
+<div class="grid">
+ <div class="card"><div class="color-title pink">p. 26 · biopics</div>
+  <p>1 Figuras ocultas · 2 Toro salvaje · 3 Bohemian Rhapsody · 4 Evita</p></div>
+ <div class="card"><div class="color-title turq">p. 27 · 3A (V/F)</div>
+  <p>1 F · 2 V · 3 F · 4 V · 5 V · 6 F · 7 V</p></div>
+ <div class="card"><div class="color-title yellow">p. 27 · 3B (audio)</div>
+  <p>1 E · 2 B · 3 C · 4 D · 5 A · 6 E</p></div>
+</div>
+</section>
+
+<section id="verbos">
+<h2>🔤 Verbos trabajados en la clase</h2>
+<p class="small">Verbos del cine (pretérito) y repaso del presente. Los verbos nuevos de los flashcards son <b>contar, interpretar, estrenar, adaptar, luchar, rodar, filmar</b> y <b>crear</b>. <a href="flashcards-verbos-a2.html">Abrir los flashcards →</a></p>
+<div class="sound-bar"><span class="small">🔊 Cada verbo tiene su botón para escuchar el infinitivo.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
+<h3 class="color-title turq" style="margin-top:22px">A · Verbos del cine (pretérito, 3.ª persona)</h3>
+<p class="small">Se usan para hablar de películas y de la vida de los directores.</p>
+<div class="mini-grid">
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">dirigir</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: dirigir" onclick="say('dirigir')">🔊</button></div>
+<div class="small">Pretérito indefinido</div><div class="form-big">dirigió</div>
+<div class="example"><b>Isabel Coixet dirigió «La librería».</b></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">protagonizar</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: protagonizar" onclick="say('protagonizar')">🔊</button></div>
+<div class="small">Pretérito indefinido</div><div class="form-big">protagonizó</div>
+<div class="example"><b>Penélope Cruz protagonizó «Elegy».</b></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">estrenar</span><span class="tag">NUEVO EN LOS FLASHCARDS</span><button type="button" class="speak" aria-label="Escuchar: estrenar" onclick="say('estrenar')">🔊</button></div>
+<div class="small">Pretérito indefinido</div><div class="form-big">estrenó</div>
+<div class="example"><b>Estrenó su primer largometraje en 1988.</b></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">rodar</span><span class="tag">NUEVO EN LOS FLASHCARDS</span><button type="button" class="speak" aria-label="Escuchar: rodar" onclick="say('rodar')">🔊</button></div>
+<div class="small">Pretérito indefinido</div><div class="form-big">rodó</div>
+<div class="example"><b>Rodó varios documentales.</b></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">filmar</span><span class="tag">NUEVO EN LOS FLASHCARDS</span><button type="button" class="speak" aria-label="Escuchar: filmar" onclick="say('filmar')">🔊</button></div>
+<div class="small">Pretérito indefinido</div><div class="form-big">filmó</div>
+<div class="example"><b>Se filmó en Japón.</b></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">interpretar</span><span class="tag">NUEVO EN LOS FLASHCARDS</span><button type="button" class="speak" aria-label="Escuchar: interpretar" onclick="say('interpretar')">🔊</button></div>
+<div class="small">Pretérito indefinido</div><div class="form-big">interpretó</div>
+<div class="example"><b>Interpretó el papel de Evita.</b></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">adaptar</span><span class="tag">NUEVO EN LOS FLASHCARDS</span><button type="button" class="speak" aria-label="Escuchar: adaptar" onclick="say('adaptar')">🔊</button></div>
+<div class="small">Pretérito indefinido</div><div class="form-big">adaptó</div>
+<div class="example"><b>Adaptó una novela al cine.</b></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">contar</span><span class="tag">NUEVO EN LOS FLASHCARDS</span><button type="button" class="speak" aria-label="Escuchar: contar" onclick="say('contar')">🔊</button></div>
+<div class="small">Pretérito indefinido</div><div class="form-big">contó</div>
+<div class="example"><b>La película contó una historia real.</b></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">ganar</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: ganar" onclick="say('ganar')">🔊</button></div>
+<div class="small">Pretérito indefinido</div><div class="form-big">ganó</div>
+<div class="example"><b>Ganó cuatro premios Goya.</b></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">crear</span><span class="tag">NUEVO EN LOS FLASHCARDS</span><button type="button" class="speak" aria-label="Escuchar: crear" onclick="say('crear')">🔊</button></div>
+<div class="small">Pretérito indefinido</div><div class="form-big">creó</div>
+<div class="example"><b>Creó su propia productora.</b></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">actuar</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: actuar" onclick="say('actuar')">🔊</button></div>
+<div class="small">Pretérito indefinido</div><div class="form-big">actuó</div>
+<div class="example"><b>Actuó en varias películas.</b></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">luchar</span><span class="tag">NUEVO EN LOS FLASHCARDS</span><button type="button" class="speak" aria-label="Escuchar: luchar" onclick="say('luchar')">🔊</button></div>
+<div class="small">Pretérito indefinido</div><div class="form-big">luchó</div>
+<div class="example"><b>Nelson Mandela luchó contra el Apartheid.</b></div>
+</div>
+</div>
+<h3 class="color-title yellow" style="margin-top:22px">B · Presente: o → ue (pizarra: comprobar)</h3>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">comprobar</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: comprobar" onclick="say('comprobar')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>compruebo</td><td>compruebas</td><td>comprueba</td><td>comprobamos</td><td>comprobáis</td><td>comprueban</td></tr></table></div>
+<div class="example"><b>Compruebo mis respuestas.</b></div>
+<div class="note">Cambio o → ue en yo, tú, él y ellos. Con nosotros/vosotros no cambia.</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">contar</span><span class="tag">NUEVO EN LOS FLASHCARDS</span><button type="button" class="speak" aria-label="Escuchar: contar" onclick="say('contar')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>cuento</td><td>cuentas</td><td>cuenta</td><td>contamos</td><td>contáis</td><td>cuentan</td></tr></table></div>
+<div class="example"><b>La película cuenta la vida de Evita.</b></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">rodar</span><span class="tag">NUEVO EN LOS FLASHCARDS</span><button type="button" class="speak" aria-label="Escuchar: rodar" onclick="say('rodar')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>ruedo</td><td>ruedas</td><td>rueda</td><td>rodamos</td><td>rodáis</td><td>ruedan</td></tr></table></div>
+<div class="example"><b>Rueda una película en España.</b></div>
+</div>
+<h3 class="color-title purple" style="margin-top:22px">C · ir / ser en pretérito (ejercicio 11)</h3>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">ir / ser</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: ir" onclick="say('ir')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>fui</td><td>fuiste</td><td>fue</td><td>fuimos</td><td>fuisteis</td><td>fueron</td></tr></table></div>
+<div class="example"><b>La película fue un éxito.</b></div>
+<div class="example"><b>Mi hermano no fue a verla.</b></div>
+<div class="note">Las dos formas son iguales: el contexto decide si es ser o ir.</div>
+</div>
+<h3 class="color-title pink" style="margin-top:22px">D · Repaso de presente irregular (diapositiva)</h3>
+<div class="mini-grid">
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">conocer</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: conocer" onclick="say('conocer')">🔊</button></div>
+<div class="small">Presente · yo (-cer)</div><div class="form-big">conozco</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">conducir</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: conducir" onclick="say('conducir')">🔊</button></div>
+<div class="small">Presente · yo (-ucir)</div><div class="form-big">conduzco</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">construir</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: construir" onclick="say('construir')">🔊</button></div>
+<div class="small">Presente · yo (-uir)</div><div class="form-big">construyo</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">pensar</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: pensar" onclick="say('pensar')">🔊</button></div>
+<div class="small">Presente · él (e → ie)</div><div class="form-big">piensa</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">dormir</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: dormir" onclick="say('dormir')">🔊</button></div>
+<div class="small">Presente · él (o → ue)</div><div class="form-big">duerme</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">pedir</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: pedir" onclick="say('pedir')">🔊</button></div>
+<div class="small">Presente · él (e → i)</div><div class="form-big">pide</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">jugar</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: jugar" onclick="say('jugar')">🔊</button></div>
+<div class="small">Presente · él (u → ue)</div><div class="form-big">juega</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">salir</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: salir" onclick="say('salir')">🔊</button></div>
+<div class="small">Presente · él</div><div class="form-big">sale</div>
+</div>
+</div>
+
+</section>
+
+<section id="ex">
+<h2>✏️ Ejercicios interactivos</h2>
+<div class="card"><h3>1 · Cuatro biopics (p. 26)</h3><div id="q-bio"></div></div>
+<div class="card" style="margin-top:14px"><h3>2 · Isabel Coixet: verdadero o falso (p. 27, 3A)</h3><div id="q-coi"></div></div>
+<div class="card" style="margin-top:14px"><h3>3 · ¿A qué película se refiere? (p. 27, 3B)</h3><div id="q-peli"></div></div>
+<div class="card" style="margin-top:14px"><h3>4 · ser o ir (p. 133, ejercicio 11)</h3><div id="q-serir"></div></div>
+<div class="card" style="margin-top:14px"><h3>5 · Expresiones temporales (p. 133, ejercicio 13)</h3><div id="q-t13"></div></div>
+<div class="card" style="margin-top:14px"><h3>6 · Presente de indicativo</h3><div id="q-pres"></div></div>
+<div class="card" style="margin-top:14px"><h3>7 · Verbos y expresiones del cine</h3><div id="q-cine"></div></div>
+<div class="card" style="margin-top:14px"><h3>8 · Preguntas sobre tu vida</h3><div id="q-bioq"></div></div>
+</section>
+
+<section id="practica">
+<h2>🎯 Práctica y tarea</h2>
+<div class="card">
+<h3>🏠 Tarea para el jueves 8</h3>
+<div class="homework">
+<p><b>📄 Ficha «Directores, películas y sinopsis»</b></p>
+<ul><li><b>Comprensión lectora y vocabulario</b>: partes <b>A</b>, <b>B</b>, <b>C</b> y <b>D</b>.</li></ul>
+</div>
+<p class="note"><b>Consejos:</b> lee primero las sinopsis y subraya el tema principal. Para la parte de vocabulario, repasa en esta ficha los verbos del cine (<b>ganar, estar basada en, contar, interpretar, dirigir, estrenar, adaptar</b>) y piensa qué complemento va con cada uno. No hace falta traducir todo: busca las palabras clave.</p>
+</div>
+<div class="card" style="margin-top:14px">
+<h3>✍️ Tres frases con los verbos de la pantalla</h3>
+<p>La profesora pidió tres frases. Comprueba tu trabajo:</p>
+<label><input type="checkbox" onchange="tick(this)"> Escribí tres frases completas.</label><br>
+<label><input type="checkbox" onchange="tick(this)"> Usé el verbo en la forma correcta (persona y tiempo).</label><br>
+<label><input type="checkbox" onchange="tick(this)"> Revisé los verbos con cambio vocálico (o → ue, e → ie, e → i).</label><br>
+<label><input type="checkbox" onchange="tick(this)"> Releí las frases en voz alta.</label>
+<div class="progress" style="margin-top:12px"><span id="bar"></span></div>
+<p id="count" class="small">0/4 completado</p>
+</div>
+<div class="card" style="margin-top:14px">
+<h3>📚 Recomendación de la profesora</h3>
+<p><b>Lecturas graduadas con audio</b>: libros por niveles que puedes leer y escuchar a la vez. Son muy útiles para practicar el vocabulario y la pronunciación.</p>
+</div>
+</section>
+
+<div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
+<footer>Registro individual de la clase del 06/10/2026. Basado en la pizarra, la pantalla, las páginas del libro y las notas de la clase.</footer>
+</div>
+<script>
+function showTab(id,btn){
+ document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+ btn.classList.add('active');
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+let slow=false, esVoice=null;
+function pickEs(){
+ const vs=speechSynthesis.getVoices();
+ esVoice=vs.find(v=>v.lang==='es-ES')||vs.find(v=>v.lang&&v.lang.startsWith('es'))||null;
+}
+if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=pickEs;pickEs();}
+function say(txt){
+ if(!('speechSynthesis' in window)) return;
+ speechSynthesis.cancel();
+ const u=new SpeechSynthesisUtterance(txt);
+ u.lang='es-ES';if(esVoice)u.voice=esVoice;
+ u.rate=slow?.6:.85;
+ speechSynthesis.speak(u);
+}
+function toggleSlow(){
+ slow=!slow;
+ document.querySelectorAll('.slowBtn').forEach(b=>{
+  b.textContent=slow?'🐢 Lento: encendido':'🐢 Lento: apagado';
+  b.setAttribute('aria-pressed',slow);
+ });
+}
+// botón 🔊 en cada frase de ejemplo de TODAS las pestañas (solo el texto en español, dentro de <b>)
+document.querySelectorAll('.example').forEach(el=>{
+ const b=el.querySelector('b'); if(!b) return;
+ const txt=b.textContent.trim();
+ const wrap=document.createElement('span');
+ while(el.firstChild) wrap.appendChild(el.firstChild);
+ el.appendChild(wrap);
+ el.classList.add('sayable');
+ const btn=document.createElement('button');
+ btn.type='button';btn.className='speak';btn.textContent='🔊';
+ btn.setAttribute('aria-label','Escuchar: '+txt);
+ btn.onclick=()=>say(txt);
+ el.appendChild(btn);
+});
+if(!('speechSynthesis' in window)) document.querySelectorAll('.sound-bar').forEach(x=>x.style.display='none');
+
+function makeQuiz(id,qs){
+ const box=document.getElementById(id);let qi=0,score=0,locked=false;
+ function render(){
+  const q=qs[qi];locked=false;
+  box.innerHTML='<p><b>'+q.t+'</b></p><div class="choice-grid">'+q.o.map((o,i)=>'<button type="button" class="choice" data-i="'+i+'">'+o+'</button>').join('')+'</div><p class="small">Pregunta '+(qi+1)+' de '+qs.length+' · Puntos: '+score+'</p><div class="feedback" aria-live="polite"></div>';
+  box.querySelectorAll('.choice').forEach(b=>b.addEventListener('click',()=>ans(+b.dataset.i,b)));
+ }
+ function ans(i,btn){
+  if(locked) return; locked=true;
+  const q=qs[qi];const bs=box.querySelectorAll('.choice');
+  bs.forEach(b=>b.disabled=true);
+  bs[q.a].classList.add('correct');
+  const fb=box.querySelector('.feedback');
+  if(i===q.a){score++;fb.textContent='✅ Correcto. '+(q.e||'');fb.className='feedback ok';}
+  else{btn.classList.add('wrong');fb.textContent='❌ Casi. '+(q.e||'');fb.className='feedback bad';}
+  setTimeout(()=>{if(qi===qs.length-1){end();}else{qi++;render();}},1300);
+ }
+ function end(){
+  box.innerHTML='<p><b>🎉 ¡Fin! Acertaste '+score+' de '+qs.length+'.</b></p><button type="button" class="choice" data-again="1">Empezar de nuevo ↺</button>';
+  box.querySelector('[data-again]').addEventListener('click',()=>{qi=0;score=0;render();});
+ }
+ render();
+}
+makeQuiz('q-bio',[{"t": "Es la historia de tres científicas afroamericanas de los años 60.", "o": ["Figuras ocultas", "Toro salvaje", "Evita"], "a": 0, "e": "Figuras ocultas (Hidden Figures)."}, {"t": "Habla de un joven boxeador que sueña con ser campeón.", "o": ["Bohemian Rhapsody", "Toro salvaje", "Figuras ocultas"], "a": 1, "e": "Toro salvaje (Raging Bull)."}, {"t": "Cuenta la vida del líder de Queen, Freddie Mercury.", "o": ["Evita", "Toro salvaje", "Bohemian Rhapsody"], "a": 2, "e": "Bohemian Rhapsody."}, {"t": "Cuenta la historia de una joven humilde que fue la primera dama de Argentina.", "o": ["Evita", "Figuras ocultas", "Bohemian Rhapsody"], "a": 0, "e": "Evita."}]);
+makeQuiz('q-coi',[{"t": "Su interés por el cine empezó en la universidad.", "o": ["Verdadero", "Falso"], "a": 1, "e": "Falso: se interesó por el cine de pequeña, cuando le regalaron su primera cámara."}, {"t": "Tiene su propia productora.", "o": ["Verdadero", "Falso"], "a": 0, "e": "Verdadero: creó la productora Miss Wasabi Films."}, {"t": "Ha rodado todas sus películas en Europa.", "o": ["Verdadero", "Falso"], "a": 1, "e": "Falso: también rodó en Japón y en otros países."}, {"t": "Además de películas, dirige documentales.", "o": ["Verdadero", "Falso"], "a": 0, "e": "Verdadero: dirigió algunos documentales."}, {"t": "Su primer trabajo como cineasta fue un cortometraje.", "o": ["Verdadero", "Falso"], "a": 0, "e": "Verdadero: su debut fue un corto en 1984."}, {"t": "Todas sus películas son en español.", "o": ["Verdadero", "Falso"], "a": 1, "e": "Falso: rodó también películas en inglés."}, {"t": "Durante un tiempo, se dedicó a la publicidad.", "o": ["Verdadero", "Falso"], "a": 0, "e": "Verdadero: trabajó en publicidad como directora y guionista de anuncios."}]);
+makeQuiz('q-peli',[{"t": "Película de Isabel Coixet: «En esta película trabaja Tim Robbins.»", "o": ["Elisa y Marcela", "Mi vida sin mí", "París, je t’aime", "La librería", "La vida secreta de las palabras"], "a": 4, "e": "Respuesta de la corrección en clase: La vida secreta de las palabras."}, {"t": "«Es la adaptación de un cuento.»", "o": ["Elisa y Marcela", "Mi vida sin mí", "París, je t’aime", "La librería", "La vida secreta de las palabras"], "a": 1, "e": "Respuesta de la corrección en clase: Mi vida sin mí."}, {"t": "«Casi no tiene diálogo. Un narrador cuenta la historia.»", "o": ["Elisa y Marcela", "Mi vida sin mí", "París, je t’aime", "La librería", "La vida secreta de las palabras"], "a": 2, "e": "Respuesta de la corrección en clase: París, je t’aime."}, {"t": "«La película recibió un premio internacional.»", "o": ["Elisa y Marcela", "Mi vida sin mí", "París, je t’aime", "La librería", "La vida secreta de las palabras"], "a": 3, "e": "Respuesta de la corrección en clase: La librería."}, {"t": "«Habla sobre el primer matrimonio homosexual que se celebró en España.»", "o": ["Elisa y Marcela", "Mi vida sin mí", "París, je t’aime", "La librería", "La vida secreta de las palabras"], "a": 0, "e": "Respuesta de la corrección en clase: Elisa y Marcela."}, {"t": "«La película ganó cuatro premios Goya.»", "o": ["Elisa y Marcela", "Mi vida sin mí", "París, je t’aime", "La librería", "La vida secreta de las palabras"], "a": 4, "e": "Respuesta de la corrección en clase: La vida secreta de las palabras."}]);
+makeQuiz('q-serir',[{"t": "La conferencia fue muy interesante.", "o": ["ser", "ir"], "a": 0, "e": "Describe cómo era algo: ser."}, {"t": "Ayer fuimos al cine.", "o": ["ser", "ir"], "a": 1, "e": "Hay un lugar (al cine): ir."}, {"t": "Mis abuelos fueron muy trabajadores.", "o": ["ser", "ir"], "a": 0, "e": "Describe a personas: ser."}, {"t": "Marta no fue a la fiesta.", "o": ["ser", "ir"], "a": 1, "e": "«a la fiesta» indica destino: ir."}, {"t": "Fue el primero de la clase.", "o": ["ser", "ir"], "a": 0, "e": "Identifica o clasifica: ser."}, {"t": "Mis padres fueron a Suecia en 1970.", "o": ["ser", "ir"], "a": 1, "e": "Destino (a Suecia): ir."}]);
+makeQuiz('q-t13',[{"t": "¿Cuál es más reciente?", "o": ["hace 5 minutos", "ayer"], "a": 0, "e": "Hace 5 minutos es lo más cercano a hoy."}, {"t": "¿Cuál ocurrió antes?", "o": ["ayer", "anteayer"], "a": 1, "e": "Anteayer es el día antes de ayer."}, {"t": "¿Cuál es más reciente?", "o": ["hace 3 semanas", "anteayer"], "a": 1, "e": "Anteayer es de hace dos días; tres semanas es más lejos."}, {"t": "Según el orden de la clase, ¿cuál es más reciente?", "o": ["el verano pasado", "el año pasado"], "a": 0, "e": "El verano pasado va antes que el año pasado."}, {"t": "¿Cuál es más antiguo?", "o": ["hace 4 años", "en 1975"], "a": 1, "e": "En 1975 es lo más lejano."}, {"t": "Orden correcto, de más reciente a más antiguo:", "o": ["hace 5 minutos · ayer · anteayer · hace 3 semanas · el verano pasado · el año pasado · hace 4 años · en 1975", "ayer · hace 5 minutos · anteayer · hace 3 semanas · el año pasado · el verano pasado · en 1975 · hace 4 años", "hace 5 minutos · anteayer · ayer · el verano pasado · hace 3 semanas · hace 4 años · el año pasado · en 1975"], "a": 0, "e": "Es el orden corregido en clase (ejercicio 13)."}]);
+makeQuiz('q-pres',[{"t": "Yo (conocer) →", "o": ["conozo", "conozco", "conoco"], "a": 1, "e": "-cer: yo conozco."}, {"t": "Yo (conducir) →", "o": ["conduzco", "conduco", "conduzo"], "a": 0, "e": "-ucir: yo conduzco."}, {"t": "Él (pensar) →", "o": ["pensa", "piensa", "pienza"], "a": 1, "e": "e → ie: piensa."}, {"t": "Nosotros (dormir) →", "o": ["dormimos", "duermimos", "durmimos"], "a": 0, "e": "Con nosotros no cambia la vocal."}, {"t": "Tú (pedir) →", "o": ["pedes", "pides", "pidas"], "a": 1, "e": "e → i: pides."}, {"t": "Ellos (jugar) →", "o": ["jugan", "juegan", "jugen"], "a": 1, "e": "u → ue: juegan."}, {"t": "Yo (comprobar) →", "o": ["comprobo", "compruebo", "comprubo"], "a": 1, "e": "o → ue: compruebo."}, {"t": "Él (salir) →", "o": ["sale", "salga", "salgo"], "a": 0, "e": "Él sale. (Yo salgo.)"}, {"t": "Yo (construir) →", "o": ["construo", "construyo", "construgo"], "a": 1, "e": "-uir: construyo."}, {"t": "Vosotros (ir) →", "o": ["vais", "váis", "van"], "a": 0, "e": "Vosotros vais (sin tilde)."}, {"t": "Yo (saber) →", "o": ["sabo", "sé", "sepo"], "a": 1, "e": "Yo sé."}, {"t": "Ellos (volver) →", "o": ["vuelven", "volven", "vuelvan"], "a": 0, "e": "o → ue: vuelven."}]);
+makeQuiz('q-cine',[{"t": "La película ___ la vida de una cantante.", "o": ["cuenta", "cuento", "cuentas"], "a": 0, "e": "Contar (o → ue): ella cuenta."}, {"t": "Es una película ___ el amor.", "o": ["de", "sobre", "por"], "a": 1, "e": "Una película sobre + tema."}, {"t": "La película está ___ en una novela.", "o": ["basada", "hecha", "contada"], "a": 0, "e": "Estar basada en…"}, {"t": "El director ___ una novela al cine.", "o": ["adaptó", "estrenó", "ganó"], "a": 0, "e": "Adaptar una novela al cine."}, {"t": "Se ___ la película en cines el viernes.", "o": ["estrena", "interpreta", "adapta"], "a": 0, "e": "Estrenar una película: presentarla al público."}, {"t": "La actriz ___ el papel de una científica.", "o": ["interpretó", "dirigió", "rodó"], "a": 0, "e": "Interpretar un papel."}, {"t": "Almodóvar ___ muchas películas premiadas.", "o": ["dirigió", "interpretó", "protagonizó"], "a": 0, "e": "El director dirige la película."}, {"t": "Nelson Mandela ___ contra el Apartheid.", "o": ["luchó", "rodó", "estrenó"], "a": 0, "e": "Luchar contra algo."}]);
+makeQuiz('q-bioq',[{"t": "¿En qué año ___?", "o": ["naciste", "naces", "nació"], "a": 0, "e": "Con tú, pretérito: ¿En qué año naciste?"}, {"t": "¿Dónde ___ la infancia?", "o": ["pasaste", "pasas", "pasó"], "a": 0, "e": "Pasar la infancia: ¿Dónde pasaste la infancia?"}, {"t": "¿Cómo ___ la adolescencia?", "o": ["pasaste", "pasar", "paso"], "a": 0, "e": "¿Cómo pasaste la adolescencia?"}, {"t": "Pasé la adolescencia ___ Salamanca.", "o": ["en", "a", "de"], "a": 0, "e": "Pasar + tiempo + en + lugar."}, {"t": "Cuando ___ 15 años, viajé a Francia.", "o": ["tenía", "tengo", "tuve"], "a": 0, "e": "La edad en el pasado: «cuando tenía 15 años» (lo estudiarás más adelante)."}]);
+let done=0;
+function tick(cb){
+ done+=cb.checked?1:-1;
+ document.getElementById('bar').style.width=(done/4*100)+'%';
+ document.getElementById('count').textContent=done+'/4 completado';
+}
+</script>
+</body></html>
