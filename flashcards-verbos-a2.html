@@ -238,7 +238,10 @@
     line-height: 1.4;
   }
   .nav {
+    width: 100%;
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 12px;
     margin-top: 22px;
   }
@@ -318,6 +321,50 @@
     margin-top: 4px;
     line-height: 1.4;
   }
+  .cat-time-switch {
+    width: 100%;
+    max-width: 480px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 5px;
+    margin-bottom: 18px;
+  }
+  .cat-time-btn {
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 9px 8px;
+    border-radius: 9px;
+    cursor: pointer;
+  }
+  .cat-time-btn.active {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: white;
+  }
+  .cat-time-info {
+    width: 100%;
+    max-width: 480px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.78rem;
+    margin: -8px 0 16px;
+    line-height: 1.4;
+  }
+  .study-time-switch {
+    display:flex; gap:6px; margin:0 auto 14px; background:var(--card-bg); border:1px solid var(--border); border-radius:999px; padding:4px; max-width:480px;
+  }
+  .study-time-btn { border:none; background:transparent; color:var(--muted); font-family:inherit; font-size:.82rem; font-weight:700; padding:7px 15px; border-radius:999px; cursor:pointer; flex:1; }
+  .study-time-btn.active { background:linear-gradient(135deg,var(--accent),var(--accent2)); color:white; }
+  .tense-block { width:100%; margin-top:4px; }
+  .tense-title { font-size:.78rem; text-transform:uppercase; letter-spacing:.05em; color:var(--accent3); font-weight:800; text-align:center; margin:4px 0 8px; }
+  .past-note { font-size:.78rem; color:var(--muted); text-align:center; margin-top:8px; }
   .cat-section {
     width: 100%;
     max-width: 480px;
@@ -542,9 +589,10 @@ const UI = {
   pt: {
     title: "Verbos A2 — por padrões",
     sub: "Toque no cartão pra virar",
-    tabStudy: "Estudar", tabQuiz: "Testar", tabCat: "Categorias", tabSounds: "Sons",
+    tabStudy: "Estudar", tabQuiz: "Testar", tabCat: "Categorias", tabSounds: "Sons", catAll: "⚪ Todos", catPresent: "🟢 Presente", catPast: "🟣 Pasado", catPastInfo: "Verbos com referência ao pretérito nas notas da aula.",
     exportCsv: "📥 Baixar Excel (.csv)",
-    hint: "toque no cartão pra ver a conjugação",
+    hint: "toque no cartão pra ver las conjugaciones",
+    allTime: "⚪ Todos", presentTime: "🟢 Presente", pastTime: "🟣 Pasado", present: "Presente", past: "Pasado",
     prev: "◀ Anterior", next: "Próxima ▶", restart: "Reiniciar ↺",
     speakAll: "🔊 Ouvir as 6 formas",
     quizScore: (c,t) => `Acertos: ${c} / ${t}`,
@@ -556,9 +604,10 @@ const UI = {
   es: {
     title: "Verbos A2 — por patrón",
     sub: "Toca la tarjeta para darle la vuelta",
-    tabStudy: "Estudiar", tabQuiz: "Practicar", tabCat: "Categorías", tabSounds: "Sonidos",
+    tabStudy: "Estudiar", tabQuiz: "Practicar", tabCat: "Categorías", tabSounds: "Sonidos", catAll: "⚪ Todos", catPresent: "🟢 Presente", catPast: "🟣 Pasado", catPastInfo: "Verbos con referencia al pretérito en las notas de clase.",
     exportCsv: "📥 Descargar Excel (.csv)",
-    hint: "toca la tarjeta para ver la conjugación",
+    hint: "toca la tarjeta para ver las conjugaciones",
+    allTime: "⚪ Todos", presentTime: "🟢 Presente", pastTime: "🟣 Pasado", present: "Presente", past: "Pasado",
     prev: "◀ Anterior", next: "Siguiente ▶", restart: "Reiniciar ↺",
     speakAll: "🔊 Escuchar las 6 formas",
     quizScore: (c,t) => `Aciertos: ${c} / ${t}`,
@@ -570,9 +619,10 @@ const UI = {
   en: {
     title: "A2 Verbs — by pattern",
     sub: "Tap the card to flip it",
-    tabStudy: "Study", tabQuiz: "Quiz", tabCat: "Categories", tabSounds: "Sounds",
+    tabStudy: "Study", tabQuiz: "Quiz", tabCat: "Categories", tabSounds: "Sounds", catAll: "⚪ All", catPresent: "🟢 Present", catPast: "🟣 Past", catPastInfo: "Verbs with a preterite reference in the class notes.",
     exportCsv: "📥 Download Excel (.csv)",
-    hint: "tap the card to see the conjugation",
+    hint: "tap the card to see the conjugations",
+    allTime: "⚪ All", presentTime: "🟢 Present", pastTime: "🟣 Past", present: "Present", past: "Past",
     prev: "◀ Previous", next: "Next ▶", restart: "Restart ↺",
     speakAll: "🔊 Hear all 6 forms",
     quizScore: (c,t) => `Score: ${c} / ${t}`,
@@ -1070,37 +1120,90 @@ function speakAll(forms) {
   });
 }
 
+function reflexiveBase(word) {
+  const m = word.match(/^(me|te|se|nos|os)?\s*(.+)$/);
+  return { pronoun: m[1] || "", base: m[2] };
+}
+
+const PAST_IRREGULAR = {
+  ser: ["fui","fuiste","fue","fuimos","fuisteis","fueron"],
+  ir: ["fui","fuiste","fue","fuimos","fuisteis","fueron"],
+  estar: ["estuve","estuviste","estuvo","estuvimos","estuvisteis","estuvieron"],
+  tener: ["tuve","tuviste","tuvo","tuvimos","tuvisteis","tuvieron"],
+  hacer: ["hice","hiciste","hizo","hicimos","hicisteis","hicieron"],
+  poder: ["pude","pudiste","pudo","pudimos","pudisteis","pudieron"],
+  poner: ["puse","pusiste","puso","pusimos","pusisteis","pusieron"],
+  saber: ["supe","supiste","supo","supimos","supisteis","supieron"],
+  querer: ["quise","quisiste","quiso","quisimos","quisisteis","quisieron"],
+  venir: ["vine","viniste","vino","vinimos","vinisteis","vinieron"],
+  decir: ["dije","dijiste","dijo","dijimos","dijisteis","dijeron"],
+  traer: ["traje","trajiste","trajo","trajimos","trajisteis","trajeron"],
+  conducir: ["conduje","condujiste","condujo","condujimos","condujisteis","condujeron"],
+  producir: ["produje","produjiste","produjo","produjimos","produjisteis","produjeron"],
+  dar: ["di","diste","dio","dimos","disteis","dieron"],
+  ver: ["vi","viste","vio","vimos","visteis","vieron"],
+  haber: ["hube","hubiste","hubo","hubimos","hubisteis","hubieron"],
+  andar: ["anduve","anduviste","anduvo","anduvimos","anduvisteis","anduvieron"],
+  caber: ["cupe","cupiste","cupo","cupimos","cupisteis","cupieron"]
+};
+
+function getPastForms(v) {
+  if (v.pastForms) return v.pastForms;
+  const r = reflexiveBase(v.word);
+  const base = r.base;
+  if (PAST_IRREGULAR[base]) {
+    const f = PAST_IRREGULAR[base];
+    return r.pronoun ? f.map((x,i)=>["me","te","se","nos","os","se"][i]+" "+x) : f;
+  }
+  let stem = base;
+  let ending = base.slice(-2);
+  let root = base.slice(0,-2);
+  let endings;
+  if (ending === "ar") endings = ["é","aste","ó","amos","asteis","aron"];
+  else endings = ["í","iste","ió","imos","isteis","ieron"];
+  if (base.endsWith("car")) stem = base.slice(0,-3)+"qu"+"e"; else if (base.endsWith("gar")) stem = base.slice(0,-3)+"gu"+"é"; else if (base.endsWith("zar")) stem = base.slice(0,-3)+"c"+"é";
+  if (base.endsWith("uir") && !base.endsWith("guir")) return [root+"í",root+"iste",root+"yó",root+"imos",root+"isteis",root+"yeron"];
+  if (base.endsWith("eer") || base.endsWith("oír") || base.endsWith("aer")) return [root+"í",root+"íste",root+"yó",root+"ímos",root+"ísteis",root+"yeron"];
+  let f;
+  if (base.endsWith("car")) f=[base.slice(0,-3)+"qué",base.slice(0,-3)+"caste",base.slice(0,-3)+"có",base.slice(0,-3)+"camos",base.slice(0,-3)+"casteis",base.slice(0,-3)+"caron"];
+  else if (base.endsWith("gar")) f=[base.slice(0,-3)+"gué",base.slice(0,-3)+"gaste",base.slice(0,-3)+"gó",base.slice(0,-3)+"gamos",base.slice(0,-3)+"gasteis",base.slice(0,-3)+"garon"];
+  else if (base.endsWith("zar")) f=[base.slice(0,-3)+"cé",base.slice(0,-3)+"zaste",base.slice(0,-3)+"zó",base.slice(0,-3)+"zamos",base.slice(0,-3)+"zasteis",base.slice(0,-3)+"zaron"];
+  else f=[root+endings[0],root+endings[1],root+endings[2],root+endings[3],root+endings[4],root+endings[5]];
+  // Stem-changing -IR verbs change only in 3rd person in the preterite.
+  if (base.endsWith("ir")) {
+    const changes={sentir:"sint",dormir:"durm",morir:"mur",pedir:"pid",servir:"sirv",seguir:"sigu",vestir:"vist",reír:"ri",mentir:"mint",preferir:"prefir",invertir:"invirt",divertir:"divirt",despedir:"despid",medir:"mid"};
+    if(changes[base]) { const st=changes[base]; f[2]=st+"ió"; f[5]=st+"ieron"; }
+  }
+  if (r.pronoun) f=f.map((x,i)=>["me","te","se","nos","os","se"][i]+" "+x);
+  return f;
+}
+
+function timeButtons() {
+  return `<div class="study-time-switch" role="tablist" aria-label="Tiempo verbal">
+    <button class="study-time-btn ${studyTime==='all'?'active':''}" onclick="setStudyTime('all')">${t('allTime')}</button>
+    <button class="study-time-btn ${studyTime==='present'?'active':''}" onclick="setStudyTime('present')">${t('presentTime')}</button>
+    <button class="study-time-btn ${studyTime==='past'?'active':''}" onclick="setStudyTime('past')">${t('pastTime')}</button>
+  </div>`;
+}
+
 function render() {
   const v = verbs[i];
   const card = document.getElementById('card');
   document.getElementById('progress').textContent = (i+1) + " / " + verbs.length;
+  const studyControls = timeButtons();
   document.getElementById('prevBtn').disabled = (i === 0);
   document.getElementById('nextBtn').textContent = (i === verbs.length - 1) ? t('restart') : t('next');
-
+  const past = getPastForms(v);
+  const makeGrid = (forms) => cols.map((c, idx) => `<div class="conj-cell"><div class="pronoun">${c}</div><div class="form">${forms[idx]}</div><button class="cell-speak" onclick="event.stopPropagation(); speak('${String(forms[idx]).replace(/'/g, "\\'")}')">🔊</button></div>`).join("");
+  const block = (title, forms) => `<div class="tense-block"><div class="tense-title">${title}</div><div class="conj-grid">${makeGrid(forms)}</div><button class="speak-all" onclick="event.stopPropagation(); speakAll(${JSON.stringify(forms)})">${t('speakAll')}</button></div>`;
   if (!flipped) {
-    card.innerHTML = `
-      <div class="group-tag">${gTxt(v.groupKey)}</div>
-      <div class="verb-sticker" aria-label="Figurinha do verbo">${v.sticker}</div>
-       <div class="front-word">${v.word}</div>
-      <div class="meaning">${mTxt(v)}</div>
-      <button class="speak-front" onclick="event.stopPropagation(); speak('${v.word}')">🔊</button>
-      <div class="hint">${t('hint')}</div>
-    `;
+    card.innerHTML = studyControls + `<div class="group-tag">${gTxt(v.groupKey)}</div><div class="verb-sticker" aria-label="Figurinha do verbo">${v.sticker}</div><div class="front-word">${v.word}</div><div class="meaning">${mTxt(v)}</div><button class="speak-front" onclick="event.stopPropagation(); speak('${v.word}')">🔊</button><div class="hint">${t('hint')}</div>`;
   } else {
-    const cells = cols.map((c, idx) => `
-      <div class="conj-cell">
-        <div class="pronoun">${c}</div>
-        <div class="form">${v.forms[idx]}</div>
-        <button class="cell-speak" onclick="event.stopPropagation(); speak('${v.forms[idx].replace(/'/g, "\\'")}')">🔊</button>
-      </div>
-    `).join("");
-    card.innerHTML = `
-      <div class="group-tag">${gTxt(v.groupKey)}</div>
-      <div class="meaning">${v.word} — ${mTxt(v)}</div>
-      <div class="conj-grid">${cells}</div>
-      <button class="speak-all" onclick="event.stopPropagation(); speakAll(${JSON.stringify(v.forms)})">${t('speakAll')}</button>
-      <div class="note">${nTxt(v.noteKey)}</div>
-    `;
+    let content = '';
+    if (studyTime === 'present') content = block(t('present'), v.forms);
+    else if (studyTime === 'past') content = block(t('past'), past);
+    else content = block(t('present'), v.forms) + block(t('past'), past);
+    card.innerHTML = studyControls + `<div class="group-tag">${gTxt(v.groupKey)}</div><div class="meaning">${v.word} — ${mTxt(v)}</div>${content}<div class="note">${nTxt(v.noteKey)}</div>`;
   }
 }
 
@@ -1126,20 +1229,27 @@ function csvEscape(value) {
 }
 
 function exportVerbsCSV() {
+  // O CSV usa a mesma estrutura temporal dos flashcards:
+  // cada verbo aparece uma única vez, com Presente e Pasado na mesma linha.
   const headers = [
     "Padrão", "Figurinha", "Infinitivo", "Significado",
-    "Yo", "Tú", "Él/Ella", "Nosotros", "Vosotros", "Ellos",
+    "Presente — Yo", "Presente — Tú", "Presente — Él/Ella", "Presente — Nosotros", "Presente — Vosotros", "Presente — Ellos",
+    "Pasado — Yo", "Pasado — Tú", "Pasado — Él/Ella", "Pasado — Nosotros", "Pasado — Vosotros", "Pasado — Ellos",
     "Regra/Observação"
   ];
 
-  const rows = verbs.map(v => [
-    gTxt(v.groupKey),
-    v.sticker || "",
-    v.word,
-    mTxt(v),
-    ...v.forms,
-    nTxt(v.noteKey)
-  ]);
+  const rows = verbs.map(v => {
+    const past = getPastForms(v);
+    return [
+      gTxt(v.groupKey),
+      v.sticker || "",
+      v.word,
+      mTxt(v),
+      ...v.forms,
+      ...past,
+      nTxt(v.noteKey)
+    ];
+  });
 
   const csvContent = [
     headers.map(csvEscape).join(";"),
@@ -1165,9 +1275,13 @@ function exportVerbsCSV() {
 
 // ---------- Modo Quiz ----------
 let mode = 'study';
+let categoryTime = 'all';
+let studyTime = 'all';
 let quizCorrect = 0;
 let quizTotal = 0;
 let currentQuestion = null;
+
+function setStudyTime(v) { studyTime=v; flipped=false; render(); }
 
 function switchTab(m) {
   mode = m;
@@ -1256,21 +1370,47 @@ function goToVerb(word) {
   switchTab('study');
 }
 
+function setCategoryTime(time) {
+  categoryTime = time;
+  renderCategories();
+}
+
+function hasPastReference(v) {
+  const note = v.noteKey ? (NOTES[v.noteKey]?.es || NOTES[v.noteKey]?.pt || NOTES[v.noteKey]?.en || '') : '';
+  return /pretérito|pret[eé]rito|preterite/i.test(note);
+}
+
 function renderCategories() {
+  const filtered = verbs;
+
   const groups = {};
   const order = [];
-  verbs.forEach(v => {
+  filtered.forEach(v => {
     if (!groups[v.groupKey]) { groups[v.groupKey] = []; order.push(v.groupKey); }
     groups[v.groupKey].push(v.word);
   });
-  const html = order.map(g => `
-    <div class="cat-section">
-      <div class="cat-title">${gTxt(g)} <span style="color:var(--muted); font-weight:400;">(${groups[g].length})</span></div>
-      <div class="cat-chips">
-        ${groups[g].map(w => `<button class="cat-chip" onclick="goToVerb('${w}')">${w}</button>`).join("")}
-      </div>
+
+  const labels = {
+    all: t('catAll'),
+    present: t('catPresent'),
+    past: t('catPast')
+  };
+
+  const html = `
+    <div class="cat-time-switch" role="tablist" aria-label="${t('tabCat')}">
+      ${['all','present','past'].map(k => `<button class="cat-time-btn ${categoryTime === k ? 'active' : ''}" onclick="setCategoryTime('${k}')" role="tab" aria-selected="${categoryTime === k}">${labels[k]}</button>`).join('')}
     </div>
-  `).join("");
+    ${categoryTime === 'past' ? `<div class="cat-time-info">${t('catPastInfo')}</div>` : ''}
+    ${order.map(g => `
+      <div class="cat-section">
+        <div class="cat-title">${gTxt(g)} <span style="color:var(--muted); font-weight:400;">(${groups[g].length})</span></div>
+        <div class="cat-chips">
+          ${groups[g].map(w => `<button class="cat-chip" onclick="goToVerb('${w}')">${w}</button>`).join("")}
+        </div>
+      </div>
+    `).join('')}
+    ${!order.length ? `<div class="cat-time-info">—</div>` : ''}
+  `;
   document.getElementById('catView').innerHTML = html;
 }
 
