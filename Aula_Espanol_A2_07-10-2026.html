@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080a18">
+<title>Clase de Español A2 — 07/10/2026</title>
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#080a18;--card:#171d38;--text:#f8f9ff;--muted:#b8c0dd;
+  --pink:#ff5ca8;--purple:#a56cff;--turq:#37e6d4;--yellow:#ffd34e;
+  --blue:#42a5ff;--soft:#252e50;--border:#2d385e;--ok:#4be59a;--bad:#ff6b7c;
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 10% 0,#1d2b66,transparent 38%),radial-gradient(circle at 90% 0,#5a174d,transparent 35%),var(--bg);background-attachment:fixed;color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}
+.container{max-width:1100px;margin:auto;padding:22px 16px 60px}
+header{text-align:center;padding:26px 20px;margin-bottom:6px;border-radius:22px;border:1px solid #48598d;background:linear-gradient(135deg,#172c6c,#49237f 52%,#741c58);box-shadow:0 18px 50px #0008}
+.badge{display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;font-weight:800;font-size:.82rem}
+h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);color:#fff}
+.subtitle{color:#e3e6ff}
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);display:flex;gap:7px;overflow:auto;padding:8px;border-bottom:1px solid var(--border)}
+nav button,.tab{border:1px solid var(--border);background:var(--card);color:var(--text);padding:9px 12px;border-radius:12px;cursor:pointer;white-space:nowrap;font-weight:750}
+nav button.active,.tab.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+section{display:none;padding-top:22px}
+section.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:0 7px 22px color-mix(in srgb,var(--purple) 10%,transparent)}
+.card h3{margin-top:0}
+.color-title{font-size:1.25rem;font-weight:900}
+.pink{color:var(--pink)}.purple{color:var(--purple)}.turq{color:var(--turq)}.blue{color:var(--blue)}.yellow{color:var(--yellow)}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden}
+th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+th{background:#202a4c;color:#cdbdff}
+.verb-card{margin-bottom:16px}
+.verb-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.verb{font-size:1.45rem;font-weight:900;color:var(--pink)}
+.tag{font-size:.78rem;font-weight:800;padding:4px 9px;border-radius:999px;background:var(--soft);color:#cdbdff}
+.speak{border:0;background:var(--soft);border-radius:10px;padding:7px 10px;cursor:pointer}
+.example{border-left:4px solid var(--turq);padding:9px 12px;background:color-mix(in srgb,var(--turq) 8%,var(--card));border-radius:0 12px 12px 0;margin:9px 0}
+.note{font-size:.9rem;color:var(--muted)}
+.choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:9px}
+.choice{padding:12px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;text-align:left}
+.choice.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card))}
+.choice.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card))}
+.feedback{margin-top:12px;font-weight:800}
+.feedback.ok{color:var(--ok)}.feedback.bad{color:var(--bad)}
+details{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px;margin:9px 0}
+summary{cursor:pointer;font-weight:800}
+.progress{height:10px;background:var(--soft);border-radius:99px;overflow:hidden}.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq));transition:.25s}
+.small{font-size:.88rem;color:var(--muted)}
+.example.sayable{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.example.sayable .speak{flex:0 0 auto;font-size:1.05rem}
+.sound-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:6px 0 12px}
+.speak:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.speak[aria-pressed="true"]{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff}
+footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
+@media(max-width:600px){.container{padding:14px 10px 45px}th,td{padding:8px;font-size:.9rem}.card{padding:15px}}
+
+.home-nav{text-align:center;margin:14px 0 8px}
+.home-nav a{display:inline-block;padding:10px 18px;border-radius:12px;background:#10152b;border:1px solid var(--border);color:#fff;text-decoration:none;font-weight:800;transition:transform .15s ease,border-color .15s ease}
+.home-nav a:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.home-nav a:hover{transform:translateY(-1px);border-color:var(--blue)}
+
+
+.table-wrap{overflow-x:auto;border-radius:16px}
+.table-wrap table{min-width:520px}
+select{background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:8px 10px;font:inherit;max-width:100%}
+select:focus-visible,.choice:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.ex-row{margin:12px 0;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.ex-row:last-of-type{border-bottom:0}
+.ex-fb{display:inline-block;margin-left:8px;font-weight:800}
+.ex-fb.ok{color:var(--ok)}.ex-fb.bad{color:var(--bad)}
+.chip{display:inline-block;padding:4px 10px;margin:3px 3px 3px 0;border-radius:999px;background:var(--soft);border:1px solid var(--border);font-weight:700}
+.mini-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.mini-grid .verb-card{margin-bottom:0}
+.form-big{font-size:1.25rem;font-weight:900;color:var(--turq);margin:10px 0 4px}
+ul.clean{margin:8px 0;padding-left:20px}ul.clean li{margin:5px 0}
+.choice:disabled{cursor:default}
+
+.pill{display:inline-block;padding:3px 9px;border-radius:999px;background:var(--soft);border:1px solid var(--border);font-size:.78rem;font-weight:800;margin-left:6px}
+.mini-forms{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.mini-forms div{flex:1 1 90px;background:#0c1125;border:1px solid var(--border);border-radius:10px;padding:7px 9px;text-align:center}
+.mini-forms small{display:block;color:var(--muted);font-size:.7rem;text-transform:uppercase}
+.mini-forms b{font-size:1.05rem;color:var(--turq)}
+
+.dict-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:10px 0}
+.num-input{background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:10px 12px;font:inherit;font-size:1.2rem;width:min(100%,240px)}
+.num-input:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.big-num{font-size:1.6rem;font-weight:900;color:var(--turq)}
+.num-table td.n{font-weight:900;color:var(--yellow);width:46px}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <span class="badge">EOI · Español A2 · Clase individual</span>
+  <h1>Ficha interactiva — 07/10/2026</h1>
+  <div class="subtitle">Unidad 4 «Hogar, dulce hogar»: viviendas, anuncios, «me va bien» y posesivos</div>
+  <div class="subtitle" style="font-size:.9rem;margin-top:6px">📖 Libro: Aula Plus 2 · unidad 4 (pp. 53, 54 y 57)</div>
+</header>
+<div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
+
+<nav>
+  <button class="active" onclick="showTab('resumen',this)">📚 Resumen</button>
+  <button onclick="showTab('vocab',this)">📝 Vocabulario</button>
+  <button onclick="showTab('gram',this)">🧠 Gramática</button>
+  <button onclick="showTab('verbos',this)">🔤 Verbos</button>
+  <button onclick="showTab('ex',this)">✏️ Ejercicios</button>
+  <button onclick="showTab('practica',this)">🎯 Práctica</button>
+</nav>
+
+<section id="resumen" class="active">
+<div class="grid">
+ <div class="card"><div class="color-title pink">1. Aula virtual</div><p>El aula virtual del grupo A2 ya está preparada: infografías, ejercicios de presente, la lección 2 (pasado) y actividades extra. La profesora irá añadiendo materiales durante todo el curso.</p></div>
+ <div class="card"><div class="color-title purple">2. Unidad 4</div><p><b>Hogar, dulce hogar</b>: describir una casa, expresar gustos y preferencias, comparar, ubicar objetos y diseñar y amueblar una vivienda.</p></div>
+ <div class="card"><div class="color-title turq">3. Viviendas y anuncios</div><p>Tipos de vivienda (p. 53), partes de la casa y anuncios inmobiliarios (p. 54). ¿Qué vivienda es adecuada para cada persona?</p></div>
+ <div class="card"><div class="color-title yellow">4. «Me va bien»</div><p>Para decir qué vivienda conviene a alguien: <b>a mí me va bien…</b>, <b>a ellos les va bien…</b>.</p></div>
+</div>
+
+<div class="card" style="margin-top:14px">
+<h3>⭐ Frases clave de la clase</h3>
+<div class="sound-bar"><span class="small">🔊 Toca el botón de cada frase para escucharla.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
+<div class="example"><b>A mí me va bien el piso.</b></div>
+<div class="example"><b>A ellos les va bien el ático.</b></div>
+<div class="example"><b>A mí me van bien las casas del campo.</b></div>
+<div class="example"><b>Creo que va bien para mí.</b></div>
+<div class="example"><b>Dame tu opinión.</b></div>
+<div class="example"><b>Es el piso que cuesta 950 euros.</b></div>
+<div class="example"><b>Tiene mucha luz.</b></div>
+<div class="example"><b>Está en una zona bonita.</b></div>
+<div class="example"><b>Mi piso da a una calle peatonal.</b></div>
+<div class="example"><b>Soy una persona urbana.</b></div>
+
+</div>
+
+<div class="card" style="margin-top:14px">
+<h3>📋 Actividades de la clase</h3>
+<div class="activity-list">
+<p><b>✓ Aula virtual</b><br>La profesora explicó cómo entrar: con el usuario y la contraseña del correo educativo de la matrícula (educa.madrid). Si no los encuentras, escribe a la profesora.</p>
+<p><b>✓ p. 53 · pregunta 1A</b><br>Con un compañero: ¿qué tipo de persona o familia puede alquilar cada vivienda y para qué? Se respondió en clase.</p>
+<p><b>✓ p. 54 · pregunta 2A</b><br>Leer el anuncio del chalé y observar los dos planos: ¿qué partes de la casa identificas?</p>
+<p><b>✓ p. 54 · pregunta 2B</b><br>Leer los cinco anuncios y decidir qué vivienda es más adecuada para cada persona o familia. Se respondió en clase.</p>
+<p><b>✓ p. 57 · pregunta 5A</b><br>Con un compañero: ¿qué puedes decir del piso de la fotografía (la parte rodeada)? Después, se comentó con la profesora.</p>
+<p><b>✓ p. 57 · pregunta 5B</b><br>Audio: escuchar a Julián y completar las frases; comprobar con el compañero.</p>
+</div>
+<div class="pending"><b>🏠 Tarea:</b> p. 57 · ejercicios <b>5C</b> y <b>5D</b>.</div>
+<div class="pending"><b>📣 Certificado A2:</b> la profesora dijo que una posible fecha es el <b>13 de enero de 2027</b> (todavía por confirmar). Está incluido en el curso. Las pruebas del curso son en octubre y diciembre.</div>
+</div>
+</section>
+
+<section id="vocab">
+<h2>📝 Vocabulario</h2>
+<div class="grid">
+ <div class="card"><div class="color-title pink">Tipos de vivienda</div>
+  <ul class="clean">
+   <li><b>un piso</b> · <b>un piso compartido</b> · <b>una habitación</b> en un piso compartido</li>
+   <li><b>un estudio</b>: una sola habitación grande, con cocina y baño.</li>
+   <li><b>un chalé</b>: casa para una sola familia (<b>unifamiliar</b>) con terreno alrededor; puede estar en el campo o en la ciudad.</li>
+   <li><b>una casa adosada</b>: casa unida a otras, sin terreno alrededor.</li>
+   <li><b>una casa de campo</b>: casa en el campo, sin vecinos cerca.</li>
+   <li><b>una casa en el pueblo</b></li>
+   <li><b>un ático</b>: el último piso, normalmente con terraza.</li>
+   <li><b>un dúplex</b>: vivienda de dos plantas.</li>
+   <li><b>obra nueva</b> / <b>obra antigua</b> · <b>una barraca</b> (casa típica de Valencia)</li>
+  </ul></div>
+ <div class="card"><div class="color-title turq">Partes de la casa (p. 54)</div>
+  <ul class="clean">
+   <li><b>la planta baja</b> · <b>la primera planta</b></li>
+   <li><b>la cocina</b> · <b>el salón-comedor</b> · <b>el baño</b> · <b>el lavadero</b></li>
+   <li><b>una habitación doble / individual</b> · <b>una suite</b> (con baño propio)</li>
+   <li><b>un despacho</b>: lugar para trabajar en casa.</li>
+   <li><b>un vestidor</b>: armario grande para vestirse.</li>
+   <li><b>una terraza</b> · <b>un jardín</b> · <b>una piscina</b></li>
+   <li><b>una sala de juegos</b> · <b>un garaje</b> (de dos plazas)</li>
+   <li><b>los suelos</b> de parqué natural</li>
+  </ul></div>
+ <div class="card"><div class="color-title yellow">Describir una vivienda</div>
+  <ul class="clean">
+   <li><b>amplio/a</b> = grande, con mucho espacio</li>
+   <li><b>luminoso/a</b> = con mucha luz · <b>tiene mucha luz</b></li>
+   <li><b>acogedor/a</b> = cómodo y agradable (de <i>acoger</i>, <i>la acogida</i>)</li>
+   <li><b>tranquilo/a</b> · <b>ruidoso/a</b></li>
+   <li><b>bien comunicado</b> · <b>bien situado</b> · <b>con encanto</b></li>
+   <li><b>amueblado / sin amueblar</b> · <b>equipado/a</b></li>
+   <li><b>las vistas</b> · <b>una zona bonita</b></li>
+   <li><b>ni grande ni pequeño</b></li>
+  </ul>
+  <p class="note">En los anuncios el adjetivo suele ir delante: «una <b>bonita</b> casa». Al hablar decimos «una casa <b>bonita</b>».</p></div>
+ <div class="card"><div class="color-title purple">Personas y estilo de vida</div>
+  <ul class="clean">
+   <li><b>una persona urbana</b> (le gusta la ciudad) · <b>una persona campestre</b> (le gusta el campo)</li>
+   <li><b>teletrabajar</b> · <b>un trabajo temporal</b></li>
+   <li><b>mascotas</b> · <b>un perro</b> · <b>gatos</b></li>
+   <li><b>mis suegros</b> · <b>tus suegros</b> · <b>sus suegros</b></li>
+   <li><b>un jubilado</b> · <b>un pediatra</b> · <b>un entrenador personal</b></li>
+   <li><b>el nivel adquisitivo</b> (alto / medio / bajo): la capacidad de comprar o pagar.</li>
+  </ul></div>
+ <div class="card"><div class="color-title pink">Palabras con trampa</div>
+  <ul class="clean">
+   <li><b>una tienda de campaña</b> (para acampar) ≠ <b>una tienda</b> (un comercio).</li>
+   <li><b>comprar</b> = <b>adquirir</b> (más formal).</li>
+   <li>«<b>¿Cuánto dinero ganas al mes?</b>» es natural; <b>salario</b> es más formal.</li>
+   <li><b>roto/a</b> = que no funciona o está partido.</li>
+   <li><b>amplio</b> también se dice de bolsos, maletas…</li>
+  </ul></div>
+</div>
+</section>
+
+<section id="gram">
+<h2>🧠 Gramática</h2>
+<div class="sound-bar"><span class="small">🔊 Toca el botón de cada ejemplo para escucharlo.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
+
+<h3 class="color-title pink">1 · «Me va bien»: lo que me conviene</h3>
+<div class="card">
+<div class="table-wrap"><table>
+<tr><th>Pronombre</th><th>Verbo</th><th>Sujeto</th></tr>
+<tr><td>A mí <b>me</b></td><td rowspan="6"><b>va</b> (una cosa)<br><b>van</b> (varias cosas)<br>+ <b>bien / mal / fatal / genial</b></td><td rowspan="6">el piso · el ático<br>el apartamento · la casa<br>las casas en el campo</td></tr>
+<tr><td>A ti <b>te</b></td></tr>
+<tr><td>A él / ella / usted <b>le</b></td></tr>
+<tr><td>A nosotros/as <b>nos</b></td></tr>
+<tr><td>A vosotros/as <b>os</b></td></tr>
+<tr><td>A ellos/as, ustedes <b>les</b></td></tr>
+</table></div>
+<div class="example"><b>A mí me va bien el piso.</b></div>
+<div class="example"><b>A ellos les va bien el ático.</b></div>
+<div class="example"><b>A mí me van bien los apartamentos del centro.</b></div>
+<div class="example"><b>También va bien para ellos.</b></div>
+
+<p class="note">Funciona como <b>gustar</b>: el verbo concuerda con lo que conviene (el piso → va; las casas → van).</p>
+</div>
+
+<div class="grid" style="margin-top:14px">
+ <div class="card"><div class="color-title turq">me va bien × me parece bien</div>
+  <ul class="clean">
+   <li><b>Me va bien</b> = se adapta a mí, me conviene. <div class="example"><b>El piso de 1500 euros me va bien.</b></div>
+</li>
+   <li><b>Me parece bien</b> = opino que es buena idea. <div class="example"><b>Me parece bien el piso de 1500 euros.</b></div>
+</li>
+  </ul></div>
+ <div class="card"><div class="color-title yellow">Dar tu opinión</div>
+  <ul class="clean">
+   <li><div class="example"><b>Creo que va bien para mí.</b></div>
+</li>
+   <li><div class="example"><b>Dame tu opinión.</b></div>
+</li>
+   <li><div class="example"><b>Yo creo que es mejor el piso que cuesta 1500 euros.</b></div>
+</li>
+  </ul></div>
+ <div class="card"><div class="color-title pink">Identificar con «el que»</div>
+  <ul class="clean">
+   <li><div class="example"><b>Es el piso que cuesta 950 euros.</b></div>
+</li>
+   <li><div class="example"><b>Es el que tiene dos habitaciones.</b></div>
+</li>
+   <li><div class="example"><b>Es el que tiene mucho sol.</b></div>
+</li>
+  </ul></div>
+</div>
+
+<h3 class="color-title yellow" style="margin-top:24px">2 · Describir una vivienda (p. 57)</h3>
+<div class="card">
+<div class="table-wrap"><table>
+<tr><th>Verbo</th><th>Ejemplo</th></tr>
+<tr><td><b>Vivo en</b> un piso / una casa / un estudio…</td><td><div class="example"><b>Vivo en un piso compartido.</b></div>
+</td></tr>
+<tr><td><b>Está en</b> el centro / las afueras…</td><td><div class="example"><b>Está en el centro histórico de la ciudad.</b></div>
+</td></tr>
+<tr><td><b>Tiene</b> tres habitaciones / una cocina / 60 metros cuadrados…</td><td><div class="example"><b>Tiene una terraza de 15 metros cuadrados.</b></div>
+</td></tr>
+<tr><td><b>Da a</b> la montaña / el mar / el campo / una calle / un parque…</td><td><div class="example"><b>Da a una calle peatonal y a un mercado.</b></div>
+</td></tr>
+</table></div>
+<p class="note">Más ejemplos de la clase: «Tiene mucha luz.» · «Una habitación…» · «Está en una zona bonita.» · «Las vistas.» · «Es un ático de 55 m².»</p>
+</div>
+
+<h3 class="color-title purple" style="margin-top:24px">3 · Posesivos</h3>
+<div class="card">
+<div class="color-title pink">Con nombre (átonos): mis, tus, sus</div>
+<div class="example"><b>Mis suegros viven en el campo.</b></div>
+
+<div class="color-title turq" style="margin-top:12px">Sin nombre (tónicos): el mío, la mía…</div>
+<div class="table-wrap"><table>
+<tr><th></th><th>masculino</th><th>femenino</th><th>masc. plural</th><th>fem. plural</th></tr>
+<tr><td>yo</td><td>el mío</td><td>la mía</td><td>los míos</td><td>las mías</td></tr>
+<tr><td>tú</td><td>el tuyo</td><td>la tuya</td><td>los tuyos</td><td>las tuyas</td></tr>
+<tr><td>él / ella / usted</td><td>el suyo</td><td>la suya</td><td>los suyos</td><td>las suyas</td></tr>
+<tr><td>nosotros/as</td><td>el nuestro</td><td>la nuestra</td><td>los nuestros</td><td>las nuestras</td></tr>
+<tr><td>vosotros/as</td><td>el vuestro</td><td>la vuestra</td><td>los vuestros</td><td>las vuestras</td></tr>
+<tr><td>ellos/as, ustedes</td><td>el suyo</td><td>la suya</td><td>los suyos</td><td>las suyas</td></tr>
+</table></div>
+<div class="example"><b>Mi piso es más grande, pero el tuyo está en el centro.</b></div>
+<div class="example"><b>Yo también tengo terraza, pero la mía es un poco más pequeña.</b></div>
+
+<p class="note">El artículo y el posesivo concuerdan con la <b>cosa</b>: mi <b>terraza</b> → <b>la</b> mía; mi <b>piso</b> → <b>el</b> mío.</p>
+</div>
+
+<h3 class="color-title turq" style="margin-top:24px">4 · Otras estructuras</h3>
+<div class="grid">
+ <div class="card"><div class="color-title pink">ni… ni…</div><div class="example"><b>No es ni grande ni pequeño.</b></div>
+<p class="small">Niega las dos cosas.</p></div>
+ <div class="card"><div class="color-title yellow">para + persona / uso</div><div class="example"><b>Es un piso para un trabajo temporal.</b></div>
+<div class="example"><b>Es para una familia con mascotas.</b></div>
+</div>
+ <div class="card"><div class="color-title turq">costar (o → ue)</div><div class="example"><b>¿Cuánto cuesta el piso?</b></div>
+<div class="example"><b>El piso cuesta 950 euros al mes.</b></div>
+</div>
+</div>
+</section>
+
+<section id="verbos">
+<h2>🔤 Verbos trabajados en la clase</h2>
+<p class="small">Presente de los verbos de la unidad 4. Los verbos nuevos de los flashcards son <b>acoger, teletrabajar</b> y <b>adquirir</b>. <a href="flashcards-verbos-a2.html">Abrir los flashcards →</a> (ahora con la opción <b>Presente / Pasado</b>).</p>
+<div class="sound-bar"><span class="small">🔊 Cada verbo tiene su botón para escuchar el infinitivo.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
+<h3 class="color-title turq" style="margin-top:22px">A · Verbos de la casa y del anuncio (presente)</h3>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">ir</span><span class="tag">ya estaba en los flashcards · irregular</span><button type="button" class="speak" aria-label="Escuchar: ir" onclick="say('ir')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>voy</td><td>vas</td><td>va</td><td>vamos</td><td>vais</td><td>van</td></tr></table></div>
+<div class="example"><b>A ellos les va bien el ático.</b></div>
+<div class="example"><b>A mí me van bien las casas del campo.</b></div>
+<div class="note">«Me va bien» = me conviene. Con singular: va; con plural: van.</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">costar</span><span class="tag">ya estaba en los flashcards · o → ue</span><button type="button" class="speak" aria-label="Escuchar: costar" onclick="say('costar')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>cuesto</td><td>cuestas</td><td>cuesta</td><td>costamos</td><td>costáis</td><td>cuestan</td></tr></table></div>
+<div class="example"><b>El piso que cuesta 950 euros.</b></div>
+<div class="note">o → ue en yo, tú, él y ellos.</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">dar</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: dar" onclick="say('dar')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>doy</td><td>das</td><td>da</td><td>damos</td><td>dais</td><td>dan</td></tr></table></div>
+<div class="example"><b>Mi piso da a una calle peatonal.</b></div>
+<div class="note">«Dar a» = tener vistas hacia un lugar: da a un parque, da al mar.</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">tener</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: tener" onclick="say('tener')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>tengo</td><td>tienes</td><td>tiene</td><td>tenemos</td><td>tenéis</td><td>tienen</td></tr></table></div>
+<div class="example"><b>El piso tiene dos habitaciones.</b></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">estar</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: estar" onclick="say('estar')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>estoy</td><td>estás</td><td>está</td><td>estamos</td><td>estáis</td><td>están</td></tr></table></div>
+<div class="example"><b>Está en el centro histórico.</b></div>
+</div>
+<h3 class="color-title yellow" style="margin-top:22px">B · Verbos de la clase</h3>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">alquilar</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: alquilar" onclick="say('alquilar')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>alquilo</td><td>alquilas</td><td>alquila</td><td>alquilamos</td><td>alquiláis</td><td>alquilan</td></tr></table></div>
+<div class="example"><b>Alquilan una casa de campo.</b></div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">ganar</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: ganar" onclick="say('ganar')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>gano</td><td>ganas</td><td>gana</td><td>ganamos</td><td>ganáis</td><td>ganan</td></tr></table></div>
+<div class="example"><b>¿Cuánto dinero ganas al mes?</b></div>
+<div class="note">Ganar dinero = recibir dinero por el trabajo.</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">acoger</span><span class="tag">NUEVO EN LOS FLASHCARDS</span><button type="button" class="speak" aria-label="Escuchar: acoger" onclick="say('acoger')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>acojo</td><td>acoges</td><td>acoge</td><td>acogemos</td><td>acogéis</td><td>acogen</td></tr></table></div>
+<div class="example"><b>La casa acoge a toda la familia.</b></div>
+<div class="note">Acoger → acogida (bienvenida) → acogedor (agradable y cómodo).</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">adquirir</span><span class="tag">NUEVO EN LOS FLASHCARDS</span><button type="button" class="speak" aria-label="Escuchar: adquirir" onclick="say('adquirir')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>adquiero</td><td>adquieres</td><td>adquiere</td><td>adquirimos</td><td>adquirís</td><td>adquieren</td></tr></table></div>
+<div class="example"><b>Adquirir un piso es caro.</b></div>
+<div class="note">Adquirir = comprar (más formal). i → ie: adquiero, adquieres, adquiere, adquirimos, adquirís, adquieren.</div>
+</div>
+<div class="verb-card card">
+<div class="verb-head"><span class="verb">teletrabajar</span><span class="tag">NUEVO EN LOS FLASHCARDS</span><button type="button" class="speak" aria-label="Escuchar: teletrabajar" onclick="say('teletrabajar')">🔊</button></div>
+<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
+<tr><td>teletrabajo</td><td>teletrabajas</td><td>teletrabaja</td><td>teletrabajamos</td><td>teletrabajáis</td><td>teletrabajan</td></tr></table></div>
+<div class="example"><b>Mis vecinos teletrabajan desde casa.</b></div>
+<div class="note">Teletrabajar = trabajar a distancia, por internet.</div>
+</div>
+
+</section>
+
+<section id="ex">
+<h2>✏️ Ejercicios interactivos</h2>
+<div class="card"><h3>1 · Tipos de vivienda (p. 53)</h3><div id="q-viv"></div></div>
+<div class="card" style="margin-top:14px"><h3>2 · Partes de la casa (p. 54)</h3><div id="q-partes"></div></div>
+<div class="card" style="margin-top:14px"><h3>3 · Leer los anuncios (p. 54)</h3><div id="q-anu"></div></div>
+<div class="card" style="margin-top:14px"><h3>4 · «Me va bien»</h3><div id="q-vb"></div></div>
+<div class="card" style="margin-top:14px"><h3>5 · Posesivos: el mío, la tuya…</h3><div id="q-pos"></div></div>
+<div class="card" style="margin-top:14px"><h3>6 · Vocabulario de la casa</h3><div id="q-lex"></div></div>
+</section>
+
+<section id="practica">
+<h2>🎯 Práctica y tarea</h2>
+<div class="card">
+<h3>🏠 Tarea para casa</h3>
+<div class="homework">
+<p><b>📖 Página 57 · ejercicio 5</b></p>
+<ul><li><b>C</b>: completa la tabla de los posesivos tónicos con la ayuda de los fragmentos de la conversación.</li><li><b>D</b>: explica a otras personas de la clase cómo es el lugar donde vives en España y compara vuestros alojamientos.</li></ul>
+</div>
+<p class="note"><b>Consejo:</b> en el D usa los cuatro verbos de «Para comunicar»: <b>vivo en</b>, <b>está en</b>, <b>tiene</b>, <b>da a</b>, y añade un posesivo para comparar: «El mío…», «La tuya…».</p>
+</div>
+<div class="card" style="margin-top:14px">
+<h3>🗣️ Habla de tu vivienda (ejercicio 5D)</h3>
+<p>Prepara tu presentación. Comprueba que usas:</p>
+<label><input type="checkbox" onchange="tick(this)"> <b>Vivo en</b> + tipo de vivienda.</label><br>
+<label><input type="checkbox" onchange="tick(this)"> <b>Está en</b> + zona (centro, afueras…).</label><br>
+<label><input type="checkbox" onchange="tick(this)"> <b>Tiene</b> + habitaciones, terraza, metros cuadrados…</label><br>
+<label><input type="checkbox" onchange="tick(this)"> <b>Da a</b> + calle, parque, patio…</label><br>
+<label><input type="checkbox" onchange="tick(this)"> Un posesivo para comparar: <b>el mío / el tuyo…</b></label>
+<div class="progress" style="margin-top:12px"><span id="bar"></span></div>
+<p id="count" class="small">0/5 completado</p>
+</div>
+<div class="card" style="margin-top:14px">
+<h3>❓ Preguntas del ejercicio 1C (p. 53)</h3>
+<ul class="clean">
+ <li>¿En qué tipo de vivienda vives ahora?</li>
+ <li>¿Has vivido en otro tipo de vivienda alguna vez?</li>
+</ul>
+</div>
+<div class="card" style="margin-top:14px">
+<h3>📒 Consejo de estudio de la profesora</h3>
+<p>Al final de tu cuaderno haz una <b>lista de verbos nuevos</b> y repásala en casa. Estudiar es hacer tú el esfuerzo de ir construyendo esa lista. La profesora también irá poniendo listas en el aula virtual.</p>
+</div>
+</section>
+
+<div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
+<footer>Registro individual de la clase del 07/10/2026. Basado en la pizarra, las páginas del libro y las notas de la clase.</footer>
+</div>
+<script>
+function showTab(id,btn){
+ document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+ btn.classList.add('active');
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+let slow=false, esVoice=null;
+function pickEs(){
+ const vs=speechSynthesis.getVoices();
+ esVoice=vs.find(v=>v.lang==='es-ES')||vs.find(v=>v.lang&&v.lang.startsWith('es'))||null;
+}
+if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=pickEs;pickEs();}
+function say(txt){
+ if(!('speechSynthesis' in window)) return;
+ speechSynthesis.cancel();
+ const u=new SpeechSynthesisUtterance(txt);
+ u.lang='es-ES';if(esVoice)u.voice=esVoice;
+ u.rate=slow?.6:.85;
+ speechSynthesis.speak(u);
+}
+function toggleSlow(){
+ slow=!slow;
+ document.querySelectorAll('.slowBtn').forEach(b=>{
+  b.textContent=slow?'🐢 Lento: encendido':'🐢 Lento: apagado';
+  b.setAttribute('aria-pressed',slow);
+ });
+}
+// botón 🔊 en cada frase de ejemplo de TODAS las pestañas (solo el texto en español, dentro de <b>)
+document.querySelectorAll('.example').forEach(el=>{
+ const b=el.querySelector('b'); if(!b) return;
+ const txt=b.textContent.trim();
+ const wrap=document.createElement('span');
+ while(el.firstChild) wrap.appendChild(el.firstChild);
+ el.appendChild(wrap);
+ el.classList.add('sayable');
+ const btn=document.createElement('button');
+ btn.type='button';btn.className='speak';btn.textContent='🔊';
+ btn.setAttribute('aria-label','Escuchar: '+txt);
+ btn.onclick=()=>say(txt);
+ el.appendChild(btn);
+});
+if(!('speechSynthesis' in window)) document.querySelectorAll('.sound-bar').forEach(x=>x.style.display='none');
+
+function makeQuiz(id,qs){
+ const box=document.getElementById(id);let qi=0,score=0,locked=false;
+ function render(){
+  const q=qs[qi];locked=false;
+  box.innerHTML='<p><b>'+q.t+'</b></p><div class="choice-grid">'+q.o.map((o,i)=>'<button type="button" class="choice" data-i="'+i+'">'+o+'</button>').join('')+'</div><p class="small">Pregunta '+(qi+1)+' de '+qs.length+' · Puntos: '+score+'</p><div class="feedback" aria-live="polite"></div>';
+  box.querySelectorAll('.choice').forEach(b=>b.addEventListener('click',()=>ans(+b.dataset.i,b)));
+ }
+ function ans(i,btn){
+  if(locked) return; locked=true;
+  const q=qs[qi];const bs=box.querySelectorAll('.choice');
+  bs.forEach(b=>b.disabled=true);
+  bs[q.a].classList.add('correct');
+  const fb=box.querySelector('.feedback');
+  if(i===q.a){score++;fb.textContent='✅ Correcto. '+(q.e||'');fb.className='feedback ok';}
+  else{btn.classList.add('wrong');fb.textContent='❌ Casi. '+(q.e||'');fb.className='feedback bad';}
+  setTimeout(()=>{if(qi===qs.length-1){end();}else{qi++;render();}},1300);
+ }
+ function end(){
+  box.innerHTML='<p><b>🎉 ¡Fin! Acertaste '+score+' de '+qs.length+'.</b></p><button type="button" class="choice" data-again="1">Empezar de nuevo ↺</button>';
+  box.querySelector('[data-again]').addEventListener('click',()=>{qi=0;score=0;render();});
+ }
+ render();
+}
+makeQuiz('q-viv',[{"t": "Casa para una sola familia, con terreno alrededor, en el campo o en la ciudad.", "o": ["un piso", "un chalé", "un estudio"], "a": 1, "e": "Un chalé es una casa con terreno; es unifamiliar."}, {"t": "Casa unida a otras casas, para una sola familia, sin terreno alrededor.", "o": ["una casa adosada", "un chalé", "una casa de campo"], "a": 0, "e": "Adosada: pegada a otras casas."}, {"t": "Una sola habitación grande con cocina y baño, para una persona o una pareja.", "o": ["un ático", "un estudio", "un dúplex"], "a": 1, "e": "Un estudio es un espacio pequeño de una sola habitación."}, {"t": "El último piso de un edificio, normalmente con terraza.", "o": ["un ático", "un chalé", "un estudio"], "a": 0, "e": "Ático = el piso de arriba del todo."}, {"t": "Casa aislada en medio del campo, sin otras casas cerca.", "o": ["una casa en el pueblo", "una casa de campo", "una casa adosada"], "a": 1, "e": "Casa de campo: está en el campo, sin vecinos cerca."}, {"t": "Vivienda de dos plantas dentro de un mismo espacio.", "o": ["un dúplex", "un estudio", "un piso compartido"], "a": 0, "e": "Un dúplex tiene dos plantas."}, {"t": "«Unifamiliar» significa…", "o": ["para muchas familias", "para una sola familia", "para estudiantes"], "a": 1, "e": "Uni- = uno. Una vivienda para una familia."}]);
+makeQuiz('q-partes',[{"t": "Habitación con baño propio.", "o": ["una suite", "un lavadero", "un despacho"], "a": 0, "e": "Suite = habitación con baño dentro."}, {"t": "Armario grande donde te vistes.", "o": ["un vestidor", "un garaje", "una terraza"], "a": 0, "e": "Vestidor."}, {"t": "Lugar de la casa para trabajar.", "o": ["una sala de juegos", "un despacho", "un lavadero"], "a": 1, "e": "Despacho = oficina en casa."}, {"t": "Lugar donde guardas el coche.", "o": ["el garaje", "la terraza", "el jardín"], "a": 0, "e": "Garaje."}, {"t": "Lugar donde lavas la ropa.", "o": ["el lavadero", "el vestidor", "el salón"], "a": 0, "e": "Lavadero."}, {"t": "Nivel de la casa a la altura de la calle.", "o": ["la primera planta", "la planta baja", "el ático"], "a": 1, "e": "Planta baja."}, {"t": "Espacio exterior descubierto de un piso, con vistas.", "o": ["la terraza", "el garaje", "el baño"], "a": 0, "e": "Terraza."}]);
+makeQuiz('q-anu',[{"t": "Entre los cinco anuncios del móvil, ¿cuál es el más barato?", "o": ["el ático de 85 m²", "el estudio de 40 m²", "el piso de 110 m²"], "a": 1, "e": "El estudio cuesta 550 euros al mes."}, {"t": "¿Cuál tiene cuatro habitaciones y dos baños?", "o": ["el piso de 110 m²", "el piso de 80 m²", "el apartamento de 60 m²"], "a": 0, "e": "El piso de 110 m² (1500 euros)."}, {"t": "¿Cuál tiene dos terrazas?", "o": ["el ático", "el estudio", "el apartamento"], "a": 0, "e": "El ático de 85 m² tiene dos terrazas."}, {"t": "¿Cuál está a cinco minutos del mar y tiene balcón con vistas?", "o": ["el piso de 80 m²", "el estudio", "el ático"], "a": 0, "e": "El piso de 80 m² (950 euros)."}, {"t": "El chalé de la promoción: ¿cuánto cuesta al mes?", "o": ["1500 euros", "3500 euros", "950 euros"], "a": 1, "e": "3500 euros al mes."}, {"t": "¿Qué hay en el jardín del chalé?", "o": ["una piscina", "un garaje", "una sala de juegos"], "a": 0, "e": "En el jardín hay piscina."}, {"t": "En el chalé, ¿qué hay en la primera planta?", "o": ["cuatro habitaciones y dos baños", "la cocina y el salón", "el garaje"], "a": 0, "e": "Cuatro habitaciones, dos baños, terraza, vestidor y sala de juegos."}]);
+makeQuiz('q-vb',[{"t": "A mí ___ va bien el piso.", "o": ["me", "te", "le"], "a": 0, "e": "A mí → me."}, {"t": "A ellos ___ va bien el ático.", "o": ["le", "les", "los"], "a": 1, "e": "A ellos → les."}, {"t": "A nosotros ___ va bien la casa.", "o": ["nos", "os", "les"], "a": 0, "e": "A nosotros → nos."}, {"t": "A mí me ___ bien las casas del campo.", "o": ["va", "van", "vamos"], "a": 1, "e": "Las casas es plural: van."}, {"t": "A él ___ va bien el apartamento.", "o": ["le", "les", "se"], "a": 0, "e": "A él → le."}, {"t": "A vosotros ___ va bien este piso.", "o": ["nos", "os", "les"], "a": 1, "e": "A vosotros → os."}, {"t": "¿A ti ___ va bien el estudio?", "o": ["me", "te", "le"], "a": 1, "e": "A ti → te."}, {"t": "Me ___ bien los apartamentos del centro.", "o": ["va", "van", "vais"], "a": 1, "e": "Los apartamentos es plural: van."}]);
+makeQuiz('q-pos',[{"t": "Mi terraza es pequeña, pero ___ (tu terraza) es grande.", "o": ["el tuyo", "la tuya", "la suya"], "a": 1, "e": "Terraza es femenino: la tuya."}, {"t": "Mi piso está en el centro y ___ (su piso) está en las afueras.", "o": ["el suyo", "la suya", "el mío"], "a": 0, "e": "Piso es masculino: el suyo."}, {"t": "Nuestra casa tiene jardín; ___ (vuestra casa) no.", "o": ["la nuestra", "la vuestra", "el vuestro"], "a": 1, "e": "Casa es femenino: la vuestra."}, {"t": "Su piso es antiguo; ___ (nuestro piso) es nuevo.", "o": ["el nuestro", "la nuestra", "el suyo"], "a": 0, "e": "Piso es masculino: el nuestro."}, {"t": "Mi terraza da al parque; ___ (tu terraza) da a la calle.", "o": ["el tuyo", "la tuya", "la suya"], "a": 1, "e": "Terraza: la tuya."}, {"t": "Mis suegros viven en el campo; ___ (tus suegros) viven en la ciudad.", "o": ["los tuyos", "los suyos", "las tuyas"], "a": 0, "e": "Suegros es masculino plural: los tuyos."}]);
+makeQuiz('q-lex',[{"t": "Una habitación con mucha luz es…", "o": ["luminosa", "oscura", "ruidosa"], "a": 0, "e": "Luminoso/a: con mucha luz."}, {"t": "Un piso grande, con mucho espacio, es…", "o": ["amplio", "estrecho", "pequeño"], "a": 0, "e": "Amplio = grande."}, {"t": "Una casa cómoda y agradable es…", "o": ["acogedora", "antigua", "cara"], "a": 0, "e": "Acogedor/a: da sensación de bienestar."}, {"t": "Un piso cerca del metro y de los autobuses está…", "o": ["bien comunicado", "sin amueblar", "roto"], "a": 0, "e": "Bien comunicado."}, {"t": "A una persona a la que le gusta la ciudad se le llama…", "o": ["urbana", "campestre", "temporal"], "a": 0, "e": "Persona urbana."}, {"t": "Trabajar desde casa por internet es…", "o": ["teletrabajar", "alquilar", "acoger"], "a": 0, "e": "Teletrabajar."}, {"t": "«Comprar» en un registro más formal es…", "o": ["adquirir", "ganar", "costar"], "a": 0, "e": "Adquirir = comprar (formal)."}, {"t": "Una tienda de campaña sirve para…", "o": ["vender comida", "dormir en el campo", "vivir en una ciudad"], "a": 1, "e": "Tienda de campaña = para acampar. Una «tienda» sola es un comercio."}, {"t": "Un nivel adquisitivo alto significa que…", "o": ["tienes mucho dinero para comprar", "tienes poco tiempo", "vives en el campo"], "a": 0, "e": "Nivel adquisitivo = capacidad para comprar."}]);
+let done=0;
+function tick(cb){
+ done+=cb.checked?1:-1;
+ document.getElementById('bar').style.width=(done/5*100)+'%';
+ document.getElementById('count').textContent=done+'/5 completado';
+}
+</script>
+</body></html>
