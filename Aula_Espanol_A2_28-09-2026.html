@@ -1,28 +1,27 @@
 <!DOCTYPE html>
-<html lang="es">
+
+<html lang="es-ES">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080a18">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#080a18" name="theme-color"/>
+<meta content="Ficha Interactiva de Español A2 — clase del 30/09/2026" name="description"/>
 <title>Clase de Español A2 — 28/09/2026</title>
 <style>
 :root{
   color-scheme:dark;
   --bg:#080a18;--card:#171d38;--text:#f8f9ff;--muted:#b8c0dd;
   --pink:#ff5ca8;--purple:#a56cff;--turq:#37e6d4;--yellow:#ffd34e;
-  --blue:#42a5ff;--soft:#252e50;--border:#2d385e;--ok:#4be59a;--bad:#ff6b7c;
+  --blue:#42a5ff;--soft:#252e50;--border:#2d385e;--ok:#4be59a;--bad:#ff6b7c;--header-border:#48598d;--header-start:#172c6c;--header-mid:#49237f;--header-end:#741c58;--header-text:#fff;--header-shadow:rgba(0,0,0,.55);
 }
 *{box-sizing:border-box}
 body{margin:0;background:radial-gradient(circle at 10% 0,#1d2b66,transparent 38%),radial-gradient(circle at 90% 0,#5a174d,transparent 35%),var(--bg);background-attachment:fixed;color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}
 .container{max-width:1100px;margin:auto;padding:22px 16px 60px}
-header{text-align:center;padding:26px 20px;margin-bottom:6px;border-radius:22px;border:1px solid #48598d;background:linear-gradient(135deg,#172c6c,#49237f 52%,#741c58);box-shadow:0 18px 50px #0008}
+header{text-align:center;padding:26px 20px;margin-bottom:6px;border-radius:22px;border:1px solid var(--header-border);background:linear-gradient(135deg,var(--header-start),var(--header-mid) 52%,var(--header-end));box-shadow:0 18px 50px var(--header-shadow);transition:background .2s ease,border-color .2s ease,color .2s ease}
 .badge{display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;font-weight:800;font-size:.82rem}
-h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);color:#fff}
-.subtitle{color:#e3e6ff}
-nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);display:flex;gap:7px;overflow:auto;padding:8px;border-bottom:1px solid var(--border)}
-nav button,.tab{border:1px solid var(--border);background:var(--card);color:var(--text);padding:9px 12px;border-radius:12px;cursor:pointer;white-space:nowrap;font-weight:750}
-nav button.active,.tab.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
-section{display:none;padding-top:22px}
+h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);color:var(--header-text)}
+.subtitle{color:var(--header-text);opacity:.92}
+section{display:none;padding-top:22px;scroll-margin-top:66px}
 section.active{display:block}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:0 7px 22px color-mix(in srgb,var(--purple) 10%,transparent)}
@@ -39,7 +38,9 @@ th{background:#202a4c;color:#cdbdff}
 .speak{border:0;background:var(--soft);border-radius:10px;padding:7px 10px;cursor:pointer}
 .example{border-left:4px solid var(--turq);padding:9px 12px;background:color-mix(in srgb,var(--turq) 8%,var(--card));border-radius:0 12px 12px 0;margin:9px 0}
 .note{font-size:.9rem;color:var(--muted)}
-.choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:9px}
+.choice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media(max-width:760px){.choice-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.choice-grid{grid-template-columns:1fr}}
 .choice{padding:12px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;text-align:center;font-weight:700;font-size:1rem;transition:0.2s}
 .choice:hover{border-color:var(--turq)}
 .choice:disabled{cursor:default}
@@ -48,6 +49,14 @@ th{background:#202a4c;color:#cdbdff}
 .feedback{margin-top:12px;font-weight:800;padding:12px;border-radius:10px;display:none}
 .feedback.ok{display:block;color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card));border:1px solid var(--ok)}
 .feedback.bad{display:block;color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card));border:1px solid var(--bad)}
+.quiz-result{margin-top:14px;padding:14px 16px;border:1px solid var(--border);border-radius:14px;background:var(--card);font-weight:800}
+.result-main{font-size:1.05rem}
+.result-stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.result-stats span{padding:6px 9px;border-radius:999px;background:var(--soft);font-size:.85rem}
+.result-ok{color:var(--ok)}.result-bad{color:var(--bad)}.result-warn{color:var(--yellow)}
+.example.sayable{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.example.sayable .example-audio{flex:0 0 auto}
+
 details{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px;margin:9px 0}
 summary{cursor:pointer;font-weight:800}
 .progress{height:12px;background:var(--soft);border-radius:99px;overflow:hidden;margin-top:12px;border:1px solid var(--border)}
@@ -59,230 +68,432 @@ summary{cursor:pointer;font-weight:800}
 .speak:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
 .speak[aria-pressed="true"]{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff}
 footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
-@media(max-width:600px){.container{padding:14px 10px 45px}th,td{padding:8px;font-size:.9rem}.card{padding:15px}}
+/* Desktop compacto / janela dividida: evita que o grupo de velocidade invada o botão central. */
+@media (min-width:601px) and (max-width:1050px){
+  .header-controls{
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    gap:8px;
+  }
+  .header-controls .home-link{
+    min-width:0;
+    max-width:210px;
+    padding:0 12px;
+    font-size:.88rem;
+  }
+  .header-controls .speed-control{
+    min-width:0;
+    gap:5px;
+    justify-self:end;
+  }
+  .speed-btn{
+    min-width:64px;
+    padding:0 8px;
+    font-size:.78rem;
+  }
+}
 
-.home-nav{text-align:center;margin:14px 0 8px}
-.home-nav a{display:inline-block;padding:10px 18px;border-radius:12px;background:#10152b;border:1px solid var(--border);color:#fff;text-decoration:none;font-weight:800;transition:transform .15s ease,border-color .15s ease}
-.home-nav a:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
-.home-nav a:hover{transform:translateY(-1px);border-color:var(--blue)}
+@media (min-width:601px) and (max-width:780px){
+}
+@media(max-width:600px){
+  .container{padding:14px 10px 45px}
+  th,td{padding:8px;font-size:.9rem}
+  .card{padding:15px}
+}
+
 
 .table-wrap{overflow-x:auto;border-radius:16px}
 .table-wrap table{min-width:520px}
-.mini-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.mini-grid{display:flex;flex-direction:column;gap:14px}
+.mini-grid .verb-card{min-width:0}
 .mini-grid .verb-card{margin-bottom:0}
 .form-big{font-size:1.25rem;font-weight:900;color:var(--turq);margin:10px 0 4px}
 ul.clean{margin:8px 0;padding-left:20px}ul.clean li{margin:5px 0}
 
-.activity-list p{margin:10px 0;padding:10px 12px;border-left:4px solid var(--turq);background:rgba(255,255,255,.04);border-radius:10px}
-.homework{padding:14px 16px;border-radius:14px;background:linear-gradient(135deg,rgba(255,211,78,.12),rgba(165,108,255,.10))}
-.homework ul{margin-top:6px}
-.pending{border-left:4px solid var(--yellow);padding:10px 12px;background:rgba(255,211,78,.08);border-radius:10px;margin:10px 0}
+.mini-forms{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.mini-forms div{flex:1 1 90px;background:var(--soft);border:1px solid var(--border);border-radius:10px;padding:7px 9px;text-align:center}
+.mini-forms small{display:block;color:var(--muted);font-size:.7rem;text-transform:uppercase}
+.mini-forms b{font-size:1.05rem;color:var(--turq)}
+
+
+/* === Template Mestre A2 — interfaz estable === */
+:root[data-theme="light"]{color-scheme:light;--bg:#f5f3ff;--card:#ffffff;--text:#1b2340;--muted:#5e6780;--soft:#e9e6f8;--border:#cfd1ea;--header-border:#aeb8df;--header-start:#dfe9ff;--header-mid:#eadfff;--header-end:#ffe0ef;--header-text:#1b2340;--header-shadow:rgba(73,55,128,.18);--blue:#397fdb;--purple:#7856d9;--turq:#159f93;--yellow:#c58d00}
+:root[data-theme="light"] .pink{color:#c52f76}:root[data-theme="light"] .purple{color:#6840bf}:root[data-theme="light"] .turq{color:#087f78}:root[data-theme="light"] .yellow{color:#946600}:root[data-theme="light"] .blue{color:#2f6fc4}
+body{transition:background .2s ease,color .2s ease}
+header{border-color:var(--header-border);background:linear-gradient(135deg,var(--header-start),var(--header-mid) 52%,var(--header-end));box-shadow:0 18px 50px var(--header-shadow)}
+header h1{color:var(--header-text)}
+header .subtitle{color:var(--header-text);opacity:.88}
+.badge{color:var(--header-text);background:color-mix(in srgb,var(--purple) 12%,transparent);border:1px solid color-mix(in srgb,var(--purple) 22%,transparent)}
+.theme-toggle,.home-link,.speed-btn{background:#ffffff;color:var(--text);border-color:#c7cbe4;box-shadow:0 3px 10px rgba(70,58,125,.08)}
+.theme-toggle:hover,.home-link:hover,.speed-btn:hover{border-color:var(--turq);box-shadow:0 4px 12px rgba(21,159,147,.14)}
+.tab-nav button{background:#ffffff;color:var(--text);border-color:#c9cce5;box-shadow:0 2px 7px rgba(70,58,125,.06)}
+.tab-nav button:hover{background:#f6f4ff;border-color:var(--turq);box-shadow:0 0 0 1px rgba(21,159,147,.18)}
+.sticky-shell{background:color-mix(in srgb,#ffffff 88%,var(--soft));border-color:#c9cce5;box-shadow:0 10px 28px rgba(87,70,145,.12)}
+.card{box-shadow:0 7px 22px rgba(87,70,145,.08)}
+.sticky-shell{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:color-mix(in srgb,var(--bg) 96%,transparent);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:7px 8px;
+  box-shadow:0 10px 28px color-mix(in srgb,var(--purple) 14%,transparent);
+  margin:8px 0 0;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+/* Controles no cabeçalho e NÃO acompanham a rolagem.
+   Inicio permanece centrado · Velocidad fica à direita. */
+.header-controls{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+  align-items:center;
+  gap:10px;
+  width:100%;
+  margin:14px auto 0;
+}
+.header-controls .home-link{grid-column:2;justify-self:center}
+.header-controls .speed-control{grid-column:3;justify-self:end}
+.theme-toggle,.speed-control,.home-link{border:1px solid var(--border);background:var(--card);color:var(--text)}
+.theme-toggle{
+  flex:0 0 auto;height:38px;min-width:72px;border-radius:999px;padding:0 11px;
+  display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;font-size:.92rem;
+}
+.theme-toggle:hover,.home-link:hover,.speed-btn:hover{border-color:var(--turq)}
+.home-link{
+  flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;height:38px;
+  padding:0 14px;border-radius:12px;text-decoration:none;font-weight:850;position:relative;white-space:nowrap;
+}
+
+.speed-control{flex:0 0 auto;height:38px;display:flex;align-items:center;gap:6px;background:transparent;border:0}
+.speed-label{display:none}
+.speed-btn{
+  flex:0 0 auto;height:40px;min-width:78px;padding:0 11px;border:1px solid var(--border);
+  border-radius:999px;background:var(--card);color:var(--text);font-weight:800;cursor:pointer;white-space:nowrap;
+}
+.speed-btn.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+/* Menu principal: uma única linha, fixa durante a rolagem. */
+.sticky-shell{display:flex;align-items:center;gap:7px}
+.sticky-shell > .theme-toggle{flex:0 0 40px;width:40px;min-width:40px;height:40px;padding:0;border-radius:12px}
+.sticky-shell > .tab-nav{flex:1;min-width:0}
+.tab-nav{
+  display:flex;flex-wrap:nowrap;gap:7px;width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;
+  padding:0;scrollbar-width:thin;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;
+  touch-action:pan-x;
+}
+.tab-nav button{flex:0 0 auto;width:max-content;min-width:max-content;padding:0 13px;height:40px;border:1px solid var(--border);
+  background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;font-weight:800;
+  font-size:.84rem;white-space:nowrap;display:flex;align-items:center;justify-content:center;gap:4px;
+  transition:transform .15s ease,border-color .15s ease,background .15s ease;touch-action:manipulation;
+}
+.tab-nav button:hover{border-color:var(--turq);box-shadow:0 0 0 1px color-mix(in srgb,var(--turq) 22%,transparent)}
+.tab-nav button:focus-visible,.speed-btn:focus-visible,.theme-toggle:focus-visible,.home-link:focus-visible{outline:3px solid var(--yellow);outline-offset:0}
+.tab-nav button.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+/* Navegação e controles — ajuste final para mobile */
+.home-nav{display:flex;justify-content:center;align-items:center;margin:22px 0 0}
+.home-nav a{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 16px;border:1px solid var(--border);border-radius:12px;background:var(--card);color:var(--text);text-decoration:none;font-weight:850;white-space:nowrap;transition:transform .15s ease,border-color .15s ease,background .2s ease}
+.home-nav a:hover{transform:translateY(-1px);border-color:var(--turq)}
+.home-nav a:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.home-nav .bottom-home{height:40px;min-height:40px;padding:0 14px;border-radius:12px;font-weight:850}
+
+@media(max-width:600px){
+  .sticky-shell{padding:6px 7px;border-radius:14px;margin-top:7px}
+  .tab-nav{gap:6px}
+  .tab-nav button{flex:0 0 auto;width:max-content;min-width:max-content;height:38px;font-size:.80rem}
+
+  /* Controles: Inicio al centro · Velocidad à direita */
+  .header-controls{
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    gap:6px;
+    margin-top:12px;
+    overflow:visible;
+  }
+  .header-controls .home-link{grid-column:2;justify-self:center;height:40px;min-width:0;padding:0 8px;font-size:.88rem}
+  .header-controls .speed-control{grid-column:3;justify-self:end}
+  .speed-control{height:40px;gap:3px;min-width:0;justify-content:flex-end}
+  .header-controls .speed-btn{height:36px;width:36px;min-width:36px;padding:0;border-radius:10px;font-size:0;line-height:1}
+  .header-controls .speed-btn[data-rate="0.58"]::before{content:"🐢";font-size:1rem}
+  .header-controls .speed-btn[data-rate="0.88"]::before{content:"▶";font-size:.88rem}
+  .header-controls .speed-btn[data-rate="1.12"]::before{content:"⚡";font-size:1rem}
+  .speed-label{display:none}
+
+  /* O menu permanece fixo, mas ocupa apenas uma linha horizontal */
+  .tab-nav{touch-action:pan-x;overscroll-behavior-x:contain}
+}
+@media(max-width:380px){
+  .sticky-shell > .theme-toggle{width:38px;min-width:38px;height:38px}
+  .header-controls{gap:5px}
+  .header-controls .home-link{font-size:.82rem;padding:0 6px}
+  .speed-control{gap:2px}
+  .header-controls .speed-btn{width:34px;min-width:34px;height:34px}
+  .header-controls .speed-btn[data-rate="0.58"]::before,.header-controls .speed-btn[data-rate="1.12"]::before{font-size:.9rem}
+  .header-controls .speed-btn[data-rate="0.88"]::before{font-size:.8rem}
+  .tab-nav button{flex:0 0 auto;width:max-content;min-width:max-content;font-size:.78rem}
+}
+
+
+/* === Correção final: controles responsivos em janela PC dividida === */
+@media (min-width:601px) and (max-width:1050px){
+  .header-controls{
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    gap:14px;
+  }
+  .header-controls .home-link{
+    justify-self:center;
+    max-width:190px;
+    min-width:0;
+    padding:0 11px;
+    font-size:.86rem;
+  }
+  .header-controls .speed-control{
+    justify-self:end;
+    min-width:0;
+    gap:5px;
+  }
+  .header-controls .speed-btn{
+    width:64px;
+    min-width:64px;
+    max-width:64px;
+    padding:0 5px;
+    font-size:.76rem;
+  }
+}
+@media (min-width:601px) and (max-width:780px){
+  .header-controls{gap:10px}
+  .header-controls .home-link{max-width:175px;font-size:.82rem;padding:0 8px}
+  .header-controls .speed-control{gap:3px}
+  .header-controls .speed-btn{width:58px;min-width:58px;max-width:58px;font-size:.70rem;padding:0 3px}
+}
+
+/* === Estrutura definitiva: cabeçalho, velocidade e navegação separados === */
+.header-controls{display:none !important}
+.header-home{display:flex;justify-content:center;align-items:center;margin:14px auto 0;width:100%}
+.header-home .home-link{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 16px;border-radius:12px;text-decoration:none;font-weight:850;white-space:nowrap}
+.audio-controls{display:flex;justify-content:center;align-items:center;width:100%;margin:8px 0 8px}
+.audio-controls .speed-control{display:flex;align-items:center;justify-content:center;gap:7px;height:auto;min-width:0}
+.audio-controls .speed-btn{flex:0 0 auto;height:40px;min-width:78px;padding:0 12px;border:1px solid var(--border);border-radius:999px;background:var(--card);color:var(--text);font-weight:800;cursor:pointer;white-space:nowrap}
+.audio-controls .speed-btn.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+.audio-controls .speed-btn:hover{border-color:var(--turq)}
+@media (max-width:600px){
+  .header-home{margin-top:12px}
+  .header-home .home-link{height:40px;padding:0 14px;font-size:.9rem}
+  .audio-controls{margin:7px 0 7px}
+  .audio-controls .speed-control{gap:5px;width:100%;justify-content:center}
+  .audio-controls .speed-btn{height:38px;min-width:0;width:auto;padding:0 11px;font-size:.82rem}
+}
+@media (max-width:380px){
+  .audio-controls .speed-control{gap:4px}
+  .audio-controls .speed-btn{height:36px;padding:0 9px;font-size:.78rem}
+}
+
+/* Áudio das formas de conjugação — versão completa */
+.mini-forms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:10px 0}
+.mini-forms .mini-form-item{display:grid;grid-template-columns:1fr auto;grid-template-areas:"label audio" "form audio";align-items:center;gap:2px 8px;background:var(--soft);border:1px solid var(--border);border-radius:10px;padding:9px 10px;text-align:left}
+.mini-forms .mini-form-item small{grid-area:label;text-transform:none}
+.mini-forms .mini-form-item b{grid-area:form;font-size:1.05rem;color:var(--turq)}
+.mini-forms .mini-form-item .form-audio{grid-area:audio;align-self:center;padding:6px 8px;border-radius:9px}
+.verb-card td .form-audio{margin-left:6px;padding:4px 7px;border-radius:8px;font-size:.9rem;vertical-align:middle}
+.verb-card .example .example-audio{margin-left:6px;padding:5px 8px;border-radius:9px;vertical-align:middle}
+.form-big .form-audio{margin-left:6px;padding:5px 8px;border-radius:9px;vertical-align:middle}
+@media (max-width:640px){
+  .mini-forms{grid-template-columns:1fr}
+  .mini-forms .mini-form-item{padding:8px 9px}
+}
 </style>
-</head>
+<style>
+.verb-structure-guide{margin:14px 0 18px;padding:12px 14px;border:1px solid var(--border);border-radius:14px;background:var(--surface2);color:var(--text);font-size:.94rem;line-height:1.55}
+.verb-subtitle{margin:12px 0 8px;font-weight:800;color:var(--text);font-size:.9rem;letter-spacing:.01em}
+.example-label{margin:12px 0 5px;font-weight:800;color:var(--text);font-size:.88rem}
+.flashcard-link{display:inline-flex;align-items:center;gap:6px;margin:10px 0 2px;padding:7px 10px;border-radius:10px;border:1px solid var(--border);background:var(--surface2);color:var(--turq);text-decoration:none;font-weight:800;font-size:.82rem}
+.flashcard-link:hover{transform:translateY(-1px)}
+.verb-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+</style><style>
+/* === Ajuste definitivo de Verbos === */
+#verbos .verb-card{width:100%;margin:0 0 16px}
+#verbos .conj-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px}
+#verbos .conj-item{background:var(--soft);border:1px solid var(--border);border-radius:12px;padding:10px 11px;min-width:0}
+#verbos .conj-person{font-size:.78rem;font-weight:800;color:var(--muted);margin-bottom:5px;line-height:1.3}
+#verbos .conj-form{font-size:1.08rem;font-weight:900;color:var(--turq);display:flex;align-items:center;justify-content:space-between;gap:7px;flex-wrap:wrap}
+#verbos .conj-form .form-audio{margin-left:auto}
+#verbos .mini-forms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:10px 0}
+#verbos .mini-forms .mini-form-item{min-width:0;background:var(--soft);border:1px solid var(--border);border-radius:12px;padding:10px 11px;display:grid;grid-template-columns:1fr auto;grid-template-areas:"person audio" "form audio";align-items:center;gap:4px 8px}
+#verbos .mini-forms .mini-form-item small{grid-area:person;margin:0;text-align:left}
+#verbos .mini-forms .mini-form-item b{grid-area:form;text-align:left}
+#verbos .mini-forms .mini-form-item .form-audio{grid-area:audio;align-self:center;margin:0}
+@media(max-width:780px){#verbos .conj-grid,#verbos .mini-forms{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){#verbos .conj-grid,#verbos .mini-forms{grid-template-columns:1fr}#verbos .conj-item,#verbos .mini-forms .mini-form-item{padding:9px 10px}}
+
+/* === Áudio mais robusto para os exercícios === */
+.quiz-audio{display:inline-flex;align-items:center;justify-content:center;min-width:42px;height:38px;border:1px solid var(--border);border-radius:10px;background:var(--soft);cursor:pointer}
+.quiz-audio:hover{border-color:var(--turq);transform:translateY(-1px)}
+</style></head>
 <body>
 <div class="container">
 <header>
-  <span class="badge">EOI · Español A2 · Clase individual</span>
-  <h1>Ficha interactiva — 28/09/2026</h1>
-  <div class="subtitle">Relaciones, descripción de personas, <b>llevar / llevarse</b>, <b>caer bien/mal</b>, <b>parecer / parecerse</b> y <b>medir</b></div>
-  <div class="subtitle" style="font-size:.9rem;margin-top:6px">📖 Libro: Aula Plus 2 · pp. 44, 45, 50, 140 y 142</div>
+<span class="badge">EOI · Español A2 · Clase Individual</span>
+<h1>Ficha Interactiva — 28/09/2026</h1>
+<div class="subtitle">Relaciones, descripción de personas, llevar / llevarse, caer bien/mal, parecer / parecerse y medir</div>
+<div class="subtitle" style="font-size:.9rem;margin-top:6px">📖 Libro: Aula Plus 2 · pp. 44, 45, 50, 140 y 142</div>
+<div class="header-home">
+<a aria-label="Volver al inicio del curso" class="home-link" href="index.html">🏠 Volver al inicio</a>
+</div>
 </header>
-<div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
-
-<nav>
-  <button class="active" onclick="showTab('resumen',this)">📚 Resumen</button>
-  <button onclick="showTab('vocab',this)">📝 Vocabulario</button>
-  <button onclick="showTab('gram',this)">🧠 Gramática</button>
-  <button onclick="showTab('verbos',this)">🔤 Verbos</button>
-  <button onclick="showTab('ex',this)">✏️ Ejercicios</button>
-  <button onclick="showTab('practica',this)">🎯 Práctica</button>
-</nav>
-
-<section id="resumen" class="active">
-<div class="grid">
- <div class="card"><div class="color-title pink">1. Describir personas</div><p>Se retomó la descripción física y de carácter de las personas de los anuncios de contactos.</p><p><b>Ser</b> se usa para características; <b>llevar</b>, para ropa, barba, gafas y estilo.</p></div>
- <div class="card"><div class="color-title purple">2. Relaciones</div><p><b>Llevarse bien/mal/fatal con alguien</b> habla de la relación que existe con otra persona.</p><p><b>Caer bien/mal</b> expresa una valoración o impresión positiva/negativa.</p></div>
- <div class="card"><div class="color-title turq">3. Parecer</div><p><b>Parecer + adjetivo</b>: impresión u opinión sobre una persona.</p><p><b>Parecerse a</b>: semejanza con otra persona; en clase apareció también <b>en los ojos</b>.</p></div>
- <div class="card"><div class="color-title yellow">4. Medir</div><p>Se introdujo <b>medir</b> para expresar la altura: <b>mido 1,93</b>.</p></div>
+<div aria-label="Controles de velocidad de pronunciación" class="audio-controls">
+<div class="speed-control">
+<button aria-label="Velocidad lenta" class="speed-btn" data-rate="0.58" title="Velocidad lenta" type="button">🐢 Lento</button>
+<button aria-label="Velocidad normal" class="speed-btn active" data-rate="0.88" title="Velocidad normal" type="button">▶ Normal</button>
+<button aria-label="Velocidad rápida" class="speed-btn" data-rate="1.12" title="Velocidad rápida" type="button">⚡ Rápido</button>
 </div>
-<div class="card" style="margin-top:14px">
+</div>
+<div aria-label="Navegación de la clase" class="sticky-shell">
+<button aria-label="Cambiar al modo claro" aria-pressed="true" class="theme-toggle" title="Cambiar al modo claro" type="button">🌙</button>
+<div aria-label="Secciones de la clase" class="tab-nav" role="tablist">
+<button aria-controls="resumen" aria-selected="true" class="active" data-tab="resumen" id="tab-resumen" role="tab">📚 Resumen</button>
+<button aria-controls="vocab" aria-selected="false" data-tab="vocab" id="tab-vocab" role="tab">📝 Vocabulario</button>
+<button aria-controls="gram" aria-selected="false" data-tab="gram" id="tab-gram" role="tab">🧠 Gramática</button>
+<button aria-controls="verbos" aria-selected="false" data-tab="verbos" id="tab-verbos" role="tab">🔤 Verbos</button>
+<button aria-controls="ex" aria-selected="false" data-tab="ex" id="tab-ex" role="tab">✏️ Ejercicios</button>
+<button aria-controls="practica" aria-selected="false" data-tab="practica" id="tab-practica" role="tab">🎯 Práctica</button>
+</div>
+</div>
+<section aria-labelledby="tab-resumen" class="active" id="resumen" role="tabpanel" tabindex="0"><div class="grid">
+<div class="card"><div class="color-title pink">1. Describir personas</div><p>Se retomó la descripción física y de carácter de las personas de los anuncios de contactos.</p><p><b>Ser</b> se usa para características; <b>llevar</b>, para ropa, barba, gafas y estilo.</p></div>
+<div class="card"><div class="color-title purple">2. Relaciones</div><p><b>Llevarse bien/mal/fatal con alguien</b> habla de la relación que existe con otra persona.</p><p><b>Caer bien/mal</b> expresa una valoración o impresión positiva/negativa.</p></div>
+<div class="card"><div class="color-title turq">3. Parecer</div><p><b>Parecer + adjetivo</b>: impresión u opinión sobre una persona.</p><p><b>Parecerse a</b>: semejanza con otra persona; en clase apareció también <b>en los ojos</b>.</p></div>
+<div class="card"><div class="color-title yellow">4. Medir</div><p>Se introdujo <b>medir</b> para expresar la altura: <b>mido 1,93</b>.</p></div>
+</div><div class="card" style="margin-top:14px">
 <h3>⭐ Frases clave de la clase</h3>
-<div class="sound-bar"><span class="small">🔊 Toca el botón de cada frase para escucharla.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
-<div class="example"><b>Me llevo bien con mi jefe.</b></div>
-<div class="example"><b>Mi jefa me cae bien.</b></div>
-<div class="example"><b>Luisa me cayó bien la primera semana.</b></div>
-<div class="example"><b>Mis estudiantes me cayeron bien el primer día.</b></div>
-<div class="example"><b>Él parece simpático.</b></div>
-<div class="example"><b>Se parece a su padre en los ojos.</b></div>
-<div class="example"><b>Yo mido 1,93.</b></div>
-
-</div>
-<div class="card" style="margin-top:14px">
+<div class="sound-bar"><span class="small">🔊 Toca el botón de cada frase para escucharla.</span></div>
+<div class="example sayable"><b>Me llevo bien con mi jefe.</b><button aria-label="Escuchar: Me llevo bien con mi jefe." class="speak example-audio" onclick="say('Me llevo bien con mi jefe.')" title="Escuchar: Me llevo bien con mi jefe." type="button">🔊</button></div>
+<div class="example sayable"><b>Mi jefa me cae bien.</b><button aria-label="Escuchar: Mi jefa me cae bien." class="speak example-audio" onclick="say('Mi jefa me cae bien.')" title="Escuchar: Mi jefa me cae bien." type="button">🔊</button></div>
+<div class="example sayable"><b>Luisa me cayó bien la primera semana.</b><button aria-label="Escuchar: Luisa me cayó bien la primera semana." class="speak example-audio" onclick="say('Luisa me cayó bien la primera semana.')" title="Escuchar: Luisa me cayó bien la primera semana." type="button">🔊</button></div>
+<div class="example sayable"><b>Mis estudiantes me cayeron bien el primer día.</b><button aria-label="Escuchar: Mis estudiantes me cayeron bien el primer día." class="speak example-audio" onclick="say('Mis estudiantes me cayeron bien el primer día.')" title="Escuchar: Mis estudiantes me cayeron bien el primer día." type="button">🔊</button></div>
+<div class="example sayable"><b>Él parece simpático.</b><button aria-label="Escuchar: Él parece simpático." class="speak example-audio" onclick="say('Él parece simpático.')" title="Escuchar: Él parece simpático." type="button">🔊</button></div>
+<div class="example sayable"><b>Se parece a su padre en los ojos.</b><button aria-label="Escuchar: Se parece a su padre en los ojos." class="speak example-audio" onclick="say('Se parece a su padre en los ojos.')" title="Escuchar: Se parece a su padre en los ojos." type="button">🔊</button></div>
+<div class="example sayable"><b>Yo mido 1,93.</b><button aria-label="Escuchar: Yo mido 1,93." class="speak example-audio" onclick="say('Yo mido 1,93.')" title="Escuchar: Yo mido 1,93." type="button">🔊</button></div>
+</div><div class="card" style="margin-top:14px">
 <h3>📋 Actividades del libro hechas en clase</h3>
 <div class="activity-list">
-<p><b>✓ p. 44 · pregunta 7A</b><br>Análisis en clase de los aspectos positivos y negativos de las personas.</p>
-<p><b>✓ p. 45 · pregunta 7B</b><br>Trabajo con <b>caer bien / mal</b> y <b>llevarse bien / mal</b>.</p>
-<p><b>✓ p. 140 · pregunta 13</b><br>Identificar cuándo se usa <b>llevar</b> y cuándo <b>llevarse</b>.</p>
-<p><b>✓ p. 142 · pregunta 20</b><br>Simulación con un compañero de las respuestas para las diferentes características de las personas.</p>
-<p><b>✓ p. 142 · pregunta 21</b><br>En pareja: relacionar cada frase con su continuación lógica.</p>
-<p><b>✓ p. 50 · pregunta 11B</b><br>Redactar con un compañero un anuncio para encontrar una pareja que se ajuste al perfil del apartado.</p>
+<p><b>✓ p. 44 · pregunta 7A</b><br/>Análisis en clase de los aspectos positivos y negativos de las personas.</p>
+<p><b>✓ p. 45 · pregunta 7B</b><br/>Trabajo con <b>caer bien / mal</b> y <b>llevarse bien / mal</b>.</p>
+<p><b>✓ p. 140 · pregunta 13</b><br/>Identificar cuándo se usa <b>llevar</b> y cuándo <b>llevarse</b>.</p>
+<p><b>✓ p. 142 · pregunta 20</b><br/>Simulación con un compañero de las respuestas para las diferentes características de las personas.</p>
+<p><b>✓ p. 142 · pregunta 21</b><br/>En pareja: relacionar cada frase con su continuación lógica.</p>
+<p><b>✓ p. 50 · pregunta 11B</b><br/>Redactar con un compañero un anuncio para encontrar una pareja que se ajuste al perfil del apartado.</p>
 </div>
-<div class="pending"><b>⏳ Pendiente:</b> no dio tiempo de terminar el anuncio en clase. Se entrega el 29/09 en papel, solo con ese texto.</div>
+<div class="note"><b>⏳ Pendiente:</b> no dio tiempo de terminar el anuncio en clase. Se entrega el 29/09 en papel, solo con ese texto.</div>
+</div></section>
+<section aria-labelledby="tab-vocab" id="vocab" role="tabpanel" tabindex="0"><h2>📝 Vocabulario</h2><div class="grid">
+<div class="card"><h3 class="pink">Relaciones</h3>
+<p><b>compañero/a de clase</b> — persona con la que compartes clase.</p>
+<p><b>compañero/a de trabajo</b> — persona con la que trabajas.</p>
+<p><b>compañero/a de viaje</b> — persona con la que viajas.</p>
+<p><b>compañero/a de vida</b> — expresión para referirse a la pareja.</p>
 </div>
-</section>
-
-<section id="vocab">
-<h2>📝 Vocabulario</h2>
-<div class="grid">
- <div class="card"><h3 class="pink">Relaciones</h3>
-  <p><b>compañero/a de clase</b> — persona con la que compartes clase.</p>
-  <p><b>compañero/a de trabajo</b> — persona con la que trabajas.</p>
-  <p><b>compañero/a de viaje</b> — persona con la que viajas.</p>
-  <p><b>compañero/a de vida</b> — expresión para referirse a la pareja.</p>
- </div>
- <div class="card"><h3 class="purple">Impresiones y relaciones</h3>
-  <p><b>primera impresión</b></p>
-  <p><b>chocar con alguien</b> — tener una relación de conflicto.</p>
-  <p><b>no soportar a alguien</b> — no poder verlo delante; no querer verlo. <span class="small">(PT: não suportar)</span></p>
-  <p><b>pesimista</b> — negativo ante el futuro.</p>
- </div>
- <div class="card"><h3 class="turq">Carácter y estado</h3>
-  <p><b>prepotente</b> — trata a otra persona como si fuera mejor. <span class="small">(PT: arrogante)</span></p>
-  <p><b>nervioso / estresado</b> — lo contrario de estar relajado.</p>
-  <p><b>divertido/a, guapo/a, alegre, activo/a, tranquilo/a</b> — aparecieron en los perfiles y textos.</p>
- </div>
- <div class="card"><h3 class="yellow">Otras palabras</h3>
-  <p><b>teñido</b> — «tiene el pelo teñido». <span class="small">(PT: tingido)</span></p>
-  <p><b>físicamente</b> — adverbio para describir el aspecto de una persona; en clase se corrigió su forma.</p>
-  <p><b>señor / señora</b> — tratamiento formal; depende de la confianza y de la situación.</p>
- </div>
- <div class="card"><h3 class="blue">Tratamiento e identificación</h3>
-  <p><b>tutear</b> — tratar a una persona de <b>tú</b>, en lugar de usar un tratamiento formal.</p>
-  <p><b>el de / la de</b> — identificar a una persona con una característica o un elemento que permite reconocerla.</p>
-  <p><b>el del / la del</b> — identificación con <b>de + el/la</b>, como en <b>los del coche azul</b>.</p>
- </div>
+<div class="card"><h3 class="purple">Impresiones y relaciones</h3>
+<p><b>primera impresión</b></p>
+<p><b>chocar con alguien</b> — tener una relación de conflicto.</p>
+<p><b>no soportar a alguien</b> — no poder verlo delante; no querer verlo. <span class="small">(PT: não suportar)</span></p>
+<p><b>pesimista</b> — negativo ante el futuro.</p>
 </div>
-</section>
-
-<section id="gram">
-<h2>🧠 Estructuras centrales</h2>
-<div class="sound-bar"><span class="small">🔊 Toca el botón de cada ejemplo para escucharlo.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
-
-<div class="card" style="margin-bottom:14px">
+<div class="card"><h3 class="turq">Carácter y estado</h3>
+<p><b>prepotente</b> — trata a otra persona como si fuera mejor. <span class="small">(PT: arrogante)</span></p>
+<p><b>nervioso / estresado</b> — lo contrario de estar relajado.</p>
+<p><b>divertido/a, guapo/a, alegre, activo/a, tranquilo/a</b> — aparecieron en los perfiles y textos.</p>
+</div>
+<div class="card"><h3 class="yellow">Otras palabras</h3>
+<p><b>teñido</b> — «tiene el pelo teñido». <span class="small">(PT: tingido)</span></p>
+<p><b>físicamente</b> — adverbio para describir el aspecto de una persona; en clase se corrigió su forma.</p>
+<p><b>señor / señora</b> — tratamiento formal; depende de la confianza y de la situación.</p>
+</div>
+<div class="card"><h3 class="blue">Tratamiento e identificación</h3>
+<p><b>tutear</b> — tratar a una persona de <b>tú</b>, en lugar de usar un tratamiento formal.</p>
+<p><b>el de / la de</b> — identificar a una persona con una característica o un elemento que permite reconocerla.</p>
+<p><b>el del / la del</b> — identificación con <b>de + el/la</b>, como en <b>los del coche azul</b>.</p>
+</div>
+</div></section>
+<section aria-labelledby="tab-gram" id="gram" role="tabpanel" tabindex="0"><h2>🧠 Gramática</h2><div class="sound-bar"><span class="small">🔊 Toca el botón de cada ejemplo para escucharlo.</span></div><div class="card" style="margin-bottom:14px">
 <h3 class="blue">Tutear + identificar personas</h3>
 <div class="table-wrap"><table>
 <tr><th>Estructura</th><th>Uso trabajado</th><th>Ejemplo</th></tr>
-<tr><td><b>tutear</b></td><td>Tratar a una persona de <b>tú</b>.</td><td><div class="example"><b>¿Nos podemos tutear?</b></div>
+<tr><td><b>tutear</b></td><td>Tratar a una persona de <b>tú</b>.</td><td><div class="example sayable"><b>¿Nos podemos tutear?</b><button aria-label="Escuchar: ¿Nos podemos tutear?" class="speak example-audio" onclick="say('¿Nos podemos tutear?')" title="Escuchar: ¿Nos podemos tutear?" type="button">🔊</button></div>
 </td></tr>
-<tr><td><b>el de / la de</b></td><td>Identificar a una persona por una característica o elemento.</td><td><div class="example"><b>El de las gafas.</b></div>
+<tr><td><b>el de / la de</b></td><td>Identificar a una persona por una característica o elemento.</td><td><div class="example sayable"><b>El de las gafas.</b><button aria-label="Escuchar: El de las gafas." class="speak example-audio" onclick="say('El de las gafas.')" title="Escuchar: El de las gafas." type="button">🔊</button></div>
 </td></tr>
-<tr><td><b>el del / la del</b></td><td>Identificar con <b>de + el/la</b>.</td><td><div class="example"><b>Los del coche azul.</b></div>
+<tr><td><b>el del / la del</b></td><td>Identificar con <b>de + el/la</b>.</td><td><div class="example sayable"><b>Los del coche azul.</b><button aria-label="Escuchar: Los del coche azul." class="speak example-audio" onclick="say('Los del coche azul.')" title="Escuchar: Los del coche azul." type="button">🔊</button></div>
 </td></tr>
 </table></div>
 <p class="note">Esta parte también está escrita en la pizarra de la clase.</p>
-</div>
-
-<div class="card">
+</div><div class="card">
 <h3 class="pink">LLEVAR × LLEVARSE</h3>
 <div class="table-wrap"><table>
 <tr><th>Estructura</th><th>Uso trabajado en clase</th><th>Ejemplo</th></tr>
-<tr><td><b>llevar + algo</b></td><td>Describir ropa, barba, gafas, pelo y estilo.</td><td><div class="example"><b>Llevo barba.</b></div>
-<div class="example"><b>Llevo las gafas.</b></div>
-<div class="example"><b>Llevo el pelo corto.</b></div>
+<tr><td><b>llevar + algo</b></td><td>Describir ropa, barba, gafas, pelo y estilo.</td><td><div class="example sayable"><b>Llevo barba.</b><button aria-label="Escuchar: Llevo barba." class="speak example-audio" onclick="say('Llevo barba.')" title="Escuchar: Llevo barba." type="button">🔊</button></div>
+<div class="example sayable"><b>Llevo las gafas.</b><button aria-label="Escuchar: Llevo las gafas." class="speak example-audio" onclick="say('Llevo las gafas.')" title="Escuchar: Llevo las gafas." type="button">🔊</button></div>
+<div class="example sayable"><b>Llevo el pelo corto.</b><button aria-label="Escuchar: Llevo el pelo corto." class="speak example-audio" onclick="say('Llevo el pelo corto.')" title="Escuchar: Llevo el pelo corto." type="button">🔊</button></div>
 </td></tr>
-<tr><td><b>llevarse bien/mal/fatal + con</b></td><td>Hablar de la relación con otra persona.</td><td><div class="example"><b>Me llevo muy bien con mi jefe.</b></div>
+<tr><td><b>llevarse bien/mal/fatal + con</b></td><td>Hablar de la relación con otra persona.</td><td><div class="example sayable"><b>Me llevo muy bien con mi jefe.</b><button aria-label="Escuchar: Me llevo muy bien con mi jefe." class="speak example-audio" onclick="say('Me llevo muy bien con mi jefe.')" title="Escuchar: Me llevo muy bien con mi jefe." type="button">🔊</button></div>
 </td></tr>
 </table></div>
-</div>
-
-<div class="card" style="margin-top:14px">
+</div><div class="card" style="margin-top:14px">
 <h3 class="purple">CAER × LLEVARSE</h3>
 <div class="table-wrap"><table>
 <tr><th>Expresión</th><th>Significado trabajado</th><th>Ejemplo</th></tr>
-<tr><td><b>me cae bien/mal/regular</b></td><td>Valoración positiva, negativa o regular sobre alguien; no exige una relación cercana.</td><td><div class="example"><b>Mi jefa me cae bien.</b></div>
+<tr><td><b>me cae bien/mal/regular</b></td><td>Valoración positiva, negativa o regular sobre alguien; no exige una relación cercana.</td><td><div class="example sayable"><b>Mi jefa me cae bien.</b><button aria-label="Escuchar: Mi jefa me cae bien." class="speak example-audio" onclick="say('Mi jefa me cae bien.')" title="Escuchar: Mi jefa me cae bien." type="button">🔊</button></div>
 </td></tr>
-<tr><td><b>me llevo bien/mal con</b></td><td>Relación buena o mala con otra persona.</td><td><div class="example"><b>Me llevo bien con mi jefe.</b></div>
+<tr><td><b>me llevo bien/mal con</b></td><td>Relación buena o mala con otra persona.</td><td><div class="example sayable"><b>Me llevo bien con mi jefe.</b><button aria-label="Escuchar: Me llevo bien con mi jefe." class="speak example-audio" onclick="say('Me llevo bien con mi jefe.')" title="Escuchar: Me llevo bien con mi jefe." type="button">🔊</button></div>
 </td></tr>
 </table></div>
-</div>
-
-<div class="card" style="margin-top:14px">
+</div><div class="card" style="margin-top:14px">
 <h3 class="turq">PARECER × PARECERSE</h3>
-<div class="example"><b>Él parece simpático.</b> → impresión u opinión sobre una característica.</div>
-<div class="example"><b>Se parece a su padre en los ojos.</b> → semejanza con otra persona.</div>
+<div class="example sayable"><b>Él parece simpático.</b> → impresión u opinión sobre una característica.<button aria-label="Escuchar: Él parece simpático." class="speak example-audio" onclick="say('Él parece simpático.')" title="Escuchar: Él parece simpático." type="button">🔊</button></div>
+<div class="example sayable"><b>Se parece a su padre en los ojos.</b> → semejanza con otra persona.<button aria-label="Escuchar: Se parece a su padre en los ojos." class="speak example-audio" onclick="say('Se parece a su padre en los ojos.')" title="Escuchar: Se parece a su padre en los ojos." type="button">🔊</button></div>
 <p class="note">La profesora destacó que quitar <b>se</b> cambia el significado del verbo.</p>
-</div>
-
-<div class="card" style="margin-top:14px">
+</div><div class="card" style="margin-top:14px">
 <h3 class="blue">CAER + pronombres</h3>
 <p>En clase se explicó que <b>caer</b> funciona con la estructura de <b>gustar</b>:</p>
-<div class="example"><b>A mí me cae bien ella.</b></div>
-<div class="example"><b>A ti te cae bien ella.</b></div>
-<div class="example"><b>A nosotros nos cae bien él.</b></div>
+<div class="example sayable"><b>A mí me cae bien ella.</b><button aria-label="Escuchar: A mí me cae bien ella." class="speak example-audio" onclick="say('A mí me cae bien ella.')" title="Escuchar: A mí me cae bien ella." type="button">🔊</button></div>
+<div class="example sayable"><b>A ti te cae bien ella.</b><button aria-label="Escuchar: A ti te cae bien ella." class="speak example-audio" onclick="say('A ti te cae bien ella.')" title="Escuchar: A ti te cae bien ella." type="button">🔊</button></div>
+<div class="example sayable"><b>A nosotros nos cae bien él.</b><button aria-label="Escuchar: A nosotros nos cae bien él." class="speak example-audio" onclick="say('A nosotros nos cae bien él.')" title="Escuchar: A nosotros nos cae bien él." type="button">🔊</button></div>
 <p class="note">En plural: <b>me caen bien</b>. En pasado: <b>me cayó bien</b> / <b>me cayeron bien</b>.</p>
-</div>
-</section>
+</div></section>
+<section aria-labelledby="tab-verbos" id="verbos" role="tabpanel" tabindex="0"><h2>🔤 Verbos</h2><p class="small">Aquí aparecen los verbos que se trabajaron como foco de la clase. Los tres verbos nuevos que se añadieron a los flashcards son llevarse, medir y tutear. <a href="flashcards-verbos-a2.html" style="color:var(--turq);">Abrir los flashcards →</a></p><div class="verb-structure-guide" role="note">📌 <b>Estructura de estudio:</b> verbo → conjugación completa → frase de ejemplo → flashcards.</div><div class="sound-bar"><span class="small">🔊 Puedes escuchar el infinitivo, cada forma de la conjugación y las frases de ejemplo.</span></div><div class="sound-bar"><span class="small">🔊 Cada verbo tiene su botón para escuchar el infinitivo.</span></div><div class="verb-card card">
+<div class="verb-head"><span class="verb">llevar</span><span class="tag">ya estaba en los flashcards · -AR</span><button aria-label="Escuchar: llevar" class="speak" onclick="say('llevar')" type="button">🔊</button></div><div class="verb-subtitle">🔄 Conjugación — Presente</div><div class="conj-grid"><div class="conj-item"><div class="conj-person">Yo</div><div class="conj-form">llevo<button aria-label="Escuchar: llevo" class="speak form-audio" onclick="say('llevo')" title="Escuchar: llevo" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Tú</div><div class="conj-form">llevas<button aria-label="Escuchar: llevas" class="speak form-audio" onclick="say('llevas')" title="Escuchar: llevas" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Él / Ella / Usted</div><div class="conj-form">lleva<button aria-label="Escuchar: lleva" class="speak form-audio" onclick="say('lleva')" title="Escuchar: lleva" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Nosotros / Nosotras</div><div class="conj-form">llevamos<button aria-label="Escuchar: llevamos" class="speak form-audio" onclick="say('llevamos')" title="Escuchar: llevamos" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Vosotros / Vosotras</div><div class="conj-form">lleváis<button aria-label="Escuchar: lleváis" class="speak form-audio" onclick="say('lleváis')" title="Escuchar: lleváis" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Ellos / Ellas / Ustedes</div><div class="conj-form">llevan<button aria-label="Escuchar: llevan" class="speak form-audio" onclick="say('llevan')" title="Escuchar: llevan" type="button">🔊</button></div></div></div>
 
-<section id="verbos">
-<h2>🔤 Verbos trabajados en la clase</h2>
-<p class="small">Aquí aparecen los verbos que se trabajaron como foco de la clase. Los tres verbos nuevos que se añadieron a los flashcards son <b>llevarse</b>, <b>medir</b> y <b>tutear</b>. <a href="flashcards-verbos-a2.html" style="color:var(--turq);">Abrir los flashcards →</a></p>
-<div class="sound-bar"><span class="small">🔊 Cada verbo tiene su botón para escuchar el infinitivo.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
-<div class="verb-card card">
-<div class="verb-head"><span class="verb">llevar</span><span class="tag">ya estaba en los flashcards · -AR</span><button type="button" class="speak" aria-label="Escuchar: llevar" onclick="say('llevar')">🔊</button></div>
-<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
-<tr><td>llevo</td><td>llevas</td><td>lleva</td><td>llevamos</td><td>lleváis</td><td>llevan</td></tr></table></div>
-<div class="example"><b>Llevo barba.</b></div>
-<div class="example"><b>Llevo las gafas.</b></div>
-<div class="example"><b>Llevo el pelo corto.</b></div>
-</div>
-<div class="verb-card card">
-<div class="verb-head"><span class="verb">llevarse</span><span class="tag">NUEVO EN LOS FLASHCARDS · reflexivo -AR</span><button type="button" class="speak" aria-label="Escuchar: llevarse" onclick="say('llevarse')">🔊</button></div>
-<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
-<tr><td>me llevo</td><td>te llevas</td><td>se lleva</td><td>nos llevamos</td><td>os lleváis</td><td>se llevan</td></tr></table></div>
-<div class="example"><b>Me llevo bien con mi jefe.</b></div>
+<div class="example-label">💬 Frase de ejemplo</div><div class="example sayable"><b>Llevo barba.</b><button aria-label="Escuchar: Llevo barba." class="speak example-audio" onclick="say('Llevo barba.')" title="Escuchar: Llevo barba." type="button">🔊</button></div>
+<div class="example-label">💬 Frase de ejemplo</div><div class="example sayable"><b>Llevo las gafas.</b><button aria-label="Escuchar: Llevo las gafas." class="speak example-audio" onclick="say('Llevo las gafas.')" title="Escuchar: Llevo las gafas." type="button">🔊</button></div>
+<div class="example-label">💬 Frase de ejemplo</div><div class="example sayable"><b>Llevo el pelo corto.</b><button aria-label="Escuchar: Llevo el pelo corto." class="speak example-audio" onclick="say('Llevo el pelo corto.')" title="Escuchar: Llevo el pelo corto." type="button">🔊</button></div>
+<div class="verb-links"><a class="flashcard-link" href="flashcards-verbos-a2.html#llevar" title="Ver este verbo en Flashcards">📚 Ver llevar en Flashcards</a></div></div><div class="verb-card card">
+<div class="verb-head"><span class="verb">llevarse</span><span class="tag">NUEVO EN LOS FLASHCARDS · reflexivo -AR</span><button aria-label="Escuchar: llevarse" class="speak" onclick="say('llevarse')" type="button">🔊</button></div><div class="verb-subtitle">🔄 Conjugación — Presente</div><div class="conj-grid"><div class="conj-item"><div class="conj-person">Yo</div><div class="conj-form">me llevo<button aria-label="Escuchar: me llevo" class="speak form-audio" onclick="say('me llevo')" title="Escuchar: me llevo" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Tú</div><div class="conj-form">te llevas<button aria-label="Escuchar: te llevas" class="speak form-audio" onclick="say('te llevas')" title="Escuchar: te llevas" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Él / Ella / Usted</div><div class="conj-form">se lleva<button aria-label="Escuchar: se lleva" class="speak form-audio" onclick="say('se lleva')" title="Escuchar: se lleva" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Nosotros / Nosotras</div><div class="conj-form">nos llevamos<button aria-label="Escuchar: nos llevamos" class="speak form-audio" onclick="say('nos llevamos')" title="Escuchar: nos llevamos" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Vosotros / Vosotras</div><div class="conj-form">os lleváis<button aria-label="Escuchar: os lleváis" class="speak form-audio" onclick="say('os lleváis')" title="Escuchar: os lleváis" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Ellos / Ellas / Ustedes</div><div class="conj-form">se llevan<button aria-label="Escuchar: se llevan" class="speak form-audio" onclick="say('se llevan')" title="Escuchar: se llevan" type="button">🔊</button></div></div></div>
+
+<div class="example-label">💬 Frase de ejemplo</div><div class="example sayable"><b>Me llevo bien con mi jefe.</b><button aria-label="Escuchar: Me llevo bien con mi jefe." class="speak example-audio" onclick="say('Me llevo bien con mi jefe.')" title="Escuchar: Me llevo bien con mi jefe." type="button">🔊</button></div>
 <div class="note">En clase se explicó como verbo reflexivo para hablar de la relación con otra persona.</div>
-</div>
-<div class="verb-card card">
-<div class="verb-head"><span class="verb">tutear</span><span class="tag">NUEVO EN LOS FLASHCARDS · regular -AR</span><button type="button" class="speak" aria-label="Escuchar: tutear" onclick="say('tutear')">🔊</button></div>
-<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
-<tr><td>tuteo</td><td>tuteas</td><td>tutea</td><td>tuteamos</td><td>tuteáis</td><td>tutean</td></tr></table></div>
-<div class="example"><b>¿Nos podemos tutear?</b></div>
+<div class="verb-links"><a class="flashcard-link" href="flashcards-verbos-a2.html#llevarse" title="Ver este verbo en Flashcards">📚 Ver llevarse en Flashcards</a></div></div><div class="verb-card card">
+<div class="verb-head"><span class="verb">tutear</span><span class="tag">NUEVO EN LOS FLASHCARDS · regular -AR</span><button aria-label="Escuchar: tutear" class="speak" onclick="say('tutear')" type="button">🔊</button></div><div class="verb-subtitle">🔄 Conjugación — Presente</div><div class="conj-grid"><div class="conj-item"><div class="conj-person">Yo</div><div class="conj-form">tuteo<button aria-label="Escuchar: tuteo" class="speak form-audio" onclick="say('tuteo')" title="Escuchar: tuteo" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Tú</div><div class="conj-form">tuteas<button aria-label="Escuchar: tuteas" class="speak form-audio" onclick="say('tuteas')" title="Escuchar: tuteas" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Él / Ella / Usted</div><div class="conj-form">tutea<button aria-label="Escuchar: tutea" class="speak form-audio" onclick="say('tutea')" title="Escuchar: tutea" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Nosotros / Nosotras</div><div class="conj-form">tuteamos<button aria-label="Escuchar: tuteamos" class="speak form-audio" onclick="say('tuteamos')" title="Escuchar: tuteamos" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Vosotros / Vosotras</div><div class="conj-form">tuteáis<button aria-label="Escuchar: tuteáis" class="speak form-audio" onclick="say('tuteáis')" title="Escuchar: tuteáis" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Ellos / Ellas / Ustedes</div><div class="conj-form">tutean<button aria-label="Escuchar: tutean" class="speak form-audio" onclick="say('tutean')" title="Escuchar: tutean" type="button">🔊</button></div></div></div>
+
+<div class="example-label">💬 Frase de ejemplo</div><div class="example sayable"><b>¿Nos podemos tutear?</b><button aria-label="Escuchar: ¿Nos podemos tutear?" class="speak example-audio" onclick="say('¿Nos podemos tutear?')" title="Escuchar: ¿Nos podemos tutear?" type="button">🔊</button></div>
 <div class="note">Tratar a alguien de <b>tú</b> en lugar de <b>usted</b>.</div>
-</div>
-<div class="verb-card card">
-<div class="verb-head"><span class="verb">caer</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: caer" onclick="say('caer')">🔊</button></div>
-<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
-<tr><td>caigo</td><td>caes</td><td>cae</td><td>caemos</td><td>caéis</td><td>caen</td></tr></table></div>
-<div class="example"><b>Mi jefa me cae bien.</b></div>
-<div class="example"><b>Me cayó bien el primer día.</b></div>
-<div class="example"><b>Me cayeron bien mis estudiantes.</b></div>
-</div>
-<div class="verb-card card">
-<div class="verb-head"><span class="verb">parecer</span><span class="tag">ya estaba en los flashcards</span><button type="button" class="speak" aria-label="Escuchar: parecer" onclick="say('parecer')">🔊</button></div>
-<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
-<tr><td>parezco</td><td>pareces</td><td>parece</td><td>parecemos</td><td>parecéis</td><td>parecen</td></tr></table></div>
-<div class="example"><b>Él parece simpático.</b></div>
-</div>
-<div class="verb-card card">
-<div class="verb-head"><span class="verb">parecerse</span><span class="tag">ya estaba en los flashcards · reflexivo</span><button type="button" class="speak" aria-label="Escuchar: parecerse" onclick="say('parecerse')">🔊</button></div>
-<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
-<tr><td>me parezco</td><td>te pareces</td><td>se parece</td><td>nos parecemos</td><td>os parecéis</td><td>se parecen</td></tr></table></div>
-<div class="example"><b>Se parece a su padre en los ojos.</b></div>
-</div>
-<div class="verb-card card">
-<div class="verb-head"><span class="verb">medir</span><span class="tag">NUEVO EN LOS FLASHCARDS · e → i</span><button type="button" class="speak" aria-label="Escuchar: medir" onclick="say('medir')">🔊</button></div>
-<div class="table-wrap"><table><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr>
-<tr><td>mido</td><td>mides</td><td>mide</td><td>medimos</td><td>medís</td><td>miden</td></tr></table></div>
-<div class="example"><b>Mido 1,93.</b></div>
+<div class="verb-links"><a class="flashcard-link" href="flashcards-verbos-a2.html#tutear" title="Ver este verbo en Flashcards">📚 Ver tutear en Flashcards</a></div></div><div class="verb-card card">
+<div class="verb-head"><span class="verb">caer</span><span class="tag">ya estaba en los flashcards</span><button aria-label="Escuchar: caer" class="speak" onclick="say('caer')" type="button">🔊</button></div><div class="verb-subtitle">🔄 Conjugación — Presente</div><div class="conj-grid"><div class="conj-item"><div class="conj-person">Yo</div><div class="conj-form">caigo<button aria-label="Escuchar: caigo" class="speak form-audio" onclick="say('caigo')" title="Escuchar: caigo" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Tú</div><div class="conj-form">caes<button aria-label="Escuchar: caes" class="speak form-audio" onclick="say('caes')" title="Escuchar: caes" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Él / Ella / Usted</div><div class="conj-form">cae<button aria-label="Escuchar: cae" class="speak form-audio" onclick="say('cae')" title="Escuchar: cae" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Nosotros / Nosotras</div><div class="conj-form">caemos<button aria-label="Escuchar: caemos" class="speak form-audio" onclick="say('caemos')" title="Escuchar: caemos" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Vosotros / Vosotras</div><div class="conj-form">caéis<button aria-label="Escuchar: caéis" class="speak form-audio" onclick="say('caéis')" title="Escuchar: caéis" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Ellos / Ellas / Ustedes</div><div class="conj-form">caen<button aria-label="Escuchar: caen" class="speak form-audio" onclick="say('caen')" title="Escuchar: caen" type="button">🔊</button></div></div></div>
+
+<div class="example-label">💬 Frase de ejemplo</div><div class="example sayable"><b>Mi jefa me cae bien.</b><button aria-label="Escuchar: Mi jefa me cae bien." class="speak example-audio" onclick="say('Mi jefa me cae bien.')" title="Escuchar: Mi jefa me cae bien." type="button">🔊</button></div>
+<div class="example-label">💬 Frase de ejemplo</div><div class="example sayable"><b>Me cayó bien el primer día.</b><button aria-label="Escuchar: Me cayó bien el primer día." class="speak example-audio" onclick="say('Me cayó bien el primer día.')" title="Escuchar: Me cayó bien el primer día." type="button">🔊</button></div>
+<div class="example-label">💬 Frase de ejemplo</div><div class="example sayable"><b>Me cayeron bien mis estudiantes.</b><button aria-label="Escuchar: Me cayeron bien mis estudiantes." class="speak example-audio" onclick="say('Me cayeron bien mis estudiantes.')" title="Escuchar: Me cayeron bien mis estudiantes." type="button">🔊</button></div>
+<div class="verb-links"><a class="flashcard-link" href="flashcards-verbos-a2.html#caer" title="Ver este verbo en Flashcards">📚 Ver caer en Flashcards</a></div></div><div class="verb-card card">
+<div class="verb-head"><span class="verb">parecer</span><span class="tag">ya estaba en los flashcards</span><button aria-label="Escuchar: parecer" class="speak" onclick="say('parecer')" type="button">🔊</button></div><div class="verb-subtitle">🔄 Conjugación — Presente</div><div class="conj-grid"><div class="conj-item"><div class="conj-person">Yo</div><div class="conj-form">parezco<button aria-label="Escuchar: parezco" class="speak form-audio" onclick="say('parezco')" title="Escuchar: parezco" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Tú</div><div class="conj-form">pareces<button aria-label="Escuchar: pareces" class="speak form-audio" onclick="say('pareces')" title="Escuchar: pareces" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Él / Ella / Usted</div><div class="conj-form">parece<button aria-label="Escuchar: parece" class="speak form-audio" onclick="say('parece')" title="Escuchar: parece" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Nosotros / Nosotras</div><div class="conj-form">parecemos<button aria-label="Escuchar: parecemos" class="speak form-audio" onclick="say('parecemos')" title="Escuchar: parecemos" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Vosotros / Vosotras</div><div class="conj-form">parecéis<button aria-label="Escuchar: parecéis" class="speak form-audio" onclick="say('parecéis')" title="Escuchar: parecéis" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Ellos / Ellas / Ustedes</div><div class="conj-form">parecen<button aria-label="Escuchar: parecen" class="speak form-audio" onclick="say('parecen')" title="Escuchar: parecen" type="button">🔊</button></div></div></div>
+
+<div class="example-label">💬 Frase de ejemplo</div><div class="example sayable"><b>Él parece simpático.</b><button aria-label="Escuchar: Él parece simpático." class="speak example-audio" onclick="say('Él parece simpático.')" title="Escuchar: Él parece simpático." type="button">🔊</button></div>
+<div class="verb-links"><a class="flashcard-link" href="flashcards-verbos-a2.html#parecer" title="Ver este verbo en Flashcards">📚 Ver parecer en Flashcards</a></div></div><div class="verb-card card">
+<div class="verb-head"><span class="verb">parecerse</span><span class="tag">ya estaba en los flashcards · reflexivo</span><button aria-label="Escuchar: parecerse" class="speak" onclick="say('parecerse')" type="button">🔊</button></div><div class="verb-subtitle">🔄 Conjugación — Presente</div><div class="conj-grid"><div class="conj-item"><div class="conj-person">Yo</div><div class="conj-form">me parezco<button aria-label="Escuchar: me parezco" class="speak form-audio" onclick="say('me parezco')" title="Escuchar: me parezco" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Tú</div><div class="conj-form">te pareces<button aria-label="Escuchar: te pareces" class="speak form-audio" onclick="say('te pareces')" title="Escuchar: te pareces" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Él / Ella / Usted</div><div class="conj-form">se parece<button aria-label="Escuchar: se parece" class="speak form-audio" onclick="say('se parece')" title="Escuchar: se parece" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Nosotros / Nosotras</div><div class="conj-form">nos parecemos<button aria-label="Escuchar: nos parecemos" class="speak form-audio" onclick="say('nos parecemos')" title="Escuchar: nos parecemos" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Vosotros / Vosotras</div><div class="conj-form">os parecéis<button aria-label="Escuchar: os parecéis" class="speak form-audio" onclick="say('os parecéis')" title="Escuchar: os parecéis" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Ellos / Ellas / Ustedes</div><div class="conj-form">se parecen<button aria-label="Escuchar: se parecen" class="speak form-audio" onclick="say('se parecen')" title="Escuchar: se parecen" type="button">🔊</button></div></div></div>
+
+<div class="example-label">💬 Frase de ejemplo</div><div class="example sayable"><b>Se parece a su padre en los ojos.</b><button aria-label="Escuchar: Se parece a su padre en los ojos." class="speak example-audio" onclick="say('Se parece a su padre en los ojos.')" title="Escuchar: Se parece a su padre en los ojos." type="button">🔊</button></div>
+<div class="verb-links"><a class="flashcard-link" href="flashcards-verbos-a2.html#parecerse" title="Ver este verbo en Flashcards">📚 Ver parecerse en Flashcards</a></div></div><div class="verb-card card">
+<div class="verb-head"><span class="verb">medir</span><span class="tag">NUEVO EN LOS FLASHCARDS · e → i</span><button aria-label="Escuchar: medir" class="speak" onclick="say('medir')" type="button">🔊</button></div><div class="verb-subtitle">🔄 Conjugación — Presente</div><div class="conj-grid"><div class="conj-item"><div class="conj-person">Yo</div><div class="conj-form">mido<button aria-label="Escuchar: mido" class="speak form-audio" onclick="say('mido')" title="Escuchar: mido" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Tú</div><div class="conj-form">mides<button aria-label="Escuchar: mides" class="speak form-audio" onclick="say('mides')" title="Escuchar: mides" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Él / Ella / Usted</div><div class="conj-form">mide<button aria-label="Escuchar: mide" class="speak form-audio" onclick="say('mide')" title="Escuchar: mide" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Nosotros / Nosotras</div><div class="conj-form">medimos<button aria-label="Escuchar: medimos" class="speak form-audio" onclick="say('medimos')" title="Escuchar: medimos" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Vosotros / Vosotras</div><div class="conj-form">medís<button aria-label="Escuchar: medís" class="speak form-audio" onclick="say('medís')" title="Escuchar: medís" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Ellos / Ellas / Ustedes</div><div class="conj-form">miden<button aria-label="Escuchar: miden" class="speak form-audio" onclick="say('miden')" title="Escuchar: miden" type="button">🔊</button></div></div></div>
+
+<div class="example-label">💬 Frase de ejemplo</div><div class="example sayable"><b>Mido 1,93.</b><button aria-label="Escuchar: Mido 1,93." class="speak example-audio" onclick="say('Mido 1,93.')" title="Escuchar: Mido 1,93." type="button">🔊</button></div>
 <div class="note">En clase se introdujo <b>medir</b> para decir la altura y se destacó la forma <b>mido</b>.</div>
-</div>
-
-</section>
-
-<section id="ex">
-<h2>✏️ Ejercicios interactivos</h2>
-<div class="card"><h3 class="pink">1. Elige la estructura correcta</h3><div id="q1"></div></div>
-<div class="card" style="margin-top:14px">
+<div class="verb-links"><a class="flashcard-link" href="flashcards-verbos-a2.html#medir" title="Ver este verbo en Flashcards">📚 Ver medir en Flashcards</a></div></div></section>
+<section aria-labelledby="tab-ex" id="ex" role="tabpanel" tabindex="0"><h2>✏️ Ejercicios interactivos</h2><p class="small">🔊 Puedes escuchar cada pregunta con el botón de pronunciación. La velocidad utiliza el control global de la barra superior.</p><div class="card"><h3 class="pink">1. Elige la estructura correcta</h3><div id="q1"></div></div><div class="card" style="margin-top:14px">
 <h3 class="turq">2. Piensa la frase y comprueba</h3>
 <p class="small">Lee la situación, piensa cómo se dice y abre la respuesta.</p>
 <details><summary>Tu relación con tu jefe es buena.</summary><p><b>Me llevo bien con mi jefe.</b></p></details>
@@ -290,33 +501,27 @@ ul.clean{margin:8px 0;padding-left:20px}ul.clean li{margin:5px 0}
 <details><summary>Tu jefe te parece simpático.</summary><p><b>Él parece simpático.</b></p></details>
 <details><summary>Ella tiene los ojos de su padre.</summary><p><b>Se parece a su padre en los ojos.</b></p></details>
 <details><summary>Tu altura es 1,93 m.</summary><p><b>Mido 1,93.</b></p></details>
-</div>
-<div class="card" style="margin-top:14px">
+</div><div class="card" style="margin-top:14px">
 <h3 class="purple">3. Pasado de <i>caer bien</i></h3>
 <p class="small">Toca las formas correctas (hay dos).</p>
-<div class="choice-grid" id="q2"></div><div id="f2" class="feedback" aria-live="polite"></div>
-</div>
-<div class="card" style="margin-top:14px">
+<div class="choice-grid" id="q2"></div><div aria-live="polite" class="feedback" id="f2"></div>
+</div><div class="card" style="margin-top:14px">
 <h3 class="yellow">🧩 Ejercicio añadido — identificación y tratamiento</h3>
 <p><b>1.</b> Completa: «Los ______ coche azul».</p>
 <div class="choice-grid">
-<button type="button" class="choice" onclick="checkExtra(this, true)">del</button>
-<button type="button" class="choice" onclick="checkExtra(this, false)">de la</button>
+<button class="choice" onclick="checkExtra(this, true)" type="button">del</button>
+<button class="choice" onclick="checkExtra(this, false)" type="button">de la</button>
 </div>
-<div class="feedback" id="extra1" aria-live="polite"></div>
+<div aria-live="polite" class="feedback" id="extra1"></div>
 <p style="margin-top:16px"><b>2.</b> ¿Qué verbo expresa «tratar a alguien de tú»?</p>
 <div class="choice-grid">
-<button type="button" class="choice" onclick="checkExtra2(this, true)">tutear</button>
-<button type="button" class="choice" onclick="checkExtra2(this, false)">llevarse</button>
-<button type="button" class="choice" onclick="checkExtra2(this, false)">parecerse</button>
+<button class="choice" onclick="checkExtra2(this, true)" type="button">tutear</button>
+<button class="choice" onclick="checkExtra2(this, false)" type="button">llevarse</button>
+<button class="choice" onclick="checkExtra2(this, false)" type="button">parecerse</button>
 </div>
-<div class="feedback" id="extra2" aria-live="polite"></div>
-</div>
-</section>
-
-<section id="practica">
-<h2>🎯 Práctica y tarea</h2>
-<div class="card">
+<div aria-live="polite" class="feedback" id="extra2"></div>
+</div></section>
+<section aria-labelledby="tab-practica" id="practica" role="tabpanel" tabindex="0"><h2>🎯 Práctica y tarea</h2><div class="card">
 <h3 class="pink">🏠 Tarea para casa</h3>
 <div class="homework">
 <p><b>📖 Página 141</b></p>
@@ -325,150 +530,217 @@ ul.clean{margin:8px 0;padding-left:20px}ul.clean li{margin:5px 0}
 <ul class="clean"><li>Ejercicio <b>17</b></li><li>Ejercicio <b>18</b></li></ul>
 </div>
 <p class="note"><b>Importante:</b> estos son los ejercicios indicados para hacer en casa.</p>
-</div>
-<div class="card" style="margin-top:14px">
+</div><div class="card" style="margin-top:14px">
 <h3 class="purple">📝 Lista de comprobación para el anuncio (p. 50 · 11B)</h3>
-<label><input type="checkbox" onchange="tick(this)"> Usé <b>llevar</b> para ropa o estilo.</label><br>
-<label><input type="checkbox" onchange="tick(this)"> Usé <b>llevarse bien/mal con</b> para la relación con otras personas.</label><br>
-<label><input type="checkbox" onchange="tick(this)"> Usé <b>caer bien/mal</b> para la impresión sobre alguien.</label><br>
-<label><input type="checkbox" onchange="tick(this)"> Diferencié <b>parecer</b> de <b>parecerse</b>.</label><br>
-<label><input type="checkbox" onchange="tick(this)"> Si indiqué la altura, usé <b>medir</b>.</label>
+<label><input onchange="tick(this)" type="checkbox"/> Usé <b>llevar</b> para ropa o estilo.</label><br/>
+<label><input onchange="tick(this)" type="checkbox"/> Usé <b>llevarse bien/mal con</b> para la relación con otras personas.</label><br/>
+<label><input onchange="tick(this)" type="checkbox"/> Usé <b>caer bien/mal</b> para la impresión sobre alguien.</label><br/>
+<label><input onchange="tick(this)" type="checkbox"/> Diferencié <b>parecer</b> de <b>parecerse</b>.</label><br/>
+<label><input onchange="tick(this)" type="checkbox"/> Si indiqué la altura, usé <b>medir</b>.</label>
 <div class="progress" style="margin-top:12px"><span id="bar"></span></div>
-<p id="count" class="small" style="font-weight:700">0/5 completado</p>
-</div>
-</section>
-
-<div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
+<p class="small" id="count" style="font-weight:700">0/5 completado</p>
+</div></section>
+<div class="home-nav"><a aria-label="Volver al inicio del curso" class="home-link bottom-home" href="index.html">🏠 Volver al inicio</a></div>
 <footer>Registro individual de la clase del 28/09/2026, con las actividades hechas en clase y la tarea indicada por la profesora.</footer>
 </div>
 <script>
+// Navegación e inicialización da interfaz
+if('scrollRestoration' in history) history.scrollRestoration='auto';
+
 function showTab(id,btn){
- document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
- document.getElementById(id).classList.add('active');
- document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
- btn.classList.add('active');
- window.scrollTo({top:0,behavior:'smooth'});
+  const target=document.getElementById(id);
+  if(!target) return;
+  document.querySelectorAll('section[role="tabpanel"]').forEach(s=>s.classList.remove('active'));
+  target.classList.add('active');
+  document.querySelectorAll('.tab-nav button[role="tab"]').forEach(b=>{
+    const active=b===btn || b.dataset.tab===id;
+    b.classList.toggle('active',active);
+    b.setAttribute('aria-selected',String(active));
+    b.setAttribute('tabindex',active?'0':'-1');
+  });
+  requestAnimationFrame(()=>target.scrollIntoView({behavior:'smooth',block:'start'}));
 }
-let slow=false, esVoice=null;
+
+function updateThemeColor(theme){
+  const meta=document.querySelector('meta[name="theme-color"]');
+  if(meta) meta.setAttribute('content',theme==='light'?'#f4f6ff':'#080a18');
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.tab-nav button[role="tab"]').forEach(btn=>{
+    btn.setAttribute('tabindex',btn.classList.contains('active')?'0':'-1');
+    btn.addEventListener('click',()=>showTab(btn.dataset.tab,btn));
+    btn.addEventListener('keydown',e=>{
+      if(e.key==='ArrowRight' || e.key==='ArrowLeft'){
+        e.preventDefault();
+        const tabs=[...document.querySelectorAll('.tab-nav button[role="tab"]')];
+        const i=tabs.indexOf(btn);
+        const next=e.key==='ArrowRight' ? (i+1)%tabs.length : (i-1+tabs.length)%tabs.length;
+        tabs[next].focus();
+        showTab(tabs[next].dataset.tab,tabs[next]);
+      }
+    });
+  });
+  document.querySelectorAll('.speed-btn').forEach(btn=>btn.addEventListener('click',()=>setSpeechSpeed(Number(btn.dataset.rate),btn)));
+  document.querySelector('.theme-toggle')?.addEventListener('click',toggleTheme);
+  initSpeechSpeed();
+});
+let esVoice=null;
+let speechRate=parseFloat(localStorage.getItem('a2SpeechRate')||'0.88');
 function pickEs(){
- const vs=speechSynthesis.getVoices();
- esVoice=vs.find(v=>v.lang==='es-ES')||vs.find(v=>v.lang&&v.lang.startsWith('es'))||null;
+  if(!('speechSynthesis' in window)) return;
+  const vs=speechSynthesis.getVoices();
+  esVoice=vs.find(v=>v.lang==='es-ES')||vs.find(v=>v.lang&&v.lang.toLowerCase().startsWith('es'))||null;
 }
 if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=pickEs;pickEs();}
-function say(txt){
- if(!('speechSynthesis' in window)) return;
- speechSynthesis.cancel();
- const u=new SpeechSynthesisUtterance(txt);
- u.lang='es-ES';if(esVoice)u.voice=esVoice;
- u.rate=slow?.6:.85;
- speechSynthesis.speak(u);
+function setSpeechSpeed(rate,btn){
+  speechRate=rate; localStorage.setItem('a2SpeechRate',String(rate));
+  document.querySelectorAll('.speed-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
 }
-function toggleSlow(){
- slow=!slow;
- document.querySelectorAll('.slowBtn').forEach(b=>{
-  b.textContent=slow?'🐢 Lento: encendido':'🐢 Lento: apagado';
-  b.setAttribute('aria-pressed',slow);
- });
+function initSpeechSpeed(){
+  const valid=[0.58,0.88,1.12];
+  if(!valid.includes(speechRate)) speechRate=0.88;
+  const active=document.querySelector('.speed-btn[data-rate="'+speechRate+'"]');
+  document.querySelectorAll('.speed-btn').forEach(b=>b.classList.toggle('active',b===active));
 }
-document.querySelectorAll('.example').forEach(el=>{
- const b=el.querySelector('b'); if(!b) return;
- const txt=b.textContent.trim();
- const wrap=document.createElement('span');
- while(el.firstChild) wrap.appendChild(el.firstChild);
- el.appendChild(wrap);
- el.classList.add('sayable');
- const btn=document.createElement('button');
- btn.type='button';btn.className='speak';btn.textContent='🔊';
- btn.setAttribute('aria-label','Escuchar: '+txt);
- btn.onclick=()=>say(txt);
- el.appendChild(btn);
-});
-if(!('speechSynthesis' in window)) document.querySelectorAll('.sound-bar').forEach(x=>x.style.display='none');
+initSpeechSpeed();
+function cleanSpeechText(txt){
+  return String(txt ?? '')
+    .replace(/🔊/g,'')
+    .replace(/[→➜]/g,'; ')
+    .replace(/[_＿]+/g,' ')
+    .replace(/\.{3,}/g,' ')
+    .replace(/[-–—]{2,}/g,' ')
+    .replace(/\s+/g,' ')
+    .trim();
+}
 
-// Motor de Quiz Melhorado com o botão Siguiente
-function makeQuiz(id,qs){
- const box=document.getElementById(id);let qi=0,score=0,locked=false;
- function render(){
-  const q=qs[qi];locked=false;
-  box.innerHTML='<p style="font-size:1.1rem;"><b>'+q.t+'</b></p><div class="choice-grid">'+q.o.map((o,i)=>'<button type="button" class="choice" data-i="'+i+'">'+o+'</button>').join('')+'</div><p class="small" style="margin-top:15px; font-weight:700;">Pregunta '+(qi+1)+' de '+qs.length+' · Puntos: '+score+'</p><div class="feedback" aria-live="polite"></div>';
-  box.querySelectorAll('.choice').forEach(b=>b.addEventListener('click',()=>ans(+b.dataset.i,b)));
- }
- function ans(i,btn){
-  if(locked) return; locked=true;
-  const q=qs[qi];const bs=box.querySelectorAll('.choice');
-  bs.forEach(b=>b.disabled=true);
-  bs[q.a].classList.add('correct');
-  const fb=box.querySelector('.feedback');
-  
-  let btnNext = '<button type="button" class="choice" style="margin-top:15px; padding:8px 16px; width:100%; font-size:1rem; border:none; background:rgba(0,0,0,0.2);" onclick="this.parentElement.dispatchEvent(new CustomEvent(\'next\'))">Siguiente ➔</button>';
-  
-  if(i===q.a){
-   score++;
-   fb.innerHTML='<div style="margin-bottom:8px;">✅ Correcto.</div>'+(q.e||'') + btnNext;
-   fb.className='feedback ok';
-  } else{
-   btn.classList.add('wrong');
-   fb.innerHTML='<div style="margin-bottom:8px;">❌ Casi.</div>'+(q.e||'') + btnNext;
-   fb.className='feedback bad';
-  }
-  
-  fb.addEventListener('next', function handler() {
-   fb.removeEventListener('next', handler);
-   if(qi===qs.length-1){end();}else{qi++;render();}
-  });
- }
- function end(){
-  box.innerHTML='<p style="font-size:1.2rem;"><b>🎉 ¡Fin! Acertaste '+score+' de '+qs.length+'.</b></p><button type="button" class="choice" data-again="1" style="background:var(--turq); color:#000; border:none;">Empezar de nuevo ↺</button>';
-  box.querySelector('[data-again]').addEventListener('click',()=>{qi=0;score=0;render();});
- }
- render();
+function say(txt){
+  if(!('speechSynthesis' in window)){alert('La síntesis de voz no está disponible en este navegador.');return;}
+  const safeTxt=cleanSpeechText(txt);
+  if(!safeTxt) return;
+  const speakNow=()=>{
+    const synth=window.speechSynthesis;
+    const voices=synth.getVoices();
+    esVoice=voices.find(v=>v.lang==='es-ES')||voices.find(v=>v.lang&&v.lang.toLowerCase().startsWith('es'))||esVoice||null;
+    synth.cancel();
+    const u=new SpeechSynthesisUtterance(safeTxt);
+    u.lang='es-ES';
+    u.rate=speechRate;
+    if(esVoice)u.voice=esVoice;
+    synth.resume();
+    synth.speak(u);
+  };
+  // Chrome/Edge may need a short delay after cancel/resume when speech is triggered dynamically.
+  window.setTimeout(speakNow,20);
 }
+function updateThemeToggle(theme){
+  const toggle=document.querySelector('.sticky-shell .theme-toggle');
+  if(!toggle) return;
+  const isDark=theme==='dark';
+  toggle.textContent=isDark?'🌙':'☀️';
+  toggle.setAttribute('aria-pressed',String(isDark));
+  const label=isDark?'Cambiar al modo claro':'Cambiar al modo oscuro';
+  toggle.setAttribute('aria-label',label);
+  toggle.setAttribute('title',label);
+}
+function toggleTheme(){
+  const next=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('a2Theme',next);
+  updateThemeToggle(next);
+  updateThemeColor(next);
+}
+(function initTheme(){
+  const saved=localStorage.getItem('a2Theme')||'dark';
+  document.documentElement.setAttribute('data-theme',saved);
+  updateThemeColor(saved);
+  updateThemeToggle(saved);
+})();
+if('speechSynthesis' in window) pickEs();
+
+// Mejoras en el Quiz interactivo
+function makeQuiz(id,qs){
+  const box=document.getElementById(id); if(!box)return;
+  box.innerHTML='';
+  const form=document.createElement('div'); form.className='quiz-all';
+  qs.forEach((q,qi)=>{
+    const card=document.createElement('div');card.className='quiz-question';
+    const questionHead=document.createElement('div');questionHead.className='quiz-question-head';
+    const p=document.createElement('p');p.innerHTML='<b>'+q.t+'</b>';questionHead.appendChild(p);
+    const audio=document.createElement('button');audio.type='button';audio.className='quiz-audio';audio.textContent='🔊';audio.title='Escuchar la pregunta';audio.setAttribute('aria-label','Escuchar la pregunta');
+    audio.onclick=()=>say(cleanSpeechText(q.t));
+    questionHead.appendChild(audio);card.appendChild(questionHead);
+    const grid=document.createElement('div');grid.className='choice-grid';
+    q.o.forEach((opt,i)=>{const b=document.createElement('button');b.type='button';b.className='choice';b.dataset.i=i;b.textContent=opt;b.setAttribute('aria-pressed','false');b.addEventListener('click',()=>{
+        // Cada alternativa también se pronuncia al hacer clic.
+        // El audio usa el mismo control global Lento / Normal / Rápido.
+        say(opt);
+        const buttons=[...card.querySelectorAll('.choice')];
+        const fb=card.querySelector('.feedback');
+        buttons.forEach(x=>{x.classList.remove('selected','correct','wrong');x.setAttribute('aria-pressed','false');});
+        b.classList.add('selected');b.setAttribute('aria-pressed','true');card.dataset.answer=i;
+        if(i===q.a){
+          b.classList.add('correct');
+          fb.className='feedback ok';
+          fb.innerHTML='✅ Correcto.'+(q.e?'<br>'+q.e:'');
+          card.dataset.correct='true';
+        }else{
+          b.classList.add('wrong');
+          fb.className='feedback bad';
+          fb.innerHTML='❌ Incorrecto. Vuelve a intentarlo.';
+          card.dataset.correct='false';
+        }
+      });grid.appendChild(b);});
+    card.appendChild(grid);
+    const fb=document.createElement('div');fb.className='feedback';fb.setAttribute('aria-live','polite');card.appendChild(fb);
+    form.appendChild(card);
+  });
+  const check=document.createElement('button');check.type='button';check.className='check-all';check.textContent='Comprobar Respuestas';
+  const result=document.createElement('div');result.className='quiz-result';result.setAttribute('aria-live','polite');
+  check.addEventListener('click',()=>{
+    let score=0, unanswered=0;
+    form.querySelectorAll('.quiz-question').forEach((card,qi)=>{
+      const q=qs[qi], selected=card.querySelector('.choice.selected'), buttons=card.querySelectorAll('.choice'), fb=card.querySelector('.feedback');
+      if(selected && Number(selected.dataset.i)===q.a){score++;}
+      else if(!selected){unanswered++;fb.className='feedback bad';fb.innerHTML='⚠️ Falta responder esta pregunta.';}
+    });
+    const incorrect=qs.length-score-unanswered;
+    result.innerHTML='<div class=\"result-main\">Resultado: <strong>'+score+' de '+qs.length+'</strong> respuestas correctas.</div>'
+      +'<div class=\"result-stats\"><span class=\"result-ok\">✅ '+score+' correctas</span>'
+      +'<span class=\"result-bad\">❌ '+incorrect+' incorrectas</span>'
+      +'<span class=\"result-warn\">⚠️ '+unanswered+' sin responder</span></div>';
+    check.disabled=true;
+  });
+  box.appendChild(form);box.appendChild(check);box.appendChild(result);
+}
+
 
 makeQuiz('q1',[{"t": "¿Cómo expresas que tu relación con tu jefe es buena?", "o": ["Me llevo bien con mi jefe.", "Me lleva bien con mi jefe.", "Me caigo bien con mi jefe."], "a": 0, "e": "Llevarse bien con alguien = tener buena relación."}, {"t": "Quieres decir que tu jefa te da una buena impresión (valoración). ¿Cuál es la frase?", "o": ["Me llevo bien mi jefa.", "Mi jefa me cae bien.", "Mi jefa me llevo bien."], "a": 1, "e": "Caer bien = impresión positiva sobre alguien."}, {"t": "¿Qué frase expresa una impresión o característica sobre una persona?", "o": ["Él parece simpático.", "Él lleva simpático.", "Él se lleva simpático."], "a": 0, "e": "Parecer + adjetivo = impresión u opinión."}, {"t": "¿Qué frase expresa parecido físico con el padre?", "o": ["Parece a su padre.", "Se parece a su padre.", "Se lleva a su padre."], "a": 1, "e": "Parecerse a = tener semejanza con alguien."}, {"t": "¿Cómo se dice «eu meço 1,93»?", "o": ["Mido 1,93.", "Medo 1,93.", "Mido a 1,93."], "a": 0, "e": "Medir: yo mido (e → i)."}, {"t": "¿Qué frase está en pasado y expresa una buena impresión sobre una persona?", "o": ["Me caí bien.", "Me cayó bien.", "Me caigo bien."], "a": 1, "e": "Me cayó bien (singular) · me cayeron bien (plural)."}]);
-
-// Pasado de caer bien
-const past=[
- ['me cayó bien',true],
- ['me caí bien',false],
- ['me cayeron bien',true]
-];
+const past=[['me cayó bien',true],['me caí bien',false],['me cayeron bien',true]];
 document.getElementById('q2').innerHTML=past.map((x,i)=>'<button type="button" class="choice" onclick="pastAns('+i+',this)">'+x[0]+'</button>').join('');
 function pastAns(i,btn){
- const ok=past[i][1];const f=document.getElementById('f2');
- btn.classList.add(ok?'correct':'wrong');
- f.innerHTML='<div style="margin-bottom:8px;">'+(ok?'✅ Correcto':'❌ Error')+'</div>'+(ok?'Formas trabajadas: me cayó bien / me cayeron bien.':'«Me caí» significa que te caíste al suelo. Para opinar sobre alguien: me cayó bien (singular) o me cayeron bien (plural).');
- f.className='feedback '+(ok?'ok':'bad');
- f.style.display = 'block';
+  const ok=past[i][1], f=document.getElementById('f2');
+  document.querySelectorAll('#q2 .choice').forEach(b=>b.disabled=true);
+  btn.classList.add(ok?'correct':'wrong');
+  if(!ok) document.querySelectorAll('#q2 .choice')[0].classList.add('correct');
+  f.innerHTML='<div style="margin-bottom:8px;">'+(ok?'✅ Correcto':'❌ Error')+'</div>'+(ok?'Formas trabajadas: me cayó bien / me cayeron bien.':'«Me caí» significa que te caíste al suelo. Para opinar sobre alguien: me cayó bien (singular) o me cayeron bien (plural).');
+  f.className='feedback '+(ok?'ok':'bad'); f.style.display='block';
 }
-
-// Ejercicios Extra
-function checkExtra(btn, ok){
- const buttons=btn.parentElement.querySelectorAll('button');
- buttons.forEach(b=>b.disabled=true);
- btn.classList.add(ok ? 'correct' : 'wrong');
- if(!ok) buttons[0].classList.add('correct');
- const box=document.getElementById('extra1');
- box.innerHTML='<div style="margin-bottom:8px;">'+(ok?'✅ Correcto':'❌ Casi')+'</div>'+(ok?'los del coche azul.':'Revisa la estructura: los del coche azul.');
- box.className='feedback '+(ok?'ok':'bad');
- box.style.display='block';
+function checkExtra(btn,ok){
+ const buttons=btn.parentElement.querySelectorAll('button'); buttons.forEach(b=>b.disabled=true);
+ btn.classList.add(ok?'correct':'wrong'); if(!ok) buttons[0].classList.add('correct');
+ const box=document.getElementById('extra1'); box.innerHTML='<div style="margin-bottom:8px;">'+(ok?'✅ Correcto':'❌ Casi')+'</div>'+(ok?'los del coche azul.':'Revisa la estructura: los del coche azul.');
+ box.className='feedback '+(ok?'ok':'bad'); box.style.display='block';
 }
-
-function checkExtra2(btn, ok){
- const buttons=btn.parentElement.querySelectorAll('button');
- buttons.forEach(b=>b.disabled=true);
- btn.classList.add(ok ? 'correct' : 'wrong');
- if(!ok) buttons[0].classList.add('correct');
- const box=document.getElementById('extra2');
- box.innerHTML='<div style="margin-bottom:8px;">'+(ok?'✅ Correcto':'❌ Casi')+'</div>'+(ok?'tutear.':'En esta clase, el verbo trabajado es tutear.');
- box.className='feedback '+(ok?'ok':'bad');
- box.style.display='block';
+function checkExtra2(btn,ok){
+ const buttons=btn.parentElement.querySelectorAll('button'); buttons.forEach(b=>b.disabled=true);
+ btn.classList.add(ok?'correct':'wrong'); if(!ok) buttons[0].classList.add('correct');
+ const box=document.getElementById('extra2'); box.innerHTML='<div style="margin-bottom:8px;">'+(ok?'✅ Correcto':'❌ Casi')+'</div>'+(ok?'tutear.':'En esta clase, el verbo trabajado es tutear.');
+ box.className='feedback '+(ok?'ok':'bad'); box.style.display='block';
 }
-
 let done=0;
-function tick(cb){
- done+=cb.checked?1:-1;
- document.getElementById('bar').style.width=(done/5*100)+'%';
- document.getElementById('count').textContent=done+'/5 completado';
-}
+function tick(cb){done+=cb.checked?1:-1;document.getElementById('bar').style.width=(done/5*100)+'%';document.getElementById('count').textContent=done+'/5 completado';}
 </script>
 </body></html>

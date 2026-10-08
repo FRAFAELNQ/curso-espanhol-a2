@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080a18">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#080a18" name="theme-color"/>
 <title>Clase de Español A2 — 24/09/2026</title>
 <style>
 :root{
@@ -62,189 +63,212 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
 .home-nav a{display:inline-block;padding:10px 18px;border-radius:12px;background:#10152b;border:1px solid var(--border);color:#fff;text-decoration:none;font-weight:800;transition:transform .15s ease,border-color .15s ease}
 .home-nav a:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
 .home-nav a:hover{transform:translateY(-1px);border-color:var(--blue)}
+
+/* === Modelo Mestre A2: controles e áudio === */
+.header-controls{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:10px;width:100%;margin:14px auto 0}
+.header-controls .home-link{grid-column:2;justify-self:center}
+.header-controls .speed-control{grid-column:3;justify-self:end}
+.home-link,.speed-btn,.theme-toggle{border:1px solid var(--border);background:var(--card);color:var(--text);text-decoration:none;font-weight:850}
+.home-link{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 14px;border-radius:12px;white-space:nowrap}
+.speed-control{display:flex;gap:6px;align-items:center}
+.speed-btn{height:40px;min-width:78px;padding:0 11px;border-radius:999px;cursor:pointer;font-weight:800}
+.speed-btn.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+.sticky-shell{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--bg) 96%,transparent);border:1px solid var(--border);border-radius:16px;padding:7px 8px;margin:8px 0 0;backdrop-filter:blur(12px)}
+.sticky-shell>.theme-toggle{flex:0 0 40px;width:40px;height:40px;padding:0;border-radius:12px;cursor:pointer}
+.tab-nav{position:static;flex:1;display:flex;flex-wrap:nowrap;gap:7px;overflow-x:auto;padding:0;background:transparent;border:0}
+.tab-nav button{flex:0 0 118px;width:118px;min-width:118px;height:40px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;font-weight:800;white-space:nowrap}
+.tab-nav button.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+.example.sayable{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.example-audio,.form-audio{flex:0 0 auto}
+.quiz-question{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:15px;margin:12px 0}
+.question-audio{margin-left:6px}
+.check-all{display:block;width:100%;margin-top:16px;padding:12px 16px;border:0;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;font-weight:900;cursor:pointer}
+.quiz-result{margin-top:14px;padding:14px 16px;border:1px solid var(--border);border-radius:14px;background:var(--card);font-weight:800}
+:root[data-theme="light"]{color-scheme:light;--bg:#f5f3ff;--card:#fff;--text:#1b2340;--muted:#5e6780;--soft:#e9e6f8;--border:#cfd1ea;--blue:#397fdb;--purple:#7856d9;--turq:#159f93;--yellow:#c58d00}
+@media(max-width:600px){
+ .header-controls{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:5px}
+ .header-controls .home-link{padding:0 8px;font-size:.88rem}
+ .speed-btn{width:36px;min-width:36px;height:36px;padding:0;font-size:0;border-radius:10px}
+ .speed-btn[data-rate="0.58"]::before{content:"🐢";font-size:1rem}
+ .speed-btn[data-rate="0.88"]::before{content:"▶";font-size:.9rem}
+ .speed-btn[data-rate="1.12"]::before{content:"⚡";font-size:1rem}
+ .tab-nav button{flex-basis:112px;width:112px;min-width:112px;height:38px;font-size:.8rem}
+}
+
+/* AUDITORIA FINAL — menu sem corte */
+.sticky-shell{min-width:0}
+.tab-nav{min-width:0;scrollbar-width:thin}
+.tab-nav button{flex:0 0 auto;width:max-content;min-width:max-content;height:40px;padding:0 14px;white-space:nowrap;overflow:visible}
+@media(max-width:600px){.tab-nav button{flex:0 0 auto;width:max-content;min-width:max-content;height:38px;padding:0 13px;font-size:.82rem}}
+
+.example-audio,.form-audio{flex:0 0 auto;white-space:nowrap}
+.tab-nav::-webkit-scrollbar{height:6px}
 </style>
 </head>
 <body>
 <div class="container">
 <header>
-  <span class="badge">EOI · Español A2 · Clase individual</span>
-  <h1>Ficha interactiva — 24/09/2026</h1>
-  <div class="subtitle">Verbos, demostrativos, descripción de personas y página 40</div>
+<span class="badge">EOI · Español A2 · Clase individual</span>
+<h1>Ficha Interactiva — 24/09/2026</h1>
+<div class="subtitle">Verbos, demostrativos, descripción de personas y página 40</div>
 </header>
-
-<div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
-
-<nav>
-  <button class="active" onclick="showTab('resumen',this)">📚 Resumen</button>
-  <button onclick="showTab('verbos',this)">🔤 Verbos</button>
-  <button onclick="showTab('demo',this)">👉 Demostrativos</button>
-  <button onclick="showTab('personas',this)">👤 Personas</button>
-  <button onclick="showTab('contactos',this)">💚 Página 40</button>
-  <button onclick="showTab('ex',this)">✏️ Ejercicios</button>
-</nav>
-
-<section id="resumen" class="active">
-  <div class="grid">
-    <div class="card"><h3 class="color-title blue">🃏 Actividad de tarjetas</h3><p>Trabajo en parejas: cada estudiante tenía un verbo, daba su respuesta y después la comparaba y corregía con la del compañero.</p></div>
-    <div class="card"><h3 class="color-title purple">👉 Demostrativos</h3><p><b>este/esta · ese/esa · aquel/aquella</b> y las formas neutras <b>esto · eso · aquello</b>. También <b>aquí · ahí · allí</b>.</p></div>
-    <div class="card"><h3 class="color-title pink">👤 Descripción</h3><p>Se trabajó la diferencia entre <b>ser, tener y llevar</b> para describir personas física y personalmente.</p></div>
-    <div class="card"><h3 class="color-title turq">💚 Página 40</h3><p>Una web de contactos: expresiones para describir carácter, aspecto y buscar una persona compatible.</p></div>
-  </div>
-  <div class="card" style="margin-top:14px; border-left-color:var(--yellow); border-left-width:4px;">
-    <h3 class="color-title yellow">⚠️ Correcciones destacadas</h3>
-    <p>❌ <b>consiegues</b> → ✅ <b>consigues</b><br>❌ <b>sigre</b> → ✅ <b>sigues</b>.</p>
-    <p class="small" style="margin-top:5px;"><b>Sigue</b> también apareció como imperativo.</p>
-  </div>
+<div class="header-controls"><a class="home-link" href="index.html">🏠 Volver al inicio</a><div aria-label="Velocidad del audio" class="speed-control" role="group"><button class="speed-btn" data-rate="0.58" type="button">🐢 Lento</button><button class="speed-btn" data-rate="0.88" type="button">▶ Normal</button><button class="speed-btn" data-rate="1.12" type="button">⚡ Rápido</button></div></div><div class="sticky-shell"><button aria-label="Cambiar tema" class="theme-toggle" type="button">☀️</button><nav class="tab-nav" role="tablist">
+<button class="active" onclick="showTab('resumen',this)" role="tab">📚 Resumen</button>
+<button onclick="showTab('verbos',this)" role="tab">🔤 Verbos</button>
+<button onclick="showTab('demo',this)" role="tab">👉 Demostrativos</button>
+<button onclick="showTab('personas',this)" role="tab">👤 Personas</button>
+<button onclick="showTab('contactos',this)" role="tab">💚 Página 40</button>
+<button onclick="showTab('ex',this)" role="tab">✏️ Ejercicios</button>
+</nav></div>
+<section class="active" id="resumen">
+<div class="grid">
+<div class="card"><h3 class="color-title blue">🃏 Actividad de tarjetas</h3><p>Trabajo en parejas: cada estudiante tenía un verbo, daba su respuesta y después la comparaba y corregía con la del compañero.</p></div>
+<div class="card"><h3 class="color-title purple">👉 Demostrativos</h3><p><b>este/esta · ese/esa · aquel/aquella</b> y las formas neutras <b>esto · eso · aquello</b>. También <b>aquí · ahí · allí</b>.</p></div>
+<div class="card"><h3 class="color-title pink">👤 Descripción</h3><p>Se trabajó la diferencia entre <b>ser, tener y llevar</b> para describir personas física y personalmente.</p></div>
+<div class="card"><h3 class="color-title turq">💚 Página 40</h3><p>Una web de contactos: expresiones para describir carácter, aspecto y buscar una persona compatible.</p></div>
+</div>
+<div class="card" style="margin-top:14px; border-left-color:var(--yellow); border-left-width:4px;">
+<h3 class="color-title yellow">⚠️ Correcciones destacadas</h3>
+<p>❌ <b>consiegues</b> → ✅ <b>consigues</b><br/>❌ <b>sigre</b> → ✅ <b>sigues</b>.</p>
+<p class="small" style="margin-top:5px;"><b>Sigue</b> también apareció como imperativo.</p>
+</div>
 </section>
-
 <section id="verbos">
-  <div class="card">
-    <h2 class="purple">🔤 Verbos de la actividad de tarjetas</h2>
-    <p>Las tarjetas de esta clase se centraron principalmente en verbos irregulares. Se muestran aquí las seis personas para estudiar y practicar.</p>
-    
-    <div class="table-wrap">
-      <table>
-        <tr><th>Verbo</th><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/as / Ustedes</th></tr>
-        <tr><td><b>hablar</b></td><td>hablo</td><td>hablas</td><td>habla</td><td>hablamos</td><td>habláis</td><td>hablan</td></tr>
-        <tr><td><b>tener</b></td><td>tengo</td><td>tienes</td><td>tiene</td><td>tenemos</td><td>tenéis</td><td>tienen</td></tr>
-        <tr><td><b>despedirse</b></td><td>me despido</td><td>te despides</td><td>se despide</td><td>nos despedimos</td><td>os despedís</td><td>se despiden</td></tr>
-        <tr><td><b>despertarse</b></td><td>me despierto</td><td>te despiertas</td><td>se despierta</td><td>nos despertamos</td><td>os despertáis</td><td>se despiertan</td></tr>
-        <tr><td><b>oír</b></td><td>oigo</td><td>oyes</td><td>oye</td><td>oímos</td><td>oís</td><td>oyen</td></tr>
-        <tr><td><b>salir</b></td><td>salgo</td><td>sales</td><td>sale</td><td>salimos</td><td>salís</td><td>salen</td></tr>
-        <tr><td><b>acostarse</b></td><td>me acuesto</td><td>te acuestas</td><td>se acuesta</td><td>nos acostamos</td><td>os acostáis</td><td>se acuestan</td></tr>
-        <tr><td><b>poner</b></td><td>pongo</td><td>pones</td><td>pone</td><td>ponemos</td><td>ponéis</td><td>ponen</td></tr>
-        <tr><td><b>decir</b></td><td>digo</td><td>dices</td><td>dice</td><td>decimos</td><td>decís</td><td>dicen</td></tr>
-        <tr><td><b>devolver</b></td><td>devuelvo</td><td>devuelves</td><td>devuelve</td><td>devolvemos</td><td>devolvéis</td><td>devuelven</td></tr>
-        <tr><td><b>volver</b></td><td>vuelvo</td><td>vuelves</td><td>vuelve</td><td>volvemos</td><td>volvéis</td><td>vuelven</td></tr>
-        <tr><td><b>reír</b></td><td>río</td><td>ríes</td><td>ríe</td><td>reímos</td><td>reís</td><td>ríen</td></tr>
-        <tr><td><b>preferir</b></td><td>prefiero</td><td>prefieres</td><td>prefiere</td><td>preferimos</td><td>preferís</td><td>prefieren</td></tr>
-        <tr><td><b>conseguir</b></td><td>consigo</td><td>consigues</td><td>consigue</td><td>conseguimos</td><td>conseguís</td><td>consiguen</td></tr>
-        <tr><td><b>sonreír</b></td><td>sonrío</td><td>sonríes</td><td>sonríe</td><td>sonreímos</td><td>sonreís</td><td>sonríen</td></tr>
-        <tr><td><b>sentirse</b></td><td>me siento</td><td>te sientes</td><td>se siente</td><td>nos sentimos</td><td>os sentís</td><td>se sienten</td></tr>
-        <tr><td><b>conducir</b></td><td>conduzco</td><td>conduces</td><td>conduce</td><td>conducimos</td><td>conducís</td><td>conducen</td></tr>
-        <tr><td><b>encontrar</b></td><td>encuentro</td><td>encuentras</td><td>encuentra</td><td>encontramos</td><td>encontráis</td><td>encuentran</td></tr>
-        <tr><td><b>vestirse</b></td><td>me visto</td><td>te vistes</td><td>se viste</td><td>nos vestimos</td><td>os vestís</td><td>se visten</td></tr>
-        <tr><td><b>huir</b></td><td>huyo</td><td>huyes</td><td>huye</td><td>huimos</td><td>huís</td><td>huyen</td></tr>
-        <tr><td><b>construir</b></td><td>construyo</td><td>construyes</td><td>construye</td><td>construimos</td><td>construís</td><td>construyen</td></tr>
-        <tr><td><b>pedir</b></td><td>pido</td><td>pides</td><td>pide</td><td>pedimos</td><td>pedís</td><td>piden</td></tr>
-        <tr><td><b>sentarse</b></td><td>me siento</td><td>te sientas</td><td>se sienta</td><td>nos sentamos</td><td>os sentáis</td><td>se sientan</td></tr>
-        <tr><td><b>seguir</b></td><td>sigo</td><td>sigues</td><td>sigue</td><td>seguimos</td><td>seguís</td><td>siguen</td></tr>
-        <tr><td><b>jugar</b></td><td>juego</td><td>juegas</td><td>juega</td><td>jugamos</td><td>jugáis</td><td>juegan</td></tr>
-        <tr><td><b>corregir</b></td><td>corrijo</td><td>corriges</td><td>corrige</td><td>corregimos</td><td>corregís</td><td>corrigen</td></tr>
-        <tr><td><b>convertirse</b></td><td>me convierto</td><td>te conviertes</td><td>se convierte</td><td>nos convertimos</td><td>os convertís</td><td>se convierten</td></tr>
-        <tr><td><b>colgar</b></td><td>cuelgo</td><td>cuelgas</td><td>cuelga</td><td>colgamos</td><td>colgáis</td><td>cuelgan</td></tr>
-        <tr><td><b>caer</b></td><td>caigo</td><td>caes</td><td>cae</td><td>caemos</td><td>caéis</td><td>caen</td></tr>
-        <tr><td><b>dormir</b></td><td>duermo</td><td>duermes</td><td>duerme</td><td>dormimos</td><td>dormís</td><td>duermen</td></tr>
-        <tr><td><b>merendar</b></td><td>meriendo</td><td>meriendas</td><td>merienda</td><td>merendamos</td><td>merendáis</td><td>meriendan</td></tr>
-        <tr><td><b>traer</b></td><td>traigo</td><td>traes</td><td>trae</td><td>traemos</td><td>traéis</td><td>traen</td></tr>
-      </table>
-    </div>
-  </div>
-  
-  <div class="card" style="margin-top:14px">
-    <h3 class="pink">⚠️ Formas destacadas y errores comunes</h3>
-    <div class="sound-bar"><span class="small">🔊 Toca el botón para escuchar la forma correcta.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
-    <div class="example"><b>conseguir → tú consigues</b>, no «consiegues».</div>
-    <div class="example"><b>seguir → tú sigues / él sigue</b>.</div>
-  </div>
+<div class="card">
+<h2 class="purple">🔤 Verbos de la actividad de tarjetas</h2>
+<p>Las tarjetas de esta clase se centraron principalmente en verbos irregulares. Se muestran aquí las seis personas para estudiar y practicar.</p>
+<div class="table-wrap">
+<table>
+<tr><th>Verbo</th><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/as / Ustedes</th></tr>
+<tr><td><b>hablar</b> <button aria-label="Escuchar: hablar" class="speak form-audio" onclick="say('hablar')" type="button">🔊</button></td><td>hablo <button aria-label="Escuchar: hablo" class="speak form-audio" onclick="say('hablo')" type="button">🔊</button></td><td>hablas <button aria-label="Escuchar: hablas" class="speak form-audio" onclick="say('hablas')" type="button">🔊</button></td><td>habla <button aria-label="Escuchar: habla" class="speak form-audio" onclick="say('habla')" type="button">🔊</button></td><td>hablamos <button aria-label="Escuchar: hablamos" class="speak form-audio" onclick="say('hablamos')" type="button">🔊</button></td><td>habláis <button aria-label="Escuchar: habláis" class="speak form-audio" onclick="say('habláis')" type="button">🔊</button></td><td>hablan <button aria-label="Escuchar: hablan" class="speak form-audio" onclick="say('hablan')" type="button">🔊</button></td></tr>
+<tr><td><b>tener</b> <button aria-label="Escuchar: tener" class="speak form-audio" onclick="say('tener')" type="button">🔊</button></td><td>tengo <button aria-label="Escuchar: tengo" class="speak form-audio" onclick="say('tengo')" type="button">🔊</button></td><td>tienes <button aria-label="Escuchar: tienes" class="speak form-audio" onclick="say('tienes')" type="button">🔊</button></td><td>tiene <button aria-label="Escuchar: tiene" class="speak form-audio" onclick="say('tiene')" type="button">🔊</button></td><td>tenemos <button aria-label="Escuchar: tenemos" class="speak form-audio" onclick="say('tenemos')" type="button">🔊</button></td><td>tenéis <button aria-label="Escuchar: tenéis" class="speak form-audio" onclick="say('tenéis')" type="button">🔊</button></td><td>tienen <button aria-label="Escuchar: tienen" class="speak form-audio" onclick="say('tienen')" type="button">🔊</button></td></tr>
+<tr><td><b>despedirse</b> <button aria-label="Escuchar: despedirse" class="speak form-audio" onclick="say('despedirse')" type="button">🔊</button></td><td>me despido <button aria-label="Escuchar: me despido" class="speak form-audio" onclick="say('me despido')" type="button">🔊</button></td><td>te despides <button aria-label="Escuchar: te despides" class="speak form-audio" onclick="say('te despides')" type="button">🔊</button></td><td>se despide <button aria-label="Escuchar: se despide" class="speak form-audio" onclick="say('se despide')" type="button">🔊</button></td><td>nos despedimos <button aria-label="Escuchar: nos despedimos" class="speak form-audio" onclick="say('nos despedimos')" type="button">🔊</button></td><td>os despedís <button aria-label="Escuchar: os despedís" class="speak form-audio" onclick="say('os despedís')" type="button">🔊</button></td><td>se despiden <button aria-label="Escuchar: se despiden" class="speak form-audio" onclick="say('se despiden')" type="button">🔊</button></td></tr>
+<tr><td><b>despertarse</b> <button aria-label="Escuchar: despertarse" class="speak form-audio" onclick="say('despertarse')" type="button">🔊</button></td><td>me despierto <button aria-label="Escuchar: me despierto" class="speak form-audio" onclick="say('me despierto')" type="button">🔊</button></td><td>te despiertas <button aria-label="Escuchar: te despiertas" class="speak form-audio" onclick="say('te despiertas')" type="button">🔊</button></td><td>se despierta <button aria-label="Escuchar: se despierta" class="speak form-audio" onclick="say('se despierta')" type="button">🔊</button></td><td>nos despertamos <button aria-label="Escuchar: nos despertamos" class="speak form-audio" onclick="say('nos despertamos')" type="button">🔊</button></td><td>os despertáis <button aria-label="Escuchar: os despertáis" class="speak form-audio" onclick="say('os despertáis')" type="button">🔊</button></td><td>se despiertan <button aria-label="Escuchar: se despiertan" class="speak form-audio" onclick="say('se despiertan')" type="button">🔊</button></td></tr>
+<tr><td><b>oír</b> <button aria-label="Escuchar: oír" class="speak form-audio" onclick="say('oír')" type="button">🔊</button></td><td>oigo <button aria-label="Escuchar: oigo" class="speak form-audio" onclick="say('oigo')" type="button">🔊</button></td><td>oyes <button aria-label="Escuchar: oyes" class="speak form-audio" onclick="say('oyes')" type="button">🔊</button></td><td>oye <button aria-label="Escuchar: oye" class="speak form-audio" onclick="say('oye')" type="button">🔊</button></td><td>oímos <button aria-label="Escuchar: oímos" class="speak form-audio" onclick="say('oímos')" type="button">🔊</button></td><td>oís <button aria-label="Escuchar: oís" class="speak form-audio" onclick="say('oís')" type="button">🔊</button></td><td>oyen <button aria-label="Escuchar: oyen" class="speak form-audio" onclick="say('oyen')" type="button">🔊</button></td></tr>
+<tr><td><b>salir</b> <button aria-label="Escuchar: salir" class="speak form-audio" onclick="say('salir')" type="button">🔊</button></td><td>salgo <button aria-label="Escuchar: salgo" class="speak form-audio" onclick="say('salgo')" type="button">🔊</button></td><td>sales <button aria-label="Escuchar: sales" class="speak form-audio" onclick="say('sales')" type="button">🔊</button></td><td>sale <button aria-label="Escuchar: sale" class="speak form-audio" onclick="say('sale')" type="button">🔊</button></td><td>salimos <button aria-label="Escuchar: salimos" class="speak form-audio" onclick="say('salimos')" type="button">🔊</button></td><td>salís <button aria-label="Escuchar: salís" class="speak form-audio" onclick="say('salís')" type="button">🔊</button></td><td>salen <button aria-label="Escuchar: salen" class="speak form-audio" onclick="say('salen')" type="button">🔊</button></td></tr>
+<tr><td><b>acostarse</b> <button aria-label="Escuchar: acostarse" class="speak form-audio" onclick="say('acostarse')" type="button">🔊</button></td><td>me acuesto <button aria-label="Escuchar: me acuesto" class="speak form-audio" onclick="say('me acuesto')" type="button">🔊</button></td><td>te acuestas <button aria-label="Escuchar: te acuestas" class="speak form-audio" onclick="say('te acuestas')" type="button">🔊</button></td><td>se acuesta <button aria-label="Escuchar: se acuesta" class="speak form-audio" onclick="say('se acuesta')" type="button">🔊</button></td><td>nos acostamos <button aria-label="Escuchar: nos acostamos" class="speak form-audio" onclick="say('nos acostamos')" type="button">🔊</button></td><td>os acostáis <button aria-label="Escuchar: os acostáis" class="speak form-audio" onclick="say('os acostáis')" type="button">🔊</button></td><td>se acuestan <button aria-label="Escuchar: se acuestan" class="speak form-audio" onclick="say('se acuestan')" type="button">🔊</button></td></tr>
+<tr><td><b>poner</b> <button aria-label="Escuchar: poner" class="speak form-audio" onclick="say('poner')" type="button">🔊</button></td><td>pongo <button aria-label="Escuchar: pongo" class="speak form-audio" onclick="say('pongo')" type="button">🔊</button></td><td>pones <button aria-label="Escuchar: pones" class="speak form-audio" onclick="say('pones')" type="button">🔊</button></td><td>pone <button aria-label="Escuchar: pone" class="speak form-audio" onclick="say('pone')" type="button">🔊</button></td><td>ponemos <button aria-label="Escuchar: ponemos" class="speak form-audio" onclick="say('ponemos')" type="button">🔊</button></td><td>ponéis <button aria-label="Escuchar: ponéis" class="speak form-audio" onclick="say('ponéis')" type="button">🔊</button></td><td>ponen <button aria-label="Escuchar: ponen" class="speak form-audio" onclick="say('ponen')" type="button">🔊</button></td></tr>
+<tr><td><b>decir</b> <button aria-label="Escuchar: decir" class="speak form-audio" onclick="say('decir')" type="button">🔊</button></td><td>digo <button aria-label="Escuchar: digo" class="speak form-audio" onclick="say('digo')" type="button">🔊</button></td><td>dices <button aria-label="Escuchar: dices" class="speak form-audio" onclick="say('dices')" type="button">🔊</button></td><td>dice <button aria-label="Escuchar: dice" class="speak form-audio" onclick="say('dice')" type="button">🔊</button></td><td>decimos <button aria-label="Escuchar: decimos" class="speak form-audio" onclick="say('decimos')" type="button">🔊</button></td><td>decís <button aria-label="Escuchar: decís" class="speak form-audio" onclick="say('decís')" type="button">🔊</button></td><td>dicen <button aria-label="Escuchar: dicen" class="speak form-audio" onclick="say('dicen')" type="button">🔊</button></td></tr>
+<tr><td><b>devolver</b> <button aria-label="Escuchar: devolver" class="speak form-audio" onclick="say('devolver')" type="button">🔊</button></td><td>devuelvo <button aria-label="Escuchar: devuelvo" class="speak form-audio" onclick="say('devuelvo')" type="button">🔊</button></td><td>devuelves <button aria-label="Escuchar: devuelves" class="speak form-audio" onclick="say('devuelves')" type="button">🔊</button></td><td>devuelve <button aria-label="Escuchar: devuelve" class="speak form-audio" onclick="say('devuelve')" type="button">🔊</button></td><td>devolvemos <button aria-label="Escuchar: devolvemos" class="speak form-audio" onclick="say('devolvemos')" type="button">🔊</button></td><td>devolvéis <button aria-label="Escuchar: devolvéis" class="speak form-audio" onclick="say('devolvéis')" type="button">🔊</button></td><td>devuelven <button aria-label="Escuchar: devuelven" class="speak form-audio" onclick="say('devuelven')" type="button">🔊</button></td></tr>
+<tr><td><b>volver</b> <button aria-label="Escuchar: volver" class="speak form-audio" onclick="say('volver')" type="button">🔊</button></td><td>vuelvo <button aria-label="Escuchar: vuelvo" class="speak form-audio" onclick="say('vuelvo')" type="button">🔊</button></td><td>vuelves <button aria-label="Escuchar: vuelves" class="speak form-audio" onclick="say('vuelves')" type="button">🔊</button></td><td>vuelve <button aria-label="Escuchar: vuelve" class="speak form-audio" onclick="say('vuelve')" type="button">🔊</button></td><td>volvemos <button aria-label="Escuchar: volvemos" class="speak form-audio" onclick="say('volvemos')" type="button">🔊</button></td><td>volvéis <button aria-label="Escuchar: volvéis" class="speak form-audio" onclick="say('volvéis')" type="button">🔊</button></td><td>vuelven <button aria-label="Escuchar: vuelven" class="speak form-audio" onclick="say('vuelven')" type="button">🔊</button></td></tr>
+<tr><td><b>reír</b> <button aria-label="Escuchar: reír" class="speak form-audio" onclick="say('reír')" type="button">🔊</button></td><td>río <button aria-label="Escuchar: río" class="speak form-audio" onclick="say('río')" type="button">🔊</button></td><td>ríes <button aria-label="Escuchar: ríes" class="speak form-audio" onclick="say('ríes')" type="button">🔊</button></td><td>ríe <button aria-label="Escuchar: ríe" class="speak form-audio" onclick="say('ríe')" type="button">🔊</button></td><td>reímos <button aria-label="Escuchar: reímos" class="speak form-audio" onclick="say('reímos')" type="button">🔊</button></td><td>reís <button aria-label="Escuchar: reís" class="speak form-audio" onclick="say('reís')" type="button">🔊</button></td><td>ríen <button aria-label="Escuchar: ríen" class="speak form-audio" onclick="say('ríen')" type="button">🔊</button></td></tr>
+<tr><td><b>preferir</b> <button aria-label="Escuchar: preferir" class="speak form-audio" onclick="say('preferir')" type="button">🔊</button></td><td>prefiero <button aria-label="Escuchar: prefiero" class="speak form-audio" onclick="say('prefiero')" type="button">🔊</button></td><td>prefieres <button aria-label="Escuchar: prefieres" class="speak form-audio" onclick="say('prefieres')" type="button">🔊</button></td><td>prefiere <button aria-label="Escuchar: prefiere" class="speak form-audio" onclick="say('prefiere')" type="button">🔊</button></td><td>preferimos <button aria-label="Escuchar: preferimos" class="speak form-audio" onclick="say('preferimos')" type="button">🔊</button></td><td>preferís <button aria-label="Escuchar: preferís" class="speak form-audio" onclick="say('preferís')" type="button">🔊</button></td><td>prefieren <button aria-label="Escuchar: prefieren" class="speak form-audio" onclick="say('prefieren')" type="button">🔊</button></td></tr>
+<tr><td><b>conseguir</b> <button aria-label="Escuchar: conseguir" class="speak form-audio" onclick="say('conseguir')" type="button">🔊</button></td><td>consigo <button aria-label="Escuchar: consigo" class="speak form-audio" onclick="say('consigo')" type="button">🔊</button></td><td>consigues <button aria-label="Escuchar: consigues" class="speak form-audio" onclick="say('consigues')" type="button">🔊</button></td><td>consigue <button aria-label="Escuchar: consigue" class="speak form-audio" onclick="say('consigue')" type="button">🔊</button></td><td>conseguimos <button aria-label="Escuchar: conseguimos" class="speak form-audio" onclick="say('conseguimos')" type="button">🔊</button></td><td>conseguís <button aria-label="Escuchar: conseguís" class="speak form-audio" onclick="say('conseguís')" type="button">🔊</button></td><td>consiguen <button aria-label="Escuchar: consiguen" class="speak form-audio" onclick="say('consiguen')" type="button">🔊</button></td></tr>
+<tr><td><b>sonreír</b> <button aria-label="Escuchar: sonreír" class="speak form-audio" onclick="say('sonreír')" type="button">🔊</button></td><td>sonrío <button aria-label="Escuchar: sonrío" class="speak form-audio" onclick="say('sonrío')" type="button">🔊</button></td><td>sonríes <button aria-label="Escuchar: sonríes" class="speak form-audio" onclick="say('sonríes')" type="button">🔊</button></td><td>sonríe <button aria-label="Escuchar: sonríe" class="speak form-audio" onclick="say('sonríe')" type="button">🔊</button></td><td>sonreímos <button aria-label="Escuchar: sonreímos" class="speak form-audio" onclick="say('sonreímos')" type="button">🔊</button></td><td>sonreís <button aria-label="Escuchar: sonreís" class="speak form-audio" onclick="say('sonreís')" type="button">🔊</button></td><td>sonríen <button aria-label="Escuchar: sonríen" class="speak form-audio" onclick="say('sonríen')" type="button">🔊</button></td></tr>
+<tr><td><b>sentirse</b> <button aria-label="Escuchar: sentirse" class="speak form-audio" onclick="say('sentirse')" type="button">🔊</button></td><td>me siento <button aria-label="Escuchar: me siento" class="speak form-audio" onclick="say('me siento')" type="button">🔊</button></td><td>te sientes <button aria-label="Escuchar: te sientes" class="speak form-audio" onclick="say('te sientes')" type="button">🔊</button></td><td>se siente <button aria-label="Escuchar: se siente" class="speak form-audio" onclick="say('se siente')" type="button">🔊</button></td><td>nos sentimos <button aria-label="Escuchar: nos sentimos" class="speak form-audio" onclick="say('nos sentimos')" type="button">🔊</button></td><td>os sentís <button aria-label="Escuchar: os sentís" class="speak form-audio" onclick="say('os sentís')" type="button">🔊</button></td><td>se sienten <button aria-label="Escuchar: se sienten" class="speak form-audio" onclick="say('se sienten')" type="button">🔊</button></td></tr>
+<tr><td><b>conducir</b> <button aria-label="Escuchar: conducir" class="speak form-audio" onclick="say('conducir')" type="button">🔊</button></td><td>conduzco <button aria-label="Escuchar: conduzco" class="speak form-audio" onclick="say('conduzco')" type="button">🔊</button></td><td>conduces <button aria-label="Escuchar: conduces" class="speak form-audio" onclick="say('conduces')" type="button">🔊</button></td><td>conduce <button aria-label="Escuchar: conduce" class="speak form-audio" onclick="say('conduce')" type="button">🔊</button></td><td>conducimos <button aria-label="Escuchar: conducimos" class="speak form-audio" onclick="say('conducimos')" type="button">🔊</button></td><td>conducís <button aria-label="Escuchar: conducís" class="speak form-audio" onclick="say('conducís')" type="button">🔊</button></td><td>conducen <button aria-label="Escuchar: conducen" class="speak form-audio" onclick="say('conducen')" type="button">🔊</button></td></tr>
+<tr><td><b>encontrar</b> <button aria-label="Escuchar: encontrar" class="speak form-audio" onclick="say('encontrar')" type="button">🔊</button></td><td>encuentro <button aria-label="Escuchar: encuentro" class="speak form-audio" onclick="say('encuentro')" type="button">🔊</button></td><td>encuentras <button aria-label="Escuchar: encuentras" class="speak form-audio" onclick="say('encuentras')" type="button">🔊</button></td><td>encuentra <button aria-label="Escuchar: encuentra" class="speak form-audio" onclick="say('encuentra')" type="button">🔊</button></td><td>encontramos <button aria-label="Escuchar: encontramos" class="speak form-audio" onclick="say('encontramos')" type="button">🔊</button></td><td>encontráis <button aria-label="Escuchar: encontráis" class="speak form-audio" onclick="say('encontráis')" type="button">🔊</button></td><td>encuentran <button aria-label="Escuchar: encuentran" class="speak form-audio" onclick="say('encuentran')" type="button">🔊</button></td></tr>
+<tr><td><b>vestirse</b> <button aria-label="Escuchar: vestirse" class="speak form-audio" onclick="say('vestirse')" type="button">🔊</button></td><td>me visto <button aria-label="Escuchar: me visto" class="speak form-audio" onclick="say('me visto')" type="button">🔊</button></td><td>te vistes <button aria-label="Escuchar: te vistes" class="speak form-audio" onclick="say('te vistes')" type="button">🔊</button></td><td>se viste <button aria-label="Escuchar: se viste" class="speak form-audio" onclick="say('se viste')" type="button">🔊</button></td><td>nos vestimos <button aria-label="Escuchar: nos vestimos" class="speak form-audio" onclick="say('nos vestimos')" type="button">🔊</button></td><td>os vestís <button aria-label="Escuchar: os vestís" class="speak form-audio" onclick="say('os vestís')" type="button">🔊</button></td><td>se visten <button aria-label="Escuchar: se visten" class="speak form-audio" onclick="say('se visten')" type="button">🔊</button></td></tr>
+<tr><td><b>huir</b> <button aria-label="Escuchar: huir" class="speak form-audio" onclick="say('huir')" type="button">🔊</button></td><td>huyo <button aria-label="Escuchar: huyo" class="speak form-audio" onclick="say('huyo')" type="button">🔊</button></td><td>huyes <button aria-label="Escuchar: huyes" class="speak form-audio" onclick="say('huyes')" type="button">🔊</button></td><td>huye <button aria-label="Escuchar: huye" class="speak form-audio" onclick="say('huye')" type="button">🔊</button></td><td>huimos <button aria-label="Escuchar: huimos" class="speak form-audio" onclick="say('huimos')" type="button">🔊</button></td><td>huís <button aria-label="Escuchar: huís" class="speak form-audio" onclick="say('huís')" type="button">🔊</button></td><td>huyen <button aria-label="Escuchar: huyen" class="speak form-audio" onclick="say('huyen')" type="button">🔊</button></td></tr>
+<tr><td><b>construir</b> <button aria-label="Escuchar: construir" class="speak form-audio" onclick="say('construir')" type="button">🔊</button></td><td>construyo <button aria-label="Escuchar: construyo" class="speak form-audio" onclick="say('construyo')" type="button">🔊</button></td><td>construyes <button aria-label="Escuchar: construyes" class="speak form-audio" onclick="say('construyes')" type="button">🔊</button></td><td>construye <button aria-label="Escuchar: construye" class="speak form-audio" onclick="say('construye')" type="button">🔊</button></td><td>construimos <button aria-label="Escuchar: construimos" class="speak form-audio" onclick="say('construimos')" type="button">🔊</button></td><td>construís <button aria-label="Escuchar: construís" class="speak form-audio" onclick="say('construís')" type="button">🔊</button></td><td>construyen <button aria-label="Escuchar: construyen" class="speak form-audio" onclick="say('construyen')" type="button">🔊</button></td></tr>
+<tr><td><b>pedir</b> <button aria-label="Escuchar: pedir" class="speak form-audio" onclick="say('pedir')" type="button">🔊</button></td><td>pido <button aria-label="Escuchar: pido" class="speak form-audio" onclick="say('pido')" type="button">🔊</button></td><td>pides <button aria-label="Escuchar: pides" class="speak form-audio" onclick="say('pides')" type="button">🔊</button></td><td>pide <button aria-label="Escuchar: pide" class="speak form-audio" onclick="say('pide')" type="button">🔊</button></td><td>pedimos <button aria-label="Escuchar: pedimos" class="speak form-audio" onclick="say('pedimos')" type="button">🔊</button></td><td>pedís <button aria-label="Escuchar: pedís" class="speak form-audio" onclick="say('pedís')" type="button">🔊</button></td><td>piden <button aria-label="Escuchar: piden" class="speak form-audio" onclick="say('piden')" type="button">🔊</button></td></tr>
+<tr><td><b>sentarse</b> <button aria-label="Escuchar: sentarse" class="speak form-audio" onclick="say('sentarse')" type="button">🔊</button></td><td>me siento <button aria-label="Escuchar: me siento" class="speak form-audio" onclick="say('me siento')" type="button">🔊</button></td><td>te sientas <button aria-label="Escuchar: te sientas" class="speak form-audio" onclick="say('te sientas')" type="button">🔊</button></td><td>se sienta <button aria-label="Escuchar: se sienta" class="speak form-audio" onclick="say('se sienta')" type="button">🔊</button></td><td>nos sentamos <button aria-label="Escuchar: nos sentamos" class="speak form-audio" onclick="say('nos sentamos')" type="button">🔊</button></td><td>os sentáis <button aria-label="Escuchar: os sentáis" class="speak form-audio" onclick="say('os sentáis')" type="button">🔊</button></td><td>se sientan <button aria-label="Escuchar: se sientan" class="speak form-audio" onclick="say('se sientan')" type="button">🔊</button></td></tr>
+<tr><td><b>seguir</b> <button aria-label="Escuchar: seguir" class="speak form-audio" onclick="say('seguir')" type="button">🔊</button></td><td>sigo <button aria-label="Escuchar: sigo" class="speak form-audio" onclick="say('sigo')" type="button">🔊</button></td><td>sigues <button aria-label="Escuchar: sigues" class="speak form-audio" onclick="say('sigues')" type="button">🔊</button></td><td>sigue <button aria-label="Escuchar: sigue" class="speak form-audio" onclick="say('sigue')" type="button">🔊</button></td><td>seguimos <button aria-label="Escuchar: seguimos" class="speak form-audio" onclick="say('seguimos')" type="button">🔊</button></td><td>seguís <button aria-label="Escuchar: seguís" class="speak form-audio" onclick="say('seguís')" type="button">🔊</button></td><td>siguen <button aria-label="Escuchar: siguen" class="speak form-audio" onclick="say('siguen')" type="button">🔊</button></td></tr>
+<tr><td><b>jugar</b> <button aria-label="Escuchar: jugar" class="speak form-audio" onclick="say('jugar')" type="button">🔊</button></td><td>juego <button aria-label="Escuchar: juego" class="speak form-audio" onclick="say('juego')" type="button">🔊</button></td><td>juegas <button aria-label="Escuchar: juegas" class="speak form-audio" onclick="say('juegas')" type="button">🔊</button></td><td>juega <button aria-label="Escuchar: juega" class="speak form-audio" onclick="say('juega')" type="button">🔊</button></td><td>jugamos <button aria-label="Escuchar: jugamos" class="speak form-audio" onclick="say('jugamos')" type="button">🔊</button></td><td>jugáis <button aria-label="Escuchar: jugáis" class="speak form-audio" onclick="say('jugáis')" type="button">🔊</button></td><td>juegan <button aria-label="Escuchar: juegan" class="speak form-audio" onclick="say('juegan')" type="button">🔊</button></td></tr>
+<tr><td><b>corregir</b> <button aria-label="Escuchar: corregir" class="speak form-audio" onclick="say('corregir')" type="button">🔊</button></td><td>corrijo <button aria-label="Escuchar: corrijo" class="speak form-audio" onclick="say('corrijo')" type="button">🔊</button></td><td>corriges <button aria-label="Escuchar: corriges" class="speak form-audio" onclick="say('corriges')" type="button">🔊</button></td><td>corrige <button aria-label="Escuchar: corrige" class="speak form-audio" onclick="say('corrige')" type="button">🔊</button></td><td>corregimos <button aria-label="Escuchar: corregimos" class="speak form-audio" onclick="say('corregimos')" type="button">🔊</button></td><td>corregís <button aria-label="Escuchar: corregís" class="speak form-audio" onclick="say('corregís')" type="button">🔊</button></td><td>corrigen <button aria-label="Escuchar: corrigen" class="speak form-audio" onclick="say('corrigen')" type="button">🔊</button></td></tr>
+<tr><td><b>convertirse</b> <button aria-label="Escuchar: convertirse" class="speak form-audio" onclick="say('convertirse')" type="button">🔊</button></td><td>me convierto <button aria-label="Escuchar: me convierto" class="speak form-audio" onclick="say('me convierto')" type="button">🔊</button></td><td>te conviertes <button aria-label="Escuchar: te conviertes" class="speak form-audio" onclick="say('te conviertes')" type="button">🔊</button></td><td>se convierte <button aria-label="Escuchar: se convierte" class="speak form-audio" onclick="say('se convierte')" type="button">🔊</button></td><td>nos convertimos <button aria-label="Escuchar: nos convertimos" class="speak form-audio" onclick="say('nos convertimos')" type="button">🔊</button></td><td>os convertís <button aria-label="Escuchar: os convertís" class="speak form-audio" onclick="say('os convertís')" type="button">🔊</button></td><td>se convierten <button aria-label="Escuchar: se convierten" class="speak form-audio" onclick="say('se convierten')" type="button">🔊</button></td></tr>
+<tr><td><b>colgar</b> <button aria-label="Escuchar: colgar" class="speak form-audio" onclick="say('colgar')" type="button">🔊</button></td><td>cuelgo <button aria-label="Escuchar: cuelgo" class="speak form-audio" onclick="say('cuelgo')" type="button">🔊</button></td><td>cuelgas <button aria-label="Escuchar: cuelgas" class="speak form-audio" onclick="say('cuelgas')" type="button">🔊</button></td><td>cuelga <button aria-label="Escuchar: cuelga" class="speak form-audio" onclick="say('cuelga')" type="button">🔊</button></td><td>colgamos <button aria-label="Escuchar: colgamos" class="speak form-audio" onclick="say('colgamos')" type="button">🔊</button></td><td>colgáis <button aria-label="Escuchar: colgáis" class="speak form-audio" onclick="say('colgáis')" type="button">🔊</button></td><td>cuelgan <button aria-label="Escuchar: cuelgan" class="speak form-audio" onclick="say('cuelgan')" type="button">🔊</button></td></tr>
+<tr><td><b>caer</b> <button aria-label="Escuchar: caer" class="speak form-audio" onclick="say('caer')" type="button">🔊</button></td><td>caigo <button aria-label="Escuchar: caigo" class="speak form-audio" onclick="say('caigo')" type="button">🔊</button></td><td>caes <button aria-label="Escuchar: caes" class="speak form-audio" onclick="say('caes')" type="button">🔊</button></td><td>cae <button aria-label="Escuchar: cae" class="speak form-audio" onclick="say('cae')" type="button">🔊</button></td><td>caemos <button aria-label="Escuchar: caemos" class="speak form-audio" onclick="say('caemos')" type="button">🔊</button></td><td>caéis <button aria-label="Escuchar: caéis" class="speak form-audio" onclick="say('caéis')" type="button">🔊</button></td><td>caen <button aria-label="Escuchar: caen" class="speak form-audio" onclick="say('caen')" type="button">🔊</button></td></tr>
+<tr><td><b>dormir</b> <button aria-label="Escuchar: dormir" class="speak form-audio" onclick="say('dormir')" type="button">🔊</button></td><td>duermo <button aria-label="Escuchar: duermo" class="speak form-audio" onclick="say('duermo')" type="button">🔊</button></td><td>duermes <button aria-label="Escuchar: duermes" class="speak form-audio" onclick="say('duermes')" type="button">🔊</button></td><td>duerme <button aria-label="Escuchar: duerme" class="speak form-audio" onclick="say('duerme')" type="button">🔊</button></td><td>dormimos <button aria-label="Escuchar: dormimos" class="speak form-audio" onclick="say('dormimos')" type="button">🔊</button></td><td>dormís <button aria-label="Escuchar: dormís" class="speak form-audio" onclick="say('dormís')" type="button">🔊</button></td><td>duermen <button aria-label="Escuchar: duermen" class="speak form-audio" onclick="say('duermen')" type="button">🔊</button></td></tr>
+<tr><td><b>merendar</b> <button aria-label="Escuchar: merendar" class="speak form-audio" onclick="say('merendar')" type="button">🔊</button></td><td>meriendo <button aria-label="Escuchar: meriendo" class="speak form-audio" onclick="say('meriendo')" type="button">🔊</button></td><td>meriendas <button aria-label="Escuchar: meriendas" class="speak form-audio" onclick="say('meriendas')" type="button">🔊</button></td><td>merienda <button aria-label="Escuchar: merienda" class="speak form-audio" onclick="say('merienda')" type="button">🔊</button></td><td>merendamos <button aria-label="Escuchar: merendamos" class="speak form-audio" onclick="say('merendamos')" type="button">🔊</button></td><td>merendáis <button aria-label="Escuchar: merendáis" class="speak form-audio" onclick="say('merendáis')" type="button">🔊</button></td><td>meriendan <button aria-label="Escuchar: meriendan" class="speak form-audio" onclick="say('meriendan')" type="button">🔊</button></td></tr>
+<tr><td><b>traer</b> <button aria-label="Escuchar: traer" class="speak form-audio" onclick="say('traer')" type="button">🔊</button></td><td>traigo <button aria-label="Escuchar: traigo" class="speak form-audio" onclick="say('traigo')" type="button">🔊</button></td><td>traes <button aria-label="Escuchar: traes" class="speak form-audio" onclick="say('traes')" type="button">🔊</button></td><td>trae <button aria-label="Escuchar: trae" class="speak form-audio" onclick="say('trae')" type="button">🔊</button></td><td>traemos <button aria-label="Escuchar: traemos" class="speak form-audio" onclick="say('traemos')" type="button">🔊</button></td><td>traéis <button aria-label="Escuchar: traéis" class="speak form-audio" onclick="say('traéis')" type="button">🔊</button></td><td>traen <button aria-label="Escuchar: traen" class="speak form-audio" onclick="say('traen')" type="button">🔊</button></td></tr>
+</table>
+</div>
+</div>
+<div class="card" style="margin-top:14px">
+<h3 class="pink">⚠️ Formas destacadas y errores comunes</h3>
+<div class="sound-bar"><span class="small">🔊 Toca el botón para escuchar la forma correcta.</span></div>
+<div class="example sayable"><b>conseguir → tú consigues</b>, no «consiegues».<button aria-label="Escuchar" class="speak example-audio" type="button">🔊</button></div>
+<div class="example sayable"><b>seguir → tú sigues / él sigue</b>.<button aria-label="Escuchar" class="speak example-audio" type="button">🔊</button></div>
+</div>
 </section>
-
 <section id="demo">
-  <div class="card">
-    <h2 class="purple">👉 Demostrativos</h2>
-    <div class="grid">
-      <div class="card" style="border-left-color:var(--turq); border-left-width:4px;">
-        <h3 class="turq">este / esta</h3><p>Algo cercano: <b>aquí</b>.</p>
-      </div>
-      <div class="card" style="border-left-color:var(--purple); border-left-width:4px;">
-        <h3 class="purple">ese / esa</h3><p>Algo en una posición intermedia: <b>ahí</b>. La elección depende de la perspectiva.</p>
-      </div>
-      <div class="card" style="border-left-color:var(--pink); border-left-width:4px;">
-        <h3 class="pink">aquel / aquella</h3><p>Algo más lejano: <b>allí</b>.</p>
-      </div>
-    </div>
-  </div>
-  
-  <div class="card" style="margin-top:14px">
-    <h3 class="blue">⚪ Formas neutras</h3>
-    <p><b>esto · eso · aquello</b> no son masculinas ni femeninas y no tienen singular/plural. Pueden referirse a una cosa, una idea o una situación.</p>
-    <div class="sound-bar"><span class="small">🔊</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢</button></div>
-    <div class="example"><b>¿Qué es aquello?</b></div>
-    <div class="example"><b>¿Qué es eso?</b></div>
-    <div class="example"><b>Esto hay que celebrarlo.</b></div>
-    <div class="example"><b>Por eso</b> <span class="small">(por esa razón)</span></div>
-  </div>
+<div class="card">
+<h2 class="purple">👉 Demostrativos</h2>
+<div class="grid">
+<div class="card" style="border-left-color:var(--turq); border-left-width:4px;">
+<h3 class="turq">este / esta</h3><p>Algo cercano: <b>aquí</b>.</p>
+</div>
+<div class="card" style="border-left-color:var(--purple); border-left-width:4px;">
+<h3 class="purple">ese / esa</h3><p>Algo en una posición intermedia: <b>ahí</b>. La elección depende de la perspectiva.</p>
+</div>
+<div class="card" style="border-left-color:var(--pink); border-left-width:4px;">
+<h3 class="pink">aquel / aquella</h3><p>Algo más lejano: <b>allí</b>.</p>
+</div>
+</div>
+</div>
+<div class="card" style="margin-top:14px">
+<h3 class="blue">⚪ Formas neutras</h3>
+<p><b>esto · eso · aquello</b> no son masculinas ni femeninas y no tienen singular/plural. Pueden referirse a una cosa, una idea o una situación.</p>
+<div class="sound-bar"><span class="small">🔊</span></div>
+<div class="example sayable"><b>¿Qué es aquello?</b><button aria-label="Escuchar" class="speak example-audio" type="button">🔊</button></div>
+<div class="example sayable"><b>¿Qué es eso?</b><button aria-label="Escuchar" class="speak example-audio" type="button">🔊</button></div>
+<div class="example sayable"><b>Esto hay que celebrarlo.</b><button aria-label="Escuchar" class="speak example-audio" type="button">🔊</button></div>
+<div class="example sayable"><b>Por eso</b> <span class="small">(por esa razón)</span><button aria-label="Escuchar" class="speak example-audio" type="button">🔊</button></div>
+</div>
 </section>
-
 <section id="personas">
-  <div class="card">
-    <h2 class="pink">👤 Descripción física y carácter</h2>
-    <div class="grid">
-      <div class="card" style="border-left-color:var(--pink); border-left-width:4px;">
-        <h3 class="pink">SER</h3><p>Para características: <b>alta, morena, bajita, rubia, tímida, amable, atlética, miedosa, moderna, elegante, impaciente, sincera, reservada, generosa, fuerte, tacaña, optimista, alegre...</b></p>
-      </div>
-      <div class="card" style="border-left-color:var(--blue); border-left-width:4px;">
-        <h3 class="blue">TENER</h3><p>Para rasgos corporales o elementos: <b>tener un móvil en la mano</b>, <b>tener una cana</b>, <b>tener los ojos claros</b>, <b>tener la autoestima alta</b>.</p>
-      </div>
-      <div class="card" style="border-left-color:var(--turq); border-left-width:4px;">
-        <h3 class="turq">LLEVAR</h3><p>Para ropa y accesorios: <b>llevar gafas de sol, barba, pelo recogido, vaqueros, una camiseta, una bolsa</b> (o hasta <b>llevar una pizza</b> en la mano).</p>
-      </div>
-    </div>
-  </div>
-  
-  <div class="card" style="margin-top:14px">
-    <h3 class="purple">🧩 Matices importantes</h3>
-    <ul style="line-height: 1.8;">
-      <li><b>reservado</b>: no comparte fácilmente su vida personal; no es exactamente lo mismo que tímido.</li>
-      <li><b>fuerte</b>: puede referirse al físico o al carácter.</li>
-      <li><b>flaco</b> describe el cuerpo; <b>débil</b> no significa simplemente delgado.</li>
-      <li><b>atrevido</b> se relaciona con <i>atreverse</i>.</li>
-      <li><b>canoso</b>: pelo con muchos cabellos blancos; <b>una cana</b> es un cabello blanco.</li>
-      <li><b>borde</b>: carácter seco/rudo; también es el borde de una mesa.</li>
-      <li>Los diminutivos como <b>gordita</b> o <b>bajita</b> suavizan la expresión.</li>
-    </ul>
-  </div>
+<div class="card">
+<h2 class="pink">👤 Descripción física y carácter</h2>
+<div class="grid">
+<div class="card" style="border-left-color:var(--pink); border-left-width:4px;">
+<h3 class="pink">SER</h3><p>Para características: <b>alta, morena, bajita, rubia, tímida, amable, atlética, miedosa, moderna, elegante, impaciente, sincera, reservada, generosa, fuerte, tacaña, optimista, alegre...</b></p>
+</div>
+<div class="card" style="border-left-color:var(--blue); border-left-width:4px;">
+<h3 class="blue">TENER</h3><p>Para rasgos corporales o elementos: <b>tener un móvil en la mano</b>, <b>tener una cana</b>, <b>tener los ojos claros</b>, <b>tener la autoestima alta</b>.</p>
+</div>
+<div class="card" style="border-left-color:var(--turq); border-left-width:4px;">
+<h3 class="turq">LLEVAR</h3><p>Para ropa y accesorios: <b>llevar gafas de sol, barba, pelo recogido, vaqueros, una camiseta, una bolsa</b> (o hasta <b>llevar una pizza</b> en la mano).</p>
+</div>
+</div>
+</div>
+<div class="card" style="margin-top:14px">
+<h3 class="purple">🧩 Matices importantes</h3>
+<ul style="line-height: 1.8;">
+<li><b>reservado</b>: no comparte fácilmente su vida personal; no es exactamente lo mismo que tímido.</li>
+<li><b>fuerte</b>: puede referirse al físico o al carácter.</li>
+<li><b>flaco</b> describe el cuerpo; <b>débil</b> no significa simplemente delgado.</li>
+<li><b>atrevido</b> se relaciona con <i>atreverse</i>.</li>
+<li><b>canoso</b>: pelo con muchos cabellos blancos; <b>una cana</b> es un cabello blanco.</li>
+<li><b>borde</b>: carácter seco/rudo; también es el borde de una mesa.</li>
+<li>Los diminutivos como <b>gordita</b> o <b>bajita</b> suavizan la expresión.</li>
+</ul>
+</div>
 </section>
-
 <section id="contactos">
-  <div class="card">
-    <h2 class="turq">💚 Página 40 — Una web de contactos</h2>
-    <div class="grid">
-      <div class="card" style="background:rgba(75, 229, 154, 0.05); border-color:rgba(75, 229, 154, 0.3);">
-        <h3 class="green" style="color:var(--green)">Daniel</h3>
-        <p>Se trabajó especialmente su carácter: <b>optimista</b>, <b>alegre</b> y <b>se lleva bien con todo el mundo</b>.</p>
-      </div>
-      <div class="card" style="background:rgba(75, 229, 154, 0.05); border-color:rgba(75, 229, 154, 0.3);">
-        <h3 class="green" style="color:var(--green)">Marcos</h3>
-        <p>Se destacó que <b>tiene la autoestima muy alta</b> y que es <b>nocturno</b>, porque le gusta más la noche que el día.</p>
-      </div>
-      <div class="card" style="background:rgba(75, 229, 154, 0.05); border-color:rgba(75, 229, 154, 0.3);">
-        <h3 class="green" style="color:var(--green)">Sergio</h3>
-        <p>Se identificó que <b>lleva barba</b>, es <b>atlético</b>, le gusta el deporte, busca una mujer <b>simpática</b> y su estado civil es <b>divorciado</b>.</p>
-      </div>
-      <div class="card" style="background:rgba(75, 229, 154, 0.05); border-color:rgba(75, 229, 154, 0.3);">
-        <h3 class="green" style="color:var(--green)">Otros perfiles</h3>
-        <p>La actividad trabajó las expresiones para describir el físico y el carácter y preparar una respuesta compatible.</p>
-      </div>
-    </div>
-  </div>
-  
-  <div class="card" style="margin-top:14px">
-    <h3 class="yellow">🎯 Tarea de la clase</h3>
-    <p>Completar la ficha con los datos de las personas y elegir una para escribir un texto de una persona compatible, siguiendo la idea:</p>
-    <div class="example"><b>«Yo soy perfecto para ti»</b> y explicar por qué el carácter y las características son compatibles.</div>
-  </div>
+<div class="card">
+<h2 class="turq">💚 Página 40 — Una web de contactos</h2>
+<div class="grid">
+<div class="card" style="background:rgba(75, 229, 154, 0.05); border-color:rgba(75, 229, 154, 0.3);">
+<h3 class="green" style="color:var(--green)">Daniel</h3>
+<p>Se trabajó especialmente su carácter: <b>optimista</b>, <b>alegre</b> y <b>se lleva bien con todo el mundo</b>.</p>
+</div>
+<div class="card" style="background:rgba(75, 229, 154, 0.05); border-color:rgba(75, 229, 154, 0.3);">
+<h3 class="green" style="color:var(--green)">Marcos</h3>
+<p>Se destacó que <b>tiene la autoestima muy alta</b> y que es <b>nocturno</b>, porque le gusta más la noche que el día.</p>
+</div>
+<div class="card" style="background:rgba(75, 229, 154, 0.05); border-color:rgba(75, 229, 154, 0.3);">
+<h3 class="green" style="color:var(--green)">Sergio</h3>
+<p>Se identificó que <b>lleva barba</b>, es <b>atlético</b>, le gusta el deporte, busca una mujer <b>simpática</b> y su estado civil es <b>divorciado</b>.</p>
+</div>
+<div class="card" style="background:rgba(75, 229, 154, 0.05); border-color:rgba(75, 229, 154, 0.3);">
+<h3 class="green" style="color:var(--green)">Otros perfiles</h3>
+<p>La actividad trabajó las expresiones para describir el físico y el carácter y preparar una respuesta compatible.</p>
+</div>
+</div>
+</div>
+<div class="card" style="margin-top:14px">
+<h3 class="yellow">🎯 Tarea de la clase</h3>
+<p>Completar la ficha con los datos de las personas y elegir una para escribir un texto de una persona compatible, siguiendo la idea:</p>
+<div class="example sayable"><b>«Yo soy perfecto para ti»</b> y explicar por qué el carácter y las características son compatibles.<button aria-label="Escuchar" class="speak example-audio" type="button">🔊</button></div>
+</div>
 </section>
-
 <section id="ex">
-  <h2>✏️ Ejercicios interactivos</h2>
-  <div class="card"><h3 class="pink">1. Comprueba lo aprendido</h3><div id="q-aula"></div></div>
+<h2>✏️ Ejercicios interactivos</h2>
+<div class="card"><h3 class="pink">1. Comprueba lo aprendido</h3><div id="q-aula"></div></div>
 </section>
-
-<div class="home-nav" style="justify-content:center; margin-top:22px;"><a href="index.html">🏠 Volver al inicio</a></div>
 <footer>Registro individual de la clase del 24/09/2026. Basado en las notas de la clase.</footer>
 </div>
-
 <script>
 function showTab(id,btn){
  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
@@ -254,93 +278,152 @@ function showTab(id,btn){
  window.scrollTo({top:0,behavior:'smooth'});
 }
 
-let slow=false, esVoice=null;
+let audioRate=0.88, esVoice=null;
 function pickEs(){
  const vs=speechSynthesis.getVoices();
  esVoice=vs.find(v=>v.lang==='es-ES')||vs.find(v=>v.lang&&v.lang.startsWith('es'))||null;
 }
 if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=pickEs;pickEs();}
+
+function cleanSpeechText(txt){
+  return String(txt||'')
+    .replace(/🔊/g,'')
+    .replace(/[→➜]/g,'; ')
+    .replace(/[_＿]+/g,' ')
+    .replace(/\.{3,}/g,' ')
+    .replace(/[-–—]{2,}/g,' ')
+    .replace(/\s+/g,' ')
+    .trim();
+}
 function say(txt){
  if(!('speechSynthesis' in window)) return;
+ const finalTxt=cleanSpeechText(txt);
+ if(!finalTxt) return;
  speechSynthesis.cancel();
- // Limpar setas para leitura
- let finalTxt = txt.replace(/→/g, '.');
  const u=new SpeechSynthesisUtterance(finalTxt);
- u.lang='es-ES';if(esVoice)u.voice=esVoice;
- u.rate=slow?.6:.85;
+ u.lang='es-ES';
+ if(esVoice) u.voice=esVoice;
+ u.rate=audioRate;
  speechSynthesis.speak(u);
 }
-function toggleSlow(){
- slow=!slow;
- document.querySelectorAll('.slowBtn').forEach(b=>{
-  b.textContent=slow?'🐢 Lento: encendido':'🐢 Lento: apagado';
-  b.setAttribute('aria-pressed',slow);
- });
-}
 
-// botón 🔊 en cada frase de ejemplo
+// Áudios de exemplos: reutiliza o botão existente, sem duplicá-lo.
 document.querySelectorAll('.example').forEach(el=>{
- const b=el.querySelector('b'); if(!b) return;
- const txt=el.textContent.trim();
- const wrap=document.createElement('span');
- while(el.firstChild) wrap.appendChild(el.firstChild);
- el.appendChild(wrap);
- el.classList.add('sayable');
- const btn=document.createElement('button');
- btn.type='button';btn.className='speak';btn.textContent='🔊';
- btn.setAttribute('aria-label','Escuchar');
- btn.onclick=()=>say(txt);
- el.appendChild(btn);
+ const existing=el.querySelector('button.speak');
+ const clone=el.cloneNode(true);
+ clone.querySelectorAll('button.speak').forEach(b=>b.remove());
+ const txt=cleanSpeechText(clone.textContent);
+ if(existing){
+   existing.onclick=()=>say(txt);
+   existing.setAttribute('aria-label','Escuchar: '+txt);
+ } else {
+   const btn=document.createElement('button');
+   btn.type='button'; btn.className='speak example-audio'; btn.textContent='🔊';
+   btn.setAttribute('aria-label','Escuchar: '+txt);
+   btn.onclick=()=>say(txt);
+   el.appendChild(btn);
+ }
 });
-if(!('speechSynthesis' in window)) document.querySelectorAll('.sound-bar').forEach(x=>x.style.display='none');
-
-// Motor de Quiz com botão Siguiente
-function makeQuiz(id,qs){
- const box=document.getElementById(id);let qi=0,score=0,locked=false;
- function render(){
-  const q=qs[qi];locked=false;
-  box.innerHTML='<p style="font-size:1.1rem;"><b>'+q.t+'</b></p><div class="choice-grid">'+q.o.map((o,i)=>'<button type="button" class="choice" data-i="'+i+'">'+o+'</button>').join('')+'</div><p class="small" style="margin-top:15px; font-weight:700;">Pregunta '+(qi+1)+' de '+qs.length+' · Puntos: '+score+'</p><div class="feedback" aria-live="polite"></div>';
-  box.querySelectorAll('.choice').forEach(b=>b.addEventListener('click',()=>ans(+b.dataset.i,b)));
- }
- function ans(i,btn){
-  if(locked) return; locked=true;
-  const q=qs[qi];const bs=box.querySelectorAll('.choice');
-  bs.forEach(b=>b.disabled=true);
-  bs[q.a].classList.add('correct');
-  const fb=box.querySelector('.feedback');
-  
-  let btnNext = '<button type="button" class="choice" style="margin-top:15px; padding:8px 16px; width:100%; font-size:1rem; border:none; background:rgba(0,0,0,0.2);" onclick="this.parentElement.dispatchEvent(new CustomEvent(\'next\'))">Siguiente ➔</button>';
-  
-  if(i===q.a){
-   score++;
-   fb.innerHTML='<div style="margin-bottom:8px;">✅ Correcto.</div>'+(q.e||'') + btnNext;
-   fb.className='feedback ok';
-  } else{
-   btn.classList.add('wrong');
-   fb.innerHTML='<div style="margin-bottom:8px;">❌ Casi.</div>'+(q.e||'') + btnNext;
-   fb.className='feedback bad';
-  }
-  
-  fb.addEventListener('next', function handler() {
-   fb.removeEventListener('next', handler);
-   if(qi===qs.length-1){end();}else{qi++;render();}
-  });
- }
- function end(){
-  box.innerHTML='<p style="font-size:1.2rem;"><b>🎉 ¡Fin! Acertaste '+score+' de '+qs.length+'.</b></p><button type="button" class="choice" data-again="1" style="background:var(--turq); color:#000; border:none;">Empezar de nuevo ↺</button>';
-  box.querySelector('[data-again]').addEventListener('click',()=>{qi=0;score=0;render();});
- }
- render();
-}
-
-makeQuiz('q-aula',[
+const quizData = [
  {"t": "Tú ________ (conseguir)", "o": ["consiegues", "consigues", "consigueses"], "a": 1, "e": "La forma correcta es «consigues» (e → i)."},
  {"t": "Él ________ (seguir)", "o": ["sigre", "sigue", "sigues"], "a": 1, "e": "La forma correcta para él/ella/usted es «sigue»."},
  {"t": "Completa: «_____ hay que celebrarlo».", "o": ["Esto", "Este", "Esta"], "a": 0, "e": "Usamos la forma neutra «esto» para referirnos a una situación o idea."},
  {"t": "¿Qué verbo usamos en «_____ barba»?", "o": ["ser", "tener", "llevar"], "a": 2, "e": "Usamos el verbo «llevar» para la ropa, el pelo y la barba."},
  {"t": "Completa: «Daniel es ________, alegre y se lleva bien con todo el mundo.»", "o": ["optimista", "canoso", "ondulado"], "a": 0, "e": "Optimista describe su carácter (junto con alegre)."}
-]);
+];
 
+function makeQuiz(id, qs){
+  const box=document.getElementById(id);
+  if(!box) return;
+  box.innerHTML='';
+  const cards=[];
+  qs.forEach((q,qi)=>{
+    const card=document.createElement('div');
+    card.className='quiz-question';
+    const title=document.createElement('p');
+    title.innerHTML='<b>'+(qi+1)+'. '+q.t+'</b>';
+    const audio=document.createElement('button');
+    audio.type='button'; audio.className='speak question-audio';
+    audio.textContent='🔊'; audio.setAttribute('aria-label','Escuchar pregunta');
+    audio.onclick=()=>say(cleanSpeechText(q.t));
+    title.appendChild(document.createTextNode(' ')); title.appendChild(audio);
+    card.appendChild(title);
+
+    const grid=document.createElement('div'); grid.className='choice-grid';
+    q.o.forEach((o,i)=>{
+      const b=document.createElement('button');
+      b.type='button'; b.className='choice'; b.textContent=o;
+      b.onclick=()=>{ say(cleanSpeechText(o)); selectChoice(card, q, i, b); };
+      grid.appendChild(b);
+    });
+    card.appendChild(grid);
+    const fb=document.createElement('div'); fb.className='feedback'; fb.setAttribute('aria-live','polite');
+    card.appendChild(fb);
+    box.appendChild(card);
+    cards.push({card,q,fb});
+  });
+
+  const check=document.createElement('button');
+  check.type='button'; check.className='check-all';
+  check.textContent='Comprobar Respuestas';
+  check.onclick=()=>{
+    let score=0;
+    cards.forEach((x)=>{
+      if(x.selected===undefined) return;
+      const bs=x.card.querySelectorAll('.choice');
+      bs.forEach(b=>b.disabled=true);
+      bs[x.q.a].classList.add('correct');
+      if(x.selected===x.q.a){
+        score++;
+        x.fb.innerHTML='✅ Correcto. '+(x.q.e||'');
+        x.fb.className='feedback ok';
+      }else{
+        bs[x.selected].classList.add('wrong');
+        x.fb.innerHTML='❌ Casi. '+(x.q.e||'');
+        x.fb.className='feedback bad';
+      }
+    });
+    const result=document.createElement('div');
+    result.className='quiz-result';
+    result.innerHTML='<div class="result-main">Resultado: '+score+' de '+qs.length+'</div>';
+    box.appendChild(result);
+    check.disabled=true;
+  };
+  box.appendChild(check);
+
+  function selectChoice(card,q,i,b){
+    if(card.dataset.answered) return;
+    card.selected=i;
+    card.dataset.answered='1';
+    card.querySelectorAll('.choice').forEach(x=>x.classList.remove('selected'));
+    b.classList.add('selected');
+  }
+}
+makeQuiz('q-aula', quizData);
 </script>
-</body>
+<script>
+(function(){
+  const root=document.documentElement;
+  const saved=localStorage.getItem('a2-theme');
+  if(saved==='light') root.setAttribute('data-theme','light');
+  const theme=document.querySelector('.theme-toggle');
+  if(theme){
+    theme.textContent=root.getAttribute('data-theme')==='light'?'🌙':'☀️';
+    theme.onclick=()=>{
+      const light=root.getAttribute('data-theme')==='light';
+      if(light){root.removeAttribute('data-theme');localStorage.setItem('a2-theme','dark');theme.textContent='☀️';}
+      else{root.setAttribute('data-theme','light');localStorage.setItem('a2-theme','light');theme.textContent='🌙';}
+    };
+  }
+  document.querySelectorAll('.speed-btn').forEach(b=>{
+    b.onclick=()=>{
+      audioRate=parseFloat(b.dataset.rate);
+      document.querySelectorAll('.speed-btn').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active');
+    };
+  });
+  const normal=document.querySelector('.speed-btn[data-rate="0.88"]');
+  if(normal) normal.classList.add('active');
+})();
+</script></body>
 </html>

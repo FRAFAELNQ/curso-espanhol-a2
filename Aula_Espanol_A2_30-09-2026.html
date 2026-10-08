@@ -181,8 +181,7 @@ header .subtitle{color:var(--header-text);opacity:.88}
   padding:0;scrollbar-width:thin;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;
   touch-action:pan-x;
 }
-.tab-nav button{
-  flex:0 0 118px;width:118px;min-width:118px;height:40px;border:1px solid var(--border);
+.tab-nav button{flex:0 0 auto;width:max-content;min-width:max-content;padding:0 13px;height:40px;border:1px solid var(--border);
   background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;font-weight:800;
   font-size:.84rem;white-space:nowrap;display:flex;align-items:center;justify-content:center;gap:4px;
   transition:transform .15s ease,border-color .15s ease,background .15s ease;touch-action:manipulation;
@@ -200,7 +199,7 @@ header .subtitle{color:var(--header-text);opacity:.88}
 @media(max-width:600px){
   .sticky-shell{padding:6px 7px;border-radius:14px;margin-top:7px}
   .tab-nav{gap:6px}
-  .tab-nav button{flex-basis:112px;width:112px;min-width:112px;height:38px;font-size:.80rem}
+  .tab-nav button{flex:0 0 auto;width:max-content;min-width:max-content;height:38px;font-size:.80rem}
 
   /* Controles: Inicio al centro · Velocidad à direita */
   .header-controls{
@@ -229,7 +228,7 @@ header .subtitle{color:var(--header-text);opacity:.88}
   .header-controls .speed-btn{width:34px;min-width:34px;height:34px}
   .header-controls .speed-btn[data-rate="0.58"]::before,.header-controls .speed-btn[data-rate="1.12"]::before{font-size:.9rem}
   .header-controls .speed-btn[data-rate="0.88"]::before{font-size:.8rem}
-  .tab-nav button{flex-basis:108px;width:108px;min-width:108px;font-size:.78rem}
+  .tab-nav button{flex:0 0 auto;width:max-content;min-width:max-content;font-size:.78rem}
 }
 
 
@@ -857,14 +856,27 @@ function initSpeechSpeed(){
   document.querySelectorAll('.speed-btn').forEach(b=>b.classList.toggle('active',b===active));
 }
 initSpeechSpeed();
+function cleanSpeechText(txt){
+  return String(txt ?? '')
+    .replace(/🔊/g,'')
+    .replace(/[→➜]/g,'; ')
+    .replace(/[_＿]+/g,' ')
+    .replace(/\.{3,}/g,' ')
+    .replace(/[-–—]{2,}/g,' ')
+    .replace(/\s+/g,' ')
+    .trim();
+}
+
 function say(txt){
   if(!('speechSynthesis' in window)){alert('La síntesis de voz no está disponible en este navegador.');return;}
+  const safeTxt=cleanSpeechText(txt);
+  if(!safeTxt) return;
   const speakNow=()=>{
     const synth=window.speechSynthesis;
     const voices=synth.getVoices();
     esVoice=voices.find(v=>v.lang==='es-ES')||voices.find(v=>v.lang&&v.lang.toLowerCase().startsWith('es'))||esVoice||null;
     synth.cancel();
-    const u=new SpeechSynthesisUtterance(String(txt));
+    const u=new SpeechSynthesisUtterance(safeTxt);
     u.lang='es-ES';
     u.rate=speechRate;
     if(esVoice)u.voice=esVoice;
@@ -909,7 +921,7 @@ function makeQuiz(id,qs){
     const questionHead=document.createElement('div');questionHead.className='quiz-question-head';
     const p=document.createElement('p');p.innerHTML='<b>'+q.t+'</b>';questionHead.appendChild(p);
     const audio=document.createElement('button');audio.type='button';audio.className='quiz-audio';audio.textContent='🔊';audio.title='Escuchar la pregunta';audio.setAttribute('aria-label','Escuchar la pregunta');
-    audio.onclick=()=>say(q.t.replace(/_+/g,' espacio en blanco '));
+    audio.onclick=()=>say(cleanSpeechText(q.t));
     questionHead.appendChild(audio);card.appendChild(questionHead);
     const grid=document.createElement('div');grid.className='choice-grid';
     q.o.forEach((opt,i)=>{const b=document.createElement('button');b.type='button';b.className='choice';b.dataset.i=i;b.textContent=opt;b.setAttribute('aria-pressed','false');b.addEventListener('click',()=>{
