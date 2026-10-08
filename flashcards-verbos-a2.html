@@ -238,10 +238,7 @@
     line-height: 1.4;
   }
   .nav {
-    width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
     gap: 12px;
     margin-top: 22px;
   }
@@ -272,6 +269,33 @@
     color: white;
     font-weight: 600;
   }
+  .tense-toggle {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    margin: -6px 0 16px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 4px;
+    max-width: 480px;
+  }
+  .tense-btn {
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-family: inherit;
+    font-size: 0.85rem;
+    padding: 8px 18px;
+    border-radius: 9px;
+    cursor: pointer;
+  }
+  .tense-btn.active {
+    background: linear-gradient(135deg, var(--accent3), var(--accent2));
+    color: #fff;
+    font-weight: 700;
+  }
+  .tense-btn:focus-visible { outline: 3px solid var(--accent4); outline-offset: 2px; }
   .quiz-score {
     font-size: 0.85rem;
     color: var(--muted);
@@ -321,50 +345,6 @@
     margin-top: 4px;
     line-height: 1.4;
   }
-  .cat-time-switch {
-    width: 100%;
-    max-width: 480px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 6px;
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 5px;
-    margin-bottom: 18px;
-  }
-  .cat-time-btn {
-    border: none;
-    background: transparent;
-    color: var(--muted);
-    font-family: inherit;
-    font-size: 0.85rem;
-    font-weight: 700;
-    padding: 9px 8px;
-    border-radius: 9px;
-    cursor: pointer;
-  }
-  .cat-time-btn.active {
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    color: white;
-  }
-  .cat-time-info {
-    width: 100%;
-    max-width: 480px;
-    text-align: center;
-    color: var(--muted);
-    font-size: 0.78rem;
-    margin: -8px 0 16px;
-    line-height: 1.4;
-  }
-  .study-time-switch {
-    display:flex; gap:6px; margin:0 auto 14px; background:var(--card-bg); border:1px solid var(--border); border-radius:999px; padding:4px; max-width:480px;
-  }
-  .study-time-btn { border:none; background:transparent; color:var(--muted); font-family:inherit; font-size:.82rem; font-weight:700; padding:7px 15px; border-radius:999px; cursor:pointer; flex:1; }
-  .study-time-btn.active { background:linear-gradient(135deg,var(--accent),var(--accent2)); color:white; }
-  .tense-block { width:100%; margin-top:4px; }
-  .tense-title { font-size:.78rem; text-transform:uppercase; letter-spacing:.05em; color:var(--accent3); font-weight:800; text-align:center; margin:4px 0 8px; }
-  .past-note { font-size:.78rem; color:var(--muted); text-align:center; margin-top:8px; }
   .cat-section {
     width: 100%;
     max-width: 480px;
@@ -546,6 +526,11 @@
   <button class="tab-btn" id="tabSounds" onclick="switchTab('sounds')"></button>
 </div>
 
+<div class="tense-toggle" id="tenseToggle" role="group" aria-label="Presente / Pasado">
+  <button type="button" class="tense-btn active" id="tensePres" aria-pressed="true" onclick="setTense('present')"></button>
+  <button type="button" class="tense-btn" id="tensePast" aria-pressed="false" onclick="setTense('past')"></button>
+</div>
+
 <div id="studyView">
   <div class="progress" id="progress"></div>
 
@@ -589,10 +574,10 @@ const UI = {
   pt: {
     title: "Verbos A2 — por padrões",
     sub: "Toque no cartão pra virar",
-    tabStudy: "Estudar", tabQuiz: "Testar", tabCat: "Categorias", tabSounds: "Sons", catAll: "⚪ Todos", catPresent: "🟢 Presente", catPast: "🟣 Pasado", catPastInfo: "Verbos com referência ao pretérito nas notas da aula.",
+    tabStudy: "Estudar", tabQuiz: "Testar", tabCat: "Categorias", tabSounds: "Sons",
+    tensePres: "Presente", tensePast: "Passado",
     exportCsv: "📥 Baixar Excel (.csv)",
-    hint: "toque no cartão pra ver las conjugaciones",
-    allTime: "⚪ Todos", presentTime: "🟢 Presente", pastTime: "🟣 Pasado", present: "Presente", past: "Pasado",
+    hint: "toque no cartão pra ver a conjugação",
     prev: "◀ Anterior", next: "Próxima ▶", restart: "Reiniciar ↺",
     speakAll: "🔊 Ouvir as 6 formas",
     quizScore: (c,t) => `Acertos: ${c} / ${t}`,
@@ -604,10 +589,10 @@ const UI = {
   es: {
     title: "Verbos A2 — por patrón",
     sub: "Toca la tarjeta para darle la vuelta",
-    tabStudy: "Estudiar", tabQuiz: "Practicar", tabCat: "Categorías", tabSounds: "Sonidos", catAll: "⚪ Todos", catPresent: "🟢 Presente", catPast: "🟣 Pasado", catPastInfo: "Verbos con referencia al pretérito en las notas de clase.",
+    tabStudy: "Estudiar", tabQuiz: "Practicar", tabCat: "Categorías", tabSounds: "Sonidos",
+    tensePres: "Presente", tensePast: "Pasado",
     exportCsv: "📥 Descargar Excel (.csv)",
-    hint: "toca la tarjeta para ver las conjugaciones",
-    allTime: "⚪ Todos", presentTime: "🟢 Presente", pastTime: "🟣 Pasado", present: "Presente", past: "Pasado",
+    hint: "toca la tarjeta para ver la conjugación",
     prev: "◀ Anterior", next: "Siguiente ▶", restart: "Reiniciar ↺",
     speakAll: "🔊 Escuchar las 6 formas",
     quizScore: (c,t) => `Aciertos: ${c} / ${t}`,
@@ -619,10 +604,10 @@ const UI = {
   en: {
     title: "A2 Verbs — by pattern",
     sub: "Tap the card to flip it",
-    tabStudy: "Study", tabQuiz: "Quiz", tabCat: "Categories", tabSounds: "Sounds", catAll: "⚪ All", catPresent: "🟢 Present", catPast: "🟣 Past", catPastInfo: "Verbs with a preterite reference in the class notes.",
+    tabStudy: "Study", tabQuiz: "Quiz", tabCat: "Categories", tabSounds: "Sounds",
+    tensePres: "Present", tensePast: "Past",
     exportCsv: "📥 Download Excel (.csv)",
-    hint: "tap the card to see the conjugations",
-    allTime: "⚪ All", presentTime: "🟢 Present", pastTime: "🟣 Past", present: "Present", past: "Past",
+    hint: "tap the card to see the conjugation",
     prev: "◀ Previous", next: "Next ▶", restart: "Restart ↺",
     speakAll: "🔊 Hear all 6 forms",
     quizScore: (c,t) => `Score: ${c} / ${t}`,
@@ -657,7 +642,8 @@ const GROUPS = {
   "uir":       { pt: "Verbos -uir (inserção de 'y')", es: "Verbos -uir (inserción de 'y')", en: "-uir verbs ('y' insertion)" },
   "eie-ir-refl": { pt: "Reflexivo e→ie (-IR especial)", es: "Reflexivo e→ie (-IR especial)", en: "Reflexive e→ie (special -IR)" },
   "yo-irr-refl": { pt: "1ª pessoa irregular + reflexivo", es: "1ª persona irregular + reflexivo", en: "Irregular 1st person + reflexive" },
-  uar: { pt: "-UAR (acento no u)", es: "-UAR (acento en la u)", en: "-UAR (accent on the u)" }
+  uar: { pt: "-UAR (acento no u)", es: "-UAR (acento en la u)", en: "-UAR (accent on the u)" },
+  iie: { pt: "i → ie (adquirir)", es: "i → ie (adquirir)", en: "i → ie (adquirir)" }
 };
 
 const NOTES = {
@@ -752,7 +738,9 @@ const NOTES = {
   estrenarNote: { pt: "Estrenar una película = apresentá-la ao público pela primeira vez. Pretérito: estrenó.", es: "Estrenar una película = presentarla al público por primera vez. Pretérito: estrenó.", en: "Estrenar una película = to release it for the first time. Preterite: estrenó." },
   interpretarNote: { pt: "Interpretar un papel = atuar como um personagem. Pretérito: interpretó.", es: "Interpretar un papel = actuar como un personaje. Pretérito: interpretó.", en: "Interpretar un papel = to play a character. Preterite: interpretó." },
   lucharNote: { pt: "Luchar contra algo / por algo: luchar contra el Apartheid.", es: "Luchar contra algo / por algo: luchar contra el Apartheid.", en: "Luchar contra something / for something: luchar contra el Apartheid." },
-  rodarNote: { pt: "Rodar = filmar (o→ue no presente: ruedo). Pretérito regular: rodó.", es: "Rodar = filmar (o→ue en presente: ruedo). Pretérito regular: rodó.", en: "Rodar = to shoot a film (o→ue in the present: ruedo). Regular preterite: rodó." }
+  rodarNote: { pt: "Rodar = filmar (o→ue no presente: ruedo). Pretérito regular: rodó.", es: "Rodar = filmar (o→ue en presente: ruedo). Pretérito regular: rodó.", en: "Rodar = to shoot a film (o→ue in the present: ruedo). Regular preterite: rodó." },
+  acogerNote: { pt: "Yo acojo (g→j por ortografia). Acogida = acolhida; acogedor = aconchegante.", es: "«Yo» acojo (g→j por ortografía). Acogida = bienvenida; acogedor = confortable, agradable.", en: "«Yo» acojo (g→j for spelling). Acogida = welcome; acogedor = cosy." },
+  adquirirNote: { pt: "Adquirir = comprar (mais formal). Muda i→ie: adquiero, adquieres, adquiere, adquirimos, adquirís, adquieren.", es: "Adquirir = comprar (más formal). Cambia i→ie: adquiero, adquieres, adquiere, adquirimos, adquirís, adquieren.", en: "Adquirir = to buy (more formal). Changes i→ie: adquiero, adquieres, adquiere, adquirimos, adquirís, adquieren." }
 };
 
 const verbs = [
@@ -832,6 +820,9 @@ const verbs = [
   { word: "rodar", meaning: "",sticker: "🎥",groupKey: "oue", forms: ["ruedo","ruedas","rueda","rodamos","rodáis","ruedan"], noteKey: "rodarNote" },
   { word: "filmar", meaning: "",sticker: "📹",groupKey: "ar", forms: ["filmo","filmas","filma","filmamos","filmáis","filman"], noteKey: "sameHablar" },
   { word: "crear", meaning: "",sticker: "✨",groupKey: "ar", forms: ["creo","creas","crea","creamos","creáis","crean"], noteKey: "sameHablar" },
+  { word: "acoger", meaning: "",sticker: "🤗",groupKey: "yo-irr", forms: ["acojo","acoges","acoge","acogemos","acogéis","acogen"], noteKey: "acogerNote" },
+  { word: "teletrabajar", meaning: "",sticker: "💻",groupKey: "ar", forms: ["teletrabajo","teletrabajas","teletrabaja","teletrabajamos","teletrabajáis","teletrabajan"], noteKey: "sameHablar" },
+  { word: "adquirir", meaning: "",sticker: "🛒",groupKey: "iie", forms: ["adquiero","adquieres","adquiere","adquirimos","adquirís","adquieren"], noteKey: "adquirirNote" },
   { word: "llevar", meaning: "",sticker: "👜",groupKey: "ar", forms: ["llevo","llevas","lleva","llevamos","lleváis","llevan"], noteKey: "llFocus" },
   { word: "llevarse", meaning: "",sticker: "🤝",groupKey: "ar-refl", forms: ["me llevo","te llevas","se lleva","nos llevamos","os lleváis","se llevan"], noteKey: "llevarseNote" },
 
@@ -919,6 +910,208 @@ const verbs = [
   { word: "ser", meaning: "ser (essência/identidade)",sticker: "👤",groupKey: "irr", forms: ["soy","eres","es","somos","sois","son"], noteKey: "serNote" },
   { word: "estar", meaning: "estar (lugar/estado)",sticker: "📍",groupKey: "irr", forms: ["estoy","estás","está","estamos","estáis","están"], noteKey: "estarNote" }
 ];
+
+// ---------- Pretérito indefinido (passado) ----------
+const PAST = {
+  "hablar": ["p-ar", "hablé", "hablaste", "habló", "hablamos", "hablasteis", "hablaron"],
+  "comprar": ["p-ar", "compré", "compraste", "compró", "compramos", "comprasteis", "compraron"],
+  "preguntar": ["p-ar", "pregunté", "preguntaste", "preguntó", "preguntamos", "preguntasteis", "preguntaron"],
+  "cenar": ["p-ar", "cené", "cenaste", "cenó", "cenamos", "cenasteis", "cenaron"],
+  "llorar": ["p-ar", "lloré", "lloraste", "lloró", "lloramos", "llorasteis", "lloraron"],
+  "terminar": ["p-ar", "terminé", "terminaste", "terminó", "terminamos", "terminasteis", "terminaron"],
+  "tomar": ["p-ar", "tomé", "tomaste", "tomó", "tomamos", "tomasteis", "tomaron"],
+  "visitar": ["p-ar", "visité", "visitaste", "visitó", "visitamos", "visitasteis", "visitaron"],
+  "entrar": ["p-ar", "entré", "entraste", "entró", "entramos", "entrasteis", "entraron"],
+  "desayunar": ["p-ar", "desayuné", "desayunaste", "desayunó", "desayunamos", "desayunasteis", "desayunaron"],
+  "limpiar": ["p-ar", "limpié", "limpiaste", "limpió", "limpiamos", "limpiasteis", "limpiaron"],
+  "comparar": ["p-ar", "comparé", "comparaste", "comparó", "comparamos", "comparasteis", "compararon"],
+  "arreglar": ["p-ar", "arreglé", "arreglaste", "arregló", "arreglamos", "arreglasteis", "arreglaron"],
+  "cocinar": ["p-ar", "cociné", "cocinaste", "cocinó", "cocinamos", "cocinasteis", "cocinaron"],
+  "marcar": ["p-car", "marqué", "marcaste", "marcó", "marcamos", "marcasteis", "marcaron"],
+  "observar": ["p-ar", "observé", "observaste", "observó", "observamos", "observasteis", "observaron"],
+  "perdonar": ["p-ar", "perdoné", "perdonaste", "perdonó", "perdonamos", "perdonasteis", "perdonaron"],
+  "listar": ["p-ar", "listé", "listaste", "listó", "listamos", "listasteis", "listaron"],
+  "tutear": ["p-ar", "tuteé", "tuteaste", "tuteó", "tuteamos", "tuteasteis", "tutearon"],
+  "pasar": ["p-ar", "pasé", "pasaste", "pasó", "pasamos", "pasasteis", "pasaron"],
+  "publicar": ["p-car", "publiqué", "publicaste", "publicó", "publicamos", "publicasteis", "publicaron"],
+  "pagar": ["p-gar", "pagué", "pagaste", "pagó", "pagamos", "pagasteis", "pagaron"],
+  "cruzar": ["p-zar", "crucé", "cruzaste", "cruzó", "cruzamos", "cruzasteis", "cruzaron"],
+  "organizar": ["p-zar", "organicé", "organizaste", "organizó", "organizamos", "organizasteis", "organizaron"],
+  "tocar": ["p-car", "toqué", "tocaste", "tocó", "tocamos", "tocasteis", "tocaron"],
+  "viajar": ["p-ar", "viajé", "viajaste", "viajó", "viajamos", "viajasteis", "viajaron"],
+  "ganar": ["p-ar", "gané", "ganaste", "ganó", "ganamos", "ganasteis", "ganaron"],
+  "pintar": ["p-ar", "pinté", "pintaste", "pintó", "pintamos", "pintasteis", "pintaron"],
+  "escalar": ["p-ar", "escalé", "escalaste", "escaló", "escalamos", "escalasteis", "escalaron"],
+  "actuar": ["p-ar", "actué", "actuaste", "actuó", "actuamos", "actuasteis", "actuaron"],
+  "morir": ["p-ou", "morí", "moriste", "murió", "morimos", "moristeis", "murieron"],
+  "obtener": ["p-stem", "obtuve", "obtuviste", "obtuvo", "obtuvimos", "obtuvisteis", "obtuvieron"],
+  "componer": ["p-stem", "compuse", "compusiste", "compuso", "compusimos", "compusisteis", "compusieron"],
+  "ir": ["p-irr", "fui", "fuiste", "fue", "fuimos", "fuisteis", "fueron"],
+  "dar": ["p-irr", "di", "diste", "dio", "dimos", "disteis", "dieron"],
+  "mentir": ["p-ei", "mentí", "mentiste", "mintió", "mentimos", "mentisteis", "mintieron"],
+  "poder": ["p-stem", "pude", "pudiste", "pudo", "pudimos", "pudisteis", "pudieron"],
+  "querer": ["p-stem", "quise", "quisiste", "quiso", "quisimos", "quisisteis", "quisieron"],
+  "saber": ["p-stem", "supe", "supiste", "supo", "supimos", "supisteis", "supieron"],
+  "venir": ["p-stem", "vine", "viniste", "vino", "vinimos", "vinisteis", "vinieron"],
+  "buscar": ["p-car", "busqué", "buscaste", "buscó", "buscamos", "buscasteis", "buscaron"],
+  "nacer": ["p-erir", "nací", "naciste", "nació", "nacimos", "nacisteis", "nacieron"],
+  "dirigir": ["p-erir", "dirigí", "dirigiste", "dirigió", "dirigimos", "dirigisteis", "dirigieron"],
+  "casarse": ["p-ar", "me casé", "te casaste", "se casó", "nos casamos", "os casasteis", "se casaron"],
+  "protagonizar": ["p-zar", "protagonicé", "protagonizaste", "protagonizó", "protagonizamos", "protagonizasteis", "protagonizaron"],
+  "inventar": ["p-ar", "inventé", "inventaste", "inventó", "inventamos", "inventasteis", "inventaron"],
+  "correr": ["p-erir", "corrí", "corriste", "corrió", "corrimos", "corristeis", "corrieron"],
+  "coger": ["p-erir", "cogí", "cogiste", "cogió", "cogimos", "cogisteis", "cogieron"],
+  "caminar": ["p-ar", "caminé", "caminaste", "caminó", "caminamos", "caminasteis", "caminaron"],
+  "alquilar": ["p-ar", "alquilé", "alquilaste", "alquiló", "alquilamos", "alquilasteis", "alquilaron"],
+  "trabajar": ["p-ar", "trabajé", "trabajaste", "trabajó", "trabajamos", "trabajasteis", "trabajaron"],
+  "enseñar": ["p-ar", "enseñé", "enseñaste", "enseñó", "enseñamos", "enseñasteis", "enseñaron"],
+  "llegar": ["p-gar", "llegué", "llegaste", "llegó", "llegamos", "llegasteis", "llegaron"],
+  "encontrarse": ["p-ar", "me encontré", "te encontraste", "se encontró", "nos encontramos", "os encontrasteis", "se encontraron"],
+  "irse": ["p-irr", "me fui", "te fuiste", "se fue", "nos fuimos", "os fuisteis", "se fueron"],
+  "quedarse": ["p-ar", "me quedé", "te quedaste", "se quedó", "nos quedamos", "os quedasteis", "se quedaron"],
+  "quedar": ["p-ar", "quedé", "quedaste", "quedó", "quedamos", "quedasteis", "quedaron"],
+  "jubilarse": ["p-ar", "me jubilé", "te jubilaste", "se jubiló", "nos jubilamos", "os jubilasteis", "se jubilaron"],
+  "divorciarse": ["p-ar", "me divorcié", "te divorciaste", "se divorció", "nos divorciamos", "os divorciasteis", "se divorciaron"],
+  "enamorarse": ["p-ar", "me enamoré", "te enamoraste", "se enamoró", "nos enamoramos", "os enamorasteis", "se enamoraron"],
+  "discutir": ["p-erir", "discutí", "discutiste", "discutió", "discutimos", "discutisteis", "discutieron"],
+  "cambiar": ["p-ar", "cambié", "cambiaste", "cambió", "cambiamos", "cambiasteis", "cambiaron"],
+  "dejar": ["p-ar", "dejé", "dejaste", "dejó", "dejamos", "dejasteis", "dejaron"],
+  "mudarse": ["p-ar", "me mudé", "te mudaste", "se mudó", "nos mudamos", "os mudasteis", "se mudaron"],
+  "estudiar": ["p-ar", "estudié", "estudiaste", "estudió", "estudiamos", "estudiasteis", "estudiaron"],
+  "preparar": ["p-ar", "preparé", "preparaste", "preparó", "preparamos", "preparasteis", "prepararon"],
+  "separarse": ["p-ar", "me separé", "te separaste", "se separó", "nos separamos", "os separasteis", "se separaron"],
+  "hacerse": ["p-stem", "me hice", "te hiciste", "se hizo", "nos hicimos", "os hicisteis", "se hicieron"],
+  "contar": ["p-ar", "conté", "contaste", "contó", "contamos", "contasteis", "contaron"],
+  "interpretar": ["p-ar", "interpreté", "interpretaste", "interpretó", "interpretamos", "interpretasteis", "interpretaron"],
+  "estrenar": ["p-ar", "estrené", "estrenaste", "estrenó", "estrenamos", "estrenasteis", "estrenaron"],
+  "adaptar": ["p-ar", "adapté", "adaptaste", "adaptó", "adaptamos", "adaptasteis", "adaptaron"],
+  "luchar": ["p-ar", "luché", "luchaste", "luchó", "luchamos", "luchasteis", "lucharon"],
+  "rodar": ["p-ar", "rodé", "rodaste", "rodó", "rodamos", "rodasteis", "rodaron"],
+  "filmar": ["p-ar", "filmé", "filmaste", "filmó", "filmamos", "filmasteis", "filmaron"],
+  "crear": ["p-ar", "creé", "creaste", "creó", "creamos", "creasteis", "crearon"],
+  "acoger": ["p-erir", "acogí", "acogiste", "acogió", "acogimos", "acogisteis", "acogieron"],
+  "teletrabajar": ["p-ar", "teletrabajé", "teletrabajaste", "teletrabajó", "teletrabajamos", "teletrabajasteis", "teletrabajaron"],
+  "adquirir": ["p-erir", "adquirí", "adquiriste", "adquirió", "adquirimos", "adquiristeis", "adquirieron"],
+  "llevar": ["p-ar", "llevé", "llevaste", "llevó", "llevamos", "llevasteis", "llevaron"],
+  "llevarse": ["p-ar", "me llevé", "te llevaste", "se llevó", "nos llevamos", "os llevasteis", "se llevaron"],
+  "ducharse": ["p-ar", "me duché", "te duchaste", "se duchó", "nos duchamos", "os duchasteis", "se ducharon"],
+  "levantarse": ["p-ar", "me levanté", "te levantaste", "se levantó", "nos levantamos", "os levantasteis", "se levantaron"],
+  "comer": ["p-erir", "comí", "comiste", "comió", "comimos", "comisteis", "comieron"],
+  "comprender": ["p-erir", "comprendí", "comprendiste", "comprendió", "comprendimos", "comprendisteis", "comprendieron"],
+  "beber": ["p-erir", "bebí", "bebiste", "bebió", "bebimos", "bebisteis", "bebieron"],
+  "responder": ["p-erir", "respondí", "respondiste", "respondió", "respondimos", "respondisteis", "respondieron"],
+  "leer": ["p-y", "leí", "leíste", "leyó", "leímos", "leísteis", "leyeron"],
+  "aprender": ["p-erir", "aprendí", "aprendiste", "aprendió", "aprendimos", "aprendisteis", "aprendieron"],
+  "subir": ["p-erir", "subí", "subiste", "subió", "subimos", "subisteis", "subieron"],
+  "vivir": ["p-erir", "viví", "viviste", "vivió", "vivimos", "vivisteis", "vivieron"],
+  "escribir": ["p-erir", "escribí", "escribiste", "escribió", "escribimos", "escribisteis", "escribieron"],
+  "recibir": ["p-erir", "recibí", "recibiste", "recibió", "recibimos", "recibisteis", "recibieron"],
+  "merendar": ["p-ar", "merendé", "merendaste", "merendó", "merendamos", "merendasteis", "merendaron"],
+  "cerrar": ["p-ar", "cerré", "cerraste", "cerró", "cerramos", "cerrasteis", "cerraron"],
+  "entender": ["p-erir", "entendí", "entendiste", "entendió", "entendimos", "entendisteis", "entendieron"],
+  "empezar": ["p-zar", "empecé", "empezaste", "empezó", "empezamos", "empezasteis", "empezaron"],
+  "sentarse": ["p-ar", "me senté", "te sentaste", "se sentó", "nos sentamos", "os sentasteis", "se sentaron"],
+  "despertarse": ["p-ar", "me desperté", "te despertaste", "se despertó", "nos despertamos", "os despertasteis", "se despertaron"],
+  "sentirse": ["p-ei", "me sentí", "te sentiste", "se sintió", "nos sentimos", "os sentisteis", "se sintieron"],
+  "invertir": ["p-ei", "invertí", "invertiste", "invirtió", "invertimos", "invertisteis", "invirtieron"],
+  "preferir": ["p-ei", "preferí", "preferiste", "prefirió", "preferimos", "preferisteis", "prefirieron"],
+  "convertirse": ["p-ei", "me convertí", "te convertiste", "se convirtió", "nos convertimos", "os convertisteis", "se convirtieron"],
+  "comprobar": ["p-ar", "comprobé", "comprobaste", "comprobó", "comprobamos", "comprobasteis", "comprobaron"],
+  "encontrar": ["p-ar", "encontré", "encontraste", "encontró", "encontramos", "encontrasteis", "encontraron"],
+  "recordar": ["p-ar", "recordé", "recordaste", "recordó", "recordamos", "recordasteis", "recordaron"],
+  "volver": ["p-erir", "volví", "volviste", "volvió", "volvimos", "volvisteis", "volvieron"],
+  "volar": ["p-ar", "volé", "volaste", "voló", "volamos", "volasteis", "volaron"],
+  "resolver": ["p-erir", "resolví", "resolviste", "resolvió", "resolvimos", "resolvisteis", "resolvieron"],
+  "devolver": ["p-erir", "devolví", "devolviste", "devolvió", "devolvimos", "devolvisteis", "devolvieron"],
+  "costar": ["p-ar", "costé", "costaste", "costó", "costamos", "costasteis", "costaron"],
+  "soñar": ["p-ar", "soñé", "soñaste", "soñó", "soñamos", "soñasteis", "soñaron"],
+  "colgar": ["p-gar", "colgué", "colgaste", "colgó", "colgamos", "colgasteis", "colgaron"],
+  "acostarse": ["p-ar", "me acosté", "te acostaste", "se acostó", "nos acostamos", "os acostasteis", "se acostaron"],
+  "dormir": ["p-ou", "dormí", "dormiste", "durmió", "dormimos", "dormisteis", "durmieron"],
+  "jugar": ["p-gar", "jugué", "jugaste", "jugó", "jugamos", "jugasteis", "jugaron"],
+  "medir": ["p-ei", "medí", "mediste", "midió", "medimos", "medisteis", "midieron"],
+  "seguir": ["p-ei", "seguí", "seguiste", "siguió", "seguimos", "seguisteis", "siguieron"],
+  "conseguir": ["p-ei", "conseguí", "conseguiste", "consiguió", "conseguimos", "conseguisteis", "consiguieron"],
+  "elegir": ["p-ei", "elegí", "elegiste", "eligió", "elegimos", "elegisteis", "eligieron"],
+  "reír": ["p-rei", "reí", "reíste", "rio", "reímos", "reísteis", "rieron"],
+  "perseguir": ["p-ei", "perseguí", "perseguiste", "persiguió", "perseguimos", "perseguisteis", "persiguieron"],
+  "vestir": ["p-ei", "vestí", "vestiste", "vistió", "vestimos", "vestisteis", "vistieron"],
+  "corregir": ["p-ei", "corregí", "corregiste", "corrigió", "corregimos", "corregisteis", "corrigieron"],
+  "pedir": ["p-ei", "pedí", "pediste", "pidió", "pedimos", "pedisteis", "pidieron"],
+  "repetir": ["p-ei", "repetí", "repetiste", "repitió", "repetimos", "repetisteis", "repitieron"],
+  "sonreír": ["p-rei", "sonreí", "sonreíste", "sonrió", "sonreímos", "sonreísteis", "sonrieron"],
+  "vestirse": ["p-ei", "me vestí", "te vestiste", "se vistió", "nos vestimos", "os vestisteis", "se vistieron"],
+  "despedirse": ["p-ei", "me despedí", "te despediste", "se despidió", "nos despedimos", "os despedisteis", "se despidieron"],
+  "construir": ["p-y", "construí", "construiste", "construyó", "construimos", "construisteis", "construyeron"],
+  "huir": ["p-y", "huí", "huiste", "huyó", "huimos", "huisteis", "huyeron"],
+  "hacer": ["p-stem", "hice", "hiciste", "hizo", "hicimos", "hicisteis", "hicieron"],
+  "traer": ["p-j", "traje", "trajiste", "trajo", "trajimos", "trajisteis", "trajeron"],
+  "caer": ["p-y", "caí", "caíste", "cayó", "caímos", "caísteis", "cayeron"],
+  "poner": ["p-stem", "puse", "pusiste", "puso", "pusimos", "pusisteis", "pusieron"],
+  "salir": ["p-erir", "salí", "saliste", "salió", "salimos", "salisteis", "salieron"],
+  "darse": ["p-irr", "me di", "te diste", "se dio", "nos dimos", "os disteis", "se dieron"],
+  "conocer": ["p-erir", "conocí", "conociste", "conoció", "conocimos", "conocisteis", "conocieron"],
+  "conducir": ["p-j", "conduje", "condujiste", "condujo", "condujimos", "condujisteis", "condujeron"],
+  "parecer": ["p-erir", "parecí", "pareciste", "pareció", "parecimos", "parecisteis", "parecieron"],
+  "traducir": ["p-j", "traduje", "tradujiste", "tradujo", "tradujimos", "tradujisteis", "tradujeron"],
+  "parecerse": ["p-erir", "me parecí", "te pareciste", "se pareció", "nos parecimos", "os parecisteis", "se parecieron"],
+  "oír": ["p-y", "oí", "oíste", "oyó", "oímos", "oísteis", "oyeron"],
+  "tener": ["p-stem", "tuve", "tuviste", "tuvo", "tuvimos", "tuvisteis", "tuvieron"],
+  "decir": ["p-j", "dije", "dijiste", "dijo", "dijimos", "dijisteis", "dijeron"],
+  "ser": ["p-irr", "fui", "fuiste", "fue", "fuimos", "fuisteis", "fueron"],
+  "estar": ["p-stem", "estuve", "estuviste", "estuvo", "estuvimos", "estuvisteis", "estuvieron"]
+};
+
+const PGROUPS = {
+  "p-ar": { pt: "Regulares -AR (-é, -aste, -ó, -amos, -asteis, -aron)", es: "Regulares -AR (-é, -aste, -ó, -amos, -asteis, -aron)", en: "Regular -AR (-é, -aste, -ó, -amos, -asteis, -aron)" },
+  "p-erir": { pt: "Regulares -ER / -IR (-í, -iste, -ió, -imos, -isteis, -ieron)", es: "Regulares -ER / -IR (-í, -iste, -ió, -imos, -isteis, -ieron)", en: "Regular -ER / -IR (-í, -iste, -ió, -imos, -isteis, -ieron)" },
+  "p-car": { pt: "-CAR → -QUÉ na forma yo (busqué)", es: "-CAR → -QUÉ en yo (busqué)", en: "-CAR → -QUÉ in yo (busqué)" },
+  "p-gar": { pt: "-GAR → -GUÉ na forma yo (pagué)", es: "-GAR → -GUÉ en yo (pagué)", en: "-GAR → -GUÉ in yo (pagué)" },
+  "p-zar": { pt: "-ZAR → -CÉ na forma yo (empecé)", es: "-ZAR → -CÉ en yo (empecé)", en: "-ZAR → -CÉ in yo (empecé)" },
+  "p-ei": { pt: "Muda e → i (ele/ela e eles): pidió, pidieron", es: "Cambio e → i (él/ella y ellos/ellas): pidió, pidieron", en: "Vowel change e → i (he/she and they): pidió, pidieron" },
+  "p-ou": { pt: "Muda o → u (ele/ela e eles): durmió, murieron", es: "Cambio o → u (él/ella y ellos/ellas): durmió, murieron", en: "Vowel change o → u (he/she and they): durmió, murieron" },
+  "p-y": { pt: "i → y entre vogais (ele/ela e eles): cayó, leyó, huyeron", es: "i → y entre vocales (él/ella y ellos/ellas): cayó, leyó, huyeron", en: "i → y between vowels (he/she and they): cayó, leyó, huyeron" },
+  "p-rei": { pt: "reír / sonreír: caso especial (rio, rieron)", es: "reír / sonreír: caso especial (rio, rieron)", en: "reír / sonreír: special case (rio, rieron)" },
+  "p-stem": { pt: "Raiz irregular, sem acento: estuve, tuve, pude, hice…", es: "Raíz irregular, sin tilde: estuve, tuve, pude, hice…", en: "Irregular stem, no accent: estuve, tuve, pude, hice…" },
+  "p-j": { pt: "Raiz com J (-eron): dije, traje, conduje", es: "Raíz con J (-eron): dije, traje, conduje", en: "Stem with J (-eron): dije, traje, conduje" },
+  "p-irr": { pt: "Totalmente irregulares: ir/ser, dar", es: "Totalmente irregulares: ir/ser, dar", en: "Completely irregular: ir/ser, dar" }
+};
+Object.assign(GROUPS, PGROUPS);
+
+const PNOTES = {
+  "p-ar": { pt: "Raiz + -é, -aste, -ó, -amos, -asteis, -aron. Atenção ao acento em yo e ele/ela.", es: "Raíz + -é, -aste, -ó, -amos, -asteis, -aron. Ojo con la tilde en yo y él/ella.", en: "Stem + -é, -aste, -ó, -amos, -asteis, -aron. Mind the accent in yo and él/ella." },
+  "p-erir": { pt: "-ER e -IR têm as mesmas terminações no pretérito.", es: "-ER e -IR tienen las mismas terminaciones en pretérito.", en: "-ER and -IR have the same preterite endings." },
+  "p-car": { pt: "Só em «yo»: c → qu, para manter o som /k/ (busqué).", es: "Solo en «yo»: c → qu, para conservar el sonido /k/ (busqué).", en: "Only in «yo»: c → qu, to keep the /k/ sound (busqué)." },
+  "p-gar": { pt: "Só em «yo»: g → gu, para manter o som (pagué).", es: "Solo en «yo»: g → gu, para conservar el sonido (pagué).", en: "Only in «yo»: g → gu, to keep the sound (pagué)." },
+  "p-zar": { pt: "Só em «yo»: z → c (empecé).", es: "Solo en «yo»: z → c (empecé).", en: "Only in «yo»: z → c (empecé)." },
+  "p-ei": { pt: "Só em él/ella e ellos/ellas: e → i (pidió, pidieron).", es: "Solo en él/ella y ellos/ellas: e → i (pidió, pidieron).", en: "Only in él/ella and ellos/ellas: e → i (pidió, pidieron)." },
+  "p-ou": { pt: "Só em él/ella e ellos/ellas: o → u (durmió, murieron).", es: "Solo en él/ella y ellos/ellas: o → u (durmió, murieron).", en: "Only in él/ella and ellos/ellas: o → u (durmió, murieron)." },
+  "p-y": { pt: "Em él/ella e ellos/ellas a i entre vogais vira y: cayó, leyeron.", es: "En él/ella y ellos/ellas la i entre vocales se escribe y: cayó, leyeron.", en: "In él/ella and ellos/ellas the i between vowels becomes y: cayó, leyeron." },
+  "p-rei": { pt: "reír e sonreír perdem uma i: rio / sonrió, rieron / sonrieron.", es: "reír y sonreír pierden una i: rio / sonrió, rieron / sonrieron.", en: "reír and sonreír lose an i: rio / sonrió, rieron / sonrieron." },
+  "p-stem": { pt: "Raiz irregular + -e, -iste, -o, -imos, -isteis, -ieron (sem acento).", es: "Raíz irregular + -e, -iste, -o, -imos, -isteis, -ieron (sin tilde).", en: "Irregular stem + -e, -iste, -o, -imos, -isteis, -ieron (no accent)." },
+  "p-j": { pt: "Raiz com J: ellos termina em -eron (dijeron, não «dijieron»).", es: "Raíz con J: ellos termina en -eron (dijeron, no «dijieron»).", en: "J stem: ellos ends in -eron (dijeron, not «dijieron»)." },
+  "p-irr": { pt: "Formas próprias, sem acento: fui, fue / di, dio. ir e ser são iguais.", es: "Formas propias, sin tilde: fui, fue / di, dio. ir y ser son iguales.", en: "Own forms, no accent: fui, fue / di, dio. ir and ser are identical." }
+};
+
+const PORDER = ['p-ar','p-erir','p-car','p-gar','p-zar','p-ei','p-ou','p-y','p-rei','p-stem','p-j','p-irr'];
+let tense = 'present';
+function fOf(v) { return tense === 'past' ? PAST[v.word].slice(1) : v.forms; }
+function gKeyOf(v) { return tense === 'past' ? PAST[v.word][0] : v.groupKey; }
+function noteOf(v) { return tense === 'past' ? PNOTES[PAST[v.word][0]][lang] : nTxt(v.noteKey); }
+function updateTenseButtons() {
+  const pres = document.getElementById('tensePres'), pas = document.getElementById('tensePast');
+  pres.textContent = t('tensePres'); pas.textContent = t('tensePast');
+  pres.classList.toggle('active', tense === 'present'); pas.classList.toggle('active', tense === 'past');
+  pres.setAttribute('aria-pressed', tense === 'present'); pas.setAttribute('aria-pressed', tense === 'past');
+}
+function setTense(x) {
+  if (tense === x) return;
+  tense = x;
+  updateTenseButtons();
+  if (mode === 'cat') renderCategories();
+  else if (mode === 'quiz') nextQuestion();
+  else render();
+}
 
 function gTxt(key) { return GROUPS[key][lang]; }
 function nTxt(key) { return NOTES[key][lang]; }
@@ -1068,7 +1261,10 @@ const MEAN = {
   "luchar": { pt: "lutar", en: "to fight / to struggle" },
   "rodar": { pt: "filmar / rodar", en: "to shoot (a film)" },
   "filmar": { pt: "filmar", en: "to film" },
-  "crear": { pt: "criar / criar (fundar)", en: "to create" }
+  "crear": { pt: "criar / criar (fundar)", en: "to create" },
+  "acoger": { pt: "acolher", en: "to welcome / to take in" },
+  "teletrabajar": { pt: "teletrabalhar / trabalhar remotamente", en: "to work remotely" },
+  "adquirir": { pt: "adquirir (mais formal que comprar)", en: "to acquire (more formal than comprar)" }
 };
 
 function mTxt(v) {
@@ -1120,90 +1316,37 @@ function speakAll(forms) {
   });
 }
 
-function reflexiveBase(word) {
-  const m = word.match(/^(me|te|se|nos|os)?\s*(.+)$/);
-  return { pronoun: m[1] || "", base: m[2] };
-}
-
-const PAST_IRREGULAR = {
-  ser: ["fui","fuiste","fue","fuimos","fuisteis","fueron"],
-  ir: ["fui","fuiste","fue","fuimos","fuisteis","fueron"],
-  estar: ["estuve","estuviste","estuvo","estuvimos","estuvisteis","estuvieron"],
-  tener: ["tuve","tuviste","tuvo","tuvimos","tuvisteis","tuvieron"],
-  hacer: ["hice","hiciste","hizo","hicimos","hicisteis","hicieron"],
-  poder: ["pude","pudiste","pudo","pudimos","pudisteis","pudieron"],
-  poner: ["puse","pusiste","puso","pusimos","pusisteis","pusieron"],
-  saber: ["supe","supiste","supo","supimos","supisteis","supieron"],
-  querer: ["quise","quisiste","quiso","quisimos","quisisteis","quisieron"],
-  venir: ["vine","viniste","vino","vinimos","vinisteis","vinieron"],
-  decir: ["dije","dijiste","dijo","dijimos","dijisteis","dijeron"],
-  traer: ["traje","trajiste","trajo","trajimos","trajisteis","trajeron"],
-  conducir: ["conduje","condujiste","condujo","condujimos","condujisteis","condujeron"],
-  producir: ["produje","produjiste","produjo","produjimos","produjisteis","produjeron"],
-  dar: ["di","diste","dio","dimos","disteis","dieron"],
-  ver: ["vi","viste","vio","vimos","visteis","vieron"],
-  haber: ["hube","hubiste","hubo","hubimos","hubisteis","hubieron"],
-  andar: ["anduve","anduviste","anduvo","anduvimos","anduvisteis","anduvieron"],
-  caber: ["cupe","cupiste","cupo","cupimos","cupisteis","cupieron"]
-};
-
-function getPastForms(v) {
-  if (v.pastForms) return v.pastForms;
-  const r = reflexiveBase(v.word);
-  const base = r.base;
-  if (PAST_IRREGULAR[base]) {
-    const f = PAST_IRREGULAR[base];
-    return r.pronoun ? f.map((x,i)=>["me","te","se","nos","os","se"][i]+" "+x) : f;
-  }
-  let stem = base;
-  let ending = base.slice(-2);
-  let root = base.slice(0,-2);
-  let endings;
-  if (ending === "ar") endings = ["é","aste","ó","amos","asteis","aron"];
-  else endings = ["í","iste","ió","imos","isteis","ieron"];
-  if (base.endsWith("car")) stem = base.slice(0,-3)+"qu"+"e"; else if (base.endsWith("gar")) stem = base.slice(0,-3)+"gu"+"é"; else if (base.endsWith("zar")) stem = base.slice(0,-3)+"c"+"é";
-  if (base.endsWith("uir") && !base.endsWith("guir")) return [root+"í",root+"iste",root+"yó",root+"imos",root+"isteis",root+"yeron"];
-  if (base.endsWith("eer") || base.endsWith("oír") || base.endsWith("aer")) return [root+"í",root+"íste",root+"yó",root+"ímos",root+"ísteis",root+"yeron"];
-  let f;
-  if (base.endsWith("car")) f=[base.slice(0,-3)+"qué",base.slice(0,-3)+"caste",base.slice(0,-3)+"có",base.slice(0,-3)+"camos",base.slice(0,-3)+"casteis",base.slice(0,-3)+"caron"];
-  else if (base.endsWith("gar")) f=[base.slice(0,-3)+"gué",base.slice(0,-3)+"gaste",base.slice(0,-3)+"gó",base.slice(0,-3)+"gamos",base.slice(0,-3)+"gasteis",base.slice(0,-3)+"garon"];
-  else if (base.endsWith("zar")) f=[base.slice(0,-3)+"cé",base.slice(0,-3)+"zaste",base.slice(0,-3)+"zó",base.slice(0,-3)+"zamos",base.slice(0,-3)+"zasteis",base.slice(0,-3)+"zaron"];
-  else f=[root+endings[0],root+endings[1],root+endings[2],root+endings[3],root+endings[4],root+endings[5]];
-  // Stem-changing -IR verbs change only in 3rd person in the preterite.
-  if (base.endsWith("ir")) {
-    const changes={sentir:"sint",dormir:"durm",morir:"mur",pedir:"pid",servir:"sirv",seguir:"sigu",vestir:"vist",reír:"ri",mentir:"mint",preferir:"prefir",invertir:"invirt",divertir:"divirt",despedir:"despid",medir:"mid"};
-    if(changes[base]) { const st=changes[base]; f[2]=st+"ió"; f[5]=st+"ieron"; }
-  }
-  if (r.pronoun) f=f.map((x,i)=>["me","te","se","nos","os","se"][i]+" "+x);
-  return f;
-}
-
-function timeButtons() {
-  return `<div class="study-time-switch" role="tablist" aria-label="Tiempo verbal">
-    <button class="study-time-btn ${studyTime==='all'?'active':''}" onclick="setStudyTime('all')">${t('allTime')}</button>
-    <button class="study-time-btn ${studyTime==='present'?'active':''}" onclick="setStudyTime('present')">${t('presentTime')}</button>
-    <button class="study-time-btn ${studyTime==='past'?'active':''}" onclick="setStudyTime('past')">${t('pastTime')}</button>
-  </div>`;
-}
-
 function render() {
   const v = verbs[i];
   const card = document.getElementById('card');
   document.getElementById('progress').textContent = (i+1) + " / " + verbs.length;
-  const studyControls = timeButtons();
   document.getElementById('prevBtn').disabled = (i === 0);
   document.getElementById('nextBtn').textContent = (i === verbs.length - 1) ? t('restart') : t('next');
-  const past = getPastForms(v);
-  const makeGrid = (forms) => cols.map((c, idx) => `<div class="conj-cell"><div class="pronoun">${c}</div><div class="form">${forms[idx]}</div><button class="cell-speak" onclick="event.stopPropagation(); speak('${String(forms[idx]).replace(/'/g, "\\'")}')">🔊</button></div>`).join("");
-  const block = (title, forms) => `<div class="tense-block"><div class="tense-title">${title}</div><div class="conj-grid">${makeGrid(forms)}</div><button class="speak-all" onclick="event.stopPropagation(); speakAll(${JSON.stringify(forms)})">${t('speakAll')}</button></div>`;
+
   if (!flipped) {
-    card.innerHTML = studyControls + `<div class="group-tag">${gTxt(v.groupKey)}</div><div class="verb-sticker" aria-label="Figurinha do verbo">${v.sticker}</div><div class="front-word">${v.word}</div><div class="meaning">${mTxt(v)}</div><button class="speak-front" onclick="event.stopPropagation(); speak('${v.word}')">🔊</button><div class="hint">${t('hint')}</div>`;
+    card.innerHTML = `
+      <div class="group-tag">${gTxt(gKeyOf(v))}</div>
+      <div class="verb-sticker" aria-label="Figurinha do verbo">${v.sticker}</div>
+       <div class="front-word">${v.word}</div>
+      <div class="meaning">${mTxt(v)}</div>
+      <button class="speak-front" onclick="event.stopPropagation(); speak('${v.word}')">🔊</button>
+      <div class="hint">${t('hint')}</div>
+    `;
   } else {
-    let content = '';
-    if (studyTime === 'present') content = block(t('present'), v.forms);
-    else if (studyTime === 'past') content = block(t('past'), past);
-    else content = block(t('present'), v.forms) + block(t('past'), past);
-    card.innerHTML = studyControls + `<div class="group-tag">${gTxt(v.groupKey)}</div><div class="meaning">${v.word} — ${mTxt(v)}</div>${content}<div class="note">${nTxt(v.noteKey)}</div>`;
+    const cells = cols.map((c, idx) => `
+      <div class="conj-cell">
+        <div class="pronoun">${c}</div>
+        <div class="form">${fOf(v)[idx]}</div>
+        <button class="cell-speak" onclick="event.stopPropagation(); speak('${fOf(v)[idx].replace(/'/g, "\\'")}')">🔊</button>
+      </div>
+    `).join("");
+    card.innerHTML = `
+      <div class="group-tag">${gTxt(gKeyOf(v))}</div>
+      <div class="meaning">${v.word} — ${mTxt(v)}</div>
+      <div class="conj-grid">${cells}</div>
+      <button class="speak-all" onclick="event.stopPropagation(); speakAll(${JSON.stringify(fOf(v))})">${t('speakAll')}</button>
+      <div class="note">${noteOf(v)}</div>
+    `;
   }
 }
 
@@ -1229,27 +1372,24 @@ function csvEscape(value) {
 }
 
 function exportVerbsCSV() {
-  // O CSV usa a mesma estrutura temporal dos flashcards:
-  // cada verbo aparece uma única vez, com Presente e Pasado na mesma linha.
   const headers = [
     "Padrão", "Figurinha", "Infinitivo", "Significado",
-    "Presente — Yo", "Presente — Tú", "Presente — Él/Ella", "Presente — Nosotros", "Presente — Vosotros", "Presente — Ellos",
-    "Pasado — Yo", "Pasado — Tú", "Pasado — Él/Ella", "Pasado — Nosotros", "Pasado — Vosotros", "Pasado — Ellos",
+    "Yo", "Tú", "Él/Ella", "Nosotros", "Vosotros", "Ellos",
+    "Padrão (passado)",
+    "Pret. Yo", "Pret. Tú", "Pret. Él/Ella", "Pret. Nosotros", "Pret. Vosotros", "Pret. Ellos",
     "Regra/Observação"
   ];
 
-  const rows = verbs.map(v => {
-    const past = getPastForms(v);
-    return [
-      gTxt(v.groupKey),
-      v.sticker || "",
-      v.word,
-      mTxt(v),
-      ...v.forms,
-      ...past,
-      nTxt(v.noteKey)
-    ];
-  });
+  const rows = verbs.map(v => [
+    gTxt(v.groupKey),
+    v.sticker || "",
+    v.word,
+    mTxt(v),
+    ...v.forms,
+    gTxt(PAST[v.word][0]),
+    ...PAST[v.word].slice(1),
+    nTxt(v.noteKey)
+  ]);
 
   const csvContent = [
     headers.map(csvEscape).join(";"),
@@ -1275,13 +1415,9 @@ function exportVerbsCSV() {
 
 // ---------- Modo Quiz ----------
 let mode = 'study';
-let categoryTime = 'all';
-let studyTime = 'all';
 let quizCorrect = 0;
 let quizTotal = 0;
 let currentQuestion = null;
-
-function setStudyTime(v) { studyTime=v; flipped=false; render(); }
 
 function switchTab(m) {
   mode = m;
@@ -1294,6 +1430,7 @@ function switchTab(m) {
   document.getElementById('catView').style.display = (m === 'cat') ? 'flex' : 'none';
   document.getElementById('soundsView').style.display = (m === 'sounds') ? 'flex' : 'none';
   document.getElementById('catExport').style.display = (m === 'cat') ? 'flex' : 'none';
+  document.getElementById('tenseToggle').style.display = (m === 'sounds') ? 'none' : 'flex';
   if (m === 'quiz' && !currentQuestion) nextQuestion();
   else if (m === 'quiz') renderQuiz();
   if (m === 'cat') renderCategories();
@@ -1370,47 +1507,22 @@ function goToVerb(word) {
   switchTab('study');
 }
 
-function setCategoryTime(time) {
-  categoryTime = time;
-  renderCategories();
-}
-
-function hasPastReference(v) {
-  const note = v.noteKey ? (NOTES[v.noteKey]?.es || NOTES[v.noteKey]?.pt || NOTES[v.noteKey]?.en || '') : '';
-  return /pretérito|pret[eé]rito|preterite/i.test(note);
-}
-
 function renderCategories() {
-  const filtered = verbs;
-
   const groups = {};
-  const order = [];
-  filtered.forEach(v => {
-    if (!groups[v.groupKey]) { groups[v.groupKey] = []; order.push(v.groupKey); }
-    groups[v.groupKey].push(v.word);
+  verbs.forEach(v => {
+    const k = gKeyOf(v);
+    if (!groups[k]) groups[k] = [];
+    groups[k].push(v.word);
   });
-
-  const labels = {
-    all: t('catAll'),
-    present: t('catPresent'),
-    past: t('catPast')
-  };
-
-  const html = `
-    <div class="cat-time-switch" role="tablist" aria-label="${t('tabCat')}">
-      ${['all','present','past'].map(k => `<button class="cat-time-btn ${categoryTime === k ? 'active' : ''}" onclick="setCategoryTime('${k}')" role="tab" aria-selected="${categoryTime === k}">${labels[k]}</button>`).join('')}
-    </div>
-    ${categoryTime === 'past' ? `<div class="cat-time-info">${t('catPastInfo')}</div>` : ''}
-    ${order.map(g => `
-      <div class="cat-section">
-        <div class="cat-title">${gTxt(g)} <span style="color:var(--muted); font-weight:400;">(${groups[g].length})</span></div>
-        <div class="cat-chips">
-          ${groups[g].map(w => `<button class="cat-chip" onclick="goToVerb('${w}')">${w}</button>`).join("")}
-        </div>
+  const order = (tense === 'past') ? PORDER.filter(k => groups[k]) : Object.keys(groups);
+  const html = order.map(g => `
+    <div class="cat-section">
+      <div class="cat-title">${gTxt(g)} <span style="color:var(--muted); font-weight:400;">(${groups[g].length})</span></div>
+      <div class="cat-chips">
+        ${groups[g].map(w => `<button class="cat-chip" onclick="goToVerb('${w}')">${w}</button>`).join("")}
       </div>
-    `).join('')}
-    ${!order.length ? `<div class="cat-time-info">—</div>` : ''}
-  `;
+    </div>
+  `).join("");
   document.getElementById('catView').innerHTML = html;
 }
 
@@ -1430,10 +1542,10 @@ function shuffle(arr) {
 }
 
 function buildDistractors(correctVerb, pronounIdx, correctForm) {
-  const sameGroup = verbs.filter(v => v.groupKey === correctVerb.groupKey && v.word !== correctVerb.word)
-                          .map(v => v.forms[pronounIdx]);
-  const otherGroup = verbs.filter(v => v.groupKey !== correctVerb.groupKey)
-                           .map(v => v.forms[pronounIdx]);
+  const sameGroup = verbs.filter(v => gKeyOf(v) === gKeyOf(correctVerb) && v.word !== correctVerb.word)
+                          .map(v => fOf(v)[pronounIdx]);
+  const otherGroup = verbs.filter(v => gKeyOf(v) !== gKeyOf(correctVerb))
+                           .map(v => fOf(v)[pronounIdx]);
   const reflRe = /^(me|te|se|nos|os) /;
   const wantRefl = reflRe.test(correctForm);
   let pool = shuffle(sameGroup).concat(shuffle(otherGroup)).filter(f => reflRe.test(f) === wantRefl);
@@ -1452,7 +1564,7 @@ function buildDistractors(correctVerb, pronounIdx, correctForm) {
 function nextQuestion() {
   const v = verbs[Math.floor(Math.random() * verbs.length)];
   const pronounIdx = Math.floor(Math.random() * cols.length);
-  const correctForm = v.forms[pronounIdx];
+  const correctForm = fOf(v)[pronounIdx];
   const distractors = buildDistractors(v, pronounIdx, correctForm);
   const options = shuffle([correctForm, ...distractors]);
   currentQuestion = { verb: v, pronounIdx, correctForm, options, answered: false };
@@ -1467,7 +1579,7 @@ function renderQuiz() {
     <button class="quiz-option" onclick="answerQuiz('${opt.replace(/'/g, "\\'")}')">${opt}</button>
   `).join("");
   card.innerHTML = `
-    <div class="group-tag">${gTxt(q.verb.groupKey)}</div>
+    <div class="group-tag">${gTxt(gKeyOf(q.verb))}</div>
     <div class="quiz-prompt">${t('quizPrompt')(q.verb.word, cols[q.pronounIdx])}</div>
     <div class="quiz-options" id="quizOptions">${optsHtml}</div>
   `;
@@ -1492,7 +1604,7 @@ function answerQuiz(chosen) {
 
   const explain = document.createElement('div');
   explain.className = 'quiz-explain';
-  explain.innerHTML = (correct ? t('quizCorrect') : t('quizWrong')) + nTxt(q.verb.noteKey);
+  explain.innerHTML = (correct ? t('quizCorrect') : t('quizWrong')) + noteOf(q.verb);
   document.getElementById('quizCard').appendChild(explain);
 
   const nextBtn = document.createElement('button');
@@ -1521,6 +1633,7 @@ function setLang(l) {
   document.getElementById('prevBtn').textContent = t('prev');
   document.getElementById('quizRestartBtn').textContent = t('quizRestart');
   document.getElementById('exportCsvBtn').textContent = t('exportCsv');
+  updateTenseButtons();
 
   render();
   if (mode === 'quiz' && currentQuestion) renderQuiz();
