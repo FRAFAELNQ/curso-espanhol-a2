@@ -65,26 +65,143 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
 .home-nav a:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
 .home-nav a:hover{transform:translateY(-1px);border-color:var(--blue)}
 </style>
+
+<style>
+/* === MODELO MESTRE 21/09 — ajustes consolidados === */
+:root[data-theme="light"]{
+  color-scheme:light;--bg:#f5f3ff;--card:#fff;--text:#1b2340;--muted:#5e6780;
+  --soft:#e9e6f8;--border:#cfd1ea;--header-border:#aeb8df;
+  --header-start:#dfe9ff;--header-mid:#eadfff;--header-end:#ffe0ef;
+  --header-text:#1b2340;--header-shadow:rgba(73,55,128,.18)
+}
+body{transition:background .2s ease,color .2s ease}
+.sticky-shell{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--bg) 96%,transparent);border:1px solid var(--border);border-radius:16px;padding:7px 8px;margin:8px 0 0;box-shadow:0 10px 28px color-mix(in srgb,var(--purple) 14%,transparent);backdrop-filter:blur(12px)}
+.theme-toggle{flex:0 0 40px;width:40px;min-width:40px;height:40px;padding:0;border:1px solid var(--border);border-radius:12px;background:var(--card);color:var(--text);cursor:pointer}
+.tab-nav{display:flex;flex:1;min-width:0;flex-wrap:nowrap;gap:7px;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin}
+.tab-nav button{flex:0 0 118px;width:118px;min-width:118px;height:40px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;font-weight:800;font-size:.84rem;white-space:nowrap}
+.tab-nav button.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+.tab-nav button:focus-visible,.theme-toggle:focus-visible,.speed-btn:focus-visible,.home-link:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.header-home{display:flex;justify-content:center;align-items:center;margin:14px auto 0}
+.header-home .home-link{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 16px;border-radius:12px;border:1px solid var(--border);background:var(--card);color:var(--text);text-decoration:none;font-weight:850;white-space:nowrap}
+.audio-controls{display:flex;justify-content:center;align-items:center;width:100%;margin:8px 0}
+.audio-controls .speed-control{display:flex;gap:7px}
+.speed-btn{height:40px;min-width:78px;padding:0 12px;border:1px solid var(--border);border-radius:999px;background:var(--card);color:var(--text);font-weight:800;cursor:pointer}
+.speed-btn.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+.verb-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.flashcard-link{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:10px;border:1px solid var(--border);background:var(--soft);color:var(--turq);text-decoration:none;font-weight:800;font-size:.82rem}
+.verb-card td .form-audio{margin-left:6px;padding:4px 7px;border-radius:8px;font-size:.9rem;vertical-align:middle}
+.example.sayable{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.example.sayable .speak{flex:0 0 auto}
+.choice.selected{outline:2px solid var(--turq);outline-offset:1px}
+.choice.correct{border:2px solid var(--ok)!important;background:rgba(75,229,154,.16)!important;color:var(--text)!important}
+.choice.wrong{border:2px solid var(--bad)!important;background:rgba(255,107,124,.14)!important;color:var(--text)!important}
+.choice.correct::after{content:" ✓ CORRECTA";font-weight:900;margin-left:6px}
+.choice.wrong::after{content:" ✕ ELEGIDA";font-weight:900;margin-left:6px}
+.feedback{font-size:.95rem}
+.check-all{display:block;width:100%;margin:24px 0 12px;padding:14px 18px;border:0;border-radius:14px;background:linear-gradient(135deg,var(--purple),var(--blue));color:#fff;font-weight:900;font-size:1rem;cursor:pointer}
+.quiz-result{margin:12px 0 24px;padding:14px 16px;border-radius:12px;border:1px solid var(--border);background:var(--soft);font-weight:900;text-align:center}
+@media(max-width:600px){
+  .sticky-shell{padding:6px 7px}
+  .tab-nav button{flex-basis:112px;width:112px;min-width:112px;height:38px;font-size:.80rem}
+  .audio-controls .speed-control{gap:5px}
+  .speed-btn{height:38px;min-width:0;padding:0 10px;font-size:.82rem}
+}
+</style>
+
+
+<style id="exercise-audio-final-fix">
+#ex .exercise-prompt{display:flex;align-items:center;justify-content:space-between;gap:10px}
+#ex .exercise-audio{flex:0 0 auto;padding:6px 9px!important;border-radius:9px!important}
+#ex td.exercise-cell-audio{vertical-align:middle}
+#ex td.exercise-cell-audio .exercise-audio{margin-left:8px;padding:4px 7px!important}
+#ex .choice{display:flex;align-items:center;justify-content:space-between;gap:8px}
+#ex .choice-audio-icon{opacity:.9;font-size:.9em;pointer-events:none}
+</style>
+
+<style id="modelo-mestre-exercise-audio">
+#ex .exercise-prompt{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+#ex .exercise-audio{
+  flex:0 0 auto;padding:6px 9px!important;border-radius:9px!important;
+}
+#ex td.exercise-question-cell{
+  vertical-align:middle;
+}
+#ex td.exercise-question-cell .exercise-audio{
+  margin-left:8px;padding:4px 7px!important;
+}
+#ex .choice{
+  display:flex;align-items:center;justify-content:space-between;gap:9px;
+}
+#ex .choice-audio{
+  flex:0 0 auto;
+  width:30px;height:30px;
+  padding:0!important;
+  border:1px solid var(--border);
+  border-radius:9px;
+  background:var(--soft);
+  color:var(--text);
+  cursor:pointer;
+  font-size:.9rem;
+}
+#ex .choice-audio:hover{border-color:var(--turq)}
+#ex .choice-audio:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+#ex .choice.correct .choice-audio,
+#ex .choice.wrong .choice-audio{color:var(--text)}
+#ex .exercise-section-title{margin-bottom:8px}
+</style>
+
+
+<style id="modelo-mestre-layout-final">
+#resumen .grid,#vocab .grid{grid-template-columns:1fr;gap:14px}
+#resumen .grid>.card,#vocab .grid>.card{width:100%}
+#resumen .card,#vocab .card,#gram .card,#ex .card,#practica .card{border-radius:18px;padding:20px 22px}
+#resumen .example{display:flex;align-items:center;justify-content:space-between;gap:14px}
+#verbos .verb-card{width:100%;margin:0 0 16px!important;padding:20px 22px;border-radius:18px}
+#verbos .conjugation-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+#verbos .conj-item{border:1px solid var(--border);background:rgba(255,255,255,.025);border-radius:12px;padding:11px 12px;min-width:0}
+#verbos .conj-person{font-size:.78rem;font-weight:800;opacity:.72;margin-bottom:5px}
+#verbos .conj-form{font-size:1rem;font-weight:800;display:flex;align-items:center;justify-content:space-between;gap:8px}
+#verbos .form-audio{padding:4px 7px;border-radius:8px;font-size:.9rem}
+#verbos .verb-links{margin-top:14px}
+#ex>.card{margin-bottom:14px}
+#practica>.card{margin-bottom:14px}
+@media(max-width:760px){
+  #resumen .card,#vocab .card,#gram .card,#ex .card,#practica .card{padding:18px 16px}
+  #verbos .verb-card{padding:17px 15px}
+  #verbos .conjugation-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+}
+@media(max-width:480px){#verbos .conjugation-grid{grid-template-columns:1fr}}
+</style>
+
 </head>
 
 <body>
 <div class="container">
 <header>
   <span class="badge">EOI · Español A2 · Clase individual</span>
-  <h1>Ficha interactiva — 21/09/2026</h1>
+  <h1>Ficha Interactiva — 21/09/2026</h1>
   <div class="subtitle">Demostrativos, descripción física, <b>ser / estar / tener / llevar</b>, <b>parecer / parecerse</b> y actividades de las páginas 41, 137 y 138</div>
 </header>
 
-<div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
+<div class="header-home"><a class="home-link" aria-label="Volver al inicio del curso" href="index.html">🏠 Volver al inicio</a></div>
+<div class="audio-controls" aria-label="Velocidad del audio">
+  <div class="speed-control">
+    <button type="button" class="speed-btn" data-rate="0.58">🐢 Lento</button>
+    <button type="button" class="speed-btn active" data-rate="0.88">▶ Normal</button>
+    <button type="button" class="speed-btn" data-rate="1.12">⚡ Rápido</button>
+  </div>
+</div>
 
-<nav>
-  <button class="active" onclick="showTab('resumen',this)">📚 Resumen</button>
-  <button onclick="showTab('vocab',this)">📝 Vocabulario</button>
-  <button onclick="showTab('gram',this)">🧠 Gramática</button>
-  <button onclick="showTab('verbos',this)">🔤 Verbos</button>
-  <button onclick="showTab('ex',this)">✏️ Ejercicios</button>
-  <button onclick="showTab('practica',this)">🎯 Práctica</button>
-</nav>
+<div class="sticky-shell"><button type="button" class="theme-toggle" aria-label="Cambiar al modo claro" aria-pressed="false">🌙</button><nav class="tab-nav" role="tablist">
+  <button class="active" role="tab" aria-selected="true" data-tab="resumen">📚 Resumen</button>
+  <button role="tab" aria-selected="false" data-tab="vocab">📝 Vocabulario</button>
+  <button role="tab" aria-selected="false" data-tab="gram">🧠 Gramática</button>
+  <button role="tab" aria-selected="false" data-tab="verbos">🔤 Verbos</button>
+  <button role="tab" aria-selected="false" data-tab="ex">✏️ Ejercicios</button>
+  <button role="tab" aria-selected="false" data-tab="practica">🎯 Práctica</button>
+</nav></div>
 
 <section id="resumen" class="active">
   <div class="grid">
@@ -116,10 +233,6 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
 
   <div class="card" style="margin-top:14px">
     <h3>⭐ Expresiones y estructuras clave</h3>
-    <div class="sound-bar">
-      <span class="small">🔊 Toca el botón de cada frase para escucharla.</span>
-      <button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button>
-    </div>
     <div class="example"><b>¿Cómo es él?</b></div>
     <div class="example"><b>Yo me parezco a mi padre.</b></div>
     <div class="example"><b>Mi padre y yo nos parecemos.</b></div>
@@ -176,7 +289,6 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
   <h2>🧠 Gramática</h2>
   <div class="sound-bar">
     <span class="small">🔊 Toca el botón de cada ejemplo para escucharlo.</span>
-    <button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button>
   </div>
 
   <div class="card" style="margin-bottom:14px">
@@ -224,57 +336,87 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
   <p class="small">Aquí se presentan solo los verbos directamente apoyados por el contenido de la clase y los ejercicios del 21/09/2026.</p>
 
   <div class="verb-card card">
-    <div class="verb-head"><span class="verb">ser</span><span class="tag">irregular</span><button class="speak" onclick="say('ser')">🔊</button></div>
-    <div style="overflow-x:auto;">
-    <table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
-    <tr><td>soy</td><td>eres</td><td>es</td><td>somos</td><td>sois</td><td>son</td></tr></table>
+    <div class="verb-head"><span class="verb">ser</span><span class="tag">irregular</span><button type="button" class="speak" data-say="ser" aria-label="Escuchar: ser">🔊</button></div>
+    <div class="verb-links"><a class="flashcard-link" aria-label="Ver en Flashcards: ser" href="flashcards-verbos-a2.html#ser">📚 Ver en Flashcards</a></div>
+    <div class="conjugation-grid">
+      <div class="conj-item"><div class="conj-person">Yo</div><div class="conj-form">soy <button type="button" class="speak form-audio" data-say="soy" aria-label="Escuchar: soy">🔊</button></div></div>
+      <div class="conj-item"><div class="conj-person">Tú</div><div class="conj-form">eres <button type="button" class="speak form-audio" data-say="eres" aria-label="Escuchar: eres">🔊</button></div></div>
+      <div class="conj-item"><div class="conj-person">Él/Ella/Usted</div><div class="conj-form">es <button type="button" class="speak form-audio" data-say="es" aria-label="Escuchar: es">🔊</button></div></div>
+      <div class="conj-item"><div class="conj-person">Nosotros/as</div><div class="conj-form">somos <button type="button" class="speak form-audio" data-say="somos" aria-label="Escuchar: somos">🔊</button></div></div>
+      <div class="conj-item"><div class="conj-person">Vosotros/as</div><div class="conj-form">sois <button type="button" class="speak form-audio" data-say="sois" aria-label="Escuchar: sois">🔊</button></div></div>
+      <div class="conj-item"><div class="conj-person">Ellos/Ellas/Ustedes</div><div class="conj-form">son <button type="button" class="speak form-audio" data-say="son" aria-label="Escuchar: son">🔊</button></div></div>
     </div>
-    <div class="example">Soy fotógrafo. · Soy bastante alto.</div>
+    <div class="example"><b>Soy fotógrafo. · Soy bastante alto.</b></div>
   </div>
 
   <div class="verb-card card">
-    <div class="verb-head"><span class="verb">estar</span><span class="tag">irregular</span><button class="speak" onclick="say('estar')">🔊</button></div>
-    <div style="overflow-x:auto;">
-    <table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
-    <tr><td>estoy</td><td>estás</td><td>está</td><td>estamos</td><td>estáis</td><td>están</td></tr></table>
+    <div class="verb-head"><span class="verb">estar</span><span class="tag">irregular</span><button type="button" class="speak" data-say="estar" aria-label="Escuchar: estar">🔊</button></div>
+    <div class="verb-links"><a class="flashcard-link" aria-label="Ver en Flashcards: estar" href="flashcards-verbos-a2.html#estar">📚 Ver en Flashcards</a></div>
+    <div class="conjugation-grid">
+      <div class="conj-item"><div class="conj-person">Yo</div><div class="conj-form">estoy <button type="button" class="speak form-audio" data-say="estoy" aria-label="Escuchar: estoy">🔊</button></div></div>
+      <div class="conj-item"><div class="conj-person">Tú</div><div class="conj-form">estás <button type="button" class="speak form-audio" data-say="estás" aria-label="Escuchar: estás">🔊</button></div></div>
+      <div class="conj-item"><div class="conj-person">Él/Ella/Usted</div><div class="conj-form">está <button type="button" class="speak form-audio" data-say="está" aria-label="Escuchar: está">🔊</button></div></div>
+      <div class="conj-item"><div class="conj-person">Nosotros/as</div><div class="conj-form">estamos <button type="button" class="speak form-audio" data-say="estamos" aria-label="Escuchar: estamos">🔊</button></div></div>
+      <div class="conj-item"><div class="conj-person">Vosotros/as</div><div class="conj-form">estáis <button type="button" class="speak form-audio" data-say="estáis" aria-label="Escuchar: estáis">🔊</button></div></div>
+      <div class="conj-item"><div class="conj-person">Ellos/Ellas/Ustedes</div><div class="conj-form">están <button type="button" class="speak form-audio" data-say="están" aria-label="Escuchar: están">🔊</button></div></div>
     </div>
-    <div class="example">Estoy divorciado.</div>
+    <div class="example"><b>Estoy divorciado.</b></div>
   </div>
 
   <div class="verb-card card">
-    <div class="verb-head"><span class="verb">tener</span><span class="tag">irregular</span><button class="speak" onclick="say('tener')">🔊</button></div>
-    <div style="overflow-x:auto;">
-    <table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
-    <tr><td>tengo</td><td>tienes</td><td>tiene</td><td>tenemos</td><td>tenéis</td><td>tienen</td></tr></table>
+    <div class="verb-head"><span class="verb">tener</span><span class="tag">irregular</span><button type="button" class="speak" data-say="tener" aria-label="Escuchar: tener">🔊</button></div>
+    <div class="verb-links"><a class="flashcard-link" aria-label="Ver en Flashcards: tener" href="flashcards-verbos-a2.html#tener">📚 Ver en Flashcards</a></div>
+    <div class="conjugation-grid">
+      <div class="conj-item"><div class="conj-person">Yo</div><div class="conj-form">tengo <button type="button" class="speak form-audio" data-say="tengo" aria-label="Escuchar: tengo">🔊</button></div></div>
+      <div class="conj-item"><div class="conj-person">Tú</div><div class="conj-form">tienes <button type="button" class="speak form-audio" data-say="tienes" aria-label="Escuchar: tienes">🔊</button></div></div>
+      <div class="conj-item"><div class="conj-person">Él/Ella/Usted</div><div class="conj-form">tiene <button type="button" class="speak form-audio" data-say="tiene" aria-label="Escuchar: tiene">🔊</button></div></div>
+      <div class="conj-item"><div class="conj-person">Nosotros/as</div><div class="conj-form">tenemos <button type="button" class="speak form-audio" data-say="tenemos" aria-label="Escuchar: tenemos">🔊</button></div></div>
+      <div class="conj-item"><div class="conj-person">Vosotros/as</div><div class="conj-form">tenéis <button type="button" class="speak form-audio" data-say="tenéis" aria-label="Escuchar: tenéis">🔊</button></div></div>
+      <div class="conj-item"><div class="conj-person">Ellos/Ellas/Ustedes</div><div class="conj-form">tienen <button type="button" class="speak form-audio" data-say="tienen" aria-label="Escuchar: tienen">🔊</button></div></div>
     </div>
-    <div class="example">Tengo el pelo castaño. · Tengo barba.</div>
+    <div class="example"><b>Tengo el pelo castaño. · Tengo barba.</b></div>
   </div>
 
   <div class="verb-card card">
-    <div class="verb-head"><span class="verb">llevar</span><span class="tag">regular -AR</span><button class="speak" onclick="say('llevar')">🔊</button></div>
-    <div style="overflow-x:auto;">
-    <table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
-    <tr><td>llevo</td><td>llevas</td><td>lleva</td><td>llevamos</td><td>lleváis</td><td>llevan</td></tr></table>
+    <div class="verb-head"><span class="verb">llevar</span><span class="tag">regular · -AR</span><button type="button" class="speak" data-say="llevar" aria-label="Escuchar: llevar">🔊</button></div>
+    <div class="verb-links"><a class="flashcard-link" aria-label="Ver en Flashcards: llevar" href="flashcards-verbos-a2.html#llevar">📚 Ver en Flashcards</a></div>
+    <div class="conjugation-grid">
+      <div class="conj-item"><div class="conj-person">Yo</div><div class="conj-form">llevo <button type="button" class="speak form-audio" data-say="llevo" aria-label="Escuchar: llevo">🔊</button></div></div>
+      <div class="conj-item"><div class="conj-person">Tú</div><div class="conj-form">llevas <button type="button" class="speak form-audio" data-say="llevas" aria-label="Escuchar: llevas">🔊</button></div></div>
+      <div class="conj-item"><div class="conj-person">Él/Ella/Usted</div><div class="conj-form">lleva <button type="button" class="speak form-audio" data-say="lleva" aria-label="Escuchar: lleva">🔊</button></div></div>
+      <div class="conj-item"><div class="conj-person">Nosotros/as</div><div class="conj-form">llevamos <button type="button" class="speak form-audio" data-say="llevamos" aria-label="Escuchar: llevamos">🔊</button></div></div>
+      <div class="conj-item"><div class="conj-person">Vosotros/as</div><div class="conj-form">lleváis <button type="button" class="speak form-audio" data-say="lleváis" aria-label="Escuchar: lleváis">🔊</button></div></div>
+      <div class="conj-item"><div class="conj-person">Ellos/Ellas/Ustedes</div><div class="conj-form">llevan <button type="button" class="speak form-audio" data-say="llevan" aria-label="Escuchar: llevan">🔊</button></div></div>
     </div>
-    <div class="example">Llevar es una de las opciones indicadas en el ejercicio 9.</div>
+    <div class="example"><b>Llevar es una de las opciones indicadas en el ejercicio 9.</b></div>
   </div>
 
   <div class="verb-card card">
-    <div class="verb-head"><span class="verb">parecer</span><span class="tag">-ER</span><button class="speak" onclick="say('parecer')">🔊</button></div>
-    <div style="overflow-x:auto;">
-    <table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
-    <tr><td>parezco</td><td>pareces</td><td>parece</td><td>parecemos</td><td>parecéis</td><td>parecen</td></tr></table>
+    <div class="verb-head"><span class="verb">parecer</span><span class="tag">-ER · cambio zc en 1.ª persona</span><button type="button" class="speak" data-say="parecer" aria-label="Escuchar: parecer">🔊</button></div>
+    <div class="verb-links"><a class="flashcard-link" aria-label="Ver en Flashcards: parecer" href="flashcards-verbos-a2.html#parecer">📚 Ver en Flashcards</a></div>
+    <div class="conjugation-grid">
+      <div class="conj-item"><div class="conj-person">Yo</div><div class="conj-form">parezco <button type="button" class="speak form-audio" data-say="parezco" aria-label="Escuchar: parezco">🔊</button></div></div>
+      <div class="conj-item"><div class="conj-person">Tú</div><div class="conj-form">pareces <button type="button" class="speak form-audio" data-say="pareces" aria-label="Escuchar: pareces">🔊</button></div></div>
+      <div class="conj-item"><div class="conj-person">Él/Ella/Usted</div><div class="conj-form">parece <button type="button" class="speak form-audio" data-say="parece" aria-label="Escuchar: parece">🔊</button></div></div>
+      <div class="conj-item"><div class="conj-person">Nosotros/as</div><div class="conj-form">parecemos <button type="button" class="speak form-audio" data-say="parecemos" aria-label="Escuchar: parecemos">🔊</button></div></div>
+      <div class="conj-item"><div class="conj-person">Vosotros/as</div><div class="conj-form">parecéis <button type="button" class="speak form-audio" data-say="parecéis" aria-label="Escuchar: parecéis">🔊</button></div></div>
+      <div class="conj-item"><div class="conj-person">Ellos/Ellas/Ustedes</div><div class="conj-form">parecen <button type="button" class="speak form-audio" data-say="parecen" aria-label="Escuchar: parecen">🔊</button></div></div>
     </div>
-    <div class="example">A todo el mundo le parece muy simpática.</div>
+    <div class="example"><b>A todo el mundo le parece muy simpática.</b></div>
   </div>
 
   <div class="verb-card card">
-    <div class="verb-head"><span class="verb">parecerse</span><span class="tag">reflexivo · -ER</span><button class="speak" onclick="say('parecerse')">🔊</button></div>
-    <div style="overflow-x:auto;">
-    <table><tr><th>Yo</th><th>Tú</th><th>Él/Ella/Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/Ellas/Ustedes</th></tr>
-    <tr><td>me parezco</td><td>te pareces</td><td>se parece</td><td>nos parecemos</td><td>os parecéis</td><td>se parecen</td></tr></table>
+    <div class="verb-head"><span class="verb">parecerse</span><span class="tag">reflexivo · -ER · cambio zc en 1.ª persona</span><button type="button" class="speak" data-say="parecerse" aria-label="Escuchar: parecerse">🔊</button></div>
+    <div class="verb-links"><a class="flashcard-link" aria-label="Ver en Flashcards: parecerse" href="flashcards-verbos-a2.html#parecerse">📚 Ver en Flashcards</a></div>
+    <div class="conjugation-grid">
+      <div class="conj-item"><div class="conj-person">Yo</div><div class="conj-form">me parezco <button type="button" class="speak form-audio" data-say="me parezco" aria-label="Escuchar: me parezco">🔊</button></div></div>
+      <div class="conj-item"><div class="conj-person">Tú</div><div class="conj-form">te pareces <button type="button" class="speak form-audio" data-say="te pareces" aria-label="Escuchar: te pareces">🔊</button></div></div>
+      <div class="conj-item"><div class="conj-person">Él/Ella/Usted</div><div class="conj-form">se parece <button type="button" class="speak form-audio" data-say="se parece" aria-label="Escuchar: se parece">🔊</button></div></div>
+      <div class="conj-item"><div class="conj-person">Nosotros/as</div><div class="conj-form">nos parecemos <button type="button" class="speak form-audio" data-say="nos parecemos" aria-label="Escuchar: nos parecemos">🔊</button></div></div>
+      <div class="conj-item"><div class="conj-person">Vosotros/as</div><div class="conj-form">os parecéis <button type="button" class="speak form-audio" data-say="os parecéis" aria-label="Escuchar: os parecéis">🔊</button></div></div>
+      <div class="conj-item"><div class="conj-person">Ellos/Ellas/Ustedes</div><div class="conj-form">se parecen <button type="button" class="speak form-audio" data-say="se parecen" aria-label="Escuchar: se parecen">🔊</button></div></div>
     </div>
-    <div class="example">Yo me parezco a mi padre. · Mi padre y yo nos parecemos.</div>
+    <div class="example"><b>Yo me parezco a mi padre. · Mi padre y yo nos parecemos.</b></div>
   </div>
 </section>
 
@@ -324,55 +466,55 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
     <div class="card" style="margin-top:10px;background:var(--soft);border:none;">
       <p><b>1.</b> Elena y Julia tienen el pelo ____.</p>
       <div class="choice-grid">
-        <button class="choice" onclick="checkQ7(this,'q71','rubio')">rubio</button>
-        <button class="choice" onclick="checkQ7(this,'q71','rubia')">rubia</button>
-        <button class="choice" onclick="checkQ7(this,'q71','rubios')">rubios</button>
-        <button class="choice" onclick="checkQ7(this,'q71','rubias')">rubias</button>
+        <button class="choice" onclick="checkQ7(this,'q71','rubio')" data-value="rubio">rubio</button>
+        <button class="choice" onclick="checkQ7(this,'q71','rubia')" data-value="rubia">rubia</button>
+        <button class="choice" onclick="checkQ7(this,'q71','rubios')" data-value="rubios">rubios</button>
+        <button class="choice" onclick="checkQ7(this,'q71','rubias')" data-value="rubias">rubias</button>
       </div>
       <div class="feedback" id="q71"></div>
 
       <p style="margin-top:20px;"><b>2.</b> Elena y Julia son ____.</p>
       <div class="choice-grid">
-        <button class="choice" onclick="checkQ7(this,'q72','rubio')">rubio</button>
-        <button class="choice" onclick="checkQ7(this,'q72','rubia')">rubia</button>
-        <button class="choice" onclick="checkQ7(this,'q72','rubios')">rubios</button>
-        <button class="choice" onclick="checkQ7(this,'q72','rubias')">rubias</button>
+        <button class="choice" onclick="checkQ7(this,'q72','rubio')" data-value="rubio">rubio</button>
+        <button class="choice" onclick="checkQ7(this,'q72','rubia')" data-value="rubia">rubia</button>
+        <button class="choice" onclick="checkQ7(this,'q72','rubios')" data-value="rubios">rubios</button>
+        <button class="choice" onclick="checkQ7(this,'q72','rubias')" data-value="rubias">rubias</button>
       </div>
       <div class="feedback" id="q72"></div>
 
       <p style="margin-top:20px;"><b>3.</b> Ana tiene los ojos muy ____.</p>
       <div class="choice-grid">
-        <button class="choice" onclick="checkQ7(this,'q73','negro')">negro</button>
-        <button class="choice" onclick="checkQ7(this,'q73','negra')">negra</button>
-        <button class="choice" onclick="checkQ7(this,'q73','negros')">negros</button>
-        <button class="choice" onclick="checkQ7(this,'q73','negras')">negras</button>
+        <button class="choice" onclick="checkQ7(this,'q73','negro')" data-value="negro">negro</button>
+        <button class="choice" onclick="checkQ7(this,'q73','negra')" data-value="negra">negra</button>
+        <button class="choice" onclick="checkQ7(this,'q73','negros')" data-value="negros">negros</button>
+        <button class="choice" onclick="checkQ7(this,'q73','negras')" data-value="negras">negras</button>
       </div>
       <div class="feedback" id="q73"></div>
 
       <p style="margin-top:20px;"><b>4.</b> Ana tiene el pelo ____.</p>
       <div class="choice-grid">
-        <button class="choice" onclick="checkQ7(this,'q74','negro')">negro</button>
-        <button class="choice" onclick="checkQ7(this,'q74','negra')">negra</button>
-        <button class="choice" onclick="checkQ7(this,'q74','negros')">negros</button>
-        <button class="choice" onclick="checkQ7(this,'q74','negras')">negras</button>
+        <button class="choice" onclick="checkQ7(this,'q74','negro')" data-value="negro">negro</button>
+        <button class="choice" onclick="checkQ7(this,'q74','negra')" data-value="negra">negra</button>
+        <button class="choice" onclick="checkQ7(this,'q74','negros')" data-value="negros">negros</button>
+        <button class="choice" onclick="checkQ7(this,'q74','negras')" data-value="negras">negras</button>
       </div>
       <div class="feedback" id="q74"></div>
 
       <p style="margin-top:20px;"><b>5.</b> Víctor tiene la piel muy ____.</p>
       <div class="choice-grid">
-        <button class="choice" onclick="checkQ7(this,'q75','blanco')">blanco</button>
-        <button class="choice" onclick="checkQ7(this,'q75','blanca')">blanca</button>
-        <button class="choice" onclick="checkQ7(this,'q75','blancos')">blancos</button>
-        <button class="choice" onclick="checkQ7(this,'q75','blancas')">blancas</button>
+        <button class="choice" onclick="checkQ7(this,'q75','blanco')" data-value="blanco">blanco</button>
+        <button class="choice" onclick="checkQ7(this,'q75','blanca')" data-value="blanca">blanca</button>
+        <button class="choice" onclick="checkQ7(this,'q75','blancos')" data-value="blancos">blancos</button>
+        <button class="choice" onclick="checkQ7(this,'q75','blancas')" data-value="blancas">blancas</button>
       </div>
       <div class="feedback" id="q75"></div>
 
       <p style="margin-top:20px;"><b>6.</b> Víctor es muy ____ de piel, ¿no?</p>
       <div class="choice-grid">
-        <button class="choice" onclick="checkQ7(this,'q76','blanco')">blanco</button>
-        <button class="choice" onclick="checkQ7(this,'q76','blanca')">blanca</button>
-        <button class="choice" onclick="checkQ7(this,'q76','blancos')">blancos</button>
-        <button class="choice" onclick="checkQ7(this,'q76','blancas')">blancas</button>
+        <button class="choice" onclick="checkQ7(this,'q76','blanco')" data-value="blanco">blanco</button>
+        <button class="choice" onclick="checkQ7(this,'q76','blanca')" data-value="blanca">blanca</button>
+        <button class="choice" onclick="checkQ7(this,'q76','blancos')" data-value="blancos">blancos</button>
+        <button class="choice" onclick="checkQ7(this,'q76','blancas')" data-value="blancas">blancas</button>
       </div>
       <div class="feedback" id="q76"></div>
     </div>
@@ -386,45 +528,47 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
     <div class="card" style="margin-top:10px;background:var(--soft);border:none;">
       <p><b>1.</b> ______ fotógrafo y también escribo un blog sobre fotografía.</p>
       <div class="choice-grid">
-        <button class="choice" onclick="fill9(this,'soy')">soy</button>
-        <button class="choice" onclick="fill9(this,'estoy')">estoy</button>
-        <button class="choice" onclick="fill9(this,'tengo')">tengo</button>
+        <button class="choice" onclick="fill9(this,'soy')" data-value="soy">soy</button>
+        <button class="choice" onclick="fill9(this,'estoy')" data-value="estoy">estoy</button>
+        <button class="choice" onclick="fill9(this,'tengo')" data-value="tengo">tengo</button>
       </div>
       <div class="feedback" id="f91"></div>
 
       <p style="margin-top:20px;"><b>2.</b> ______ divorciado y no ______ hijos.</p>
       <div class="choice-grid">
-        <button class="choice" onclick="fill9b(this,'estoy,tengo')">estoy / tengo</button>
-        <button class="choice" onclick="fill9b(this,'soy,tengo')">soy / tengo</button>
-        <button class="choice" onclick="fill9b(this,'tengo,estoy')">tengo / estoy</button>
+        <button class="choice" onclick="fill9b(this,'estoy,tengo')" data-value="estoy,tengo">estoy / tengo</button>
+        <button class="choice" onclick="fill9b(this,'soy,tengo')" data-value="soy,tengo">soy / tengo</button>
+        <button class="choice" onclick="fill9b(this,'tengo,estoy')" data-value="tengo,estoy">tengo / estoy</button>
       </div>
       <div class="feedback" id="f92"></div>
 
       <p style="margin-top:20px;"><b>3.</b> ______ bastante alto (mido casi 2 metros) y muy delgado.</p>
       <div class="choice-grid">
-        <button class="choice" onclick="fill9c(this,'soy')">soy</button>
-        <button class="choice" onclick="fill9c(this,'estoy')">estoy</button>
-        <button class="choice" onclick="fill9c(this,'tengo')">tengo</button>
+        <button class="choice" onclick="fill9c(this,'soy')" data-value="soy">soy</button>
+        <button class="choice" onclick="fill9c(this,'estoy')" data-value="estoy">estoy</button>
+        <button class="choice" onclick="fill9c(this,'tengo')" data-value="tengo">tengo</button>
       </div>
       <div class="feedback" id="f93"></div>
 
       <p style="margin-top:20px;"><b>4.</b> ______ el pelo castaño, los ojos verdes y ______ barba.</p>
       <div class="choice-grid">
-        <button class="choice" onclick="fill9d(this,'tengo,tengo')">tengo / tengo</button>
-        <button class="choice" onclick="fill9d(this,'llevo,tengo')">llevo / tengo</button>
-        <button class="choice" onclick="fill9d(this,'soy,tengo')">soy / tengo</button>
+        <button class="choice" onclick="fill9d(this,'tengo,tengo')" data-value="tengo,tengo">tengo / tengo</button>
+        <button class="choice" onclick="fill9d(this,'llevo,tengo')" data-value="llevo,tengo">llevo / tengo</button>
+        <button class="choice" onclick="fill9d(this,'soy,tengo')" data-value="soy,tengo">soy / tengo</button>
       </div>
       <div class="feedback" id="f94"></div>
 
       <p style="margin-top:20px;"><b>5.</b> ______ una personalidad muy fuerte.</p>
       <div class="choice-grid">
-        <button class="choice" onclick="fill9e(this,'tengo')">tengo</button>
-        <button class="choice" onclick="fill9e(this,'soy')">soy</button>
-        <button class="choice" onclick="fill9e(this,'estoy')">estoy</button>
+        <button class="choice" onclick="fill9e(this,'tengo')" data-value="tengo">tengo</button>
+        <button class="choice" onclick="fill9e(this,'soy')" data-value="soy">soy</button>
+        <button class="choice" onclick="fill9e(this,'estoy')" data-value="estoy">estoy</button>
       </div>
       <div class="feedback" id="f95"></div>
     </div>
   </div>
+<button type="button" class="check-all" id="check-all-21">Comprobar Respuestas</button>
+<div id="result-21" class="quiz-result" aria-live="polite"></div>
 </section>
 
 <section id="practica">
@@ -454,131 +598,238 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
 <footer>Registro individual de la clase del 21/09/2026. Basado en la pizarra y el material de estudio.</footer>
 </div>
 
-<script>
-function showTab(id,btn){
-  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
-}
 
-let slow=false, esVoice=null;
+<script>
+function cleanSpeechText(txt){
+  return String(txt ?? '')
+    .replace(/[🔊]/g,'')
+    .replace(/[＿_]+/g,' ')
+    .replace(/[-–—]{2,}/g,' ')
+    .replace(/…+/g,' ')
+    .replace(/\s+/g,' ')
+    .trim();
+}
+let speechRate=parseFloat(localStorage.getItem('a2SpeechRate')||'0.88');
+let esVoice=null;
 function pickEs(){
+  if(!('speechSynthesis' in window)) return;
   const vs=speechSynthesis.getVoices();
-  esVoice=vs.find(v=>v.lang==='es-ES')||vs.find(v=>v.lang&&v.lang.startsWith('es'))||null;
+  esVoice=vs.find(v=>v.lang==='es-ES')||vs.find(v=>v.lang&&v.lang.toLowerCase().startsWith('es'))||null;
 }
 if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=pickEs;pickEs();}
 function say(txt){
   if(!('speechSynthesis' in window)) return;
+  const clean=cleanSpeechText(txt); if(!clean)return;
   speechSynthesis.cancel();
-  const u=new SpeechSynthesisUtterance(txt);
-  u.lang='es-ES';if(esVoice)u.voice=esVoice;
-  u.rate=slow?.6:.85;
-  speechSynthesis.speak(u);
+  const u=new SpeechSynthesisUtterance(clean);
+  u.lang='es-ES'; u.rate=speechRate; if(esVoice)u.voice=esVoice;
+  speechSynthesis.resume(); speechSynthesis.speak(u);
 }
-function toggleSlow(){
-  slow=!slow;
-  document.querySelectorAll('.slowBtn').forEach(b=>{
-    b.textContent=slow?'🐢 Lento: encendido':'🐢 Lento: apagado';
-    b.setAttribute('aria-pressed',slow);
+function setSpeechSpeed(rate,btn){
+  speechRate=rate; localStorage.setItem('a2SpeechRate',String(rate));
+  document.querySelectorAll('.speed-btn').forEach(b=>b.classList.toggle('active',b===btn));
+}
+function updateThemeToggle(theme){
+  const b=document.querySelector('.theme-toggle'); if(!b)return;
+  const dark=theme==='dark';
+  b.textContent=dark?'🌙':'☀️';
+  b.setAttribute('aria-pressed',String(dark));
+  b.setAttribute('aria-label',dark?'Cambiar al modo claro':'Cambiar al modo oscuro');
+}
+function toggleTheme(){
+  const next=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('a2Theme',next);
+  updateThemeToggle(next);
+}
+function showTab(id,btn){
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+  const sec=document.getElementById(id); if(sec)sec.classList.add('active');
+  document.querySelectorAll('.tab-nav button').forEach(b=>{
+    b.classList.remove('active'); b.setAttribute('aria-selected','false');
+  });
+  if(btn){btn.classList.add('active');btn.setAttribute('aria-selected','true');}
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function addAudioToExamples(){
+  document.querySelectorAll('.example').forEach(el=>{
+    if(el.querySelector('.speak'))return;
+    const clone=el.cloneNode(true);
+    clone.querySelectorAll('button').forEach(b=>b.remove());
+    const txt=clone.textContent.trim(); if(!txt)return;
+    el.classList.add('sayable');
+    const b=document.createElement('button');
+    b.type='button';b.className='speak';b.textContent='🔊';
+    b.setAttribute('aria-label','Escuchar: '+cleanSpeechText(txt));
+    b.addEventListener('click',()=>say(txt));
+    el.appendChild(b);
   });
 }
-document.querySelectorAll('#resumen .example, #gram .example').forEach(el=>{
-  const b=el.querySelector('b'); if(!b) return;
-  const txt=b.textContent.trim();
-  const wrap=document.createElement('span');
-  while(el.firstChild) wrap.appendChild(el.firstChild);
-  el.appendChild(wrap);
-  el.classList.add('sayable');
-  const btn=document.createElement('button');
-  btn.type='button';btn.className='speak';btn.textContent='🔊';
-  btn.setAttribute('aria-label','Escuchar: '+txt);
-  btn.onclick=()=>say(txt);
-  el.appendChild(btn);
-});
-if(!('speechSynthesis' in window)) document.querySelectorAll('.sound-bar').forEach(x=>x.style.display='none');
+function addAudioToVerbForms(){
+  document.querySelectorAll('#verbos .verb-card table tr:not(:first-child) td').forEach(td=>{
+    if(td.querySelector('.form-audio'))return;
+    const txt=td.textContent.trim(); if(!txt)return;
+    const b=document.createElement('button');
+    b.type='button';b.className='speak form-audio';b.textContent='🔊';
+    b.setAttribute('aria-label','Escuchar: '+txt);
+    b.addEventListener('click',()=>say(txt));
+    td.appendChild(b);
+  });
+}
 
-// Lógica de corrección - Ejercicio 7
-const q7answers={
-  q71:'rubio',
-  q72:'rubias',
-  q73:'negros',
-  q74:'negro',
-  q75:'blanca',
-  q76:'blanco'
-};
+/* Ejercicio 7 — corrección inmediata e inequívoca */
+const q7answers={q71:'rubio',q72:'rubias',q73:'negros',q74:'negro',q75:'blanca',q76:'blanco'};
 function checkQ7(btn,id,value){
   const box=document.getElementById(id);
-  const buttons=btn.parentElement.querySelectorAll('button');
-  buttons.forEach(b=>b.disabled=true); // Bloqueia botões após clique
-  const ok=q7answers[id]===value;
-  if(ok){
+  const buttons=[...btn.parentElement.querySelectorAll('.choice')];
+  const correct=q7answers[id];
+  buttons.forEach(b=>b.classList.remove('selected','correct','wrong'));
+  btn.classList.add('selected');
+  say(btn.dataset.say || btn.textContent.trim());
+  if(value===correct){
     btn.classList.add('correct');
-    box.textContent='✅ Correcto.';
     box.className='feedback ok';
+    box.innerHTML='✅ <b>Correcto.</b>';
   }else{
     btn.classList.add('wrong');
-    buttons.forEach(b=>{if(b.textContent.trim()===q7answers[id])b.classList.add('correct');}); // Mostra a certa
-    box.textContent='❌ Revisa la concordancia. Respuesta: '+q7answers[id]+'.';
+    const right=buttons.find(b=>b.dataset.value===correct);
+    if(right)right.classList.add('correct');
     box.className='feedback bad';
+    box.innerHTML='❌ <b>Incorrecto.</b><br>🟢 <b>La respuesta correcta es: '+correct+'</b>';
   }
 }
 
-// Lógica de corrección - Ejercicio 9
-function feedback(id,ok,msgOk,msgBad){
-  const box=document.getElementById(id);
-  box.textContent=ok?'✅ '+msgOk:'❌ '+msgBad;
-  box.className='feedback '+(ok?'ok':'bad');
+/* Ejercicio 9 — corrección inmediata e inequívoca */
+function showChoiceFeedback(btn,feedbackId,ok,correctText){
+  const buttons=[...btn.parentElement.querySelectorAll('.choice')];
+  buttons.forEach(b=>b.classList.remove('selected','correct','wrong'));
+  btn.classList.add('selected');
+  say(btn.dataset.say || btn.textContent.trim());
+  const feedback=document.getElementById(feedbackId);
+  if(ok){
+    btn.classList.add('correct');
+    feedback.className='feedback ok';
+    feedback.innerHTML='✅ <b>Correcto.</b>';
+  }else{
+    btn.classList.add('wrong');
+    const right=buttons.find(b=>b.dataset.value===correctText);
+    if(right)right.classList.add('correct');
+    feedback.className='feedback bad';
+    feedback.innerHTML='❌ <b>Incorrecto.</b><br>🟢 <b>La respuesta correcta es: '+correctText+'</b>';
+  }
 }
-function fill9(btn,v){
-  const buttons=btn.parentElement.querySelectorAll('button');
-  buttons.forEach(b=>b.disabled=true);
-  const ok = v==='soy';
-  btn.classList.add(ok ? 'correct' : 'wrong');
-  if(!ok) buttons.forEach(b=>{if(b.textContent.trim()==='soy')b.classList.add('correct');});
-  feedback('f91',ok,'Correcto: soy fotógrafo.','La forma correcta es: soy fotógrafo.');
-}
-function fill9b(btn,v){
-  const buttons=btn.parentElement.querySelectorAll('button');
-  buttons.forEach(b=>b.disabled=true);
-  const ok = v==='estoy,tengo';
-  btn.classList.add(ok ? 'correct' : 'wrong');
-  if(!ok) buttons.forEach(b=>{if(b.textContent.trim()==='estoy / tengo')b.classList.add('correct');});
-  feedback('f92',ok,'Correcto: estoy divorciado y no tengo hijos.','La secuencia correcta es: estoy / tengo.');
-}
-function fill9c(btn,v){
-  const buttons=btn.parentElement.querySelectorAll('button');
-  buttons.forEach(b=>b.disabled=true);
-  const ok = v==='soy';
-  btn.classList.add(ok ? 'correct' : 'wrong');
-  if(!ok) buttons.forEach(b=>{if(b.textContent.trim()==='soy')b.classList.add('correct');});
-  feedback('f93',ok,'Correcto: soy bastante alto y muy delgado.','La forma correcta es: soy.');
-}
-function fill9d(btn,v){
-  const buttons=btn.parentElement.querySelectorAll('button');
-  buttons.forEach(b=>b.disabled=true);
-  const ok = v==='tengo,tengo';
-  btn.classList.add(ok ? 'correct' : 'wrong');
-  if(!ok) buttons.forEach(b=>{if(b.textContent.trim()==='tengo / tengo')b.classList.add('correct');});
-  feedback('f94',ok,'Correcto: tengo el pelo castaño... y tengo barba.','La secuencia correcta es: tengo / tengo.');
-}
-function fill9e(btn,v){
-  const buttons=btn.parentElement.querySelectorAll('button');
-  buttons.forEach(b=>b.disabled=true);
-  const ok = v==='tengo';
-  btn.classList.add(ok ? 'correct' : 'wrong');
-  if(!ok) buttons.forEach(b=>{if(b.textContent.trim()==='tengo')b.classList.add('correct');});
-  feedback('f95',ok,'Correcto: tengo una personalidad muy fuerte.','La forma correcta es: tengo.');
+function fill9(btn,v){showChoiceFeedback(btn,'f91',v==='soy','soy');}
+function fill9b(btn,v){showChoiceFeedback(btn,'f92',v==='estoy,tengo','estoy / tengo');}
+function fill9c(btn,v){showChoiceFeedback(btn,'f93',v==='soy','soy');}
+function fill9d(btn,v){showChoiceFeedback(btn,'f94',v==='tengo,tengo','tengo / tengo');}
+function fill9e(btn,v){showChoiceFeedback(btn,'f95',v==='tengo','tengo');}
+
+/* Conferência global */
+function checkAll21(){
+  const feedbacks=[...document.querySelectorAll('#ex .feedback')];
+  const answered=feedbacks.filter(f=>f.classList.contains('ok')||f.classList.contains('bad')).length;
+  const correct=feedbacks.filter(f=>f.classList.contains('ok')).length;
+  const result=document.getElementById('result-21');
+  if(result){
+    result.innerHTML='<b>Resultado: '+correct+' de '+feedbacks.length+' respuestas correctas.</b>'+
+      (answered<feedbacks.length?'<br>⚠️ Faltan '+(feedbacks.length-answered)+' respuestas.':'');
+  }
 }
 
-// Barra de progreso
-let done=0;
-function tick(cb){
-  done+=cb.checked?1:-1;
-  document.getElementById('bar').style.width=(done/5*100)+'%';
-  document.getElementById('count').textContent=done+'/5 completado';
+
+
+function addExerciseAudio(){
+  const addPromptAudio = (el, text) => {
+    if(!el || el.querySelector('.exercise-audio')) return;
+    const clean = cleanSpeechText(text);
+    if(!clean) return;
+    el.classList.add('exercise-prompt');
+    const b = document.createElement('button');
+    b.type='button';
+    b.className='speak exercise-audio';
+    b.textContent='🔊';
+    b.setAttribute('aria-label','Escuchar: '+clean);
+    b.addEventListener('click', e => { e.stopPropagation(); say(clean); });
+    el.appendChild(b);
+  };
+
+  // Página 137 — únicamente las 10 preguntas, nunca las respuestas.
+  document.querySelectorAll('#ex table').forEach(table=>{
+    if(!table.closest('#ex')) return;
+    const rows=[...table.querySelectorAll('tr')].slice(1);
+    rows.forEach(row=>{
+      const cells=row.querySelectorAll('td');
+      if(cells.length>=3){
+        const question=cells[1];
+        addPromptAudio(question, question.textContent);
+        question.classList.add('exercise-question-cell');
+      }
+    });
+  });
+
+  // Página 138 — ejercicios 7 y 9: únicamente los 11 enunciados.
+  const q7 = [...document.querySelectorAll('#ex .choice')].slice(0,24);
+  const q9 = [...document.querySelectorAll('#ex .choice')].slice(24);
+  const prompt7 = document.querySelectorAll('#ex .card')[3]?.querySelectorAll(':scope > .card > p');
+  const prompt9 = document.querySelectorAll('#ex .card')[4]?.querySelectorAll(':scope > .card > p');
+
+  // Robust fallback based on the visible numbered questions.
+  const numbered = [...document.querySelectorAll('#ex p')].filter(p => /^\s*<b>\d+\.<\/b>/.test(p.innerHTML));
+  numbered.forEach(p => addPromptAudio(p, p.textContent));
+
+  // Every alternative gets its own independent audio control.
+  document.querySelectorAll('#ex .choice').forEach(btn=>{
+    if(btn.querySelector('.choice-audio')) return;
+    const clean = cleanSpeechText(btn.textContent);
+    const a = document.createElement('button');
+    a.type='button';
+    a.className='choice-audio';
+    a.textContent='🔊';
+    a.setAttribute('aria-label','Escuchar: '+clean);
+    a.addEventListener('click', e=>{
+      e.preventDefault();
+      e.stopPropagation();
+      say(clean);
+    });
+    btn.appendChild(a);
+  });
 }
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const saved=localStorage.getItem('a2Theme')||'dark';
+  document.documentElement.setAttribute('data-theme',saved);
+  updateThemeToggle(saved);
+
+  document.querySelectorAll('.tab-nav button').forEach(btn=>{
+    btn.addEventListener('click',()=>showTab(btn.dataset.tab,btn));
+    btn.addEventListener('keydown',e=>{
+      if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
+        e.preventDefault();
+        const tabs=[...document.querySelectorAll('.tab-nav button')];
+        const i=tabs.indexOf(btn);
+        const n=e.key==='ArrowRight'?(i+1)%tabs.length:(i-1+tabs.length)%tabs.length;
+        tabs[n].focus();showTab(tabs[n].dataset.tab,tabs[n]);
+      }
+    });
+  });
+  document.querySelectorAll('.speed-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>setSpeechSpeed(Number(btn.dataset.rate),btn));
+    if(Math.abs(Number(btn.dataset.rate)-speechRate)<0.001) btn.classList.add('active');
+    else btn.classList.remove('active');
+  });
+  document.querySelector('.theme-toggle')?.addEventListener('click',toggleTheme);
+  document.querySelector('#check-all-21')?.addEventListener('click',checkAll21);
+  addAudioToExamples();
+  addAudioToVerbForms();
+  document.querySelectorAll('button.speak[data-say]').forEach(btn=>{
+    btn.addEventListener('click', e=>{
+      e.stopPropagation();
+      say(btn.dataset.say);
+    });
+  });
+  addExerciseAudio();
+});
 </script>
+
 </body>
 </html>

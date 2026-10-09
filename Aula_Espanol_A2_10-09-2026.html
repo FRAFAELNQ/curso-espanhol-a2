@@ -1,37 +1,38 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080a18">
-<title>Clase de Español A2 — 10/09/2026</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#080a18" name="theme-color"/>
+<title>EOI · Español A2 · Aula individual · 14/09/2026</title>
 <style>
 :root{
   color-scheme:dark;
   --bg:#080a18;--card:#171d38;--text:#f8f9ff;--muted:#b8c0dd;
   --pink:#ff5ca8;--purple:#a56cff;--turq:#37e6d4;--yellow:#ffd34e;
-  --blue:#42a5ff;--soft:#252e50;--border:#2d385e;--ok:#4be59a;--bad:#ff6b7c;
+  --blue:#42a5ff;--soft:#252e50;--border:#2d385e;--ok:#4be59a;--bad:#ff6b7c;--header-border:#48598d;--header-start:#172c6c;--header-mid:#49237f;--header-end:#741c58;--header-text:#fff;--header-shadow:rgba(0,0,0,.55);
 }
 *{box-sizing:border-box}
 body{margin:0;background:radial-gradient(circle at 10% 0,#1d2b66,transparent 38%),radial-gradient(circle at 90% 0,#5a174d,transparent 35%),var(--bg);background-attachment:fixed;color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}
 .container{max-width:1100px;margin:auto;padding:22px 16px 60px}
-header{text-align:center;padding:26px 20px;margin-bottom:6px;border-radius:22px;border:1px solid #48598d;background:linear-gradient(135deg,#172c6c,#49237f 52%,#741c58);box-shadow:0 18px 50px #0008}
+header{text-align:center;padding:26px 20px;margin-bottom:6px;border-radius:22px;border:1px solid var(--header-border);background:linear-gradient(135deg,var(--header-start),var(--header-mid) 52%,var(--header-end));box-shadow:0 18px 50px var(--header-shadow);transition:background .2s ease,border-color .2s ease,color .2s ease}
 .badge{display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;font-weight:800;font-size:.82rem}
-h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);color:#fff}
-.subtitle{color:#e3e6ff}
-nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);display:flex;gap:7px;overflow:auto;padding:8px;border-bottom:1px solid var(--border)}
-nav button,.tab{border:1px solid var(--border);background:var(--card);color:var(--text);padding:9px 12px;border-radius:12px;cursor:pointer;white-space:nowrap;font-weight:750}
-nav button.active,.tab.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
-section{display:none;padding-top:22px}
+h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);color:var(--header-text)}
+.subtitle{color:var(--header-text);opacity:.92}
+section{display:none;padding-top:22px;scroll-margin-top:66px}
 section.active{display:block}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:0 7px 22px color-mix(in srgb,var(--purple) 10%,transparent)}
-.card h2,.card h3{margin-top:0}
+.card h3{margin-top:0}
 .color-title{font-size:1.25rem;font-weight:900}
 .pink{color:var(--pink)}.purple{color:var(--purple)}.turq{color:var(--turq)}.blue{color:var(--blue)}.yellow{color:var(--yellow)}
 table{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden}
 th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
 th{background:#202a4c;color:#cdbdff}
+.verb-card{margin-bottom:16px}
+.verb-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.verb{font-size:1.45rem;font-weight:900;color:var(--pink)}
+.tag{font-size:.78rem;font-weight:800;padding:4px 9px;border-radius:999px;background:var(--soft);color:#cdbdff}
 .speak{border:0;background:var(--soft);border-radius:10px;padding:7px 10px;cursor:pointer}
 .example{border-left:4px solid var(--turq);padding:9px 12px;background:color-mix(in srgb,var(--turq) 8%,var(--card));border-radius:0 12px 12px 0;margin:9px 0}
 .note{font-size:.9rem;color:var(--muted)}
@@ -55,221 +56,454 @@ summary{cursor:pointer;font-weight:800}
 .speak:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
 .speak[aria-pressed="true"]{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff}
 footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
-@media(max-width:600px){.container{padding:14px 10px 45px}th,td{padding:8px;font-size:.9rem}.card{padding:15px}}
+/* Desktop compacto / janela dividida: evita que o grupo de velocidade invada o botão central. */
+@media (min-width:601px) and (max-width:1050px){
+  .header-controls{
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    gap:8px;
+  }
+  .header-controls .home-link{
+    min-width:0;
+    max-width:210px;
+    padding:0 12px;
+    font-size:.88rem;
+  }
+  .header-controls .speed-control{
+    min-width:0;
+    gap:5px;
+    justify-self:end;
+  }
+  .speed-btn{
+    min-width:64px;
+    padding:0 8px;
+    font-size:.78rem;
+  }
+}
 
-.home-nav{text-align:center;margin:14px 0 8px}
-.home-nav a{display:inline-block;padding:10px 18px;border-radius:12px;background:#10152b;border:1px solid var(--border);color:#fff;text-decoration:none;font-weight:800;transition:transform .15s ease,border-color .15s ease}
+@media (min-width:601px) and (max-width:780px){
+  .mini-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .container{padding:14px 10px 45px}
+  th,td{padding:8px;font-size:.9rem}
+  .card{padding:15px}
+  .mini-grid{grid-template-columns:1fr}
+}
+
+
+.table-wrap{overflow-x:auto;border-radius:16px}
+.table-wrap table{min-width:520px}
+.mini-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.mini-grid .verb-card{min-width:0}
+.mini-grid .verb-card{margin-bottom:0}
+.form-big{font-size:1.25rem;font-weight:900;color:var(--turq);margin:10px 0 4px}
+ul.clean{margin:8px 0;padding-left:20px}ul.clean li{margin:5px 0}
+
+.mini-forms{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.mini-forms div{flex:1 1 90px;background:var(--soft);border:1px solid var(--border);border-radius:10px;padding:7px 9px;text-align:center}
+.mini-forms small{display:block;color:var(--muted);font-size:.7rem;text-transform:uppercase}
+.mini-forms b{font-size:1.05rem;color:var(--turq)}
+
+
+/* === Template Mestre A2 — interfaz estable === */
+:root[data-theme="light"]{color-scheme:light;--bg:#f5f3ff;--card:#ffffff;--text:#1b2340;--muted:#5e6780;--soft:#e9e6f8;--border:#cfd1ea;--header-border:#aeb8df;--header-start:#dfe9ff;--header-mid:#eadfff;--header-end:#ffe0ef;--header-text:#1b2340;--header-shadow:rgba(73,55,128,.18);--blue:#397fdb;--purple:#7856d9;--turq:#159f93;--yellow:#c58d00}
+:root[data-theme="light"] .pink{color:#c52f76}:root[data-theme="light"] .purple{color:#6840bf}:root[data-theme="light"] .turq{color:#087f78}:root[data-theme="light"] .yellow{color:#946600}:root[data-theme="light"] .blue{color:#2f6fc4}
+body{transition:background .2s ease,color .2s ease}
+header{border-color:var(--header-border);background:linear-gradient(135deg,var(--header-start),var(--header-mid) 52%,var(--header-end));box-shadow:0 18px 50px var(--header-shadow)}
+header h1{color:var(--header-text)}
+header .subtitle{color:var(--header-text);opacity:.88}
+.badge{color:var(--header-text);background:color-mix(in srgb,var(--purple) 12%,transparent);border:1px solid color-mix(in srgb,var(--purple) 22%,transparent)}
+.theme-toggle,.home-link,.speed-btn{background:#ffffff;color:var(--text);border-color:#c7cbe4;box-shadow:0 3px 10px rgba(70,58,125,.08)}
+.theme-toggle:hover,.home-link:hover,.speed-btn:hover{border-color:var(--turq);box-shadow:0 4px 12px rgba(21,159,147,.14)}
+.tab-nav button{background:#ffffff;color:var(--text);border-color:#c9cce5;box-shadow:0 2px 7px rgba(70,58,125,.06)}
+.tab-nav button:hover{background:#f6f4ff;border-color:var(--turq);box-shadow:0 0 0 1px rgba(21,159,147,.18)}
+.sticky-shell{background:color-mix(in srgb,#ffffff 88%,var(--soft));border-color:#c9cce5;box-shadow:0 10px 28px rgba(87,70,145,.12)}
+.card{box-shadow:0 7px 22px rgba(87,70,145,.08)}
+.sticky-shell{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:color-mix(in srgb,var(--bg) 96%,transparent);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:7px 8px;
+  box-shadow:0 10px 28px color-mix(in srgb,var(--purple) 14%,transparent);
+  margin:8px 0 0;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+/* Controles no cabeçalho e NÃO acompanham a rolagem.
+   Inicio permanece centrado · Velocidad fica à direita. */
+.header-controls{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+  align-items:center;
+  gap:10px;
+  width:100%;
+  margin:14px auto 0;
+}
+.header-controls .home-link{grid-column:2;justify-self:center}
+.header-controls .speed-control{grid-column:3;justify-self:end}
+.theme-toggle,.speed-control,.home-link{border:1px solid var(--border);background:var(--card);color:var(--text)}
+.theme-toggle{
+  flex:0 0 auto;height:38px;min-width:72px;border-radius:999px;padding:0 11px;
+  display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;font-size:.92rem;
+}
+.theme-toggle:hover,.home-link:hover,.speed-btn:hover{border-color:var(--turq)}
+.home-link{
+  flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;height:38px;
+  padding:0 14px;border-radius:12px;text-decoration:none;font-weight:850;position:relative;white-space:nowrap;
+}
+
+.speed-control{flex:0 0 auto;height:38px;display:flex;align-items:center;gap:6px;background:transparent;border:0}
+.speed-label{display:none}
+.speed-btn{
+  flex:0 0 auto;height:40px;min-width:78px;padding:0 11px;border:1px solid var(--border);
+  border-radius:999px;background:var(--card);color:var(--text);font-weight:800;cursor:pointer;white-space:nowrap;
+}
+.speed-btn.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+/* Menu principal: uma única linha, fixa durante a rolagem. */
+.sticky-shell{display:flex;align-items:center;gap:7px}
+.sticky-shell > .theme-toggle{flex:0 0 40px;width:40px;min-width:40px;height:40px;padding:0;border-radius:12px}
+.sticky-shell > .tab-nav{flex:1;min-width:0}
+.tab-nav{
+  display:flex;flex-wrap:nowrap;gap:7px;width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;
+  padding:0;scrollbar-width:thin;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;
+  touch-action:pan-x;
+}
+.tab-nav button{
+  flex:0 0 118px;width:118px;min-width:118px;height:40px;border:1px solid var(--border);
+  background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;font-weight:800;
+  font-size:.84rem;white-space:nowrap;display:flex;align-items:center;justify-content:center;gap:4px;
+  transition:transform .15s ease,border-color .15s ease,background .15s ease;touch-action:manipulation;
+}
+.tab-nav button:hover{border-color:var(--turq);box-shadow:0 0 0 1px color-mix(in srgb,var(--turq) 22%,transparent)}
+.tab-nav button:focus-visible,.speed-btn:focus-visible,.theme-toggle:focus-visible,.home-link:focus-visible{outline:3px solid var(--yellow);outline-offset:0}
+.tab-nav button.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+/* Navegação e controles — ajuste final para mobile */
+.home-nav{display:flex;justify-content:center;align-items:center;margin:22px 0 0}
+.home-nav a{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 16px;border:1px solid var(--border);border-radius:12px;background:var(--card);color:var(--text);text-decoration:none;font-weight:850;white-space:nowrap;transition:transform .15s ease,border-color .15s ease,background .2s ease}
+.home-nav a:hover{transform:translateY(-1px);border-color:var(--turq)}
 .home-nav a:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
-.home-nav a:hover{transform:translateY(-1px);border-color:var(--blue)}
+.home-nav .bottom-home{height:40px;min-height:40px;padding:0 14px;border-radius:12px;font-weight:850}
+
+@media(max-width:600px){
+  .sticky-shell{padding:6px 7px;border-radius:14px;margin-top:7px}
+  .tab-nav{gap:6px}
+  .tab-nav button{flex-basis:112px;width:112px;min-width:112px;height:38px;font-size:.80rem}
+
+  /* Controles: Inicio al centro · Velocidad à direita */
+  .header-controls{
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    gap:6px;
+    margin-top:12px;
+    overflow:visible;
+  }
+  .header-controls .home-link{grid-column:2;justify-self:center;height:40px;min-width:0;padding:0 8px;font-size:.88rem}
+  .header-controls .speed-control{grid-column:3;justify-self:end}
+  .speed-control{height:40px;gap:3px;min-width:0;justify-content:flex-end}
+  .header-controls .speed-btn{height:36px;width:36px;min-width:36px;padding:0;border-radius:10px;font-size:0;line-height:1}
+  .header-controls .speed-btn[data-rate="0.58"]::before{content:"🐢";font-size:1rem}
+  .header-controls .speed-btn[data-rate="0.88"]::before{content:"▶";font-size:.88rem}
+  .header-controls .speed-btn[data-rate="1.12"]::before{content:"⚡";font-size:1rem}
+  .speed-label{display:none}
+
+  /* O menu permanece fixo, mas ocupa apenas uma linha horizontal */
+  .tab-nav{touch-action:pan-x;overscroll-behavior-x:contain}
+}
+@media(max-width:380px){
+  .sticky-shell > .theme-toggle{width:38px;min-width:38px;height:38px}
+  .header-controls{gap:5px}
+  .header-controls .home-link{font-size:.82rem;padding:0 6px}
+  .speed-control{gap:2px}
+  .header-controls .speed-btn{width:34px;min-width:34px;height:34px}
+  .header-controls .speed-btn[data-rate="0.58"]::before,.header-controls .speed-btn[data-rate="1.12"]::before{font-size:.9rem}
+  .header-controls .speed-btn[data-rate="0.88"]::before{font-size:.8rem}
+  .tab-nav button{flex-basis:108px;width:108px;min-width:108px;font-size:.78rem}
+}
+
+
+/* === Correção final: controles responsivos em janela PC dividida === */
+@media (min-width:601px) and (max-width:1050px){
+  .header-controls{
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    gap:14px;
+  }
+  .header-controls .home-link{
+    justify-self:center;
+    max-width:190px;
+    min-width:0;
+    padding:0 11px;
+    font-size:.86rem;
+  }
+  .header-controls .speed-control{
+    justify-self:end;
+    min-width:0;
+    gap:5px;
+  }
+  .header-controls .speed-btn{
+    width:64px;
+    min-width:64px;
+    max-width:64px;
+    padding:0 5px;
+    font-size:.76rem;
+  }
+}
+@media (min-width:601px) and (max-width:780px){
+  .header-controls{gap:10px}
+  .header-controls .home-link{max-width:175px;font-size:.82rem;padding:0 8px}
+  .header-controls .speed-control{gap:3px}
+  .header-controls .speed-btn{width:58px;min-width:58px;max-width:58px;font-size:.70rem;padding:0 3px}
+}
+
+/* === Estrutura definitiva: cabeçalho, velocidade e navegação separados === */
+.header-controls{display:none !important}
+.header-home{display:flex;justify-content:center;align-items:center;margin:14px auto 0;width:100%}
+.header-home .home-link{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 16px;border-radius:12px;text-decoration:none;font-weight:850;white-space:nowrap}
+.audio-controls{display:flex;justify-content:center;align-items:center;width:100%;margin:8px 0 8px}
+.audio-controls .speed-control{display:flex;align-items:center;justify-content:center;gap:7px;height:auto;min-width:0}
+.audio-controls .speed-btn{flex:0 0 auto;height:40px;min-width:78px;padding:0 12px;border:1px solid var(--border);border-radius:999px;background:var(--card);color:var(--text);font-weight:800;cursor:pointer;white-space:nowrap}
+.audio-controls .speed-btn.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+.audio-controls .speed-btn:hover{border-color:var(--turq)}
+@media (max-width:600px){
+  .header-home{margin-top:12px}
+  .header-home .home-link{height:40px;padding:0 14px;font-size:.9rem}
+  .audio-controls{margin:7px 0 7px}
+  .audio-controls .speed-control{gap:5px;width:100%;justify-content:center}
+  .audio-controls .speed-btn{height:38px;min-width:0;width:auto;padding:0 11px;font-size:.82rem}
+}
+@media (max-width:380px){
+  .audio-controls .speed-control{gap:4px}
+  .audio-controls .speed-btn{height:36px;padding:0 9px;font-size:.78rem}
+}
+
+/* Áudio das formas de conjugação — versão completa */
+.mini-forms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:10px 0}
+.mini-forms .mini-form-item{display:grid;grid-template-columns:1fr auto;grid-template-areas:"label audio" "form audio";align-items:center;gap:2px 8px;background:var(--soft);border:1px solid var(--border);border-radius:10px;padding:9px 10px;text-align:left}
+.mini-forms .mini-form-item small{grid-area:label;text-transform:none}
+.mini-forms .mini-form-item b{grid-area:form;font-size:1.05rem;color:var(--turq)}
+.mini-forms .mini-form-item .form-audio{grid-area:audio;align-self:center;padding:6px 8px;border-radius:9px}
+.verb-card td .form-audio{margin-left:6px;padding:4px 7px;border-radius:8px;font-size:.9rem;vertical-align:middle}
+.verb-card .example .example-audio{margin-left:6px;padding:5px 8px;border-radius:9px;vertical-align:middle}
+.form-big .form-audio{margin-left:6px;padding:5px 8px;border-radius:9px;vertical-align:middle}
+@media (max-width:640px){
+  .mini-forms{grid-template-columns:1fr}
+  .mini-forms .mini-form-item{padding:8px 9px}
+}
+</style>
+
+<style>
+.choice-audio{border:0;background:transparent;color:inherit;border-radius:8px;padding:4px 6px;margin-left:7px;cursor:pointer;font-size:.9rem;line-height:1;vertical-align:middle}
+.choice-audio:hover{background:var(--soft)}
+.choice{display:flex;align-items:center;justify-content:center;gap:4px}
+.choice>span{flex:1;min-width:0}
+.check-all{margin-top:14px;width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;font-weight:850;font-size:1rem;cursor:pointer}
+.check-all:hover{filter:brightness(1.05)}
+.inline-speak{margin-left:6px}
 </style>
 </head>
 <body>
 <div class="container">
 <header>
-  <span class="badge">EOI · Español A2 · Clase individual</span>
-  <h1>Ficha interactiva — 10/09/2026</h1>
+  <span class="badge">EOI · Español A2 · Clase Individual</span>
+  <h1>Ficha Interactiva — 10/09/2026</h1>
   <div class="subtitle">Desde · desde hace · desde que</div>
+  <div class="header-home"><a class="home-link" href="index.html">🏠 Volver al inicio</a></div>
 </header>
 
-<div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
+<div class="audio-controls">
+  <div class="speed-control">
+    <button type="button" class="speed-btn" data-rate="0.58">🐢 Lento</button>
+    <button type="button" class="speed-btn active" data-rate="0.88">▶ Normal</button>
+    <button type="button" class="speed-btn" data-rate="1.12">⚡ Rápido</button>
+  </div>
+</div>
 
-<nav>
-  <button class="active" onclick="showTab('resumen',this)">📚 Resumen</button>
-  <button onclick="showTab('desde',this)">📍 Desde</button>
-  <button onclick="showTab('preguntas',this)">❓ Preguntas</button>
-  <button onclick="showTab('ex',this)">✏️ Ejercicios</button>
-</nav>
+<div class="sticky-shell">
+  <button type="button" class="theme-toggle" aria-label="Cambiar tema">🌙</button>
+  <div class="tab-nav" role="tablist" aria-label="Secciones de la clase">
+    <button type="button" role="tab" aria-selected="true" class="active" data-tab="resumen">📚 Resumen</button>
+    <button type="button" role="tab" aria-selected="false" data-tab="desde">📍 Desde</button>
+    <button type="button" role="tab" aria-selected="false" data-tab="preguntas">❓ Preguntas</button>
+    <button type="button" role="tab" aria-selected="false" data-tab="ejercicios">✏️ Ejercicios</button>
+    <button type="button" role="tab" aria-selected="false" data-tab="practica">🎯 Práctica</button>
+  </div>
+</div>
 
-<section id="resumen" class="active">
+<section id="resumen" class="active" role="tabpanel">
   <div class="grid">
-    <div class="card"><h3 class="color-title pink">📍 DESDE</h3><p>Se utiliza para situar el inicio en un <b>momento concreto</b>: una fecha, un día, un mes, un año, una estación o un momento determinado.</p></div>
-    <div class="card"><h3 class="color-title purple">⏱️ DESDE HACE</h3><p>Se utiliza para expresar <b>cuánto tiempo</b> ha pasado desde un punto del pasado.</p></div>
-    <div class="card"><h3 class="color-title turq">🔗 DESDE QUE</h3><p>Se utiliza cuando después de <b>desde</b> aparece una acción expresada con un verbo conjugado.</p></div>
-    <div class="card"><h3 class="color-title blue">❓ Dos preguntas diferentes</h3><p><b>¿Desde cuándo...?</b> pregunta por el momento de inicio. <b>¿Cuánto tiempo...?</b> pregunta por la duración.</p></div>
+    <div class="card"><h3 class="pink">📍 DESDE</h3><p>Se utiliza para situar el inicio en un <b>momento concreto</b>: una fecha, un día, un mes, un año, una estación o un momento determinado.</p></div>
+    <div class="card"><h3 class="purple">⏱️ DESDE HACE</h3><p>Se utiliza para expresar <b>cuánto tiempo</b> ha pasado desde un punto del pasado.</p></div>
+    <div class="card"><h3 class="turq">🔗 DESDE QUE</h3><p>Se utiliza cuando después de <b>desde</b> aparece una acción expresada con un verbo conjugado.</p></div>
+    <div class="card"><h3 class="blue">❓ Dos preguntas diferentes</h3><p><b>¿Desde cuándo...?</b> pregunta por el momento de inicio. <b>¿Cuánto tiempo...?</b> pregunta por la duración.</p></div>
   </div>
-  <div class="card" style="margin-top:14px">
-    <h3>🎯 Regla central de la clase</h3>
-    <p><b>DESDE = punto concreto</b> · <b>DESDE HACE = cantidad de tiempo</b> · <b>DESDE QUE = verbo</b>.</p>
-  </div>
+  <div class="card" style="margin-top:14px"><h3 class="yellow">🎯 Regla central de la clase</h3><p><b>DESDE = punto concreto</b> · <b>DESDE HACE = cantidad de tiempo</b> · <b>DESDE QUE = verbo</b>.</p></div>
 </section>
 
-<section id="desde">
+<section id="desde" role="tabpanel">
   <div class="card">
     <h2 class="purple">📍 DESDE + punto concreto</h2>
-    <div style="overflow-x:auto;">
-    <table>
+    <div class="table-wrap"><table>
       <tr><th>Tipo</th><th>Ejemplo</th></tr>
-      <tr><td>Fecha</td><td>Vivo en España <b>desde el 1 de septiembre</b>.</td></tr>
-      <tr><td>Día</td><td>Estoy aquí <b>desde el jueves</b>.</td></tr>
-      <tr><td>Mes</td><td>Vivo aquí <b>desde septiembre</b>.</td></tr>
-      <tr><td>Año</td><td>Estoy en España <b>desde 2016</b>.</td></tr>
-      <tr><td>Estación</td><td>Vivo aquí <b>desde la primavera</b>.</td></tr>
-    </table>
-    </div>
-    <p class="small" style="margin-top:10px;">La profesora destacó que con un día concreto se usa el artículo: <b>desde el 1 de septiembre</b>, <b>desde el 25...</b></p>
+      <tr><td>Fecha</td><td><div class="example sayable">Vivo en España <b>desde el 1 de septiembre</b>.</div></td></tr>
+      <tr><td>Día</td><td><div class="example sayable">Estoy aquí <b>desde el jueves</b>.</div></td></tr>
+      <tr><td>Mes</td><td><div class="example sayable">Vivo aquí <b>desde septiembre</b>.</div></td></tr>
+      <tr><td>Año</td><td><div class="example sayable">Estoy en España <b>desde 2016</b>.</div></td></tr>
+      <tr><td>Estación</td><td><div class="example sayable">Vivo aquí <b>desde la primavera</b>.</div></td></tr>
+    </table></div>
+    <p class="small">La profesora destacó que con un día concreto se usa el artículo: <b>desde el 1 de septiembre</b>, <b>desde el 25...</b></p>
   </div>
-  
+
   <div class="card" style="margin-top:14px">
-    <h2 class="pink">⏱️️ DESDE HACE + duración</h2>
-    <div class="sound-bar"><span class="small">🔊 Toca el botón para escuchar el ejemplo.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
-    <div class="example"><b>Estoy en España desde hace 10 años.</b></div>
-    <div class="example"><b>Trabajo aquí desde hace 2 años.</b></div>
-    <div class="example"><b>Estoy estudiando desde hace 3 horas.</b></div>
-    <div class="example"><b>Vivo aquí desde hace una semana.</b></div>
-    <div class="example"><b>Conozco a mi marido desde hace 20 años.</b></div>
+    <h2 class="pink">⏱️ DESDE HACE + duración</h2>
+    <div class="example sayable">Estoy en España <b>desde hace 10 años</b>.</div>
+    <div class="example sayable">Trabajo aquí <b>desde hace 2 años</b>.</div>
+    <div class="example sayable">Estoy estudiando <b>desde hace 3 horas</b>.</div>
+    <div class="example sayable">Vivo aquí <b>desde hace una semana</b>.</div>
+    <div class="example sayable">Conozco a mi marido <b>desde hace 20 años</b>.</div>
   </div>
-  
+
   <div class="card" style="margin-top:14px">
     <h2 class="turq">🔗 DESDE QUE + verbo</h2>
     <p>Cuando queremos relacionar el inicio con una acción, la profesora indicó que usamos <b>desde que</b> + verbo.</p>
-    <div class="example"><b>Te conozco desde que vivimos en Madrid.</b></div>
-    <div class="example"><b>Estudio español desde que vivo aquí.</b></div>
+    <div class="example sayable">Te conozco <b>desde que vivimos en Madrid</b>.</div>
+    <div class="example sayable">Estudio español <b>desde que vivo aquí</b>.</div>
     <p class="small">La estructura se trabajó en ejercicios de clase junto con <b>desde</b> y <b>desde hace</b>.</p>
   </div>
 </section>
 
-<section id="preguntas">
+<section id="preguntas" role="tabpanel">
   <div class="card">
     <h2 class="blue">❓ ¿Desde cuándo? / ¿Cuánto tiempo?</h2>
-    <div style="overflow-x:auto;">
-    <table>
+    <div class="table-wrap"><table>
       <tr><th>Pregunta</th><th>Qué queremos saber</th><th>Respuesta</th></tr>
-      <tr><td><b>¿Desde cuándo vives en Madrid?</b></td><td>Un punto concreto</td><td>Vivo en Madrid <b>desde 2000</b>.</td></tr>
-      <tr><td><b>¿Cuánto tiempo llevas viviendo en Madrid?</b></td><td>Una duración</td><td>Vivo en Madrid <b>desde hace 10 años</b>.</td></tr>
-      <tr><td><b>¿Desde qué día estás aquí?</b></td><td>Un día determinado</td><td>Estoy aquí <b>desde el jueves</b>.</td></tr>
-      <tr><td><b>¿Desde qué año estudias español?</b></td><td>Un año concreto</td><td>Estudio español <b>desde 2003</b>.</td></tr>
-    </table>
-    </div>
+      <tr><td><b>¿Desde cuándo vives en Madrid?</b></td><td>Un punto concreto</td><td><div class="example sayable">Vivo en Madrid <b>desde 2000</b>.</div></td></tr>
+      <tr><td><b>¿Cuánto tiempo llevas viviendo en Madrid?</b></td><td>Una duración</td><td><div class="example sayable">Vivo en Madrid <b>desde hace 10 años</b>.</div></td></tr>
+      <tr><td><b>¿Desde qué día estás aquí?</b></td><td>Un día determinado</td><td><div class="example sayable">Estoy aquí <b>desde el jueves</b>.</div></td></tr>
+      <tr><td><b>¿Desde qué año estudias español?</b></td><td>Un año concreto</td><td><div class="example sayable">Estudio español <b>desde 2003</b>.</div></td></tr>
+    </table></div>
   </div>
-  
+
   <div class="card" style="margin-top:14px">
     <h3 class="purple">🧠 Pregunta → respuesta</h3>
-    <div class="sound-bar"><span class="small">🔊 Toca el botón para escuchar la frase.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
-    <div class="example"><b>¿Desde cuándo usas gafas?</b> → Desde hace 8 años.</div>
-    <div class="example"><b>¿Desde cuándo estudias español?</b> → Desde 2003.</div>
-    <div class="example"><b>¿Desde cuándo vives en esta casa?</b> → Desde este verano.</div>
-    <div class="example"><b>¿Desde cuándo ves fútbol?</b> → Desde que nací.</div>
+    <div class="example sayable"><b>¿Desde cuándo usas gafas?</b> → Desde hace 8 años.</div>
+    <div class="example sayable"><b>¿Desde cuándo estudias español?</b> → Desde 2003.</div>
+    <div class="example sayable"><b>¿Desde cuándo vives en esta casa?</b> → Desde este verano.</div>
+    <div class="example sayable"><b>¿Desde cuándo ves fútbol?</b> → Desde que nací.</div>
   </div>
 </section>
 
-<section id="ex">
-  <h2>✏️ Ejercicios interactivos</h2>
-  <div class="card"><h3 class="pink">1. Comprueba lo aprendido</h3><div id="q-aula"></div></div>
-  <div class="card" style="margin-top:14px">
-    <h3 class="turq">🗣️ Misión</h3>
+<section id="ejercicios" role="tabpanel">
+  <h2>✏️ Ejercicios</h2>
+  <div id="quiz-box"></div>
+</section>
+
+<section id="practica" role="tabpanel">
+  <div class="card">
+    <h2 class="turq">🎯 Práctica</h2>
     <p>Responde oralmente usando las tres estructuras:</p>
-    <ol style="line-height: 1.8;">
-      <li>¿Desde cuándo vives en Madrid?</li>
-      <li>¿Cuánto tiempo llevas estudiando español?</li>
-      <li>¿Desde qué año estudias español?</li>
-      <li>¿Desde cuándo conoces a tu mejor amigo?</li>
-      <li>¿Desde cuándo haces tu actividad favorita?</li>
-    </ol>
+    <div class="example sayable">¿Desde cuándo vives en Madrid?</div>
+    <div class="example sayable">¿Cuánto tiempo llevas estudiando español?</div>
+    <div class="example sayable">¿Desde qué año estudias español?</div>
+    <div class="example sayable">¿Desde cuándo conoces a tu mejor amigo?</div>
+    <div class="example sayable">¿Desde cuándo haces tu actividad favorita?</div>
   </div>
 </section>
 
-<div class="home-nav" style="justify-content:center; margin-top:22px;"><a href="index.html">🏠 Volver al inicio</a></div>
+<div class="header-home" style="margin-top:22px"><a class="home-link" href="index.html">🏠 Volver al inicio</a></div>
 <footer>Registro individual de la clase del 10/09/2026. Basado en las notas de la clase.</footer>
 </div>
 
 <script>
-function showTab(id,btn){
- document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
- document.getElementById(id).classList.add('active');
- document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
- btn.classList.add('active');
- window.scrollTo({top:0,behavior:'smooth'});
+const QUESTIONS=[
+ ["Vivo en España ___ 2016.",["desde","desde hace","desde que"],0],
+ ["Vivo en España ___ 10 años.",["desde","desde hace","desde que"],1],
+ ["Te conozco ___ vivimos en Madrid.",["desde","desde hace","desde que"],2],
+ ["¿___ vives en Madrid?",["¿Desde cuándo...?","¿Desde cuánto...?","¿Desde qué cantidad...?"],0]
+];
+const EXPLAINS=[
+ "«Desde» se usa con un punto concreto en el tiempo (un año, mes, día).",
+ "«Desde hace» se usa con una cantidad de tiempo (duración).",
+ "«Desde que» se usa cuando la acción va seguida de un verbo conjugado (vivimos).",
+ "Para preguntar por el inicio temporal de una acción usamos «¿Desde cuándo?»."
+];
+let speechRate=.88,esVoice=null,score=0,answered=Array(QUESTIONS.length).fill(false);
+function cleanSpeechText(t){
+ return t.replace(/→/g,'. ').replace(/[🌍😊🗣️📖🎯🎧☕📌❓🧠⚠️🔎💬😨😠🎭🔗✏️]/g,'').replace(/\s+/g,' ').trim();
 }
-
-let slow=false, esVoice=null;
 function pickEs(){
- const vs=speechSynthesis.getVoices();
- esVoice=vs.find(v=>v.lang==='es-ES')||vs.find(v=>v.lang&&v.lang.startsWith('es'))||null;
+ if(!('speechSynthesis' in window))return;
+ const v=speechSynthesis.getVoices();
+ esVoice=v.find(x=>x.lang==='es-ES')||v.find(x=>x.lang&&x.lang.startsWith('es'))||null;
 }
 if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=pickEs;pickEs();}
-function say(txt){
- if(!('speechSynthesis' in window)) return;
+function say(t){
+ if(!('speechSynthesis' in window))return;
  speechSynthesis.cancel();
- // Extrair texto da tag B ou usar o texto passado
- let finalTxt = txt;
- if(txt.includes('→')){
-    finalTxt = txt.replace('→', ' . ');
- }
- const u=new SpeechSynthesisUtterance(finalTxt);
- u.lang='es-ES';if(esVoice)u.voice=esVoice;
- u.rate=slow?.6:.85;
+ const u=new SpeechSynthesisUtterance(cleanSpeechText(t));u.lang='es-ES';u.rate=speechRate;if(esVoice)u.voice=esVoice;
  speechSynthesis.speak(u);
 }
-function toggleSlow(){
- slow=!slow;
- document.querySelectorAll('.slowBtn').forEach(b=>{
-  b.textContent=slow?'🐢 Lento: encendido':'🐢 Lento: apagado';
-  b.setAttribute('aria-pressed',slow);
- });
-}
-
-// botón 🔊 en cada frase de ejemplo
-document.querySelectorAll('.example').forEach(el=>{
- const b=el.querySelector('b'); if(!b) return;
- const txt=el.textContent.trim();
- const wrap=document.createElement('span');
- while(el.firstChild) wrap.appendChild(el.firstChild);
- el.appendChild(wrap);
- el.classList.add('sayable');
- const btn=document.createElement('button');
- btn.type='button';btn.className='speak';btn.textContent='🔊';
- btn.setAttribute('aria-label','Escuchar: '+txt);
- btn.onclick=()=>say(txt);
- el.appendChild(btn);
+document.querySelectorAll('.speed-btn').forEach(b=>b.addEventListener('click',()=>{
+ speechRate=Number(b.dataset.rate);document.querySelectorAll('.speed-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');
+}));
+const savedTheme=localStorage.getItem('a2Theme10');
+if(savedTheme==='light')document.documentElement.setAttribute('data-theme','light');
+document.querySelector('.theme-toggle').addEventListener('click',()=>{
+ const light=document.documentElement.getAttribute('data-theme')==='light';
+ if(light)document.documentElement.removeAttribute('data-theme');else document.documentElement.setAttribute('data-theme','light');
+ localStorage.setItem('a2Theme10',light?'dark':'light');
 });
-if(!('speechSynthesis' in window)) document.querySelectorAll('.sound-bar').forEach(x=>x.style.display='none');
-
-// Motor de Quiz com botão Siguiente
-function makeQuiz(id,qs){
- const box=document.getElementById(id);let qi=0,score=0,locked=false;
- function render(){
-  const q=qs[qi];locked=false;
-  box.innerHTML='<p style="font-size:1.1rem;"><b>'+q.t+'</b></p><div class="choice-grid">'+q.o.map((o,i)=>'<button type="button" class="choice" data-i="'+i+'">'+o+'</button>').join('')+'</div><p class="small" style="margin-top:15px; font-weight:700;">Pregunta '+(qi+1)+' de '+qs.length+' · Puntos: '+score+'</p><div class="feedback" aria-live="polite"></div>';
-  box.querySelectorAll('.choice').forEach(b=>b.addEventListener('click',()=>ans(+b.dataset.i,b)));
- }
- function ans(i,btn){
-  if(locked) return; locked=true;
-  const q=qs[qi];const bs=box.querySelectorAll('.choice');
-  bs.forEach(b=>b.disabled=true);
-  bs[q.a].classList.add('correct');
-  const fb=box.querySelector('.feedback');
-  
-  let btnNext = '<button type="button" class="choice" style="margin-top:15px; padding:8px 16px; width:100%; font-size:1rem; border:none; background:rgba(0,0,0,0.2);" onclick="this.parentElement.dispatchEvent(new CustomEvent(\'next\'))">Siguiente ➔</button>';
-  
-  if(i===q.a){
-   score++;
-   fb.innerHTML='<div style="margin-bottom:8px;">✅ Correcto.</div>'+(q.e||'') + btnNext;
-   fb.className='feedback ok';
-  } else{
-   btn.classList.add('wrong');
-   fb.innerHTML='<div style="margin-bottom:8px;">❌ Casi.</div>'+(q.e||'') + btnNext;
-   fb.className='feedback bad';
-  }
-  
-  fb.addEventListener('next', function handler() {
-   fb.removeEventListener('next', handler);
-   if(qi===qs.length-1){end();}else{qi++;render();}
+document.querySelectorAll('.tab-nav button').forEach(b=>b.addEventListener('click',()=>{
+ document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+ document.getElementById(b.dataset.tab).classList.add('active');
+ document.querySelectorAll('.tab-nav button').forEach(x=>{x.classList.remove('active');x.setAttribute('aria-selected','false')});
+ b.classList.add('active');b.setAttribute('aria-selected','true');window.scrollTo({top:0,behavior:'smooth'});
+}));
+document.querySelectorAll('.example.sayable').forEach(el=>{
+ const text=el.textContent.trim();
+ const b=document.createElement('button');b.type='button';b.className='speak';b.textContent='🔊';b.setAttribute('aria-label','Escuchar ejemplo');
+ b.addEventListener('click',()=>say(text));el.appendChild(b);
+});
+function renderQuiz(){
+ const box=document.getElementById('quiz-box');box.innerHTML='';
+ QUESTIONS.forEach((q,qi)=>{
+  const card=document.createElement('div');card.className='card quiz-question';
+  const head=document.createElement('div');head.className='example sayable';
+  const text=document.createElement('span');text.innerHTML='<b>'+q[0]+'</b>';
+  const pa=document.createElement('button');pa.type='button';pa.className='speak';pa.textContent='🔊';pa.addEventListener('click',e=>{e.stopPropagation();say(q[0])});
+  head.append(text,pa);card.appendChild(head);
+  const grid=document.createElement('div');grid.className='choice-grid';
+  q[1].forEach((opt,oi)=>{
+   const btn=document.createElement('button');btn.type='button';btn.className='choice';btn.dataset.i=oi;
+   const label=document.createElement('span');label.textContent=opt;
+   const audio=document.createElement('button');audio.type='button';audio.className='choice-audio';audio.textContent='🔊';audio.setAttribute('aria-label','Escuchar alternativa');
+   audio.addEventListener('click',e=>{e.stopPropagation();say(opt)});
+   btn.append(label,audio);
+   btn.addEventListener('click',e=>{if(e.target.closest('.choice-audio'))return;select(qi,oi,btn)});
+   grid.appendChild(btn);
   });
- }
- function end(){
-  box.innerHTML='<p style="font-size:1.2rem;"><b>🎉 ¡Fin! Acertaste '+score+' de '+qs.length+'.</b></p><button type="button" class="choice" data-again="1" style="background:var(--turq); color:#000; border:none;">Empezar de nuevo ↺</button>';
-  box.querySelector('[data-again]').addEventListener('click',()=>{qi=0;score=0;render();});
- }
- render();
+  card.appendChild(grid);
+  const fb=document.createElement('div');fb.className='feedback';fb.setAttribute('aria-live','polite');card.appendChild(fb);box.appendChild(card);
+ });
+ const prog=document.createElement('div');prog.className='progress';prog.innerHTML='<span id="bar"></span>';box.appendChild(prog);
+ const status=document.createElement('p');status.className='small';status.id='status';status.textContent='0 de '+QUESTIONS.length+' respondidas.';box.appendChild(status);
+ const final=document.createElement('button');final.type='button';final.className='check-all';final.textContent='Comprobar Respuestas';final.addEventListener('click',finalCheck);box.appendChild(final);
 }
-
-makeQuiz('q-aula',[
- {"t": "Vivo en España ___ 2016.", "o": ["desde", "desde hace", "desde que"], "a": 0, "e": "«Desde» se usa con un punto concreto en el tiempo (un año, mes, día)."}, 
- {"t": "Vivo en España ___ 10 años.", "o": ["desde", "desde hace", "desde que"], "a": 1, "e": "«Desde hace» se usa con una cantidad de tiempo (duración)."}, 
- {"t": "Te conozco ___ vivimos en Madrid.", "o": ["desde", "desde hace", "desde que"], "a": 2, "e": "«Desde que» se usa cuando la acción va seguida de un verbo conjugado (vivimos)."}, 
- {"t": "¿___ vives en Madrid?", "o": ["¿Desde cuándo...?", "¿Desde cuánto...?", "¿Desde qué cantidad...?"], "a": 0, "e": "Para preguntar por el inicio temporal de una acción usamos «¿Desde cuándo?»."}
-]);
-
+function select(qi,oi,btn){
+ if(answered[qi])return;
+ answered[qi]=true;const q=QUESTIONS[qi],card=btn.closest('.quiz-question');
+ card.querySelectorAll('.choice').forEach((b,i)=>{b.disabled=true;if(i===q[2])b.classList.add('correct')});
+ const fb=card.querySelector('.feedback');
+ if(oi===q[2]){score++;btn.classList.add('correct');fb.className='feedback ok';fb.textContent='✅ Correcto. '+EXPLAINS[qi]}
+ else{btn.classList.add('wrong');fb.className='feedback bad';fb.textContent='❌ Incorrecto. La respuesta correcta es «'+q[1][q[2]]+'». '+EXPLAINS[qi]}
+ update();
+}
+function update(){const n=answered.filter(Boolean).length;document.getElementById('bar').style.width=(n/QUESTIONS.length*100)+'%';document.getElementById('status').textContent=n+' de '+QUESTIONS.length+' respondidas.'}
+function finalCheck(){
+ const n=answered.filter(Boolean).length;
+ document.getElementById('status').textContent=n<QUESTIONS.length?'Completa todas las preguntas antes de comprobar el resultado final.':'🎉 Resultado final: '+score+' de '+QUESTIONS.length+' correctas.';
+}
+renderQuiz();
 </script>
 </body>
 </html>

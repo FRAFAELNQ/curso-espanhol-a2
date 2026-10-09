@@ -1,227 +1,551 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#080a18" name="theme-color"/>
 <title>EOI · Español A2 · Aula individual · 14/09/2026</title>
 <style>
-:root{--bg:#10131b;--card:#171b26;--soft:#202637;--text:#f4f6fb;--muted:#b7bdcb;--border:#30384d;--pink:#ff4fa3;--purple:#a56bff;--turq:#25d6d1;--blue:#5da9ff;--yellow:#ffd45c;--ok:#54d68a;--bad:#ff6678}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#20243a 0,#10131b 45%);font-family:Inter,Arial,sans-serif;color:var(--text);line-height:1.55}.container{max-width:1120px;margin:auto;padding:28px 20px 55px}
-header{padding:25px 22px 22px;border:1px solid var(--border);border-radius:24px;background:linear-gradient(135deg,#1c2030,#151925);box-shadow:0 15px 45px #0005}
-.badge{display:inline-block;padding:7px 12px;border-radius:999px;background:linear-gradient(90deg,var(--pink),var(--purple));color:#fff;font-weight:800;font-size:.9rem}
-h1{font-size:clamp(2rem,5vw,3.1rem);margin:15px 0 5px;background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq));-webkit-background-clip:text;background-clip:text;color:transparent}.subtitle{color:var(--muted)}
-nav{position:sticky;top:0;z-index:10;margin:14px 0 4px;padding:8px;display:flex;gap:7px;overflow:auto;background:#10131be8;backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
-nav button{border:1px solid var(--border);background:var(--card);color:var(--text);padding:9px 13px;border-radius:12px;cursor:pointer;white-space:nowrap;font-weight:750}nav button.active{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff}
-section{display:none;padding-top:22px}section.active{display:block}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:0 8px 25px #0003;margin-bottom:14px}.card h2,.card h3{margin-top:0}.pink{color:var(--pink)}.purple{color:var(--purple)}.turq{color:var(--turq)}.blue{color:var(--blue)}.yellow{color:var(--yellow)}
-table{width:100%;border-collapse:collapse;background:var(--card);border-radius:15px;overflow:hidden}th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}th{background:var(--soft);color:var(--purple)}
-.example{border-left:4px solid var(--turq);padding:9px 12px;background:#25d6d112;border-radius:0 12px 12px 0;margin:9px 0}.note{border-left:4px solid var(--yellow);padding:12px 14px;background:#ffd45c12;border-radius:0 12px 12px 0}.small{font-size:.9rem;color:var(--muted)}
-.choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:9px}.choice{padding:12px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;text-align:left}.choice.correct{border-color:var(--ok);background:#54d68a18}.choice.wrong{border-color:var(--bad);background:#ff667818}.feedback{margin-top:12px;font-weight:800}.progress{height:10px;background:var(--soft);border-radius:99px;overflow:hidden}.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq));transition:.25s}
-footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}@media(max-width:600px){.container{padding:14px 10px 45px}th,td{padding:8px;font-size:.9rem}.card{padding:15px}}
-</style>
-<style>
-.home-nav{
-  display:flex;
-  justify-content:flex-start;
-  margin:0 0 16px;
+:root{
+  color-scheme:dark;
+  --bg:#080a18;--card:#171d38;--text:#f8f9ff;--muted:#b8c0dd;
+  --pink:#ff5ca8;--purple:#a56cff;--turq:#37e6d4;--yellow:#ffd34e;
+  --blue:#42a5ff;--soft:#252e50;--border:#2d385e;--ok:#4be59a;--bad:#ff6b7c;--header-border:#48598d;--header-start:#172c6c;--header-mid:#49237f;--header-end:#741c58;--header-text:#fff;--header-shadow:rgba(0,0,0,.55);
 }
-.home-nav.bottom{
-  margin:22px 0 0;
-  justify-content:center;
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 10% 0,#1d2b66,transparent 38%),radial-gradient(circle at 90% 0,#5a174d,transparent 35%),var(--bg);background-attachment:fixed;color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}
+.container{max-width:1100px;margin:auto;padding:22px 16px 60px}
+header{text-align:center;padding:26px 20px;margin-bottom:6px;border-radius:22px;border:1px solid var(--header-border);background:linear-gradient(135deg,var(--header-start),var(--header-mid) 52%,var(--header-end));box-shadow:0 18px 50px var(--header-shadow);transition:background .2s ease,border-color .2s ease,color .2s ease}
+.badge{display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;font-weight:800;font-size:.82rem}
+h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);color:var(--header-text)}
+.subtitle{color:var(--header-text);opacity:.92}
+section{display:none;padding-top:22px;scroll-margin-top:66px}
+section.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:0 7px 22px color-mix(in srgb,var(--purple) 10%,transparent)}
+.card h3{margin-top:0}
+.color-title{font-size:1.25rem;font-weight:900}
+.pink{color:var(--pink)}.purple{color:var(--purple)}.turq{color:var(--turq)}.blue{color:var(--blue)}.yellow{color:var(--yellow)}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden}
+th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+th{background:#202a4c;color:#cdbdff}
+.verb-card{margin-bottom:16px}
+.verb-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.verb{font-size:1.45rem;font-weight:900;color:var(--pink)}
+.tag{font-size:.78rem;font-weight:800;padding:4px 9px;border-radius:999px;background:var(--soft);color:#cdbdff}
+.speak{border:0;background:var(--soft);border-radius:10px;padding:7px 10px;cursor:pointer}
+.example{border-left:4px solid var(--turq);padding:9px 12px;background:color-mix(in srgb,var(--turq) 8%,var(--card));border-radius:0 12px 12px 0;margin:9px 0}
+.note{font-size:.9rem;color:var(--muted)}
+.choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:9px}
+.choice{padding:12px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;text-align:center;font-weight:700;font-size:1rem;transition:0.2s}
+.choice:hover{border-color:var(--turq)}
+.choice:disabled{cursor:default}
+.choice.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card));color:var(--ok)}
+.choice.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card));color:var(--bad)}
+.feedback{margin-top:12px;font-weight:800;padding:12px;border-radius:10px;display:none}
+.feedback.ok{display:block;color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card));border:1px solid var(--ok)}
+.feedback.bad{display:block;color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card));border:1px solid var(--bad)}
+details{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px;margin:9px 0}
+summary{cursor:pointer;font-weight:800}
+.progress{height:12px;background:var(--soft);border-radius:99px;overflow:hidden;margin-top:12px;border:1px solid var(--border)}
+.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq));transition:width .3s ease}
+.small{font-size:.88rem;color:var(--muted)}
+.example.sayable{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.example.sayable .speak{flex:0 0 auto;font-size:1.05rem}
+.sound-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:6px 0 12px}
+.speak:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.speak[aria-pressed="true"]{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff}
+footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
+/* Desktop compacto / janela dividida: evita que o grupo de velocidade invada o botão central. */
+@media (min-width:601px) and (max-width:1050px){
+  .header-controls{
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    gap:8px;
+  }
+  .header-controls .home-link{
+    min-width:0;
+    max-width:210px;
+    padding:0 12px;
+    font-size:.88rem;
+  }
+  .header-controls .speed-control{
+    min-width:0;
+    gap:5px;
+    justify-self:end;
+  }
+  .speed-btn{
+    min-width:64px;
+    padding:0 8px;
+    font-size:.78rem;
+  }
 }
-.home-nav a{
-  display:inline-flex;
+
+@media (min-width:601px) and (max-width:780px){
+  .mini-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .container{padding:14px 10px 45px}
+  th,td{padding:8px;font-size:.9rem}
+  .card{padding:15px}
+  .mini-grid{grid-template-columns:1fr}
+}
+
+
+.table-wrap{overflow-x:auto;border-radius:16px}
+.table-wrap table{min-width:520px}
+.mini-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.mini-grid .verb-card{min-width:0}
+.mini-grid .verb-card{margin-bottom:0}
+.form-big{font-size:1.25rem;font-weight:900;color:var(--turq);margin:10px 0 4px}
+ul.clean{margin:8px 0;padding-left:20px}ul.clean li{margin:5px 0}
+
+.mini-forms{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.mini-forms div{flex:1 1 90px;background:var(--soft);border:1px solid var(--border);border-radius:10px;padding:7px 9px;text-align:center}
+.mini-forms small{display:block;color:var(--muted);font-size:.7rem;text-transform:uppercase}
+.mini-forms b{font-size:1.05rem;color:var(--turq)}
+
+
+/* === Template Mestre A2 — interfaz estable === */
+:root[data-theme="light"]{color-scheme:light;--bg:#f5f3ff;--card:#ffffff;--text:#1b2340;--muted:#5e6780;--soft:#e9e6f8;--border:#cfd1ea;--header-border:#aeb8df;--header-start:#dfe9ff;--header-mid:#eadfff;--header-end:#ffe0ef;--header-text:#1b2340;--header-shadow:rgba(73,55,128,.18);--blue:#397fdb;--purple:#7856d9;--turq:#159f93;--yellow:#c58d00}
+:root[data-theme="light"] .pink{color:#c52f76}:root[data-theme="light"] .purple{color:#6840bf}:root[data-theme="light"] .turq{color:#087f78}:root[data-theme="light"] .yellow{color:#946600}:root[data-theme="light"] .blue{color:#2f6fc4}
+body{transition:background .2s ease,color .2s ease}
+header{border-color:var(--header-border);background:linear-gradient(135deg,var(--header-start),var(--header-mid) 52%,var(--header-end));box-shadow:0 18px 50px var(--header-shadow)}
+header h1{color:var(--header-text)}
+header .subtitle{color:var(--header-text);opacity:.88}
+.badge{color:var(--header-text);background:color-mix(in srgb,var(--purple) 12%,transparent);border:1px solid color-mix(in srgb,var(--purple) 22%,transparent)}
+.theme-toggle,.home-link,.speed-btn{background:#ffffff;color:var(--text);border-color:#c7cbe4;box-shadow:0 3px 10px rgba(70,58,125,.08)}
+.theme-toggle:hover,.home-link:hover,.speed-btn:hover{border-color:var(--turq);box-shadow:0 4px 12px rgba(21,159,147,.14)}
+.tab-nav button{background:#ffffff;color:var(--text);border-color:#c9cce5;box-shadow:0 2px 7px rgba(70,58,125,.06)}
+.tab-nav button:hover{background:#f6f4ff;border-color:var(--turq);box-shadow:0 0 0 1px rgba(21,159,147,.18)}
+.sticky-shell{background:color-mix(in srgb,#ffffff 88%,var(--soft));border-color:#c9cce5;box-shadow:0 10px 28px rgba(87,70,145,.12)}
+.card{box-shadow:0 7px 22px rgba(87,70,145,.08)}
+.sticky-shell{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:color-mix(in srgb,var(--bg) 96%,transparent);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:7px 8px;
+  box-shadow:0 10px 28px color-mix(in srgb,var(--purple) 14%,transparent);
+  margin:8px 0 0;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+/* Controles no cabeçalho e NÃO acompanham a rolagem.
+   Inicio permanece centrado · Velocidad fica à direita. */
+.header-controls{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
   align-items:center;
-  gap:8px;
-  padding:10px 16px;
-  border-radius:12px;
-  text-decoration:none;
-  font-weight:700;
-  color:#fff;
-  background:linear-gradient(135deg,#7b2cbf,#ff3cac);
-  box-shadow:0 6px 18px rgba(0,0,0,.22);
+  gap:10px;
+  width:100%;
+  margin:14px auto 0;
 }
-.home-nav a:hover{
-  transform:translateY(-1px);
-  filter:brightness(1.08);
+.header-controls .home-link{grid-column:2;justify-self:center}
+.header-controls .speed-control{grid-column:3;justify-self:end}
+.theme-toggle,.speed-control,.home-link{border:1px solid var(--border);background:var(--card);color:var(--text)}
+.theme-toggle{
+  flex:0 0 auto;height:38px;min-width:72px;border-radius:999px;padding:0 11px;
+  display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;font-size:.92rem;
 }
-</style></head>
+.theme-toggle:hover,.home-link:hover,.speed-btn:hover{border-color:var(--turq)}
+.home-link{
+  flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;height:38px;
+  padding:0 14px;border-radius:12px;text-decoration:none;font-weight:850;position:relative;white-space:nowrap;
+}
+
+.speed-control{flex:0 0 auto;height:38px;display:flex;align-items:center;gap:6px;background:transparent;border:0}
+.speed-label{display:none}
+.speed-btn{
+  flex:0 0 auto;height:40px;min-width:78px;padding:0 11px;border:1px solid var(--border);
+  border-radius:999px;background:var(--card);color:var(--text);font-weight:800;cursor:pointer;white-space:nowrap;
+}
+.speed-btn.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+/* Menu principal: uma única linha, fixa durante a rolagem. */
+.sticky-shell{display:flex;align-items:center;gap:7px}
+.sticky-shell > .theme-toggle{flex:0 0 40px;width:40px;min-width:40px;height:40px;padding:0;border-radius:12px}
+.sticky-shell > .tab-nav{flex:1;min-width:0}
+.tab-nav{
+  display:flex;flex-wrap:nowrap;gap:7px;width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;
+  padding:0;scrollbar-width:thin;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;
+  touch-action:pan-x;
+}
+.tab-nav button{
+  flex:0 0 118px;width:118px;min-width:118px;height:40px;border:1px solid var(--border);
+  background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;font-weight:800;
+  font-size:.84rem;white-space:nowrap;display:flex;align-items:center;justify-content:center;gap:4px;
+  transition:transform .15s ease,border-color .15s ease,background .15s ease;touch-action:manipulation;
+}
+.tab-nav button:hover{border-color:var(--turq);box-shadow:0 0 0 1px color-mix(in srgb,var(--turq) 22%,transparent)}
+.tab-nav button:focus-visible,.speed-btn:focus-visible,.theme-toggle:focus-visible,.home-link:focus-visible{outline:3px solid var(--yellow);outline-offset:0}
+.tab-nav button.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+/* Navegação e controles — ajuste final para mobile */
+.home-nav{display:flex;justify-content:center;align-items:center;margin:22px 0 0}
+.home-nav a{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 16px;border:1px solid var(--border);border-radius:12px;background:var(--card);color:var(--text);text-decoration:none;font-weight:850;white-space:nowrap;transition:transform .15s ease,border-color .15s ease,background .2s ease}
+.home-nav a:hover{transform:translateY(-1px);border-color:var(--turq)}
+.home-nav a:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.home-nav .bottom-home{height:40px;min-height:40px;padding:0 14px;border-radius:12px;font-weight:850}
+
+@media(max-width:600px){
+  .sticky-shell{padding:6px 7px;border-radius:14px;margin-top:7px}
+  .tab-nav{gap:6px}
+  .tab-nav button{flex-basis:112px;width:112px;min-width:112px;height:38px;font-size:.80rem}
+
+  /* Controles: Inicio al centro · Velocidad à direita */
+  .header-controls{
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    gap:6px;
+    margin-top:12px;
+    overflow:visible;
+  }
+  .header-controls .home-link{grid-column:2;justify-self:center;height:40px;min-width:0;padding:0 8px;font-size:.88rem}
+  .header-controls .speed-control{grid-column:3;justify-self:end}
+  .speed-control{height:40px;gap:3px;min-width:0;justify-content:flex-end}
+  .header-controls .speed-btn{height:36px;width:36px;min-width:36px;padding:0;border-radius:10px;font-size:0;line-height:1}
+  .header-controls .speed-btn[data-rate="0.58"]::before{content:"🐢";font-size:1rem}
+  .header-controls .speed-btn[data-rate="0.88"]::before{content:"▶";font-size:.88rem}
+  .header-controls .speed-btn[data-rate="1.12"]::before{content:"⚡";font-size:1rem}
+  .speed-label{display:none}
+
+  /* O menu permanece fixo, mas ocupa apenas uma linha horizontal */
+  .tab-nav{touch-action:pan-x;overscroll-behavior-x:contain}
+}
+@media(max-width:380px){
+  .sticky-shell > .theme-toggle{width:38px;min-width:38px;height:38px}
+  .header-controls{gap:5px}
+  .header-controls .home-link{font-size:.82rem;padding:0 6px}
+  .speed-control{gap:2px}
+  .header-controls .speed-btn{width:34px;min-width:34px;height:34px}
+  .header-controls .speed-btn[data-rate="0.58"]::before,.header-controls .speed-btn[data-rate="1.12"]::before{font-size:.9rem}
+  .header-controls .speed-btn[data-rate="0.88"]::before{font-size:.8rem}
+  .tab-nav button{flex-basis:108px;width:108px;min-width:108px;font-size:.78rem}
+}
+
+
+/* === Correção final: controles responsivos em janela PC dividida === */
+@media (min-width:601px) and (max-width:1050px){
+  .header-controls{
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    gap:14px;
+  }
+  .header-controls .home-link{
+    justify-self:center;
+    max-width:190px;
+    min-width:0;
+    padding:0 11px;
+    font-size:.86rem;
+  }
+  .header-controls .speed-control{
+    justify-self:end;
+    min-width:0;
+    gap:5px;
+  }
+  .header-controls .speed-btn{
+    width:64px;
+    min-width:64px;
+    max-width:64px;
+    padding:0 5px;
+    font-size:.76rem;
+  }
+}
+@media (min-width:601px) and (max-width:780px){
+  .header-controls{gap:10px}
+  .header-controls .home-link{max-width:175px;font-size:.82rem;padding:0 8px}
+  .header-controls .speed-control{gap:3px}
+  .header-controls .speed-btn{width:58px;min-width:58px;max-width:58px;font-size:.70rem;padding:0 3px}
+}
+
+/* === Estrutura definitiva: cabeçalho, velocidade e navegação separados === */
+.header-controls{display:none !important}
+.header-home{display:flex;justify-content:center;align-items:center;margin:14px auto 0;width:100%}
+.header-home .home-link{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 16px;border-radius:12px;text-decoration:none;font-weight:850;white-space:nowrap}
+.audio-controls{display:flex;justify-content:center;align-items:center;width:100%;margin:8px 0 8px}
+.audio-controls .speed-control{display:flex;align-items:center;justify-content:center;gap:7px;height:auto;min-width:0}
+.audio-controls .speed-btn{flex:0 0 auto;height:40px;min-width:78px;padding:0 12px;border:1px solid var(--border);border-radius:999px;background:var(--card);color:var(--text);font-weight:800;cursor:pointer;white-space:nowrap}
+.audio-controls .speed-btn.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+.audio-controls .speed-btn:hover{border-color:var(--turq)}
+@media (max-width:600px){
+  .header-home{margin-top:12px}
+  .header-home .home-link{height:40px;padding:0 14px;font-size:.9rem}
+  .audio-controls{margin:7px 0 7px}
+  .audio-controls .speed-control{gap:5px;width:100%;justify-content:center}
+  .audio-controls .speed-btn{height:38px;min-width:0;width:auto;padding:0 11px;font-size:.82rem}
+}
+@media (max-width:380px){
+  .audio-controls .speed-control{gap:4px}
+  .audio-controls .speed-btn{height:36px;padding:0 9px;font-size:.78rem}
+}
+
+/* Áudio das formas de conjugação — versão completa */
+.mini-forms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:10px 0}
+.mini-forms .mini-form-item{display:grid;grid-template-columns:1fr auto;grid-template-areas:"label audio" "form audio";align-items:center;gap:2px 8px;background:var(--soft);border:1px solid var(--border);border-radius:10px;padding:9px 10px;text-align:left}
+.mini-forms .mini-form-item small{grid-area:label;text-transform:none}
+.mini-forms .mini-form-item b{grid-area:form;font-size:1.05rem;color:var(--turq)}
+.mini-forms .mini-form-item .form-audio{grid-area:audio;align-self:center;padding:6px 8px;border-radius:9px}
+.verb-card td .form-audio{margin-left:6px;padding:4px 7px;border-radius:8px;font-size:.9rem;vertical-align:middle}
+.verb-card .example .example-audio{margin-left:6px;padding:5px 8px;border-radius:9px;vertical-align:middle}
+.form-big .form-audio{margin-left:6px;padding:5px 8px;border-radius:9px;vertical-align:middle}
+@media (max-width:640px){
+  .mini-forms{grid-template-columns:1fr}
+  .mini-forms .mini-form-item{padding:8px 9px}
+}
+
+/* === Auditoria Modelo Mestre 30/09/2026 === */
+.choice-wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:stretch;gap:7px}
+.choice-wrap .choice{width:100%;text-align:center}
+.choice-audio{border:1px solid var(--border);background:var(--soft);color:var(--text);border-radius:10px;padding:0 11px;cursor:pointer;font-size:1rem;min-width:44px}
+.choice-audio:hover{border-color:var(--turq)}
+.choice-audio:focus-visible,.check-all:focus-visible,.inline-speak:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.check-all{display:block;width:100%;margin-top:14px;padding:12px 16px;border:1px solid var(--border);border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;font-weight:900;font-size:1rem;cursor:pointer}
+.check-all:hover{filter:brightness(1.06)}
+.inline-speak{border:0;background:var(--soft);color:var(--text);border-radius:9px;padding:5px 8px;margin-left:7px;cursor:pointer;vertical-align:middle}
+.form-audio{border:0;background:var(--soft);color:var(--text);border-radius:9px;padding:5px 8px;margin-left:7px;cursor:pointer;vertical-align:middle}
+.form-audio:hover,.inline-speak:hover{border-color:var(--turq);box-shadow:0 0 0 1px color-mix(in srgb,var(--turq) 22%,transparent)}
+.verb-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;margin-bottom:16px}
+.verb-card .verb-head{margin-bottom:10px}
+@media(max-width:600px){
+  .choice-wrap{grid-template-columns:minmax(0,1fr) 42px}
+  .choice-audio{padding:0;min-width:42px}
+}
+</style>
+</head>
 <body>
 <div class="container">
 <header>
-<span class="badge">EOI · Español A2 · Aula individual</span>
-<h1>Ficha Interactiva — 14/09/2026</h1>
-<div class="subtitle">Vivir en otro país · Sentimientos y emociones</div>
-</header><div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
-<nav>
-<button class="active" onclick="tab('resumen',this)">📚 Resumen</button>
-<button onclick="tab('video',this)">🎧 Vídeo</button>
-<button onclick="tab('sentirse',this)">😊 Sentirse</button>
-<button onclick="tab('estructuras',this)">💬 Estructuras</button>
-<button onclick="tab('quiz',this)">✏️ Ejercicios</button>
-</nav>
-<section class="active" id="resumen">
-<div class="grid">
-<div class="card"><h3 class="pink">🌍 Vivir en otro país</h3><p>La clase trabajó la experiencia de vivir en el extranjero, con aspectos positivos y negativos y situaciones que producen distintas emociones.</p></div>
-<div class="card"><h3 class="purple">😊 Sentimientos</h3><p>Se practicó cómo expresar emociones mediante <b>sentirse</b>, <b>dar</b> y <b>pasarlo</b>.</p></div>
-<div class="card"><h3 class="turq">🗣️ Práctica oral</h3><p>La profesora pidió utilizar las expresiones aprendidas para explicar <b>cuándo</b> nos sentimos de determinada manera.</p></div>
-<div class="card"><h3 class="blue">📖 Libro</h3><p>Se trabajaron las páginas relacionadas con sentimientos y emociones y el ejercicio oral de la página 126.</p></div>
+  <span class="badge">EOI · Español A2 · Clase Individual</span>
+  <h1>Ficha Interactiva — 14/09/2026</h1>
+  <div class="subtitle">Vivir en otro país · Sentimientos y emociones</div>
+  <div class="header-home"><a class="home-link" href="index.html">🏠 Volver al inicio</a></div>
+</header>
+
+<div class="audio-controls">
+  <div class="speed-control">
+    <button type="button" class="speed-btn" data-rate="0.58">🐢 Lento</button>
+    <button type="button" class="speed-btn active" data-rate="0.88">▶ Normal</button>
+    <button type="button" class="speed-btn" data-rate="1.12">⚡ Rápido</button>
+  </div>
 </div>
-<div class="card"><h3 class="yellow">🎯 Objetivo de la clase</h3><p>Aprender a comunicar cómo nos sentimos y expresar experiencias positivas y negativas de vivir en otro país.</p></div>
+
+<div class="sticky-shell">
+  <button type="button" class="theme-toggle" aria-label="Cambiar tema">🌙</button>
+  <div class="tab-nav" role="tablist" aria-label="Secciones de la clase">
+    <button type="button" role="tab" aria-selected="true" class="active" data-tab="resumen">📚 Resumen</button>
+    <button type="button" role="tab" aria-selected="false" data-tab="video">🎧 Vídeo</button>
+    <button type="button" role="tab" aria-selected="false" data-tab="sentirse">😊 Sentirse</button>
+    <button type="button" role="tab" aria-selected="false" data-tab="estructuras">💬 Estructuras</button>
+    <button type="button" role="tab" aria-selected="false" data-tab="quiz">✏️ Ejercicios</button>
+    <button type="button" role="tab" aria-selected="false" data-tab="practica">🎯 Práctica</button>
+  </div>
+</div>
+
+<section id="resumen" class="active" role="tabpanel">
+  <div class="grid">
+    <div class="card"><h3 class="pink">🌍 Vivir en otro país</h3><p>La clase trabajó la experiencia de vivir en el extranjero, con aspectos positivos y negativos y situaciones que producen distintas emociones.</p></div>
+    <div class="card"><h3 class="purple">😊 Sentimientos</h3><p>Se practicó cómo expresar emociones mediante <b>sentirse</b>, <b>dar</b> y <b>pasarlo</b>.</p></div>
+    <div class="card"><h3 class="turq">🗣️ Práctica oral</h3><p>La profesora pidió utilizar las expresiones aprendidas para explicar <b>cuándo</b> nos sentimos de determinada manera.</p></div>
+    <div class="card"><h3 class="blue">📖 Libro</h3><p>Se trabajaron las páginas relacionadas con sentimientos y emociones y el ejercicio oral de la página 126.</p></div>
+  </div>
+  <div class="card" style="margin-top:14px"><h3 class="yellow">🎯 Objetivo de la clase</h3><p>Aprender a comunicar cómo nos sentimos y expresar experiencias positivas y negativas de vivir en otro país.</p></div>
 </section>
-<section id="video">
-<div class="card">
-<h2 class="purple">🎧 Vídeo: una venezolana en Barcelona</h2>
-<p>La clase escuchó varias veces un vídeo sobre una mujer venezolana que vive en Barcelona.</p>
-<table>
-<tr><th>Información</th><th>Contenido trabajado</th></tr>
-<tr><td>Origen</td><td>Venezolana.</td></tr>
-<tr><td>Residencia</td><td>Barcelona desde hace 18 años.</td></tr>
-<tr><td>Profesión</td><td>Periodista, locutora y actriz.</td></tr>
-<tr><td>Hábito</td><td>Va al mercado de Els Encants cada vez que puede / semanalmente.</td></tr>
-<tr><td>Qué encuentra allí</td><td>Artículos nuevos y usados, telas, encajes y otras cosas.</td></tr>
-</table>
-</div>
-<div class="card">
-<h3 class="pink">☕ Diferencias culturales comentadas</h3>
-<ul>
-<li>El café: se comentó la diferencia entre servirlo en taza y en vaso en distintos lugares.</li>
-<li>Los saludos: la protagonista explica que en Venezuela hay más abrazos y besos.</li>
-<li>La palabra <b>guapa</b>: le sorprende su uso cotidiano en España.</li>
-<li>La comunicación: se comentó la percepción de que los españoles pueden ser más directos.</li>
-</ul>
-</div>
-<div class="card">
-<h3 class="turq">📌 Expresión</h3>
-<div class="example"><b>A la tierra que fueres, haz lo que vieres.</b></div>
-<p>En la actividad, los estudiantes explicaron la idea de observar las costumbres del lugar donde uno vive y actuar de acuerdo con ellas.</p>
-</div>
-<div class="card">
-<h3 class="blue">❓ Comprensión auditiva</h3>
-<ol>
-<li>¿De dónde es?</li>
-<li>¿Dónde vive?</li>
-<li>¿Desde cuándo vive allí?</li>
-<li>¿A qué se dedica?</li>
-<li>¿Adónde va una vez por semana?</li>
-<li>¿Qué diferencias observa entre Venezuela y España?</li>
-<li>¿Por qué le sorprende la palabra <i>guapa</i>?</li>
-<li>¿Dónde se abrazan más las personas según su experiencia?</li>
-</ol>
-</div>
+
+<section id="video" role="tabpanel">
+  <div class="card">
+    <h2 class="purple">🎧 Vídeo: una venezolana en Barcelona</h2>
+    <p>La clase escuchó varias veces un vídeo sobre una mujer venezolana que vive en Barcelona.</p>
+    <div class="table-wrap"><table>
+      <tr><th>Información</th><th>Contenido trabajado</th></tr>
+      <tr><td>Origen</td><td>Venezolana.</td></tr>
+      <tr><td>Residencia</td><td>Barcelona desde hace 18 años.</td></tr>
+      <tr><td>Profesión</td><td>Periodista, locutora y actriz.</td></tr>
+      <tr><td>Hábito</td><td>Va al mercado de Els Encants cada vez que puede / semanalmente.</td></tr>
+      <tr><td>Qué encuentra allí</td><td>Artículos nuevos y usados, telas, encajes y otras cosas.</td></tr>
+    </table></div>
+  </div>
+  <div class="card"><h3 class="pink">☕ Diferencias culturales comentadas</h3>
+    <ul>
+      <li>El café: se comentó la diferencia entre servirlo en taza y en vaso en distintos lugares.</li>
+      <li>Los saludos: la protagonista explica que en Venezuela hay más abrazos y besos.</li>
+      <li>La palabra <b>guapa</b>: le sorprende su uso cotidiano en España.</li>
+      <li>La comunicación: se comentó la percepción de que los españoles pueden ser más directos.</li>
+    </ul>
+  </div>
+  <div class="card"><h3 class="turq">📌 Expresión</h3><div class="example sayable"><b>A la tierra que fueres, haz lo que vieres.</b></div><p>En la actividad, los estudiantes explicaron la idea de observar las costumbres del lugar donde uno vive y actuar de acuerdo con ellas.</p></div>
+  <div class="card"><h3 class="blue">❓ Comprensión auditiva</h3>
+    <ol><li>¿De dónde es?</li><li>¿Dónde vive?</li><li>¿Desde cuándo vive allí?</li><li>¿A qué se dedica?</li><li>¿Adónde va una vez por semana?</li><li>¿Qué diferencias observa entre Venezuela y España?</li><li>¿Por qué le sorprende la palabra <i>guapa</i>?</li><li>¿Dónde se abrazan más las personas según su experiencia?</li></ol>
+  </div>
 </section>
-<section id="sentirse">
-<div class="card">
-<h2 class="purple">😊 Sentirse</h2>
-<p>La profesora trabajó <b>sentirse</b> para expresar cómo una persona experimenta una emoción o sensación.</p>
-<table>
-<tr><th>Persona</th><th>Forma</th></tr>
-<tr><td>yo</td><td><b>me siento</b></td></tr>
-<tr><td>tú</td><td><b>te sientes</b></td></tr>
-<tr><td>él / ella / usted</td><td><b>se siente</b></td></tr>
-<tr><td>nosotros/as</td><td><b>nos sentimos</b></td></tr>
-<tr><td>vosotros/as</td><td><b>os sentís</b></td></tr>
-<tr><td>ellos / ellas / ustedes</td><td><b>se sienten</b></td></tr>
-</table>
-</div>
-<div class="card">
-<h3 class="pink">🧠 Palabras que se combinaron con sentirse</h3>
-<div class="example">Me siento <b>ridículo / ridícula</b>.</div>
-<div class="example">Me siento <b>inseguro / insegura</b>.</div>
-<div class="example">Me siento <b>raro / rara</b>.</div>
-<div class="example">Me siento <b>libre</b>.</div>
-<div class="example">Me siento <b>triste</b>.</div>
-<div class="example">Me siento <b>frustrado / frustrada</b>.</div>
-<div class="example">Me siento <b>nervioso / nerviosa</b>.</div>
-<div class="example">Me siento <b>incómodo / incómoda</b>.</div>
-<div class="example">Me siento <b>genial / fatal / horrible</b>.</div>
-</div>
-<div class="card">
-<h3 class="yellow">⚠️ Sentirse ≠ sentarse</h3>
-<p>La clase destacó que son verbos diferentes aunque sus formas se parezcan.</p>
-<div class="example"><b>Me siento inseguro.</b> → sentimiento.</div>
-<div class="example"><b>Me siento en la silla.</b> → acción de sentarse.</div>
-</div>
-<div class="card">
-<h3 class="blue">🔎 Sentimiento y estado</h3>
-<p>Se trabajó el contraste entre:</p>
-<div class="example"><b>Me siento horrible.</b> → sentimiento / sensación.</div>
-<div class="example"><b>Estoy muerto/a.</b> → estado, no sentimiento.</div>
-</div>
+
+<section id="sentirse" role="tabpanel">
+  <div class="card">
+    <h2 class="purple">😊 Sentirse</h2>
+    <p>La profesora trabajó <b>sentirse</b> para expresar cómo una persona experimenta una emoción o sensación.</p>
+    <div class="verb-card">
+      <div class="verb-head"><div class="verb">sentirse</div><span class="tag">verbo trabajado</span></div>
+      <div class="table-wrap"><table>
+        <tr><th>Persona</th><th>Forma</th></tr>
+        <tr><td>yo</td><td><b>me siento</b><button type="button" class="form-audio" data-speak="me siento" aria-label="Escuchar me siento">🔊</button></td></tr>
+        <tr><td>tú</td><td><b>te sientes</b><button type="button" class="form-audio" data-speak="te sientes" aria-label="Escuchar te sientes">🔊</button></td></tr>
+        <tr><td>él / ella / usted</td><td><b>se siente</b><button type="button" class="form-audio" data-speak="se siente" aria-label="Escuchar se siente">🔊</button></td></tr>
+        <tr><td>nosotros/as</td><td><b>nos sentimos</b><button type="button" class="form-audio" data-speak="nos sentimos" aria-label="Escuchar nos sentimos">🔊</button></td></tr>
+        <tr><td>vosotros/as</td><td><b>os sentís</b><button type="button" class="form-audio" data-speak="os sentís" aria-label="Escuchar os sentís">🔊</button></td></tr>
+        <tr><td>ellos / ellas / ustedes</td><td><b>se sienten</b><button type="button" class="form-audio" data-speak="se sienten" aria-label="Escuchar se sienten">🔊</button></td></tr>
+      </table></div>
+    </div>
+  </div>
+  <div class="card"><h3 class="pink">🧠 Palabras que se combinaron con sentirse</h3>
+    <div class="example sayable">Me siento <b>ridículo / ridícula</b>.</div>
+    <div class="example sayable">Me siento <b>inseguro / insegura</b>.</div>
+    <div class="example sayable">Me siento <b>raro / rara</b>.</div>
+    <div class="example sayable">Me siento <b>libre</b>.</div>
+    <div class="example sayable">Me siento <b>triste</b>.</div>
+    <div class="example sayable">Me siento <b>frustrado / frustrada</b>.</div>
+    <div class="example sayable">Me siento <b>nervioso / nerviosa</b>.</div>
+    <div class="example sayable">Me siento <b>incómodo / incómoda</b>.</div>
+    <div class="example sayable">Me siento <b>genial / fatal / horrible</b>.</div>
+  </div>
+  <div class="card"><h3 class="yellow">⚠️ Sentirse ≠ sentarse</h3>
+    <p>La clase destacó que son verbos diferentes aunque sus formas se parezcan.</p>
+    <div class="example sayable"><b>Me siento inseguro.</b> → sentimiento.</div>
+    <div class="example sayable"><b>Me siento en la silla.</b> → acción de sentarse.</div>
+  </div>
+  <div class="card"><h3 class="blue">🔎 Sentimiento y estado</h3>
+    <p>Se trabajó el contraste entre:</p>
+    <div class="example sayable"><b>Me siento horrible.</b> → sentimiento / sensación.</div>
+    <div class="example sayable"><b>Estoy muerto/a.</b> → estado, no sentimiento.</div>
+  </div>
 </section>
-<section id="estructuras">
-<div class="card">
-<h2 class="pink">💬 Tres formas de expresar cómo te sientes</h2>
-<table>
-<tr><th>Estructura</th><th>Ejemplos trabajados</th></tr>
-<tr><td><b>sentirse + adjetivo</b></td><td>Me siento inseguro cuando hablo en español.</td></tr>
-<tr><td><b>dar + emoción</b></td><td>Me da miedo. / Me da vergüenza. / Me da rabia.</td></tr>
-<tr><td><b>pasarlo + bien/mal/fatal/genial</b></td><td>Lo paso bien cuando estoy con mis amigos.</td></tr>
-</table>
-</div>
-<div class="card">
-<h3 class="purple">😨 Miedo y vergüenza</h3>
-<div class="example"><b>Me da miedo.</b></div>
-<div class="example"><b>Me da vergüenza.</b></div>
-<p class="small">La profesora explicó estas estructuras específicamente con el verbo <b>dar</b>.</p>
-</div>
-<div class="card">
-<h3 class="turq">😠 Rabia</h3>
-<div class="example"><b>Me da rabia que las personas no me entiendan.</b></div>
-</div>
-<div class="card">
-<h3 class="blue">🎭 Pasarlo</h3>
-<div class="example"><b>Lo paso bien</b> cuando estoy con mis amigos.</div>
-<div class="example"><b>Lo paso mal</b> cuando una situación me resulta difícil.</div>
-<div class="example"><b>Lo paso fatal.</b></div>
-<div class="example"><b>Lo paso genial.</b></div>
-<p class="small">La profesora explicó que esta estructura sirve para hablar de cómo vivimos una situación.</p>
-</div>
-<div class="card">
-<h3 class="yellow">🔗 Con «cuando»</h3>
-<p>La práctica oral pedía explicar situaciones concretas:</p>
-<div class="example"><b>Me siento ridículo cuando...</b></div>
-<div class="example"><b>Me siento inseguro cuando...</b></div>
-<div class="example"><b>Me da vergüenza cuando...</b></div>
-<div class="example"><b>Lo paso bien cuando...</b></div>
-</div>
+
+<section id="estructuras" role="tabpanel">
+  <div class="card"><h2 class="pink">💬 Tres formas de expresar cómo te sientes</h2>
+    <div class="table-wrap"><table>
+      <tr><th>Estructura</th><th>Ejemplos trabajados</th></tr>
+      <tr><td><b>sentirse + adjetivo</b></td><td>Me siento inseguro cuando hablo en español.<button type="button" class="inline-speak" data-speak="Me siento inseguro cuando hablo en español." aria-label="Escuchar ejemplo">🔊</button></td></tr>
+      <tr><td><b>dar + emoción</b></td><td>Me da miedo. / Me da vergüenza. / Me da rabia.<button type="button" class="inline-speak" data-speak="Me da miedo. Me da vergüenza. Me da rabia." aria-label="Escuchar ejemplos">🔊</button></td></tr>
+      <tr><td><b>pasarlo + bien/mal/fatal/genial</b></td><td>Lo paso bien cuando estoy con mis amigos.<button type="button" class="inline-speak" data-speak="Lo paso bien cuando estoy con mis amigos." aria-label="Escuchar ejemplo">🔊</button></td></tr>
+    </table></div>
+  </div>
+  <div class="card"><h3 class="purple">😨 Miedo y vergüenza</h3><div class="example sayable"><b>Me da miedo.</b></div><div class="example sayable"><b>Me da vergüenza.</b></div><p class="small">La profesora explicó estas estructuras específicamente con el verbo <b>dar</b>.</p></div>
+  <div class="card"><h3 class="turq">😠 Rabia</h3><div class="example sayable"><b>Me da rabia que las personas no me entiendan.</b></div></div>
+  <div class="card"><h3 class="blue">🎭 Pasarlo</h3><div class="example sayable"><b>Lo paso bien</b> cuando estoy con mis amigos.</div><div class="example sayable"><b>Lo paso mal</b> cuando una situación me resulta difícil.</div><div class="example sayable"><b>Lo paso fatal.</b></div><div class="example sayable"><b>Lo paso genial.</b></div><p class="small">La profesora explicó que esta estructura sirve para hablar de cómo vivimos una situación.</p></div>
+  <div class="card"><h3 class="yellow">🔗 Con «cuando»</h3><p>La práctica oral pedía explicar situaciones concretas:</p><div class="example sayable"><b>Me siento ridículo cuando...</b></div><div class="example sayable"><b>Me siento inseguro cuando...</b></div><div class="example sayable"><b>Me da vergüenza cuando...</b></div><div class="example sayable"><b>Lo paso bien cuando...</b></div></div>
 </section>
-<section id="quiz">
-<div class="card">
-<h2 class="pink">✏️ Comprueba lo aprendido</h2>
-<div class="progress"><span id="bar"></span></div>
-<div class="card"><p><b>1. Completa: «Cuando hablo español con nativos, me ______ inseguro».</b></p>
-<div class="choice-grid"><button class="choice" onclick="ans(this,true,'f1')">siento</button><button class="choice" onclick="ans(this,false,'f1')">doy</button><button class="choice" onclick="ans(this,false,'f1')">paso</button></div><div class="feedback" id="f1"></div></div>
-<div class="card"><p><b>2. ¿Cuál es la estructura trabajada con «vergüenza»?</b></p>
-<div class="choice-grid"><button class="choice" onclick="ans(this,false,'f2')">me siento vergüenza</button><button class="choice" onclick="ans(this,true,'f2')">me da vergüenza</button><button class="choice" onclick="ans(this,false,'f2')">me paso vergüenza</button></div><div class="feedback" id="f2"></div></div>
-<div class="card"><p><b>3. Completa: «Cuando estoy con mis amigos, lo paso ______».</b></p>
-<div class="choice-grid"><button class="choice" onclick="ans(this,true,'f3')">bien</button><button class="choice" onclick="ans(this,false,'f3')">vergüenza</button><button class="choice" onclick="ans(this,false,'f3')">inseguro</button></div><div class="feedback" id="f3"></div></div>
-<div class="card"><p><b>4. ¿Qué significa «A la tierra que fueres, haz lo que vieres» en el contexto trabajado?</b></p>
-<div class="choice-grid"><button class="choice" onclick="ans(this,true,'f4')">Observar las costumbres del lugar y adaptarse a ellas.</button><button class="choice" onclick="ans(this,false,'f4')">No cambiar nunca las propias costumbres.</button><button class="choice" onclick="ans(this,false,'f4')">Viajar solamente a países conocidos.</button></div><div class="feedback" id="f4"></div></div>
-<div class="card"><p><b>5. ¿Cuál expresa un estado y no un sentimiento?</b></p>
-<div class="choice-grid"><button class="choice" onclick="ans(this,false,'f5')">Me siento ridículo.</button><button class="choice" onclick="ans(this,false,'f5')">Me siento inseguro.</button><button class="choice" onclick="ans(this,true,'f5')">Estoy muerto.</button></div><div class="feedback" id="f5"></div></div>
-</div>
-<div class="card">
-<h3 class="turq">🗣️ Misión de práctica</h3>
-<p>Responde oralmente, utilizando las estructuras de esta aula:</p>
-<ol>
-<li>¿Cuándo te sientes inseguro?</li>
-<li>¿Cuándo te sientes bien?</li>
-<li>¿Cuándo te da vergüenza?</li>
-<li>¿Cuándo te da miedo?</li>
-<li>¿Cuándo lo pasas bien?</li>
-<li>¿Cuándo lo pasas mal?</li>
-</ol>
-<p><b>Objetivo:</b> usar <i>me siento</i>, <i>me da</i> y <i>lo paso</i> de forma natural.</p>
-</div>
+
+<section id="quiz" role="tabpanel">
+  <h2>✏️ Ejercicios</h2>
+  <div id="quiz-box"></div>
 </section>
-<div class="home-nav bottom"><a href="index.html">🏠 Volver al inicio</a></div><footer>EOI · Español A2 · Aula individual · 14/09/2026</footer>
+
+<section id="practica" role="tabpanel">
+  <h2>🎯 Práctica</h2>
+  <div class="card">
+    <h3 class="turq">🗣️ Misión de práctica</h3>
+    <p>Responde oralmente, utilizando las estructuras de esta aula:</p>
+    <div class="example sayable"><b>¿Cuándo te sientes inseguro?</b></div>
+    <div class="example sayable"><b>¿Cuándo te sientes bien?</b></div>
+    <div class="example sayable"><b>¿Cuándo te da vergüenza?</b></div>
+    <div class="example sayable"><b>¿Cuándo te da miedo?</b></div>
+    <div class="example sayable"><b>¿Cuándo lo pasas bien?</b></div>
+    <div class="example sayable"><b>¿Cuándo lo pasas mal?</b></div>
+    <p><b>Objetivo:</b> usar <i>me siento</i>, <i>me da</i> y <i>lo paso</i> de forma natural.</p>
+  </div>
+</section>
+
+<div class="header-home" style="margin-top:22px"><a class="home-link" href="index.html">🏠 Volver al inicio</a></div>
+<footer>EOI · Español A2 · Aula individual · 14/09/2026</footer>
 </div>
+
 <script>
-let done=0,total=5;
-function tab(id,b){document.querySelectorAll('section').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');scrollTo({top:0,behavior:'smooth'})}
-function ans(b,ok,id){let f=document.getElementById(id);if(f.dataset.done)return;f.dataset.done=1;done++;b.classList.add(ok?'correct':'wrong');f.textContent=ok?'✅ Correcto.':'❌ Revisa el contenido trabajado en esta aula.';f.style.color=ok?'var(--ok)':'var(--bad)';document.getElementById('bar').style.width=(done/total*100)+'%'}
+const QUESTIONS=[["Completa: «Cuando hablo español con nativos, me ______ inseguro».", ["siento", "doy", "paso"], 0], ["¿Cuál es la estructura trabajada con «vergüenza»?", ["me siento vergüenza", "me da vergüenza", "me paso vergüenza"], 1], ["Completa: «Cuando estoy con mis amigos, lo paso ______».", ["bien", "vergüenza", "inseguro"], 0], ["¿Qué significa «A la tierra que fueres, haz lo que vieres» en el contexto trabajado?", ["Observar las costumbres del lugar y adaptarse a ellas.", "No cambiar nunca las propias costumbres.", "Viajar solamente a países conocidos."], 0], ["¿Cuál expresa un estado y no un sentimiento?", ["Me siento ridículo.", "Me siento inseguro.", "Estoy muerto."], 2]];
+const EXPLAINS=["En la clase se trabajó «me siento + adjetivo».", "La estructura trabajada fue «me da + emoción», por ejemplo «me da vergüenza».", "«Lo paso bien» expresa cómo vivimos una situación.", "La actividad explicó la idea de observar las costumbres del lugar donde uno vive y actuar de acuerdo con ellas.", "En la clase se contrastó «me siento» como sentimiento/sensación con «estoy muerto/a» como estado."];
+let speechRate=.88, esVoice=null, score=0, answered=Array(QUESTIONS.length).fill(false);
+
+function cleanSpeechText(t) {
+ return t.replace(/→/g,'. ').replace(/[🌍😊🗣️📖🎯🎧☕📌❓🧠⚠️🔎💬😨😠🎭🔗✏️]/g,'').replace(/\s+/g,' ').trim();
+}
+function pickEs(){
+ if(!('speechSynthesis' in window)) return;
+ const v=speechSynthesis.getVoices();
+ esVoice=v.find(x=>x.lang==='es-ES')||v.find(x=>x.lang&&x.lang.startsWith('es'))||null;
+}
+if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=pickEs;pickEs();}
+function say(t){
+ if(!('speechSynthesis' in window))return;
+ speechSynthesis.cancel();
+ const u=new SpeechSynthesisUtterance(cleanSpeechText(t));u.lang='es-ES';u.rate=speechRate;if(esVoice)u.voice=esVoice;
+ speechSynthesis.speak(u);
+}
+document.querySelectorAll('[data-speak]').forEach(b=>{
+ b.addEventListener('click',e=>{e.stopPropagation();say(b.dataset.speak)});
+});
+document.querySelectorAll('.speed-btn').forEach(b=>b.addEventListener('click',()=>{
+ speechRate=Number(b.dataset.rate);document.querySelectorAll('.speed-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');
+}));
+const savedTheme=localStorage.getItem('a2Theme14')||'dark';
+document.documentElement.setAttribute('data-theme',savedTheme);
+const themeBtn=document.querySelector('.theme-toggle');
+function updateThemeButton(){
+ const light=document.documentElement.getAttribute('data-theme')==='light';
+ themeBtn.textContent=light?'☀️':'🌙';
+ themeBtn.setAttribute('aria-label',light?'Cambiar a tema oscuro':'Cambiar a tema claro');
+}
+updateThemeButton();
+themeBtn.addEventListener('click',()=>{
+ const next=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+ document.documentElement.setAttribute('data-theme',next);
+ localStorage.setItem('a2Theme14',next);
+ updateThemeButton();
+});
+document.querySelectorAll('.tab-nav button').forEach(b=>b.addEventListener('click',()=>{
+ document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+ document.getElementById(b.dataset.tab).classList.add('active');
+ document.querySelectorAll('.tab-nav button').forEach(x=>{x.classList.remove('active');x.setAttribute('aria-selected','false')});
+ b.classList.add('active');b.setAttribute('aria-selected','true');window.scrollTo({top:0,behavior:'smooth'});
+}));
+document.querySelectorAll('.example.sayable').forEach(el=>{
+ const text=el.textContent.trim();const b=document.createElement('button');b.type='button';b.className='speak';b.textContent='🔊';b.setAttribute('aria-label','Escuchar ejemplo');b.addEventListener('click',()=>say(text));el.appendChild(b);
+});
+
+function renderQuiz(){
+ const box=document.getElementById('quiz-box');box.innerHTML='';
+ QUESTIONS.forEach((q,qi)=>{
+  const card=document.createElement('div');card.className='card quiz-question';
+  const head=document.createElement('div');head.className='example sayable';
+  const text=document.createElement('span');text.innerHTML='<b>'+q[0]+'</b>';
+  const pa=document.createElement('button');pa.type='button';pa.className='speak';pa.textContent='🔊';pa.setAttribute('aria-label','Escuchar pregunta');pa.addEventListener('click',e=>{e.stopPropagation();say(q[0])});
+  head.append(text,pa);card.appendChild(head);
+  const grid=document.createElement('div');grid.className='choice-grid';
+  q[1].forEach((opt,oi)=>{
+   const wrap=document.createElement('div');wrap.className='choice-wrap';
+   const btn=document.createElement('button');btn.type='button';btn.className='choice';btn.dataset.i=oi;
+   const label=document.createElement('span');label.textContent=opt;btn.appendChild(label);
+   btn.addEventListener('click',()=>select(qi,oi,btn));
+   const audio=document.createElement('button');audio.type='button';audio.className='choice-audio';audio.textContent='🔊';audio.setAttribute('aria-label','Escuchar alternativa');
+   audio.addEventListener('click',e=>{e.stopPropagation();say(opt)});
+   wrap.append(btn,audio);grid.appendChild(wrap);
+  });
+  card.appendChild(grid);
+  const fb=document.createElement('div');fb.className='feedback';fb.setAttribute('aria-live','polite');card.appendChild(fb);box.appendChild(card);
+ });
+ const prog=document.createElement('div');prog.className='progress';prog.innerHTML='<span id="bar"></span>';box.appendChild(prog);
+ const status=document.createElement('p');status.className='small';status.id='status';status.textContent='0 de '+QUESTIONS.length+' respondidas.';box.appendChild(status);
+ const final=document.createElement('button');final.type='button';final.className='check-all';final.textContent='Comprobar Respuestas';final.addEventListener('click',finalCheck);box.appendChild(final);
+}
+function select(qi,oi,btn){
+ if(answered[qi])return;
+ answered[qi]=true;const q=QUESTIONS[qi],card=btn.closest('.quiz-question');
+ card.querySelectorAll('.choice').forEach((b,i)=>{b.disabled=true;if(i===q[2])b.classList.add('correct')});
+ const fb=card.querySelector('.feedback');
+ if(oi===q[2]){score++;btn.classList.add('correct');fb.className='feedback ok';fb.textContent='✅ Correcto. '+EXPLAINS[qi]}
+ else{btn.classList.add('wrong');fb.className='feedback bad';fb.textContent='❌ Incorrecto. La respuesta correcta es «'+q[1][q[2]]+'». '+EXPLAINS[qi]}
+ update();
+}
+function update(){const n=answered.filter(Boolean).length;document.getElementById('bar').style.width=(n/QUESTIONS.length*100)+'%';document.getElementById('status').textContent=n+' de '+QUESTIONS.length+' respondidas.'}
+function finalCheck(){
+ const n=answered.filter(Boolean).length;
+ document.getElementById('status').textContent=n<QUESTIONS.length?'Completa todas las preguntas antes de comprobar el resultado final.':'🎉 Resultado final: '+score+' de '+QUESTIONS.length+' correctas.';
+}
+renderQuiz();
 </script>
 </body>
 </html>

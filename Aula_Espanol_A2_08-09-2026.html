@@ -1,28 +1,26 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-ES">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#080a18">
+<meta name="description" content="Ficha Interactiva de Español A2 — clase del 08/09/2026">
 <title>Clase de Español A2 — 08/09/2026</title>
 <style>
 :root{
   color-scheme:dark;
   --bg:#080a18;--card:#171d38;--text:#f8f9ff;--muted:#b8c0dd;
   --pink:#ff5ca8;--purple:#a56cff;--turq:#37e6d4;--yellow:#ffd34e;
-  --blue:#42a5ff;--soft:#252e50;--border:#2d385e;--ok:#4be59a;--bad:#ff6b7c;
+  --blue:#42a5ff;--soft:#252e50;--border:#2d385e;--ok:#4be59a;--bad:#ff6b7c;--header-border:#48598d;--header-start:#172c6c;--header-mid:#49237f;--header-end:#741c58;--header-text:#fff;--header-shadow:rgba(0,0,0,.55);
 }
 *{box-sizing:border-box}
 body{margin:0;background:radial-gradient(circle at 10% 0,#1d2b66,transparent 38%),radial-gradient(circle at 90% 0,#5a174d,transparent 35%),var(--bg);background-attachment:fixed;color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}
 .container{max-width:1100px;margin:auto;padding:22px 16px 60px}
-header{text-align:center;padding:26px 20px;margin-bottom:6px;border-radius:22px;border:1px solid #48598d;background:linear-gradient(135deg,#172c6c,#49237f 52%,#741c58);box-shadow:0 18px 50px #0008}
+header{text-align:center;padding:26px 20px;margin-bottom:6px;border-radius:22px;border:1px solid var(--header-border);background:linear-gradient(135deg,var(--header-start),var(--header-mid) 52%,var(--header-end));box-shadow:0 18px 50px var(--header-shadow);transition:background .2s ease,border-color .2s ease,color .2s ease}
 .badge{display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;font-weight:800;font-size:.82rem}
-h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);color:#fff}
-.subtitle{color:#e3e6ff}
-nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);display:flex;gap:7px;overflow:auto;padding:8px;border-bottom:1px solid var(--border)}
-nav button,.tab{border:1px solid var(--border);background:var(--card);color:var(--text);padding:9px 12px;border-radius:12px;cursor:pointer;white-space:nowrap;font-weight:750}
-nav button.active,.tab.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
-section{display:none;padding-top:22px}
+h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);color:var(--header-text)}
+.subtitle{color:var(--header-text);opacity:.92}
+section{display:none;padding-top:22px;scroll-margin-top:66px}
 section.active{display:block}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:0 7px 22px color-mix(in srgb,var(--purple) 10%,transparent)}
@@ -32,10 +30,16 @@ section.active{display:block}
 table{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden}
 th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
 th{background:#202a4c;color:#cdbdff}
+.verb-card{margin-bottom:16px}
+.verb-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.verb{font-size:1.45rem;font-weight:900;color:var(--pink)}
+.tag{font-size:.78rem;font-weight:800;padding:4px 9px;border-radius:999px;background:var(--soft);color:#cdbdff}
 .speak{border:0;background:var(--soft);border-radius:10px;padding:7px 10px;cursor:pointer}
 .example{border-left:4px solid var(--turq);padding:9px 12px;background:color-mix(in srgb,var(--turq) 8%,var(--card));border-radius:0 12px 12px 0;margin:9px 0}
 .note{font-size:.9rem;color:var(--muted)}
-.choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:9px}
+.choice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media(max-width:760px){.choice-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.choice-grid{grid-template-columns:1fr}}
 .choice{padding:12px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;text-align:center;font-weight:700;font-size:1rem;transition:0.2s}
 .choice:hover{border-color:var(--turq)}
 .choice:disabled{cursor:default}
@@ -44,6 +48,14 @@ th{background:#202a4c;color:#cdbdff}
 .feedback{margin-top:12px;font-weight:800;padding:12px;border-radius:10px;display:none}
 .feedback.ok{display:block;color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card));border:1px solid var(--ok)}
 .feedback.bad{display:block;color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card));border:1px solid var(--bad)}
+.quiz-result{margin-top:14px;padding:14px 16px;border:1px solid var(--border);border-radius:14px;background:var(--card);font-weight:800}
+.result-main{font-size:1.05rem}
+.result-stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.result-stats span{padding:6px 9px;border-radius:999px;background:var(--soft);font-size:.85rem}
+.result-ok{color:var(--ok)}.result-bad{color:var(--bad)}.result-warn{color:var(--yellow)}
+.example.sayable{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.example.sayable .example-audio{flex:0 0 auto}
+
 details{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px;margin:9px 0}
 summary{cursor:pointer;font-weight:800}
 .progress{height:12px;background:var(--soft);border-radius:99px;overflow:hidden;margin-top:12px;border:1px solid var(--border)}
@@ -55,138 +67,409 @@ summary{cursor:pointer;font-weight:800}
 .speak:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
 .speak[aria-pressed="true"]{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff}
 footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
-@media(max-width:600px){.container{padding:14px 10px 45px}th,td{padding:8px;font-size:.9rem}.card{padding:15px}}
+/* Desktop compacto / janela dividida: evita que o grupo de velocidade invada o botão central. */
+@media (min-width:601px) and (max-width:1050px){
+  .header-controls{
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    gap:8px;
+  }
+  .header-controls .home-link{
+    min-width:0;
+    max-width:210px;
+    padding:0 12px;
+    font-size:.88rem;
+  }
+  .header-controls .speed-control{
+    min-width:0;
+    gap:5px;
+    justify-self:end;
+  }
+  .speed-btn{
+    min-width:64px;
+    padding:0 8px;
+    font-size:.78rem;
+  }
+}
 
-.home-nav{text-align:center;margin:14px 0 8px}
-.home-nav a{display:inline-block;padding:10px 18px;border-radius:12px;background:#10152b;border:1px solid var(--border);color:#fff;text-decoration:none;font-weight:800;transition:transform .15s ease,border-color .15s ease}
+@media (min-width:601px) and (max-width:780px){
+}
+@media(max-width:600px){
+  .container{padding:14px 10px 45px}
+  th,td{padding:8px;font-size:.9rem}
+  .card{padding:15px}
+}
+
+
+.table-wrap{overflow-x:auto;border-radius:16px}
+.table-wrap table{min-width:520px}
+.mini-grid{display:flex;flex-direction:column;gap:14px}
+.mini-grid .verb-card{min-width:0}
+.mini-grid .verb-card{margin-bottom:0}
+.form-big{font-size:1.25rem;font-weight:900;color:var(--turq);margin:10px 0 4px}
+ul.clean{margin:8px 0;padding-left:20px}ul.clean li{margin:5px 0}
+
+.mini-forms{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.mini-forms div{flex:1 1 90px;background:var(--soft);border:1px solid var(--border);border-radius:10px;padding:7px 9px;text-align:center}
+.mini-forms small{display:block;color:var(--muted);font-size:.7rem;text-transform:uppercase}
+.mini-forms b{font-size:1.05rem;color:var(--turq)}
+
+
+/* === Template Mestre A2 — interfaz estable === */
+:root[data-theme="light"]{color-scheme:light;--bg:#f5f3ff;--card:#ffffff;--text:#1b2340;--muted:#5e6780;--soft:#e9e6f8;--border:#cfd1ea;--header-border:#aeb8df;--header-start:#dfe9ff;--header-mid:#eadfff;--header-end:#ffe0ef;--header-text:#1b2340;--header-shadow:rgba(73,55,128,.18);--blue:#397fdb;--purple:#7856d9;--turq:#159f93;--yellow:#c58d00}
+:root[data-theme="light"] .pink{color:#c52f76}:root[data-theme="light"] .purple{color:#6840bf}:root[data-theme="light"] .turq{color:#087f78}:root[data-theme="light"] .yellow{color:#946600}:root[data-theme="light"] .blue{color:#2f6fc4}
+body{transition:background .2s ease,color .2s ease}
+header{border-color:var(--header-border);background:linear-gradient(135deg,var(--header-start),var(--header-mid) 52%,var(--header-end));box-shadow:0 18px 50px var(--header-shadow)}
+header h1{color:var(--header-text)}
+header .subtitle{color:var(--header-text);opacity:.88}
+.badge{color:var(--header-text);background:color-mix(in srgb,var(--purple) 12%,transparent);border:1px solid color-mix(in srgb,var(--purple) 22%,transparent)}
+.theme-toggle,.home-link,.speed-btn{background:#ffffff;color:var(--text);border-color:#c7cbe4;box-shadow:0 3px 10px rgba(70,58,125,.08)}
+.theme-toggle:hover,.home-link:hover,.speed-btn:hover{border-color:var(--turq);box-shadow:0 4px 12px rgba(21,159,147,.14)}
+.tab-nav button{background:#ffffff;color:var(--text);border-color:#c9cce5;box-shadow:0 2px 7px rgba(70,58,125,.06)}
+.tab-nav button:hover{background:#f6f4ff;border-color:var(--turq);box-shadow:0 0 0 1px rgba(21,159,147,.18)}
+.sticky-shell{background:color-mix(in srgb,#ffffff 88%,var(--soft));border-color:#c9cce5;box-shadow:0 10px 28px rgba(87,70,145,.12)}
+.card{box-shadow:0 7px 22px rgba(87,70,145,.08)}
+.sticky-shell{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:color-mix(in srgb,var(--bg) 96%,transparent);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:7px 8px;
+  box-shadow:0 10px 28px color-mix(in srgb,var(--purple) 14%,transparent);
+  margin:8px 0 0;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+/* Controles no cabeçalho e NÃO acompanham a rolagem.
+   Inicio permanece centrado · Velocidad fica à direita. */
+.header-controls{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+  align-items:center;
+  gap:10px;
+  width:100%;
+  margin:14px auto 0;
+}
+.header-controls .home-link{grid-column:2;justify-self:center}
+.header-controls .speed-control{grid-column:3;justify-self:end}
+.theme-toggle,.speed-control,.home-link{border:1px solid var(--border);background:var(--card);color:var(--text)}
+.theme-toggle{
+  flex:0 0 auto;height:38px;min-width:72px;border-radius:999px;padding:0 11px;
+  display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;font-size:.92rem;
+}
+.theme-toggle:hover,.home-link:hover,.speed-btn:hover{border-color:var(--turq)}
+.home-link{
+  flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;height:38px;
+  padding:0 14px;border-radius:12px;text-decoration:none;font-weight:850;position:relative;white-space:nowrap;
+}
+
+.speed-control{flex:0 0 auto;height:38px;display:flex;align-items:center;gap:6px;background:transparent;border:0}
+.speed-label{display:none}
+.speed-btn{
+  flex:0 0 auto;height:40px;min-width:78px;padding:0 11px;border:1px solid var(--border);
+  border-radius:999px;background:var(--card);color:var(--text);font-weight:800;cursor:pointer;white-space:nowrap;
+}
+.speed-btn.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+/* Menu principal: uma única linha, fixa durante a rolagem. */
+.sticky-shell{display:flex;align-items:center;gap:7px}
+.sticky-shell > .theme-toggle{flex:0 0 40px;width:40px;min-width:40px;height:40px;padding:0;border-radius:12px}
+.sticky-shell > .tab-nav{flex:1;min-width:0}
+.tab-nav{
+  display:flex;flex-wrap:nowrap;gap:7px;width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;
+  padding:0;scrollbar-width:thin;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;
+  touch-action:pan-x;
+}
+.tab-nav button{
+  flex:0 0 118px;width:118px;min-width:118px;height:40px;border:1px solid var(--border);
+  background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;font-weight:800;
+  font-size:.84rem;white-space:nowrap;display:flex;align-items:center;justify-content:center;gap:4px;
+  transition:transform .15s ease,border-color .15s ease,background .15s ease;touch-action:manipulation;
+}
+.tab-nav button:hover{border-color:var(--turq);box-shadow:0 0 0 1px color-mix(in srgb,var(--turq) 22%,transparent)}
+.tab-nav button:focus-visible,.speed-btn:focus-visible,.theme-toggle:focus-visible,.home-link:focus-visible{outline:3px solid var(--yellow);outline-offset:0}
+.tab-nav button.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+/* Navegação e controles — ajuste final para mobile */
+.home-nav{display:flex;justify-content:center;align-items:center;margin:22px 0 0}
+.home-nav a{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 16px;border:1px solid var(--border);border-radius:12px;background:var(--card);color:var(--text);text-decoration:none;font-weight:850;white-space:nowrap;transition:transform .15s ease,border-color .15s ease,background .2s ease}
+.home-nav a:hover{transform:translateY(-1px);border-color:var(--turq)}
 .home-nav a:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
-.home-nav a:hover{transform:translateY(-1px);border-color:var(--blue)}
+.home-nav .bottom-home{height:40px;min-height:40px;padding:0 14px;border-radius:12px;font-weight:850}
+
+@media(max-width:600px){
+  .sticky-shell{padding:6px 7px;border-radius:14px;margin-top:7px}
+  .tab-nav{gap:6px}
+  .tab-nav button{flex-basis:112px;width:112px;min-width:112px;height:38px;font-size:.80rem}
+
+  /* Controles: Inicio al centro · Velocidad à direita */
+  .header-controls{
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    gap:6px;
+    margin-top:12px;
+    overflow:visible;
+  }
+  .header-controls .home-link{grid-column:2;justify-self:center;height:40px;min-width:0;padding:0 8px;font-size:.88rem}
+  .header-controls .speed-control{grid-column:3;justify-self:end}
+  .speed-control{height:40px;gap:3px;min-width:0;justify-content:flex-end}
+  .header-controls .speed-btn{height:36px;width:36px;min-width:36px;padding:0;border-radius:10px;font-size:0;line-height:1}
+  .header-controls .speed-btn[data-rate="0.58"]::before{content:"🐢";font-size:1rem}
+  .header-controls .speed-btn[data-rate="0.88"]::before{content:"▶";font-size:.88rem}
+  .header-controls .speed-btn[data-rate="1.12"]::before{content:"⚡";font-size:1rem}
+  .speed-label{display:none}
+
+  /* O menu permanece fixo, mas ocupa apenas uma linha horizontal */
+  .tab-nav{touch-action:pan-x;overscroll-behavior-x:contain}
+}
+@media(max-width:380px){
+  .sticky-shell > .theme-toggle{width:38px;min-width:38px;height:38px}
+  .header-controls{gap:5px}
+  .header-controls .home-link{font-size:.82rem;padding:0 6px}
+  .speed-control{gap:2px}
+  .header-controls .speed-btn{width:34px;min-width:34px;height:34px}
+  .header-controls .speed-btn[data-rate="0.58"]::before,.header-controls .speed-btn[data-rate="1.12"]::before{font-size:.9rem}
+  .header-controls .speed-btn[data-rate="0.88"]::before{font-size:.8rem}
+  .tab-nav button{flex-basis:108px;width:108px;min-width:108px;font-size:.78rem}
+}
+
+
+/* === Correção final: controles responsivos em janela PC dividida === */
+@media (min-width:601px) and (max-width:1050px){
+  .header-controls{
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    gap:14px;
+  }
+  .header-controls .home-link{
+    justify-self:center;
+    max-width:190px;
+    min-width:0;
+    padding:0 11px;
+    font-size:.86rem;
+  }
+  .header-controls .speed-control{
+    justify-self:end;
+    min-width:0;
+    gap:5px;
+  }
+  .header-controls .speed-btn{
+    width:64px;
+    min-width:64px;
+    max-width:64px;
+    padding:0 5px;
+    font-size:.76rem;
+  }
+}
+@media (min-width:601px) and (max-width:780px){
+  .header-controls{gap:10px}
+  .header-controls .home-link{max-width:175px;font-size:.82rem;padding:0 8px}
+  .header-controls .speed-control{gap:3px}
+  .header-controls .speed-btn{width:58px;min-width:58px;max-width:58px;font-size:.70rem;padding:0 3px}
+}
+
+/* === Estrutura definitiva: cabeçalho, velocidade e navegação separados === */
+.header-controls{display:none !important}
+.header-home{display:flex;justify-content:center;align-items:center;margin:14px auto 0;width:100%}
+.header-home .home-link{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 16px;border-radius:12px;text-decoration:none;font-weight:850;white-space:nowrap}
+.audio-controls{display:flex;justify-content:center;align-items:center;width:100%;margin:8px 0 8px}
+.audio-controls .speed-control{display:flex;align-items:center;justify-content:center;gap:7px;height:auto;min-width:0}
+.audio-controls .speed-btn{flex:0 0 auto;height:40px;min-width:78px;padding:0 12px;border:1px solid var(--border);border-radius:999px;background:var(--card);color:var(--text);font-weight:800;cursor:pointer;white-space:nowrap}
+.audio-controls .speed-btn.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+.audio-controls .speed-btn:hover{border-color:var(--turq)}
+@media (max-width:600px){
+  .header-home{margin-top:12px}
+  .header-home .home-link{height:40px;padding:0 14px;font-size:.9rem}
+  .audio-controls{margin:7px 0 7px}
+  .audio-controls .speed-control{gap:5px;width:100%;justify-content:center}
+  .audio-controls .speed-btn{height:38px;min-width:0;width:auto;padding:0 11px;font-size:.82rem}
+}
+@media (max-width:380px){
+  .audio-controls .speed-control{gap:4px}
+  .audio-controls .speed-btn{height:36px;padding:0 9px;font-size:.78rem}
+}
+
+/* Áudio das formas de conjugação — versão completa */
+.mini-forms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:10px 0}
+.mini-forms .mini-form-item{display:grid;grid-template-columns:1fr auto;grid-template-areas:"label audio" "form audio";align-items:center;gap:2px 8px;background:var(--soft);border:1px solid var(--border);border-radius:10px;padding:9px 10px;text-align:left}
+.mini-forms .mini-form-item small{grid-area:label;text-transform:none}
+.mini-forms .mini-form-item b{grid-area:form;font-size:1.05rem;color:var(--turq)}
+.mini-forms .mini-form-item .form-audio{grid-area:audio;align-self:center;padding:6px 8px;border-radius:9px}
+.verb-card td .form-audio{margin-left:6px;padding:4px 7px;border-radius:8px;font-size:.9rem;vertical-align:middle}
+.verb-card .example .example-audio{margin-left:6px;padding:5px 8px;border-radius:9px;vertical-align:middle}
+.form-big .form-audio{margin-left:6px;padding:5px 8px;border-radius:9px;vertical-align:middle}
+@media (max-width:640px){
+  .mini-forms{grid-template-columns:1fr}
+  .mini-forms .mini-form-item{padding:8px 9px}
+}
+
+/* Ajustes específicos da aula 08/09/2026, mantendo a arquitetura do Modelo Mestre 30/09 */
+.quiz-question-head{display:flex;align-items:center;gap:10px}
+.quiz-question-head p{flex:1;margin:0}
+.choice-wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:stretch;gap:7px}
+.choice-wrap .choice{width:100%}
+.choice-audio{border:1px solid var(--border);background:var(--soft);color:var(--text);border-radius:10px;padding:0 11px;cursor:pointer;font-size:1rem;min-width:44px}
+.choice-audio:hover{border-color:var(--turq);transform:translateY(-1px)}
+.quiz-audio{display:inline-flex;align-items:center;justify-content:center;min-width:42px;height:38px;border:1px solid var(--border);border-radius:10px;background:var(--soft);cursor:pointer}
+.quiz-audio:hover{border-color:var(--turq);transform:translateY(-1px)}
+
+.verb-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.verb-head .verb-head-audio{margin-left:auto}
+.form-audio,.verb-head-audio{display:inline-flex;align-items:center;justify-content:center;
+  min-width:38px;height:34px;border:1px solid var(--border);border-radius:10px;
+  background:var(--soft);color:var(--text);cursor:pointer;font-size:15px}
+.form-audio:hover,.verb-head-audio:hover{transform:translateY(-1px)}
+
 </style>
 </head>
 <body>
 <div class="container">
 <header>
-  <span class="badge">EOI · Español A2 · Clase individual</span>
-  <h1>Ficha interactiva — 08/09/2026</h1>
-  <div class="subtitle">Inicio del curso, presentaciones, preguntas personales, intereses y tiempo libre</div>
+<span class="badge">EOI · Español A2 · Clase Individual</span>
+<h1>Ficha Interactiva — 08/09/2026</h1>
+<div class="subtitle">Inicio del curso, presentaciones, preguntas personales, intereses y tiempo libre</div>
+<div class="header-home"><a aria-label="Volver al inicio del curso" class="home-link" href="index.html">🏠 Volver al inicio</a></div>
 </header>
-<div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
 
-<nav>
-  <button class="active" onclick="showTab('resumen',this)">📚 Resumen</button>
-  <button onclick="showTab('curso',this)">🏫 Curso</button>
-  <button onclick="showTab('preguntas',this)">❓ Preguntas</button>
-  <button onclick="showTab('intereses',this)">⭐ Intereses</button>
-  <button onclick="showTab('ex',this)">✏️ Ejercicios</button>
-</nav>
+<div aria-label="Controles de velocidad de pronunciación" class="audio-controls">
+<div class="speed-control">
+<button aria-label="Velocidad lenta" class="speed-btn" data-rate="0.58" title="Velocidad lenta" type="button">🐢 Lento</button>
+<button aria-label="Velocidad normal" class="speed-btn active" data-rate="0.88" title="Velocidad normal" type="button">▶ Normal</button>
+<button aria-label="Velocidad rápida" class="speed-btn" data-rate="1.12" title="Velocidad rápida" type="button">⚡ Rápido</button>
+</div>
+</div>
 
-<section id="resumen" class="active">
+<div aria-label="Navegación de la clase" class="sticky-shell">
+<button aria-label="Cambiar al modo claro" aria-pressed="false" class="theme-toggle" title="Cambiar al modo claro" type="button">🌙</button>
+<div aria-label="Secciones de la clase" class="tab-nav" role="tablist">
+<button aria-controls="resumen" aria-selected="true" class="active" data-tab="resumen" id="tab-resumen" role="tab">📚 Resumen</button>
+<button aria-controls="vocab" aria-selected="false" data-tab="vocab" id="tab-vocab" role="tab">📝 Vocabulario</button>
+<button aria-controls="gram" aria-selected="false" data-tab="gram" id="tab-gram" role="tab">🧠 Gramática</button>
+<button aria-controls="verbos" aria-selected="false" data-tab="verbos" id="tab-verbos" role="tab">🔤 Verbos</button>
+<button aria-controls="ex" aria-selected="false" data-tab="ex" id="tab-ex" role="tab">✏️ Ejercicios</button>
+<button aria-controls="practica" aria-selected="false" data-tab="practica" id="tab-practica" role="tab">🎯 Práctica</button>
+</div>
+</div>
+
+
+<section aria-labelledby="tab-resumen" class="active" id="resumen" role="tabpanel" tabindex="0">
   <div class="grid">
-    <div class="card"><h3 class="pink">👋 Inicio y presentaciones</h3><p>Presentación de la profesora y de los compañeros. La clase comenzó con preguntas para conocerse y con la intención de aprender los nombres y algunos datos personales.</p></div>
-    <div class="card"><h3 class="purple">🇪🇸 Motivos para estudiar español</h3><p>Se preguntó por qué los estudiantes habían decidido estudiar español: vivir en España, trabajo, objetivos personales y otras necesidades de comunicación.</p></div>
-    <div class="card"><h3 class="turq">🕒 Tiempo en España</h3><p>Se practicaron preguntas como <b>¿Cuánto tiempo llevas en España?</b> y respuestas con años y meses.</p></div>
-    <div class="card"><h3 class="blue">🎯 Intereses y tiempo libre</h3><p>Se revisaron preguntas sobre actividades de tiempo libre, intereses, preferencias, series, periódicos, webs y personas importantes.</p></div>
+    <div class="card"><h3 class="color-title pink">👋 Inicio y presentaciones</h3><p>Presentación de la profesora y de los compañeros. La clase comenzó con preguntas para conocerse y con la intención de aprender los nombres y algunos datos personales.</p></div>
+    <div class="card"><h3 class="color-title purple">🇪🇸 Motivos para estudiar español</h3><p>Se preguntó por qué los estudiantes habían decidido estudiar español: vivir en España, trabajo, objetivos personales y otras necesidades de comunicación.</p></div>
+    <div class="card"><h3 class="color-title turq">🕒 Tiempo en España</h3><p>Se practicaron preguntas como <b>¿Cuánto tiempo llevas en España?</b> y respuestas con años y meses.</p></div>
+    <div class="card"><h3 class="color-title blue">🎯 Intereses y tiempo libre</h3><p>Se revisaron preguntas sobre actividades de tiempo libre, intereses, preferencias, series, periódicos, webs y personas importantes.</p></div>
   </div>
-  <div class="card" style="margin-top:14px">
-    <h3>📌 Importante</h3>
-    <p>Esta ficha corresponde únicamente a la clase del <b>8 de septiembre de 2026</b>. El contenido se ha organizado a partir de la grabación y transcripción de esta clase.</p>
-  </div>
+  <div class="card" style="margin-top:14px"><h3 class="yellow">📌 Importante</h3><p>Esta ficha corresponde únicamente a la clase del <b>8 de septiembre de 2026</b>. El contenido se ha organizado a partir de la grabación y transcripción de esta clase.</p></div>
 </section>
 
-<section id="curso">
-  <div class="card">
-    <h2 class="purple">🏫 Información del curso</h2>
-    <ul style="line-height: 1.8;">
-      <li>El nivel A2 tiene <b>120 horas de clase</b>.</li>
-      <li>Las clases son de <b>lunes a jueves</b>.</li>
-      <li>El curso se desarrolla de <b>septiembre a diciembre</b>.</li>
-      <li>Se explicó la diferencia entre <b>superar el curso</b> y realizar posteriormente una <b>prueba de certificación</b>.</li>
-      <li>La primera prueba del curso se indicó para octubre y la segunda para diciembre.</li>
-      <li>También se explicó que existe una prueba extraordinaria en enero en determinadas situaciones.</li>
-    </ul>
-  </div>
-  <div class="card" style="margin-top:14px">
-    <h3 class="pink">📊 Estructura de las pruebas</h3>
-    <p>La profesora explicó que para superar el curso hay dos pruebas obligatorias y que cada una tiene un peso diferente en la calificación final.</p>
-    <div style="overflow-x:auto;">
-    <table>
-      <tr><th>Prueba</th><th>Fecha indicada en clase</th><th>Peso</th></tr>
-      <tr><td>Primera</td><td>20 de octubre, 19:20</td><td>40 %</td></tr>
-      <tr><td>Segunda</td><td>9 de diciembre</td><td>60 %</td></tr>
-    </table>
-    </div>
-    <p class="small" style="margin-top:10px;">La grabación contiene algunos fragmentos transcritos de forma imperfecta; se conserva aquí la información que aparece claramente en la explicación de la clase.</p>
-  </div>
-</section>
-
-<section id="preguntas">
-  <div class="card">
-    <h2 class="pink">❓ Preguntas para conocer a una persona</h2>
-    <div class="sound-bar"><span class="small">🔊 Toca el botón de cada pregunta para escucharla.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
-    <div class="example"><b>¿Cómo te llamas?</b></div>
-    <div class="example"><b>¿De dónde eres?</b></div>
-    <div class="example"><b>¿Cuánto tiempo llevas en España?</b></div>
-    <div class="example"><b>¿Has estudiado español antes?</b></div>
-    <div class="example"><b>¿Por qué estudias español?</b></div>
-    <div class="example"><b>¿Qué haces en España?</b></div>
-  </div>
-  <div class="card" style="margin-top:14px">
-    <h3 class="purple">🧩 Preguntar por idiomas</h3>
-    <p>También se practicaron preguntas para hablar de las lenguas que una persona conoce y de cuál utiliza mejor.</p>
-    <div class="example"><b>¿Qué lengua materna hablas?</b></div>
-    <div class="example"><b>¿Qué lengua extranjera hablas mejor?</b></div>
-  </div>
-  <div class="card" style="margin-top:14px">
-    <h3 class="turq">🔎 ¿Qué, cuál o cuáles?</h3>
-    <p>La profesora llamó la atención sobre el uso de <b>qué</b> y <b>cuál/cuáles</b> al formular preguntas.</p>
-    <div style="overflow-x:auto;">
-    <table>
-      <tr><th>Forma</th><th>Ejemplo trabajado</th></tr>
-      <tr><td><b>qué</b></td><td>¿Qué periódico lees? · ¿Qué web sigues? · ¿Qué serie te gusta en español?</td></tr>
-      <tr><td><b>cuál</b></td><td>¿Cuál es tu actividad de tiempo libre favorita?</td></tr>
-      <tr><td><b>cuáles</b></td><td>¿Cuáles son tus actividades favoritas?</td></tr>
-    </table>
-    </div>
-  </div>
-</section>
-
-<section id="intereses">
-  <div class="card">
-    <h2 class="turq">⭐ Tiempo libre e intereses</h2>
-    <p>Se trabajó cómo preguntar y responder sobre lo que hacemos en nuestro tiempo libre.</p>
-    <div class="sound-bar"><span class="small">🔊 Toca el botón para escuchar la pregunta.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
-    <div class="example"><b>¿Qué actividades de tiempo libre haces?</b></div>
-    <div class="example"><b>¿Cuál es tu actividad de tiempo libre favorita?</b></div>
-    <div class="example"><b>¿Cuáles son tus actividades favoritas?</b></div>
-  </div>
+<section aria-labelledby="tab-vocab" id="vocab" role="tabpanel" tabindex="0">
+  <div class="card"><h2 class="pink">📝 Vocabulario trabajado</h2><p class="small">Términos y expresiones que aparecen explícitamente en la clase.</p></div>
   <div class="grid" style="margin-top:14px">
-    <div class="card"><h3 class="pink">📺 Ejemplos de intereses</h3><ul><li>series</li><li>películas</li><li>periódicos</li><li>webs</li><li>compras</li><li>deporte</li></ul></div>
-    <div class="card"><h3 class="purple">👥 Personas importantes</h3><p>Se preguntó: <b>¿Cuáles son las personas más importantes de tu vida?</b></p></div>
-    <div class="card"><h3 class="blue">💭 Experiencias</h3><p>Se propuso contar <b>una cosa interesante que has hecho en tu vida</b>.</p></div>
-    <div class="card"><h3 class="yellow">🧘 Relajarse</h3><p>También se habló de la actividad o el lugar favorito para relajarse.</p></div>
+    <div class="card"><div class="color-title pink">costumbre</div><div class="example sayable"><b>costumbre</b></div><p class="small">Algo que una persona hace normalmente.</p></div>
+    <div class="card"><div class="color-title purple">hábito</div><div class="example sayable"><b>hábito</b></div><p class="small">Una acción que se repite normalmente, por ejemplo, todos los días.</p></div>
+    <div class="card"><div class="color-title turq">manía</div><div class="example sayable"><b>manía</b></div><p class="small">Una costumbre o comportamiento repetitivo que puede resultar molesto o que no gusta demasiado.</p></div>
+    <div class="card"><div class="color-title blue">series</div><div class="example sayable"><b>series</b></div></div>
+    <div class="card"><div class="color-title blue">películas</div><div class="example sayable"><b>películas</b></div></div>
+    <div class="card"><div class="color-title purple">periódicos</div><div class="example sayable"><b>periódicos</b></div></div>
+    <div class="card"><div class="color-title turq">webs</div><div class="example sayable"><b>webs</b></div></div>
+    <div class="card"><div class="color-title pink">compras</div><div class="example sayable"><b>compras</b></div></div>
+    <div class="card"><div class="color-title yellow">deporte</div><div class="example sayable"><b>deporte</b></div></div>
   </div>
   <div class="card" style="margin-top:14px">
-    <h3 class="purple">📖 Palabras clave</h3>
-    <div style="overflow-x:auto;">
-    <table>
-      <tr><th>Palabra</th><th>Sentido trabajado en clase</th></tr>
-      <tr><td><b>costumbre</b></td><td>Algo que una persona hace normalmente.</td></tr>
-      <tr><td><b>hábito</b></td><td>Una acción que se repite normalmente, por ejemplo, todos los días.</td></tr>
-      <tr><td><b>manía</b></td><td>Una costumbre o comportamiento repetitivo que puede resultar molesto o que no gusta demasiado.</td></tr>
-    </table>
-    </div>
-    <div class="example" style="margin-top:12px;"><b>Mi mejor costumbre...</b></div>
-    <div class="example"><b>Mi peor manía...</b></div>
+    <h3 class="purple">💬 Expresiones de la clase</h3>
+    <div class="example sayable"><b>Mi mejor costumbre...</b></div>
+    <div class="example sayable"><b>Mi peor manía...</b></div>
   </div>
 </section>
 
-<section id="ex">
+<section aria-labelledby="tab-gram" id="gram" role="tabpanel" tabindex="0">
+  <div class="card"><h2 class="purple">🧠 Qué, cuál o cuáles</h2><p>La profesora llamó la atención sobre el uso de <b>qué</b> y <b>cuál/cuáles</b> al formular preguntas.</p></div>
+  <div class="card" style="margin-top:14px">
+    <div style="overflow-x:auto;">
+      <table>
+        <tr><th>Forma</th><th>Ejemplo trabajado</th></tr>
+        <tr><td><b>qué</b></td><td>¿Qué periódico lees? · ¿Qué web sigues? · ¿Qué serie te gusta en español?</td></tr>
+        <tr><td><b>cuál</b></td><td>¿Cuál es tu actividad de tiempo libre favorita?</td></tr>
+        <tr><td><b>cuáles</b></td><td>¿Cuáles son tus actividades favoritas?</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <h3 class="turq">❓ Preguntas para conocer a una persona</h3>
+    <div class="example sayable"><b>¿Cómo te llamas?</b></div>
+    <div class="example sayable"><b>¿De dónde eres?</b></div>
+    <div class="example sayable"><b>¿Cuánto tiempo llevas en España?</b></div>
+    <div class="example sayable"><b>¿Has estudiado español antes?</b></div>
+    <div class="example sayable"><b>¿Por qué estudias español?</b></div>
+    <div class="example sayable"><b>¿Qué haces en España?</b></div>
+  </div>
+</section>
+
+<section aria-labelledby="tab-verbos" id="verbos" role="tabpanel" tabindex="0">
+  <div class="card"><h2 class="purple">🔤 Verbos y formas trabajadas</h2><p class="small">Solo se muestran verbos y formas sustentados por las preguntas y ejemplos de la clase.</p></div>
+
+  <div class="verb-card card">
+    <div class="verb-head"><span class="verb">llamarse</span><span class="tag">forma trabajada</span><button type="button" class="verb-head-audio speak" onclick="say('llamarse')" aria-label="Escuchar verbo: llamarse">🔊</button></div>
+    <div class="example sayable"><b>¿Cómo te llamas?</b></div>
+  </div>
+
+  <div class="verb-card card">
+    <div class="verb-head"><span class="verb">ser</span><span class="tag">forma trabajada</span><button type="button" class="verb-head-audio speak" onclick="say('ser')" aria-label="Escuchar verbo: ser">🔊</button></div>
+    <div class="example sayable"><b>¿De dónde eres?</b></div>
+  </div>
+
+  <div class="verb-card card">
+    <div class="verb-head"><span class="verb">llevar</span><span class="tag">forma trabajada</span><button type="button" class="verb-head-audio speak" onclick="say('llevar')" aria-label="Escuchar verbo: llevar">🔊</button></div>
+    <div class="example sayable"><b>¿Cuánto tiempo llevas en España?</b></div>
+  </div>
+
+  <div class="verb-card card">
+    <div class="verb-head"><span class="verb">estudiar</span><span class="tag">forma trabajada</span><button type="button" class="verb-head-audio speak" onclick="say('estudiar')" aria-label="Escuchar verbo: estudiar">🔊</button></div>
+    <div class="example sayable"><b>¿Has estudiado español antes?</b></div>
+    <div class="example sayable"><b>¿Por qué estudias español?</b></div>
+  </div>
+
+  <div class="verb-card card">
+    <div class="verb-head"><span class="verb">hacer</span><span class="tag">forma trabajada</span><button type="button" class="verb-head-audio speak" onclick="say('hacer')" aria-label="Escuchar verbo: hacer">🔊</button></div>
+    <div class="example sayable"><b>¿Qué haces en España?</b></div>
+    <div class="example sayable"><b>¿Qué actividades de tiempo libre haces?</b></div>
+    <div class="example sayable"><b>una cosa interesante que has hecho en tu vida</b></div>
+  </div>
+
+  <div class="verb-card card">
+    <div class="verb-head"><span class="verb">hablar</span><span class="tag">forma trabajada</span><button type="button" class="verb-head-audio speak" onclick="say('hablar')" aria-label="Escuchar verbo: hablar">🔊</button></div>
+    <div class="example sayable"><b>¿Qué lengua materna hablas?</b></div>
+    <div class="example sayable"><b>¿Qué lengua extranjera hablas mejor?</b></div>
+  </div>
+
+  <div class="verb-card card">
+    <div class="verb-head"><span class="verb">leer</span><span class="tag">forma trabajada</span><button type="button" class="verb-head-audio speak" onclick="say('leer')" aria-label="Escuchar verbo: leer">🔊</button></div>
+    <div class="example sayable"><b>¿Qué periódico lees?</b></div>
+  </div>
+
+  <div class="verb-card card">
+    <div class="verb-head"><span class="verb">seguir</span><span class="tag">forma trabajada</span><button type="button" class="verb-head-audio speak" onclick="say('seguir')" aria-label="Escuchar verbo: seguir">🔊</button></div>
+    <div class="example sayable"><b>¿Qué web sigues?</b></div>
+  </div>
+
+  <div class="verb-card card">
+    <div class="verb-head"><span class="verb">gustar</span><span class="tag">forma trabajada</span><button type="button" class="verb-head-audio speak" onclick="say('gustar')" aria-label="Escuchar verbo: gustar">🔊</button></div>
+    <div class="example sayable"><b>¿Qué serie te gusta en español?</b></div>
+  </div>
+
+  <div class="verb-card card">
+    <div class="verb-head"><span class="verb">relajarse</span><span class="tag">forma trabajada</span><button type="button" class="verb-head-audio speak" onclick="say('relajarse')" aria-label="Escuchar verbo: relajarse">🔊</button></div>
+    <div class="example sayable"><b>la actividad o el lugar favorito para relajarse</b></div>
+  </div>
+</section>
+
+<section aria-labelledby="tab-ex" id="ex" role="tabpanel" tabindex="0">
   <h2>✏️ Ejercicios interactivos</h2>
   <div class="card"><h3 class="pink">1. Comprueba lo aprendido</h3><div id="q-aula"></div></div>
-  <div class="card" style="margin-top:14px">
-    <h3 class="turq">🗣️ Mini misión</h3>
+</section>
+
+<section aria-labelledby="tab-practica" id="practica" role="tabpanel" tabindex="0">
+  <div class="card">
+    <h2 class="turq">🎯 Mini misión</h2>
     <p>Responde oralmente, sin mirar las respuestas:</p>
-    <ol style="line-height: 1.8;">
+    <ol style="line-height:1.8;">
       <li>¿Cómo te llamas?</li>
       <li>¿De dónde eres?</li>
       <li>¿Cuánto tiempo llevas en España?</li>
@@ -199,104 +482,238 @@ footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
       <li>¿Cuál es tu peor manía?</li>
     </ol>
   </div>
+  <div class="card" style="margin-top:14px">
+    <h3 class="purple">⭐ Tiempo libre e intereses</h3>
+    <div class="example sayable"><b>¿Qué actividades de tiempo libre haces?</b></div>
+    <div class="example sayable"><b>¿Cuál es tu actividad de tiempo libre favorita?</b></div>
+    <div class="example sayable"><b>¿Cuáles son tus actividades favoritas?</b></div>
+    <div class="example sayable"><b>¿Cuáles son las personas más importantes de tu vida?</b></div>
+  </div>
 </section>
 
-<div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
+<div class="home-nav"><a aria-label="Volver al inicio del curso" class="home-link bottom-home" href="index.html">🏠 Volver al inicio</a></div>
 <footer>Registro individual de la clase del 08/09/2026. Basado en la grabación y notas de la clase.</footer>
 </div>
-
 <script>
+// Navegación e inicialización da interfaz
+if('scrollRestoration' in history) history.scrollRestoration='auto';
+
 function showTab(id,btn){
- document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
- document.getElementById(id).classList.add('active');
- document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
- btn.classList.add('active');
- window.scrollTo({top:0,behavior:'smooth'});
+  const target=document.getElementById(id);
+  if(!target) return;
+  document.querySelectorAll('section[role="tabpanel"]').forEach(s=>s.classList.remove('active'));
+  target.classList.add('active');
+  document.querySelectorAll('.tab-nav button[role="tab"]').forEach(b=>{
+    const active=b===btn || b.dataset.tab===id;
+    b.classList.toggle('active',active);
+    b.setAttribute('aria-selected',String(active));
+    b.setAttribute('tabindex',active?'0':'-1');
+  });
+  requestAnimationFrame(()=>target.scrollIntoView({behavior:'smooth',block:'start'}));
 }
 
-let slow=false, esVoice=null;
+function updateThemeColor(theme){
+  const meta=document.querySelector('meta[name="theme-color"]');
+  if(meta) meta.setAttribute('content',theme==='light'?'#f4f6ff':'#080a18');
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.tab-nav button[role="tab"]').forEach(btn=>{
+    btn.setAttribute('tabindex',btn.classList.contains('active')?'0':'-1');
+    btn.addEventListener('click',()=>showTab(btn.dataset.tab,btn));
+    btn.addEventListener('keydown',e=>{
+      if(e.key==='ArrowRight' || e.key==='ArrowLeft'){
+        e.preventDefault();
+        const tabs=[...document.querySelectorAll('.tab-nav button[role="tab"]')];
+        const i=tabs.indexOf(btn);
+        const next=e.key==='ArrowRight' ? (i+1)%tabs.length : (i-1+tabs.length)%tabs.length;
+        tabs[next].focus();
+        showTab(tabs[next].dataset.tab,tabs[next]);
+      }
+    });
+  });
+  document.querySelectorAll('.speed-btn').forEach(btn=>btn.addEventListener('click',()=>setSpeechSpeed(Number(btn.dataset.rate),btn)));
+  document.querySelector('.theme-toggle')?.addEventListener('click',toggleTheme);
+  initSpeechSpeed();
+});
+let esVoice=null;
+let speechRate=parseFloat(localStorage.getItem('a2SpeechRate')||'0.88');
 function pickEs(){
- const vs=speechSynthesis.getVoices();
- esVoice=vs.find(v=>v.lang==='es-ES')||vs.find(v=>v.lang&&v.lang.startsWith('es'))||null;
+  if(!('speechSynthesis' in window)) return;
+  const vs=speechSynthesis.getVoices();
+  esVoice=vs.find(v=>v.lang==='es-ES')||vs.find(v=>v.lang&&v.lang.toLowerCase().startsWith('es'))||null;
 }
 if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=pickEs;pickEs();}
+function setSpeechSpeed(rate,btn){
+  speechRate=rate; localStorage.setItem('a2SpeechRate',String(rate));
+  document.querySelectorAll('.speed-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+}
+function initSpeechSpeed(){
+  const valid=[0.58,0.88,1.12];
+  if(!valid.includes(speechRate)) speechRate=0.88;
+  const active=document.querySelector('.speed-btn[data-rate="'+speechRate+'"]');
+  document.querySelectorAll('.speed-btn').forEach(b=>b.classList.toggle('active',b===active));
+}
+initSpeechSpeed();
 function say(txt){
- if(!('speechSynthesis' in window)) return;
- speechSynthesis.cancel();
- const u=new SpeechSynthesisUtterance(txt);
- u.lang='es-ES';if(esVoice)u.voice=esVoice;
- u.rate=slow?.6:.85;
- speechSynthesis.speak(u);
-}
-function toggleSlow(){
- slow=!slow;
- document.querySelectorAll('.slowBtn').forEach(b=>{
-  b.textContent=slow?'🐢 Lento: encendido':'🐢 Lento: apagado';
-  b.setAttribute('aria-pressed',slow);
- });
-}
-// botón 🔊 en cada frase de ejemplo de TODAS las pestañas
-document.querySelectorAll('.example').forEach(el=>{
- const b=el.querySelector('b'); if(!b) return;
- const txt=b.textContent.trim();
- const wrap=document.createElement('span');
- while(el.firstChild) wrap.appendChild(el.firstChild);
- el.appendChild(wrap);
- el.classList.add('sayable');
- const btn=document.createElement('button');
- btn.type='button';btn.className='speak';btn.textContent='🔊';
- btn.setAttribute('aria-label','Escuchar: '+txt);
- btn.onclick=()=>say(txt);
- el.appendChild(btn);
-});
-if(!('speechSynthesis' in window)) document.querySelectorAll('.sound-bar').forEach(x=>x.style.display='none');
-
-// Motor de Quiz com botão Siguiente
-function makeQuiz(id,qs){
- const box=document.getElementById(id);let qi=0,score=0,locked=false;
- function render(){
-  const q=qs[qi];locked=false;
-  box.innerHTML='<p style="font-size:1.1rem;"><b>'+q.t+'</b></p><div class="choice-grid">'+q.o.map((o,i)=>'<button type="button" class="choice" data-i="'+i+'">'+o+'</button>').join('')+'</div><p class="small" style="margin-top:15px; font-weight:700;">Pregunta '+(qi+1)+' de '+qs.length+' · Puntos: '+score+'</p><div class="feedback" aria-live="polite"></div>';
-  box.querySelectorAll('.choice').forEach(b=>b.addEventListener('click',()=>ans(+b.dataset.i,b)));
- }
- function ans(i,btn){
-  if(locked) return; locked=true;
-  const q=qs[qi];const bs=box.querySelectorAll('.choice');
-  bs.forEach(b=>b.disabled=true);
-  bs[q.a].classList.add('correct');
-  const fb=box.querySelector('.feedback');
-  
-  let btnNext = '<button type="button" class="choice" style="margin-top:15px; padding:8px 16px; width:100%; font-size:1rem; border:none; background:rgba(0,0,0,0.2);" onclick="this.parentElement.dispatchEvent(new CustomEvent(\'next\'))">Siguiente ➔</button>';
-  
-  if(i===q.a){
-   score++;
-   fb.innerHTML='<div style="margin-bottom:8px;">✅ Correcto.</div>'+(q.e||'') + btnNext;
-   fb.className='feedback ok';
-  } else{
-   btn.classList.add('wrong');
-   fb.innerHTML='<div style="margin-bottom:8px;">❌ Casi.</div>'+(q.e||'') + btnNext;
-   fb.className='feedback bad';
+  if(!('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)){
+    alert('La síntesis de voz no está disponible en este navegador.');
+    return;
   }
-  
-  fb.addEventListener('next', function handler() {
-   fb.removeEventListener('next', handler);
-   if(qi===qs.length-1){end();}else{qi++;render();}
-  });
- }
- function end(){
-  box.innerHTML='<p style="font-size:1.2rem;"><b>🎉 ¡Fin! Acertaste '+score+' de '+qs.length+'.</b></p><button type="button" class="choice" data-again="1" style="background:var(--turq); color:#000; border:none;">Empezar de nuevo ↺</button>';
-  box.querySelector('[data-again]').addEventListener('click',()=>{qi=0;score=0;render();});
- }
- render();
+  const synth=window.speechSynthesis;
+  const text=String(txt||'').trim();
+  if(!text) return;
+
+  // Cancela cualquier reproducción anterior y libera el motor antes de iniciar la nueva.
+  synth.cancel();
+  synth.resume();
+
+  const voices=synth.getVoices()||[];
+  const voice=voices.find(v=>v.lang && v.lang.toLowerCase()==='es-es')
+    ||voices.find(v=>v.lang && v.lang.toLowerCase().startsWith('es'))
+    ||null;
+
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='es-ES';
+  u.rate=Number.isFinite(speechRate)?speechRate:0.88;
+  u.pitch=1;
+  u.volume=1;
+  if(voice) u.voice=voice;
+
+  // Alguns navegadores carregam as vozes depois do primeiro clique.
+  // Se ainda não houver voz, o próprio navegador usa o fallback definido por lang.
+  synth.speak(u);
+}
+function updateThemeToggle(theme){
+  const toggle=document.querySelector('.sticky-shell .theme-toggle');
+  if(!toggle) return;
+  const isDark=theme==='dark';
+  toggle.textContent=isDark?'🌙':'☀️';
+  toggle.setAttribute('aria-pressed',String(isDark));
+  const label=isDark?'Cambiar al modo claro':'Cambiar al modo oscuro';
+  toggle.setAttribute('aria-label',label);
+  toggle.setAttribute('title',label);
+}
+function toggleTheme(){
+  const next=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('a2Theme',next);
+  updateThemeToggle(next);
+  updateThemeColor(next);
+}
+(function initTheme(){
+  const saved=localStorage.getItem('a2Theme')||'dark';
+  document.documentElement.setAttribute('data-theme',saved);
+  updateThemeColor(saved);
+  updateThemeToggle(saved);
+})();
+if('speechSynthesis' in window) pickEs();
+
+// Mejoras en el Quiz interactivo
+
+function speakQuizText(txt, keepBlankSilent=true){
+  if(!('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)) return;
+  let text=String(txt||'');
+  if(keepBlankSilent) text=text.replace(/_{2,}|…{1,}|\.{3,}/g, ', ');
+  text=text.replace(/\s+/g,' ').trim();
+  if(!text) return;
+  say(text);
+}
+function sayQuestion(txt){
+  speakQuizText(txt,true);
 }
 
-makeQuiz('q-aula',[
- {"t": "¿Qué pregunta sirve para saber desde cuándo una persona está en España?", "o": ["¿Qué haces en España?", "¿Cuánto tiempo llevas en España?", "¿Qué serie te gusta?"], "a": 1, "e": "¿Cuánto tiempo llevas en España? (Llevar + cantidad de tiempo)"}, 
- {"t": "Completa: ¿_____ actividades de tiempo libre haces?", "o": ["Cuál", "Qué", "Quién"], "a": 1, "e": "Se utiliza 'Qué' para preguntar por la clase o tipo de actividades."}, 
- {"t": "¿Cuál de estas palabras se trabajó como algo que hacemos normalmente?", "o": ["Costumbre", "Certificado", "Calendario"], "a": 0, "e": "Una costumbre es algo que una persona hace normalmente."}, 
- {"t": "¿Qué pregunta se utilizó para hablar de las personas importantes de la vida de alguien?", "o": ["¿Qué web sigues?", "¿Cuáles son las personas más importantes de tu vida?", "¿Cuánto tiempo llevas en España?"], "a": 1, "e": "Se utiliza 'cuáles' cuando preguntamos por varios elementos de un grupo."}
-]);
+function makeQuiz(id,qs){
+  const box=document.getElementById(id); if(!box)return;
+  box.innerHTML='';
+  const form=document.createElement('div'); form.className='quiz-all';
 
+  qs.forEach((q)=>{
+    const card=document.createElement('div'); card.className='quiz-question';
+    const head=document.createElement('div'); head.className='quiz-question-head';
+    const p=document.createElement('p'); p.innerHTML='<b>'+q.t+'</b>'; head.appendChild(p);
+
+    const qa=document.createElement('button');
+    qa.type='button'; qa.className='quiz-audio'; qa.textContent='🔊';
+    qa.title='Escuchar la pregunta'; qa.setAttribute('aria-label','Escuchar la pregunta');
+    qa.addEventListener('click',()=>speakQuizText(q.t,true));
+    head.appendChild(qa); card.appendChild(head);
+
+    const grid=document.createElement('div'); grid.className='choice-grid';
+    q.o.forEach((opt,i)=>{
+      const wrap=document.createElement('div'); wrap.className='choice-wrap';
+      const b=document.createElement('button');
+      b.type='button'; b.className='choice'; b.dataset.i=String(i);
+      b.textContent=opt; b.setAttribute('aria-pressed','false');
+
+      const oa=document.createElement('button');
+      oa.type='button'; oa.className='choice-audio'; oa.textContent='🔊';
+      oa.title='Escuchar alternativa'; oa.setAttribute('aria-label','Escuchar alternativa');
+      oa.addEventListener('click',(e)=>{e.stopPropagation();speakQuizText(opt,false);});
+
+      b.addEventListener('click',()=>{
+        const fb=card.querySelector('.feedback');
+        card.querySelectorAll('.choice').forEach(x=>{
+          x.classList.remove('selected','correct','wrong');
+          x.setAttribute('aria-pressed','false');
+        });
+        b.classList.add('selected'); b.setAttribute('aria-pressed','true');
+        if(i===q.a){
+          b.classList.add('correct'); fb.className='feedback ok';
+          fb.innerHTML='✅ Correcto.'+(q.e?'<br>'+q.e:'');
+        }else{
+          b.classList.add('wrong'); fb.className='feedback bad';
+          fb.innerHTML='❌ Incorrecto. Vuelve a intentarlo.';
+        }
+      });
+      wrap.appendChild(b); wrap.appendChild(oa); grid.appendChild(wrap);
+    });
+    card.appendChild(grid);
+    const fb=document.createElement('div'); fb.className='feedback'; fb.setAttribute('aria-live','polite');
+    card.appendChild(fb); form.appendChild(card);
+  });
+
+  const check=document.createElement('button'); check.type='button'; check.className='check-all';
+  check.textContent='Comprobar Respuestas';
+  const result=document.createElement('div'); result.className='quiz-result'; result.setAttribute('aria-live','polite');
+
+  check.addEventListener('click',()=>{
+    let score=0, unanswered=0;
+    form.querySelectorAll('.quiz-question').forEach((card,qi)=>{
+      const q=qs[qi], selected=card.querySelector('.choice.selected'), fb=card.querySelector('.feedback');
+      if(selected && Number(selected.dataset.i)===q.a) score++;
+      else if(!selected){unanswered++;fb.className='feedback bad';fb.innerHTML='⚠️ Falta responder esta pregunta.';}
+    });
+    const incorrect=qs.length-score-unanswered;
+    result.innerHTML='<div class="result-main">Resultado: <strong>'+score+' de '+qs.length+'</strong> respuestas correctas.</div>'
+      +'<div class="result-stats"><span class="result-ok">✅ '+score+' correctas</span>'
+      +'<span class="result-bad">❌ '+incorrect+' incorrectas</span>'
+      +'<span class="result-warn">⚠️ '+unanswered+' sin responder</span></div>';
+    result.classList.add('show');
+  });
+  box.appendChild(form); box.appendChild(check); box.appendChild(result);
+}
+const QUESTIONS=[
+  {t:'¿Qué pregunta sirve para saber desde cuándo una persona está en España?',o:['¿Qué haces en España?','¿Cuánto tiempo llevas en España?','¿Qué serie te gusta?'],a:1,e:'¿Cuánto tiempo llevas en España? (Llevar + cantidad de tiempo)'},
+  {t:'Completa: ¿_____ actividades de tiempo libre haces?',o:['Cuál','Qué','Quién'],a:1,e:"Se utiliza 'Qué' para preguntar por la clase o tipo de actividades."},
+  {t:'¿Cuál de estas palabras se trabajó como algo que hacemos normalmente?',o:['Costumbre','Certificado','Calendario'],a:0,e:'Una costumbre es algo que una persona hace normalmente.'},
+  {t:'¿Qué pregunta se utilizó para hablar de las personas importantes de la vida de alguien?',o:['¿Qué web sigues?','¿Cuáles son las personas más importantes de tu vida?','¿Cuánto tiempo llevas en España?'],a:1,e:"Se utiliza 'cuáles' cuando preguntamos por varios elementos de un grupo."}
+];
+makeQuiz('q-aula',QUESTIONS);
+
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.example').forEach(el=>{
+    if(el.querySelector('.speak')) return;
+    const source=el.querySelector('b'); if(!source) return;
+    const txt=source.textContent.trim();
+    const button=document.createElement('button');
+    button.type='button'; button.className='speak'; button.textContent='🔊';
+    button.title='Escuchar'; button.setAttribute('aria-label','Escuchar: '+txt);
+    button.addEventListener('click',()=>say(txt));
+    el.appendChild(button);
+  });
+});
 </script>
 </body>
 </html>

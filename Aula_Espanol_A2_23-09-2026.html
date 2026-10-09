@@ -1,42 +1,44 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080a18">
-<title>Clase de Español A2 — 23/09/2026</title>
-<style>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#080a18" name="theme-color"/><title>Ficha Interactiva — 23/09/2026</title><style>
 :root{
   color-scheme:dark;
   --bg:#080a18;--card:#171d38;--text:#f8f9ff;--muted:#b8c0dd;
   --pink:#ff5ca8;--purple:#a56cff;--turq:#37e6d4;--yellow:#ffd34e;
-  --blue:#42a5ff;--soft:#252e50;--border:#2d385e;--ok:#4be59a;--bad:#ff6b7c;
+  --blue:#42a5ff;--soft:#252e50;--border:#2d385e;--ok:#4be59a;--bad:#ff6b7c;--header-border:#48598d;--header-start:#172c6c;--header-mid:#49237f;--header-end:#741c58;--header-text:#fff;--header-shadow:rgba(0,0,0,.55);
 }
 *{box-sizing:border-box}
 body{margin:0;background:radial-gradient(circle at 10% 0,#1d2b66,transparent 38%),radial-gradient(circle at 90% 0,#5a174d,transparent 35%),var(--bg);background-attachment:fixed;color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}
 .container{max-width:1100px;margin:auto;padding:22px 16px 60px}
-header{text-align:center;padding:26px 20px;margin-bottom:6px;border-radius:22px;border:1px solid #48598d;background:linear-gradient(135deg,#172c6c,#49237f 52%,#741c58);box-shadow:0 18px 50px #0008}
+header{text-align:center;padding:26px 20px;margin-bottom:6px;border-radius:22px;border:1px solid var(--header-border);background:linear-gradient(135deg,var(--header-start),var(--header-mid) 52%,var(--header-end));box-shadow:0 18px 50px var(--header-shadow);transition:background .2s ease,border-color .2s ease,color .2s ease}
 .badge{display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;font-weight:800;font-size:.82rem}
-h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);color:#fff}
-.subtitle{color:#e3e6ff}
-nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);display:flex;gap:7px;overflow:auto;padding:8px;border-bottom:1px solid var(--border)}
-nav button,.tab{border:1px solid var(--border);background:var(--card);color:var(--text);padding:9px 12px;border-radius:12px;cursor:pointer;white-space:nowrap;font-weight:750}
-nav button.active,.tab.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
-section{display:none;padding-top:22px}
+h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);color:var(--header-text)}
+.subtitle{color:var(--header-text);opacity:.92}
+section{display:none;padding-top:22px;scroll-margin-top:66px}
 section.active{display:block}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:0 7px 22px color-mix(in srgb,var(--purple) 10%,transparent)}
-.card h2,.card h3{margin-top:0}
+.card h3{margin-top:0}
+.stacked-card{margin-bottom:16px}
 .color-title{font-size:1.25rem;font-weight:900}
 .pink{color:var(--pink)}.purple{color:var(--purple)}.turq{color:var(--turq)}.blue{color:var(--blue)}.yellow{color:var(--yellow)}
-table{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden;min-width:600px;}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden}
 th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
 th{background:#202a4c;color:#cdbdff}
-.table-wrap{overflow-x:auto;border-radius:16px;border:1px solid var(--border);}
+.verb-card{margin-bottom:16px}
+.verb-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.verb{font-size:1.45rem;font-weight:900;color:var(--pink)}
+.tag{font-size:.78rem;font-weight:800;padding:4px 9px;border-radius:999px;background:var(--soft);color:#cdbdff}
 .speak{border:0;background:var(--soft);border-radius:10px;padding:7px 10px;cursor:pointer}
 .example{border-left:4px solid var(--turq);padding:9px 12px;background:color-mix(in srgb,var(--turq) 8%,var(--card));border-radius:0 12px 12px 0;margin:9px 0}
 .note{font-size:.9rem;color:var(--muted)}
-.choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:9px}
+.choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.choice-row{display:grid;grid-template-columns:1fr auto;gap:7px;align-items:stretch}
+.choice-row .choice{width:100%}
+.choice-audio{border:1px solid var(--border);background:var(--soft);color:var(--text);border-radius:12px;padding:0 11px;font-size:1rem;font-weight:800;cursor:pointer;min-width:48px}
+.choice-audio:hover{border-color:var(--turq);transform:translateY(-1px)}
+.choice-audio:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+@media(max-width:600px){.choice-grid{grid-template-columns:1fr}.choice-row{grid-template-columns:1fr auto}}
 .choice{padding:12px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;text-align:center;font-weight:700;font-size:1rem;transition:0.2s}
 .choice:hover{border-color:var(--turq)}
 .choice:disabled{cursor:default}
@@ -56,245 +58,436 @@ summary{cursor:pointer;font-weight:800}
 .speak:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
 .speak[aria-pressed="true"]{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff}
 footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
-@media(max-width:600px){.container{padding:14px 10px 45px}th,td{padding:8px;font-size:.9rem}.card{padding:15px}}
-
-.home-nav{text-align:center;margin:14px 0 8px}
-.home-nav a{display:inline-block;padding:10px 18px;border-radius:12px;background:#10152b;border:1px solid var(--border);color:#fff;text-decoration:none;font-weight:800;transition:transform .15s ease,border-color .15s ease}
-.home-nav a:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
-.home-nav a:hover{transform:translateY(-1px);border-color:var(--blue)}
-</style>
-</head>
-<body>
-<div class="container">
-<header>
-  <span class="badge">EOI · Español A2 · Clase individual</span>
-  <h1>Ficha interactiva — 23/09/2026</h1>
-  <div class="subtitle">Parecer / parecerse · Demostrativos · Descripción de personas</div>
-</header>
-
-<div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
-
-<nav>
-  <button class="active" onclick="showTab('resumen',this)">📚 Resumen</button>
-  <button onclick="showTab('parecer',this)">💬 Parecer</button>
-  <button onclick="showTab('demo',this)">👉 Demostrativos</button>
-  <button onclick="showTab('personas',this)">👤 Personas</button>
-  <button onclick="showTab('ex',this)">✏️ Ejercicios</button>
-</nav>
-
-<section id="resumen" class="active">
-  <div class="grid">
-    <div class="card"><h3 class="color-title pink">💬 Parecer</h3><p>Se trabajó <b>parecer + adjetivo</b> para expresar una impresión, y <b>parecerse a alguien</b> para hablar de semejanza.</p></div>
-    <div class="card"><h3 class="color-title purple">👉 Demostrativos</h3><p><b>este/esta · ese/esa · aquel/aquella</b>, relacionados con <b>aquí · ahí · allí</b>.</p></div>
-    <div class="card"><h3 class="color-title turq">👤 Describir personas</h3><p>Se repasó cómo usar <b>ser, tener y llevar</b> al describir características físicas y elementos visibles.</p></div>
-    <div class="card"><h3 class="color-title blue">🧩 Identificar personas</h3><p>Se practicaron estructuras como <b>el de las gafas</b>, <b>la de pelo rojo</b> y <b>la que lleva gafas</b>.</p></div>
-  </div>
-  <div class="card" style="margin-top:14px">
-    <h3 class="color-title yellow">🎯 Objetivo</h3>
-    <p>Aprender a describir y localizar personas de forma más precisa, y expresar semejanzas utilizando estructuras naturales en español.</p>
-  </div>
-</section>
-
-<section id="parecer">
-  <div class="card">
-    <h2 class="pink">💬 Parecer × parecerse</h2>
-    <div class="sound-bar"><span class="small">🔊 Toca el botón para escuchar los ejemplos.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
-    
-    <div class="example"><b>Parece simpático.</b></div>
-    <p class="small"><b>Parecer + adjetivo</b> permite expresar una impresión o valoración sobre cómo parece una persona.</p>
-    
-    <div class="example"><b>Me parezco a mi madre.</b></div>
-    <p class="small"><b>Parecerse a</b> expresa semejanza con otra persona.</p>
-    
-    <div class="example"><b>Me parezco a mi madre en los ojos.</b></div>
-    <p class="small"><b>Parecerse en + aspecto</b> se usa para indicar en qué aspecto existe la semejanza.</p>
-  </div>
-  
-  <div class="card" style="margin-top:14px">
-    <h3 class="turq">🧠 Preguntas útiles</h3>
-    <div class="sound-bar"><span class="small">🔊</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢</button></div>
-    <div class="example"><b>¿Tú a quién te pareces?</b></div>
-    <div class="example"><b>¿En qué te pareces a tu madre?</b></div>
-    <div class="example"><b>¿A quién se parece?</b></div>
-  </div>
-</section>
-
-<section id="demo">
-  <div class="card">
-    <h2 class="purple">👉 Demostrativos</h2>
-    <div class="table-wrap">
-    <table>
-      <tr><th>Forma</th><th>Referencia espacial trabajada</th></tr>
-      <tr><td><b>este / esta</b></td><td>Algo cercano: <b>aquí</b>.</td></tr>
-      <tr><td><b>ese / esa</b></td><td>Una posición intermedia: <b>ahí</b>. La elección puede depender de la perspectiva.</td></tr>
-      <tr><td><b>aquel / aquella</b></td><td>Algo más lejano: <b>allí</b>.</td></tr>
-    </table>
-    </div>
-  </div>
-  
-  <div class="grid" style="margin-top:14px">
-    <div class="card">
-      <h3 class="turq">⚪ Formas neutras</h3>
-      <p><b>esto · eso · aquello</b> son formas neutras: no tienen género ni plural. Pueden referirse a una cosa, una idea o una situación.</p>
-      <div class="sound-bar"><span class="small">🔊</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢</button></div>
-      <div class="example"><b>¿Qué es aquello?</b></div>
-      <div class="example"><b>¿Qué es eso?</b></div>
-      <div class="example"><b>Esto hay que celebrarlo.</b></div>
-      <div class="example"><b>Por eso</b> <span class="small">(por esa razón)</span></div>
-    </div>
-    <div class="card">
-      <h3 class="yellow">📍 Perspectiva</h3>
-      <p>La elección entre <b>ese</b> y <b>aquel</b> puede depender de la perspectiva del hablante. No se trata solamente de memorizar una distancia rígida.</p>
-    </div>
-  </div>
-</section>
-
-<section id="personas">
-  <div class="card">
-    <h2 class="pink">👤 Descripción de personas</h2>
-    <div class="grid">
-      <div class="card" style="border-left-color:var(--pink); border-left-width:4px;">
-        <h3 class="pink">SER</h3>
-        <p>Para características: <b>ser alto/a, moreno/a, rubio/a, bajito/a, tímido/a, amable, atlético/a, miedoso/a, elegante, moderno/a</b>.</p>
-      </div>
-      <div class="card" style="border-left-color:var(--blue); border-left-width:4px;">
-        <h3 class="blue">TENER</h3>
-        <p>Para rasgos corporales o elementos: <b>tener un móvil en la mano</b>, <b>tener una cana</b>, <b>tener los ojos claros</b>.</p>
-      </div>
-      <div class="card" style="border-left-color:var(--turq); border-left-width:4px;">
-        <h3 class="turq">LLEVAR</h3>
-        <p>Para ropa y accesorios: <b>llevar gafas, llevar barba, llevar el pelo recogido, llevar vaqueros, llevar una camiseta, llevar una bolsa</b>.</p>
-      </div>
-    </div>
-  </div>
-  
-  <div class="card" style="margin-top:14px">
-    <h3 class="purple">📝 Estructuras para identificar</h3>
-    <p>Estas estructuras permiten identificar a una persona sin repetir su nombre o sustantivo.</p>
-    <div class="sound-bar"><span class="small">🔊 Toca el botón de cada frase para escucharla.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
-    <div class="example"><b>El de las gafas.</b></div>
-    <div class="example"><b>La de pelo rojo.</b></div>
-    <div class="example"><b>La que lleva gafas.</b></div>
-    <div class="example"><b>El que está a la izquierda.</b></div>
-  </div>
-  
-  <div class="card" style="margin-top:14px">
-    <h3 class="yellow">🧩 Palabras trabajadas</h3>
-    <p style="line-height: 1.8; font-weight:700;">
-      <span style="color:var(--pink)">sincero</span> · carismático · reservado · canoso · fuerte · <span style="color:var(--turq)">generoso</span> · inexpresivo · elegante · ondulado · pálido · descuidado · <span style="color:var(--purple)">atrevido</span> · amable · castaño · miedoso · rasgado · impaciente · <span style="color:var(--blue)">arrugado</span> · borde · atlético · moderno
-    </p>
-  </div>
-</section>
-
-<section id="ex">
-  <h2>✏️ Ejercicios interactivos</h2>
-  <div class="card"><h3 class="pink">1. Comprueba lo aprendido</h3><div id="q-aula"></div></div>
-  <div class="card" style="margin-top:14px">
-    <h3 class="turq">🎯 Misión</h3>
-    <p>Describe a una persona de una foto utilizando <b>ser + tener + llevar</b>. Después añade una frase con <b>parecer</b> y otra con <b>parecerse a</b>.</p>
-  </div>
-</section>
-
-<div class="home-nav" style="justify-content:center; margin-top:22px;"><a href="index.html">🏠 Volver al inicio</a></div>
-<footer>Registro individual de la clase del 23/09/2026. Basado en las notas de la clase.</footer>
-</div>
-
-<script>
-function showTab(id,btn){
- document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
- document.getElementById(id).classList.add('active');
- document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
- btn.classList.add('active');
- window.scrollTo({top:0,behavior:'smooth'});
+/* Desktop compacto / janela dividida: evita que o grupo de velocidade invada o botão central. */
+@media (min-width:601px) and (max-width:1050px){
+  .header-controls{
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    gap:8px;
+  }
+  .header-controls .home-link{
+    min-width:0;
+    max-width:210px;
+    padding:0 12px;
+    font-size:.88rem;
+  }
+  .header-controls .speed-control{
+    min-width:0;
+    gap:5px;
+    justify-self:end;
+  }
+  .speed-btn{
+    min-width:64px;
+    padding:0 8px;
+    font-size:.78rem;
+  }
 }
 
-let slow=false, esVoice=null;
+@media (min-width:601px) and (max-width:780px){
+  .mini-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .container{padding:14px 10px 45px}
+  th,td{padding:8px;font-size:.9rem}
+  .card{padding:15px}
+  .mini-grid{grid-template-columns:1fr}
+}
+
+
+.table-wrap{overflow-x:auto;border-radius:16px}
+.table-wrap table{min-width:520px}
+.mini-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.mini-grid .verb-card{min-width:0}
+.mini-grid .verb-card{margin-bottom:0}
+.form-big{font-size:1.25rem;font-weight:900;color:var(--turq);margin:10px 0 4px}
+ul.clean{margin:8px 0;padding-left:20px}ul.clean li{margin:5px 0}
+
+.mini-forms{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.mini-forms div{flex:1 1 90px;background:var(--soft);border:1px solid var(--border);border-radius:10px;padding:7px 9px;text-align:center}
+.mini-forms small{display:block;color:var(--muted);font-size:.7rem;text-transform:uppercase}
+.mini-forms b{font-size:1.05rem;color:var(--turq)}
+
+
+/* === Template Mestre A2 — interfaz estable === */
+:root[data-theme="light"]{color-scheme:light;--bg:#f5f3ff;--card:#ffffff;--text:#1b2340;--muted:#5e6780;--soft:#e9e6f8;--border:#cfd1ea;--header-border:#aeb8df;--header-start:#dfe9ff;--header-mid:#eadfff;--header-end:#ffe0ef;--header-text:#1b2340;--header-shadow:rgba(73,55,128,.18);--blue:#397fdb;--purple:#7856d9;--turq:#159f93;--yellow:#c58d00}
+:root[data-theme="light"] .pink{color:#c52f76}:root[data-theme="light"] .purple{color:#6840bf}:root[data-theme="light"] .turq{color:#087f78}:root[data-theme="light"] .yellow{color:#946600}:root[data-theme="light"] .blue{color:#2f6fc4}
+body{transition:background .2s ease,color .2s ease}
+header{border-color:var(--header-border);background:linear-gradient(135deg,var(--header-start),var(--header-mid) 52%,var(--header-end));box-shadow:0 18px 50px var(--header-shadow)}
+header h1{color:var(--header-text)}
+header .subtitle{color:var(--header-text);opacity:.88}
+.badge{color:var(--header-text);background:color-mix(in srgb,var(--purple) 12%,transparent);border:1px solid color-mix(in srgb,var(--purple) 22%,transparent)}
+.theme-toggle,.home-link,.speed-btn{background:#ffffff;color:var(--text);border-color:#c7cbe4;box-shadow:0 3px 10px rgba(70,58,125,.08)}
+.theme-toggle:hover,.home-link:hover,.speed-btn:hover{border-color:var(--turq);box-shadow:0 4px 12px rgba(21,159,147,.14)}
+.tab-nav button{background:#ffffff;color:var(--text);border-color:#c9cce5;box-shadow:0 2px 7px rgba(70,58,125,.06)}
+.tab-nav button:hover{background:#f6f4ff;border-color:var(--turq);box-shadow:0 0 0 1px rgba(21,159,147,.18)}
+.sticky-shell{background:color-mix(in srgb,#ffffff 88%,var(--soft));border-color:#c9cce5;box-shadow:0 10px 28px rgba(87,70,145,.12)}
+.card{box-shadow:0 7px 22px rgba(87,70,145,.08)}
+.sticky-shell{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:color-mix(in srgb,var(--bg) 96%,transparent);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:7px 8px;
+  box-shadow:0 10px 28px color-mix(in srgb,var(--purple) 14%,transparent);
+  margin:8px 0 0;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+/* Controles no cabeçalho e NÃO acompanham a rolagem.
+   Inicio permanece centrado · Velocidad fica à direita. */
+.header-controls{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+  align-items:center;
+  gap:10px;
+  width:100%;
+  margin:14px auto 0;
+}
+.header-controls .home-link{grid-column:2;justify-self:center}
+.header-controls .speed-control{grid-column:3;justify-self:end}
+.theme-toggle,.speed-control,.home-link{border:1px solid var(--border);background:var(--card);color:var(--text)}
+.theme-toggle{
+  flex:0 0 auto;height:38px;min-width:72px;border-radius:999px;padding:0 11px;
+  display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;font-size:.92rem;
+}
+.theme-toggle:hover,.home-link:hover,.speed-btn:hover{border-color:var(--turq)}
+.home-link{
+  flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;height:38px;
+  padding:0 14px;border-radius:12px;text-decoration:none;font-weight:850;position:relative;white-space:nowrap;
+}
+
+.speed-control{flex:0 0 auto;height:38px;display:flex;align-items:center;gap:6px;background:transparent;border:0}
+.speed-label{display:none}
+.speed-btn{
+  flex:0 0 auto;height:40px;min-width:78px;padding:0 11px;border:1px solid var(--border);
+  border-radius:999px;background:var(--card);color:var(--text);font-weight:800;cursor:pointer;white-space:nowrap;
+}
+.speed-btn.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+/* Menu principal: uma única linha, fixa durante a rolagem. */
+.sticky-shell{display:flex;align-items:center;gap:7px}
+.sticky-shell > .theme-toggle{flex:0 0 40px;width:40px;min-width:40px;height:40px;padding:0;border-radius:12px}
+.sticky-shell > .tab-nav{flex:1;min-width:0}
+.tab-nav{
+  display:flex;flex-wrap:nowrap;gap:7px;width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;
+  padding:0;scrollbar-width:thin;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;
+  touch-action:pan-x;
+}
+.tab-nav button{
+  flex:0 0 auto;width:auto;min-width:max-content;height:40px;padding:0 14px;border:1px solid var(--border);
+  background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;font-weight:800;
+  font-size:.84rem;white-space:nowrap;display:flex;align-items:center;justify-content:center;gap:4px;
+  transition:transform .15s ease,border-color .15s ease,background .15s ease;touch-action:manipulation;
+}
+.tab-nav button:hover{border-color:var(--turq);box-shadow:0 0 0 1px color-mix(in srgb,var(--turq) 22%,transparent)}
+.tab-nav button:focus-visible,.speed-btn:focus-visible,.theme-toggle:focus-visible,.home-link:focus-visible{outline:3px solid var(--yellow);outline-offset:0}
+.tab-nav button.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+/* Navegação e controles — ajuste final para mobile */
+.home-nav{display:flex;justify-content:center;align-items:center;margin:22px 0 0}
+.home-nav a{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 16px;border:1px solid var(--border);border-radius:12px;background:var(--card);color:var(--text);text-decoration:none;font-weight:850;white-space:nowrap;transition:transform .15s ease,border-color .15s ease,background .2s ease}
+.home-nav a:hover{transform:translateY(-1px);border-color:var(--turq)}
+.home-nav a:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.home-nav .bottom-home{height:40px;min-height:40px;padding:0 14px;border-radius:12px;font-weight:850}
+
+@media(max-width:600px){
+  .sticky-shell{padding:6px 7px;border-radius:14px;margin-top:7px}
+  .tab-nav{gap:6px}
+  .tab-nav button{flex-basis:112px;width:112px;min-width:112px;height:38px;font-size:.80rem}
+
+  /* Controles: Inicio al centro · Velocidad à direita */
+  .header-controls{
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    gap:6px;
+    margin-top:12px;
+    overflow:visible;
+  }
+  .header-controls .home-link{grid-column:2;justify-self:center;height:40px;min-width:0;padding:0 8px;font-size:.88rem}
+  .header-controls .speed-control{grid-column:3;justify-self:end}
+  .speed-control{height:40px;gap:3px;min-width:0;justify-content:flex-end}
+  .header-controls .speed-btn{height:36px;width:36px;min-width:36px;padding:0;border-radius:10px;font-size:0;line-height:1}
+  .header-controls .speed-btn[data-rate="0.58"]::before{content:"🐢";font-size:1rem}
+  .header-controls .speed-btn[data-rate="0.88"]::before{content:"▶";font-size:.88rem}
+  .header-controls .speed-btn[data-rate="1.12"]::before{content:"⚡";font-size:1rem}
+  .speed-label{display:none}
+
+  /* O menu permanece fixo, mas ocupa apenas uma linha horizontal */
+  .tab-nav{touch-action:pan-x;overscroll-behavior-x:contain}
+}
+@media(max-width:380px){
+  .sticky-shell > .theme-toggle{width:38px;min-width:38px;height:38px}
+  .header-controls{gap:5px}
+  .header-controls .home-link{font-size:.82rem;padding:0 6px}
+  .speed-control{gap:2px}
+  .header-controls .speed-btn{width:34px;min-width:34px;height:34px}
+  .header-controls .speed-btn[data-rate="0.58"]::before,.header-controls .speed-btn[data-rate="1.12"]::before{font-size:.9rem}
+  .header-controls .speed-btn[data-rate="0.88"]::before{font-size:.8rem}
+  .tab-nav button{flex-basis:108px;width:108px;min-width:108px;font-size:.78rem}
+}
+
+
+/* === Correção final: controles responsivos em janela PC dividida === */
+@media (min-width:601px) and (max-width:1050px){
+  .header-controls{
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    gap:14px;
+  }
+  .header-controls .home-link{
+    justify-self:center;
+    max-width:190px;
+    min-width:0;
+    padding:0 11px;
+    font-size:.86rem;
+  }
+  .header-controls .speed-control{
+    justify-self:end;
+    min-width:0;
+    gap:5px;
+  }
+  .header-controls .speed-btn{
+    width:64px;
+    min-width:64px;
+    max-width:64px;
+    padding:0 5px;
+    font-size:.76rem;
+  }
+}
+@media (min-width:601px) and (max-width:780px){
+  .header-controls{gap:10px}
+  .header-controls .home-link{max-width:175px;font-size:.82rem;padding:0 8px}
+  .header-controls .speed-control{gap:3px}
+  .header-controls .speed-btn{width:58px;min-width:58px;max-width:58px;font-size:.70rem;padding:0 3px}
+}
+
+/* === Estrutura definitiva: cabeçalho, velocidade e navegação separados === */
+.header-controls{display:none !important}
+.header-home{display:flex;justify-content:center;align-items:center;margin:14px auto 0;width:100%}
+.header-home .home-link{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 16px;border-radius:12px;text-decoration:none;font-weight:850;white-space:nowrap}
+.audio-controls{display:flex;justify-content:center;align-items:center;width:100%;margin:8px 0 8px}
+.audio-controls .speed-control{display:flex;align-items:center;justify-content:center;gap:7px;height:auto;min-width:0}
+.audio-controls .speed-btn{flex:0 0 auto;height:40px;min-width:78px;padding:0 12px;border:1px solid var(--border);border-radius:999px;background:var(--card);color:var(--text);font-weight:800;cursor:pointer;white-space:nowrap}
+.audio-controls .speed-btn.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+.audio-controls .speed-btn:hover{border-color:var(--turq)}
+@media (max-width:600px){
+  .header-home{margin-top:12px}
+  .header-home .home-link{height:40px;padding:0 14px;font-size:.9rem}
+  .audio-controls{margin:7px 0 7px}
+  .audio-controls .speed-control{gap:5px;width:100%;justify-content:center}
+  .audio-controls .speed-btn{height:38px;min-width:0;width:auto;padding:0 11px;font-size:.82rem}
+}
+@media (max-width:380px){
+  .audio-controls .speed-control{gap:4px}
+  .audio-controls .speed-btn{height:36px;padding:0 9px;font-size:.78rem}
+}
+
+/* Áudio das formas de conjugação — versão completa */
+.mini-forms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:10px 0}
+.mini-forms .mini-form-item{display:grid;grid-template-columns:1fr auto;grid-template-areas:"label audio" "form audio";align-items:center;gap:2px 8px;background:var(--soft);border:1px solid var(--border);border-radius:10px;padding:9px 10px;text-align:left}
+.mini-forms .mini-form-item small{grid-area:label;text-transform:none}
+.mini-forms .mini-form-item b{grid-area:form;font-size:1.05rem;color:var(--turq)}
+.mini-forms .mini-form-item .form-audio{grid-area:audio;align-self:center;padding:6px 8px;border-radius:9px}
+.verb-card td .form-audio{margin-left:6px;padding:4px 7px;border-radius:8px;font-size:.9rem;vertical-align:middle}
+.verb-card .example .example-audio{margin-left:6px;padding:5px 8px;border-radius:9px;vertical-align:middle}
+.form-big .form-audio{margin-left:6px;padding:5px 8px;border-radius:9px;vertical-align:middle}
+@media (max-width:640px){
+  .mini-forms{grid-template-columns:1fr}
+  .mini-forms .mini-form-item{padding:8px 9px}
+}
+
+
+/* Separación estructural de tarjetas, igual que el Modelo Mestre */
+section > .card + .card, section > .verb-card + .verb-card, section > .grid + .card{margin-top:14px}
+</style>
+<style>
+.verb-structure-guide{margin:14px 0 18px;padding:12px 14px;border:1px solid var(--border);border-radius:14px;background:var(--surface2);color:var(--text);font-size:.94rem;line-height:1.55}
+.verb-subtitle{margin:12px 0 8px;font-weight:800;color:var(--text);font-size:.9rem;letter-spacing:.01em}
+.example-label{margin:12px 0 5px;font-weight:800;color:var(--text);font-size:.88rem}
+.flashcard-link{display:inline-flex;align-items:center;gap:6px;margin:10px 0 2px;padding:7px 10px;border-radius:10px;border:1px solid var(--border);background:var(--surface2);color:var(--turq);text-decoration:none;font-weight:800;font-size:.82rem}
+.flashcard-link:hover{transform:translateY(-1px)}
+.verb-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+</style><style>@media(max-width:600px){.tab-nav button{padding:0 12px;font-size:.82rem}}</style></head><body><div class="container">
+<header><span class="badge">EOI · Español A2 · Clase Individual</span><h1>Ficha Interactiva — 23/09/2026</h1><div class="subtitle">Parecer / parecerse · Demostrativos · Descripción de personas</div><div class="header-home"><a aria-label="Volver al inicio del curso" class="home-link" href="index.html">🏠 Volver al inicio</a></div></header>
+<div aria-label="Controles de velocidad de pronunciación" class="audio-controls"><div class="speed-control"><button class="speed-btn" data-rate="0.58" type="button">🐢 Lento</button><button class="speed-btn active" data-rate="0.88" type="button">▶ Normal</button><button class="speed-btn" data-rate="1.12" type="button">⚡ Rápido</button></div></div>
+<div aria-label="Navegación de la clase" class="sticky-shell"><button aria-label="Cambiar tema" class="theme-toggle" title="Cambiar tema" type="button">🌙</button><div aria-label="Secciones de la clase" class="tab-nav" role="tablist"><button aria-controls="resumen" aria-selected="true" class="active" data-tab="resumen" id="tab-resumen" role="tab">📚 Resumen</button><button aria-controls="vocab" aria-selected="false" data-tab="vocab" id="tab-vocab" role="tab">📝 Vocabulario</button><button aria-controls="gram" aria-selected="false" data-tab="gram" id="tab-gram" role="tab">🧠 Gramática</button><button aria-controls="verbos" aria-selected="false" data-tab="verbos" id="tab-verbos" role="tab">🔤 Verbos</button><button aria-controls="ex" aria-selected="false" data-tab="ex" id="tab-ex" role="tab">✏️ Ejercicios</button><button aria-controls="practica" aria-selected="false" data-tab="practica" id="tab-practica" role="tab">🎯 Práctica</button></div></div>
+<section aria-labelledby="tab-resumen" class="active" id="resumen" role="tabpanel" tabindex="0"><div class="grid"><div class="card"><div class="color-title pink">💬 Parecer</div><p>Se trabajó <b>parecer + adjetivo</b> para expresar una impresión, y <b>parecerse a alguien</b> para hablar de semejanza.</p></div><div class="card"><div class="color-title purple">👉 Demostrativos</div><p><b>este/esta · ese/esa · aquel/aquella</b>, relacionados con <b>aquí · ahí · allí</b>.</p></div><div class="card"><div class="color-title turq">👤 Describir personas</div><p>Se repasó cómo usar <b>ser, tener y llevar</b> al describir características físicas y elementos visibles.</p></div><div class="card"><div class="color-title blue">🧩 Identificar personas</div><p>Se practicaron estructuras como <b>el de las gafas</b>, <b>la de pelo rojo</b> y <b>la que lleva gafas</b>.</p></div></div><div class="card"><div class="color-title yellow">🎯 Objetivo</div><p>Aprender a describir y localizar personas de forma más precisa, y expresar semejanzas utilizando estructuras naturales en español.</p></div></section>
+<section aria-labelledby="tab-vocab" id="vocab" role="tabpanel" tabindex="0"><h2 class="color-title turq">👤 Descripción de personas</h2><div class="card stacked-card"><div class="color-title pink">SER</div><p>Para características: <b>ser alto/a, moreno/a, rubio/a, bajito/a, tímido/a, amable, atlético/a, miedoso/a, elegante, moderno/a</b>.</p></div><div class="card stacked-card"><div class="color-title purple">TENER</div><p>Para rasgos o elementos que una persona tiene: <b>tener un móvil en la mano</b>, <b>tener una cana</b>, <b>tener los ojos...</b>.</p></div><div class="card stacked-card"><div class="color-title blue">LLEVAR</div><p>Para ropa y elementos visibles: <b>llevar gafas, llevar barba, llevar el pelo recogido, llevar vaqueros, llevar una camiseta, llevar una bolsa</b>.</p></div><h2 class="color-title purple" style="margin-top:22px">📝 Estructuras para identificar</h2><div class="card stacked-card"><div class="example sayable"><b>El de las gafas.</b><button aria-label="Escuchar: El de las gafas." class="speak" data-say="El de las gafas." type="button">🔊</button></div><div class="example sayable"><b>La de pelo rojo.</b><button aria-label="Escuchar: La de pelo rojo." class="speak" data-say="La de pelo rojo." type="button">🔊</button></div><div class="example sayable"><b>La que lleva gafas.</b><button aria-label="Escuchar: La que lleva gafas." class="speak" data-say="La que lleva gafas." type="button">🔊</button></div><div class="example sayable"><b>El que está a la izquierda.</b><button aria-label="Escuchar: El que está a la izquierda." class="speak" data-say="El que está a la izquierda." type="button">🔊</button></div><p>Estas estructuras permiten identificar a una persona sin repetir su nombre.</p></div><h2 class="color-title blue" style="margin-top:22px">🧩 Palabras trabajadas</h2><div class="card stacked-card"><p><b>sincero · carismático · reservado · canoso · fuerte · generoso · inexpresivo · elegante · ondulado · pálido · descuidado · atrevido · amable · castaño · miedoso · rasgado · impaciente · arrugado · borde · atlético · moderno</b></p></div></section>
+<section aria-labelledby="tab-gram" id="gram" role="tabpanel" tabindex="0"><h2 class="color-title pink">💬 Parecer × parecerse</h2><div class="card"><div class="example sayable"><b>Parecer + adjetivo:</b> Parece simpático.<button aria-label="Escuchar: Parece simpático." class="speak" data-say="Parece simpático." type="button">🔊</button></div><p><b>Parecer</b> permite expresar una impresión o valoración sobre cómo parece una persona.</p><div class="example sayable"><b>Parecerse a alguien:</b> Me parezco a mi madre.<button aria-label="Escuchar: Me parezco a mi madre." class="speak" data-say="Me parezco a mi madre." type="button">🔊</button></div><p><b>Parecerse a</b> expresa semejanza con otra persona.</p><div class="example sayable"><b>Parecerse en + aspecto:</b> Me parezco a mi madre en los ojos.<button aria-label="Escuchar: Me parezco a mi madre en los ojos." class="speak" data-say="Me parezco a mi madre en los ojos." type="button">🔊</button></div><p>La estructura trabajada fue <b>parecerse a alguien</b>; también se practicó indicar en qué aspecto existe la semejanza.</p></div><h2 class="color-title purple" style="margin-top:22px">👉 Demostrativos</h2><div class="card"><table><tr><th>Forma</th><th>Referencia espacial trabajada</th></tr><tr><td><b>este / esta</b></td><td>Algo cercano: <b>aquí</b>.</td></tr><tr><td><b>ese / esa</b></td><td>Una posición intermedia: <b>ahí</b>. La elección puede depender de la perspectiva.</td></tr><tr><td><b>aquel / aquella</b></td><td>Algo más lejano: <b>allí</b>.</td></tr></table></div><div class="card"><div class="color-title yellow">⚪ Formas neutras</div><p><b>esto · eso · aquello</b> son formas neutras: no tienen género ni plural. Pueden referirse a una cosa, una idea o una situación.</p><div class="example sayable"><b>¿Qué es aquello?</b><button aria-label="Escuchar: ¿Qué es aquello?" class="speak" data-say="¿Qué es aquello?" type="button">🔊</button></div><div class="example sayable"><b>¿Qué es eso?</b><button aria-label="Escuchar: ¿Qué es eso?" class="speak" data-say="¿Qué es eso?" type="button">🔊</button></div><div class="example sayable"><b>Esto hay que celebrarlo.</b><button aria-label="Escuchar: Esto hay que celebrarlo." class="speak" data-say="Esto hay que celebrarlo." type="button">🔊</button></div><div class="example sayable"><b>Por eso = por esa razón.</b><button aria-label="Escuchar: Por eso, por esa razón." class="speak" data-say="Por eso, por esa razón." type="button">🔊</button></div></div><div class="note"><b>📍 Perspectiva:</b> La elección entre ese y aquel puede depender de la perspectiva del hablante. No se trata solamente de memorizar una distancia rígida.</div></section>
+<section aria-labelledby="tab-verbos" id="verbos" role="tabpanel" tabindex="0"><h2 class="color-title turq">🔤 Verbos trabajados</h2><p>Los verbos de esta aula aparecen aquí como apoyo de estudio. Se mantiene únicamente el uso trabajado en la clase, sin añadir conjugaciones que no aparecen en el material original.</p><div class="verb-card card"><div class="verb-head"><span class="verb">parecer</span><span class="tag">TRABAJADO EN ESTA AULA</span><button aria-label="Escuchar: parecer" class="speak" data-say="parecer" type="button">🔊</button></div><div class="verb-subtitle">Parecer + adjetivo</div><div class="example sayable"><b>Parece simpático.</b><button aria-label="Escuchar: Parece simpático." class="speak example-audio" data-say="Parece simpático." type="button">🔊</button></div><div class="verb-links"><a class="flashcard-link" href="flashcards-verbos-a2.html#parecer">📚 Ver parecer en Flashcards</a></div></div><div class="verb-card card"><div class="verb-head"><span class="verb">parecerse</span><span class="tag">TRABAJADO EN ESTA AULA</span><button aria-label="Escuchar: parecerse" class="speak" data-say="parecerse" type="button">🔊</button></div><div class="verb-subtitle">Parecerse a alguien</div><div class="example sayable"><b>Me parezco a mi madre.</b><button aria-label="Escuchar: Me parezco a mi madre." class="speak example-audio" data-say="Me parezco a mi madre." type="button">🔊</button></div><div class="verb-links"><a class="flashcard-link" href="flashcards-verbos-a2.html#parecerse">📚 Ver parecerse en Flashcards</a></div></div><div class="verb-card card"><div class="verb-head"><span class="verb">ser</span><span class="tag">TRABAJADO EN ESTA AULA</span><button aria-label="Escuchar: ser" class="speak" data-say="ser" type="button">🔊</button></div><div class="verb-subtitle">Para características</div><div class="mini-forms"><div class="mini-form-item"><small>ejemplo</small><b>ser alto/a</b><button aria-label="Escuchar: ser alto o alta" class="speak form-audio" data-say="ser alto o alta" type="button">🔊</button></div><div class="mini-form-item"><small>ejemplo</small><b>ser moreno/a</b><button aria-label="Escuchar: ser moreno o morena" class="speak form-audio" data-say="ser moreno o morena" type="button">🔊</button></div><div class="mini-form-item"><small>ejemplo</small><b>ser rubio/a</b><button aria-label="Escuchar: ser rubio o rubia" class="speak form-audio" data-say="ser rubio o rubia" type="button">🔊</button></div><div class="mini-form-item"><small>ejemplo</small><b>ser bajito/a</b><button aria-label="Escuchar: ser bajito o bajita" class="speak form-audio" data-say="ser bajito o bajita" type="button">🔊</button></div><div class="mini-form-item"><small>ejemplo</small><b>ser tímido/a</b><button aria-label="Escuchar: ser tímido o tímida" class="speak form-audio" data-say="ser tímido o tímida" type="button">🔊</button></div><div class="mini-form-item"><small>ejemplo</small><b>ser amable</b><button aria-label="Escuchar: ser amable" class="speak form-audio" data-say="ser amable" type="button">🔊</button></div><div class="mini-form-item"><small>ejemplo</small><b>ser atlético/a</b><button aria-label="Escuchar: ser atlético o atlética" class="speak form-audio" data-say="ser atlético o atlética" type="button">🔊</button></div><div class="mini-form-item"><small>ejemplo</small><b>ser miedoso/a</b><button aria-label="Escuchar: ser miedoso o miedosa" class="speak form-audio" data-say="ser miedoso o miedosa" type="button">🔊</button></div><div class="mini-form-item"><small>ejemplo</small><b>ser elegante</b><button aria-label="Escuchar: ser elegante" class="speak form-audio" data-say="ser elegante" type="button">🔊</button></div><div class="mini-form-item"><small>ejemplo</small><b>ser moderno/a</b><button aria-label="Escuchar: ser moderno o moderna" class="speak form-audio" data-say="ser moderno o moderna" type="button">🔊</button></div></div><div class="verb-links"><a class="flashcard-link" href="flashcards-verbos-a2.html#ser">📚 Ver ser en Flashcards</a></div></div><div class="verb-card card"><div class="verb-head"><span class="verb">tener</span><span class="tag">TRABAJADO EN ESTA AULA</span><button aria-label="Escuchar: tener" class="speak" data-say="tener" type="button">🔊</button></div><div class="verb-subtitle">Para rasgos o elementos que una persona tiene</div><div class="mini-forms"><div class="mini-form-item"><small>ejemplo</small><b>tener un móvil en la mano</b><button aria-label="Escuchar: tener un móvil en la mano" class="speak form-audio" data-say="tener un móvil en la mano" type="button">🔊</button></div><div class="mini-form-item"><small>ejemplo</small><b>tener una cana</b><button aria-label="Escuchar: tener una cana" class="speak form-audio" data-say="tener una cana" type="button">🔊</button></div><div class="mini-form-item"><small>ejemplo</small><b>tener los ojos</b><button aria-label="Escuchar: tener los ojos" class="speak form-audio" data-say="tener los ojos" type="button">🔊</button></div></div><div class="verb-links"><a class="flashcard-link" href="flashcards-verbos-a2.html#tener">📚 Ver tener en Flashcards</a></div></div><div class="verb-card card"><div class="verb-head"><span class="verb">llevar</span><span class="tag">TRABAJADO EN ESTA AULA</span><button aria-label="Escuchar: llevar" class="speak" data-say="llevar" type="button">🔊</button></div><div class="verb-subtitle">Para ropa y elementos visibles</div><div class="mini-forms"><div class="mini-form-item"><small>ejemplo</small><b>llevar gafas</b><button aria-label="Escuchar: llevar gafas" class="speak form-audio" data-say="llevar gafas" type="button">🔊</button></div><div class="mini-form-item"><small>ejemplo</small><b>llevar barba</b><button aria-label="Escuchar: llevar barba" class="speak form-audio" data-say="llevar barba" type="button">🔊</button></div><div class="mini-form-item"><small>ejemplo</small><b>llevar el pelo recogido</b><button aria-label="Escuchar: llevar el pelo recogido" class="speak form-audio" data-say="llevar el pelo recogido" type="button">🔊</button></div><div class="mini-form-item"><small>ejemplo</small><b>llevar vaqueros</b><button aria-label="Escuchar: llevar vaqueros" class="speak form-audio" data-say="llevar vaqueros" type="button">🔊</button></div><div class="mini-form-item"><small>ejemplo</small><b>llevar una camiseta</b><button aria-label="Escuchar: llevar una camiseta" class="speak form-audio" data-say="llevar una camiseta" type="button">🔊</button></div><div class="mini-form-item"><small>ejemplo</small><b>llevar una bolsa</b><button aria-label="Escuchar: llevar una bolsa" class="speak form-audio" data-say="llevar una bolsa" type="button">🔊</button></div></div><div class="verb-links"><a class="flashcard-link" href="flashcards-verbos-a2.html#llevar">📚 Ver llevar en Flashcards</a></div></div></section>
+<section aria-labelledby="tab-ex" id="ex" role="tabpanel" tabindex="0"><h2 class="color-title pink">✏️ Ejercicios interactivos</h2><div class="note">Puedes escuchar cada pregunta y cada alternativa con los botones de pronunciación. La velocidad utiliza el control global de la barra superior.</div><div id="q-aula"></div></section>
+<section aria-labelledby="tab-practica" id="practica" role="tabpanel" tabindex="0"><h2 class="color-title yellow">🎯 Misión</h2><div class="card"><p>Describe una persona de una foto utilizando <b>ser + tener + llevar</b>. Después añade una frase con <b>parecer</b> y otra con <b>parecerse a</b>.</p></div></section>
+<footer><a class="home-link" href="index.html">🏠 Volver al inicio</a></footer></div><script>
+// Navegación e inicialización da interfaz
+if('scrollRestoration' in history) history.scrollRestoration='auto';
+
+function showTab(id,btn){
+  const target=document.getElementById(id);
+  if(!target) return;
+  document.querySelectorAll('section[role="tabpanel"]').forEach(s=>s.classList.remove('active'));
+  target.classList.add('active');
+  document.querySelectorAll('.tab-nav button[role="tab"]').forEach(b=>{
+    const active=b===btn || b.dataset.tab===id;
+    b.classList.toggle('active',active);
+    b.setAttribute('aria-selected',String(active));
+    b.setAttribute('tabindex',active?'0':'-1');
+  });
+  requestAnimationFrame(()=>target.scrollIntoView({behavior:'smooth',block:'start'}));
+}
+
+function updateThemeColor(theme){
+  const meta=document.querySelector('meta[name="theme-color"]');
+  if(meta) meta.setAttribute('content',theme==='light'?'#f4f6ff':'#080a18');
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.tab-nav button[role="tab"]').forEach(btn=>{
+    btn.setAttribute('tabindex',btn.classList.contains('active')?'0':'-1');
+    btn.addEventListener('click',()=>showTab(btn.dataset.tab,btn));
+    btn.addEventListener('keydown',e=>{
+      if(e.key==='ArrowRight' || e.key==='ArrowLeft'){
+        e.preventDefault();
+        const tabs=[...document.querySelectorAll('.tab-nav button[role="tab"]')];
+        const i=tabs.indexOf(btn);
+        const next=e.key==='ArrowRight' ? (i+1)%tabs.length : (i-1+tabs.length)%tabs.length;
+        tabs[next].focus();
+        showTab(tabs[next].dataset.tab,tabs[next]);
+      }
+    });
+  });
+  document.querySelectorAll('.speed-btn').forEach(btn=>btn.addEventListener('click',()=>setSpeechSpeed(Number(btn.dataset.rate),btn)));
+  document.querySelector('.theme-toggle')?.addEventListener('click',toggleTheme);
+  initSpeechSpeed();
+});
+let esVoice=null;
+let speechRate=parseFloat(localStorage.getItem('a2SpeechRate')||'0.88');
 function pickEs(){
- const vs=speechSynthesis.getVoices();
- esVoice=vs.find(v=>v.lang==='es-ES')||vs.find(v=>v.lang&&v.lang.startsWith('es'))||null;
+  if(!('speechSynthesis' in window)) return;
+  const vs=speechSynthesis.getVoices();
+  esVoice=vs.find(v=>v.lang==='es-ES')||vs.find(v=>v.lang&&v.lang.toLowerCase().startsWith('es'))||null;
 }
 if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=pickEs;pickEs();}
+function setSpeechSpeed(rate,btn){
+  speechRate=rate; localStorage.setItem('a2SpeechRate',String(rate));
+  document.querySelectorAll('.speed-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+}
+function initSpeechSpeed(){
+  const valid=[0.58,0.88,1.12];
+  if(!valid.includes(speechRate)) speechRate=0.88;
+  const active=document.querySelector('.speed-btn[data-rate="'+speechRate+'"]');
+  document.querySelectorAll('.speed-btn').forEach(b=>b.classList.toggle('active',b===active));
+}
+initSpeechSpeed();
+function cleanSpeechText(txt){return String(txt||'').replace(/[＿_]+/g,' ').replace(/[-–—]{2,}/g,' ').replace(/(?:\.{3,}|…+)/g,' ').replace(/\s+/g,' ').trim();}
 function say(txt){
- if(!('speechSynthesis' in window)) return;
- speechSynthesis.cancel();
- // Limpar formatação e setas
- let finalTxt = txt.replace(/→/g, '.').replace(/<br>/g, '. ').replace(/<\/?[^>]+(>|$)/g, "");
- const u=new SpeechSynthesisUtterance(finalTxt);
- u.lang='es-ES';if(esVoice)u.voice=esVoice;
- u.rate=slow?.6:.85;
- speechSynthesis.speak(u);
+  if(!('speechSynthesis' in window)){alert('La síntesis de voz no está disponible en este navegador.');return;}
+  const clean=cleanSpeechText(txt); if(!clean)return;
+  const synth=window.speechSynthesis;
+  synth.cancel();
+  const u=new SpeechSynthesisUtterance(clean);
+  u.lang='es-ES';
+  u.rate=speechRate;
+  u.pitch=1;
+  u.volume=1;
+  if(esVoice) u.voice=esVoice;
+  u.onerror=()=>{};
+  // Importante: speak() se ejecuta directamente dentro del clic del usuario.
+  // Evita que Chrome bloquee la síntesis por perder la activación del gesto.
+  synth.resume();
+  synth.speak(u);
 }
-function toggleSlow(){
- slow=!slow;
- document.querySelectorAll('.slowBtn').forEach(b=>{
-  b.textContent=slow?'🐢 Lento: encendido':'🐢 Lento: apagado';
-  b.setAttribute('aria-pressed',slow);
- });
-}
-
-// botón 🔊 en cada frase de ejemplo
-document.querySelectorAll('.example').forEach(el=>{
- const b=el.querySelector('b'); if(!b) return;
- const txt=el.innerHTML;
- const wrap=document.createElement('span');
- while(el.firstChild) wrap.appendChild(el.firstChild);
- el.appendChild(wrap);
- el.classList.add('sayable');
- const btn=document.createElement('button');
- btn.type='button';btn.className='speak';btn.textContent='🔊';
- btn.setAttribute('aria-label','Escuchar');
- btn.onclick=()=>say(txt);
- el.appendChild(btn);
-});
-if(!('speechSynthesis' in window)) document.querySelectorAll('.sound-bar').forEach(x=>x.style.display='none');
-
-// Motor de Quiz com botão Siguiente
-function makeQuiz(id,qs){
- const box=document.getElementById(id);let qi=0,score=0,locked=false;
- function render(){
-  const q=qs[qi];locked=false;
-  box.innerHTML='<p style="font-size:1.1rem;"><b>'+q.t+'</b></p><div class="choice-grid">'+q.o.map((o,i)=>'<button type="button" class="choice" data-i="'+i+'">'+o+'</button>').join('')+'</div><p class="small" style="margin-top:15px; font-weight:700;">Pregunta '+(qi+1)+' de '+qs.length+' · Puntos: '+score+'</p><div class="feedback" aria-live="polite"></div>';
-  box.querySelectorAll('.choice').forEach(b=>b.addEventListener('click',()=>ans(+b.dataset.i,b)));
- }
- function ans(i,btn){
-  if(locked) return; locked=true;
-  const q=qs[qi];const bs=box.querySelectorAll('.choice');
-  bs.forEach(b=>b.disabled=true);
-  bs[q.a].classList.add('correct');
-  const fb=box.querySelector('.feedback');
-  
-  let btnNext = '<button type="button" class="choice" style="margin-top:15px; padding:8px 16px; width:100%; font-size:1rem; border:none; background:rgba(0,0,0,0.2);" onclick="this.parentElement.dispatchEvent(new CustomEvent(\'next\'))">Siguiente ➔</button>';
-  
-  if(i===q.a){
-   score++;
-   fb.innerHTML='<div style="margin-bottom:8px;">✅ Correcto.</div>'+(q.e||'') + btnNext;
-   fb.className='feedback ok';
-  } else{
-   btn.classList.add('wrong');
-   fb.innerHTML='<div style="margin-bottom:8px;">❌ Casi.</div>'+(q.e||'') + btnNext;
-   fb.className='feedback bad';
-  }
-  
-  fb.addEventListener('next', function handler() {
-   fb.removeEventListener('next', handler);
-   if(qi===qs.length-1){end();}else{qi++;render();}
+function bindSpeakButtons(root=document){
+  root.querySelectorAll('.speak[data-say]').forEach(btn=>{
+    if(btn.dataset.speechBound==='1') return;
+    btn.dataset.speechBound='1';
+    btn.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();say(btn.dataset.say);});
   });
- }
- function end(){
-  box.innerHTML='<p style="font-size:1.2rem;"><b>🎉 ¡Fin! Acertaste '+score+' de '+qs.length+'.</b></p><button type="button" class="choice" data-again="1" style="background:var(--turq); color:#000; border:none;">Empezar de nuevo ↺</button>';
-  box.querySelector('[data-again]').addEventListener('click',()=>{qi=0;score=0;render();});
- }
- render();
+}
+function updateThemeToggle(theme){
+  const toggle=document.querySelector('.sticky-shell .theme-toggle');
+  if(!toggle) return;
+  const isDark=theme==='dark';
+  toggle.textContent=isDark?'🌙':'☀️';
+  toggle.setAttribute('aria-pressed',String(isDark));
+  const label=isDark?'Cambiar al modo claro':'Cambiar al modo oscuro';
+  toggle.setAttribute('aria-label',label);
+  toggle.setAttribute('title',label);
+}
+function toggleTheme(){
+  const next=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('a2Theme',next);
+  updateThemeToggle(next);
+  updateThemeColor(next);
+}
+(function initTheme(){
+  const saved=localStorage.getItem('a2Theme')||'dark';
+  document.documentElement.setAttribute('data-theme',saved);
+  updateThemeColor(saved);
+  updateThemeToggle(saved);
+})();
+if('speechSynthesis' in window) pickEs();
+
+// Vincula los botones de audio presentes en el contenido.
+bindSpeakButtons();
+
+// Mejoras en el Quiz interactivo
+function makeQuiz(id,qs){
+  const box=document.getElementById(id); if(!box)return;
+  box.innerHTML='';
+  const form=document.createElement('div'); form.className='quiz-all';
+  qs.forEach((q,qi)=>{
+    const card=document.createElement('div');card.className='quiz-question';
+    const questionHead=document.createElement('div');questionHead.className='quiz-question-head';
+    const p=document.createElement('p');p.innerHTML='<b>'+q.t+'</b>';questionHead.appendChild(p);
+    const audio=document.createElement('button');audio.type='button';audio.className='quiz-audio';audio.textContent='🔊';audio.title='Escuchar la pregunta';audio.setAttribute('aria-label','Escuchar la pregunta');
+    audio.addEventListener('click',()=>say(q.t.replace(/_+/g,' espacio en blanco ')));
+    questionHead.appendChild(audio);card.appendChild(questionHead);
+    const grid=document.createElement('div');grid.className='choice-grid';
+    q.o.forEach((opt,i)=>{
+      const row=document.createElement('div'); row.className='choice-row';
+      const b=document.createElement('button'); b.type='button'; b.className='choice'; b.dataset.i=i; b.textContent=opt; b.setAttribute('aria-pressed','false');
+      b.addEventListener('click',()=>{
+        const buttons=[...card.querySelectorAll('.choice')];
+        const fb=card.querySelector('.feedback');
+        buttons.forEach(x=>{x.classList.remove('selected','correct','wrong');x.setAttribute('aria-pressed','false');});
+        b.classList.add('selected');b.setAttribute('aria-pressed','true');card.dataset.answer=i;
+        if(i===q.a){b.classList.add('correct');fb.className='feedback ok';fb.innerHTML='✅ Correcto.'+(q.e?'<br>'+q.e:'');card.dataset.correct='true';}
+        else{b.classList.add('wrong');fb.className='feedback bad';fb.innerHTML='❌ Incorrecto. Vuelve a intentarlo.';card.dataset.correct='false';}
+      });
+      const audio=document.createElement('button'); audio.type='button'; audio.className='choice-audio'; audio.textContent='🔊'; audio.title='Escuchar alternativa'; audio.setAttribute('aria-label','Escuchar: '+opt);
+      audio.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();say(opt);});
+      row.appendChild(b); row.appendChild(audio); grid.appendChild(row);
+    });
+    card.appendChild(grid);
+    const fb=document.createElement('div');fb.className='feedback';fb.setAttribute('aria-live','polite');card.appendChild(fb);
+    form.appendChild(card);
+  });
+  const check=document.createElement('button');check.type='button';check.className='check-all';check.textContent='Comprobar Respuestas';
+  const result=document.createElement('div');result.className='quiz-result';result.setAttribute('aria-live','polite');
+  check.addEventListener('click',()=>{
+    let score=0;
+    form.querySelectorAll('.quiz-question').forEach((card,qi)=>{
+      const q=qs[qi], selected=card.querySelector('.choice.selected'), buttons=card.querySelectorAll('.choice'), fb=card.querySelector('.feedback');
+      if(selected && Number(selected.dataset.i)===q.a){score++;}
+      else if(!selected){fb.className='feedback bad';fb.innerHTML='⚠️ Falta responder esta pregunta.';}
+    });
+    result.textContent='Resultado: '+score+' de '+qs.length+' respuestas correctas.';
+    check.disabled=true;
+  });
+  box.appendChild(form);box.appendChild(check);box.appendChild(result);
 }
 
-makeQuiz('q-aula',[
- {"t": "¿Qué expresa «Me parezco a mi madre»?", "o": ["Semejanza", "Una acción futura", "Una emoción"], "a": 0, "e": "«Parecerse a» expresa semejanza física o de carácter con otra persona."},
- {"t": "Completa: «Parece ______».", "o": ["simpático", "a mi madre", "en los ojos"], "a": 0, "e": "El verbo «parecer» (impresión) va seguido de un adjetivo (simpático)."},
- {"t": "¿Cuál es la forma neutra?", "o": ["esto", "esta", "aquella"], "a": 0, "e": "Esto, eso y aquello son formas neutras (para ideas, cosas no identificadas o situaciones)."},
- {"t": "Para ropa y gafas, ¿qué verbo se trabajó?", "o": ["llevar", "tenerse", "parecerse"], "a": 0, "e": "Usamos el verbo «llevar» para la ropa y los accesorios (gafas, barba, etc.)."},
- {"t": "¿Cuál identifica correctamente a una persona?", "o": ["La que lleva gafas.", "La que lleva ser gafas.", "La parecerse gafas."], "a": 0, "e": "«La que lleva gafas» es una estructura correcta para identificar a alguien en un grupo."}
-]);
 
-</script>
-</body>
-</html>
+makeQuiz('q-irr',[{"t": "Yo ___ al cine ayer. (ir)", "o": ["fui", "fue", "fuí"], "a": 0, "e": "Yo + ir: fui (sin tilde)."}, {"t": "Él ___ muy simpático con nosotros. (ser)", "o": ["fui", "fue", "fueron"], "a": 1, "e": "Ser e ir tienen las mismas formas: fue."}, {"t": "Ellos ___ una pizza en el restaurante. (pedir)", "o": ["pedieron", "pidieron", "pedirón"], "a": 1, "e": "Pedir: e → i en ellos: pidieron."}, {"t": "Ana ___ diez horas ayer. (dormir)", "o": ["dormió", "durmió", "dorme"], "a": 1, "e": "Dormir: o → u en él/ella: durmió."}, {"t": "Tú ___ un libro en una tarde. (leer)", "o": ["leyiste", "leiste", "leíste"], "a": 2, "e": "Con tú: leíste (con tilde). La «y» aparece en él/ellos: leyó, leyeron."}, {"t": "El vaso ___ al suelo. (caer)", "o": ["caió", "cayó", "cayo"], "a": 1, "e": "Él/ella: cayó (i → y entre vocales)."}, {"t": "Nosotros ___ en casa toda la tarde. (estar)", "o": ["estuvimos", "estamos", "estavimos"], "a": 0, "e": "Estar: estuv- + -imos."}, {"t": "Yo no ___ venir ayer. (poder)", "o": ["podí", "puedo", "pude"], "a": 2, "e": "Poder: pud- + -e (sin tilde): pude."}, {"t": "Ella ___ un pastel para mi cumpleaños. (hacer)", "o": ["hizo", "hació", "hiço"], "a": 0, "e": "Hacer: hic-; en «él/ella» la c pasa a z: hizo."}, {"t": "Ellos me ___ que llegaban tarde. (decir)", "o": ["dijieron", "dijeron", "dicieron"], "a": 1, "e": "Decir: dij- + -eron (sin «i»)."}, {"t": "Yo ___ hablar con ella. (querer)", "o": ["quise", "quisí", "quiero"], "a": 0, "e": "Querer: quis- + -e: quise."}, {"t": "Ellos ___ en tren. (venir)", "o": ["venieron", "vienieron", "vinieron"], "a": 2, "e": "Venir: vin- + -ieron."}]);
+
+
+
+
+let done=0;
+function tick(cb){
+ done+=cb.checked?1:-1;
+ document.getElementById('bar').style.width=(done/7*100)+'%';
+ document.getElementById('count').textContent=done+'/7 completado';
+}
+
+makeQuiz('q-aula',[{t:'¿Qué expresa «Me parezco a mi madre»?',o:['Semejanza','Una acción futura','Una emoción'],a:0,e:'La estructura «parecerse a» expresa semejanza.'},{t:'Completa: «Parece ______».',o:['simpático','a mi madre','en los ojos'],a:0,e:'«Parecer + adjetivo» expresa una impresión o valoración.'},{t:'¿Cuál es la forma neutra?',o:['esto','esta','aquella'],a:0,e:'Esto, eso y aquello son formas neutras.'},{t:'Para ropa y gafas, ¿qué verbo se trabajó?',o:['llevar','tenerse','parecerse'],a:0,e:'Llevar se utiliza para ropa y elementos visibles.'},{t:'¿Cuál identifica correctamente a una persona?',o:['La que lleva gafas.','La que lleva ser gafas.','La parecerse gafas.'],a:0,e:'«La que lleva gafas» identifica a una persona sin repetir su nombre.'}]);
+</script></body></html>

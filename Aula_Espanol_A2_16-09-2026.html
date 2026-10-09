@@ -1,38 +1,39 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-ES">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080a18">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#080a18" name="theme-color"/>
+<meta content="Ficha Interactiva de Español A2 — clase del 16/09/2026" name="description"/>
 <title>Clase de Español A2 — 16/09/2026</title>
 <style>
 :root{
   color-scheme:dark;
   --bg:#080a18;--card:#171d38;--text:#f8f9ff;--muted:#b8c0dd;
   --pink:#ff5ca8;--purple:#a56cff;--turq:#37e6d4;--yellow:#ffd34e;
-  --blue:#42a5ff;--soft:#252e50;--border:#2d385e;--ok:#4be59a;--bad:#ff6b7c;
+  --blue:#42a5ff;--soft:#252e50;--border:#2d385e;--ok:#4be59a;--bad:#ff6b7c;--header-border:#48598d;--header-start:#172c6c;--header-mid:#49237f;--header-end:#741c58;--header-text:#fff;--header-shadow:rgba(0,0,0,.55);
 }
 *{box-sizing:border-box}
 body{margin:0;background:radial-gradient(circle at 10% 0,#1d2b66,transparent 38%),radial-gradient(circle at 90% 0,#5a174d,transparent 35%),var(--bg);background-attachment:fixed;color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}
 .container{max-width:1100px;margin:auto;padding:22px 16px 60px}
-header{text-align:center;padding:26px 20px;margin-bottom:6px;border-radius:22px;border:1px solid #48598d;background:linear-gradient(135deg,#172c6c,#49237f 52%,#741c58);box-shadow:0 18px 50px #0008}
+header{text-align:center;padding:26px 20px;margin-bottom:6px;border-radius:22px;border:1px solid var(--header-border);background:linear-gradient(135deg,var(--header-start),var(--header-mid) 52%,var(--header-end));box-shadow:0 18px 50px var(--header-shadow);transition:background .2s ease,border-color .2s ease,color .2s ease}
 .badge{display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;font-weight:800;font-size:.82rem}
-h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);color:#fff}
-.subtitle{color:#e3e6ff}
-nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);display:flex;gap:7px;overflow:auto;padding:8px;border-bottom:1px solid var(--border)}
-nav button,.tab{border:1px solid var(--border);background:var(--card);color:var(--text);padding:9px 12px;border-radius:12px;cursor:pointer;white-space:nowrap;font-weight:750}
-nav button.active,.tab.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
-section{display:none;padding-top:22px}
+h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);color:var(--header-text)}
+.subtitle{color:var(--header-text);opacity:.92}
+section{display:none;padding-top:22px;scroll-margin-top:66px}
 section.active{display:block}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:0 7px 22px color-mix(in srgb,var(--purple) 10%,transparent)}
-.card h2,.card h3{margin-top:0}
+.card h3{margin-top:0}
 .color-title{font-size:1.25rem;font-weight:900}
 .pink{color:var(--pink)}.purple{color:var(--purple)}.turq{color:var(--turq)}.blue{color:var(--blue)}.yellow{color:var(--yellow)}
-table{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden;min-width:600px;}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden}
 th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
 th{background:#202a4c;color:#cdbdff}
-.table-wrap{overflow-x:auto;border-radius:16px;border:1px solid var(--border);}
+.verb-card{margin-bottom:16px}
+.verb-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.verb{font-size:1.45rem;font-weight:900;color:var(--pink)}
+.tag{font-size:.78rem;font-weight:800;padding:4px 9px;border-radius:999px;background:var(--soft);color:#cdbdff}
 .speak{border:0;background:var(--soft);border-radius:10px;padding:7px 10px;cursor:pointer}
 .example{border-left:4px solid var(--turq);padding:9px 12px;background:color-mix(in srgb,var(--turq) 8%,var(--card));border-radius:0 12px 12px 0;margin:9px 0}
 .note{font-size:.9rem;color:var(--muted)}
@@ -56,260 +57,519 @@ summary{cursor:pointer;font-weight:800}
 .speak:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
 .speak[aria-pressed="true"]{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff}
 footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
-@media(max-width:600px){.container{padding:14px 10px 45px}th,td{padding:8px;font-size:.9rem}.card{padding:15px}}
+/* Desktop compacto / janela dividida: evita que o grupo de velocidade invada o botão central. */
+@media (min-width:601px) and (max-width:1050px){
+  .header-controls{
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    gap:8px;
+  }
+  .header-controls .home-link{
+    min-width:0;
+    max-width:210px;
+    padding:0 12px;
+    font-size:.88rem;
+  }
+  .header-controls .speed-control{
+    min-width:0;
+    gap:5px;
+    justify-self:end;
+  }
+  .speed-btn{
+    min-width:64px;
+    padding:0 8px;
+    font-size:.78rem;
+  }
+}
 
-.home-nav{text-align:center;margin:14px 0 8px}
-.home-nav a{display:inline-block;padding:10px 18px;border-radius:12px;background:#10152b;border:1px solid var(--border);color:#fff;text-decoration:none;font-weight:800;transition:transform .15s ease,border-color .15s ease}
+@media (min-width:601px) and (max-width:780px){
+  .mini-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .container{padding:14px 10px 45px}
+  th,td{padding:8px;font-size:.9rem}
+  .card{padding:15px}
+  .mini-grid{grid-template-columns:1fr}
+}
+
+
+.table-wrap{overflow-x:auto;border-radius:16px}
+.table-wrap table{min-width:520px}
+.mini-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.mini-grid .verb-card{min-width:0}
+.mini-grid .verb-card{margin-bottom:0}
+.form-big{font-size:1.25rem;font-weight:900;color:var(--turq);margin:10px 0 4px}
+ul.clean{margin:8px 0;padding-left:20px}ul.clean li{margin:5px 0}
+
+.mini-forms{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.mini-forms div{flex:1 1 90px;background:var(--soft);border:1px solid var(--border);border-radius:10px;padding:7px 9px;text-align:center}
+.mini-forms small{display:block;color:var(--muted);font-size:.7rem;text-transform:uppercase}
+.mini-forms b{font-size:1.05rem;color:var(--turq)}
+
+
+/* === Template Mestre A2 — interfaz estable === */
+:root[data-theme="light"]{color-scheme:light;--bg:#f5f3ff;--card:#ffffff;--text:#1b2340;--muted:#5e6780;--soft:#e9e6f8;--border:#cfd1ea;--header-border:#aeb8df;--header-start:#dfe9ff;--header-mid:#eadfff;--header-end:#ffe0ef;--header-text:#1b2340;--header-shadow:rgba(73,55,128,.18);--blue:#397fdb;--purple:#7856d9;--turq:#159f93;--yellow:#c58d00}
+:root[data-theme="light"] .pink{color:#c52f76}:root[data-theme="light"] .purple{color:#6840bf}:root[data-theme="light"] .turq{color:#087f78}:root[data-theme="light"] .yellow{color:#946600}:root[data-theme="light"] .blue{color:#2f6fc4}
+body{transition:background .2s ease,color .2s ease}
+header{border-color:var(--header-border);background:linear-gradient(135deg,var(--header-start),var(--header-mid) 52%,var(--header-end));box-shadow:0 18px 50px var(--header-shadow)}
+header h1{color:var(--header-text)}
+header .subtitle{color:var(--header-text);opacity:.88}
+.badge{color:var(--header-text);background:color-mix(in srgb,var(--purple) 12%,transparent);border:1px solid color-mix(in srgb,var(--purple) 22%,transparent)}
+.theme-toggle,.home-link,.speed-btn{background:#ffffff;color:var(--text);border-color:#c7cbe4;box-shadow:0 3px 10px rgba(70,58,125,.08)}
+.theme-toggle:hover,.home-link:hover,.speed-btn:hover{border-color:var(--turq);box-shadow:0 4px 12px rgba(21,159,147,.14)}
+.tab-nav button{background:#ffffff;color:var(--text);border-color:#c9cce5;box-shadow:0 2px 7px rgba(70,58,125,.06)}
+.tab-nav button:hover{background:#f6f4ff;border-color:var(--turq);box-shadow:0 0 0 1px rgba(21,159,147,.18)}
+.sticky-shell{background:color-mix(in srgb,#ffffff 88%,var(--soft));border-color:#c9cce5;box-shadow:0 10px 28px rgba(87,70,145,.12)}
+.card{box-shadow:0 7px 22px rgba(87,70,145,.08)}
+.sticky-shell{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:color-mix(in srgb,var(--bg) 96%,transparent);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:7px 8px;
+  box-shadow:0 10px 28px color-mix(in srgb,var(--purple) 14%,transparent);
+  margin:8px 0 0;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+/* Controles no cabeçalho e NÃO acompanham a rolagem.
+   Inicio permanece centrado · Velocidad fica à direita. */
+.header-controls{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+  align-items:center;
+  gap:10px;
+  width:100%;
+  margin:14px auto 0;
+}
+.header-controls .home-link{grid-column:2;justify-self:center}
+.header-controls .speed-control{grid-column:3;justify-self:end}
+.theme-toggle,.speed-control,.home-link{border:1px solid var(--border);background:var(--card);color:var(--text)}
+.theme-toggle{
+  flex:0 0 auto;height:38px;min-width:72px;border-radius:999px;padding:0 11px;
+  display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;font-size:.92rem;
+}
+.theme-toggle:hover,.home-link:hover,.speed-btn:hover{border-color:var(--turq)}
+.home-link{
+  flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;height:38px;
+  padding:0 14px;border-radius:12px;text-decoration:none;font-weight:850;position:relative;white-space:nowrap;
+}
+
+.speed-control{flex:0 0 auto;height:38px;display:flex;align-items:center;gap:6px;background:transparent;border:0}
+.speed-label{display:none}
+.speed-btn{
+  flex:0 0 auto;height:40px;min-width:78px;padding:0 11px;border:1px solid var(--border);
+  border-radius:999px;background:var(--card);color:var(--text);font-weight:800;cursor:pointer;white-space:nowrap;
+}
+.speed-btn.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+/* Menu principal: uma única linha, fixa durante a rolagem. */
+.sticky-shell{display:flex;align-items:center;gap:7px}
+.sticky-shell > .theme-toggle{flex:0 0 40px;width:40px;min-width:40px;height:40px;padding:0;border-radius:12px}
+.sticky-shell > .tab-nav{flex:1;min-width:0}
+.tab-nav{
+  display:flex;flex-wrap:nowrap;gap:7px;width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;
+  padding:0;scrollbar-width:thin;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;
+  touch-action:pan-x;
+}
+.tab-nav button{
+  flex:0 0 118px;width:118px;min-width:118px;height:40px;border:1px solid var(--border);
+  background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;font-weight:800;
+  font-size:.84rem;white-space:nowrap;display:flex;align-items:center;justify-content:center;gap:4px;
+  transition:transform .15s ease,border-color .15s ease,background .15s ease;touch-action:manipulation;
+}
+.tab-nav button:hover{border-color:var(--turq);box-shadow:0 0 0 1px color-mix(in srgb,var(--turq) 22%,transparent)}
+.tab-nav button:focus-visible,.speed-btn:focus-visible,.theme-toggle:focus-visible,.home-link:focus-visible{outline:3px solid var(--yellow);outline-offset:0}
+.tab-nav button.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+/* Navegação e controles — ajuste final para mobile */
+.home-nav{display:flex;justify-content:center;align-items:center;margin:22px 0 0}
+.home-nav a{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 16px;border:1px solid var(--border);border-radius:12px;background:var(--card);color:var(--text);text-decoration:none;font-weight:850;white-space:nowrap;transition:transform .15s ease,border-color .15s ease,background .2s ease}
+.home-nav a:hover{transform:translateY(-1px);border-color:var(--turq)}
 .home-nav a:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
-.home-nav a:hover{transform:translateY(-1px);border-color:var(--blue)}
+.home-nav .bottom-home{height:40px;min-height:40px;padding:0 14px;border-radius:12px;font-weight:850}
+
+@media(max-width:600px){
+  .sticky-shell{padding:6px 7px;border-radius:14px;margin-top:7px}
+  .tab-nav{gap:6px}
+  .tab-nav button{flex-basis:112px;width:112px;min-width:112px;height:38px;font-size:.80rem}
+
+  /* Controles: Inicio al centro · Velocidad à direita */
+  .header-controls{
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    gap:6px;
+    margin-top:12px;
+    overflow:visible;
+  }
+  .header-controls .home-link{grid-column:2;justify-self:center;height:40px;min-width:0;padding:0 8px;font-size:.88rem}
+  .header-controls .speed-control{grid-column:3;justify-self:end}
+  .speed-control{height:40px;gap:3px;min-width:0;justify-content:flex-end}
+  .header-controls .speed-btn{height:36px;width:36px;min-width:36px;padding:0;border-radius:10px;font-size:0;line-height:1}
+  .header-controls .speed-btn[data-rate="0.58"]::before{content:"🐢";font-size:1rem}
+  .header-controls .speed-btn[data-rate="0.88"]::before{content:"▶";font-size:.88rem}
+  .header-controls .speed-btn[data-rate="1.12"]::before{content:"⚡";font-size:1rem}
+  .speed-label{display:none}
+
+  /* O menu permanece fixo, mas ocupa apenas uma linha horizontal */
+  .tab-nav{touch-action:pan-x;overscroll-behavior-x:contain}
+}
+@media(max-width:380px){
+  .sticky-shell > .theme-toggle{width:38px;min-width:38px;height:38px}
+  .header-controls{gap:5px}
+  .header-controls .home-link{font-size:.82rem;padding:0 6px}
+  .speed-control{gap:2px}
+  .header-controls .speed-btn{width:34px;min-width:34px;height:34px}
+  .header-controls .speed-btn[data-rate="0.58"]::before,.header-controls .speed-btn[data-rate="1.12"]::before{font-size:.9rem}
+  .header-controls .speed-btn[data-rate="0.88"]::before{font-size:.8rem}
+  .tab-nav button{flex-basis:108px;width:108px;min-width:108px;font-size:.78rem}
+}
+
+
+/* === Correção final: controles responsivos em janela PC dividida === */
+@media (min-width:601px) and (max-width:1050px){
+  .header-controls{
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    gap:14px;
+  }
+  .header-controls .home-link{
+    justify-self:center;
+    max-width:190px;
+    min-width:0;
+    padding:0 11px;
+    font-size:.86rem;
+  }
+  .header-controls .speed-control{
+    justify-self:end;
+    min-width:0;
+    gap:5px;
+  }
+  .header-controls .speed-btn{
+    width:64px;
+    min-width:64px;
+    max-width:64px;
+    padding:0 5px;
+    font-size:.76rem;
+  }
+}
+@media (min-width:601px) and (max-width:780px){
+  .header-controls{gap:10px}
+  .header-controls .home-link{max-width:175px;font-size:.82rem;padding:0 8px}
+  .header-controls .speed-control{gap:3px}
+  .header-controls .speed-btn{width:58px;min-width:58px;max-width:58px;font-size:.70rem;padding:0 3px}
+}
+
+/* === Estrutura definitiva: cabeçalho, velocidade e navegação separados === */
+.header-controls{display:none !important}
+.header-home{display:flex;justify-content:center;align-items:center;margin:14px auto 0;width:100%}
+.header-home .home-link{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 16px;border-radius:12px;text-decoration:none;font-weight:850;white-space:nowrap}
+.audio-controls{display:flex;justify-content:center;align-items:center;width:100%;margin:8px 0 8px}
+.audio-controls .speed-control{display:flex;align-items:center;justify-content:center;gap:7px;height:auto;min-width:0}
+.audio-controls .speed-btn{flex:0 0 auto;height:40px;min-width:78px;padding:0 12px;border:1px solid var(--border);border-radius:999px;background:var(--card);color:var(--text);font-weight:800;cursor:pointer;white-space:nowrap}
+.audio-controls .speed-btn.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+.audio-controls .speed-btn:hover{border-color:var(--turq)}
+@media (max-width:600px){
+  .header-home{margin-top:12px}
+  .header-home .home-link{height:40px;padding:0 14px;font-size:.9rem}
+  .audio-controls{margin:7px 0 7px}
+  .audio-controls .speed-control{gap:5px;width:100%;justify-content:center}
+  .audio-controls .speed-btn{height:38px;min-width:0;width:auto;padding:0 11px;font-size:.82rem}
+}
+@media (max-width:380px){
+  .audio-controls .speed-control{gap:4px}
+  .audio-controls .speed-btn{height:36px;padding:0 9px;font-size:.78rem}
+}
+
+/* Áudio das formas de conjugação — versão completa */
+.mini-forms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:10px 0}
+.mini-forms .mini-form-item{display:grid;grid-template-columns:1fr auto;grid-template-areas:"label audio" "form audio";align-items:center;gap:2px 8px;background:var(--soft);border:1px solid var(--border);border-radius:10px;padding:9px 10px;text-align:left}
+.mini-forms .mini-form-item small{grid-area:label;text-transform:none}
+.mini-forms .mini-form-item b{grid-area:form;font-size:1.05rem;color:var(--turq)}
+.mini-forms .mini-form-item .form-audio{grid-area:audio;align-self:center;padding:6px 8px;border-radius:9px}
+.verb-card td .form-audio{margin-left:6px;padding:4px 7px;border-radius:8px;font-size:.9rem;vertical-align:middle}
+.verb-card .example .example-audio{margin-left:6px;padding:5px 8px;border-radius:9px;vertical-align:middle}
+.form-big .form-audio{margin-left:6px;padding:5px 8px;border-radius:9px;vertical-align:middle}
+@media (max-width:640px){
+  .mini-forms{grid-template-columns:1fr}
+  .mini-forms .mini-form-item{padding:8px 9px}
+}
 </style>
 </head>
 <body>
+
 <div class="container">
 <header>
-  <span class="badge">EOI · Español A2 · Clase individual</span>
-  <h1>Ficha interactiva — 16/09/2026</h1>
-  <div class="subtitle">Tiempo y expresiones · Verbos · Sentirse / sentarse · Aprender mejor</div>
+<span class="badge">EOI · Español A2 · Clase Individual</span>
+<h1>Ficha Interactiva — 16/09/2026</h1>
+<div class="subtitle">Tiempo y expresiones · Verbos · Sentirse / sentarse · Aprender mejor</div>
+<div class="header-home">
+<a aria-label="Volver al inicio del curso" class="home-link" href="index.html">🏠 Volver al inicio</a>
+</div>
 </header>
 
-<div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
+<div aria-label="Controles de velocidad de pronunciación" class="audio-controls">
+<div class="speed-control">
+<button aria-label="Velocidad lenta" class="speed-btn" data-rate="0.58" title="Velocidad lenta" type="button">🐢 Lento</button>
+<button aria-label="Velocidad normal" class="speed-btn active" data-rate="0.88" title="Velocidad normal" type="button">▶ Normal</button>
+<button aria-label="Velocidad rápida" class="speed-btn" data-rate="1.12" title="Velocidad rápida" type="button">⚡ Rápido</button>
+</div>
+</div>
 
-<nav>
-  <button class="active" onclick="showTab('resumen',this)">📚 Resumen</button>
-  <button onclick="showTab('verbos',this)">🔤 Verbos</button>
-  <button onclick="showTab('claves',this)">🧠 Claves</button>
-  <button onclick="showTab('aprendizaje',this)">🎯 Aprendizaje</button>
-  <button onclick="showTab('ex',this)">✏️ Ejercicios</button>
-</nav>
+<div aria-label="Navegación de la clase" class="sticky-shell">
+<button aria-label="Cambiar al modo claro" aria-pressed="false" class="theme-toggle" title="Cambiar al modo claro" type="button">🌙</button>
+<div aria-label="Secciones de la clase" class="tab-nav" role="tablist">
+<button aria-controls="resumen" aria-selected="true" class="active" data-tab="resumen" id="tab-resumen" role="tab">📚 Resumen</button>
+<button aria-controls="verbos" aria-selected="false" data-tab="verbos" id="tab-verbos" role="tab">🔤 Verbos</button>
+<button aria-controls="claves" aria-selected="false" data-tab="claves" id="tab-claves" role="tab">🧠 Claves</button>
+<button aria-controls="aprendizaje" aria-selected="false" data-tab="aprendizaje" id="tab-aprendizaje" role="tab">🎯 Aprendizaje</button>
+<button aria-controls="ex" aria-selected="false" data-tab="ex" id="tab-ex" role="tab">✏️ Ejercicios</button>
+</div>
+</div>
 
-<section id="resumen" class="active">
-  <div class="grid">
-    <div class="card"><h3 class="color-title pink">🌡️ Tiempo</h3><p>Se repasaron <b>hace calor</b>, <b>hace frío</b>, <b>hace bochorno</b> y la expresión <b>al fresco</b>.</p></div>
-    <div class="card"><h3 class="color-title purple">🔤 Verbos</h3><p>La clase continuó con la práctica diaria de verbos, identificando formas regulares e irregulares y conjugándolos en distintas personas.</p></div>
-    <div class="card"><h3 class="color-title turq">🔄 Sentirse / sentarse</h3><p>Se destacó que <b>me siento</b> puede corresponder a <i>sentirse</i> o <i>sentarse</i>; el contexto indica el significado.</p></div>
-    <div class="card"><h3 class="color-title blue">🎯 Aprender mejor</h3><p>Se trabajó un texto sobre diferentes maneras de aprender y vocabulario como <b>cinestesia</b>.</p></div>
-  </div>
-  <div class="card" style="margin-top:14px">
-    <h3 class="color-title yellow">🎯 Objetivo</h3>
-    <p>Seguir automatizando el presente de los verbos y reconocer las formas que presentan cambios o irregularidades.</p>
-  </div>
+<section aria-labelledby="tab-resumen" class="active" id="resumen" role="tabpanel" tabindex="0">
+<div class="grid">
+<div class="card"><div class="color-title pink">🌡️ Tiempo</div><p>Se repasaron <b>hace calor</b>, <b>hace frío</b>, <b>hace bochorno</b> y la expresión <b>al fresco</b>.</p></div>
+<div class="card"><div class="color-title purple">🔤 Verbos</div><p>La clase continuó con la práctica diaria de verbos, identificando formas regulares e irregulares y conjugándolos en distintas personas.</p></div>
+<div class="card"><div class="color-title turq">🔄 Sentirse / sentarse</div><p>Se destacó que <b>me siento</b> puede corresponder a <i>sentirse</i> o <i>sentarse</i>; el contexto indica el significado.</p></div>
+<div class="card"><div class="color-title blue">🎯 Aprender mejor</div><p>Se trabajó un texto sobre diferentes maneras de aprender y vocabulario como <b>cinestesia</b>.</p></div>
+</div>
+<div class="card" style="margin-top:14px">
+<h3>🎯 Objetivo</h3>
+<p>Seguir automatizando el presente de los verbos y reconocer las formas que presentan cambios o irregularidades.</p>
+</div>
 </section>
 
-<section id="verbos">
-  <div class="card">
-    <h2 class="purple">🔤 Verbos practicados</h2>
-    <p>Estas son las formas trabajadas o explicitadas durante la clase. El asterisco en <b>costar</b> señala que la profesora explicó que se utiliza especialmente en tercera persona en el uso trabajado en clase.</p>
-    
-    <div class="table-wrap">
-      <table>
-        <tr><th>Verbo</th><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros/as</th><th>Vosotros/as</th><th>Ellos/as / Ustedes</th></tr>
-        <tr><td><b>oír</b></td><td>yo oigo</td><td>tú oyes</td><td>él/ella oye</td><td>nosotros oímos</td><td>vosotros oís</td><td>ellos oyen</td></tr>
-        <tr><td><b>hacer</b></td><td>yo hago</td><td>tú haces</td><td>él/ella hace</td><td>nosotros hacemos</td><td>vosotros hacéis</td><td>ellos hacen</td></tr>
-        <tr><td><b>perseguir</b></td><td>yo persigo</td><td>tú persigues</td><td>él/ella persigue</td><td>nosotros perseguimos</td><td>vosotros perseguís</td><td>ellos persiguen</td></tr>
-        <tr><td><b>costar</b></td><td>yo cuesto*</td><td>tú cuestas*</td><td>él/ella cuesta</td><td>nosotros costamos*</td><td>vosotros costáis*</td><td>ellos cuestan</td></tr>
-        <tr><td><b>devolver</b></td><td>yo devuelvo</td><td>tú devuelves</td><td>él/ella devuelve</td><td>nosotros devolvemos</td><td>vosotros devolvéis</td><td>ellos devuelven</td></tr>
-        <tr><td><b>volver</b></td><td>yo vuelvo</td><td>tú vuelves</td><td>él/ella vuelve</td><td>nosotros volvemos</td><td>vosotros volvéis</td><td>ellos vuelven</td></tr>
-        <tr><td><b>soñar</b></td><td>yo sueño</td><td>tú sueñas</td><td>él/ella sueña</td><td>nosotros soñamos</td><td>vosotros soñáis</td><td>ellos sueñan</td></tr>
-        <tr><td><b>decir</b></td><td>yo digo</td><td>tú dices</td><td>él/ella dice</td><td>nosotros decimos</td><td>vosotros decís</td><td>ellos dicen</td></tr>
-        <tr><td><b>vestirse</b></td><td>yo me visto</td><td>tú te vistes</td><td>él/ella se viste</td><td>nosotros nos vestimos</td><td>vosotros os vestís</td><td>ellos se visten</td></tr>
-        <tr><td><b>resolver</b></td><td>yo resuelvo</td><td>tú resuelves</td><td>él/ella resuelve</td><td>nosotros resolvemos</td><td>vosotros resolvéis</td><td>ellos resuelven</td></tr>
-        <tr><td><b>ver</b></td><td>yo veo</td><td>tú ves</td><td>él/ella ve</td><td>nosotros vemos</td><td>vosotros veis</td><td>ellos ven</td></tr>
-        <tr><td><b>sentirse</b></td><td>yo me siento</td><td>tú te sientes</td><td>él/ella se siente</td><td>nosotros nos sentimos</td><td>vosotros os sentís</td><td>ellos se sienten</td></tr>
-        <tr><td><b>sentarse</b></td><td>yo me siento</td><td>tú te sientas</td><td>él/ella se sienta</td><td>nosotros nos sentamos</td><td>vosotros os sentáis</td><td>ellos se sientan</td></tr>
-        <tr><td><b>jugar</b></td><td>yo juego</td><td>tú juegas</td><td>él/ella juega</td><td>nosotros jugamos</td><td>vosotros jugáis</td><td>ellos juegan</td></tr>
-        <tr><td><b>recordar</b></td><td>yo recuerdo</td><td>tú recuerdas</td><td>él/ella recuerda</td><td>nosotros recordamos</td><td>vosotros recordáis</td><td>ellos recuerdan</td></tr>
-        <tr><td><b>conocer</b></td><td>yo conozco</td><td>tú conoces</td><td>él/ella conoce</td><td>nosotros conocemos</td><td>vosotros conocéis</td><td>ellos conocen</td></tr>
-        <tr><td><b>conducir</b></td><td>yo conduzco</td><td>tú conduces</td><td>él/ella conduce</td><td>nosotros conducimos</td><td>vosotros conducís</td><td>ellos conducen</td></tr>
-        <tr><td><b>cerrar</b></td><td>yo cierro</td><td>tú cierras</td><td>él/ella cierra</td><td>nosotros cerramos</td><td>vosotros cerráis</td><td>ellos cierran</td></tr>
-        <tr><td><b>estudiar</b></td><td>yo estudio</td><td>tú estudias</td><td>él/ella estudia</td><td>nosotros estudiamos</td><td>vosotros estudiáis</td><td>ellos estudian</td></tr>
-        <tr><td><b>viajar</b></td><td>yo viajo</td><td>tú viajas</td><td>él/ella viaja</td><td>nosotros viajamos</td><td>vosotros viajáis</td><td>ellos viajan</td></tr>
-        <tr><td><b>poner</b></td><td>yo pongo</td><td>tú pones</td><td>él/ella pone</td><td>nosotros ponemos</td><td>vosotros ponéis</td><td>ellos ponen</td></tr>
-        <tr><td><b>enseñar</b></td><td>yo enseño</td><td>tú enseñas</td><td>él/ella enseña</td><td>nosotros enseñamos</td><td>vosotros enseñáis</td><td>ellos enseñan</td></tr>
-        <tr><td><b>vestir</b></td><td>yo visto</td><td>tú vistes</td><td>él/ella viste</td><td>nosotros vestimos</td><td>vosotros vestís</td><td>ellos visten</td></tr>
-        <tr><td><b>solucionar</b></td><td>yo soluciono</td><td>tú solucionas</td><td>él/ella soluciona</td><td>nosotros solucionamos</td><td>vosotros solucionáis</td><td>ellos solucionan</td></tr>
-      </table>
-    </div>
-  </div>
-  
-  <div class="card" style="margin-top:14px">
-    <h3 class="pink">⚠️ Formas destacadas</h3>
-    <div class="sound-bar"><span class="small">🔊 Toca el botón para escuchar la forma correcta.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
-    <div class="example"><b>oír → oigo, oyes, oímos</b>. La profesora indicó que este verbo suele generar confusión.</div>
-    <div class="example"><b>hacer → hago</b>.</div>
-    <div class="example"><b>perseguir → persigo</b>.</div>
-    <div class="example"><b>costar → cuesta / cuestan</b>. Se explicó que normalmente se utiliza en tercera persona en el sentido trabajado.</div>
-    <div class="example"><b>soñar → sueño</b>. <i>Soñar</i> se explicó como ver algo mientras se duerme.</div>
-    <div class="example"><b>jugar → juego / juegas / juega, pero jugamos</b>. No se dijo «juegamos».</div>
-    <div class="example"><b>conocer → conozco</b> y <b>conducir → conduzco</b>.</div>
-    <div class="example"><b>resolver → resuelvo / resuelves / resuelve</b>. También apareció <b>solucionar</b> como alternativa regular.</div>
-  </div>
+<section aria-labelledby="tab-verbos" id="verbos" role="tabpanel" tabindex="0">
+<h2>🔤 Verbos</h2>
+<p class="small">Estas son las formas trabajadas o explicitadas durante la clase. El asterisco en <b>costar</b> señala que la profesora explicó que se utiliza especialmente en tercera persona en el uso trabajado en clase.</p>
+<div class="verb-structure-guide" role="note">📌 <b>Estructura de estudio:</b> verbo → conjugación completa → audio de cada forma.</div>
+<div class="sound-bar"><span class="small">🔊 Puedes escuchar el infinitivo y cada forma de la conjugación.</span></div>
+<div id="verb-list"></div>
+<div class="card" style="margin-top:14px">
+<h3 class="pink">⚠️ Formas destacadas</h3>
+<div class="example sayable"><b>oír → oigo, oyes, oímos</b>. La profesora indicó que este verbo suele generar confusión.</div>
+<div class="example sayable"><b>hacer → hago</b>.</div>
+<div class="example sayable"><b>perseguir → persigo</b>.</div>
+<div class="example sayable"><b>costar → cuesta / cuestan</b>. Se explicó que normalmente se utiliza en tercera persona en el sentido trabajado.</div>
+<div class="example sayable"><b>soñar → sueño</b>. <i>Soñar</i> se explicó como ver algo mientras se duerme.</div>
+<div class="example sayable"><b>jugar → juego / juegas / juega, pero jugamos</b>. No se dijo «juegamos».</div>
+<div class="example sayable"><b>conocer → conozco</b> y <b>conducir → conduzco</b>.</div>
+<div class="example sayable"><b>resolver → resuelvo / resuelves / resuelve</b>. También apareció <b>solucionar</b> como alternativa regular.</div>
+</div>
 </section>
 
-<section id="claves">
-  <div class="card">
-    <h2 class="pink">🧠 Patrones de irregularidad</h2>
-    <div style="overflow-x:auto;">
-    <table>
-      <tr><th>Patrón</th><th>Ejemplos de la clase</th></tr>
-      <tr><td>o → ue</td><td>devolver → <b>devuelvo</b>; volver → <b>vuelves</b>; soñar → <b>sueño</b>; recordar → <b>recuerdo</b>; resolver → <b>resuelvo</b>.</td></tr>
-      <tr><td>e → ie</td><td>cerrar → <b>cierro</b>; resolver → <b>resuelvo</b> pertenece a otro patrón, por eso hay que aprender cada verbo.</td></tr>
-      <tr><td>e → i</td><td>perseguir → <b>persigo</b>.</td></tr>
-      <tr><td>Primera persona irregular</td><td>oír → <b>oigo</b>; hacer → <b>hago</b>; decir → <b>digo</b>; conocer → <b>conozco</b>; conducir → <b>conduzco</b>.</td></tr>
-      <tr><td>Formas con -uir</td><td>La clase anterior ya había trabajado este patrón; en esta sesión se continuó con el repaso de verbos.</td></tr>
-    </table>
-    </div>
-  </div>
-  
-  <div class="grid" style="margin-top:14px">
-    <div class="card">
-      <h3 class="turq">🪑 Sentirse / sentarse</h3>
-      <div class="sound-bar"><span class="small">🔊</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢</button></div>
-      <div class="example"><b>Me siento bien.</b> → <i>sentirse</i>: expresar cómo me encuentro.</div>
-      <div class="example"><b>Me siento en una silla.</b> → <i>sentarse</i>: ponerse en posición sentada.</div>
-      <p>La forma escrita <b>me siento</b> es igual; el contexto determina el significado.</p>
-    </div>
-    <div class="card">
-      <h3 class="yellow">🧩 Cinestesia</h3>
-      <p>La profesora explicó <b>cinestesia</b> como movimiento. Una persona cinestésica puede necesitar moverse para aprender o trabajar mejor.</p>
-    </div>
-  </div>
+<section aria-labelledby="tab-claves" id="claves" role="tabpanel" tabindex="0">
+<h2>🧠 Claves</h2>
+<div class="card">
+<h3 class="pink">Patrones de irregularidad</h3>
+<div class="table-wrap"><table>
+<tr><th>Patrón</th><th>Ejemplos de la clase</th></tr>
+<tr><td>o → ue</td><td>devolver → <b>devuelvo</b>; volver → <b>vuelves</b>; soñar → <b>sueño</b>; recordar → <b>recuerdo</b>; resolver → <b>resuelvo</b>.</td></tr>
+<tr><td>e → ie</td><td>cerrar → <b>cierro</b>; resolver → <b>resuelvo</b> pertenece a otro patrón, por eso hay que aprender cada verbo.</td></tr>
+<tr><td>e → i</td><td>perseguir → <b>persigo</b>.</td></tr>
+<tr><td>Primera persona irregular</td><td>oír → <b>oigo</b>; hacer → <b>hago</b>; decir → <b>digo</b>; conocer → <b>conozco</b>; conducir → <b>conduzco</b>.</td></tr>
+<tr><td>Formas con -uir</td><td>La clase anterior ya había trabajado este patrón; en esta sesión se continuó con el repaso de verbos.</td></tr>
+</table></div>
+</div>
+<div class="grid">
+<div class="card"><h3 class="turq">🪑 Sentirse / sentarse</h3>
+<div class="example sayable"><b>Me siento bien.</b> → <i>sentirse</i>: expresar cómo me encuentro.</div>
+<div class="example sayable"><b>Me siento en una silla.</b> → <i>sentarse</i>: ponerse en posición sentada.</div>
+<p>La forma escrita <b>me siento</b> es igual; el contexto determina el significado.</p>
+</div>
+<div class="card"><h3 class="yellow">🧩 Cinestesia</h3><p>La profesora explicó <b>cinestesia</b> como movimiento. Una persona cinestésica puede necesitar moverse para aprender o trabajar mejor.</p></div>
+</div>
 </section>
 
-<section id="aprendizaje">
-  <div class="card">
-    <h2 class="blue">🎯 Cómo aprendemos mejor</h2>
-    <p>La clase trabajó un texto sobre qué hace cada persona cuando estudia o aprende una lengua.</p>
-    <div class="grid">
-      <div class="card" style="border-left-color:var(--turq); border-left-width:4px;">
-        <h3 class="turq">👀 Visual</h3>
-        <p>La información visual puede ayudar a recordar.</p>
-      </div>
-      <div class="card" style="border-left-color:var(--purple); border-left-width:4px;">
-        <h3 class="purple">👂 Auditivo</h3>
-        <p>Para algunas personas es más fácil aprender escuchando.</p>
-      </div>
-      <div class="card" style="border-left-color:var(--pink); border-left-width:4px;">
-        <h3 class="pink">🏃 Movimiento</h3>
-        <p>La <b>cinestesia</b> se relacionó con moverse y con aprender mediante el movimiento.</p>
-      </div>
-    </div>
-  </div>
-  
-  <div class="card" style="margin-top:14px">
-    <h3 class="yellow">👥 Actividad en grupos</h3>
-    <p>La profesora pidió formar grupos de tres personas y hablar con compañeros diferentes sobre lo que cada uno hace cuando estudia y cómo cree que aprende.</p>
-  </div>
+<section aria-labelledby="tab-aprendizaje" id="aprendizaje" role="tabpanel" tabindex="0">
+<div class="card">
+<h2>🎯 Cómo aprendemos mejor</h2>
+<p>La clase trabajó un texto sobre qué hace cada persona cuando estudia o aprende una lengua.</p>
+<div class="grid">
+<div class="card"><h3 class="turq">👀 Visual</h3><p>La información visual puede ayudar a recordar.</p></div>
+<div class="card"><h3 class="purple">👂 Auditivo</h3><p>Para algunas personas es más fácil aprender escuchando.</p></div>
+<div class="card"><h3 class="pink">🏃 Movimiento</h3><p>La <b>cinestesia</b> se relacionó con moverse y con aprender mediante el movimiento.</p></div>
+</div>
+</div>
+<div class="card" style="margin-top:14px">
+<h3 class="yellow">👥 Actividad en grupos</h3>
+<p>La profesora pidió formar grupos de tres personas y hablar con compañeros diferentes sobre lo que cada uno hace cuando estudia y cómo cree que aprende.</p>
+</div>
 </section>
 
-<section id="ex">
-  <h2>✏️ Ejercicios interactivos</h2>
-  <div class="card"><h3 class="pink">1. Comprueba lo aprendido</h3><div id="q-aula"></div></div>
-  <div class="card" style="margin-top:14px">
-    <h3 class="turq">🎯 Misión</h3>
-    <p>Elige cinco verbos de la pestaña <b>Verbos</b> y conjúgalos oralmente en las seis personas. Después, explica en español qué te ayuda a aprender mejor: <b>ver, escuchar, escribir, moverte o hablar con otras personas</b>.</p>
-  </div>
+<section aria-labelledby="tab-ex" id="ex" role="tabpanel" tabindex="0">
+<h2>✏️ Ejercicios</h2>
+<div id="q-aula"></div>
+<div class="card" style="margin-top:14px">
+<h3 class="turq">🎯 Misión</h3>
+<p>Elige cinco verbos de la pestaña <b>Verbos</b> y conjúgalos oralmente en las seis personas. Después, explica en español qué te ayuda a aprender mejor: <b>ver, escuchar, escribir, moverte o hablar con otras personas</b>.</p>
+</div>
 </section>
 
-<div class="home-nav" style="justify-content:center; margin-top:22px;"><a href="index.html">🏠 Volver al inicio</a></div>
+<div class="header-home" style="margin-top:22px">
+<a aria-label="Volver al inicio del curso" class="home-link" href="index.html">🏠 Volver al inicio</a>
+</div>
 <footer>Registro individual de la clase del 16/09/2026. Basado en las notas de la clase.</footer>
 </div>
 
-<script>
-function showTab(id,btn){
- document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
- document.getElementById(id).classList.add('active');
- document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
- btn.classList.add('active');
- window.scrollTo({top:0,behavior:'smooth'});
-}
 
-let slow=false, esVoice=null;
+<script>
+const VERBS=[["oír", ["yo oigo", "tú oyes", "él/ella oye", "nosotros oímos", "vosotros oís", "ellos oyen"]], ["hacer", ["yo hago", "tú haces", "él/ella hace", "nosotros hacemos", "vosotros hacéis", "ellos hacen"]], ["perseguir", ["yo persigo", "tú persigues", "él/ella persigue", "nosotros perseguimos", "vosotros perseguís", "ellos persiguen"]], ["costar", ["yo cuesto*", "tú cuestas*", "él/ella cuesta", "nosotros costamos*", "vosotros costáis*", "ellos cuestan"]], ["devolver", ["yo devuelvo", "tú devuelves", "él/ella devuelve", "nosotros devolvemos", "vosotros devolvéis", "ellos devuelven"]], ["volver", ["yo vuelvo", "tú vuelves", "él/ella vuelve", "nosotros volvemos", "vosotros volvéis", "ellos vuelven"]], ["soñar", ["yo sueño", "tú sueñas", "él/ella sueña", "nosotros soñamos", "vosotros soñáis", "ellos sueñan"]], ["decir", ["yo digo", "tú dices", "él/ella dice", "nosotros decimos", "vosotros decís", "ellos dicen"]], ["vestirse", ["yo me visto", "tú te vistes", "él/ella se viste", "nosotros nos vestimos", "vosotros os vestís", "ellos se visten"]], ["resolver", ["yo resuelvo", "tú resuelves", "él/ella resuelve", "nosotros resolvemos", "vosotros resolvéis", "ellos resuelven"]], ["ver", ["yo veo", "tú ves", "él/ella ve", "nosotros vemos", "vosotros veis", "ellos ven"]], ["sentirse", ["yo me siento", "tú te sientes", "él/ella se siente", "nosotros nos sentimos", "vosotros os sentís", "ellos se sienten"]], ["sentarse", ["yo me siento", "tú te sientas", "él/ella se sienta", "nosotros nos sentamos", "vosotros os sentáis", "ellos se sientan"]], ["jugar", ["yo juego", "tú juegas", "él/ella juega", "nosotros jugamos", "vosotros jugáis", "ellos juegan"]], ["recordar", ["yo recuerdo", "tú recuerdas", "él/ella recuerda", "nosotros recordamos", "vosotros recordáis", "ellos recuerdan"]], ["conocer", ["yo conozco", "tú conoces", "él/ella conoce", "nosotros conocemos", "vosotros conocéis", "ellos conocen"]], ["conducir", ["yo conduzco", "tú conduces", "él/ella conduce", "nosotros conducimos", "vosotros conducís", "ellos conducen"]], ["cerrar", ["yo cierro", "tú cierras", "él/ella cierra", "nosotros cerramos", "vosotros cerráis", "ellos cierran"]], ["estudiar", ["yo estudio", "tú estudias", "él/ella estudia", "nosotros estudiamos", "vosotros estudiáis", "ellos estudian"]], ["viajar", ["yo viajo", "tú viajas", "él/ella viaja", "nosotros viajamos", "vosotros viajáis", "ellos viajan"]], ["poner", ["yo pongo", "tú pones", "él/ella pone", "nosotros ponemos", "vosotros ponéis", "ellos ponen"]], ["enseñar", ["yo enseño", "tú enseñas", "él/ella enseña", "nosotros enseñamos", "vosotros enseñáis", "ellos enseñan"]], ["vestir", ["yo visto", "tú vistes", "él/ella viste", "nosotros vestimos", "vosotros vestís", "ellos visten"]], ["solucionar", ["yo soluciono", "tú solucionas", "él/ella soluciona", "nosotros solucionamos", "vosotros solucionáis", "ellos solucionan"]]];
+const PEOPLE=["yo", "tú", "él / ella / usted", "nosotros / nosotras", "vosotros / vosotras", "ellos / ellas / ustedes"];
+const FLASHCARDS=["conducir", "decir", "hacer", "jugar", "poner", "sentirse"];
+const QUESTIONS=[["¿Cuál es la primera persona de «oír»?", ["oigo", "oyo", "oígo"], 0, "La primera persona del presente es «oigo»."], ["Completa: «Yo ______ la solución del problema».", ["resuelvo", "resuelvoo", "resolvo"], 0, "El verbo resolver tiene cambio vocálico o → ue (resuelvo)."], ["¿Cuál es correcta para la primera persona del plural (nosotros) de «jugar»?", ["jugamos", "juegamos", "jugimos"], 0, "En nosotros y vosotros, la vocal no cambia (jugamos, jugáis)."], ["«Me siento bien» y «me siento en una silla» tienen la misma forma, pero el contexto cambia el significado.", ["Verdadero", "Falso"], 0, "«Me siento» puede provenir del verbo sentirse o sentarse."], ["¿Qué significa «cinestesia» según la explicación de clase?", ["movimiento", "silencio", "descanso"], 0, "La cinestesia se relaciona con el movimiento y la necesidad de moverse para aprender."]];
+
+let esVoice=null;
+let speechRate=parseFloat(localStorage.getItem('a2SpeechRate')||'0.88');
+
 function pickEs(){
+ if(!('speechSynthesis' in window)) return;
  const vs=speechSynthesis.getVoices();
- esVoice=vs.find(v=>v.lang==='es-ES')||vs.find(v=>v.lang&&v.lang.startsWith('es'))||null;
+ esVoice=vs.find(v=>v.lang==='es-ES')||vs.find(v=>v.lang&&v.lang.toLowerCase().startsWith('es'))||null;
 }
 if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=pickEs;pickEs();}
+
+function cleanSpeechText(txt){
+ return txt.replace(/→/g,'. ').replace(/\*/g,'').replace(/[📌🔊🐢▶⚡🌡️🔤🔄🎯🧠🪑🧩👀👂🏃👥✏️⚠️]/g,'').replace(/\s+/g,' ').trim();
+}
 function say(txt){
  if(!('speechSynthesis' in window)) return;
  speechSynthesis.cancel();
- // Limpar setas para leitura suave
- let finalTxt = txt.replace(/→/g, '.');
- const u=new SpeechSynthesisUtterance(finalTxt);
- u.lang='es-ES';if(esVoice)u.voice=esVoice;
- u.rate=slow?.6:.85;
- speechSynthesis.speak(u);
+ const u=new SpeechSynthesisUtterance(cleanSpeechText(txt));
+ u.lang='es-ES';u.rate=speechRate;if(esVoice)u.voice=esVoice;
+ speechSynthesis.resume();speechSynthesis.speak(u);
 }
-function toggleSlow(){
- slow=!slow;
- document.querySelectorAll('.slowBtn').forEach(b=>{
-  b.textContent=slow?'🐢 Lento: encendido':'🐢 Lento: apagado';
-  b.setAttribute('aria-pressed',slow);
+function setSpeechSpeed(rate,btn){
+ speechRate=rate;localStorage.setItem('a2SpeechRate',String(rate));
+ document.querySelectorAll('.speed-btn').forEach(b=>b.classList.remove('active'));
+ btn.classList.add('active');
+}
+function initSpeechSpeed(){
+ const valid=[0.58,0.88,1.12];
+ if(!valid.includes(speechRate)) speechRate=.88;
+ const active=document.querySelector('.speed-btn[data-rate="'+speechRate+'"]');
+ document.querySelectorAll('.speed-btn').forEach(b=>b.classList.toggle('active',b===active));
+}
+
+function updateThemeToggle(theme){
+ const t=document.querySelector('.sticky-shell .theme-toggle'); if(!t)return;
+ const dark=theme!=='light';
+ t.textContent=dark?'🌙':'☀️';
+ t.setAttribute('aria-pressed',String(dark));
+ t.setAttribute('aria-label',dark?'Cambiar al modo claro':'Cambiar al modo oscuro');
+}
+function updateThemeColor(theme){
+ document.querySelector('meta[name="theme-color"]')?.setAttribute('content',theme==='light'?'#f5f3ff':'#080a18');
+}
+function toggleTheme(){
+ const next=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+ document.documentElement.setAttribute('data-theme',next);
+ localStorage.setItem('a2Theme',next);updateThemeToggle(next);updateThemeColor(next);
+}
+(function initTheme(){
+ const theme=localStorage.getItem('a2Theme')||'dark';
+ document.documentElement.setAttribute('data-theme',theme);updateThemeToggle(theme);updateThemeColor(theme);
+})();
+
+document.querySelector('.theme-toggle')?.addEventListener('click',toggleTheme);
+document.querySelectorAll('.speed-btn').forEach(b=>b.addEventListener('click',()=>setSpeechSpeed(Number(b.dataset.rate),b)));
+initSpeechSpeed();
+
+document.querySelectorAll('.tab-nav button').forEach((btn,i,buttons)=>{
+ btn.addEventListener('click',()=>{
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(btn.dataset.tab).classList.add('active');
+  buttons.forEach(x=>{x.classList.remove('active');x.setAttribute('aria-selected','false')});
+  btn.classList.add('active');btn.setAttribute('aria-selected','true');
+  window.scrollTo({top:0,behavior:'smooth'});
  });
-}
-
-// botón 🔊 en cada frase de ejemplo
-document.querySelectorAll('.example').forEach(el=>{
- const b=el.querySelector('b'); if(!b) return;
- const txt=el.textContent.trim();
- const wrap=document.createElement('span');
- while(el.firstChild) wrap.appendChild(el.firstChild);
- el.appendChild(wrap);
- el.classList.add('sayable');
- const btn=document.createElement('button');
- btn.type='button';btn.className='speak';btn.textContent='🔊';
- btn.setAttribute('aria-label','Escuchar: '+txt);
- btn.onclick=()=>say(txt);
- el.appendChild(btn);
-});
-if(!('speechSynthesis' in window)) document.querySelectorAll('.sound-bar').forEach(x=>x.style.display='none');
-
-// Motor de Quiz com botão Siguiente
-function makeQuiz(id,qs){
- const box=document.getElementById(id);let qi=0,score=0,locked=false;
- function render(){
-  const q=qs[qi];locked=false;
-  box.innerHTML='<p style="font-size:1.1rem;"><b>'+q.t+'</b></p><div class="choice-grid">'+q.o.map((o,i)=>'<button type="button" class="choice" data-i="'+i+'">'+o+'</button>').join('')+'</div><p class="small" style="margin-top:15px; font-weight:700;">Pregunta '+(qi+1)+' de '+qs.length+' · Puntos: '+score+'</p><div class="feedback" aria-live="polite"></div>';
-  box.querySelectorAll('.choice').forEach(b=>b.addEventListener('click',()=>ans(+b.dataset.i,b)));
- }
- function ans(i,btn){
-  if(locked) return; locked=true;
-  const q=qs[qi];const bs=box.querySelectorAll('.choice');
-  bs.forEach(b=>b.disabled=true);
-  bs[q.a].classList.add('correct');
-  const fb=box.querySelector('.feedback');
-  
-  let btnNext = '<button type="button" class="choice" style="margin-top:15px; padding:8px 16px; width:100%; font-size:1rem; border:none; background:rgba(0,0,0,0.2);" onclick="this.parentElement.dispatchEvent(new CustomEvent(\'next\'))">Siguiente ➔</button>';
-  
-  if(i===q.a){
-   score++;
-   fb.innerHTML='<div style="margin-bottom:8px;">✅ Correcto.</div>'+(q.e||'') + btnNext;
-   fb.className='feedback ok';
-  } else{
-   btn.classList.add('wrong');
-   fb.innerHTML='<div style="margin-bottom:8px;">❌ Casi.</div>'+(q.e||'') + btnNext;
-   fb.className='feedback bad';
+ btn.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
+   e.preventDefault();
+   const next=e.key==='ArrowRight'?(i+1)%buttons.length:(i-1+buttons.length)%buttons.length;
+   buttons[next].focus();buttons[next].click();
   }
-  
-  fb.addEventListener('next', function handler() {
-   fb.removeEventListener('next', handler);
-   if(qi===qs.length-1){end();}else{qi++;render();}
+ });
+});
+
+const list=document.getElementById('verb-list');
+VERBS.forEach(([name,forms])=>{
+ const card=document.createElement('div');card.className='verb-card card';
+ const head=document.createElement('div');head.className='verb-head';
+ const left=document.createElement('div');
+ left.innerHTML='<div class="verb">'+name+'</div><div class="verb-subtitle">🔄 Conjugación — Presente</div>';
+ head.appendChild(left);
+ const audio=document.createElement('button');audio.type='button';audio.className='speak';audio.textContent='🔊';audio.setAttribute('aria-label','Escuchar: '+name);
+ audio.addEventListener('click',()=>say(name));head.appendChild(audio);card.appendChild(head);
+
+ const mini=document.createElement('div');mini.className='mini-forms';
+ forms.forEach((raw,i)=>{
+  const form=raw.replace(/\*/g,'');
+  const item=document.createElement('div');item.className='mini-form-item';
+  item.innerHTML='<small>'+PEOPLE[i]+'</small><b>'+form+'</b>';
+  const a=document.createElement('button');a.type='button';a.className='speak form-audio';a.textContent='🔊';a.setAttribute('aria-label','Escuchar: '+form);
+  a.addEventListener('click',()=>say(form));item.appendChild(a);mini.appendChild(item);
+ });
+ card.appendChild(mini);
+
+ if(FLASHCARDS.includes(name)){
+  const links=document.createElement('div');links.className='verb-links';
+  const a=document.createElement('a');a.className='flashcard-link';a.href='flashcards-verbos-a2.html#'+encodeURIComponent(name);a.textContent='📚 Ver '+name+' en Flashcards';
+  links.appendChild(a);card.appendChild(links);
+ }
+ list.appendChild(card);
+});
+
+document.querySelectorAll('.example.sayable').forEach(el=>{
+ const text=el.textContent.trim();
+ const b=document.createElement('button');b.type='button';b.className='speak';b.textContent='🔊';b.setAttribute('aria-label','Escuchar ejemplo');
+ b.addEventListener('click',()=>say(text));
+ el.appendChild(b);el.classList.add('sayable');
+});
+
+function makeQuiz(id,qs){
+ const box=document.getElementById(id);if(!box)return;
+ box.innerHTML='';
+ const form=document.createElement('div');form.className='quiz-all';
+ qs.forEach((q,qi)=>{
+  const card=document.createElement('div');card.className='quiz-question';
+  const head=document.createElement('div');head.className='quiz-question-head';
+  const p=document.createElement('p');p.innerHTML='<b>'+q[0]+'</b>';head.appendChild(p);
+  const audio=document.createElement('button');audio.type='button';audio.className='quiz-audio';audio.textContent='🔊';audio.setAttribute('aria-label','Escuchar la pregunta');
+  audio.addEventListener('click',()=>say(q[0]));head.appendChild(audio);card.appendChild(head);
+  const grid=document.createElement('div');grid.className='choice-grid';
+  q[1].forEach((opt,i)=>{
+   const b=document.createElement('button');b.type='button';b.className='choice';b.dataset.i=i;b.setAttribute('aria-pressed','false');
+   b.textContent=opt;
+   const a=document.createElement('button');a.type='button';a.className='choice-audio';a.textContent='🔊';a.setAttribute('aria-label','Escuchar alternativa');
+   a.addEventListener('click',e=>{e.stopPropagation();say(opt)});
+   b.appendChild(a);
+   b.addEventListener('click',e=>{if(e.target.closest('.choice-audio'))return;
+    const buttons=[...card.querySelectorAll('.choice')];const fb=card.querySelector('.feedback');
+    buttons.forEach(x=>{x.classList.remove('selected','correct','wrong');x.setAttribute('aria-pressed','false')});
+    b.classList.add('selected');b.setAttribute('aria-pressed','true');card.dataset.answer=i;
+    if(i===q[2]){b.classList.add('correct');fb.className='feedback ok';fb.innerHTML='✅ Correcto.'+(q[3]?'<br>'+q[3]:'');card.dataset.correct='true';}
+    else{b.classList.add('wrong');fb.className='feedback bad';fb.innerHTML='❌ Incorrecto. Vuelve a intentarlo.';card.dataset.correct='false';}
+   });
+   grid.appendChild(b);
   });
- }
- function end(){
-  box.innerHTML='<p style="font-size:1.2rem;"><b>🎉 ¡Fin! Acertaste '+score+' de '+qs.length+'.</b></p><button type="button" class="choice" data-again="1" style="background:var(--turq); color:#000; border:none;">Empezar de nuevo ↺</button>';
-  box.querySelector('[data-again]').addEventListener('click',()=>{qi=0;score=0;render();});
- }
- render();
+  card.appendChild(grid);
+  const fb=document.createElement('div');fb.className='feedback';fb.setAttribute('aria-live','polite');card.appendChild(fb);
+  form.appendChild(card);
+ });
+ const check=document.createElement('button');check.type='button';check.className='check-all';check.textContent='Comprobar Respuestas';
+ const result=document.createElement('div');result.className='quiz-result';result.setAttribute('aria-live','polite');
+ check.addEventListener('click',()=>{
+  let score=0;
+  form.querySelectorAll('.quiz-question').forEach((card,qi)=>{
+   const q=qs[qi],selected=card.querySelector('.choice.selected'),fb=card.querySelector('.feedback');
+   if(selected&&Number(selected.dataset.i)===q[2])score++;
+   else if(!selected){fb.className='feedback bad';fb.innerHTML='⚠️ Falta responder esta pregunta.';}
+  });
+  result.textContent='Resultado: '+score+' de '+qs.length+' respuestas correctas.';
+ });
+ box.appendChild(form);box.appendChild(check);box.appendChild(result);
 }
-
-makeQuiz('q-aula',[
- {"t": "¿Cuál es la primera persona de «oír»?", "o": ["oigo", "oyo", "oígo"], "a": 0, "e": "La primera persona del presente es «oigo»."},
- {"t": "Completa: «Yo ______ la solución del problema».", "o": ["resuelvo", "resuelvoo", "resolvo"], "a": 0, "e": "El verbo resolver tiene cambio vocálico o → ue (resuelvo)."},
- {"t": "¿Cuál es correcta para la primera persona del plural (nosotros) de «jugar»?", "o": ["jugamos", "juegamos", "jugimos"], "a": 0, "e": "En nosotros y vosotros, la vocal no cambia (jugamos, jugáis)."},
- {"t": "«Me siento bien» y «me siento en una silla» tienen la misma forma, pero el contexto cambia el significado.", "o": ["Verdadero", "Falso"], "a": 0, "e": "«Me siento» puede provenir del verbo sentirse o sentarse."},
- {"t": "¿Qué significa «cinestesia» según la explicación de clase?", "o": ["movimiento", "silencio", "descanso"], "a": 0, "e": "La cinestesia se relaciona con el movimiento y la necesidad de moverse para aprender."}
-]);
-
+makeQuiz('q-aula',QUESTIONS);
 </script>
+
 </body>
 </html>
