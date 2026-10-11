@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080a18">
+<title>Clase de Español A2 — 08/10/2026</title>
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#080a18;--card:#171d38;--text:#f8f9ff;--muted:#b8c0dd;
+  --pink:#ff5ca8;--purple:#a56cff;--turq:#37e6d4;--yellow:#ffd34e;
+  --blue:#42a5ff;--soft:#252e50;--border:#2d385e;--ok:#4be59a;--bad:#ff6b7c;
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 10% 0,#1d2b66,transparent 38%),radial-gradient(circle at 90% 0,#5a174d,transparent 35%),var(--bg);background-attachment:fixed;color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}
+.container{max-width:1100px;margin:auto;padding:22px 16px 60px}
+header{text-align:center;padding:26px 20px;margin-bottom:6px;border-radius:22px;border:1px solid #48598d;background:linear-gradient(135deg,#172c6c,#49237f 52%,#741c58);box-shadow:0 18px 50px #0008}
+.badge{display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;font-weight:800;font-size:.82rem}
+h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);color:#fff}
+.subtitle{color:#e3e6ff}
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);display:flex;gap:7px;overflow:auto;padding:8px;border-bottom:1px solid var(--border)}
+nav button,.tab{border:1px solid var(--border);background:var(--card);color:var(--text);padding:9px 12px;border-radius:12px;cursor:pointer;white-space:nowrap;font-weight:750}
+nav button.active,.tab.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+section{display:none;padding-top:22px}
+section.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:0 7px 22px color-mix(in srgb,var(--purple) 10%,transparent)}
+.card h3{margin-top:0}
+.color-title{font-size:1.25rem;font-weight:900}
+.pink{color:var(--pink)}.purple{color:var(--purple)}.turq{color:var(--turq)}.blue{color:var(--blue)}.yellow{color:var(--yellow)}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden}
+th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+th{background:#202a4c;color:#cdbdff}
+.verb-card{margin-bottom:16px}
+.verb-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.verb{font-size:1.45rem;font-weight:900;color:var(--pink)}
+.tag{font-size:.78rem;font-weight:800;padding:4px 9px;border-radius:999px;background:var(--soft);color:#cdbdff}
+.speak{border:0;background:var(--soft);border-radius:10px;padding:7px 10px;cursor:pointer}
+.example{border-left:4px solid var(--turq);padding:9px 12px;background:color-mix(in srgb,var(--turq) 8%,var(--card));border-radius:0 12px 12px 0;margin:9px 0}
+.note{font-size:.9rem;color:var(--muted)}
+.choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:9px}
+.choice{padding:12px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;text-align:left}
+.choice.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card))}
+.choice.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card))}
+.feedback{margin-top:12px;font-weight:800}
+.feedback.ok{color:var(--ok)}.feedback.bad{color:var(--bad)}
+details{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px;margin:9px 0}
+summary{cursor:pointer;font-weight:800}
+.progress{height:10px;background:var(--soft);border-radius:99px;overflow:hidden}.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq));transition:.25s}
+.small{font-size:.88rem;color:var(--muted)}
+.example.sayable{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.example.sayable .speak{flex:0 0 auto;font-size:1.05rem}
+.sound-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:6px 0 12px}
+.speak:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.speak[aria-pressed="true"]{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff}
+footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
+@media(max-width:600px){.container{padding:14px 10px 45px}th,td{padding:8px;font-size:.9rem}.card{padding:15px}}
+
+.home-nav{text-align:center;margin:14px 0 8px}
+.home-nav a{display:inline-block;padding:10px 18px;border-radius:12px;background:#10152b;border:1px solid var(--border);color:#fff;text-decoration:none;font-weight:800;transition:transform .15s ease,border-color .15s ease}
+.home-nav a:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.home-nav a:hover{transform:translateY(-1px);border-color:var(--blue)}
+
+
+.table-wrap{overflow-x:auto;border-radius:16px}
+.table-wrap table{min-width:520px}
+select{background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:8px 10px;font:inherit;max-width:100%}
+select:focus-visible,.choice:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.ex-row{margin:12px 0;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.ex-row:last-of-type{border-bottom:0}
+.ex-fb{display:inline-block;margin-left:8px;font-weight:800}
+.ex-fb.ok{color:var(--ok)}.ex-fb.bad{color:var(--bad)}
+.chip{display:inline-block;padding:4px 10px;margin:3px 3px 3px 0;border-radius:999px;background:var(--soft);border:1px solid var(--border);font-weight:700}
+.mini-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.mini-grid .verb-card{margin-bottom:0}
+.form-big{font-size:1.25rem;font-weight:900;color:var(--turq);margin:10px 0 4px}
+ul.clean{margin:8px 0;padding-left:20px}ul.clean li{margin:5px 0}
+.choice:disabled{cursor:default}
+
+.pill{display:inline-block;padding:3px 9px;border-radius:999px;background:var(--soft);border:1px solid var(--border);font-size:.78rem;font-weight:800;margin-left:6px}
+.mini-forms{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.mini-forms div{flex:1 1 90px;background:#0c1125;border:1px solid var(--border);border-radius:10px;padding:7px 9px;text-align:center}
+.mini-forms small{display:block;color:var(--muted);font-size:.7rem;text-transform:uppercase}
+.mini-forms b{font-size:1.05rem;color:var(--turq)}
+
+.dict-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:10px 0}
+.num-input{background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:10px 12px;font:inherit;font-size:1.2rem;width:min(100%,240px)}
+.num-input:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.big-num{font-size:1.6rem;font-weight:900;color:var(--turq)}
+.num-table td.n{font-weight:900;color:var(--yellow);width:46px}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <span class="badge">EOI · Español A2 · Clase individual</span>
+  <h1>Ficha interactiva — 08/10/2026</h1>
+  <div class="subtitle">Cine: recomendar películas, verbos del cine y biografía de Ana Alcaide</div>
+  <div class="subtitle" style="font-size:.9rem;margin-top:6px">📖 Libro: Aula Plus 2 · p. 136 (ejercicio 22) y ficha «Directores, películas y sinopsis»</div>
+</header>
+<div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
+
+<nav>
+  <button class="active" onclick="showTab('resumen',this)">📚 Resumen</button>
+  <button onclick="showTab('vocab',this)">📝 Vocabulario</button>
+  <button onclick="showTab('gram',this)">🧠 Gramática</button>
+  <button onclick="showTab('verbos',this)">🔤 Verbos</button>
+  <button onclick="showTab('ex',this)">✏️ Ejercicios</button>
+  <button onclick="showTab('practica',this)">🎯 Práctica</button>
+</nav>
+<section id="resumen" class="active">
+<div class="grid">
+ <div class="card"><div class="color-title pink">1. El examen del certificado</div><p>La profesora explicó cómo será el examen. Hay <b>dos exámenes del curso</b> (octubre y diciembre) y el <b>certificado</b> es un examen aparte. Las fechas siguen <b>por confirmar</b>.</p></div>
+ <div class="card"><div class="color-title purple">2. Directores, películas y sinopsis</div><p>Corregimos la ficha y la comentamos: vocabulario del cine, verbos como <b>ganar, dirigir, adaptar, estrenar</b> y la diferencia entre voz activa y pasiva.</p></div>
+ <div class="card"><div class="color-title turq">3. Recomendar una película o serie</div><p>Una imagen en la tele sirvió para debatir en grupo y recomendar una película o una serie con frases con <b>que</b>.</p></div>
+ <div class="card"><div class="color-title yellow">4. Comprensión auditiva y ejercicio 22</div><p>Vídeo sobre la música <b>Ana Alcaide</b> con preguntas, y corrección conjunta del <b>ejercicio 22</b> (biografía en pretérito, libro p. 136).</p></div>
+</div>
+<div class="card" style="margin-top:14px">
+<h3>🎓 Sobre el examen del certificado</h3>
+<p class="note">Atención: la transcripción del audio tiene mucho ruido. Esto es lo que se entendió; confirma los detalles con la profesora.</p>
+<ul class="clean"><li>Los <b>exámenes del curso</b> son dos: uno en octubre (19-20) y otro en diciembre (9-10).</li><li>El <b>certificado</b> es independiente del curso. Si no lo apruebas, puedes seguir en el curso.</li><li>Posible fecha para escribir, escuchar y leer: <b>13 de enero de 2027</b> (por confirmar). La fecha de la prueba oral no se conoce.</li><li>La prueba oral puede hacerla otra profesora.</li><li>Tipos de tarea: relacionar título y tema, elegir A/B/C o verdadero/falso, y a veces escribir una sola palabra.</li><li>El <b>cine</b> puede ser un tema oral: «Habla de una película, novela o serie y cuenta de qué va».</li><li>No está claro si se puede repetir el examen; la profesora va a preguntar.</li></ul>
+</div>
+<div class="card" style="margin-top:14px">
+<h3>⭐ Frases clave de la clase</h3>
+<div class="sound-bar"><span class="small">🔊 Toca el botón de cada frase para escucharla.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
+<div class="example"><b>La película está basada en un hecho real.</b></div><div class="example"><b>El director adaptó una novela al cine.</b></div><div class="example"><b>La película trata de un niño.</b></div><div class="example"><b>Es una película sobre una historia de amor.</b></div><div class="example"><b>Cuenta la historia de una mujer valiente.</b></div><div class="example"><b>Yo vi la película en el cine.</b></div><div class="example"><b>Es una película que tiene una banda sonora preciosa.</b></div><div class="example"><b>Acaba de estrenar su nueva película.</b></div>
+</div>
+<div class="card" style="margin-top:14px"><h3>🗂️ Actividades de la clase</h3>
+<ul class="activity-list">
+<li>Corrección de la ficha «Directores, películas y sinopsis».</li>
+<li>Debate en grupo con una imagen: recomendar una película o una serie.</li>
+<li>Vídeo de comprensión auditiva (Ana Alcaide) y preguntas.</li>
+<li>Ejercicio 22 de «Más ejercicios 2» (libro p. 136), corregido entre todos.</li>
+</ul>
+<p class="note"><b>Próxima clase:</b> martes 13/10. Se retoma la unidad 4 (viviendas) antes del examen.</p></div>
+</section>
+
+<section id="vocab"><h2>📝 Vocabulario</h2><div class="grid"><div class="card"><div class="color-title pink">Cine</div><ul class="clean"><li><b>el director / la directora</b> · <b>dirigir</b> (una película, a los actores)</li><li><b>la sinopsis</b>: resumen corto de la historia.</li><li><b>el protagonista</b> · <b>protagonizar</b> · <b>interpretar</b> a un personaje</li><li><b>estrenar</b> una película (también ropa: «hoy estreno camisa»).</li><li><b>ganar</b> un Óscar · <b>un premio</b> · <b>una banda sonora</b></li><li><b>un largometraje</b> · <b>un documental</b> · <b>un biopic</b></li><li><b>escenas tórridas</b>: escenas muy sensuales.</li><li><b>un hombre de negocios</b></li></ul></div><div class="card"><div class="color-title purple">Palabras de la ficha</div><ul class="clean"><li><b>superar</b>: pasar por encima de un problema, una pérdida o el dolor.</li><li><b>la élite</b>: la clase social alta · <b>el nivel adquisitivo</b>: cuánto dinero puede gastar una persona.</li><li><b>se mudaron</b> = se fueron a vivir a otro lugar.</li><li><b>la criatura</b> (pronuncia: kre-a-<b>tu</b>-ra).</li><li><b>convertirse en</b> · <b>adolescentes</b> · <b>un monje</b> · <b>el budismo</b></li><li><b>tener que destruir</b> algo</li></ul></div><div class="card"><div class="color-title turq">Vídeo de Ana Alcaide</div><ul class="clean"><li><b>entrañable</b>: que provoca cariño.</li><li><b>autodidacta</b>: que aprende solo, sin profesor.</li><li><b>de Malasaña</b>: barrio de Madrid.</li><li><b>de forma radical</b>: de manera total y rápida.</li><li><b>aunque</b>: a pesar de que.</li><li><b>valiente ↔ cobarde / miedoso</b></li><li><b>la viola de teclas</b>: instrumento sueco del siglo XIV.</li></ul></div><div class="card"><div class="color-title yellow">Recomendar una película o serie</div><ul class="clean"><li>…<b>que es la adaptación de</b> un libro.</li><li>…<b>que se estrenó</b> el año que tú naciste.</li><li>…<b>que tiene muchos premios</b>.</li><li>…<b>que está basada en hechos reales</b>.</li><li>…<b>que cuenta una historia de amor</b>.</li><li>…<b>que trata de / sobre</b> un acontecimiento histórico.</li><li>…<b>que protagoniza</b> un actor o actriz que te gusta.</li><li>…<b>que tiene una banda sonora preciosa</b>.</li><li>…<b>que es una película documental</b>.</li></ul></div></div></section>
+
+<section id="gram"><h2>🧠 Gramática</h2><div class="grid">
+<div class="card"><div class="color-title pink">Contar de qué va una historia</div>
+<div class="example"><b>Es sobre un niño.</b></div><div class="example"><b>Trata de un niño.</b></div><div class="example"><b>Cuenta la historia de un niño.</b></div>
+<div class="note">Con <b>tratar</b> decimos «trata <b>de</b>», no «trata sobre».</div></div>
+<div class="card"><div class="color-title purple">Voz activa y pasiva</div>
+<div class="example"><b>El director adaptó una novela.</b></div><div class="example"><b>La película está basada en una novela.</b></div>
+<div class="note">La persona hace la acción: <b>adaptó</b>. La película recibe la acción: <b>está basada en</b>. La novela no adapta nada.</div></div>
+<div class="card"><div class="color-title turq">Acabar de + infinitivo</div>
+<div class="example"><b>Acaba de estrenar una película.</b></div><div class="example"><b>Acabo de ver el vídeo.</b></div>
+<div class="note">Significa que algo ocurrió hace muy poco. No se usa en pretérito.</div></div>
+<div class="card"><div class="color-title yellow">Describir una película: presente</div>
+<div class="example"><b>En la película, Elisa interpreta a una mujer muda.</b></div><div class="example"><b>Los científicos quieren matar a la criatura.</b></div>
+<div class="note">Para describir una película usamos el <b>presente</b>. Para hablar de su producción, el pasado: <b>ganó</b> un Óscar, <b>dirigió</b> su primera película.</div></div>
+<div class="card"><div class="color-title pink">Ver: pretérito</div>
+<div class="example"><b>Yo vi la película en el cine.</b></div><div class="example"><b>Ella vio el documental ayer.</b></div>
+<div class="note"><b>vi</b> y <b>vio</b> se escriben sin tilde.</div></div>
+<div class="card"><div class="color-title purple">Hasta / a los 7 años</div>
+<div class="example"><b>Vivió en Malasaña hasta los 7 años.</b></div><div class="example"><b>Empezó a estudiar música a los 7 años.</b></div>
+<div class="note"><b>hasta</b> marca el final; <b>a los… años</b> marca el momento en que empezó algo.</div></div>
+</div></section>
+
+<section id="verbos"><h2>🔤 Verbos trabajados en la clase</h2><p class="small">Verbos nuevos añadidos a los flashcards: <b>superar, salvar, curar, matar, tratar, crecer</b>. <a href="flashcards-verbos-a2.html">Abrir los flashcards →</a></p><div class="sound-bar"><span class="small">🔊 Cada verbo tiene su botón.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div><h3 class="color-title turq" style="margin-top:22px">A · Verbos del ejercicio 22 (pretérito indefinido)</h3><div class="card"><div class="table-wrap"><table><tr><th>Infinitivo</th><th>Pretérito (3.ª persona)</th></tr><tr><td>nacer</td><td><b>nació</b></td></tr><tr><td>irse</td><td><b>se fue</b></td></tr><tr><td>sentirse</td><td><b>se sintió</b></td></tr><tr><td>aprender</td><td><b>aprendió</b></td></tr><tr><td>empezar</td><td><b>empezó</b></td></tr><tr><td>conseguir</td><td><b>consiguió</b></td></tr><tr><td>mantener</td><td><b>mantuvo</b></td></tr><tr><td>tener</td><td><b>tuvo</b></td></tr><tr><td>estar</td><td><b>estuvo</b></td></tr><tr><td>regresar</td><td><b>regresó</b></td></tr><tr><td>colaborar</td><td><b>colaboró</b></td></tr><tr><td>hacer</td><td><b>hizo</b></td></tr><tr><td>publicar</td><td><b>publicó</b></td></tr><tr><td>morir</td><td><b>murió</b></td></tr></table></div><div class="note">Irregulares: <b>fue, sintió, consiguió, mantuvo, tuvo, estuvo, hizo, murió</b>.</div></div><h3 class="color-title turq" style="margin-top:22px">B · Verbos nuevos del cine y la historia</h3><div class="verb-card card"><div class="verb-head"><span class="verb">superar</span><span class="tag">regular -AR</span><button type="button" class="speak" aria-label="Escuchar: superar" onclick="say('superar')">🔊</button></div><div class="table-wrap"><table><tr><th colspan="6">Presente</th></tr><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr><tr><td>supero</td><td>superas</td><td>supera</td><td>superamos</td><td>superáis</td><td>superan</td></tr><tr><th colspan="6">Pretérito indefinido</th></tr><tr><td>superé</td><td>superaste</td><td>superó</td><td>superamos</td><td>superasteis</td><td>superaron</td></tr></table></div><div class="example"><b>Ella superó la pérdida de su marido.</b></div><div class="note">Superar = pasar por encima de algo difícil.</div></div><div class="verb-card card"><div class="verb-head"><span class="verb">salvar</span><span class="tag">regular -AR</span><button type="button" class="speak" aria-label="Escuchar: salvar" onclick="say('salvar')">🔊</button></div><div class="table-wrap"><table><tr><th colspan="6">Presente</th></tr><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr><tr><td>salvo</td><td>salvas</td><td>salva</td><td>salvamos</td><td>salváis</td><td>salvan</td></tr><tr><th colspan="6">Pretérito indefinido</th></tr><tr><td>salvé</td><td>salvaste</td><td>salvó</td><td>salvamos</td><td>salvasteis</td><td>salvaron</td></tr></table></div><div class="example"><b>Elisa quiere salvar a la criatura.</b></div><div class="note">Salvar = proteger a alguien de un peligro.</div></div><div class="verb-card card"><div class="verb-head"><span class="verb">curar</span><span class="tag">regular -AR</span><button type="button" class="speak" aria-label="Escuchar: curar" onclick="say('curar')">🔊</button></div><div class="table-wrap"><table><tr><th colspan="6">Presente</th></tr><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr><tr><td>curo</td><td>curas</td><td>cura</td><td>curamos</td><td>curáis</td><td>curan</td></tr><tr><th colspan="6">Pretérito indefinido</th></tr><tr><td>curé</td><td>curaste</td><td>curó</td><td>curamos</td><td>curasteis</td><td>curaron</td></tr></table></div><div class="example"><b>El médico curó la herida.</b></div><div class="note">Curar = hacer que alguien o algo esté bien.</div></div><div class="verb-card card"><div class="verb-head"><span class="verb">matar</span><span class="tag">regular -AR</span><button type="button" class="speak" aria-label="Escuchar: matar" onclick="say('matar')">🔊</button></div><div class="table-wrap"><table><tr><th colspan="6">Presente</th></tr><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr><tr><td>mato</td><td>matas</td><td>mata</td><td>matamos</td><td>matáis</td><td>matan</td></tr><tr><th colspan="6">Pretérito indefinido</th></tr><tr><td>maté</td><td>mataste</td><td>mató</td><td>matamos</td><td>matasteis</td><td>mataron</td></tr></table></div><div class="example"><b>Los científicos quieren matar a la criatura.</b></div><div class="note">Matar = quitar la vida.</div></div><div class="verb-card card"><div class="verb-head"><span class="verb">tratar</span><span class="tag">regular -AR</span><button type="button" class="speak" aria-label="Escuchar: tratar" onclick="say('tratar')">🔊</button></div><div class="table-wrap"><table><tr><th colspan="6">Presente</th></tr><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr><tr><td>trato</td><td>tratas</td><td>trata</td><td>tratamos</td><td>tratáis</td><td>tratan</td></tr><tr><th colspan="6">Pretérito indefinido</th></tr><tr><td>traté</td><td>trataste</td><td>trató</td><td>tratamos</td><td>tratasteis</td><td>trataron</td></tr></table></div><div class="example"><b>La película trata de un niño.</b></div><div class="note">Tratar de + tema. No «trata sobre».</div></div><div class="verb-card card"><div class="verb-head"><span class="verb">crecer</span><span class="tag">yo irregular (c→zc)</span><button type="button" class="speak" aria-label="Escuchar: crecer" onclick="say('crecer')">🔊</button></div><div class="table-wrap"><table><tr><th colspan="6">Presente</th></tr><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr><tr><td>crezco</td><td>creces</td><td>crece</td><td>crecemos</td><td>crecéis</td><td>crecen</td></tr><tr><th colspan="6">Pretérito indefinido</th></tr><tr><td>crecí</td><td>creciste</td><td>creció</td><td>crecimos</td><td>crecisteis</td><td>crecieron</td></tr></table></div><div class="example"><b>Ana Alcaide creció en Malasaña.</b></div><div class="note">Crecer = hacerse mayor. Irregular solo en yo: crezco.</div></div><div class="verb-card card"><div class="verb-head"><span class="verb">ver</span><span class="tag">yo irregular</span><button type="button" class="speak" aria-label="Escuchar: ver" onclick="say('ver')">🔊</button></div><div class="table-wrap"><table><tr><th colspan="6">Presente</th></tr><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr><tr><td>veo</td><td>ves</td><td>ve</td><td>vemos</td><td>veis</td><td>ven</td></tr><tr><th colspan="6">Pretérito indefinido</th></tr><tr><td>vi</td><td>viste</td><td>vio</td><td>vimos</td><td>visteis</td><td>vieron</td></tr></table></div><div class="example"><b>Yo vi la película en el cine.</b></div><div class="note">En pretérito: vi y vio sin tilde.</div></div><div class="verb-card card"><div class="verb-head"><span class="verb">destruir</span><span class="tag">-uir (y)</span><button type="button" class="speak" aria-label="Escuchar: destruir" onclick="say('destruir')">🔊</button></div><div class="table-wrap"><table><tr><th colspan="6">Presente</th></tr><tr><th>Yo</th><th>Tú</th><th>Él / Ella / Usted</th><th>Nosotros / Nosotras</th><th>Vosotros / Vosotras</th><th>Ellos / Ellas / Ustedes</th></tr><tr><td>destruyo</td><td>destruyes</td><td>destruye</td><td>destruimos</td><td>destruís</td><td>destruyen</td></tr><tr><th colspan="6">Pretérito indefinido</th></tr><tr><td>destruí</td><td>destruiste</td><td>destruyó</td><td>destruimos</td><td>destruisteis</td><td>destruyeron</td></tr></table></div><div class="example"><b>Tienen que destruir la criatura.</b></div><div class="note">Con -uir: la i entre vocales se vuelve y (destruyó).</div></div></section>
+
+<section id="ex"><h2>✏️ Ejercicios interactivos</h2>
+<div class="card"><h3>1 · Ficha: verbos del cine</h3><div id="q-ficha"></div></div>
+<div class="card" style="margin-top:14px"><h3>2 · Ficha: la historia de las películas</h3><div id="q-hist"></div></div>
+<div class="card" style="margin-top:14px"><h3>3 · Es sobre / trata de / cuenta</h3><div id="q-trin"></div></div>
+<div class="card" style="margin-top:14px"><h3>4 · Voz activa y pasiva</h3><div id="q-pas"></div></div>
+<div class="card" style="margin-top:14px"><h3>5 · Vídeo de Ana Alcaide</h3><div id="q-ana"></div></div>
+<div class="card" style="margin-top:14px"><h3>6 · Ejercicio 22: práctica con los mismos verbos</h3><div id="q-e22"></div></div>
+<div class="card" style="margin-top:14px"><h3>7 · Hasta / a los…</h3><div id="q-has"></div></div>
+<div class="card" style="margin-top:14px"><h3>8 · Vocabulario</h3><div id="q-lex"></div></div>
+<div class="card" style="margin-top:14px"><h3>9 · Recomendar una película</h3><div id="q-rec"></div></div>
+</section>
+
+<section id="practica"><h2>🎯 Práctica y tarea</h2>
+<div class="card"><h3>🏠 Tarea</h3><div class="homework"><p>En esta clase no se mandó una tarea nueva. El ejercicio 22 se hizo y se corrigió en clase.</p></div>
+<p class="note"><b>Para practicar en casa:</b> prepara la recomendación de una película o serie y revisa las páginas 136 (ejercicios 23-25), que no se hicieron en clase.</p></div>
+<div class="card" style="margin-top:14px"><h3>🎬 Recomienda una película o serie</h3><p>Prepara tu recomendación. Comprueba que usas:</p>
+<label><input type="checkbox" onchange="tick(this)"> El <b>título</b> y el <b>género</b>.</label><br>
+<label><input type="checkbox" onchange="tick(this)"> <b>Que cuenta / que trata de</b> para explicar de qué va.</label><br>
+<label><input type="checkbox" onchange="tick(this)"> <b>Está basada en</b> o <b>es la adaptación de</b> (si es el caso).</label><br>
+<label><input type="checkbox" onchange="tick(this)"> Un dato del <b>director</b> o del <b>protagonista</b>.</label><br>
+<label><input type="checkbox" onchange="tick(this)"> <b>Ganó</b> un premio / <b>se estrenó</b> en el año…</label>
+<div class="progress" style="margin-top:12px"><span id="bar"></span></div><p id="count" class="small">0/5 completado</p></div>
+<div class="card" style="margin-top:14px"><h3>⚠️ Para confirmar con la profesora</h3><ul class="clean"><li>El ejercicio 22 aparece en la p. 136 del libro («Más ejercicios 2»); en las notas se anotó la p. 132.</li><li>Vídeo de Ana Alcaide: el audio dice que viajó a <b>Irán</b> (no a Indonesia) y que fue a Toledo a los <b>24 o 25 años</b> (no en 2002). Cuando empezó con la viola de teclas: «a los 23 o 24 años».</li><li>La razón por la que dejó la música a los 15 años no se oye con claridad en el audio.</li></ul></div></section>
+
+<div class="home-nav"><a href="index.html">🏠 Volver al inicio</a></div>
+<footer>Registro individual de la clase del 08/10/2026. Basado en la pizarra, las fichas, el audio y las notas de la clase.</footer>
+</div>
+<script>
+function showTab(id,btn){
+ document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+ btn.classList.add('active');
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+let slow=false, esVoice=null;
+function pickEs(){
+ const vs=speechSynthesis.getVoices();
+ esVoice=vs.find(v=>v.lang==='es-ES')||vs.find(v=>v.lang&&v.lang.startsWith('es'))||null;
+}
+if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=pickEs;pickEs();}
+function say(txt){
+ if(!('speechSynthesis' in window)) return;
+ speechSynthesis.cancel();
+ const u=new SpeechSynthesisUtterance(txt);
+ u.lang='es-ES';if(esVoice)u.voice=esVoice;
+ u.rate=slow?.6:.85;
+ speechSynthesis.speak(u);
+}
+function toggleSlow(){
+ slow=!slow;
+ document.querySelectorAll('.slowBtn').forEach(b=>{
+  b.textContent=slow?'🐢 Lento: encendido':'🐢 Lento: apagado';
+  b.setAttribute('aria-pressed',slow);
+ });
+}
+// botón 🔊 en cada frase de ejemplo de TODAS las pestañas (solo el texto en español, dentro de <b>)
+document.querySelectorAll('.example').forEach(el=>{
+ const b=el.querySelector('b'); if(!b) return;
+ const txt=b.textContent.trim();
+ const wrap=document.createElement('span');
+ while(el.firstChild) wrap.appendChild(el.firstChild);
+ el.appendChild(wrap);
+ el.classList.add('sayable');
+ const btn=document.createElement('button');
+ btn.type='button';btn.className='speak';btn.textContent='🔊';
+ btn.setAttribute('aria-label','Escuchar: '+txt);
+ btn.onclick=()=>say(txt);
+ el.appendChild(btn);
+});
+if(!('speechSynthesis' in window)) document.querySelectorAll('.sound-bar').forEach(x=>x.style.display='none');
+
+function makeQuiz(id,qs){
+ const box=document.getElementById(id);let qi=0,score=0,locked=false;
+ function render(){
+  const q=qs[qi];locked=false;
+  box.innerHTML='<p><b>'+q.t+'</b></p><div class="choice-grid">'+q.o.map((o,i)=>'<button type="button" class="choice" data-i="'+i+'">'+o+'</button>').join('')+'</div><p class="small">Pregunta '+(qi+1)+' de '+qs.length+' · Puntos: '+score+'</p><div class="feedback" aria-live="polite"></div>';
+  box.querySelectorAll('.choice').forEach(b=>b.addEventListener('click',()=>ans(+b.dataset.i,b)));
+ }
+ function ans(i,btn){
+  if(locked) return; locked=true;
+  const q=qs[qi];const bs=box.querySelectorAll('.choice');
+  bs.forEach(b=>b.disabled=true);
+  bs[q.a].classList.add('correct');
+  const fb=box.querySelector('.feedback');
+  if(i===q.a){score++;fb.textContent='✅ Correcto. '+(q.e||'');fb.className='feedback ok';}
+  else{btn.classList.add('wrong');fb.textContent='❌ Casi. '+(q.e||'');fb.className='feedback bad';}
+  setTimeout(()=>{if(qi===qs.length-1){end();}else{qi++;render();}},1300);
+ }
+ function end(){
+  box.innerHTML='<p><b>🎉 ¡Fin! Acertaste '+score+' de '+qs.length+'.</b></p><button type="button" class="choice" data-again="1">Empezar de nuevo ↺</button>';
+  box.querySelector('[data-again]').addEventListener('click',()=>{qi=0;score=0;render();});
+ }
+ render();
+}
+makeQuiz("q-ficha",[{"t": "Ganar…", "o": ["una película en el cine", "una novela al cine", "un Óscar"], "a": 2, "e": "Ganar un Óscar."}, {"t": "Estar basada…", "o": ["un Óscar", "en un hecho real", "al protagonista"], "a": 1, "e": "Estar basada en un hecho real."}, {"t": "Contar…", "o": ["una historia de amor", "su primera película", "una novela"], "a": 0, "e": "Contar una historia de amor."}, {"t": "Interpretar…", "o": ["en una novela", "al personaje principal", "un Óscar"], "a": 1, "e": "Interpretar al protagonista."}, {"t": "Dirigir…", "o": ["una novela al cine", "su primera película histórica", "un hecho real"], "a": 1, "e": "Dirigir una película."}, {"t": "Estrenar…", "o": ["una película en el cine", "una historia de amor", "en un hecho real"], "a": 0, "e": "Estrenar una película."}, {"t": "Adaptar…", "o": ["un Óscar", "una novela al cine", "al protagonista"], "a": 1, "e": "Adaptar una novela al cine."}, {"t": "La película ___ un Óscar el año pasado. (ganar)", "o": ["gana", "ganó", "ganado"], "a": 1, "e": "Pretérito: ganó."}, {"t": "Esta película ___ en una novela. (estar basada)", "o": ["basa", "ha basado", "está basada"], "a": 2, "e": "Está basada en."}, {"t": "El director ___ la novela al cine. (adaptar)", "o": ["adaptó", "está adaptada", "adapta la novela"], "a": 0, "e": "El director adaptó."}, {"t": "Ella ___ al personaje principal. (interpretar, descripción)", "o": ["interpretó", "interpreta", "interpretaba"], "a": 1, "e": "Para describir la película usamos presente."}, {"t": "El director ___ su nueva película. (acabar de estrenar)", "o": ["acaba de estrenar", "acabó de estrenó", "acabó estrenar"], "a": 0, "e": "Acabar de + infinitivo."}]);
+makeQuiz("q-hist",[{"t": "¿Qué problema tiene la protagonista de «La librería»?", "o": ["La hostilidad y el rechazo de la élite local", "Tiene que vender su casa", "No sabe hablar español"], "a": 0, "e": "La élite del pueblo la rechaza."}, {"t": "En «La forma del agua», ¿qué quieren hacer los científicos con la criatura?", "o": ["Venderla", "Matarla", "Salvarla"], "a": 1, "e": "Elisa quiere salvarla; ellos quieren matarla."}, {"t": "¿Qué tienen en común las protagonistas de dos de las películas?", "o": ["Dejaron su casa y llegaron a un lugar nuevo", "Son directoras", "Son actrices famosas"], "a": 0, "e": "Se mudaron y tuvieron que adaptarse a una nueva vida."}, {"t": "¿Qué une a Elisa y a la criatura?", "o": ["Un amor profundo y un apoyo mutuo", "Un viaje", "Un secreto de familia"], "a": 0, "e": "Amor y apoyo mutuo."}, {"t": "«Superar» significa…", "o": ["pasar por encima de un problema", "comprar algo", "olvidarse de alguien"], "a": 0, "e": "Superar un problema, una pérdida, el dolor."}, {"t": "«Élite» es…", "o": ["la clase social alta", "un tipo de película", "un grupo de amigos"], "a": 0, "e": "Élite = clase social alta."}]);
+makeQuiz("q-trin",[{"t": "La película ___ de un niño.", "o": ["trata", "cuenta", "habla sobre"], "a": 0, "e": "Trata de."}, {"t": "Es una película ___ un niño.", "o": ["sobre", "trata", "cuenta"], "a": 0, "e": "Es sobre."}, {"t": "La película ___ la historia de un niño.", "o": ["cuenta", "es", "trata"], "a": 0, "e": "Cuenta la historia de."}, {"t": "Es incorrecto decir…", "o": ["trata sobre un niño", "trata de un niño", "es sobre un niño"], "a": 0, "e": "Con tratar se usa «de»."}, {"t": "El libro ___ de una familia.", "o": ["trata", "trato", "tratan"], "a": 0, "e": "El libro trata de."}]);
+makeQuiz("q-pas",[{"t": "La película ___ en una novela.", "o": ["adapta", "está basada", "basó"], "a": 1, "e": "La película está basada en."}, {"t": "La persona que hace la acción es…", "o": ["el director", "la película", "la novela"], "a": 0, "e": "El director adaptó la novela."}, {"t": "«La novela adapta una película» es…", "o": ["pasado", "correcto", "incorrecto"], "a": 2, "e": "La novela no puede adaptar."}, {"t": "Elige la frase correcta.", "o": ["La película adaptó el director.", "El director adaptó la novela al cine.", "La novela adaptó la película."], "a": 1, "e": "Sujeto: el director."}, {"t": "Estrenar también se usa con…", "o": ["libros de texto", "comida", "ropa"], "a": 2, "e": "«Hoy estreno camisa.»"}]);
+makeQuiz("q-ana",[{"t": "¿Dónde creció Ana Alcaide?", "o": ["En Toledo", "En Suecia", "En Malasaña"], "a": 2, "e": "Creció en Malasaña."}, {"t": "¿Hasta qué edad vivió allí?", "o": ["Hasta los 24 años", "Hasta los 7 años", "Hasta los 15 años"], "a": 1, "e": "Hasta los 7 años."}, {"t": "¿Cuándo empezó a estudiar música?", "o": ["A los 7 años", "A los 23 años", "A los 15 años"], "a": 0, "e": "A los 7 años."}, {"t": "¿Qué instrumento empezó a tocar?", "o": ["El piano", "La guitarra", "El violín"], "a": 2, "e": "El violín."}, {"t": "¿Qué estudió?", "o": ["Cine y música", "Solo música", "Biología y música"], "a": 2, "e": "Biología y música."}, {"t": "¿Dónde conoció la viola de teclas?", "o": ["En Suecia", "En Irán", "En Madrid"], "a": 0, "e": "Conoció la viola de teclas en Suecia."}, {"t": "¿Cómo aprendió a tocarla?", "o": ["En el conservatorio de Madrid", "Con una profesora seria", "De forma autodidacta, en las calles de Toledo"], "a": 2, "e": "Es autodidacta."}, {"t": "¿Qué lugar le da calma, paz e inspiración?", "o": ["Madrid", "Estocolmo", "Toledo"], "a": 2, "e": "Madrid nunca le gustó; Toledo sí."}, {"t": "¿Adónde viajó para iniciar un proyecto musical con mujeres?", "o": ["A Indonesia", "A Irán", "A Suecia"], "a": 1, "e": "El audio dice Irán."}, {"t": "¿Cómo se describe?", "o": ["Miedosa siempre", "Valiente", "Cobarde"], "a": 1, "e": "Es valiente: a veces tiene miedo, pero le gustan los retos."}]);
+makeQuiz("q-e22",[{"t": "Elige: Ana ___ en Madrid. (nacer)", "o": ["nacido", "nació", "nacía"], "a": 1, "e": "nació"}, {"t": "Se ___ a Toledo. (irse)", "o": ["fue", "iba", "fui"], "a": 0, "e": "se fue"}, {"t": "Se ___ feliz. (sentirse)", "o": ["sintieron", "sentió", "sintió"], "a": 2, "e": "sintió (e→i)"}, {"t": "Ella ___ a tocar la viola. (aprender)", "o": ["aprendía", "aprendió", "aprendí"], "a": 1, "e": "aprendió"}, {"t": "Ella ___ a estudiar música. (empezar)", "o": ["empeza", "empezió", "empezó"], "a": 2, "e": "empezó"}, {"t": "Ella ___ un contrato. (conseguir)", "o": ["consigue", "consiguió", "consegió"], "a": 1, "e": "consiguió (e→i)"}, {"t": "Ella ___ sus tradiciones. (mantener)", "o": ["mantuvo", "mantenió", "mantenía"], "a": 0, "e": "mantuvo"}, {"t": "Ella ___ mucho éxito. (tener)", "o": ["tenió", "tuvió", "tuvo"], "a": 2, "e": "tuvo"}, {"t": "Ella ___ en Suecia. (estar)", "o": ["estaba", "estuvo", "estó"], "a": 1, "e": "estuvo"}, {"t": "Él ___ a Madrid. (regresar)", "o": ["regresa", "regresé", "regresó"], "a": 2, "e": "regresó"}, {"t": "Ella ___ con otros músicos. (colaborar)", "o": ["colaborió", "colaboraba", "colaboró"], "a": 2, "e": "colaboró"}, {"t": "Él ___ una película. (hacer)", "o": ["hizo", "hicó", "hació"], "a": 0, "e": "hizo"}, {"t": "Su libro ___ en 2010. (publicarse)", "o": ["se publicó", "se publicaron", "se publicaba"], "a": 0, "e": "se publicó"}, {"t": "El artista ___ en 1990. (morir)", "o": ["murió", "moría", "morió"], "a": 0, "e": "murió (o→u)"}]);
+makeQuiz("q-has",[{"t": "Vivió en Malasaña ___ los 7 años.", "o": ["a", "hasta", "en"], "a": 1, "e": "hasta = final."}, {"t": "Empezó a estudiar música ___ los 7 años.", "o": ["desde", "a", "hasta"], "a": 1, "e": "a los 7 años."}, {"t": "Estudió música ___ los 15 años.", "o": ["hasta", "de", "a"], "a": 0, "e": "hasta los 15 años."}, {"t": "Mi hermano empezó a trabajar ___ los 20 años.", "o": ["hasta", "a", "en"], "a": 1, "e": "momento en que empieza algo: a los 20 años."}, {"t": "Yo viví en Brasil ___ los 18 años.", "o": ["por", "a", "hasta"], "a": 2, "e": "hasta = final de un período."}]);
+makeQuiz("q-lex",[{"t": "Una persona que aprende sola, sin profesor, es…", "o": ["cobarde", "entrañable", "autodidacta"], "a": 2, "e": "Autodidacta."}, {"t": "El contrario de «valiente» es…", "o": ["autodidacta", "entrañable", "cobarde"], "a": 2, "e": "Cobarde / miedoso."}, {"t": "Lo que provoca cariño es…", "o": ["radical", "élite", "entrañable"], "a": 2, "e": "Entrañable."}, {"t": "La música de una película es…", "o": ["la sinopsis", "la banda sonora", "el largometraje"], "a": 1, "e": "Banda sonora."}, {"t": "Una película documental cuenta…", "o": ["hechos reales", "solo música", "una novela inventada"], "a": 0, "e": "Documental = hechos reales."}, {"t": "«Se mudaron» significa…", "o": ["se fueron a vivir a otro lugar", "se casaron", "se perdieron"], "a": 0, "e": "Mudarse = cambiar de casa."}, {"t": "«Nivel adquisitivo» es…", "o": ["el nivel de ruido", "el nivel de español", "cuánto dinero puede gastar alguien"], "a": 2, "e": "Dinero que se puede gastar."}, {"t": "Una escena «tórrida» es…", "o": ["muy sensual", "muy larga", "muy triste"], "a": 0, "e": "Tórrida = muy sensual."}]);
+makeQuiz("q-rec",[{"t": "Te recomiendo una película ___ cuenta una historia de amor.", "o": ["de", "en", "que"], "a": 2, "e": "que + verbo"}, {"t": "Es una serie ___ se estrenó el año que naciste.", "o": ["porque", "cual", "que"], "a": 2, "e": "que se estrenó"}, {"t": "Es una película ___ tiene muchos premios.", "o": ["con", "que", "de"], "a": 1, "e": "que tiene"}, {"t": "Es una película ___ en hechos reales.", "o": ["basada", "basado", "base"], "a": 0, "e": "basada en (femenino)"}, {"t": "Te recomiendo «La forma del agua», ___ ganó un Óscar.", "o": ["la que", "que", "en que"], "a": 1, "e": "que ganó"}, {"t": "Es una película ___ banda sonora preciosa.", "o": ["que una", "con una", "de una"], "a": 1, "e": "con una banda sonora"}, {"t": "Mi serie favorita ___ de un grupo de amigos.", "o": ["tratan", "cuenta", "trata"], "a": 2, "e": "trata de"}]);
+let done=0;
+function tick(cb){
+ done+=cb.checked?1:-1;
+ document.getElementById('bar').style.width=(done/5*100)+'%';
+ document.getElementById('count').textContent=done+'/5 completado';
+}
+</script>
+</body></html>
