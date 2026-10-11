@@ -2841,6 +2841,15 @@ function setLang(l) {
   if (mode === 'sounds') renderSounds();
 }
 
+// Abre automaticamente o verbo indicado no fragmento da URL (ex.: #llegar).
+// Mantém o cartão inicial sincronizado com os links das aulas.
+(function openVerbFromHash() {
+  const target = decodeURIComponent(window.location.hash.replace(/^#/, '')).trim().toLocaleLowerCase();
+  if (!target) return;
+  const foundIndex = verbs.findIndex(v => v.word.toLocaleLowerCase() === target);
+  if (foundIndex >= 0) i = foundIndex;
+})();
+
 setLang('pt');
 </script>
 
