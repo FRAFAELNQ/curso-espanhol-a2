@@ -657,7 +657,8 @@ const GROUPS = {
   "uir":       { pt: "Verbos -uir (inserção de 'y')", es: "Verbos -uir (inserción de 'y')", en: "-uir verbs ('y' insertion)" },
   "eie-ir-refl": { pt: "Reflexivo e→ie (-IR especial)", es: "Reflexivo e→ie (-IR especial)", en: "Reflexive e→ie (special -IR)" },
   "yo-irr-refl": { pt: "1ª pessoa irregular + reflexivo", es: "1ª persona irregular + reflexivo", en: "Irregular 1st person + reflexive" },
-  uar: { pt: "-UAR (acento no u)", es: "-UAR (acento en la u)", en: "-UAR (accent on the u)" }
+  uar: { pt: "-UAR (acento no u)", es: "-UAR (acento en la u)", en: "-UAR (accent on the u)" },
+  iie: { pt: "i → ie (adquirir)", es: "i → ie (adquirir)", en: "i → ie (adquirir)" }
 };
 
 const NOTES = {
@@ -752,7 +753,13 @@ const NOTES = {
   estrenarNote: { pt: "Estrenar una película = apresentá-la ao público pela primeira vez. Pretérito: estrenó.", es: "Estrenar una película = presentarla al público por primera vez. Pretérito: estrenó.", en: "Estrenar una película = to release it for the first time. Preterite: estrenó." },
   interpretarNote: { pt: "Interpretar un papel = atuar como um personagem. Pretérito: interpretó.", es: "Interpretar un papel = actuar como un personaje. Pretérito: interpretó.", en: "Interpretar un papel = to play a character. Preterite: interpretó." },
   lucharNote: { pt: "Luchar contra algo / por algo: luchar contra el Apartheid.", es: "Luchar contra algo / por algo: luchar contra el Apartheid.", en: "Luchar contra something / for something: luchar contra el Apartheid." },
-  rodarNote: { pt: "Rodar = filmar (o→ue no presente: ruedo). Pretérito regular: rodó.", es: "Rodar = filmar (o→ue en presente: ruedo). Pretérito regular: rodó.", en: "Rodar = to shoot a film (o→ue in the present: ruedo). Regular preterite: rodó." }
+  rodarNote: { pt: "Rodar = filmar (o→ue no presente: ruedo). Pretérito regular: rodó.", es: "Rodar = filmar (o→ue en presente: ruedo). Pretérito regular: rodó.", en: "Rodar = to shoot a film (o→ue in the present: ruedo). Regular preterite: rodó." },
+  adquirirNote: { pt: "Adquirir = comprar (mais formal). Muda i→ie: adquiero, adquieres, adquiere, adquirimos, adquirís, adquieren.", es: "Adquirir = comprar (más formal). Cambia i→ie: adquiero, adquieres, adquiere, adquirimos, adquirís, adquieren.", en: "Adquirir = to buy (more formal). Changes i→ie: adquiero, adquieres, adquiere, adquirimos, adquirís, adquieren." },
+  acabarNote: { pt: "Acabar de + infinitivo = fazer algo há pouco: Netflix acaba de estrenar una película.", es: "Acabar de + infinitivo = hacer algo hace muy poco: Netflix acaba de estrenar una película.", en: "Acabar de + infinitive = to have just done something: Netflix acaba de estrenar una película." },
+  acogerNote: { pt: "Yo acojo (g→j por ortografia). Acogida = acolhida; acogedor = aconchegante.", es: "«Yo» acojo (g→j por ortografía). Acogida = bienvenida; acogedor = confortable, agradable.", en: "«Yo» acojo (g→j for spelling). Acogida = welcome; acogedor = cosy." },
+  mantenerNote: { pt: "Como tener: mantengo, mantienes… Passado com raiz irregular: mantuve, mantuvo.", es: "Como tener: mantengo, mantienes… Pasado con raíz irregular: mantuve, mantuvo.", en: "Like tener: mantengo, mantienes… Irregular past stem: mantuve, mantuvo." },
+  verNote: { pt: "Ver: só «yo» é irregular (veo). Passado: vi, vio (sem acento). Dizemos «ver una película».", es: "Ver: solo «yo» es irregular (veo). Pasado: vi, vio (sin tilde). Decimos «ver una película».", en: "Ver: only «yo» is irregular (veo). Past: vi, vio (no accent). We say «ver una película»." },
+  tratarNote: { pt: "«Trata de» + tema (não «trata sobre»): La película trata de un niño. Também: tratar a alguém bem/mal.", es: "«Tratar de» + tema (no «trata sobre»): La película trata de un niño. También: tratar bien/mal a alguien.", en: "«Tratar de» + topic (not «trata sobre»): La película trata de un niño. Also: to treat someone well/badly." }
 };
 
 const verbs = [
@@ -917,7 +924,22 @@ const verbs = [
   { word: "decir", meaning: "",sticker: "💬",groupKey: "mix-ei", forms: ["digo","dices","dice","decimos","decís","dicen"], noteKey: "decirNote" },
 
   { word: "ser", meaning: "ser (essência/identidade)",sticker: "👤",groupKey: "irr", forms: ["soy","eres","es","somos","sois","son"], noteKey: "serNote" },
-  { word: "estar", meaning: "estar (lugar/estado)",sticker: "📍",groupKey: "irr", forms: ["estoy","estás","está","estamos","estáis","están"], noteKey: "estarNote" }
+  { word: "estar", meaning: "estar (lugar/estado)",sticker: "📍",groupKey: "irr", forms: ["estoy","estás","está","estamos","estáis","están"], noteKey: "estarNote" },
+  { word: "acoger", meaning: "",sticker: "🤗",groupKey: "yo-irr", forms: ["acojo","acoges","acoge","acogemos","acogéis","acogen"], noteKey: "acogerNote" },
+  { word: "teletrabajar", meaning: "",sticker: "💻",groupKey: "ar", forms: ["teletrabajo","teletrabajas","teletrabaja","teletrabajamos","teletrabajáis","teletrabajan"], noteKey: "sameHablar" },
+  { word: "adquirir", meaning: "",sticker: "🛒",groupKey: "iie", forms: ["adquiero","adquieres","adquiere","adquirimos","adquirís","adquieren"], noteKey: "adquirirNote" },
+  { word: "ver", meaning: "",sticker: "👀",groupKey: "yo-irr", forms: ["veo","ves","ve","vemos","veis","ven"], noteKey: "verNote" },
+  { word: "destruir", meaning: "",sticker: "💥",groupKey: "uir", forms: ["destruyo","destruyes","destruye","destruimos","destruís","destruyen"], noteKey: "uirNote" },
+  { word: "acabar", meaning: "",sticker: "🏁",groupKey: "ar", forms: ["acabo","acabas","acaba","acabamos","acabáis","acaban"], noteKey: "acabarNote" },
+  { word: "superar", meaning: "",sticker: "🏆",groupKey: "ar", forms: ["supero","superas","supera","superamos","superáis","superan"], noteKey: "sameHablar" },
+  { word: "salvar", meaning: "",sticker: "🛟",groupKey: "ar", forms: ["salvo","salvas","salva","salvamos","salváis","salvan"], noteKey: "sameHablar" },
+  { word: "curar", meaning: "",sticker: "🩹",groupKey: "ar", forms: ["curo","curas","cura","curamos","curáis","curan"], noteKey: "sameHablar" },
+  { word: "matar", meaning: "",sticker: "💀",groupKey: "ar", forms: ["mato","matas","mata","matamos","matáis","matan"], noteKey: "sameHablar" },
+  { word: "tratar", meaning: "",sticker: "📖",groupKey: "ar", forms: ["trato","tratas","trata","tratamos","tratáis","tratan"], noteKey: "tratarNote" },
+  { word: "crecer", meaning: "",sticker: "🌱",groupKey: "yo-irr-zc", forms: ["crezco","creces","crece","crecemos","crecéis","crecen"], noteKey: "sameConocer" },
+  { word: "mantener", meaning: "",sticker: "🤝",groupKey: "mix-eie", forms: ["mantengo","mantienes","mantiene","mantenemos","mantenéis","mantienen"], noteKey: "mantenerNote" },
+  { word: "colaborar", meaning: "",sticker: "🧩",groupKey: "ar", forms: ["colaboro","colaboras","colabora","colaboramos","colaboráis","colaboran"], noteKey: "sameHablar" },
+  { word: "regresar", meaning: "",sticker: "🔙",groupKey: "ar", forms: ["regreso","regresas","regresa","regresamos","regresáis","regresan"], noteKey: "sameHablar" }
 ];
 
 function gTxt(key) { return GROUPS[key][lang]; }
@@ -1068,7 +1090,22 @@ const MEAN = {
   "luchar": { pt: "lutar", en: "to fight / to struggle" },
   "rodar": { pt: "filmar / rodar", en: "to shoot (a film)" },
   "filmar": { pt: "filmar", en: "to film" },
-  "crear": { pt: "criar / criar (fundar)", en: "to create" }
+  "crear": { pt: "criar / criar (fundar)", en: "to create" },
+  "acoger": { pt: "acolher", en: "to welcome / to take in" },
+  "teletrabajar": { pt: "teletrabalhar / trabalhar remotamente", en: "to work remotely" },
+  "adquirir": { pt: "adquirir (mais formal que comprar)", en: "to acquire (more formal than comprar)" },
+  "ver": { pt: "ver", en: "to see / to watch" },
+  "destruir": { pt: "destruir", en: "to destroy" },
+  "acabar": { pt: "acabar / terminar", en: "to finish / to end" },
+  "superar": { pt: "ultrapassar / superar", en: "to overcome / to surpass" },
+  "salvar": { pt: "salvar", en: "to save (rescue)" },
+  "curar": { pt: "curar", en: "to cure / to heal" },
+  "matar": { pt: "matar", en: "to kill" },
+  "tratar": { pt: "tratar / (tratar de) falar sobre", en: "to deal with / (tratar de) to be about" },
+  "crecer": { pt: "crescer", en: "to grow / to grow up" },
+  "mantener": { pt: "manter", en: "to keep / to maintain" },
+  "colaborar": { pt: "colaborar", en: "to collaborate" },
+  "regresar": { pt: "regressar / voltar", en: "to return / to go back" }
 };
 
 function mTxt(v) {
@@ -1147,8 +1184,1284 @@ const PAST_IRREGULAR = {
   caber: ["cupe","cupiste","cupo","cupimos","cupisteis","cupieron"]
 };
 
+const PAST_FORMS = {
+ "superar": [
+  "superé",
+  "superaste",
+  "superó",
+  "superamos",
+  "superasteis",
+  "superaron"
+ ],
+ "salvar": [
+  "salvé",
+  "salvaste",
+  "salvó",
+  "salvamos",
+  "salvasteis",
+  "salvaron"
+ ],
+ "curar": [
+  "curé",
+  "curaste",
+  "curó",
+  "curamos",
+  "curasteis",
+  "curaron"
+ ],
+ "matar": [
+  "maté",
+  "mataste",
+  "mató",
+  "matamos",
+  "matasteis",
+  "mataron"
+ ],
+ "tratar": [
+  "traté",
+  "trataste",
+  "trató",
+  "tratamos",
+  "tratasteis",
+  "trataron"
+ ],
+ "crecer": [
+  "crecí",
+  "creciste",
+  "creció",
+  "crecimos",
+  "crecisteis",
+  "crecieron"
+ ],
+ "hablar": [
+  "hablé",
+  "hablaste",
+  "habló",
+  "hablamos",
+  "hablasteis",
+  "hablaron"
+ ],
+ "comprar": [
+  "compré",
+  "compraste",
+  "compró",
+  "compramos",
+  "comprasteis",
+  "compraron"
+ ],
+ "preguntar": [
+  "pregunté",
+  "preguntaste",
+  "preguntó",
+  "preguntamos",
+  "preguntasteis",
+  "preguntaron"
+ ],
+ "cenar": [
+  "cené",
+  "cenaste",
+  "cenó",
+  "cenamos",
+  "cenasteis",
+  "cenaron"
+ ],
+ "llorar": [
+  "lloré",
+  "lloraste",
+  "lloró",
+  "lloramos",
+  "llorasteis",
+  "lloraron"
+ ],
+ "terminar": [
+  "terminé",
+  "terminaste",
+  "terminó",
+  "terminamos",
+  "terminasteis",
+  "terminaron"
+ ],
+ "tomar": [
+  "tomé",
+  "tomaste",
+  "tomó",
+  "tomamos",
+  "tomasteis",
+  "tomaron"
+ ],
+ "visitar": [
+  "visité",
+  "visitaste",
+  "visitó",
+  "visitamos",
+  "visitasteis",
+  "visitaron"
+ ],
+ "entrar": [
+  "entré",
+  "entraste",
+  "entró",
+  "entramos",
+  "entrasteis",
+  "entraron"
+ ],
+ "desayunar": [
+  "desayuné",
+  "desayunaste",
+  "desayunó",
+  "desayunamos",
+  "desayunasteis",
+  "desayunaron"
+ ],
+ "limpiar": [
+  "limpié",
+  "limpiaste",
+  "limpió",
+  "limpiamos",
+  "limpiasteis",
+  "limpiaron"
+ ],
+ "comparar": [
+  "comparé",
+  "comparaste",
+  "comparó",
+  "comparamos",
+  "comparasteis",
+  "compararon"
+ ],
+ "arreglar": [
+  "arreglé",
+  "arreglaste",
+  "arregló",
+  "arreglamos",
+  "arreglasteis",
+  "arreglaron"
+ ],
+ "cocinar": [
+  "cociné",
+  "cocinaste",
+  "cocinó",
+  "cocinamos",
+  "cocinasteis",
+  "cocinaron"
+ ],
+ "marcar": [
+  "marqué",
+  "marcaste",
+  "marcó",
+  "marcamos",
+  "marcasteis",
+  "marcaron"
+ ],
+ "observar": [
+  "observé",
+  "observaste",
+  "observó",
+  "observamos",
+  "observasteis",
+  "observaron"
+ ],
+ "perdonar": [
+  "perdoné",
+  "perdonaste",
+  "perdonó",
+  "perdonamos",
+  "perdonasteis",
+  "perdonaron"
+ ],
+ "listar": [
+  "listé",
+  "listaste",
+  "listó",
+  "listamos",
+  "listasteis",
+  "listaron"
+ ],
+ "tutear": [
+  "tuteé",
+  "tuteaste",
+  "tuteó",
+  "tuteamos",
+  "tuteasteis",
+  "tutearon"
+ ],
+ "pasar": [
+  "pasé",
+  "pasaste",
+  "pasó",
+  "pasamos",
+  "pasasteis",
+  "pasaron"
+ ],
+ "publicar": [
+  "publiqué",
+  "publicaste",
+  "publicó",
+  "publicamos",
+  "publicasteis",
+  "publicaron"
+ ],
+ "pagar": [
+  "pagué",
+  "pagaste",
+  "pagó",
+  "pagamos",
+  "pagasteis",
+  "pagaron"
+ ],
+ "cruzar": [
+  "crucé",
+  "cruzaste",
+  "cruzó",
+  "cruzamos",
+  "cruzasteis",
+  "cruzaron"
+ ],
+ "organizar": [
+  "organicé",
+  "organizaste",
+  "organizó",
+  "organizamos",
+  "organizasteis",
+  "organizaron"
+ ],
+ "tocar": [
+  "toqué",
+  "tocaste",
+  "tocó",
+  "tocamos",
+  "tocasteis",
+  "tocaron"
+ ],
+ "viajar": [
+  "viajé",
+  "viajaste",
+  "viajó",
+  "viajamos",
+  "viajasteis",
+  "viajaron"
+ ],
+ "ganar": [
+  "gané",
+  "ganaste",
+  "ganó",
+  "ganamos",
+  "ganasteis",
+  "ganaron"
+ ],
+ "pintar": [
+  "pinté",
+  "pintaste",
+  "pintó",
+  "pintamos",
+  "pintasteis",
+  "pintaron"
+ ],
+ "escalar": [
+  "escalé",
+  "escalaste",
+  "escaló",
+  "escalamos",
+  "escalasteis",
+  "escalaron"
+ ],
+ "actuar": [
+  "actué",
+  "actuaste",
+  "actuó",
+  "actuamos",
+  "actuasteis",
+  "actuaron"
+ ],
+ "morir": [
+  "morí",
+  "moriste",
+  "murió",
+  "morimos",
+  "moristeis",
+  "murieron"
+ ],
+ "obtener": [
+  "obtuve",
+  "obtuviste",
+  "obtuvo",
+  "obtuvimos",
+  "obtuvisteis",
+  "obtuvieron"
+ ],
+ "componer": [
+  "compuse",
+  "compusiste",
+  "compuso",
+  "compusimos",
+  "compusisteis",
+  "compusieron"
+ ],
+ "ir": [
+  "fui",
+  "fuiste",
+  "fue",
+  "fuimos",
+  "fuisteis",
+  "fueron"
+ ],
+ "dar": [
+  "di",
+  "diste",
+  "dio",
+  "dimos",
+  "disteis",
+  "dieron"
+ ],
+ "mentir": [
+  "mentí",
+  "mentiste",
+  "mintió",
+  "mentimos",
+  "mentisteis",
+  "mintieron"
+ ],
+ "poder": [
+  "pude",
+  "pudiste",
+  "pudo",
+  "pudimos",
+  "pudisteis",
+  "pudieron"
+ ],
+ "querer": [
+  "quise",
+  "quisiste",
+  "quiso",
+  "quisimos",
+  "quisisteis",
+  "quisieron"
+ ],
+ "saber": [
+  "supe",
+  "supiste",
+  "supo",
+  "supimos",
+  "supisteis",
+  "supieron"
+ ],
+ "venir": [
+  "vine",
+  "viniste",
+  "vino",
+  "vinimos",
+  "vinisteis",
+  "vinieron"
+ ],
+ "buscar": [
+  "busqué",
+  "buscaste",
+  "buscó",
+  "buscamos",
+  "buscasteis",
+  "buscaron"
+ ],
+ "nacer": [
+  "nací",
+  "naciste",
+  "nació",
+  "nacimos",
+  "nacisteis",
+  "nacieron"
+ ],
+ "dirigir": [
+  "dirigí",
+  "dirigiste",
+  "dirigió",
+  "dirigimos",
+  "dirigisteis",
+  "dirigieron"
+ ],
+ "casarse": [
+  "me casé",
+  "te casaste",
+  "se casó",
+  "nos casamos",
+  "os casasteis",
+  "se casaron"
+ ],
+ "protagonizar": [
+  "protagonicé",
+  "protagonizaste",
+  "protagonizó",
+  "protagonizamos",
+  "protagonizasteis",
+  "protagonizaron"
+ ],
+ "inventar": [
+  "inventé",
+  "inventaste",
+  "inventó",
+  "inventamos",
+  "inventasteis",
+  "inventaron"
+ ],
+ "correr": [
+  "corrí",
+  "corriste",
+  "corrió",
+  "corrimos",
+  "corristeis",
+  "corrieron"
+ ],
+ "coger": [
+  "cogí",
+  "cogiste",
+  "cogió",
+  "cogimos",
+  "cogisteis",
+  "cogieron"
+ ],
+ "caminar": [
+  "caminé",
+  "caminaste",
+  "caminó",
+  "caminamos",
+  "caminasteis",
+  "caminaron"
+ ],
+ "alquilar": [
+  "alquilé",
+  "alquilaste",
+  "alquiló",
+  "alquilamos",
+  "alquilasteis",
+  "alquilaron"
+ ],
+ "trabajar": [
+  "trabajé",
+  "trabajaste",
+  "trabajó",
+  "trabajamos",
+  "trabajasteis",
+  "trabajaron"
+ ],
+ "enseñar": [
+  "enseñé",
+  "enseñaste",
+  "enseñó",
+  "enseñamos",
+  "enseñasteis",
+  "enseñaron"
+ ],
+ "llegar": [
+  "llegué",
+  "llegaste",
+  "llegó",
+  "llegamos",
+  "llegasteis",
+  "llegaron"
+ ],
+ "encontrarse": [
+  "me encontré",
+  "te encontraste",
+  "se encontró",
+  "nos encontramos",
+  "os encontrasteis",
+  "se encontraron"
+ ],
+ "irse": [
+  "me fui",
+  "te fuiste",
+  "se fue",
+  "nos fuimos",
+  "os fuisteis",
+  "se fueron"
+ ],
+ "quedarse": [
+  "me quedé",
+  "te quedaste",
+  "se quedó",
+  "nos quedamos",
+  "os quedasteis",
+  "se quedaron"
+ ],
+ "quedar": [
+  "quedé",
+  "quedaste",
+  "quedó",
+  "quedamos",
+  "quedasteis",
+  "quedaron"
+ ],
+ "jubilarse": [
+  "me jubilé",
+  "te jubilaste",
+  "se jubiló",
+  "nos jubilamos",
+  "os jubilasteis",
+  "se jubilaron"
+ ],
+ "divorciarse": [
+  "me divorcié",
+  "te divorciaste",
+  "se divorció",
+  "nos divorciamos",
+  "os divorciasteis",
+  "se divorciaron"
+ ],
+ "enamorarse": [
+  "me enamoré",
+  "te enamoraste",
+  "se enamoró",
+  "nos enamoramos",
+  "os enamorasteis",
+  "se enamoraron"
+ ],
+ "discutir": [
+  "discutí",
+  "discutiste",
+  "discutió",
+  "discutimos",
+  "discutisteis",
+  "discutieron"
+ ],
+ "cambiar": [
+  "cambié",
+  "cambiaste",
+  "cambió",
+  "cambiamos",
+  "cambiasteis",
+  "cambiaron"
+ ],
+ "dejar": [
+  "dejé",
+  "dejaste",
+  "dejó",
+  "dejamos",
+  "dejasteis",
+  "dejaron"
+ ],
+ "mudarse": [
+  "me mudé",
+  "te mudaste",
+  "se mudó",
+  "nos mudamos",
+  "os mudasteis",
+  "se mudaron"
+ ],
+ "estudiar": [
+  "estudié",
+  "estudiaste",
+  "estudió",
+  "estudiamos",
+  "estudiasteis",
+  "estudiaron"
+ ],
+ "preparar": [
+  "preparé",
+  "preparaste",
+  "preparó",
+  "preparamos",
+  "preparasteis",
+  "prepararon"
+ ],
+ "separarse": [
+  "me separé",
+  "te separaste",
+  "se separó",
+  "nos separamos",
+  "os separasteis",
+  "se separaron"
+ ],
+ "hacerse": [
+  "me hice",
+  "te hiciste",
+  "se hizo",
+  "nos hicimos",
+  "os hicisteis",
+  "se hicieron"
+ ],
+ "contar": [
+  "conté",
+  "contaste",
+  "contó",
+  "contamos",
+  "contasteis",
+  "contaron"
+ ],
+ "interpretar": [
+  "interpreté",
+  "interpretaste",
+  "interpretó",
+  "interpretamos",
+  "interpretasteis",
+  "interpretaron"
+ ],
+ "estrenar": [
+  "estrené",
+  "estrenaste",
+  "estrenó",
+  "estrenamos",
+  "estrenasteis",
+  "estrenaron"
+ ],
+ "adaptar": [
+  "adapté",
+  "adaptaste",
+  "adaptó",
+  "adaptamos",
+  "adaptasteis",
+  "adaptaron"
+ ],
+ "luchar": [
+  "luché",
+  "luchaste",
+  "luchó",
+  "luchamos",
+  "luchasteis",
+  "lucharon"
+ ],
+ "rodar": [
+  "rodé",
+  "rodaste",
+  "rodó",
+  "rodamos",
+  "rodasteis",
+  "rodaron"
+ ],
+ "filmar": [
+  "filmé",
+  "filmaste",
+  "filmó",
+  "filmamos",
+  "filmasteis",
+  "filmaron"
+ ],
+ "crear": [
+  "creé",
+  "creaste",
+  "creó",
+  "creamos",
+  "creasteis",
+  "crearon"
+ ],
+ "acoger": [
+  "acogí",
+  "acogiste",
+  "acogió",
+  "acogimos",
+  "acogisteis",
+  "acogieron"
+ ],
+ "teletrabajar": [
+  "teletrabajé",
+  "teletrabajaste",
+  "teletrabajó",
+  "teletrabajamos",
+  "teletrabajasteis",
+  "teletrabajaron"
+ ],
+ "adquirir": [
+  "adquirí",
+  "adquiriste",
+  "adquirió",
+  "adquirimos",
+  "adquiristeis",
+  "adquirieron"
+ ],
+ "llevar": [
+  "llevé",
+  "llevaste",
+  "llevó",
+  "llevamos",
+  "llevasteis",
+  "llevaron"
+ ],
+ "llevarse": [
+  "me llevé",
+  "te llevaste",
+  "se llevó",
+  "nos llevamos",
+  "os llevasteis",
+  "se llevaron"
+ ],
+ "ducharse": [
+  "me duché",
+  "te duchaste",
+  "se duchó",
+  "nos duchamos",
+  "os duchasteis",
+  "se ducharon"
+ ],
+ "levantarse": [
+  "me levanté",
+  "te levantaste",
+  "se levantó",
+  "nos levantamos",
+  "os levantasteis",
+  "se levantaron"
+ ],
+ "comer": [
+  "comí",
+  "comiste",
+  "comió",
+  "comimos",
+  "comisteis",
+  "comieron"
+ ],
+ "comprender": [
+  "comprendí",
+  "comprendiste",
+  "comprendió",
+  "comprendimos",
+  "comprendisteis",
+  "comprendieron"
+ ],
+ "beber": [
+  "bebí",
+  "bebiste",
+  "bebió",
+  "bebimos",
+  "bebisteis",
+  "bebieron"
+ ],
+ "responder": [
+  "respondí",
+  "respondiste",
+  "respondió",
+  "respondimos",
+  "respondisteis",
+  "respondieron"
+ ],
+ "leer": [
+  "leí",
+  "leíste",
+  "leyó",
+  "leímos",
+  "leísteis",
+  "leyeron"
+ ],
+ "aprender": [
+  "aprendí",
+  "aprendiste",
+  "aprendió",
+  "aprendimos",
+  "aprendisteis",
+  "aprendieron"
+ ],
+ "subir": [
+  "subí",
+  "subiste",
+  "subió",
+  "subimos",
+  "subisteis",
+  "subieron"
+ ],
+ "vivir": [
+  "viví",
+  "viviste",
+  "vivió",
+  "vivimos",
+  "vivisteis",
+  "vivieron"
+ ],
+ "escribir": [
+  "escribí",
+  "escribiste",
+  "escribió",
+  "escribimos",
+  "escribisteis",
+  "escribieron"
+ ],
+ "recibir": [
+  "recibí",
+  "recibiste",
+  "recibió",
+  "recibimos",
+  "recibisteis",
+  "recibieron"
+ ],
+ "merendar": [
+  "merendé",
+  "merendaste",
+  "merendó",
+  "merendamos",
+  "merendasteis",
+  "merendaron"
+ ],
+ "cerrar": [
+  "cerré",
+  "cerraste",
+  "cerró",
+  "cerramos",
+  "cerrasteis",
+  "cerraron"
+ ],
+ "entender": [
+  "entendí",
+  "entendiste",
+  "entendió",
+  "entendimos",
+  "entendisteis",
+  "entendieron"
+ ],
+ "empezar": [
+  "empecé",
+  "empezaste",
+  "empezó",
+  "empezamos",
+  "empezasteis",
+  "empezaron"
+ ],
+ "sentarse": [
+  "me senté",
+  "te sentaste",
+  "se sentó",
+  "nos sentamos",
+  "os sentasteis",
+  "se sentaron"
+ ],
+ "despertarse": [
+  "me desperté",
+  "te despertaste",
+  "se despertó",
+  "nos despertamos",
+  "os despertasteis",
+  "se despertaron"
+ ],
+ "sentirse": [
+  "me sentí",
+  "te sentiste",
+  "se sintió",
+  "nos sentimos",
+  "os sentisteis",
+  "se sintieron"
+ ],
+ "invertir": [
+  "invertí",
+  "invertiste",
+  "invirtió",
+  "invertimos",
+  "invertisteis",
+  "invirtieron"
+ ],
+ "preferir": [
+  "preferí",
+  "preferiste",
+  "prefirió",
+  "preferimos",
+  "preferisteis",
+  "prefirieron"
+ ],
+ "convertirse": [
+  "me convertí",
+  "te convertiste",
+  "se convirtió",
+  "nos convertimos",
+  "os convertisteis",
+  "se convirtieron"
+ ],
+ "comprobar": [
+  "comprobé",
+  "comprobaste",
+  "comprobó",
+  "comprobamos",
+  "comprobasteis",
+  "comprobaron"
+ ],
+ "encontrar": [
+  "encontré",
+  "encontraste",
+  "encontró",
+  "encontramos",
+  "encontrasteis",
+  "encontraron"
+ ],
+ "recordar": [
+  "recordé",
+  "recordaste",
+  "recordó",
+  "recordamos",
+  "recordasteis",
+  "recordaron"
+ ],
+ "volver": [
+  "volví",
+  "volviste",
+  "volvió",
+  "volvimos",
+  "volvisteis",
+  "volvieron"
+ ],
+ "volar": [
+  "volé",
+  "volaste",
+  "voló",
+  "volamos",
+  "volasteis",
+  "volaron"
+ ],
+ "resolver": [
+  "resolví",
+  "resolviste",
+  "resolvió",
+  "resolvimos",
+  "resolvisteis",
+  "resolvieron"
+ ],
+ "devolver": [
+  "devolví",
+  "devolviste",
+  "devolvió",
+  "devolvimos",
+  "devolvisteis",
+  "devolvieron"
+ ],
+ "costar": [
+  "costé",
+  "costaste",
+  "costó",
+  "costamos",
+  "costasteis",
+  "costaron"
+ ],
+ "soñar": [
+  "soñé",
+  "soñaste",
+  "soñó",
+  "soñamos",
+  "soñasteis",
+  "soñaron"
+ ],
+ "colgar": [
+  "colgué",
+  "colgaste",
+  "colgó",
+  "colgamos",
+  "colgasteis",
+  "colgaron"
+ ],
+ "acostarse": [
+  "me acosté",
+  "te acostaste",
+  "se acostó",
+  "nos acostamos",
+  "os acostasteis",
+  "se acostaron"
+ ],
+ "dormir": [
+  "dormí",
+  "dormiste",
+  "durmió",
+  "dormimos",
+  "dormisteis",
+  "durmieron"
+ ],
+ "jugar": [
+  "jugué",
+  "jugaste",
+  "jugó",
+  "jugamos",
+  "jugasteis",
+  "jugaron"
+ ],
+ "medir": [
+  "medí",
+  "mediste",
+  "midió",
+  "medimos",
+  "medisteis",
+  "midieron"
+ ],
+ "seguir": [
+  "seguí",
+  "seguiste",
+  "siguió",
+  "seguimos",
+  "seguisteis",
+  "siguieron"
+ ],
+ "conseguir": [
+  "conseguí",
+  "conseguiste",
+  "consiguió",
+  "conseguimos",
+  "conseguisteis",
+  "consiguieron"
+ ],
+ "elegir": [
+  "elegí",
+  "elegiste",
+  "eligió",
+  "elegimos",
+  "elegisteis",
+  "eligieron"
+ ],
+ "reír": [
+  "reí",
+  "reíste",
+  "rio",
+  "reímos",
+  "reísteis",
+  "rieron"
+ ],
+ "perseguir": [
+  "perseguí",
+  "perseguiste",
+  "persiguió",
+  "perseguimos",
+  "perseguisteis",
+  "persiguieron"
+ ],
+ "vestir": [
+  "vestí",
+  "vestiste",
+  "vistió",
+  "vestimos",
+  "vestisteis",
+  "vistieron"
+ ],
+ "corregir": [
+  "corregí",
+  "corregiste",
+  "corrigió",
+  "corregimos",
+  "corregisteis",
+  "corrigieron"
+ ],
+ "pedir": [
+  "pedí",
+  "pediste",
+  "pidió",
+  "pedimos",
+  "pedisteis",
+  "pidieron"
+ ],
+ "repetir": [
+  "repetí",
+  "repetiste",
+  "repitió",
+  "repetimos",
+  "repetisteis",
+  "repitieron"
+ ],
+ "sonreír": [
+  "sonreí",
+  "sonreíste",
+  "sonrió",
+  "sonreímos",
+  "sonreísteis",
+  "sonrieron"
+ ],
+ "vestirse": [
+  "me vestí",
+  "te vestiste",
+  "se vistió",
+  "nos vestimos",
+  "os vestisteis",
+  "se vistieron"
+ ],
+ "despedirse": [
+  "me despedí",
+  "te despediste",
+  "se despidió",
+  "nos despedimos",
+  "os despedisteis",
+  "se despidieron"
+ ],
+ "construir": [
+  "construí",
+  "construiste",
+  "construyó",
+  "construimos",
+  "construisteis",
+  "construyeron"
+ ],
+ "huir": [
+  "huí",
+  "huiste",
+  "huyó",
+  "huimos",
+  "huisteis",
+  "huyeron"
+ ],
+ "hacer": [
+  "hice",
+  "hiciste",
+  "hizo",
+  "hicimos",
+  "hicisteis",
+  "hicieron"
+ ],
+ "traer": [
+  "traje",
+  "trajiste",
+  "trajo",
+  "trajimos",
+  "trajisteis",
+  "trajeron"
+ ],
+ "caer": [
+  "caí",
+  "caíste",
+  "cayó",
+  "caímos",
+  "caísteis",
+  "cayeron"
+ ],
+ "poner": [
+  "puse",
+  "pusiste",
+  "puso",
+  "pusimos",
+  "pusisteis",
+  "pusieron"
+ ],
+ "salir": [
+  "salí",
+  "saliste",
+  "salió",
+  "salimos",
+  "salisteis",
+  "salieron"
+ ],
+ "darse": [
+  "me di",
+  "te diste",
+  "se dio",
+  "nos dimos",
+  "os disteis",
+  "se dieron"
+ ],
+ "conocer": [
+  "conocí",
+  "conociste",
+  "conoció",
+  "conocimos",
+  "conocisteis",
+  "conocieron"
+ ],
+ "conducir": [
+  "conduje",
+  "condujiste",
+  "condujo",
+  "condujimos",
+  "condujisteis",
+  "condujeron"
+ ],
+ "parecer": [
+  "parecí",
+  "pareciste",
+  "pareció",
+  "parecimos",
+  "parecisteis",
+  "parecieron"
+ ],
+ "traducir": [
+  "traduje",
+  "tradujiste",
+  "tradujo",
+  "tradujimos",
+  "tradujisteis",
+  "tradujeron"
+ ],
+ "parecerse": [
+  "me parecí",
+  "te pareciste",
+  "se pareció",
+  "nos parecimos",
+  "os parecisteis",
+  "se parecieron"
+ ],
+ "oír": [
+  "oí",
+  "oíste",
+  "oyó",
+  "oímos",
+  "oísteis",
+  "oyeron"
+ ],
+ "tener": [
+  "tuve",
+  "tuviste",
+  "tuvo",
+  "tuvimos",
+  "tuvisteis",
+  "tuvieron"
+ ],
+ "ver": [
+  "vi",
+  "viste",
+  "vio",
+  "vimos",
+  "visteis",
+  "vieron"
+ ],
+ "destruir": [
+  "destruí",
+  "destruiste",
+  "destruyó",
+  "destruimos",
+  "destruisteis",
+  "destruyeron"
+ ],
+ "acabar": [
+  "acabé",
+  "acabaste",
+  "acabó",
+  "acabamos",
+  "acabasteis",
+  "acabaron"
+ ],
+ "mantener": [
+  "mantuve",
+  "mantuviste",
+  "mantuvo",
+  "mantuvimos",
+  "mantuvisteis",
+  "mantuvieron"
+ ],
+ "colaborar": [
+  "colaboré",
+  "colaboraste",
+  "colaboró",
+  "colaboramos",
+  "colaborasteis",
+  "colaboraron"
+ ],
+ "regresar": [
+  "regresé",
+  "regresaste",
+  "regresó",
+  "regresamos",
+  "regresasteis",
+  "regresaron"
+ ],
+ "decir": [
+  "dije",
+  "dijiste",
+  "dijo",
+  "dijimos",
+  "dijisteis",
+  "dijeron"
+ ],
+ "ser": [
+  "fui",
+  "fuiste",
+  "fue",
+  "fuimos",
+  "fuisteis",
+  "fueron"
+ ],
+ "estar": [
+  "estuve",
+  "estuviste",
+  "estuvo",
+  "estuvimos",
+  "estuvisteis",
+  "estuvieron"
+ ]
+};
+
 function getPastForms(v) {
   if (v.pastForms) return v.pastForms;
+  if (PAST_FORMS[v.word]) return PAST_FORMS[v.word];
   const r = reflexiveBase(v.word);
   const base = r.base;
   if (PAST_IRREGULAR[base]) {
