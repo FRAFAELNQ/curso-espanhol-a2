@@ -829,6 +829,12 @@ document.addEventListener('DOMContentLoaded',()=>{
   });
   addExerciseAudio();
 });
+let done=0;
+function tick(cb){
+ done+=cb.checked?1:-1;
+ document.getElementById('bar').style.width=(done/5*100)+'%';
+ document.getElementById('count').textContent=done+'/5 completado';
+}
 </script>
 
 </body>

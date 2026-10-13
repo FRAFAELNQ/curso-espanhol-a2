@@ -298,10 +298,10 @@ header .subtitle{color:var(--header-text);opacity:.88}
 section > .card + .card, section > .verb-card + .verb-card, section > .grid + .card{margin-top:14px}
 </style>
 <style>
-.verb-structure-guide{margin:14px 0 18px;padding:12px 14px;border:1px solid var(--border);border-radius:14px;background:var(--surface2);color:var(--text);font-size:.94rem;line-height:1.55}
+.verb-structure-guide{margin:14px 0 18px;padding:12px 14px;border:1px solid var(--border);border-radius:14px;background:var(--soft);color:var(--text);font-size:.94rem;line-height:1.55}
 .verb-subtitle{margin:12px 0 8px;font-weight:800;color:var(--text);font-size:.9rem;letter-spacing:.01em}
 .example-label{margin:12px 0 5px;font-weight:800;color:var(--text);font-size:.88rem}
-.flashcard-link{display:inline-flex;align-items:center;gap:6px;margin:10px 0 2px;padding:7px 10px;border-radius:10px;border:1px solid var(--border);background:var(--surface2);color:var(--turq);text-decoration:none;font-weight:800;font-size:.82rem}
+.flashcard-link{display:inline-flex;align-items:center;gap:6px;margin:10px 0 2px;padding:7px 10px;border-radius:10px;border:1px solid var(--border);background:var(--soft);color:var(--turq);text-decoration:none;font-weight:800;font-size:.82rem}
 .flashcard-link:hover{transform:translateY(-1px)}
 .verb-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
 </style><style>@media(max-width:600px){.tab-nav button{padding:0 12px;font-size:.82rem}}</style></head><body><div class="container">
@@ -477,17 +477,10 @@ function makeQuiz(id,qs){
 }
 
 
-makeQuiz('q-irr',[{"t": "Yo ___ al cine ayer. (ir)", "o": ["fui", "fue", "fuí"], "a": 0, "e": "Yo + ir: fui (sin tilde)."}, {"t": "Él ___ muy simpático con nosotros. (ser)", "o": ["fui", "fue", "fueron"], "a": 1, "e": "Ser e ir tienen las mismas formas: fue."}, {"t": "Ellos ___ una pizza en el restaurante. (pedir)", "o": ["pedieron", "pidieron", "pedirón"], "a": 1, "e": "Pedir: e → i en ellos: pidieron."}, {"t": "Ana ___ diez horas ayer. (dormir)", "o": ["dormió", "durmió", "dorme"], "a": 1, "e": "Dormir: o → u en él/ella: durmió."}, {"t": "Tú ___ un libro en una tarde. (leer)", "o": ["leyiste", "leiste", "leíste"], "a": 2, "e": "Con tú: leíste (con tilde). La «y» aparece en él/ellos: leyó, leyeron."}, {"t": "El vaso ___ al suelo. (caer)", "o": ["caió", "cayó", "cayo"], "a": 1, "e": "Él/ella: cayó (i → y entre vocales)."}, {"t": "Nosotros ___ en casa toda la tarde. (estar)", "o": ["estuvimos", "estamos", "estavimos"], "a": 0, "e": "Estar: estuv- + -imos."}, {"t": "Yo no ___ venir ayer. (poder)", "o": ["podí", "puedo", "pude"], "a": 2, "e": "Poder: pud- + -e (sin tilde): pude."}, {"t": "Ella ___ un pastel para mi cumpleaños. (hacer)", "o": ["hizo", "hació", "hiço"], "a": 0, "e": "Hacer: hic-; en «él/ella» la c pasa a z: hizo."}, {"t": "Ellos me ___ que llegaban tarde. (decir)", "o": ["dijieron", "dijeron", "dicieron"], "a": 1, "e": "Decir: dij- + -eron (sin «i»)."}, {"t": "Yo ___ hablar con ella. (querer)", "o": ["quise", "quisí", "quiero"], "a": 0, "e": "Querer: quis- + -e: quise."}, {"t": "Ellos ___ en tren. (venir)", "o": ["venieron", "vienieron", "vinieron"], "a": 2, "e": "Venir: vin- + -ieron."}]);
 
 
 
 
-let done=0;
-function tick(cb){
- done+=cb.checked?1:-1;
- document.getElementById('bar').style.width=(done/7*100)+'%';
- document.getElementById('count').textContent=done+'/7 completado';
-}
 
 makeQuiz('q-aula',[{t:'¿Qué expresa «Me parezco a mi madre»?',o:['Semejanza','Una acción futura','Una emoción'],a:0,e:'La estructura «parecerse a» expresa semejanza.'},{t:'Completa: «Parece ______».',o:['simpático','a mi madre','en los ojos'],a:0,e:'«Parecer + adjetivo» expresa una impresión o valoración.'},{t:'¿Cuál es la forma neutra?',o:['esto','esta','aquella'],a:0,e:'Esto, eso y aquello son formas neutras.'},{t:'Para ropa y gafas, ¿qué verbo se trabajó?',o:['llevar','tenerse','parecerse'],a:0,e:'Llevar se utiliza para ropa y elementos visibles.'},{t:'¿Cuál identifica correctamente a una persona?',o:['La que lleva gafas.','La que lleva ser gafas.','La parecerse gafas.'],a:0,e:'«La que lleva gafas» identifica a una persona sin repetir su nombre.'}]);
 </script></body></html>
