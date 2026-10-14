@@ -1,0 +1,2900 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flashcards — Verbos A2</title>
+<style>
+  :root {
+    --bg: #fef6ff;
+    --card-bg: #ffffff;
+    --text: #2b1a2e;
+    --muted: #8a6b8f;
+    --accent: #e0218a;
+    --accent2: #7c3aed;
+    --accent3: #00c2a8;
+    --accent4: #ffb703;
+    --accent-soft: #fbe3f4;
+    --border: #f0d5ec;
+    --pronoun: #7c3aed;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1a0f22;
+      --card-bg: #2a1a35;
+      --text: #f5e9fb;
+      --muted: #c49fd4;
+      --accent: #ff4fb0;
+      --accent2: #a78bfa;
+      --accent3: #2dd4bf;
+      --accent4: #fbbf24;
+      --accent-soft: #3d2350;
+      --border: #4a2f5c;
+      --pronoun: #c4b5fd;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1a0f22;
+    --card-bg: #2a1a35;
+    --text: #f5e9fb;
+    --muted: #c49fd4;
+    --accent: #ff4fb0;
+    --accent2: #a78bfa;
+    --accent3: #2dd4bf;
+    --accent4: #fbbf24;
+    --accent-soft: #3d2350;
+    --border: #4a2f5c;
+    --pronoun: #c4b5fd;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    background-image:
+      radial-gradient(circle at 15% 10%, color-mix(in srgb, var(--accent2) 18%, transparent) 0%, transparent 45%),
+      radial-gradient(circle at 85% 15%, color-mix(in srgb, var(--accent) 18%, transparent) 0%, transparent 45%),
+      radial-gradient(circle at 50% 95%, color-mix(in srgb, var(--accent3) 15%, transparent) 0%, transparent 50%);
+    color: var(--text);
+    font-family: 'Georgia', 'Iowan Old Style', serif;
+    margin: 0;
+    padding: 24px 16px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  h1 {
+    font-size: 1.5rem;
+    margin: 8px 0 2px;
+    text-align: center;
+    background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3), var(--accent4));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 800;
+  }
+  .sub {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 14px;
+    text-align: center;
+  }
+  .lang-switch {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 18px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 4px;
+  }
+  .lang-btn {
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .lang-btn.active {
+    background: linear-gradient(135deg, var(--accent3), var(--accent2));
+    color: white;
+  }
+  .progress {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .card {
+    width: 100%;
+    max-width: 480px;
+    min-height: 260px;
+    background: var(--card-bg);
+    border: 2px solid transparent;
+    background-image: linear-gradient(var(--card-bg), var(--card-bg)), linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3));
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    border-radius: 20px;
+    padding: 28px 22px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    box-shadow: 0 6px 24px color-mix(in srgb, var(--accent2) 25%, transparent);
+    transition: transform 0.15s ease;
+  }
+  .card:active { transform: scale(0.98); }
+  .meaning { color: var(--muted); font-size: 0.95rem; font-style: italic; text-align: center; }
+  .card:focus-visible { outline: 3px solid var(--accent4); outline-offset: 3px; }
+  .front-word {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .group-tag {
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--accent-soft);
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+  .hint {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+  .speak-front {
+    background: var(--accent-soft);
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4px;
+  }
+  .speak-all {
+    background: transparent;
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+    border-radius: 10px;
+    padding: 6px 14px;
+    font-size: 0.82rem;
+    cursor: pointer;
+    font-family: inherit;
+    margin-top: 4px;
+  }
+  .cell-speak {
+    background: none;
+    border: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 2px;
+    opacity: 0.7;
+  }
+  .cell-speak:active { opacity: 1; }
+  .speed-control {
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  .speed-control input[type="range"] {
+    flex: 1;
+    accent-color: var(--accent);
+  }
+  .speed-value {
+    min-width: 40px;
+    text-align: right;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .conj-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px 10px;
+    width: 100%;
+  }
+  .conj-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .conj-cell .pronoun {
+    color: var(--pronoun);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-weight: 600;
+    text-align: center;
+  }
+  .conj-cell .form {
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-align: center;
+    word-break: break-word;
+  }
+  .note {
+    font-size: 0.82rem;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 10px;
+    line-height: 1.4;
+  }
+  .nav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 22px;
+  }
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 18px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 4px;
+    max-width: 480px;
+  }
+  .tab-btn {
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-family: inherit;
+    font-size: 0.85rem;
+    padding: 8px 18px;
+    border-radius: 9px;
+    cursor: pointer;
+  }
+  .tab-btn.active {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: white;
+    font-weight: 600;
+  }
+  .quiz-score {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .quiz-prompt {
+    font-size: 1.05rem;
+    text-align: center;
+    line-height: 1.5;
+  }
+  .quiz-prompt b {
+    color: var(--accent);
+  }
+  .quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+  .quiz-option {
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    color: var(--text);
+  }
+  .quiz-option.correct {
+    background: #d9ecd9;
+    border-color: #4a9a4a;
+    color: #234d23;
+  }
+  .quiz-option.wrong {
+    background: #f2d6d6;
+    border-color: #b5502e;
+    color: #6e2a17;
+  }
+  .quiz-option[disabled] { cursor: default; }
+  .quiz-explain {
+    font-size: 0.82rem;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+  .cat-time-switch {
+    width: 100%;
+    max-width: 480px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 5px;
+    margin-bottom: 18px;
+  }
+  .cat-time-btn {
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 9px 8px;
+    border-radius: 9px;
+    cursor: pointer;
+  }
+  .cat-time-btn.active {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: white;
+  }
+  .cat-time-info {
+    width: 100%;
+    max-width: 480px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.78rem;
+    margin: -8px 0 16px;
+    line-height: 1.4;
+  }
+  .study-time-switch {
+    display:flex; gap:6px; margin:0 auto 14px; background:var(--card-bg); border:1px solid var(--border); border-radius:999px; padding:4px; max-width:480px;
+  }
+  .study-time-btn { border:none; background:transparent; color:var(--muted); font-family:inherit; font-size:.82rem; font-weight:700; padding:7px 15px; border-radius:999px; cursor:pointer; flex:1; }
+  .study-time-btn.active { background:linear-gradient(135deg,var(--accent),var(--accent2)); color:white; }
+  .tense-block { width:100%; margin-top:4px; }
+  .tense-title { font-size:.78rem; text-transform:uppercase; letter-spacing:.05em; color:var(--accent3); font-weight:800; text-align:center; margin:4px 0 8px; }
+  .past-note { font-size:.78rem; color:var(--muted); text-align:center; margin-top:8px; }
+  .cat-section {
+    width: 100%;
+    max-width: 480px;
+    margin-bottom: 18px;
+  }
+  .cat-title {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+  .cat-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .cat-chip {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.9rem;
+    padding: 7px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .cat-chip:active {
+    background: var(--accent-soft);
+  }
+  .sound-section {
+    width: 100%;
+    max-width: 480px;
+    margin-bottom: 20px;
+    background: var(--card-bg);
+    border: 2px solid transparent;
+    background-image: linear-gradient(var(--card-bg), var(--card-bg)), linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3));
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    border-radius: 16px;
+    padding: 16px 18px;
+  }
+  .sound-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 4px;
+  }
+  .sound-desc {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  .sound-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .sound-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.92rem;
+    font-weight: 600;
+    padding: 7px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .sound-chip:active { background: var(--accent-soft); }
+  .sound-note {
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 8px;
+  }
+  button.navbtn {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  button.navbtn:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+  button.navbtn.secondary {
+    background: transparent;
+    color: var(--accent2);
+    border: 1.5px solid var(--accent2);
+  }
+
+  .home-nav {
+    display: inline-block;
+    margin: 10px auto 18px;
+    padding: 10px 18px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: white;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    box-shadow: 0 6px 18px color-mix(in srgb, var(--accent2) 28%, transparent);
+  }
+  .home-nav:hover { transform: translateY(-1px); }
+
+  .verb-sticker {
+    width: 86px;
+    height: 86px;
+    border-radius: 50%;
+    background: radial-gradient(circle, color-mix(in srgb, var(--accent2) 25%, transparent) 0%, color-mix(in srgb, var(--bg) 75%, transparent) 70%);
+    border: 2px solid color-mix(in srgb, var(--accent3) 55%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.8rem;
+    box-shadow: 0 8px 20px color-mix(in srgb, var(--accent2) 25%, transparent);
+    margin: 4px 0 2px;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: stickerFloat 2.8s ease-in-out infinite;
+  }
+  .card:hover .verb-sticker {
+    transform: scale(1.1) rotate(4deg);
+  }
+  @keyframes stickerFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-4px) rotate(2deg); }
+  }
+
+
+  .export-csv-btn {
+    background: #10b981;
+    color: #071b15;
+    border: none;
+    border-radius: 10px;
+    padding: 11px 18px;
+    font-family: inherit;
+    font-size: 0.92rem;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(16,185,129,.22);
+  }
+  .export-csv-btn:hover { background: #059669; transform: translateY(-1px); }
+  .export-csv-btn:active { transform: scale(.98); }
+
+</style>
+</head>
+<body>
+<a class="home-nav" href="index.html">🏠 Volver al inicio</a>
+
+
+<h1 id="titleEl">Verbos A2 — por padrões</h1>
+<div class="sub" id="subEl">Toque no cartão pra virar</div>
+
+<div class="lang-switch">
+  <button class="lang-btn active" id="langBR" onclick="setLang('pt')">🇧🇷 BR</button>
+  <button class="lang-btn" id="langES" onclick="setLang('es')">🇪🇸 ES</button>
+  <button class="lang-btn" id="langEN" onclick="setLang('en')">🇬🇧 EN</button>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn active" id="tabStudy" onclick="switchTab('study')"></button>
+  <button class="tab-btn" id="tabQuiz" onclick="switchTab('quiz')"></button>
+  <button class="tab-btn" id="tabCat" onclick="switchTab('cat')"></button>
+  <button class="tab-btn" id="tabSounds" onclick="switchTab('sounds')"></button>
+</div>
+
+<div id="studyView">
+  <div class="progress" id="progress"></div>
+
+  <div class="speed-control">
+    <span>🐢</span>
+    <input type="range" id="speedSlider" min="0.5" max="1.1" step="0.05" value="0.8" oninput="updateSpeed(this.value)">
+    <span>🐇</span>
+    <span class="speed-value" id="speedValue">0.8x</span>
+  </div>
+
+  <div class="card" id="card" onclick="flip()" role="button" tabindex="0" onkeydown="if(event.target===this&&(event.key==='Enter'||event.key===' ')){event.preventDefault();flip()}"></div>
+
+  <div class="nav">
+    <button class="navbtn secondary" id="prevBtn" onclick="go(-1)"></button>
+    <button class="navbtn" id="nextBtn" onclick="go(1)"></button>
+  </div>
+</div>
+
+<div id="quizView" style="display:none; width:100%; max-width:480px; flex-direction:column; align-items:center;">
+  <div class="quiz-score" id="quizScore"></div>
+  <div class="card" id="quizCard" style="cursor:default;"></div>
+  <div class="nav">
+    <button class="navbtn secondary" id="quizRestartBtn" onclick="resetQuiz()"></button>
+  </div>
+</div>
+
+<div id="catView" style="display:none; width:100%; flex-direction:column; align-items:center;"></div>
+<div id="catExport" style="display:none; width:100%; max-width:480px; justify-content:center; margin:0 0 18px;">
+  <button class="export-csv-btn" id="exportCsvBtn" onclick="exportVerbsCSV()">📥 Baixar Excel (.csv)</button>
+</div>
+
+<div id="soundsView" style="display:none; width:100%; flex-direction:column; align-items:center;"></div>
+
+<script>
+const cols = ["yo", "tú", "él/ella", "nosotros", "vosotros", "ellos"];
+
+// ---------- i18n ----------
+let lang = 'pt';
+
+const UI = {
+  pt: {
+    title: "Verbos A2 — por padrões",
+    sub: "Toque no cartão pra virar",
+    tabStudy: "Estudar", tabQuiz: "Testar", tabCat: "Categorias", tabSounds: "Sons", catAll: "⚪ Todos", catPresent: "🟢 Presente", catPast: "🟣 Pasado", catPastInfo: "Verbos com referência ao pretérito nas notas da aula.",
+    exportCsv: "📥 Baixar Excel (.csv)",
+    hint: "toque no cartão pra ver las conjugaciones",
+    allTime: "⚪ Todos", presentTime: "🟢 Presente", pastTime: "🟣 Pasado", present: "Presente", past: "Pasado",
+    prev: "◀ Anterior", next: "Próxima ▶", restart: "Reiniciar ↺",
+    speakAll: "🔊 Ouvir as 6 formas",
+    quizScore: (c,t) => `Acertos: ${c} / ${t}`,
+    quizPrompt: (w,p) => `Como se conjuga <b>${w}</b> na pessoa <b>${p}</b>?`,
+    quizCorrect: "Isso mesmo! ", quizWrong: "Não foi dessa vez — ",
+    quizNext: "Próxima pergunta ▶", quizRestart: "↺ Reiniciar",
+    notFromClass: "* fora da lista da turma, adicionado só pra praticar o som"
+  },
+  es: {
+    title: "Verbos A2 — por patrón",
+    sub: "Toca la tarjeta para darle la vuelta",
+    tabStudy: "Estudiar", tabQuiz: "Practicar", tabCat: "Categorías", tabSounds: "Sonidos", catAll: "⚪ Todos", catPresent: "🟢 Presente", catPast: "🟣 Pasado", catPastInfo: "Verbos con referencia al pretérito en las notas de clase.",
+    exportCsv: "📥 Descargar Excel (.csv)",
+    hint: "toca la tarjeta para ver las conjugaciones",
+    allTime: "⚪ Todos", presentTime: "🟢 Presente", pastTime: "🟣 Pasado", present: "Presente", past: "Pasado",
+    prev: "◀ Anterior", next: "Siguiente ▶", restart: "Reiniciar ↺",
+    speakAll: "🔊 Escuchar las 6 formas",
+    quizScore: (c,t) => `Aciertos: ${c} / ${t}`,
+    quizPrompt: (w,p) => `¿Cómo se conjuga <b>${w}</b> en la persona <b>${p}</b>?`,
+    quizCorrect: "¡Eso es! ", quizWrong: "Esta vez no — ",
+    quizNext: "Siguiente pregunta ▶", quizRestart: "↺ Reiniciar",
+    notFromClass: "* fuera de la lista de la clase, añadido solo para practicar el sonido"
+  },
+  en: {
+    title: "A2 Verbs — by pattern",
+    sub: "Tap the card to flip it",
+    tabStudy: "Study", tabQuiz: "Quiz", tabCat: "Categories", tabSounds: "Sounds", catAll: "⚪ All", catPresent: "🟢 Present", catPast: "🟣 Past", catPastInfo: "Verbs with a preterite reference in the class notes.",
+    exportCsv: "📥 Download Excel (.csv)",
+    hint: "tap the card to see the conjugations",
+    allTime: "⚪ All", presentTime: "🟢 Present", pastTime: "🟣 Past", present: "Present", past: "Past",
+    prev: "◀ Previous", next: "Next ▶", restart: "Restart ↺",
+    speakAll: "🔊 Hear all 6 forms",
+    quizScore: (c,t) => `Score: ${c} / ${t}`,
+    quizPrompt: (w,p) => `How do you conjugate <b>${w}</b> for <b>${p}</b>?`,
+    quizCorrect: "That's right! ", quizWrong: "Not quite — ",
+    quizNext: "Next question ▶", quizRestart: "↺ Restart",
+    notFromClass: "* not from the class list, added just to practice the sound"
+  }
+};
+
+const GROUPS = {
+  "ar":        { pt: "Regular -AR", es: "Regular -AR", en: "Regular -AR" },
+  "ar-refl":   { pt: "Reflexivo regular -AR", es: "Reflexivo regular -AR", en: "Regular reflexive -AR" },
+  "er":        { pt: "Regular -ER", es: "Regular -ER", en: "Regular -ER" },
+  "ir":        { pt: "Regular -IR", es: "Regular -IR", en: "Regular -IR" },
+  "eie":       { pt: "Diptongo e→ie", es: "Diptongo e→ie", en: "e→ie diphthong" },
+  "eie-refl":  { pt: "Reflexivo e→ie", es: "Reflexivo e→ie", en: "Reflexive e→ie" },
+  "eie-ir":    { pt: "e→ie (-IR especial)", es: "e→ie (-IR especial)", en: "e→ie (special -IR)" },
+  "oue":       { pt: "Diptongo o→ue", es: "Diptongo o→ue", en: "o→ue diphthong" },
+  "oue-refl":  { pt: "Reflexivo o→ue", es: "Reflexivo o→ue", en: "Reflexive o→ue" },
+  "oue-ir":    { pt: "o→ue (-IR especial)", es: "o→ue (-IR especial)", en: "o→ue (special -IR)" },
+  "uue":       { pt: "u→ue (único)", es: "u→ue (único)", en: "u→ue (unique)" },
+  "ei-ir":     { pt: "e→i (-IR)", es: "e→i (-IR)", en: "e→i (-IR)" },
+  "yo-irr":    { pt: "1ª pessoa irregular", es: "1ª persona irregular", en: "Irregular 1st person" },
+  "mix-eie":   { pt: "Misto: yo + e→ie", es: "Mixto: yo + e→ie", en: "Mixed: yo + e→ie" },
+  "mix-ei":    { pt: "Misto: yo + e→i", es: "Mixto: yo + e→i", en: "Mixed: yo + e→i" },
+  "irr":       { pt: "Totalmente irregular", es: "Totalmente irregular", en: "Fully irregular" },
+  "mix-y":     { pt: "Misto: yo + inserção de 'y'", es: "Mixto: yo + inserción de 'y'", en: "Mixed: yo + 'y' insertion" },
+  "ei-ir-refl":{ pt: "Reflexivo e→i (-IR)", es: "Reflexivo e→i (-IR)", en: "Reflexive e→i (-IR)" },
+  "yo-irr-zc": { pt: "1ª pessoa irregular (c→zc)", es: "1ª persona irregular (c→zc)", en: "Irregular 1st person (c→zc)" },
+  "yo-irr-zc-refl": { pt: "1ª pessoa irregular (c→zc) + reflexivo", es: "1ª persona irregular (c→zc) + reflexivo", en: "Irregular 1st person (c→zc) + reflexive" },
+  "uir":       { pt: "Verbos -uir (inserção de 'y')", es: "Verbos -uir (inserción de 'y')", en: "-uir verbs ('y' insertion)" },
+  "eie-ir-refl": { pt: "Reflexivo e→ie (-IR especial)", es: "Reflexivo e→ie (-IR especial)", en: "Reflexive e→ie (special -IR)" },
+  "yo-irr-refl": { pt: "1ª pessoa irregular + reflexivo", es: "1ª persona irregular + reflexivo", en: "Irregular 1st person + reflexive" },
+  uar: { pt: "-UAR (acento no u)", es: "-UAR (acento en la u)", en: "-UAR (accent on the u)" },
+  iie: { pt: "i → ie (adquirir)", es: "i → ie (adquirir)", en: "i → ie (adquirir)" }
+};
+
+const NOTES = {
+  rootHabl:   { pt: "A raiz 'habl-' nunca muda.", es: "La raíz 'habl-' nunca cambia.", en: "The stem 'habl-' never changes." },
+  sameHablar: { pt: "Mesmo padrão de hablar.", es: "Mismo patrón que hablar.", en: "Same pattern as hablar." },
+  llFocus:    { pt: "Foco no som de LL.", es: "Atención al sonido de LL.", en: "Focus on the LL sound." },
+  reflexive:  { pt: "Regular + pronome reflexivo antes do verbo.", es: "Regular + pronombre reflexivo antes del verbo.", en: "Regular + reflexive pronoun before the verb." },
+  rootCom:    { pt: "A raiz 'com-' nunca muda.", es: "La raíz 'com-' nunca cambia.", en: "The stem 'com-' never changes." },
+  sameComer:  { pt: "Mesmo padrão de comer.", es: "Mismo patrón que comer.", en: "Same pattern as comer." },
+  leerNote:   { pt: "Regular no presente, mas no pretérito/gerúndio o 'i' vira 'y': leyó, leyendo.", es: "Regular en presente, pero en pretérito/gerundio la 'i' se vuelve 'y': leyó, leyendo.", en: "Regular in the present, but in the preterite/gerund the 'i' becomes 'y': leyó, leyendo." },
+  rootSub:    { pt: "A raiz 'sub-' nunca muda.", es: "La raíz 'sub-' nunca cambia.", en: "The stem 'sub-' never changes." },
+  vivirNote:  { pt: "Cuidado: 'vivimos', não 'vivemos' (isso é português).", es: "Cuidado al confundir con otras formas parecidas.", en: "Careful: it's 'vivimos', not the Portuguese 'vivemos'." },
+  sameSubir:  { pt: "Mesmo padrão de subir/vivir.", es: "Mismo patrón que subir/vivir.", en: "Same pattern as subir/vivir." },
+  dipDisap:   { pt: "O diptongo some no nosotros/vosotros.", es: "El diptongo desaparece en nosotros/vosotros.", en: "The diphthong disappears in nosotros/vosotros." },
+  sameCerrar: { pt: "Mesmo padrão de cerrar.", es: "Mismo patrón que cerrar.", en: "Same pattern as cerrar." },
+  reflexDip:  { pt: "Diptongo + pronome reflexivo.", es: "Diptongo + pronombre reflexivo.", en: "Diphthong + reflexive pronoun." },
+  sentirse:   { pt: "No pretérito vira e→i: se sintió.", es: "En el pretérito se convierte en e→i: se sintió.", en: "In the preterite it becomes e→i: se sintió." },
+  invertir:   { pt: "No pretérito vira e→i: invirtió.", es: "En el pretérito se convierte en e→i: invirtió.", en: "In the preterite it becomes e→i: invirtió." },
+  sameComprobar: { pt: "Mesmo padrão de comprobar.", es: "Mismo patrón que comprobar.", en: "Same pattern as comprobar." },
+  recordarRR: { pt: "Atenção ao RR na pronúncia de 'recuerdo'.", es: "Atención al sonido fuerte de la R en 'recuerdo'.", en: "Note the strong R sound in 'recuerdo'." },
+  dormirNote: { pt: "No pretérito/gerúndio vira o→u: durmió, durmiendo.", es: "En el pretérito/gerundio se vuelve o→u: durmió, durmiendo.", en: "In the preterite/gerund it becomes o→u: durmió, durmiendo." },
+  jugarNote:  { pt: "Único verbo espanhol com essa troca.", es: "Único verbo español con este cambio.", en: "The only Spanish verb with this change." },
+  seguirNote: { pt: "Troca simples pra 'i', não é diptongo.", es: "Cambio simple a 'i', no es diptongo.", en: "Simple change to 'i', not a diphthong." },
+  sameSeguir: { pt: "Mesmo padrão de seguir.", es: "Mismo patrón que seguir.", en: "Same pattern as seguir." },
+  elegirNote: { pt: "e→i + troca ortográfica g→j antes de 'o'.", es: "e→i + cambio ortográfico g→j antes de 'o'.", en: "e→i + spelling change g→j before 'o'." },
+  reirNote:   { pt: "Acento no í mantém a sílaba tônica.", es: "El acento en í mantiene la sílaba tónica.", en: "The accent on í keeps the stressed syllable." },
+  hacerNote:  { pt: "Só o 'yo' muda; resto é regular.", es: "Solo el 'yo' cambia; el resto es regular.", en: "Only 'yo' changes; the rest is regular." },
+  sameHacer:  { pt: "Mesmo padrão de hacer.", es: "Mismo patrón que hacer.", en: "Same pattern as hacer." },
+  tenerNote:  { pt: "Irregular no yo + diptongo nas outras pessoas.", es: "Irregular en yo + diptongo en las demás personas.", en: "Irregular in yo + diphthong in the other persons." },
+  decirNote:  { pt: "Irregular no yo + e→i nas outras pessoas.", es: "Irregular en yo + e→i en las demás personas.", en: "Irregular in yo + e→i in the other persons." },
+  serNote:    { pt: "Não segue padrão nenhum — só decorar.", es: "No sigue ningún patrón — solo memorizar.", en: "Follows no pattern — just memorize it." },
+  oirNote:    { pt: "Irregular no yo (oigo) + aparece um 'y' nas formas tú/él/ellos.", es: "Irregular en yo (oigo) + aparece una 'y' en tú/él/ellos.", en: "Irregular in yo (oigo) + a 'y' appears in the tú/he/they forms." },
+  sonarNote:  { pt: "Diptongo o→ue — e de quebra já treina o som do Ñ.", es: "Diptongo o→ue — y de paso practicas el sonido de la Ñ.", en: "o→ue diphthong — and it doubles as practice for the Ñ sound." },
+  vestirNote: { pt: "e→i, mesmo padrão de seguir.", es: "e→i, mismo patrón que seguir.", en: "e→i, same pattern as seguir." },
+  vestirseNote: { pt: "e→i + pronome reflexivo.", es: "e→i + pronombre reflexivo.", en: "e→i + reflexive pronoun." },
+  conocerNote: { pt: "Irregular só no yo: o 'c' vira 'zc' antes de 'o'.", es: "Irregular solo en yo: la 'c' se vuelve 'zc' antes de 'o'.", en: "Irregular only in yo: 'c' becomes 'zc' before 'o'." },
+  sameConocer: { pt: "Mesmo padrão de conocer.", es: "Mismo patrón que conocer.", en: "Same pattern as conocer." },
+  parecerseNote: { pt: "Mesmo padrão de conocer + pronome reflexivo.", es: "Mismo patrón que conocer + pronombre reflexivo.", en: "Same pattern as conocer + reflexive pronoun." },
+  uirNote: { pt: "Verbos -uir inserem um 'y' antes da terminação (menos em nosotros/vosotros).", es: "Los verbos en -uir insertan una 'y' antes de la terminación (excepto en nosotros/vosotros).", en: "-uir verbs insert a 'y' before the ending (except in nosotros/vosotros)." },
+  sameConstruir: { pt: "Mesmo padrão de construir.", es: "Mismo patrón que construir.", en: "Same pattern as construir." },
+  convertirseNote: { pt: "Mesmo padrão de sentirse + pronome reflexivo.", es: "Mismo patrón que sentirse + pronombre reflexivo.", en: "Same pattern as sentirse + reflexive pronoun." },
+  darseNote: { pt: "Irregular só no yo (doy) + pronome reflexivo.", es: "Irregular solo en yo (doy) + pronombre reflexivo.", en: "Irregular only in yo (doy) + reflexive pronoun." },
+  despedirseNote: { pt: "e→i + pronome reflexivo, mesmo padrão de vestirse.", es: "e→i + pronombre reflexivo, mismo patrón que vestirse.", en: "e→i + reflexive pronoun, same pattern as vestirse." },
+  estarNote: { pt: "Irregular no yo (estoy) + acentos nas formas tú/él/ellos.", es: "Irregular en yo (estoy) + acentos en tú/él/ellos.", en: "Irregular in yo (estoy) + accents in the tú/he/they forms." },
+  sameSentirse: { pt: "Mesmo padrão de sentirse/invertir.", es: "Mismo patrón que sentirse/invertir.", en: "Same pattern as sentirse/invertir." },
+  sameReir: { pt: "Mesmo padrão de reír (acento no í).", es: "Mismo patrón que reír (acento en í).", en: "Same pattern as reír (accent on í)." },
+  llevarseNote: { pt: "Verbo reflexivo para falar de uma relação com outra pessoa: me llevo bien/mal/fatal con...", es: "Verbo reflexivo para hablar de una relación con otra persona: me llevo bien/mal/fatal con...", en: "Reflexive verb for talking about a relationship with another person: me llevo bien/mal/fatal con..." },
+  medirNote: { pt: "Na aula foi introduzido para dizer a altura: mido 1,93.", es: "En clase se introdujo para indicar la altura: mido 1,93.", en: "Introduced in class to state height: mido 1,93." },
+  tutearNote: { pt: "Regular. Tratar alguém de 'tú' em vez de 'usted': ¿Nos podemos tutear?", es: "Regular. Tratar a alguien de 'tú' en lugar de 'usted': ¿Nos podemos tutear?", en: "Regular. To address someone as 'tú' instead of 'usted': ¿Nos podemos tutear?" },
+  pasarNote: { pt: "Regular. Atenção: paso (presente) × pasó (pretérito): o acento muda o tempo.", es: "Regular. Ojo: paso (presente) × pasó (pretérito): la tilde cambia el tiempo.", en: "Regular. Careful: paso (present) × pasó (preterite): the accent changes the tense." },
+  publicarNote: { pt: "Presente regular. No pretérito indefinido: publiqué (c→qu).", es: "Presente regular. En pretérito indefinido: publiqué (c→qu).", en: "Regular in the present. In the preterite: publiqué (c→qu)." },
+  pagarNote: { pt: "Presente regular. No pretérito indefinido: pagué (g→gu).", es: "Presente regular. En pretérito indefinido: pagué (g→gu).", en: "Regular in the present. In the preterite: pagué (g→gu)." },
+  cruzarNote: { pt: "Presente regular. No pretérito (yo): crucé (z→c).", es: "Presente regular. En pretérito (yo): crucé (z→c).", en: "Regular in the present. Preterite (yo): crucé (z→c)." },
+  organizarNote: { pt: "Presente regular. No pretérito (yo): organicé (z→c).", es: "Presente regular. En pretérito (yo): organicé (z→c).", en: "Regular in the present. Preterite (yo): organicé (z→c)." },
+  tocarNote: { pt: "Presente regular. No pretérito (yo): toqué (c→qu).", es: "Presente regular. En pretérito (yo): toqué (c→qu).", en: "Regular in the present. Preterite (yo): toqué (c→qu)." },
+  empezarNote: { pt: "Mesmo padrão de cerrar. No pretérito (yo): empecé (z→c).", es: "Mismo patrón que cerrar. En pretérito (yo): empecé (z→c).", en: "Same pattern as cerrar. Preterite (yo): empecé (z→c)." },
+  ganarNote: { pt: "Ganar: o processo/a competição (ganar las elecciones). Conseguir: o objetivo (el título, la medalla).", es: "Ganar: el proceso/la competición (ganar las elecciones). Conseguir: el objetivo (el título, la medalla).", en: "Ganar: the process/competition (ganar las elecciones). Conseguir: the goal (el título, la medalla)." },
+  actuarNote: { pt: "Presente com acento no u: actúo, actúas, actúa, actúan (nosotros e vosotros sem acento).", es: "Presente con tilde en la u: actúo, actúas, actúa, actúan (nosotros y vosotros sin tilde).", en: "Present with an accent on the u: actúo, actúas, actúa, actúan (no accent in nosotros/vosotros)." },
+  morirNote: { pt: "Como dormir (o→ue). No pretérito só muda na 3.ª pessoa: murió, murieron (o→u).", es: "Como dormir (o→ue). En pretérito solo cambia en 3.ª persona: murió, murieron (o→u).", en: "Like dormir (o→ue). In the preterite only the 3rd person changes: murió, murieron (o→u)." },
+  obtenerNote: { pt: "Como tener. Pretérito: obtuve, obtuviste, obtuvo… (raiz obtuv-).", es: "Como tener. Pretérito: obtuve, obtuviste, obtuvo… (raíz obtuv-).", en: "Like tener. Preterite: obtuve, obtuviste, obtuvo… (stem obtuv-)." },
+  componerNote: { pt: "Como poner. Pretérito: compuse, compusiste, compuso… (raiz compus-).", es: "Como poner. Pretérito: compuse, compusiste, compuso… (raíz compus-).", en: "Like poner. Preterite: compuse, compusiste, compuso… (stem compus-)." },
+  irNote: { pt: "Totalmente irregular. No pretérito é igual a ser: fui, fuiste, fue, fuimos, fuisteis, fueron.", es: "Totalmente irregular. En pretérito es igual que ser: fui, fuiste, fue, fuimos, fuisteis, fueron.", en: "Completely irregular. In the preterite it is the same as ser: fui, fuiste, fue, fuimos, fuisteis, fueron." },
+  darNote: { pt: "Só o «yo» é irregular (doy). Pretérito: di, diste, dio, dimos, disteis, dieron.", es: "Solo «yo» es irregular (doy). Pretérito: di, diste, dio, dimos, disteis, dieron.", en: "Only «yo» is irregular (doy). Preterite: di, diste, dio, dimos, disteis, dieron." },
+  mentirNote: { pt: "Como sentir (e→ie). No pretérito: mentí, mentiste, mintió… (e→i na 3.ª pessoa).", es: "Como sentir (e→ie). En pretérito: mentí, mentiste, mintió… (e→i en 3.ª persona).", en: "Like sentir (e→ie). Preterite: mentí, mentiste, mintió… (e→i in the 3rd person)." },
+  poderNote: { pt: "Pretérito: pude, pudiste, pudo… (raiz pud-, sem acento).", es: "Pretérito: pude, pudiste, pudo… (raíz pud-, sin tilde).", en: "Preterite: pude, pudiste, pudo… (stem pud-, no accent)." },
+  quererNote: { pt: "Pretérito: quise, quisiste, quiso… (raiz quis-, sem acento).", es: "Pretérito: quise, quisiste, quiso… (raíz quis-, sin tilde).", en: "Preterite: quise, quisiste, quiso… (stem quis-, no accent)." },
+  saberNote: { pt: "«Yo» irregular (sé). Pretérito: supe, supiste, supo… (raiz sup-).", es: "«Yo» irregular (sé). Pretérito: supe, supiste, supo… (raíz sup-).", en: "«Yo» is irregular (sé). Preterite: supe, supiste, supo… (stem sup-)." },
+  venirNote: { pt: "Como tener no presente. Pretérito: vine, viniste, vino… (raiz vin-).", es: "Como tener en presente. Pretérito: vine, viniste, vino… (raíz vin-).", en: "Like tener in the present. Preterite: vine, viniste, vino… (stem vin-)." },
+  buscarNote: { pt: "Presente regular. No pretérito (yo): busqué (c→qu).", es: "Presente regular. En pretérito (yo): busqué (c→qu).", en: "Regular in the present. Preterite (yo): busqué (c→qu)." },
+  nacerNote: { pt: "Como conocer (yo nazco). Pretérito regular: nací, naciste, nació…", es: "Como conocer (yo nazco). Pretérito regular: nací, naciste, nació…", en: "Like conocer (yo nazco). Regular preterite: nací, naciste, nació…" },
+  dirigirNote: { pt: "«Yo»: dirijo (g→j por ortografia). Pretérito regular: dirigí, dirigiste, dirigió…", es: "«Yo»: dirijo (g→j por ortografía). Pretérito regular: dirigí, dirigiste, dirigió…", en: "«Yo»: dirijo (g→j for spelling). Regular preterite: dirigí, dirigiste, dirigió…" },
+  casarseNote: { pt: "Regular. Casarse con alguém. Pretérito: me casé, te casaste, se casó…", es: "Regular. Casarse con alguien. Pretérito: me casé, te casaste, se casó…", en: "Regular. Casarse con someone. Preterite: me casé, te casaste, se casó…" },
+  protagonizarNote: { pt: "Presente regular. No pretérito (yo): protagonicé (z→c).", es: "Presente regular. En pretérito (yo): protagonicé (z→c).", en: "Regular in the present. Preterite (yo): protagonicé (z→c)." },
+  encontrarseNote: { pt: "Encontrarse con alguém = ver/encontrar uma pessoa. Encontrar algo = achar uma coisa. Pretérito: me encontré con María.", es: "Encontrarse con alguien = verse con una persona. Encontrar algo = hallar una cosa. Pretérito: me encontré con María.", en: "Encontrarse con someone = to meet someone. Encontrar algo = to find something. Preterite: me encontré con María." },
+  llegarNote: { pt: "Presente regular. No pretérito (yo): llegué (g→gu).", es: "Presente regular. En pretérito (yo): llegué (g→gu).", en: "Regular in the present. Preterite (yo): llegué (g→gu)." },
+  cogerNote: { pt: "Yo coJo (g→j por ortografia). Pretérito regular: cogí, cogiste, cogió… Em outros países pode ter outro significado.", es: "«Yo» cojo (g→j por ortografía). Pretérito regular: cogí, cogiste, cogió… En España: coger el metro/el autobús.", en: "«Yo» cojo (g→j for spelling). Regular preterite: cogí, cogiste, cogió… In Spain: coger el metro / el autobús." },
+  ensenarNote: { pt: "Presente regular. Enseñar = ensinar. Empezar a enseñar.", es: "Presente regular. Enseñar = dar clase o mostrar. Empezó a enseñar.", en: "Regular in the present. Enseñar = to teach or to show. Empezó a enseñar." },
+  cambiarNote: { pt: "Cambiar de + colegio / universidad / barrio / trabajo.", es: "Cambiar de + colegio / universidad / barrio / trabajo.", en: "Cambiar de + colegio / universidad / barrio / trabajo." },
+  dejarNote: { pt: "Dejar + la carrera / los estudios / el trabajo = abandonar.", es: "Dejar + la carrera / los estudios / el trabajo = abandonar.", en: "Dejar + la carrera / los estudios / el trabajo = to quit." },
+  discutirNote: { pt: "Discutir = ter uma discussão com alguém. Não é «hablar sobre» algo.", es: "Discutir = tener una discusión con alguien. No es «hablar sobre» algo.", en: "Discutir = to argue with someone. It is not «hablar sobre» something." },
+  divorciarseNote: { pt: "Divorciarse de alguien. Pretérito: me divorcié, se divorció…", es: "Divorciarse de alguien. Pretérito: me divorcié, se divorció…", en: "Divorciarse de someone. Preterite: me divorcié, se divorció…" },
+  enamorarseNote: { pt: "Enamorarse de alguien. «Volverse a enamorar» = apaixonar-se outra vez.", es: "Enamorarse de alguien. «Volverse a enamorar» = enamorarse otra vez.", en: "Enamorarse de someone. «Volverse a enamorar» = to fall in love again." },
+  hacerseNote: { pt: "Hacerse + adjetivo/substantivo = chegar a ser: se hicieron buenos amigos. Pretérito: me hice, se hizo…", es: "Hacerse + adjetivo/sustantivo = llegar a ser: se hicieron buenos amigos. Pretérito: me hice, se hizo…", en: "Hacerse + adjective/noun = to become: se hicieron buenos amigos. Preterite: me hice, se hizo…" },
+  irseNote: { pt: "Irregular como ir (voy, vas, va…). Irse = abandonar um lugar; com «me» há ênfase: «Me voy a mi país». Pretérito: me fui, te fuiste, se fue…", es: "Irregular como ir (voy, vas, va…). Irse = abandonar un lugar; con «me» hay énfasis: «Me voy a mi país». Pretérito: me fui, te fuiste, se fue…", en: "Irregular like ir (voy, vas, va…). Irse = to leave a place; with «me» it is emphatic: «Me voy a mi país». Preterite: me fui, te fuiste, se fue…" },
+  jubilarseNote: { pt: "Jubilarse = deixar de trabalhar pela idade (a los 65 años). Pretérito: se jubiló.", es: "Jubilarse = dejar de trabajar por la edad (a los 65 años). Pretérito: se jubiló.", en: "Jubilarse = to stop working because of age (a los 65 años). Preterite: se jubiló." },
+  mudarseNote: { pt: "Mudarse a una ciudad/casa = mudar de residência: me mudé a Madrid en 1969.", es: "Mudarse a una ciudad/casa = cambiar de residencia: me mudé a Madrid en 1969.", en: "Mudarse a a city/house = to move: me mudé a Madrid en 1969." },
+  quedarNote: { pt: "Quedar con alguien = combinar um encontro: «Quedé con Diana». Não confundir com quedarse (ficar).", es: "Quedar con alguien = acordar un encuentro: «Quedé con Diana». No confundir con quedarse (permanecer).", en: "Quedar con someone = to arrange to meet: «Quedé con Diana». Not the same as quedarse (to stay)." },
+  quedarseNote: { pt: "Quedarse = ficar (me quedé en casa) ou perder: quedarse sin (me quedé sin casa). Também: quedarse viudo/ciego, en el paro.", es: "Quedarse = permanecer (me quedé en casa) o perder: quedarse sin (me quedé sin casa). También: quedarse viudo/ciego, en el paro.", en: "Quedarse = to stay (me quedé en casa) or to lose: quedarse sin (me quedé sin casa). Also: quedarse viudo/ciego, en el paro." },
+  separarseNote: { pt: "Separarse de alguien. Pretérito: me separé, se separó…", es: "Separarse de alguien. Pretérito: me separé, se separó…", en: "Separarse de someone. Preterite: me separé, se separó…" },
+  adaptarNote: { pt: "Adaptar una novela al cine. Estar basada en una novela / un hecho real.", es: "Adaptar una novela al cine. Estar basada en una novela / un hecho real.", en: "Adaptar una novela al cine. Estar basada en una novela / un hecho real." },
+  contarNote: { pt: "Contar = narrar: «Cuenta la historia de…» (o→ue). Também significa contar números.", es: "Contar = narrar: «Cuenta la historia de…» (o→ue). También significa contar números.", en: "Contar = to tell: «Cuenta la historia de…» (o→ue). Also means to count." },
+  estrenarNote: { pt: "Estrenar una película = apresentá-la ao público pela primeira vez. Pretérito: estrenó.", es: "Estrenar una película = presentarla al público por primera vez. Pretérito: estrenó.", en: "Estrenar una película = to release it for the first time. Preterite: estrenó." },
+  interpretarNote: { pt: "Interpretar un papel = atuar como um personagem. Pretérito: interpretó.", es: "Interpretar un papel = actuar como un personaje. Pretérito: interpretó.", en: "Interpretar un papel = to play a character. Preterite: interpretó." },
+  lucharNote: { pt: "Luchar contra algo / por algo: luchar contra el Apartheid.", es: "Luchar contra algo / por algo: luchar contra el Apartheid.", en: "Luchar contra something / for something: luchar contra el Apartheid." },
+  rodarNote: { pt: "Rodar = filmar (o→ue no presente: ruedo). Pretérito regular: rodó.", es: "Rodar = filmar (o→ue en presente: ruedo). Pretérito regular: rodó.", en: "Rodar = to shoot a film (o→ue in the present: ruedo). Regular preterite: rodó." },
+  adquirirNote: { pt: "Adquirir = comprar (mais formal). Muda i→ie: adquiero, adquieres, adquiere, adquirimos, adquirís, adquieren.", es: "Adquirir = comprar (más formal). Cambia i→ie: adquiero, adquieres, adquiere, adquirimos, adquirís, adquieren.", en: "Adquirir = to buy (more formal). Changes i→ie: adquiero, adquieres, adquiere, adquirimos, adquirís, adquieren." },
+  acabarNote: { pt: "Acabar de + infinitivo = fazer algo há pouco: Netflix acaba de estrenar una película.", es: "Acabar de + infinitivo = hacer algo hace muy poco: Netflix acaba de estrenar una película.", en: "Acabar de + infinitive = to have just done something: Netflix acaba de estrenar una película." },
+  acogerNote: { pt: "Yo acojo (g→j por ortografia). Acogida = acolhida; acogedor = aconchegante.", es: "«Yo» acojo (g→j por ortografía). Acogida = bienvenida; acogedor = confortable, agradable.", en: "«Yo» acojo (g→j for spelling). Acogida = welcome; acogedor = cosy." },
+  mantenerNote: { pt: "Como tener: mantengo, mantienes… Passado com raiz irregular: mantuve, mantuvo.", es: "Como tener: mantengo, mantienes… Pasado con raíz irregular: mantuve, mantuvo.", en: "Like tener: mantengo, mantienes… Irregular past stem: mantuve, mantuvo." },
+  verNote: { pt: "Ver: só «yo» é irregular (veo). Passado: vi, vio (sem acento). Dizemos «ver una película».", es: "Ver: solo «yo» es irregular (veo). Pasado: vi, vio (sin tilde). Decimos «ver una película».", en: "Ver: only «yo» is irregular (veo). Past: vi, vio (no accent). We say «ver una película»." },
+  tratarNote: { pt: "«Trata de» + tema (não «trata sobre»): La película trata de un niño. Também: tratar a alguém bem/mal.", es: "«Tratar de» + tema (no «trata sobre»): La película trata de un niño. También: tratar bien/mal a alguien.", en: "«Tratar de» + topic (not «trata sobre»): La película trata de un niño. Also: to treat someone well/badly." }
+};
+
+const verbs = [
+  { word: "hablar", meaning: "falar / conversar",sticker: "🗣️",groupKey: "ar", forms: ["hablo","hablas","habla","hablamos","habláis","hablan"], noteKey: "rootHabl" },
+  { word: "comprar", meaning: "",sticker: "🛒",groupKey: "ar", forms: ["compro","compras","compra","compramos","compráis","compran"], noteKey: "sameHablar" },
+  { word: "preguntar", meaning: "",sticker: "❓",groupKey: "ar", forms: ["pregunto","preguntas","pregunta","preguntamos","preguntáis","preguntan"], noteKey: "sameHablar" },
+  { word: "cenar", meaning: "",sticker: "🍽️",groupKey: "ar", forms: ["ceno","cenas","cena","cenamos","cenáis","cenan"], noteKey: "sameHablar" },
+  { word: "llorar", meaning: "",sticker: "😢",groupKey: "ar", forms: ["lloro","lloras","llora","lloramos","lloráis","lloran"], noteKey: "llFocus" },
+  { word: "terminar", meaning: "",sticker: "🏁",groupKey: "ar", forms: ["termino","terminas","termina","terminamos","termináis","terminan"], noteKey: "sameHablar" },
+  { word: "tomar", meaning: "",sticker: "🥤",groupKey: "ar", forms: ["tomo","tomas","toma","tomamos","tomáis","toman"], noteKey: "sameHablar" },
+  { word: "visitar", meaning: "",sticker: "📍",groupKey: "ar", forms: ["visito","visitas","visita","visitamos","visitáis","visitan"], noteKey: "sameHablar" },
+  { word: "entrar", meaning: "",sticker: "🚪",groupKey: "ar", forms: ["entro","entras","entra","entramos","entráis","entran"], noteKey: "sameHablar" },
+  { word: "desayunar", meaning: "",sticker: "🥐",groupKey: "ar", forms: ["desayuno","desayunas","desayuna","desayunamos","desayunáis","desayunan"], noteKey: "sameHablar" },
+  { word: "limpiar", meaning: "",sticker: "🧹",groupKey: "ar", forms: ["limpio","limpias","limpia","limpiamos","limpiáis","limpian"], noteKey: "sameHablar" },
+  { word: "comparar", meaning: "",sticker: "⚖️",groupKey: "ar", forms: ["comparo","comparas","compara","comparamos","comparáis","comparan"], noteKey: "sameHablar" },
+  { word: "arreglar", meaning: "",sticker: "🔧",groupKey: "ar", forms: ["arreglo","arreglas","arregla","arreglamos","arregláis","arreglan"], noteKey: "sameHablar" },
+  { word: "cocinar", meaning: "",sticker: "🍳",groupKey: "ar", forms: ["cocino","cocinas","cocina","cocinamos","cocináis","cocinan"], noteKey: "sameHablar" },
+  { word: "marcar", meaning: "",sticker: "📌",groupKey: "ar", forms: ["marco","marcas","marca","marcamos","marcáis","marcan"], noteKey: "sameHablar" },
+  { word: "observar", meaning: "",sticker: "👀",groupKey: "ar", forms: ["observo","observas","observa","observamos","observáis","observan"], noteKey: "sameHablar" },
+  { word: "perdonar", meaning: "",sticker: "🤝",groupKey: "ar", forms: ["perdono","perdonas","perdona","perdonamos","perdonáis","perdonan"], noteKey: "sameHablar" },
+  { word: "listar", meaning: "",sticker: "📋",groupKey: "ar", forms: ["listo","listas","lista","listamos","listáis","listan"], noteKey: "sameHablar" },
+  { word: "tutear", meaning: "",sticker: "🙋",groupKey: "ar", forms: ["tuteo","tuteas","tutea","tuteamos","tuteáis","tutean"], noteKey: "tutearNote" },
+  { word: "pasar", meaning: "",sticker: "⏳",groupKey: "ar", forms: ["paso","pasas","pasa","pasamos","pasáis","pasan"], noteKey: "pasarNote" },
+  { word: "publicar", meaning: "",sticker: "📰",groupKey: "ar", forms: ["publico","publicas","publica","publicamos","publicáis","publican"], noteKey: "publicarNote" },
+  { word: "pagar", meaning: "",sticker: "💶",groupKey: "ar", forms: ["pago","pagas","paga","pagamos","pagáis","pagan"], noteKey: "pagarNote" },
+  { word: "cruzar", meaning: "",sticker: "🚸",groupKey: "ar", forms: ["cruzo","cruzas","cruza","cruzamos","cruzáis","cruzan"], noteKey: "cruzarNote" },
+  { word: "organizar", meaning: "",sticker: "🗂️",groupKey: "ar", forms: ["organizo","organizas","organiza","organizamos","organizáis","organizan"], noteKey: "organizarNote" },
+  { word: "tocar", meaning: "",sticker: "🎸",groupKey: "ar", forms: ["toco","tocas","toca","tocamos","tocáis","tocan"], noteKey: "tocarNote" },
+  { word: "viajar", meaning: "",sticker: "✈️",groupKey: "ar", forms: ["viajo","viajas","viaja","viajamos","viajáis","viajan"], noteKey: "sameHablar" },
+  { word: "ganar", meaning: "",sticker: "🥇",groupKey: "ar", forms: ["gano","ganas","gana","ganamos","ganáis","ganan"], noteKey: "ganarNote" },
+  { word: "pintar", meaning: "",sticker: "🎨",groupKey: "ar", forms: ["pinto","pintas","pinta","pintamos","pintáis","pintan"], noteKey: "sameHablar" },
+  { word: "escalar", meaning: "",sticker: "🧗",groupKey: "ar", forms: ["escalo","escalas","escala","escalamos","escaláis","escalan"], noteKey: "sameHablar" },
+  { word: "actuar", meaning: "",sticker: "🎭",groupKey: "uar", forms: ["actúo","actúas","actúa","actuamos","actuáis","actúan"], noteKey: "actuarNote" },
+  { word: "morir", meaning: "",sticker: "🕊️",groupKey: "oue-ir", forms: ["muero","mueres","muere","morimos","morís","mueren"], noteKey: "morirNote" },
+  { word: "obtener", meaning: "",sticker: "🏅",groupKey: "mix-eie", forms: ["obtengo","obtienes","obtiene","obtenemos","obtenéis","obtienen"], noteKey: "obtenerNote" },
+  { word: "componer", meaning: "",sticker: "🎼",groupKey: "yo-irr", forms: ["compongo","compones","compone","componemos","componéis","componen"], noteKey: "componerNote" },
+  { word: "ir", meaning: "",sticker: "🚶",groupKey: "irr", forms: ["voy","vas","va","vamos","vais","van"], noteKey: "irNote" },
+  { word: "dar", meaning: "",sticker: "🤲",groupKey: "yo-irr", forms: ["doy","das","da","damos","dais","dan"], noteKey: "darNote" },
+  { word: "mentir", meaning: "",sticker: "🤥",groupKey: "eie-ir", forms: ["miento","mientes","miente","mentimos","mentís","mienten"], noteKey: "mentirNote" },
+  { word: "poder", meaning: "",sticker: "💪",groupKey: "oue", forms: ["puedo","puedes","puede","podemos","podéis","pueden"], noteKey: "poderNote" },
+  { word: "querer", meaning: "",sticker: "❤️",groupKey: "eie", forms: ["quiero","quieres","quiere","queremos","queréis","quieren"], noteKey: "quererNote" },
+  { word: "saber", meaning: "",sticker: "🧠",groupKey: "yo-irr", forms: ["sé","sabes","sabe","sabemos","sabéis","saben"], noteKey: "saberNote" },
+  { word: "venir", meaning: "",sticker: "🏃",groupKey: "mix-eie", forms: ["vengo","vienes","viene","venimos","venís","vienen"], noteKey: "venirNote" },
+  { word: "buscar", meaning: "",sticker: "🔍",groupKey: "ar", forms: ["busco","buscas","busca","buscamos","buscáis","buscan"], noteKey: "buscarNote" },
+  { word: "nacer", meaning: "",sticker: "👶",groupKey: "yo-irr-zc", forms: ["nazco","naces","nace","nacemos","nacéis","nacen"], noteKey: "nacerNote" },
+  { word: "dirigir", meaning: "",sticker: "🎬",groupKey: "yo-irr", forms: ["dirijo","diriges","dirige","dirigimos","dirigís","dirigen"], noteKey: "dirigirNote" },
+  { word: "casarse", meaning: "",sticker: "💍",groupKey: "ar-refl", forms: ["me caso","te casas","se casa","nos casamos","os casáis","se casan"], noteKey: "casarseNote" },
+  { word: "protagonizar", meaning: "",sticker: "⭐",groupKey: "ar", forms: ["protagonizo","protagonizas","protagoniza","protagonizamos","protagonizáis","protagonizan"], noteKey: "protagonizarNote" },
+  { word: "inventar", meaning: "",sticker: "💡",groupKey: "ar", forms: ["invento","inventas","inventa","inventamos","inventáis","inventan"], noteKey: "sameHablar" },
+  { word: "correr", meaning: "",sticker: "🏃‍♂️",groupKey: "er", forms: ["corro","corres","corre","corremos","corréis","corren"], noteKey: "sameComer" },
+  { word: "coger", meaning: "",sticker: "🚌",groupKey: "yo-irr", forms: ["cojo","coges","coge","cogemos","cogéis","cogen"], noteKey: "cogerNote" },
+  { word: "caminar", meaning: "",sticker: "🚶‍♀️",groupKey: "ar", forms: ["camino","caminas","camina","caminamos","camináis","caminan"], noteKey: "sameHablar" },
+  { word: "alquilar", meaning: "",sticker: "🔑",groupKey: "ar", forms: ["alquilo","alquilas","alquila","alquilamos","alquiláis","alquilan"], noteKey: "sameHablar" },
+  { word: "trabajar", meaning: "",sticker: "💼",groupKey: "ar", forms: ["trabajo","trabajas","trabaja","trabajamos","trabajáis","trabajan"], noteKey: "sameHablar" },
+  { word: "enseñar", meaning: "",sticker: "👩‍🏫",groupKey: "ar", forms: ["enseño","enseñas","enseña","enseñamos","enseñáis","enseñan"], noteKey: "ensenarNote" },
+  { word: "llegar", meaning: "",sticker: "🛬",groupKey: "ar", forms: ["llego","llegas","llega","llegamos","llegáis","llegan"], noteKey: "llegarNote" },
+  { word: "encontrarse", meaning: "",sticker: "🤝",groupKey: "oue-refl", forms: ["me encuentro","te encuentras","se encuentra","nos encontramos","os encontráis","se encuentran"], noteKey: "encontrarseNote" },
+  { word: "irse", meaning: "",sticker: "🚪",groupKey: "irr", forms: ["me voy","te vas","se va","nos vamos","os vais","se van"], noteKey: "irseNote" },
+  { word: "quedarse", meaning: "",sticker: "🛋️",groupKey: "ar-refl", forms: ["me quedo","te quedas","se queda","nos quedamos","os quedáis","se quedan"], noteKey: "quedarseNote" },
+  { word: "quedar", meaning: "",sticker: "📅",groupKey: "ar", forms: ["quedo","quedas","queda","quedamos","quedáis","quedan"], noteKey: "quedarNote" },
+  { word: "jubilarse", meaning: "",sticker: "🧓",groupKey: "ar-refl", forms: ["me jubilo","te jubilas","se jubila","nos jubilamos","os jubiláis","se jubilan"], noteKey: "jubilarseNote" },
+  { word: "divorciarse", meaning: "",sticker: "💔",groupKey: "ar-refl", forms: ["me divorcio","te divorcias","se divorcia","nos divorciamos","os divorciáis","se divorcian"], noteKey: "divorciarseNote" },
+  { word: "enamorarse", meaning: "",sticker: "😍",groupKey: "ar-refl", forms: ["me enamoro","te enamoras","se enamora","nos enamoramos","os enamoráis","se enamoran"], noteKey: "enamorarseNote" },
+  { word: "discutir", meaning: "",sticker: "🗯️",groupKey: "ir", forms: ["discuto","discutes","discute","discutimos","discutís","discuten"], noteKey: "discutirNote" },
+  { word: "cambiar", meaning: "",sticker: "🔄",groupKey: "ar", forms: ["cambio","cambias","cambia","cambiamos","cambiáis","cambian"], noteKey: "cambiarNote" },
+  { word: "dejar", meaning: "",sticker: "🚪",groupKey: "ar", forms: ["dejo","dejas","deja","dejamos","dejáis","dejan"], noteKey: "dejarNote" },
+  { word: "mudarse", meaning: "",sticker: "📦",groupKey: "ar-refl", forms: ["me mudo","te mudas","se muda","nos mudamos","os mudáis","se mudan"], noteKey: "mudarseNote" },
+  { word: "estudiar", meaning: "",sticker: "📚",groupKey: "ar", forms: ["estudio","estudias","estudia","estudiamos","estudiáis","estudian"], noteKey: "sameHablar" },
+  { word: "preparar", meaning: "",sticker: "🛠️",groupKey: "ar", forms: ["preparo","preparas","prepara","preparamos","preparáis","preparan"], noteKey: "sameHablar" },
+  { word: "separarse", meaning: "",sticker: "🔀",groupKey: "ar-refl", forms: ["me separo","te separas","se separa","nos separamos","os separáis","se separan"], noteKey: "separarseNote" },
+  { word: "hacerse", meaning: "",sticker: "🌱",groupKey: "yo-irr-refl", forms: ["me hago","te haces","se hace","nos hacemos","os hacéis","se hacen"], noteKey: "hacerseNote" },
+  { word: "contar", meaning: "",sticker: "🗣️",groupKey: "oue", forms: ["cuento","cuentas","cuenta","contamos","contáis","cuentan"], noteKey: "contarNote" },
+  { word: "interpretar", meaning: "",sticker: "🎭",groupKey: "ar", forms: ["interpreto","interpretas","interpreta","interpretamos","interpretáis","interpretan"], noteKey: "interpretarNote" },
+  { word: "estrenar", meaning: "",sticker: "🎞️",groupKey: "ar", forms: ["estreno","estrenas","estrena","estrenamos","estrenáis","estrenan"], noteKey: "estrenarNote" },
+  { word: "adaptar", meaning: "",sticker: "📖",groupKey: "ar", forms: ["adapto","adaptas","adapta","adaptamos","adaptáis","adaptan"], noteKey: "adaptarNote" },
+  { word: "luchar", meaning: "",sticker: "🥊",groupKey: "ar", forms: ["lucho","luchas","lucha","luchamos","lucháis","luchan"], noteKey: "lucharNote" },
+  { word: "rodar", meaning: "",sticker: "🎥",groupKey: "oue", forms: ["ruedo","ruedas","rueda","rodamos","rodáis","ruedan"], noteKey: "rodarNote" },
+  { word: "filmar", meaning: "",sticker: "📹",groupKey: "ar", forms: ["filmo","filmas","filma","filmamos","filmáis","filman"], noteKey: "sameHablar" },
+  { word: "crear", meaning: "",sticker: "✨",groupKey: "ar", forms: ["creo","creas","crea","creamos","creáis","crean"], noteKey: "sameHablar" },
+  { word: "llevar", meaning: "",sticker: "👜",groupKey: "ar", forms: ["llevo","llevas","lleva","llevamos","lleváis","llevan"], noteKey: "llFocus" },
+  { word: "llevarse", meaning: "",sticker: "🤝",groupKey: "ar-refl", forms: ["me llevo","te llevas","se lleva","nos llevamos","os lleváis","se llevan"], noteKey: "llevarseNote" },
+
+  { word: "ducharse", meaning: "",sticker: "🚿",groupKey: "ar-refl", forms: ["me ducho","te duchas","se ducha","nos duchamos","os ducháis","se duchan"], noteKey: "reflexive" },
+  { word: "levantarse", meaning: "",sticker: "🌅",groupKey: "ar-refl", forms: ["me levanto","te levantas","se levanta","nos levantamos","os levantáis","se levantan"], noteKey: "reflexive" },
+
+  { word: "comer", meaning: "comer / alimentar-se",sticker: "🍽️",groupKey: "er", forms: ["como","comes","come","comemos","coméis","comen"], noteKey: "rootCom" },
+  { word: "comprender", meaning: "",sticker: "💡",groupKey: "er", forms: ["comprendo","comprendes","comprende","comprendemos","comprendéis","comprenden"], noteKey: "sameComer" },
+  { word: "beber", meaning: "",sticker: "🥤",groupKey: "er", forms: ["bebo","bebes","bebe","bebemos","bebéis","beben"], noteKey: "sameComer" },
+  { word: "responder", meaning: "",sticker: "💬",groupKey: "er", forms: ["respondo","respondes","responde","respondemos","respondéis","responden"], noteKey: "sameComer" },
+  { word: "leer", meaning: "",sticker: "📖",groupKey: "er", forms: ["leo","lees","lee","leemos","leéis","leen"], noteKey: "leerNote" },
+  { word: "aprender", meaning: "",sticker: "🎓",groupKey: "er", forms: ["aprendo","aprendes","aprende","aprendemos","aprendéis","aprenden"], noteKey: "sameComer" },
+
+  { word: "subir", meaning: "",sticker: "⬆️",groupKey: "ir", forms: ["subo","subes","sube","subimos","subís","suben"], noteKey: "rootSub" },
+  { word: "vivir", meaning: "viver / morar",sticker: "🏡",groupKey: "ir", forms: ["vivo","vives","vive","vivimos","vivís","viven"], noteKey: "vivirNote" },
+  { word: "escribir", meaning: "",sticker: "✍️",groupKey: "ir", forms: ["escribo","escribes","escribe","escribimos","escribís","escriben"], noteKey: "sameSubir" },
+  { word: "recibir", meaning: "",sticker: "📬",groupKey: "ir", forms: ["recibo","recibes","recibe","recibimos","recibís","reciben"], noteKey: "sameSubir" },
+
+  { word: "merendar", meaning: "",sticker: "🍎",groupKey: "eie", forms: ["meriendo","meriendas","merienda","merendamos","merendáis","meriendan"], noteKey: "dipDisap" },
+  { word: "cerrar", meaning: "fechar",sticker: "🚪",groupKey: "eie", forms: ["cierro","cierras","cierra","cerramos","cerráis","cierran"], noteKey: "dipDisap" },
+  { word: "entender", meaning: "",sticker: "🧠",groupKey: "eie", forms: ["entiendo","entiendes","entiende","entendemos","entendéis","entienden"], noteKey: "sameCerrar" },
+  { word: "empezar", meaning: "",sticker: "🚦",groupKey: "eie", forms: ["empiezo","empiezas","empieza","empezamos","empezáis","empiezan"], noteKey: "empezarNote" },
+  { word: "sentarse", meaning: "",sticker: "🪑",groupKey: "eie-refl", forms: ["me siento","te sientas","se sienta","nos sentamos","os sentáis","se sientan"], noteKey: "reflexDip" },
+  { word: "despertarse", meaning: "",sticker: "⏰",groupKey: "eie-refl", forms: ["me despierto","te despiertas","se despierta","nos despertamos","os despertáis","se despiertan"], noteKey: "reflexDip" },
+
+  { word: "sentirse", meaning: "",sticker: "❤️",groupKey: "eie-ir", forms: ["me siento","te sientes","se siente","nos sentimos","os sentís","se sienten"], noteKey: "sentirse" },
+  { word: "invertir", meaning: "",sticker: "💰",groupKey: "eie-ir", forms: ["invierto","inviertes","invierte","invertimos","invertís","invierten"], noteKey: "invertir" },
+  { word: "preferir", meaning: "",sticker: "⭐",groupKey: "eie-ir", forms: ["prefiero","prefieres","prefiere","preferimos","preferís","prefieren"], noteKey: "sameSentirse" },
+
+  { word: "convertirse", meaning: "",sticker: "🔄",groupKey: "eie-ir-refl", forms: ["me convierto","te conviertes","se convierte","nos convertimos","os convertís","se convierten"], noteKey: "convertirseNote" },
+
+  { word: "comprobar", meaning: "",sticker: "🔎",groupKey: "oue", forms: ["compruebo","compruebas","comprueba","comprobamos","comprobáis","comprueban"], noteKey: "dipDisap" },
+  { word: "encontrar", meaning: "",sticker: "🔍",groupKey: "oue", forms: ["encuentro","encuentras","encuentra","encontramos","encontráis","encuentran"], noteKey: "sameComprobar" },
+  { word: "recordar", meaning: "",sticker: "🧠",groupKey: "oue", forms: ["recuerdo","recuerdas","recuerda","recordamos","recordáis","recuerdan"], noteKey: "recordarRR" },
+  { word: "volver", meaning: "voltar / retornar",sticker: "🔄",groupKey: "oue", forms: ["vuelvo","vuelves","vuelve","volvemos","volvéis","vuelven"], noteKey: "sameComprobar" },
+  { word: "volar", meaning: "",sticker: "✈️",groupKey: "oue", forms: ["vuelo","vuelas","vuela","volamos","voláis","vuelan"], noteKey: "sameComprobar" },
+  { word: "resolver", meaning: "",sticker: "🧩",groupKey: "oue", forms: ["resuelvo","resuelves","resuelve","resolvemos","resolvéis","resuelven"], noteKey: "sameComprobar" },
+  { word: "devolver", meaning: "",sticker: "📦",groupKey: "oue", forms: ["devuelvo","devuelves","devuelve","devolvemos","devolvéis","devuelven"], noteKey: "sameComprobar" },
+  { word: "costar", meaning: "",sticker: "💶",groupKey: "oue", forms: ["cuesto","cuestas","cuesta","costamos","costáis","cuestan"], noteKey: "sameComprobar" },
+  { word: "soñar", meaning: "",sticker: "💭",groupKey: "oue", forms: ["sueño","sueñas","sueña","soñamos","soñáis","sueñan"], noteKey: "sonarNote" },
+  { word: "colgar", meaning: "",sticker: "📎",groupKey: "oue", forms: ["cuelgo","cuelgas","cuelga","colgamos","colgáis","cuelgan"], noteKey: "sameComprobar" },
+  { word: "acostarse", meaning: "",sticker: "🌙",groupKey: "oue-refl", forms: ["me acuesto","te acuestas","se acuesta","nos acostamos","os acostáis","se acuestan"], noteKey: "reflexDip" },
+  { word: "dormir", meaning: "",sticker: "😴",groupKey: "oue-ir", forms: ["duermo","duermes","duerme","dormimos","dormís","duermen"], noteKey: "dormirNote" },
+
+  { word: "jugar", meaning: "",sticker: "⚽",groupKey: "uue", forms: ["juego","juegas","juega","jugamos","jugáis","juegan"], noteKey: "jugarNote" },
+
+  { word: "medir", meaning: "",sticker: "📏",groupKey: "ei-ir", forms: ["mido","mides","mide","medimos","medís","miden"], noteKey: "medirNote" },
+  { word: "seguir", meaning: "",sticker: "➡️",groupKey: "ei-ir", forms: ["sigo","sigues","sigue","seguimos","seguís","siguen"], noteKey: "seguirNote" },
+  { word: "conseguir", meaning: "",sticker: "🏆",groupKey: "ei-ir", forms: ["consigo","consigues","consigue","conseguimos","conseguís","consiguen"], noteKey: "sameSeguir" },
+  { word: "elegir", meaning: "",sticker: "☑️",groupKey: "ei-ir", forms: ["elijo","eliges","elige","elegimos","elegís","eligen"], noteKey: "elegirNote" },
+  { word: "reír", meaning: "",sticker: "😂",groupKey: "ei-ir", forms: ["río","ríes","ríe","reímos","reís","ríen"], noteKey: "reirNote" },
+  { word: "perseguir", meaning: "",sticker: "🏃",groupKey: "ei-ir", forms: ["persigo","persigues","persigue","perseguimos","perseguís","persiguen"], noteKey: "sameSeguir" },
+  { word: "vestir", meaning: "",sticker: "👕",groupKey: "ei-ir", forms: ["visto","vistes","viste","vestimos","vestís","visten"], noteKey: "vestirNote" },
+  { word: "corregir", meaning: "",sticker: "✏️",groupKey: "ei-ir", forms: ["corrijo","corriges","corrige","corregimos","corregís","corrigen"], noteKey: "elegirNote" },
+  { word: "pedir", meaning: "pedir / encomendar",sticker: "🙋‍♂️",groupKey: "ei-ir", forms: ["pido","pides","pide","pedimos","pedís","piden"], noteKey: "vestirNote" },
+  { word: "repetir", meaning: "",sticker: "🔁",groupKey: "ei-ir", forms: ["repito","repites","repite","repetimos","repetís","repiten"], noteKey: "vestirNote" },
+  { word: "sonreír", meaning: "",sticker: "😊",groupKey: "ei-ir", forms: ["sonrío","sonríes","sonríe","sonreímos","sonreís","sonríen"], noteKey: "sameReir" },
+
+  { word: "vestirse", meaning: "",sticker: "👚",groupKey: "ei-ir-refl", forms: ["me visto","te vistes","se viste","nos vestimos","os vestís","se visten"], noteKey: "vestirseNote" },
+  { word: "despedirse", meaning: "",sticker: "👋",groupKey: "ei-ir-refl", forms: ["me despido","te despides","se despide","nos despedimos","os despedís","se despiden"], noteKey: "despedirseNote" },
+
+  { word: "construir", meaning: "",sticker: "🏗️",groupKey: "uir", forms: ["construyo","construyes","construye","construimos","construís","construyen"], noteKey: "uirNote" },
+  { word: "huir", meaning: "",sticker: "🏃‍♂️",groupKey: "uir", forms: ["huyo","huyes","huye","huimos","huís","huyen"], noteKey: "sameConstruir" },
+
+  { word: "hacer", meaning: "fazer",sticker: "🛠️",groupKey: "yo-irr", forms: ["hago","haces","hace","hacemos","hacéis","hacen"], noteKey: "hacerNote" },
+  { word: "traer", meaning: "",sticker: "📦",groupKey: "yo-irr", forms: ["traigo","traes","trae","traemos","traéis","traen"], noteKey: "sameHacer" },
+  { word: "caer", meaning: "",sticker: "⬇️",groupKey: "yo-irr", forms: ["caigo","caes","cae","caemos","caéis","caen"], noteKey: "sameHacer" },
+  { word: "poner", meaning: "",sticker: "📍",groupKey: "yo-irr", forms: ["pongo","pones","pone","ponemos","ponéis","ponen"], noteKey: "sameHacer" },
+  { word: "salir", meaning: "",sticker: "🚪",groupKey: "yo-irr", forms: ["salgo","sales","sale","salimos","salís","salen"], noteKey: "sameHacer" },
+
+  { word: "darse", meaning: "",sticker: "🎁",groupKey: "yo-irr-refl", forms: ["me doy","te das","se da","nos damos","os dais","se dan"], noteKey: "darseNote" },
+
+  { word: "conocer", meaning: "conhecer",sticker: "🤝",groupKey: "yo-irr-zc", forms: ["conozco","conoces","conoce","conocemos","conocéis","conocen"], noteKey: "conocerNote" },
+  { word: "conducir", meaning: "",sticker: "🚗",groupKey: "yo-irr-zc", forms: ["conduzco","conduces","conduce","conducimos","conducís","conducen"], noteKey: "sameConocer" },
+  { word: "parecer", meaning: "",sticker: "👤",groupKey: "yo-irr-zc", forms: ["parezco","pareces","parece","parecemos","parecéis","parecen"], noteKey: "sameConocer" },
+  { word: "traducir", meaning: "",sticker: "🌐",groupKey: "yo-irr-zc", forms: ["traduzco","traduces","traduce","traducimos","traducís","traducen"], noteKey: "sameConocer" },
+
+  { word: "parecerse", meaning: "",sticker: "👥",groupKey: "yo-irr-zc-refl", forms: ["me parezco","te pareces","se parece","nos parecemos","os parecéis","se parecen"], noteKey: "parecerseNote" },
+
+  { word: "oír", meaning: "",sticker: "👂",groupKey: "mix-y", forms: ["oigo","oyes","oye","oímos","oís","oyen"], noteKey: "oirNote" },
+
+  { word: "tener", meaning: "",sticker: "✋",groupKey: "mix-eie", forms: ["tengo","tienes","tiene","tenemos","tenéis","tienen"], noteKey: "tenerNote" },
+  { word: "decir", meaning: "",sticker: "💬",groupKey: "mix-ei", forms: ["digo","dices","dice","decimos","decís","dicen"], noteKey: "decirNote" },
+
+  { word: "ser", meaning: "ser (essência/identidade)",sticker: "👤",groupKey: "irr", forms: ["soy","eres","es","somos","sois","son"], noteKey: "serNote" },
+  { word: "estar", meaning: "estar (lugar/estado)",sticker: "📍",groupKey: "irr", forms: ["estoy","estás","está","estamos","estáis","están"], noteKey: "estarNote" },
+  { word: "acoger", meaning: "",sticker: "🤗",groupKey: "yo-irr", forms: ["acojo","acoges","acoge","acogemos","acogéis","acogen"], noteKey: "acogerNote" },
+  { word: "teletrabajar", meaning: "",sticker: "💻",groupKey: "ar", forms: ["teletrabajo","teletrabajas","teletrabaja","teletrabajamos","teletrabajáis","teletrabajan"], noteKey: "sameHablar" },
+  { word: "adquirir", meaning: "",sticker: "🛒",groupKey: "iie", forms: ["adquiero","adquieres","adquiere","adquirimos","adquirís","adquieren"], noteKey: "adquirirNote" },
+  { word: "ver", meaning: "",sticker: "👀",groupKey: "yo-irr", forms: ["veo","ves","ve","vemos","veis","ven"], noteKey: "verNote" },
+  { word: "destruir", meaning: "",sticker: "💥",groupKey: "uir", forms: ["destruyo","destruyes","destruye","destruimos","destruís","destruyen"], noteKey: "uirNote" },
+  { word: "acabar", meaning: "",sticker: "🏁",groupKey: "ar", forms: ["acabo","acabas","acaba","acabamos","acabáis","acaban"], noteKey: "acabarNote" },
+  { word: "superar", meaning: "",sticker: "🏆",groupKey: "ar", forms: ["supero","superas","supera","superamos","superáis","superan"], noteKey: "sameHablar" },
+  { word: "salvar", meaning: "",sticker: "🛟",groupKey: "ar", forms: ["salvo","salvas","salva","salvamos","salváis","salvan"], noteKey: "sameHablar" },
+  { word: "curar", meaning: "",sticker: "🩹",groupKey: "ar", forms: ["curo","curas","cura","curamos","curáis","curan"], noteKey: "sameHablar" },
+  { word: "matar", meaning: "",sticker: "💀",groupKey: "ar", forms: ["mato","matas","mata","matamos","matáis","matan"], noteKey: "sameHablar" },
+  { word: "romper", meaning: "",sticker: "🔨",groupKey: "er", forms: ["rompo","rompes","rompe","rompemos","rompéis","rompen"], noteKey: "sameComer" },
+  { word: "reformar", meaning: "",sticker: "🏗️",groupKey: "ar", forms: ["reformo","reformas","reforma","reformamos","reformáis","reforman"], noteKey: "sameHablar" },
+  { word: "ahorrar", meaning: "",sticker: "🐖",groupKey: "ar", forms: ["ahorro","ahorras","ahorra","ahorramos","ahorráis","ahorran"], noteKey: "sameHablar" },
+  { word: "gastar", meaning: "",sticker: "💸",groupKey: "ar", forms: ["gasto","gastas","gasta","gastamos","gastáis","gastan"], noteKey: "sameHablar" },
+  { word: "divertirse", meaning: "",sticker: "🎉",groupKey: "eie-ir-refl", forms: ["me divierto","te diviertes","se divierte","nos divertimos","os divertís","se divierten"], noteKey: "reflexive" },
+  { word: "tratar", meaning: "",sticker: "📖",groupKey: "ar", forms: ["trato","tratas","trata","tratamos","tratáis","tratan"], noteKey: "tratarNote" },
+  { word: "crecer", meaning: "",sticker: "🌱",groupKey: "yo-irr-zc", forms: ["crezco","creces","crece","crecemos","crecéis","crecen"], noteKey: "sameConocer" },
+  { word: "mantener", meaning: "",sticker: "🤝",groupKey: "mix-eie", forms: ["mantengo","mantienes","mantiene","mantenemos","mantenéis","mantienen"], noteKey: "mantenerNote" },
+  { word: "colaborar", meaning: "",sticker: "🧩",groupKey: "ar", forms: ["colaboro","colaboras","colabora","colaboramos","colaboráis","colaboran"], noteKey: "sameHablar" },
+  { word: "regresar", meaning: "",sticker: "🔙",groupKey: "ar", forms: ["regreso","regresas","regresa","regresamos","regresáis","regresan"], noteKey: "sameHablar" }
+];
+
+function gTxt(key) { return GROUPS[key][lang]; }
+function nTxt(key) { return NOTES[key][lang]; }
+function t(key) { return UI[lang][key]; }
+
+const MEAN = {
+  "hablar": { pt: "falar / conversar", en: "to speak / to talk" },
+  "comprar": { pt: "comprar", en: "to buy" },
+  "preguntar": { pt: "perguntar", en: "to ask (a question)" },
+  "cenar": { pt: "jantar", en: "to have dinner" },
+  "llorar": { pt: "chorar", en: "to cry" },
+  "terminar": { pt: "terminar / acabar", en: "to finish" },
+  "tomar": { pt: "tomar / beber", en: "to take / to drink" },
+  "visitar": { pt: "visitar", en: "to visit" },
+  "entrar": { pt: "entrar", en: "to enter" },
+  "desayunar": { pt: "tomar café da manhã", en: "to have breakfast" },
+  "limpiar": { pt: "limpar", en: "to clean" },
+  "comparar": { pt: "comparar", en: "to compare" },
+  "arreglar": { pt: "arrumar / consertar", en: "to fix / to tidy up" },
+  "cocinar": { pt: "cozinhar", en: "to cook" },
+  "marcar": { pt: "marcar / discar", en: "to mark / to dial" },
+  "observar": { pt: "observar", en: "to observe" },
+  "perdonar": { pt: "perdoar", en: "to forgive" },
+  "listar": { pt: "listar", en: "to list" },
+  "tutear": { pt: "tratar de 'tú'", en: "to address as 'tú'" },
+  "llevar": { pt: "levar / usar (roupa, barba)", en: "to carry / to wear" },
+  "llevarse": { pt: "se dar bem/mal com alguém", en: "to get along (well/badly) with someone" },
+  "ducharse": { pt: "tomar banho (de chuveiro)", en: "to take a shower" },
+  "levantarse": { pt: "levantar-se", en: "to get up" },
+  "comer": { pt: "comer / alimentar-se", en: "to eat" },
+  "comprender": { pt: "compreender", en: "to understand" },
+  "beber": { pt: "beber", en: "to drink" },
+  "responder": { pt: "responder", en: "to answer" },
+  "leer": { pt: "ler", en: "to read" },
+  "subir": { pt: "subir", en: "to go up" },
+  "vivir": { pt: "viver / morar", en: "to live" },
+  "escribir": { pt: "escrever", en: "to write" },
+  "medir": { pt: "medir (ex.: mido 1,93)", en: "to measure / to be (…) tall" },
+  "merendar": { pt: "lanchar", en: "to have an afternoon snack" },
+  "cerrar": { pt: "fechar", en: "to close" },
+  "entender": { pt: "entender", en: "to understand" },
+  "sentarse": { pt: "sentar-se", en: "to sit down" },
+  "despertarse": { pt: "acordar", en: "to wake up" },
+  "sentirse": { pt: "sentir-se", en: "to feel" },
+  "invertir": { pt: "investir / inverter", en: "to invest / to invert" },
+  "preferir": { pt: "preferir", en: "to prefer" },
+  "convertirse": { pt: "tornar-se", en: "to become" },
+  "comprobar": { pt: "comprovar / verificar", en: "to check / to verify" },
+  "encontrar": { pt: "encontrar", en: "to find" },
+  "recordar": { pt: "lembrar", en: "to remember" },
+  "volver": { pt: "voltar", en: "to return / to come back" },
+  "volar": { pt: "voar", en: "to fly" },
+  "resolver": { pt: "resolver", en: "to solve" },
+  "devolver": { pt: "devolver", en: "to give back" },
+  "costar": { pt: "custar", en: "to cost" },
+  "soñar": { pt: "sonhar", en: "to dream" },
+  "colgar": { pt: "pendurar", en: "to hang" },
+  "acostarse": { pt: "deitar-se", en: "to go to bed" },
+  "dormir": { pt: "dormir", en: "to sleep" },
+  "jugar": { pt: "jogar / brincar", en: "to play" },
+  "seguir": { pt: "seguir", en: "to follow / to continue" },
+  "conseguir": { pt: "conseguir", en: "to get / to manage to" },
+  "elegir": { pt: "escolher", en: "to choose" },
+  "reír": { pt: "rir", en: "to laugh" },
+  "perseguir": { pt: "perseguir", en: "to chase" },
+  "vestir": { pt: "vestir", en: "to dress (someone)" },
+  "corregir": { pt: "corrigir", en: "to correct" },
+  "pedir": { pt: "pedir", en: "to ask for / to order" },
+  "repetir": { pt: "repetir", en: "to repeat" },
+  "sonreír": { pt: "sorrir", en: "to smile" },
+  "vestirse": { pt: "vestir-se", en: "to get dressed" },
+  "despedirse": { pt: "despedir-se", en: "to say goodbye" },
+  "construir": { pt: "construir", en: "to build" },
+  "huir": { pt: "fugir", en: "to flee" },
+  "hacer": { pt: "fazer", en: "to do / to make" },
+  "traer": { pt: "trazer", en: "to bring" },
+  "caer": { pt: "cair · caer bien = agradar", en: "to fall · caer bien = to like (someone)" },
+  "poner": { pt: "pôr / colocar", en: "to put" },
+  "salir": { pt: "sair", en: "to go out" },
+  "darse": { pt: "dar-se (darse cuenta = perceber)", en: "to give oneself (darse cuenta = to realize)" },
+  "conocer": { pt: "conhecer", en: "to know (a person / place)" },
+  "conducir": { pt: "dirigir (carro)", en: "to drive" },
+  "parecer": { pt: "parecer", en: "to seem" },
+  "traducir": { pt: "traduzir", en: "to translate" },
+  "parecerse": { pt: "parecer-se com", en: "to look like / to resemble" },
+  "oír": { pt: "ouvir", en: "to hear" },
+  "tener": { pt: "ter", en: "to have" },
+  "decir": { pt: "dizer", en: "to say" },
+  "ser": { pt: "ser (essência/identidade)", en: "to be (essence / identity)" },
+  "estar": { pt: "estar (lugar/estado)", en: "to be (place / state)" },
+  "pasar": { pt: "passar / passar (tempo)", en: "to pass / to spend (time)" },
+  "publicar": { pt: "publicar", en: "to publish" },
+  "pagar": { pt: "pagar", en: "to pay" },
+  "cruzar": { pt: "cruzar / atravessar", en: "to cross" },
+  "organizar": { pt: "organizar", en: "to organize" },
+  "tocar": { pt: "tocar / tocar (instrumento)", en: "to touch / to play (instrument)" },
+  "viajar": { pt: "viajar", en: "to travel" },
+  "ganar": { pt: "ganhar / vencer", en: "to win / to earn" },
+  "pintar": { pt: "pintar", en: "to paint" },
+  "escalar": { pt: "escalar (montanha)", en: "to climb (a mountain)" },
+  "actuar": { pt: "atuar", en: "to act / to perform" },
+  "aprender": { pt: "aprender", en: "to learn" },
+  "recibir": { pt: "receber", en: "to receive" },
+  "empezar": { pt: "começar", en: "to start / to begin" },
+  "morir": { pt: "morrer", en: "to die" },
+  "obtener": { pt: "obter / conseguir", en: "to obtain / to get" },
+  "componer": { pt: "compor", en: "to compose" },
+  "ir": { pt: "ir", en: "to go" },
+  "dar": { pt: "dar", en: "to give" },
+  "mentir": { pt: "mentir", en: "to lie (not tell the truth)" },
+  "poder": { pt: "poder", en: "can / to be able to" },
+  "querer": { pt: "querer", en: "to want / to love" },
+  "saber": { pt: "saber", en: "to know (a fact / how to)" },
+  "venir": { pt: "vir", en: "to come" },
+  "buscar": { pt: "buscar / procurar", en: "to look for" },
+  "nacer": { pt: "nascer", en: "to be born" },
+  "dirigir": { pt: "dirigir (um filme)", en: "to direct (a film)" },
+  "casarse": { pt: "casar-se", en: "to get married" },
+  "protagonizar": { pt: "protagonizar", en: "to star in" },
+  "inventar": { pt: "inventar", en: "to invent" },
+  "correr": { pt: "correr", en: "to run" },
+  "coger": { pt: "pegar / apanhar (transporte)", en: "to take / to catch (transport)" },
+  "caminar": { pt: "caminhar", en: "to walk" },
+  "alquilar": { pt: "alugar", en: "to rent" },
+  "trabajar": { pt: "trabalhar", en: "to work" },
+  "enseñar": { pt: "ensinar / mostrar", en: "to teach / to show" },
+  "llegar": { pt: "chegar", en: "to arrive" },
+  "encontrarse": { pt: "encontrar-se (com alguém)", en: "to meet (someone)" },
+  "irse": { pt: "irse", en: "to leave / to go away" },
+  "quedarse": { pt: "ficar / perder (quedarse sin)", en: "to stay / to end up without" },
+  "quedar": { pt: "combinar um encontro (quedar con)", en: "to arrange to meet (quedar con)" },
+  "jubilarse": { pt: "aposentar-se", en: "to retire" },
+  "divorciarse": { pt: "divorciar-se", en: "to get divorced" },
+  "enamorarse": { pt: "apaixonar-se", en: "to fall in love" },
+  "discutir": { pt: "discutir / brigar", en: "to argue / to have a fight" },
+  "cambiar": { pt: "mudar / trocar", en: "to change" },
+  "dejar": { pt: "deixar / abandonar", en: "to leave / to quit" },
+  "mudarse": { pt: "mudar-se (de casa/cidade)", en: "to move (house / city)" },
+  "estudiar": { pt: "estudar", en: "to study" },
+  "preparar": { pt: "preparar", en: "to prepare" },
+  "separarse": { pt: "separar-se", en: "to split up / to separate" },
+  "hacerse": { pt: "tornar-se / ficar (amigos)", en: "to become (friends)" },
+  "contar": { pt: "contar / narrar", en: "to tell / to count" },
+  "interpretar": { pt: "interpretar (um papel)", en: "to play (a role) / to interpret" },
+  "estrenar": { pt: "estrear", en: "to release / to premiere" },
+  "adaptar": { pt: "adaptar", en: "to adapt" },
+  "luchar": { pt: "lutar", en: "to fight / to struggle" },
+  "rodar": { pt: "filmar / rodar", en: "to shoot (a film)" },
+  "filmar": { pt: "filmar", en: "to film" },
+  "crear": { pt: "criar / criar (fundar)", en: "to create" },
+  "acoger": { pt: "acolher", en: "to welcome / to take in" },
+  "teletrabajar": { pt: "teletrabalhar / trabalhar remotamente", en: "to work remotely" },
+  "adquirir": { pt: "adquirir (mais formal que comprar)", en: "to acquire (more formal than comprar)" },
+  "ver": { pt: "ver", en: "to see / to watch" },
+  "destruir": { pt: "destruir", en: "to destroy" },
+  "acabar": { pt: "acabar / terminar", en: "to finish / to end" },
+  "superar": { pt: "ultrapassar / superar", en: "to overcome / to surpass" },
+  "salvar": { pt: "salvar", en: "to save (rescue)" },
+  "curar": { pt: "curar", en: "to cure / to heal" },
+  "matar": { pt: "matar", en: "to kill" },
+  "romper": { pt: "romper", en: "to break" },
+  "reformar": { pt: "reformar / fazer reforma em", en: "to renovate" },
+  "ahorrar": { pt: "economizar / poupar", en: "to save (money)" },
+  "gastar": { pt: "gastar", en: "to spend" },
+  "divertirse": { pt: "divertir-se", en: "to have fun" },
+  "tratar": { pt: "tratar / (tratar de) falar sobre", en: "to deal with / (tratar de) to be about" },
+  "crecer": { pt: "crescer", en: "to grow / to grow up" },
+  "mantener": { pt: "manter", en: "to keep / to maintain" },
+  "colaborar": { pt: "colaborar", en: "to collaborate" },
+  "regresar": { pt: "regressar / voltar", en: "to return / to go back" }
+};
+
+function mTxt(v) {
+  const m = MEAN[v.word];
+  if (!m) return v.meaning || "";
+  return lang === 'en' ? m.en : (v.meaning || m.pt);
+}
+
+let i = 0;
+let flipped = false;
+let voice = null;
+let speechRate = 0.8;
+
+function updateSpeed(val) {
+  speechRate = parseFloat(val);
+  document.getElementById('speedValue').textContent = speechRate.toFixed(2) + 'x';
+}
+
+function pickVoice() {
+  const voices = speechSynthesis.getVoices();
+  voice = voices.find(v => v.lang === 'es-ES')
+       || voices.find(v => v.lang && v.lang.startsWith('es'))
+       || null;
+}
+if ('speechSynthesis' in window) {
+  speechSynthesis.onvoiceschanged = pickVoice;
+  pickVoice();
+}
+
+function speak(text, rate) {
+  if (!('speechSynthesis' in window)) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'es-ES';
+  if (voice) u.voice = voice;
+  u.rate = rate || speechRate;
+  speechSynthesis.speak(u);
+}
+
+function speakAll(forms) {
+  if (!('speechSynthesis' in window)) return;
+  speechSynthesis.cancel();
+  forms.forEach((f) => {
+    const u = new SpeechSynthesisUtterance(f);
+    u.lang = 'es-ES';
+    if (voice) u.voice = voice;
+    u.rate = speechRate;
+    speechSynthesis.speak(u);
+  });
+}
+
+function reflexiveBase(word) {
+  const m = word.match(/^(me|te|se|nos|os)?\s*(.+)$/);
+  return { pronoun: m[1] || "", base: m[2] };
+}
+
+const PAST_IRREGULAR = {
+  ser: ["fui","fuiste","fue","fuimos","fuisteis","fueron"],
+  ir: ["fui","fuiste","fue","fuimos","fuisteis","fueron"],
+  estar: ["estuve","estuviste","estuvo","estuvimos","estuvisteis","estuvieron"],
+  tener: ["tuve","tuviste","tuvo","tuvimos","tuvisteis","tuvieron"],
+  hacer: ["hice","hiciste","hizo","hicimos","hicisteis","hicieron"],
+  poder: ["pude","pudiste","pudo","pudimos","pudisteis","pudieron"],
+  poner: ["puse","pusiste","puso","pusimos","pusisteis","pusieron"],
+  saber: ["supe","supiste","supo","supimos","supisteis","supieron"],
+  querer: ["quise","quisiste","quiso","quisimos","quisisteis","quisieron"],
+  venir: ["vine","viniste","vino","vinimos","vinisteis","vinieron"],
+  decir: ["dije","dijiste","dijo","dijimos","dijisteis","dijeron"],
+  traer: ["traje","trajiste","trajo","trajimos","trajisteis","trajeron"],
+  conducir: ["conduje","condujiste","condujo","condujimos","condujisteis","condujeron"],
+  producir: ["produje","produjiste","produjo","produjimos","produjisteis","produjeron"],
+  dar: ["di","diste","dio","dimos","disteis","dieron"],
+  ver: ["vi","viste","vio","vimos","visteis","vieron"],
+  haber: ["hube","hubiste","hubo","hubimos","hubisteis","hubieron"],
+  andar: ["anduve","anduviste","anduvo","anduvimos","anduvisteis","anduvieron"],
+  caber: ["cupe","cupiste","cupo","cupimos","cupisteis","cupieron"]
+};
+
+const PAST_FORMS = {
+ "superar": [
+  "superé",
+  "superaste",
+  "superó",
+  "superamos",
+  "superasteis",
+  "superaron"
+ ],
+ "salvar": [
+  "salvé",
+  "salvaste",
+  "salvó",
+  "salvamos",
+  "salvasteis",
+  "salvaron"
+ ],
+ "curar": [
+  "curé",
+  "curaste",
+  "curó",
+  "curamos",
+  "curasteis",
+  "curaron"
+ ],
+ "romper": [
+  "rompí",
+  "rompiste",
+  "rompió",
+  "rompimos",
+  "rompisteis",
+  "rompieron"
+ ],
+ "reformar": [
+  "reformé",
+  "reformaste",
+  "reformó",
+  "reformamos",
+  "reformasteis",
+  "reformaron"
+ ],
+ "ahorrar": [
+  "ahorré",
+  "ahorraste",
+  "ahorró",
+  "ahorramos",
+  "ahorrasteis",
+  "ahorraron"
+ ],
+ "gastar": [
+  "gasté",
+  "gastaste",
+  "gastó",
+  "gastamos",
+  "gastasteis",
+  "gastaron"
+ ],
+ "divertirse": [
+  "me divertí",
+  "te divertiste",
+  "se divirtió",
+  "nos divertimos",
+  "os divertisteis",
+  "se divirtieron"
+ ],
+ "matar": [
+  "maté",
+  "mataste",
+  "mató",
+  "matamos",
+  "matasteis",
+  "mataron"
+ ],
+ "tratar": [
+  "traté",
+  "trataste",
+  "trató",
+  "tratamos",
+  "tratasteis",
+  "trataron"
+ ],
+ "crecer": [
+  "crecí",
+  "creciste",
+  "creció",
+  "crecimos",
+  "crecisteis",
+  "crecieron"
+ ],
+ "hablar": [
+  "hablé",
+  "hablaste",
+  "habló",
+  "hablamos",
+  "hablasteis",
+  "hablaron"
+ ],
+ "comprar": [
+  "compré",
+  "compraste",
+  "compró",
+  "compramos",
+  "comprasteis",
+  "compraron"
+ ],
+ "preguntar": [
+  "pregunté",
+  "preguntaste",
+  "preguntó",
+  "preguntamos",
+  "preguntasteis",
+  "preguntaron"
+ ],
+ "cenar": [
+  "cené",
+  "cenaste",
+  "cenó",
+  "cenamos",
+  "cenasteis",
+  "cenaron"
+ ],
+ "llorar": [
+  "lloré",
+  "lloraste",
+  "lloró",
+  "lloramos",
+  "llorasteis",
+  "lloraron"
+ ],
+ "terminar": [
+  "terminé",
+  "terminaste",
+  "terminó",
+  "terminamos",
+  "terminasteis",
+  "terminaron"
+ ],
+ "tomar": [
+  "tomé",
+  "tomaste",
+  "tomó",
+  "tomamos",
+  "tomasteis",
+  "tomaron"
+ ],
+ "visitar": [
+  "visité",
+  "visitaste",
+  "visitó",
+  "visitamos",
+  "visitasteis",
+  "visitaron"
+ ],
+ "entrar": [
+  "entré",
+  "entraste",
+  "entró",
+  "entramos",
+  "entrasteis",
+  "entraron"
+ ],
+ "desayunar": [
+  "desayuné",
+  "desayunaste",
+  "desayunó",
+  "desayunamos",
+  "desayunasteis",
+  "desayunaron"
+ ],
+ "limpiar": [
+  "limpié",
+  "limpiaste",
+  "limpió",
+  "limpiamos",
+  "limpiasteis",
+  "limpiaron"
+ ],
+ "comparar": [
+  "comparé",
+  "comparaste",
+  "comparó",
+  "comparamos",
+  "comparasteis",
+  "compararon"
+ ],
+ "arreglar": [
+  "arreglé",
+  "arreglaste",
+  "arregló",
+  "arreglamos",
+  "arreglasteis",
+  "arreglaron"
+ ],
+ "cocinar": [
+  "cociné",
+  "cocinaste",
+  "cocinó",
+  "cocinamos",
+  "cocinasteis",
+  "cocinaron"
+ ],
+ "marcar": [
+  "marqué",
+  "marcaste",
+  "marcó",
+  "marcamos",
+  "marcasteis",
+  "marcaron"
+ ],
+ "observar": [
+  "observé",
+  "observaste",
+  "observó",
+  "observamos",
+  "observasteis",
+  "observaron"
+ ],
+ "perdonar": [
+  "perdoné",
+  "perdonaste",
+  "perdonó",
+  "perdonamos",
+  "perdonasteis",
+  "perdonaron"
+ ],
+ "listar": [
+  "listé",
+  "listaste",
+  "listó",
+  "listamos",
+  "listasteis",
+  "listaron"
+ ],
+ "tutear": [
+  "tuteé",
+  "tuteaste",
+  "tuteó",
+  "tuteamos",
+  "tuteasteis",
+  "tutearon"
+ ],
+ "pasar": [
+  "pasé",
+  "pasaste",
+  "pasó",
+  "pasamos",
+  "pasasteis",
+  "pasaron"
+ ],
+ "publicar": [
+  "publiqué",
+  "publicaste",
+  "publicó",
+  "publicamos",
+  "publicasteis",
+  "publicaron"
+ ],
+ "pagar": [
+  "pagué",
+  "pagaste",
+  "pagó",
+  "pagamos",
+  "pagasteis",
+  "pagaron"
+ ],
+ "cruzar": [
+  "crucé",
+  "cruzaste",
+  "cruzó",
+  "cruzamos",
+  "cruzasteis",
+  "cruzaron"
+ ],
+ "organizar": [
+  "organicé",
+  "organizaste",
+  "organizó",
+  "organizamos",
+  "organizasteis",
+  "organizaron"
+ ],
+ "tocar": [
+  "toqué",
+  "tocaste",
+  "tocó",
+  "tocamos",
+  "tocasteis",
+  "tocaron"
+ ],
+ "viajar": [
+  "viajé",
+  "viajaste",
+  "viajó",
+  "viajamos",
+  "viajasteis",
+  "viajaron"
+ ],
+ "ganar": [
+  "gané",
+  "ganaste",
+  "ganó",
+  "ganamos",
+  "ganasteis",
+  "ganaron"
+ ],
+ "pintar": [
+  "pinté",
+  "pintaste",
+  "pintó",
+  "pintamos",
+  "pintasteis",
+  "pintaron"
+ ],
+ "escalar": [
+  "escalé",
+  "escalaste",
+  "escaló",
+  "escalamos",
+  "escalasteis",
+  "escalaron"
+ ],
+ "actuar": [
+  "actué",
+  "actuaste",
+  "actuó",
+  "actuamos",
+  "actuasteis",
+  "actuaron"
+ ],
+ "morir": [
+  "morí",
+  "moriste",
+  "murió",
+  "morimos",
+  "moristeis",
+  "murieron"
+ ],
+ "obtener": [
+  "obtuve",
+  "obtuviste",
+  "obtuvo",
+  "obtuvimos",
+  "obtuvisteis",
+  "obtuvieron"
+ ],
+ "componer": [
+  "compuse",
+  "compusiste",
+  "compuso",
+  "compusimos",
+  "compusisteis",
+  "compusieron"
+ ],
+ "ir": [
+  "fui",
+  "fuiste",
+  "fue",
+  "fuimos",
+  "fuisteis",
+  "fueron"
+ ],
+ "dar": [
+  "di",
+  "diste",
+  "dio",
+  "dimos",
+  "disteis",
+  "dieron"
+ ],
+ "mentir": [
+  "mentí",
+  "mentiste",
+  "mintió",
+  "mentimos",
+  "mentisteis",
+  "mintieron"
+ ],
+ "poder": [
+  "pude",
+  "pudiste",
+  "pudo",
+  "pudimos",
+  "pudisteis",
+  "pudieron"
+ ],
+ "querer": [
+  "quise",
+  "quisiste",
+  "quiso",
+  "quisimos",
+  "quisisteis",
+  "quisieron"
+ ],
+ "saber": [
+  "supe",
+  "supiste",
+  "supo",
+  "supimos",
+  "supisteis",
+  "supieron"
+ ],
+ "venir": [
+  "vine",
+  "viniste",
+  "vino",
+  "vinimos",
+  "vinisteis",
+  "vinieron"
+ ],
+ "buscar": [
+  "busqué",
+  "buscaste",
+  "buscó",
+  "buscamos",
+  "buscasteis",
+  "buscaron"
+ ],
+ "nacer": [
+  "nací",
+  "naciste",
+  "nació",
+  "nacimos",
+  "nacisteis",
+  "nacieron"
+ ],
+ "dirigir": [
+  "dirigí",
+  "dirigiste",
+  "dirigió",
+  "dirigimos",
+  "dirigisteis",
+  "dirigieron"
+ ],
+ "casarse": [
+  "me casé",
+  "te casaste",
+  "se casó",
+  "nos casamos",
+  "os casasteis",
+  "se casaron"
+ ],
+ "protagonizar": [
+  "protagonicé",
+  "protagonizaste",
+  "protagonizó",
+  "protagonizamos",
+  "protagonizasteis",
+  "protagonizaron"
+ ],
+ "inventar": [
+  "inventé",
+  "inventaste",
+  "inventó",
+  "inventamos",
+  "inventasteis",
+  "inventaron"
+ ],
+ "correr": [
+  "corrí",
+  "corriste",
+  "corrió",
+  "corrimos",
+  "corristeis",
+  "corrieron"
+ ],
+ "coger": [
+  "cogí",
+  "cogiste",
+  "cogió",
+  "cogimos",
+  "cogisteis",
+  "cogieron"
+ ],
+ "caminar": [
+  "caminé",
+  "caminaste",
+  "caminó",
+  "caminamos",
+  "caminasteis",
+  "caminaron"
+ ],
+ "alquilar": [
+  "alquilé",
+  "alquilaste",
+  "alquiló",
+  "alquilamos",
+  "alquilasteis",
+  "alquilaron"
+ ],
+ "trabajar": [
+  "trabajé",
+  "trabajaste",
+  "trabajó",
+  "trabajamos",
+  "trabajasteis",
+  "trabajaron"
+ ],
+ "enseñar": [
+  "enseñé",
+  "enseñaste",
+  "enseñó",
+  "enseñamos",
+  "enseñasteis",
+  "enseñaron"
+ ],
+ "llegar": [
+  "llegué",
+  "llegaste",
+  "llegó",
+  "llegamos",
+  "llegasteis",
+  "llegaron"
+ ],
+ "encontrarse": [
+  "me encontré",
+  "te encontraste",
+  "se encontró",
+  "nos encontramos",
+  "os encontrasteis",
+  "se encontraron"
+ ],
+ "irse": [
+  "me fui",
+  "te fuiste",
+  "se fue",
+  "nos fuimos",
+  "os fuisteis",
+  "se fueron"
+ ],
+ "quedarse": [
+  "me quedé",
+  "te quedaste",
+  "se quedó",
+  "nos quedamos",
+  "os quedasteis",
+  "se quedaron"
+ ],
+ "quedar": [
+  "quedé",
+  "quedaste",
+  "quedó",
+  "quedamos",
+  "quedasteis",
+  "quedaron"
+ ],
+ "jubilarse": [
+  "me jubilé",
+  "te jubilaste",
+  "se jubiló",
+  "nos jubilamos",
+  "os jubilasteis",
+  "se jubilaron"
+ ],
+ "divorciarse": [
+  "me divorcié",
+  "te divorciaste",
+  "se divorció",
+  "nos divorciamos",
+  "os divorciasteis",
+  "se divorciaron"
+ ],
+ "enamorarse": [
+  "me enamoré",
+  "te enamoraste",
+  "se enamoró",
+  "nos enamoramos",
+  "os enamorasteis",
+  "se enamoraron"
+ ],
+ "discutir": [
+  "discutí",
+  "discutiste",
+  "discutió",
+  "discutimos",
+  "discutisteis",
+  "discutieron"
+ ],
+ "cambiar": [
+  "cambié",
+  "cambiaste",
+  "cambió",
+  "cambiamos",
+  "cambiasteis",
+  "cambiaron"
+ ],
+ "dejar": [
+  "dejé",
+  "dejaste",
+  "dejó",
+  "dejamos",
+  "dejasteis",
+  "dejaron"
+ ],
+ "mudarse": [
+  "me mudé",
+  "te mudaste",
+  "se mudó",
+  "nos mudamos",
+  "os mudasteis",
+  "se mudaron"
+ ],
+ "estudiar": [
+  "estudié",
+  "estudiaste",
+  "estudió",
+  "estudiamos",
+  "estudiasteis",
+  "estudiaron"
+ ],
+ "preparar": [
+  "preparé",
+  "preparaste",
+  "preparó",
+  "preparamos",
+  "preparasteis",
+  "prepararon"
+ ],
+ "separarse": [
+  "me separé",
+  "te separaste",
+  "se separó",
+  "nos separamos",
+  "os separasteis",
+  "se separaron"
+ ],
+ "hacerse": [
+  "me hice",
+  "te hiciste",
+  "se hizo",
+  "nos hicimos",
+  "os hicisteis",
+  "se hicieron"
+ ],
+ "contar": [
+  "conté",
+  "contaste",
+  "contó",
+  "contamos",
+  "contasteis",
+  "contaron"
+ ],
+ "interpretar": [
+  "interpreté",
+  "interpretaste",
+  "interpretó",
+  "interpretamos",
+  "interpretasteis",
+  "interpretaron"
+ ],
+ "estrenar": [
+  "estrené",
+  "estrenaste",
+  "estrenó",
+  "estrenamos",
+  "estrenasteis",
+  "estrenaron"
+ ],
+ "adaptar": [
+  "adapté",
+  "adaptaste",
+  "adaptó",
+  "adaptamos",
+  "adaptasteis",
+  "adaptaron"
+ ],
+ "luchar": [
+  "luché",
+  "luchaste",
+  "luchó",
+  "luchamos",
+  "luchasteis",
+  "lucharon"
+ ],
+ "rodar": [
+  "rodé",
+  "rodaste",
+  "rodó",
+  "rodamos",
+  "rodasteis",
+  "rodaron"
+ ],
+ "filmar": [
+  "filmé",
+  "filmaste",
+  "filmó",
+  "filmamos",
+  "filmasteis",
+  "filmaron"
+ ],
+ "crear": [
+  "creé",
+  "creaste",
+  "creó",
+  "creamos",
+  "creasteis",
+  "crearon"
+ ],
+ "acoger": [
+  "acogí",
+  "acogiste",
+  "acogió",
+  "acogimos",
+  "acogisteis",
+  "acogieron"
+ ],
+ "teletrabajar": [
+  "teletrabajé",
+  "teletrabajaste",
+  "teletrabajó",
+  "teletrabajamos",
+  "teletrabajasteis",
+  "teletrabajaron"
+ ],
+ "adquirir": [
+  "adquirí",
+  "adquiriste",
+  "adquirió",
+  "adquirimos",
+  "adquiristeis",
+  "adquirieron"
+ ],
+ "llevar": [
+  "llevé",
+  "llevaste",
+  "llevó",
+  "llevamos",
+  "llevasteis",
+  "llevaron"
+ ],
+ "llevarse": [
+  "me llevé",
+  "te llevaste",
+  "se llevó",
+  "nos llevamos",
+  "os llevasteis",
+  "se llevaron"
+ ],
+ "ducharse": [
+  "me duché",
+  "te duchaste",
+  "se duchó",
+  "nos duchamos",
+  "os duchasteis",
+  "se ducharon"
+ ],
+ "levantarse": [
+  "me levanté",
+  "te levantaste",
+  "se levantó",
+  "nos levantamos",
+  "os levantasteis",
+  "se levantaron"
+ ],
+ "comer": [
+  "comí",
+  "comiste",
+  "comió",
+  "comimos",
+  "comisteis",
+  "comieron"
+ ],
+ "comprender": [
+  "comprendí",
+  "comprendiste",
+  "comprendió",
+  "comprendimos",
+  "comprendisteis",
+  "comprendieron"
+ ],
+ "beber": [
+  "bebí",
+  "bebiste",
+  "bebió",
+  "bebimos",
+  "bebisteis",
+  "bebieron"
+ ],
+ "responder": [
+  "respondí",
+  "respondiste",
+  "respondió",
+  "respondimos",
+  "respondisteis",
+  "respondieron"
+ ],
+ "leer": [
+  "leí",
+  "leíste",
+  "leyó",
+  "leímos",
+  "leísteis",
+  "leyeron"
+ ],
+ "aprender": [
+  "aprendí",
+  "aprendiste",
+  "aprendió",
+  "aprendimos",
+  "aprendisteis",
+  "aprendieron"
+ ],
+ "subir": [
+  "subí",
+  "subiste",
+  "subió",
+  "subimos",
+  "subisteis",
+  "subieron"
+ ],
+ "vivir": [
+  "viví",
+  "viviste",
+  "vivió",
+  "vivimos",
+  "vivisteis",
+  "vivieron"
+ ],
+ "escribir": [
+  "escribí",
+  "escribiste",
+  "escribió",
+  "escribimos",
+  "escribisteis",
+  "escribieron"
+ ],
+ "recibir": [
+  "recibí",
+  "recibiste",
+  "recibió",
+  "recibimos",
+  "recibisteis",
+  "recibieron"
+ ],
+ "merendar": [
+  "merendé",
+  "merendaste",
+  "merendó",
+  "merendamos",
+  "merendasteis",
+  "merendaron"
+ ],
+ "cerrar": [
+  "cerré",
+  "cerraste",
+  "cerró",
+  "cerramos",
+  "cerrasteis",
+  "cerraron"
+ ],
+ "entender": [
+  "entendí",
+  "entendiste",
+  "entendió",
+  "entendimos",
+  "entendisteis",
+  "entendieron"
+ ],
+ "empezar": [
+  "empecé",
+  "empezaste",
+  "empezó",
+  "empezamos",
+  "empezasteis",
+  "empezaron"
+ ],
+ "sentarse": [
+  "me senté",
+  "te sentaste",
+  "se sentó",
+  "nos sentamos",
+  "os sentasteis",
+  "se sentaron"
+ ],
+ "despertarse": [
+  "me desperté",
+  "te despertaste",
+  "se despertó",
+  "nos despertamos",
+  "os despertasteis",
+  "se despertaron"
+ ],
+ "sentirse": [
+  "me sentí",
+  "te sentiste",
+  "se sintió",
+  "nos sentimos",
+  "os sentisteis",
+  "se sintieron"
+ ],
+ "invertir": [
+  "invertí",
+  "invertiste",
+  "invirtió",
+  "invertimos",
+  "invertisteis",
+  "invirtieron"
+ ],
+ "preferir": [
+  "preferí",
+  "preferiste",
+  "prefirió",
+  "preferimos",
+  "preferisteis",
+  "prefirieron"
+ ],
+ "convertirse": [
+  "me convertí",
+  "te convertiste",
+  "se convirtió",
+  "nos convertimos",
+  "os convertisteis",
+  "se convirtieron"
+ ],
+ "comprobar": [
+  "comprobé",
+  "comprobaste",
+  "comprobó",
+  "comprobamos",
+  "comprobasteis",
+  "comprobaron"
+ ],
+ "encontrar": [
+  "encontré",
+  "encontraste",
+  "encontró",
+  "encontramos",
+  "encontrasteis",
+  "encontraron"
+ ],
+ "recordar": [
+  "recordé",
+  "recordaste",
+  "recordó",
+  "recordamos",
+  "recordasteis",
+  "recordaron"
+ ],
+ "volver": [
+  "volví",
+  "volviste",
+  "volvió",
+  "volvimos",
+  "volvisteis",
+  "volvieron"
+ ],
+ "volar": [
+  "volé",
+  "volaste",
+  "voló",
+  "volamos",
+  "volasteis",
+  "volaron"
+ ],
+ "resolver": [
+  "resolví",
+  "resolviste",
+  "resolvió",
+  "resolvimos",
+  "resolvisteis",
+  "resolvieron"
+ ],
+ "devolver": [
+  "devolví",
+  "devolviste",
+  "devolvió",
+  "devolvimos",
+  "devolvisteis",
+  "devolvieron"
+ ],
+ "costar": [
+  "costé",
+  "costaste",
+  "costó",
+  "costamos",
+  "costasteis",
+  "costaron"
+ ],
+ "soñar": [
+  "soñé",
+  "soñaste",
+  "soñó",
+  "soñamos",
+  "soñasteis",
+  "soñaron"
+ ],
+ "colgar": [
+  "colgué",
+  "colgaste",
+  "colgó",
+  "colgamos",
+  "colgasteis",
+  "colgaron"
+ ],
+ "acostarse": [
+  "me acosté",
+  "te acostaste",
+  "se acostó",
+  "nos acostamos",
+  "os acostasteis",
+  "se acostaron"
+ ],
+ "dormir": [
+  "dormí",
+  "dormiste",
+  "durmió",
+  "dormimos",
+  "dormisteis",
+  "durmieron"
+ ],
+ "jugar": [
+  "jugué",
+  "jugaste",
+  "jugó",
+  "jugamos",
+  "jugasteis",
+  "jugaron"
+ ],
+ "medir": [
+  "medí",
+  "mediste",
+  "midió",
+  "medimos",
+  "medisteis",
+  "midieron"
+ ],
+ "seguir": [
+  "seguí",
+  "seguiste",
+  "siguió",
+  "seguimos",
+  "seguisteis",
+  "siguieron"
+ ],
+ "conseguir": [
+  "conseguí",
+  "conseguiste",
+  "consiguió",
+  "conseguimos",
+  "conseguisteis",
+  "consiguieron"
+ ],
+ "elegir": [
+  "elegí",
+  "elegiste",
+  "eligió",
+  "elegimos",
+  "elegisteis",
+  "eligieron"
+ ],
+ "reír": [
+  "reí",
+  "reíste",
+  "rio",
+  "reímos",
+  "reísteis",
+  "rieron"
+ ],
+ "perseguir": [
+  "perseguí",
+  "perseguiste",
+  "persiguió",
+  "perseguimos",
+  "perseguisteis",
+  "persiguieron"
+ ],
+ "vestir": [
+  "vestí",
+  "vestiste",
+  "vistió",
+  "vestimos",
+  "vestisteis",
+  "vistieron"
+ ],
+ "corregir": [
+  "corregí",
+  "corregiste",
+  "corrigió",
+  "corregimos",
+  "corregisteis",
+  "corrigieron"
+ ],
+ "pedir": [
+  "pedí",
+  "pediste",
+  "pidió",
+  "pedimos",
+  "pedisteis",
+  "pidieron"
+ ],
+ "repetir": [
+  "repetí",
+  "repetiste",
+  "repitió",
+  "repetimos",
+  "repetisteis",
+  "repitieron"
+ ],
+ "sonreír": [
+  "sonreí",
+  "sonreíste",
+  "sonrió",
+  "sonreímos",
+  "sonreísteis",
+  "sonrieron"
+ ],
+ "vestirse": [
+  "me vestí",
+  "te vestiste",
+  "se vistió",
+  "nos vestimos",
+  "os vestisteis",
+  "se vistieron"
+ ],
+ "despedirse": [
+  "me despedí",
+  "te despediste",
+  "se despidió",
+  "nos despedimos",
+  "os despedisteis",
+  "se despidieron"
+ ],
+ "construir": [
+  "construí",
+  "construiste",
+  "construyó",
+  "construimos",
+  "construisteis",
+  "construyeron"
+ ],
+ "huir": [
+  "huí",
+  "huiste",
+  "huyó",
+  "huimos",
+  "huisteis",
+  "huyeron"
+ ],
+ "hacer": [
+  "hice",
+  "hiciste",
+  "hizo",
+  "hicimos",
+  "hicisteis",
+  "hicieron"
+ ],
+ "traer": [
+  "traje",
+  "trajiste",
+  "trajo",
+  "trajimos",
+  "trajisteis",
+  "trajeron"
+ ],
+ "caer": [
+  "caí",
+  "caíste",
+  "cayó",
+  "caímos",
+  "caísteis",
+  "cayeron"
+ ],
+ "poner": [
+  "puse",
+  "pusiste",
+  "puso",
+  "pusimos",
+  "pusisteis",
+  "pusieron"
+ ],
+ "salir": [
+  "salí",
+  "saliste",
+  "salió",
+  "salimos",
+  "salisteis",
+  "salieron"
+ ],
+ "darse": [
+  "me di",
+  "te diste",
+  "se dio",
+  "nos dimos",
+  "os disteis",
+  "se dieron"
+ ],
+ "conocer": [
+  "conocí",
+  "conociste",
+  "conoció",
+  "conocimos",
+  "conocisteis",
+  "conocieron"
+ ],
+ "conducir": [
+  "conduje",
+  "condujiste",
+  "condujo",
+  "condujimos",
+  "condujisteis",
+  "condujeron"
+ ],
+ "parecer": [
+  "parecí",
+  "pareciste",
+  "pareció",
+  "parecimos",
+  "parecisteis",
+  "parecieron"
+ ],
+ "traducir": [
+  "traduje",
+  "tradujiste",
+  "tradujo",
+  "tradujimos",
+  "tradujisteis",
+  "tradujeron"
+ ],
+ "parecerse": [
+  "me parecí",
+  "te pareciste",
+  "se pareció",
+  "nos parecimos",
+  "os parecisteis",
+  "se parecieron"
+ ],
+ "oír": [
+  "oí",
+  "oíste",
+  "oyó",
+  "oímos",
+  "oísteis",
+  "oyeron"
+ ],
+ "tener": [
+  "tuve",
+  "tuviste",
+  "tuvo",
+  "tuvimos",
+  "tuvisteis",
+  "tuvieron"
+ ],
+ "ver": [
+  "vi",
+  "viste",
+  "vio",
+  "vimos",
+  "visteis",
+  "vieron"
+ ],
+ "destruir": [
+  "destruí",
+  "destruiste",
+  "destruyó",
+  "destruimos",
+  "destruisteis",
+  "destruyeron"
+ ],
+ "acabar": [
+  "acabé",
+  "acabaste",
+  "acabó",
+  "acabamos",
+  "acabasteis",
+  "acabaron"
+ ],
+ "mantener": [
+  "mantuve",
+  "mantuviste",
+  "mantuvo",
+  "mantuvimos",
+  "mantuvisteis",
+  "mantuvieron"
+ ],
+ "colaborar": [
+  "colaboré",
+  "colaboraste",
+  "colaboró",
+  "colaboramos",
+  "colaborasteis",
+  "colaboraron"
+ ],
+ "regresar": [
+  "regresé",
+  "regresaste",
+  "regresó",
+  "regresamos",
+  "regresasteis",
+  "regresaron"
+ ],
+ "decir": [
+  "dije",
+  "dijiste",
+  "dijo",
+  "dijimos",
+  "dijisteis",
+  "dijeron"
+ ],
+ "ser": [
+  "fui",
+  "fuiste",
+  "fue",
+  "fuimos",
+  "fuisteis",
+  "fueron"
+ ],
+ "estar": [
+  "estuve",
+  "estuviste",
+  "estuvo",
+  "estuvimos",
+  "estuvisteis",
+  "estuvieron"
+ ]
+};
+
+function getPastForms(v) {
+  if (v.pastForms) return v.pastForms;
+  if (PAST_FORMS[v.word]) return PAST_FORMS[v.word];
+  const r = reflexiveBase(v.word);
+  const base = r.base;
+  if (PAST_IRREGULAR[base]) {
+    const f = PAST_IRREGULAR[base];
+    return r.pronoun ? f.map((x,i)=>["me","te","se","nos","os","se"][i]+" "+x) : f;
+  }
+  let stem = base;
+  let ending = base.slice(-2);
+  let root = base.slice(0,-2);
+  let endings;
+  if (ending === "ar") endings = ["é","aste","ó","amos","asteis","aron"];
+  else endings = ["í","iste","ió","imos","isteis","ieron"];
+  if (base.endsWith("car")) stem = base.slice(0,-3)+"qu"+"e"; else if (base.endsWith("gar")) stem = base.slice(0,-3)+"gu"+"é"; else if (base.endsWith("zar")) stem = base.slice(0,-3)+"c"+"é";
+  if (base.endsWith("uir") && !base.endsWith("guir")) return [root+"í",root+"iste",root+"yó",root+"imos",root+"isteis",root+"yeron"];
+  if (base.endsWith("eer") || base.endsWith("oír") || base.endsWith("aer")) return [root+"í",root+"íste",root+"yó",root+"ímos",root+"ísteis",root+"yeron"];
+  let f;
+  if (base.endsWith("car")) f=[base.slice(0,-3)+"qué",base.slice(0,-3)+"caste",base.slice(0,-3)+"có",base.slice(0,-3)+"camos",base.slice(0,-3)+"casteis",base.slice(0,-3)+"caron"];
+  else if (base.endsWith("gar")) f=[base.slice(0,-3)+"gué",base.slice(0,-3)+"gaste",base.slice(0,-3)+"gó",base.slice(0,-3)+"gamos",base.slice(0,-3)+"gasteis",base.slice(0,-3)+"garon"];
+  else if (base.endsWith("zar")) f=[base.slice(0,-3)+"cé",base.slice(0,-3)+"zaste",base.slice(0,-3)+"zó",base.slice(0,-3)+"zamos",base.slice(0,-3)+"zasteis",base.slice(0,-3)+"zaron"];
+  else f=[root+endings[0],root+endings[1],root+endings[2],root+endings[3],root+endings[4],root+endings[5]];
+  // Stem-changing -IR verbs change only in 3rd person in the preterite.
+  if (base.endsWith("ir")) {
+    const changes={sentir:"sint",dormir:"durm",morir:"mur",pedir:"pid",servir:"sirv",seguir:"sigu",vestir:"vist",reír:"ri",mentir:"mint",preferir:"prefir",invertir:"invirt",divertir:"divirt",despedir:"despid",medir:"mid"};
+    if(changes[base]) { const st=changes[base]; f[2]=st+"ió"; f[5]=st+"ieron"; }
+  }
+  if (r.pronoun) f=f.map((x,i)=>["me","te","se","nos","os","se"][i]+" "+x);
+  return f;
+}
+
+function timeButtons() {
+  return `<div class="study-time-switch" role="tablist" aria-label="Tiempo verbal">
+    <button class="study-time-btn ${studyTime==='all'?'active':''}" onclick="setStudyTime('all')">${t('allTime')}</button>
+    <button class="study-time-btn ${studyTime==='present'?'active':''}" onclick="setStudyTime('present')">${t('presentTime')}</button>
+    <button class="study-time-btn ${studyTime==='past'?'active':''}" onclick="setStudyTime('past')">${t('pastTime')}</button>
+  </div>`;
+}
+
+function render() {
+  const v = verbs[i];
+  const card = document.getElementById('card');
+  document.getElementById('progress').textContent = (i+1) + " / " + verbs.length;
+  const studyControls = timeButtons();
+  document.getElementById('prevBtn').disabled = (i === 0);
+  document.getElementById('nextBtn').textContent = (i === verbs.length - 1) ? t('restart') : t('next');
+  const past = getPastForms(v);
+  const makeGrid = (forms) => cols.map((c, idx) => `<div class="conj-cell"><div class="pronoun">${c}</div><div class="form">${forms[idx]}</div><button class="cell-speak" onclick="event.stopPropagation(); speak('${String(forms[idx]).replace(/'/g, "\\'")}')">🔊</button></div>`).join("");
+  const block = (title, forms) => `<div class="tense-block"><div class="tense-title">${title}</div><div class="conj-grid">${makeGrid(forms)}</div><button class="speak-all" onclick="event.stopPropagation(); speakAll(${JSON.stringify(forms)})">${t('speakAll')}</button></div>`;
+  if (!flipped) {
+    card.innerHTML = studyControls + `<div class="group-tag">${gTxt(v.groupKey)}</div><div class="verb-sticker" aria-label="Figurinha do verbo">${v.sticker}</div><div class="front-word">${v.word}</div><div class="meaning">${mTxt(v)}</div><button class="speak-front" onclick="event.stopPropagation(); speak('${v.word}')">🔊</button><div class="hint">${t('hint')}</div>`;
+  } else {
+    let content = '';
+    if (studyTime === 'present') content = block(t('present'), v.forms);
+    else if (studyTime === 'past') content = block(t('past'), past);
+    else content = block(t('present'), v.forms) + block(t('past'), past);
+    card.innerHTML = studyControls + `<div class="group-tag">${gTxt(v.groupKey)}</div><div class="meaning">${v.word} — ${mTxt(v)}</div>${content}<div class="note">${nTxt(v.noteKey)}</div>`;
+  }
+}
+
+function flip() {
+  flipped = !flipped;
+  render();
+}
+
+function go(dir) {
+  if (i === verbs.length - 1 && dir === 1) {
+    i = 0;
+  } else {
+    i = Math.max(0, Math.min(verbs.length - 1, i + dir));
+  }
+  flipped = false;
+  render();
+}
+
+
+function csvEscape(value) {
+  const s = String(value ?? "");
+  return '"' + s.replace(/"/g, '""').replace(/\r?\n/g, " ") + '"';
+}
+
+function exportVerbsCSV() {
+  // O CSV usa a mesma estrutura temporal dos flashcards:
+  // cada verbo aparece uma única vez, com Presente e Pasado na mesma linha.
+  const headers = [
+    "Padrão", "Figurinha", "Infinitivo", "Significado",
+    "Presente — Yo", "Presente — Tú", "Presente — Él/Ella", "Presente — Nosotros", "Presente — Vosotros", "Presente — Ellos",
+    "Pasado — Yo", "Pasado — Tú", "Pasado — Él/Ella", "Pasado — Nosotros", "Pasado — Vosotros", "Pasado — Ellos",
+    "Regra/Observação"
+  ];
+
+  const rows = verbs.map(v => {
+    const past = getPastForms(v);
+    return [
+      gTxt(v.groupKey),
+      v.sticker || "",
+      v.word,
+      mTxt(v),
+      ...v.forms,
+      ...past,
+      nTxt(v.noteKey)
+    ];
+  });
+
+  const csvContent = [
+    headers.map(csvEscape).join(";"),
+    ...rows.map(row => row.map(csvEscape).join(";"))
+  ].join("\r\n");
+
+  const blob = new Blob(["\uFEFF", csvContent], {
+    type: "text/csv;charset=utf-8"
+  });
+
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "verbos_espanol_A2_matriz.csv";
+  link.style.display = "none";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+
+
+// ---------- Modo Quiz ----------
+let mode = 'study';
+let categoryTime = 'all';
+let studyTime = 'all';
+let quizCorrect = 0;
+let quizTotal = 0;
+let currentQuestion = null;
+
+function setStudyTime(v) { studyTime=v; flipped=false; render(); }
+
+function switchTab(m) {
+  mode = m;
+  document.getElementById('tabStudy').classList.toggle('active', m === 'study');
+  document.getElementById('tabQuiz').classList.toggle('active', m === 'quiz');
+  document.getElementById('tabCat').classList.toggle('active', m === 'cat');
+  document.getElementById('tabSounds').classList.toggle('active', m === 'sounds');
+  document.getElementById('studyView').style.display = (m === 'study') ? 'block' : 'none';
+  document.getElementById('quizView').style.display = (m === 'quiz') ? 'flex' : 'none';
+  document.getElementById('catView').style.display = (m === 'cat') ? 'flex' : 'none';
+  document.getElementById('soundsView').style.display = (m === 'sounds') ? 'flex' : 'none';
+  document.getElementById('catExport').style.display = (m === 'cat') ? 'flex' : 'none';
+  if (m === 'quiz' && !currentQuestion) nextQuestion();
+  else if (m === 'quiz') renderQuiz();
+  if (m === 'cat') renderCategories();
+  if (m === 'sounds') renderSounds();
+}
+
+const SOUNDS = [
+  {
+    labelKey: "rr",
+    label: { pt: "RR — R forte / vibrante", es: "RR — R fuerte / vibrante", en: "RR — strong / rolled R" },
+    desc: {
+      pt: "Vibra a ponta da língua no céu da boca. Acontece com 'rr' no meio da palavra e também com 'r' no início da palavra (mesmo escrito com um r só).",
+      es: "Vibra la punta de la lengua contra el paladar. Ocurre con 'rr' en medio de la palabra y también con 'r' al inicio de la palabra (aunque se escriba con una sola r).",
+      en: "Roll the tip of your tongue against the roof of your mouth. It happens with 'rr' in the middle of a word, and also with 'r' at the start of a word (even written with a single r)."
+    },
+    words: ["arreglar", "recordar", "recuerdo", "responder", "respondo", "resolver", "resuelvo", "reír", "río"],
+    fromClass: true
+  },
+  {
+    labelKey: "ll",
+    label: { pt: "LL — na maioria dos lugares soa como Y (yeísmo)", es: "LL — suena como Y (yeísmo)", en: "LL — usually sounds like Y (yeísmo)" },
+    desc: {
+      pt: "Na pronúncia da maioria dos falantes de espanhol (incluindo quase toda a Espanha), LL soa igual ao Y de 'yo' (yeísmo): calle ≈ 'cá-ie'. Em algumas regiões (partes dos Andes, Bolívia, Paraguai…) ainda se distingue um som parecido com o 'lh' do português. Na Argentina e no Uruguai soa mais chiado, como 'sh'.",
+      es: "En la pronunciación de la mayoría de los hispanohablantes (incluida casi toda España), la LL suena igual que la Y de 'yo' (yeísmo): calle ≈ 'cá-ye'. En algunas zonas (partes de los Andes, Bolivia, Paraguay…) aún se distingue un sonido parecido al 'lh' del portugués. En Argentina y Uruguay suena más rehilada, como 'sh'.",
+      en: "For most Spanish speakers (including almost all of Spain), LL sounds the same as the Y in 'yo' (yeísmo): calle ≈ 'ka-ye'. In some regions (parts of the Andes, Bolivia, Paraguay…) a sound close to Portuguese 'lh' is still distinguished. In Argentina and Uruguay it sounds more hushed, like 'sh'."
+    },
+    words: ["llorar", "lloro", "lloras", "ella"],
+    fromClass: true
+  },
+  {
+    labelKey: "j",
+    label: { pt: "J / G(e,i) — som gutural", es: "J / G(e,i) — sonido gutural", en: "J / G(e,i) — guttural sound" },
+    desc: {
+      pt: "Ar saindo raspando no fundo da garganta — bem diferente do 'j' do português. Aparece no 'j' e também no 'g' antes de e/i.",
+      es: "El aire sale raspando el fondo de la garganta — muy diferente de la 'j' del portugués. Aparece con la 'j' y también con la 'g' antes de e/i.",
+      en: "Air scrapes at the back of the throat — very different from the Portuguese 'j'. It appears with 'j' and also with 'g' before e/i."
+    },
+    words: ["jugar", "juego", "elegir", "elijo"],
+    fromClass: true
+  },
+  {
+    labelKey: "n",
+    label: { pt: "Ñ — o 'nh' do português", es: "Ñ", en: "Ñ — like Portuguese 'nh'" },
+    desc: {
+      pt: "'Soñar' é o verbo da turma que traz esse som. Completei com mais algumas palavras comuns pra reforçar.",
+      es: "'Soñar' es el verbo de tu clase que trae este sonido. Completé con algunas palabras comunes más para reforzar.",
+      en: "'Soñar' is the class verb that has this sound. A few more common words are added here to reinforce it."
+    },
+    words: ["soñar", "sueño", "año", "señor", "mañana", "español", "niño"],
+    fromClass: true
+  }
+];
+
+function renderSounds() {
+  const html = SOUNDS.map(g => `
+    <div class="sound-section">
+      <div class="sound-title">${g.label[lang]}</div>
+      <div class="sound-desc">${g.desc[lang]}</div>
+      <div class="sound-chips">
+        ${g.words.map(w => `<button class="sound-chip" onclick="speak('${w.replace(/'/g,"\\'")}')">🔊 ${w}</button>`).join("")}
+      </div>
+      ${g.fromClass ? "" : `<div class="sound-note">${t('notFromClass')}</div>`}
+    </div>
+  `).join("");
+  document.getElementById('soundsView').innerHTML = html;
+}
+
+function goToVerb(word) {
+  const idx = verbs.findIndex(v => v.word === word);
+  if (idx === -1) return;
+  i = idx;
+  flipped = false;
+  render();
+  switchTab('study');
+}
+
+function setCategoryTime(time) {
+  categoryTime = time;
+  renderCategories();
+}
+
+function hasPastReference(v) {
+  const note = v.noteKey ? (NOTES[v.noteKey]?.es || NOTES[v.noteKey]?.pt || NOTES[v.noteKey]?.en || '') : '';
+  return /pretérito|pret[eé]rito|preterite/i.test(note);
+}
+
+function renderCategories() {
+  const filtered = verbs;
+
+  const groups = {};
+  const order = [];
+  filtered.forEach(v => {
+    if (!groups[v.groupKey]) { groups[v.groupKey] = []; order.push(v.groupKey); }
+    groups[v.groupKey].push(v.word);
+  });
+
+  const labels = {
+    all: t('catAll'),
+    present: t('catPresent'),
+    past: t('catPast')
+  };
+
+  const html = `
+    <div class="cat-time-switch" role="tablist" aria-label="${t('tabCat')}">
+      ${['all','present','past'].map(k => `<button class="cat-time-btn ${categoryTime === k ? 'active' : ''}" onclick="setCategoryTime('${k}')" role="tab" aria-selected="${categoryTime === k}">${labels[k]}</button>`).join('')}
+    </div>
+    ${categoryTime === 'past' ? `<div class="cat-time-info">${t('catPastInfo')}</div>` : ''}
+    ${order.map(g => `
+      <div class="cat-section">
+        <div class="cat-title">${gTxt(g)} <span style="color:var(--muted); font-weight:400;">(${groups[g].length})</span></div>
+        <div class="cat-chips">
+          ${groups[g].map(w => `<button class="cat-chip" onclick="goToVerb('${w}')">${w}</button>`).join("")}
+        </div>
+      </div>
+    `).join('')}
+    ${!order.length ? `<div class="cat-time-info">—</div>` : ''}
+  `;
+  document.getElementById('catView').innerHTML = html;
+}
+
+function resetQuiz() {
+  quizCorrect = 0;
+  quizTotal = 0;
+  nextQuestion();
+}
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let k = a.length - 1; k > 0; k--) {
+    const j = Math.floor(Math.random() * (k + 1));
+    [a[k], a[j]] = [a[j], a[k]];
+  }
+  return a;
+}
+
+function buildDistractors(correctVerb, pronounIdx, correctForm) {
+  const sameGroup = verbs.filter(v => v.groupKey === correctVerb.groupKey && v.word !== correctVerb.word)
+                          .map(v => v.forms[pronounIdx]);
+  const otherGroup = verbs.filter(v => v.groupKey !== correctVerb.groupKey)
+                           .map(v => v.forms[pronounIdx]);
+  const reflRe = /^(me|te|se|nos|os) /;
+  const wantRefl = reflRe.test(correctForm);
+  let pool = shuffle(sameGroup).concat(shuffle(otherGroup)).filter(f => reflRe.test(f) === wantRefl);
+  const set = new Set();
+  const out = [];
+  for (const f of pool) {
+    if (f !== correctForm && !set.has(f)) {
+      set.add(f);
+      out.push(f);
+    }
+    if (out.length === 3) break;
+  }
+  return out;
+}
+
+function nextQuestion() {
+  const v = verbs[Math.floor(Math.random() * verbs.length)];
+  const pronounIdx = Math.floor(Math.random() * cols.length);
+  const correctForm = v.forms[pronounIdx];
+  const distractors = buildDistractors(v, pronounIdx, correctForm);
+  const options = shuffle([correctForm, ...distractors]);
+  currentQuestion = { verb: v, pronounIdx, correctForm, options, answered: false };
+  renderQuiz();
+}
+
+function renderQuiz() {
+  document.getElementById('quizScore').textContent = t('quizScore')(quizCorrect, quizTotal);
+  const q = currentQuestion;
+  const card = document.getElementById('quizCard');
+  const optsHtml = q.options.map(opt => `
+    <button class="quiz-option" onclick="answerQuiz('${opt.replace(/'/g, "\\'")}')">${opt}</button>
+  `).join("");
+  card.innerHTML = `
+    <div class="group-tag">${gTxt(q.verb.groupKey)}</div>
+    <div class="quiz-prompt">${t('quizPrompt')(q.verb.word, cols[q.pronounIdx])}</div>
+    <div class="quiz-options" id="quizOptions">${optsHtml}</div>
+  `;
+}
+
+function answerQuiz(chosen) {
+  const q = currentQuestion;
+  if (q.answered) return;
+  q.answered = true;
+  quizTotal++;
+  const correct = (chosen === q.correctForm);
+  if (correct) quizCorrect++;
+
+  const buttons = document.querySelectorAll('#quizOptions .quiz-option');
+  buttons.forEach(b => {
+    b.disabled = true;
+    if (b.textContent === q.correctForm) b.classList.add('correct');
+    else if (b.textContent === chosen) b.classList.add('wrong');
+  });
+
+  document.getElementById('quizScore').textContent = t('quizScore')(quizCorrect, quizTotal);
+
+  const explain = document.createElement('div');
+  explain.className = 'quiz-explain';
+  explain.innerHTML = (correct ? t('quizCorrect') : t('quizWrong')) + nTxt(q.verb.noteKey);
+  document.getElementById('quizCard').appendChild(explain);
+
+  const nextBtn = document.createElement('button');
+  nextBtn.className = 'navbtn';
+  nextBtn.style.marginTop = '14px';
+  nextBtn.textContent = t('quizNext');
+  nextBtn.onclick = nextQuestion;
+  document.getElementById('quizCard').appendChild(nextBtn);
+
+  speak(q.correctForm);
+}
+
+// ---------- Troca de idioma da interface ----------
+function setLang(l) {
+  lang = l;
+  document.getElementById('langBR').classList.toggle('active', l === 'pt');
+  document.getElementById('langES').classList.toggle('active', l === 'es');
+  document.getElementById('langEN').classList.toggle('active', l === 'en');
+
+  document.getElementById('titleEl').textContent = t('title');
+  document.getElementById('subEl').textContent = t('sub');
+  document.getElementById('tabStudy').textContent = t('tabStudy');
+  document.getElementById('tabQuiz').textContent = t('tabQuiz');
+  document.getElementById('tabCat').textContent = t('tabCat');
+  document.getElementById('tabSounds').textContent = t('tabSounds');
+  document.getElementById('prevBtn').textContent = t('prev');
+  document.getElementById('quizRestartBtn').textContent = t('quizRestart');
+  document.getElementById('exportCsvBtn').textContent = t('exportCsv');
+
+  render();
+  if (mode === 'quiz' && currentQuestion) renderQuiz();
+  if (mode === 'cat') renderCategories();
+  if (mode === 'sounds') renderSounds();
+}
+
+setLang('pt');
+</script>
+
+
+<div><a class="home-nav" href="index.html">🏠 Volver al inicio</a></div>
+</body>
+</html>
