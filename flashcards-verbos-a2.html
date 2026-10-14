@@ -861,7 +861,6 @@ const verbs = [
   { word: "cerrar", meaning: "fechar",sticker: "🚪",groupKey: "eie", forms: ["cierro","cierras","cierra","cerramos","cerráis","cierran"], noteKey: "dipDisap" },
   { word: "entender", meaning: "",sticker: "🧠",groupKey: "eie", forms: ["entiendo","entiendes","entiende","entendemos","entendéis","entienden"], noteKey: "sameCerrar" },
   { word: "empezar", meaning: "",sticker: "🚦",groupKey: "eie", forms: ["empiezo","empiezas","empieza","empezamos","empezáis","empiezan"], noteKey: "empezarNote" },
-  { word: "iniciar", meaning: "iniciar / começar",sticker: "🚀",groupKey: "ar", forms: ["inicio","inicias","inicia","iniciamos","iniciáis","inician"], noteKey: "sameHablar" },
   { word: "sentarse", meaning: "",sticker: "🪑",groupKey: "eie-refl", forms: ["me siento","te sientas","se sienta","nos sentamos","os sentáis","se sientan"], noteKey: "reflexDip" },
   { word: "despertarse", meaning: "",sticker: "⏰",groupKey: "eie-refl", forms: ["me despierto","te despiertas","se despierta","nos despertamos","os despertáis","se despiertan"], noteKey: "reflexDip" },
 
@@ -936,6 +935,11 @@ const verbs = [
   { word: "salvar", meaning: "",sticker: "🛟",groupKey: "ar", forms: ["salvo","salvas","salva","salvamos","salváis","salvan"], noteKey: "sameHablar" },
   { word: "curar", meaning: "",sticker: "🩹",groupKey: "ar", forms: ["curo","curas","cura","curamos","curáis","curan"], noteKey: "sameHablar" },
   { word: "matar", meaning: "",sticker: "💀",groupKey: "ar", forms: ["mato","matas","mata","matamos","matáis","matan"], noteKey: "sameHablar" },
+  { word: "romper", meaning: "",sticker: "🔨",groupKey: "er", forms: ["rompo","rompes","rompe","rompemos","rompéis","rompen"], noteKey: "sameComer" },
+  { word: "reformar", meaning: "",sticker: "🏗️",groupKey: "ar", forms: ["reformo","reformas","reforma","reformamos","reformáis","reforman"], noteKey: "sameHablar" },
+  { word: "ahorrar", meaning: "",sticker: "🐖",groupKey: "ar", forms: ["ahorro","ahorras","ahorra","ahorramos","ahorráis","ahorran"], noteKey: "sameHablar" },
+  { word: "gastar", meaning: "",sticker: "💸",groupKey: "ar", forms: ["gasto","gastas","gasta","gastamos","gastáis","gastan"], noteKey: "sameHablar" },
+  { word: "divertirse", meaning: "",sticker: "🎉",groupKey: "eie-ir-refl", forms: ["me divierto","te diviertes","se divierte","nos divertimos","os divertís","se divierten"], noteKey: "reflexive" },
   { word: "tratar", meaning: "",sticker: "📖",groupKey: "ar", forms: ["trato","tratas","trata","tratamos","tratáis","tratan"], noteKey: "tratarNote" },
   { word: "crecer", meaning: "",sticker: "🌱",groupKey: "yo-irr-zc", forms: ["crezco","creces","crece","crecemos","crecéis","crecen"], noteKey: "sameConocer" },
   { word: "mantener", meaning: "",sticker: "🤝",groupKey: "mix-eie", forms: ["mantengo","mantienes","mantiene","mantenemos","mantenéis","mantienen"], noteKey: "mantenerNote" },
@@ -1046,7 +1050,6 @@ const MEAN = {
   "aprender": { pt: "aprender", en: "to learn" },
   "recibir": { pt: "receber", en: "to receive" },
   "empezar": { pt: "começar", en: "to start / to begin" },
-  "iniciar": { pt: "iniciar / começar", en: "to start / to begin / to initiate" },
   "morir": { pt: "morrer", en: "to die" },
   "obtener": { pt: "obter / conseguir", en: "to obtain / to get" },
   "componer": { pt: "compor", en: "to compose" },
@@ -1103,6 +1106,11 @@ const MEAN = {
   "salvar": { pt: "salvar", en: "to save (rescue)" },
   "curar": { pt: "curar", en: "to cure / to heal" },
   "matar": { pt: "matar", en: "to kill" },
+  "romper": { pt: "romper", en: "to break" },
+  "reformar": { pt: "reformar / fazer reforma em", en: "to renovate" },
+  "ahorrar": { pt: "economizar / poupar", en: "to save (money)" },
+  "gastar": { pt: "gastar", en: "to spend" },
+  "divertirse": { pt: "divertir-se", en: "to have fun" },
   "tratar": { pt: "tratar / (tratar de) falar sobre", en: "to deal with / (tratar de) to be about" },
   "crecer": { pt: "crescer", en: "to grow / to grow up" },
   "mantener": { pt: "manter", en: "to keep / to maintain" },
@@ -1210,6 +1218,46 @@ const PAST_FORMS = {
   "curamos",
   "curasteis",
   "curaron"
+ ],
+ "romper": [
+  "rompí",
+  "rompiste",
+  "rompió",
+  "rompimos",
+  "rompisteis",
+  "rompieron"
+ ],
+ "reformar": [
+  "reformé",
+  "reformaste",
+  "reformó",
+  "reformamos",
+  "reformasteis",
+  "reformaron"
+ ],
+ "ahorrar": [
+  "ahorré",
+  "ahorraste",
+  "ahorró",
+  "ahorramos",
+  "ahorrasteis",
+  "ahorraron"
+ ],
+ "gastar": [
+  "gasté",
+  "gastaste",
+  "gastó",
+  "gastamos",
+  "gastasteis",
+  "gastaron"
+ ],
+ "divertirse": [
+  "me divertí",
+  "te divertiste",
+  "se divirtió",
+  "nos divertimos",
+  "os divertisteis",
+  "se divirtieron"
  ],
  "matar": [
   "maté",
@@ -2010,14 +2058,6 @@ const PAST_FORMS = {
   "empezamos",
   "empezasteis",
   "empezaron"
- ],
- "iniciar": [
-  "inicié",
-  "iniciaste",
-  "inició",
-  "iniciamos",
-  "iniciasteis",
-  "iniciaron"
  ],
  "sentarse": [
   "me senté",
@@ -2850,15 +2890,6 @@ function setLang(l) {
   if (mode === 'cat') renderCategories();
   if (mode === 'sounds') renderSounds();
 }
-
-// Abre automaticamente o verbo indicado no fragmento da URL (ex.: #llegar).
-// Mantém o cartão inicial sincronizado com os links das aulas.
-(function openVerbFromHash() {
-  const target = decodeURIComponent(window.location.hash.replace(/^#/, '')).trim().toLocaleLowerCase();
-  if (!target) return;
-  const foundIndex = verbs.findIndex(v => v.word.toLocaleLowerCase() === target);
-  if (foundIndex >= 0) i = foundIndex;
-})();
 
 setLang('pt');
 </script>
