@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#080a18" name="theme-color"/>
+<title>Simulacro de examen A2</title>
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#080a18;--card:#171d38;--text:#f8f9ff;--muted:#b8c0dd;
+  --pink:#ff5ca8;--purple:#a56cff;--turq:#37e6d4;--yellow:#ffd34e;
+  --blue:#42a5ff;--soft:#252e50;--border:#2d385e;--ok:#4be59a;--bad:#ff6b7c;--header-border:#48598d;--header-start:#172c6c;--header-mid:#49237f;--header-end:#741c58;--header-text:#fff;--header-shadow:rgba(0,0,0,.55);
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 10% 0,#1d2b66,transparent 38%),radial-gradient(circle at 90% 0,#5a174d,transparent 35%),var(--bg);background-attachment:fixed;color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}
+.container{max-width:1100px;margin:auto;padding:22px 16px 60px}
+header{text-align:center;padding:26px 20px;margin-bottom:6px;border-radius:22px;border:1px solid var(--header-border);background:linear-gradient(135deg,var(--header-start),var(--header-mid) 52%,var(--header-end));box-shadow:0 18px 50px var(--header-shadow);transition:background .2s ease,border-color .2s ease,color .2s ease}
+.badge{display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;font-weight:800;font-size:.82rem}
+h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);color:var(--header-text)}
+.subtitle{color:var(--header-text);opacity:.92}
+section{display:none;padding-top:22px;scroll-margin-top:66px}
+section.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:0 7px 22px color-mix(in srgb,var(--purple) 10%,transparent)}
+.card h3{margin-top:0}
+.color-title{font-size:1.25rem;font-weight:900}
+.pink{color:var(--pink)}.purple{color:var(--purple)}.turq{color:var(--turq)}.blue{color:var(--blue)}.yellow{color:var(--yellow)}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden}
+th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+th{background:#202a4c;color:#cdbdff}
+.verb-card{margin-bottom:16px}
+.verb-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.verb{font-size:1.45rem;font-weight:900;color:var(--pink)}
+.tag{font-size:.78rem;font-weight:800;padding:4px 9px;border-radius:999px;background:var(--soft);color:#cdbdff}
+.speak{border:0;background:var(--soft);border-radius:10px;padding:7px 10px;cursor:pointer}
+.example{border-left:4px solid var(--turq);padding:9px 12px;background:color-mix(in srgb,var(--turq) 8%,var(--card));border-radius:0 12px 12px 0;margin:9px 0}
+.note{font-size:.9rem;color:var(--muted)}
+.choice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media(max-width:760px){.choice-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.choice-grid{grid-template-columns:1fr}}
+.choice{padding:12px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;text-align:center;font-weight:700;font-size:1rem;transition:0.2s}
+.choice:hover{border-color:var(--turq)}
+.choice:disabled{cursor:default}
+.choice.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card));color:var(--ok)}
+.choice.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card));color:var(--bad)}
+.feedback{margin-top:12px;font-weight:800;padding:12px;border-radius:10px;display:none}
+.feedback.ok{display:block;color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card));border:1px solid var(--ok)}
+.feedback.bad{display:block;color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card));border:1px solid var(--bad)}
+.quiz-result{margin-top:14px;padding:14px 16px;border:1px solid var(--border);border-radius:14px;background:var(--card);font-weight:800}
+.result-main{font-size:1.05rem}
+.result-stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.result-stats span{padding:6px 9px;border-radius:999px;background:var(--soft);font-size:.85rem}
+.result-ok{color:var(--ok)}.result-bad{color:var(--bad)}.result-warn{color:var(--yellow)}
+.example.sayable{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.example.sayable .example-audio{flex:0 0 auto}
+
+details{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px;margin:9px 0}
+summary{cursor:pointer;font-weight:800}
+.progress{height:12px;background:var(--soft);border-radius:99px;overflow:hidden;margin-top:12px;border:1px solid var(--border)}
+.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq));transition:width .3s ease}
+.small{font-size:.88rem;color:var(--muted)}
+.example.sayable{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.example.sayable .speak{flex:0 0 auto;font-size:1.05rem}
+.sound-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:6px 0 12px}
+.speak:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.speak[aria-pressed="true"]{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff}
+footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
+/* Desktop compacto / janela dividida: evita que o grupo de velocidade invada o botão central. */
+@media (min-width:601px) and (max-width:1050px){
+  .header-controls{
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    gap:8px;
+  }
+  .header-controls .home-link{
+    min-width:0;
+    max-width:210px;
+    padding:0 12px;
+    font-size:.88rem;
+  }
+  .header-controls .speed-control{
+    min-width:0;
+    gap:5px;
+    justify-self:end;
+  }
+  .speed-btn{
+    min-width:64px;
+    padding:0 8px;
+    font-size:.78rem;
+  }
+}
+
+@media (min-width:601px) and (max-width:780px){
+}
+@media(max-width:600px){
+  .container{padding:14px 10px 45px}
+  th,td{padding:8px;font-size:.9rem}
+  .card{padding:15px}
+}
+
+
+.table-wrap{overflow-x:auto;border-radius:16px}
+.table-wrap table{min-width:520px}
+.mini-grid{display:flex;flex-direction:column;gap:14px}
+.mini-grid .verb-card{min-width:0}
+.mini-grid .verb-card{margin-bottom:0}
+/* Verbos trabajados: misma distribución visual del Modelo Mestre. */
+#verbos .mini-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;align-items:stretch}
+#verbos .mini-grid .verb-card{min-width:0;height:100%;box-sizing:border-box}
+@media(max-width:1050px){#verbos .mini-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){#verbos .mini-grid{grid-template-columns:minmax(0,1fr)}}
+.form-big{font-size:1.25rem;font-weight:900;color:var(--turq);margin:10px 0 4px}
+ul.clean{margin:8px 0;padding-left:20px}ul.clean li{margin:5px 0}
+
+.mini-forms{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.mini-forms div{flex:1 1 90px;background:var(--soft);border:1px solid var(--border);border-radius:10px;padding:7px 9px;text-align:center}
+.mini-forms small{display:block;color:var(--muted);font-size:.7rem;text-transform:uppercase}
+.mini-forms b{font-size:1.05rem;color:var(--turq)}
+
+
+/* === Template Mestre A2 — interfaz estable === */
+:root[data-theme="light"]{color-scheme:light;--bg:#f5f3ff;--card:#ffffff;--text:#1b2340;--muted:#5e6780;--soft:#e9e6f8;--border:#cfd1ea;--header-border:#aeb8df;--header-start:#dfe9ff;--header-mid:#eadfff;--header-end:#ffe0ef;--header-text:#1b2340;--header-shadow:rgba(73,55,128,.18);--blue:#397fdb;--purple:#7856d9;--turq:#159f93;--yellow:#c58d00}
+:root[data-theme="light"] .pink{color:#c52f76}:root[data-theme="light"] .purple{color:#6840bf}:root[data-theme="light"] .turq{color:#087f78}:root[data-theme="light"] .yellow{color:#946600}:root[data-theme="light"] .blue{color:#2f6fc4}
+body{transition:background .2s ease,color .2s ease}
+header{border-color:var(--header-border);background:linear-gradient(135deg,var(--header-start),var(--header-mid) 52%,var(--header-end));box-shadow:0 18px 50px var(--header-shadow)}
+header h1{color:var(--header-text)}
+header .subtitle{color:var(--header-text);opacity:.88}
+.badge{color:var(--header-text);background:color-mix(in srgb,var(--purple) 12%,transparent);border:1px solid color-mix(in srgb,var(--purple) 22%,transparent)}
+.theme-toggle,.home-link,.speed-btn{background:#ffffff;color:var(--text);border-color:#c7cbe4;box-shadow:0 3px 10px rgba(70,58,125,.08)}
+.theme-toggle:hover,.home-link:hover,.speed-btn:hover{border-color:var(--turq);box-shadow:0 4px 12px rgba(21,159,147,.14)}
+.tab-nav button{background:#ffffff;color:var(--text);border-color:#c9cce5;box-shadow:0 2px 7px rgba(70,58,125,.06)}
+.tab-nav button:hover{background:#f6f4ff;border-color:var(--turq);box-shadow:0 0 0 1px rgba(21,159,147,.18)}
+.sticky-shell{background:color-mix(in srgb,#ffffff 88%,var(--soft));border-color:#c9cce5;box-shadow:0 10px 28px rgba(87,70,145,.12)}
+.card{box-shadow:0 7px 22px rgba(87,70,145,.08)}
+.sticky-shell{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:color-mix(in srgb,var(--bg) 96%,transparent);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:7px 8px;
+  box-shadow:0 10px 28px color-mix(in srgb,var(--purple) 14%,transparent);
+  margin:8px 0 0;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+/* Controles no cabeçalho e NÃO acompanham a rolagem.
+   Inicio permanece centrado · Velocidad fica à direita. */
+.header-controls{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+  align-items:center;
+  gap:10px;
+  width:100%;
+  margin:14px auto 0;
+}
+.header-controls .home-link{grid-column:2;justify-self:center}
+.header-controls .speed-control{grid-column:3;justify-self:end}
+.theme-toggle,.speed-control,.home-link{border:1px solid var(--border);background:var(--card);color:var(--text)}
+.theme-toggle{
+  flex:0 0 auto;height:38px;min-width:72px;border-radius:999px;padding:0 11px;
+  display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;font-size:.92rem;
+}
+.theme-toggle:hover,.home-link:hover,.speed-btn:hover{border-color:var(--turq)}
+.home-link{
+  flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;height:38px;
+  padding:0 14px;border-radius:12px;text-decoration:none;font-weight:850;position:relative;white-space:nowrap;
+}
+
+.speed-control{flex:0 0 auto;height:38px;display:flex;align-items:center;gap:6px;background:transparent;border:0}
+.speed-label{display:none}
+.speed-btn{
+  flex:0 0 auto;height:40px;min-width:78px;padding:0 11px;border:1px solid var(--border);
+  border-radius:999px;background:var(--card);color:var(--text);font-weight:800;cursor:pointer;white-space:nowrap;
+}
+.speed-btn.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+/* Menu principal: uma única linha, fixa durante a rolagem. */
+.sticky-shell{display:flex;align-items:center;gap:7px}
+.sticky-shell > .theme-toggle{flex:0 0 40px;width:40px;min-width:40px;height:40px;padding:0;border-radius:12px}
+.sticky-shell > .tab-nav{flex:1;min-width:0}
+.tab-nav{
+  display:flex;flex-wrap:nowrap;gap:7px;width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;
+  padding:0;scrollbar-width:thin;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;
+  touch-action:pan-x;
+}
+.tab-nav button{
+  flex:0 0 118px;width:118px;min-width:118px;height:40px;border:1px solid var(--border);
+  background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;font-weight:800;
+  font-size:.84rem;white-space:nowrap;display:flex;align-items:center;justify-content:center;gap:4px;
+  transition:transform .15s ease,border-color .15s ease,background .15s ease;touch-action:manipulation;
+}
+.tab-nav button:hover{border-color:var(--turq);box-shadow:0 0 0 1px color-mix(in srgb,var(--turq) 22%,transparent)}
+.tab-nav button:focus-visible,.speed-btn:focus-visible,.theme-toggle:focus-visible,.home-link:focus-visible{outline:3px solid var(--yellow);outline-offset:0}
+.tab-nav button.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+/* Navegação e controles — ajuste final para mobile */
+.home-nav{display:flex;justify-content:center;align-items:center;margin:22px 0 0}
+.home-nav a{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 16px;border:1px solid var(--border);border-radius:12px;background:var(--card);color:var(--text);text-decoration:none;font-weight:850;white-space:nowrap;transition:transform .15s ease,border-color .15s ease,background .2s ease}
+.home-nav a:hover{transform:translateY(-1px);border-color:var(--turq)}
+.home-nav a:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.home-nav .bottom-home{height:40px;min-height:40px;padding:0 14px;border-radius:12px;font-weight:850}
+
+@media(max-width:600px){
+  .sticky-shell{padding:6px 7px;border-radius:14px;margin-top:7px}
+  .tab-nav{gap:6px}
+  .tab-nav button{flex-basis:112px;width:112px;min-width:112px;height:38px;font-size:.80rem}
+
+  /* Controles: Inicio al centro · Velocidad à direita */
+  .header-controls{
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    gap:6px;
+    margin-top:12px;
+    overflow:visible;
+  }
+  .header-controls .home-link{grid-column:2;justify-self:center;height:40px;min-width:0;padding:0 8px;font-size:.88rem}
+  .header-controls .speed-control{grid-column:3;justify-self:end}
+  .speed-control{height:40px;gap:3px;min-width:0;justify-content:flex-end}
+  .header-controls .speed-btn{height:36px;width:36px;min-width:36px;padding:0;border-radius:10px;font-size:0;line-height:1}
+  .header-controls .speed-btn[data-rate="0.58"]::before{content:"🐢";font-size:1rem}
+  .header-controls .speed-btn[data-rate="0.88"]::before{content:"▶";font-size:.88rem}
+  .header-controls .speed-btn[data-rate="1.12"]::before{content:"⚡";font-size:1rem}
+  .speed-label{display:none}
+
+  /* O menu permanece fixo, mas ocupa apenas uma linha horizontal */
+  .tab-nav{touch-action:pan-x;overscroll-behavior-x:contain}
+}
+@media(max-width:380px){
+  .sticky-shell > .theme-toggle{width:38px;min-width:38px;height:38px}
+  .header-controls{gap:5px}
+  .header-controls .home-link{font-size:.82rem;padding:0 6px}
+  .speed-control{gap:2px}
+  .header-controls .speed-btn{width:34px;min-width:34px;height:34px}
+  .header-controls .speed-btn[data-rate="0.58"]::before,.header-controls .speed-btn[data-rate="1.12"]::before{font-size:.9rem}
+  .header-controls .speed-btn[data-rate="0.88"]::before{font-size:.8rem}
+  .tab-nav button{flex-basis:108px;width:108px;min-width:108px;font-size:.78rem}
+}
+
+
+/* === Correção final: controles responsivos em janela PC dividida === */
+@media (min-width:601px) and (max-width:1050px){
+  .header-controls{
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    gap:14px;
+  }
+  .header-controls .home-link{
+    justify-self:center;
+    max-width:190px;
+    min-width:0;
+    padding:0 11px;
+    font-size:.86rem;
+  }
+  .header-controls .speed-control{
+    justify-self:end;
+    min-width:0;
+    gap:5px;
+  }
+  .header-controls .speed-btn{
+    width:64px;
+    min-width:64px;
+    max-width:64px;
+    padding:0 5px;
+    font-size:.76rem;
+  }
+}
+@media (min-width:601px) and (max-width:780px){
+  .header-controls{gap:10px}
+  .header-controls .home-link{max-width:175px;font-size:.82rem;padding:0 8px}
+  .header-controls .speed-control{gap:3px}
+  .header-controls .speed-btn{width:58px;min-width:58px;max-width:58px;font-size:.70rem;padding:0 3px}
+}
+
+/* === Estrutura definitiva: cabeçalho, velocidade e navegação separados === */
+.header-controls{display:none !important}
+.header-home{display:flex;justify-content:center;align-items:center;margin:14px auto 0;width:100%}
+.header-home .home-link{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 16px;border-radius:12px;text-decoration:none;font-weight:850;white-space:nowrap}
+.audio-controls{display:flex;justify-content:center;align-items:center;width:100%;margin:8px 0 8px}
+.audio-controls .speed-control{display:flex;align-items:center;justify-content:center;gap:7px;height:auto;min-width:0}
+.audio-controls .speed-btn{flex:0 0 auto;height:40px;min-width:78px;padding:0 12px;border:1px solid var(--border);border-radius:999px;background:var(--card);color:var(--text);font-weight:800;cursor:pointer;white-space:nowrap}
+.audio-controls .speed-btn.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+.audio-controls .speed-btn:hover{border-color:var(--turq)}
+@media (max-width:600px){
+  .header-home{margin-top:12px}
+  .header-home .home-link{height:40px;padding:0 14px;font-size:.9rem}
+  .audio-controls{margin:7px 0 7px}
+  .audio-controls .speed-control{gap:5px;width:100%;justify-content:center}
+  .audio-controls .speed-btn{height:38px;min-width:0;width:auto;padding:0 11px;font-size:.82rem}
+}
+@media (max-width:380px){
+  .audio-controls .speed-control{gap:4px}
+  .audio-controls .speed-btn{height:36px;padding:0 9px;font-size:.78rem}
+}
+
+/* Áudio das formas de conjugação — versão completa */
+.mini-forms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:10px 0}
+.mini-forms .mini-form-item{display:grid;grid-template-columns:1fr auto;grid-template-areas:"label audio" "form audio";align-items:center;gap:2px 8px;background:var(--soft);border:1px solid var(--border);border-radius:10px;padding:9px 10px;text-align:left}
+.mini-forms .mini-form-item small{grid-area:label;text-transform:none}
+.mini-forms .mini-form-item b{grid-area:form;font-size:1.05rem;color:var(--turq)}
+.mini-forms .mini-form-item .form-audio{grid-area:audio;align-self:center;padding:6px 8px;border-radius:9px}
+.verb-card td .form-audio{margin-left:6px;padding:4px 7px;border-radius:8px;font-size:.9rem;vertical-align:middle}
+.verb-card .example .example-audio{margin-left:6px;padding:5px 8px;border-radius:9px;vertical-align:middle}
+.form-big .form-audio{margin-left:6px;padding:5px 8px;border-radius:9px;vertical-align:middle}
+@media (max-width:640px){
+  .mini-forms{grid-template-columns:1fr}
+  .mini-forms .mini-form-item{padding:8px 9px}
+}
+
+
+.verb-structure-guide{margin:14px 0 18px;padding:12px 14px;border:1px solid var(--border);border-radius:14px;background:var(--soft);color:var(--text);font-size:.94rem;line-height:1.55}
+.verb-subtitle{margin:12px 0 8px;font-weight:800;color:var(--text);font-size:.9rem;letter-spacing:.01em}
+.example-label{margin:12px 0 5px;font-weight:800;color:var(--text);font-size:.88rem}
+.flashcard-link{display:inline-flex;align-items:center;gap:6px;margin:10px 0 2px;padding:7px 10px;border-radius:10px;border:1px solid var(--border);background:var(--soft);color:var(--turq);text-decoration:none;font-weight:800;font-size:.82rem}
+.flashcard-link:hover{transform:translateY(-1px)}
+.verb-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+
+
+/* === Ajuste definitivo de Verbos === */
+#verbos .verb-card{width:100%;margin:0 0 16px}
+#verbos .conj-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px}
+#verbos .conj-item{background:var(--soft);border:1px solid var(--border);border-radius:12px;padding:10px 11px;min-width:0}
+#verbos .conj-person{font-size:.78rem;font-weight:800;color:var(--muted);margin-bottom:5px;line-height:1.3}
+#verbos .conj-form{font-size:1.08rem;font-weight:900;color:var(--turq);display:flex;align-items:center;justify-content:space-between;gap:7px;flex-wrap:wrap}
+#verbos .conj-form .form-audio{margin-left:auto}
+#verbos .mini-forms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:10px 0}
+#verbos .mini-forms .mini-form-item{min-width:0;background:var(--soft);border:1px solid var(--border);border-radius:12px;padding:10px 11px;display:grid;grid-template-columns:1fr auto;grid-template-areas:"person audio" "form audio";align-items:center;gap:4px 8px}
+#verbos .mini-forms .mini-form-item small{grid-area:person;margin:0;text-align:left}
+#verbos .mini-forms .mini-form-item b{grid-area:form;text-align:left}
+#verbos .mini-forms .mini-form-item .form-audio{grid-area:audio;align-self:center;margin:0}
+@media(max-width:780px){#verbos .conj-grid,#verbos .mini-forms{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){#verbos .conj-grid,#verbos .mini-forms{grid-template-columns:1fr}#verbos .conj-item,#verbos .mini-forms .mini-form-item{padding:9px 10px}}
+
+/* === Áudio mais robusto para os exercícios === */
+.quiz-audio{display:inline-flex;align-items:center;justify-content:center;gap:4px;min-width:42px;height:38px;border:1px solid var(--border);border-radius:10px;background:var(--soft);cursor:pointer}
+.quiz-audio:hover{border-color:var(--turq);transform:translateY(-1px)}
+.quiz-question{display:flex;align-items:center;gap:10px;justify-content:space-between}
+.quiz-question p{flex:1;min-width:0;margin:8px 0}.quiz-question .question-audio{white-space:nowrap;font-weight:800}
+.quiz-option{display:flex;align-items:stretch;gap:6px;min-width:0}
+.quiz-option .choice{flex:1;min-width:0}
+.quiz-audio{flex:0 0 auto;padding:7px 10px;color:var(--text);background:var(--soft);border:1px solid var(--border);border-radius:10px;cursor:pointer}
+.quiz-audio:hover{border-color:var(--turq)}
+
+
+
+/* Aula 01/10: componentes específicos de la lección, sin alterar el Modelo Mestre */
+.pending{margin-top:14px;padding:12px 14px;border-radius:14px;background:color-mix(in srgb,var(--yellow) 9%,var(--card));border:1px solid color-mix(in srgb,var(--yellow) 35%,var(--border))}
+.activity-list p{margin:10px 0}
+#vocab .grid{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:14px}
+#vocab .card{min-width:0;overflow:hidden}
+#vocab .table-wrap{width:100%;min-width:0;overflow-x:visible}
+#vocab .table-wrap .num-table{width:100%;min-width:0;table-layout:fixed}
+#vocab .num-table td{padding:7px 10px}
+#vocab .num-table td.n{width:64px;white-space:nowrap;font-weight:900;color:var(--yellow);font-variant-numeric:tabular-nums}
+#vocab .num-table td:not(.n){overflow-wrap:anywhere;word-break:normal}
+#vocab .color-title{margin-bottom:10px}
+@media(max-width:700px){#vocab .grid{grid-template-columns:1fr}#vocab .num-table td{padding:7px 8px}#vocab .num-table td.n{width:52px}}
+@media(max-width:420px){#vocab .card{padding:12px}#vocab .num-table td{padding:7px 5px;font-size:.88rem}#vocab .num-table td.n{width:44px}}
+
+
+/* Miles y millones: misma presentación tabular que Centenas, con columna numérica automática */
+#vocab .miles-table{width:100%;min-width:0;table-layout:auto;border-collapse:collapse}
+#vocab .miles-table tr{display:grid;grid-template-columns:max-content minmax(0,1fr);column-gap:18px;align-items:center}
+#vocab .miles-table td{display:block;box-sizing:border-box;min-width:0;width:auto;vertical-align:middle;padding:7px 10px}
+/* Sobrescreve a largura fixa genérica de .num-table: a coluna numérica deve crescer conforme a cifra. */
+#vocab .miles-table.num-table td.n{width:max-content;min-width:max-content;max-width:none;white-space:nowrap;padding-right:0;font-weight:900;color:var(--yellow);font-variant-numeric:tabular-nums}
+#vocab .miles-table td:not(.n){white-space:normal;overflow-wrap:anywhere;word-break:normal}
+#vocab .miles-table .vocab-speak{margin-left:7px}
+@media(max-width:700px){#vocab .miles-table tr{column-gap:14px}#vocab .miles-table td{padding:7px 8px}}
+@media(max-width:420px){#vocab .miles-table tr{column-gap:10px}#vocab .miles-table td{padding:7px 5px;font-size:.88rem}#vocab .miles-table.num-table td.n{width:max-content;min-width:max-content;padding-right:0}#vocab .miles-table .vocab-speak{margin-left:4px}}
+
+/* Audio compacto del vocabulario: icono junto a cada número/expresión */
+#vocab .vocab-speak{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;margin-left:7px;padding:4px 7px;min-width:30px;min-height:28px;border:0;border-radius:9px;background:var(--button, #263154);color:var(--text);cursor:pointer;font-size:.9rem;line-height:1}
+#vocab .vocab-speak:hover{filter:brightness(1.18)}
+#vocab .num-table td:not(.n){overflow-wrap:anywhere}
+@media(max-width:420px){#vocab .vocab-speak{margin-left:4px;padding:3px 5px;min-width:27px;min-height:26px}}
+
+
+/* Botones de Flashcards: patrón del Modelo Mestre 30/09/2026 */
+.flashcard-link{display:inline-flex;align-items:center;gap:6px;margin:10px 0 2px;padding:7px 10px;border-radius:10px;border:1px solid var(--border);background:var(--soft);color:var(--turq);text-decoration:none;font-weight:800;font-size:.82rem}
+.flashcard-link:hover{transform:translateY(-1px)}
+.verb-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+</style>
+<style id="verb-audio-only-addition">
+#verbos .speak-inline{display:inline-flex;align-items:center;justify-content:center;min-width:32px;min-height:30px;margin-left:6px;padding:4px 8px;border:0;border-radius:10px;background:#263154;color:#fff;cursor:pointer;vertical-align:middle;font-size:14px;}
+#verbos td .speak-inline{min-width:26px;min-height:25px;padding:2px 5px;margin-left:4px;}
+#verbos .speak-inline:focus-visible{outline:2px solid #32e4d0;outline-offset:2px;}
+
+/* Ejercicios: interacción alineada con el Modelo Mestre del 30/09/2026 */
+.quiz-all{display:grid;gap:12px}
+.quiz-question{border:1px solid var(--border,#303b63);border-radius:14px;padding:14px;background:rgba(30,40,72,.45)}
+.quiz-question-head{display:flex;align-items:flex-start;gap:10px;justify-content:space-between}
+.quiz-question-head p{margin:0;flex:1}
+.choice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px}
+.quiz-option{display:flex;align-items:stretch;gap:6px;min-width:0}
+.quiz-option .choice{flex:1;min-width:0}
+.quiz-audio{flex:0 0 auto;border:0;border-radius:10px;padding:8px 10px;background:#252f52;color:inherit;cursor:pointer}
+.check-all{margin-top:12px;border:1px solid #394875;border-radius:10px;padding:10px 16px;background:#202b4c;color:inherit;font-weight:700;cursor:pointer}
+.quiz-result{margin-top:12px;border:1px solid var(--border,#303b63);border-radius:14px;padding:14px}
+.result-main{font-weight:800;margin-bottom:10px}.result-stats{display:flex;gap:8px;flex-wrap:wrap}
+.result-stats span{padding:8px 10px;border-radius:999px;background:#252f52;font-weight:700}
+.result-ok{color:#43e9a0}.result-bad{color:#ff5e83}.result-warn{color:#ffc857}
+.choice.selected{outline:2px solid #37d8d0}.choice.correct{border-color:#39d99a}.choice.wrong{border-color:#ff5e83}
+@media(max-width:700px){.choice-grid{grid-template-columns:1fr}}
+
+/* Correção de estrutura dos exercícios: enunciado, alternativas e feedback em blocos separados */
+.quiz-all{display:flex;flex-direction:column;gap:14px;min-width:0;width:100%}
+.quiz-question{display:block;min-width:0;width:100%;box-sizing:border-box;overflow-wrap:anywhere}
+.quiz-question-head{display:flex;align-items:flex-start;gap:10px;width:100%;min-width:0}
+.quiz-question-head p{flex:1 1 auto;min-width:0;margin:8px 0;overflow-wrap:anywhere;word-break:normal}
+.quiz-question-head .quiz-audio{flex:0 0 auto}
+.quiz-question .choice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;width:100%;min-width:0;margin-top:12px}
+.quiz-question .quiz-option{display:flex;min-width:0;width:100%;max-width:100%}
+.quiz-question .choice{display:block;width:100%;min-width:0;max-width:100%;height:100%;white-space:normal;overflow-wrap:anywhere;word-break:normal;box-sizing:border-box}
+.quiz-question .feedback{width:100%;min-width:0;box-sizing:border-box;overflow-wrap:anywhere}
+@media(max-width:760px){.quiz-question .choice-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.quiz-question .choice-grid{grid-template-columns:minmax(0,1fr)}.quiz-question-head{gap:8px}.quiz-question .choice{padding:10px}}
+
+</style>
+<style>
+textarea.wr{width:100%;min-height:150px;background:var(--soft);color:var(--text);border:1px solid var(--border);border-radius:14px;padding:12px;font:inherit;resize:vertical}
+.wc{font-size:.88rem;color:var(--muted);margin:6px 0}
+.reading{background:var(--soft);border-left:4px solid var(--turq);border-radius:0 14px 14px 0;padding:12px 16px;margin:10px 0}
+.reading p{margin:6px 0}
+.ad{background:var(--soft);border:1px solid var(--border);border-radius:14px;padding:10px 14px;margin:8px 0}
+.ad b.l{display:inline-block;background:var(--purple);color:#fff;border-radius:8px;padding:0 9px;margin-right:6px}
+.player{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:10px 0}
+.pbtn{border:1px solid #394875;border-radius:10px;padding:10px 16px;background:#202b4c;color:inherit;font-weight:700;cursor:pointer}
+.pbtn:disabled{opacity:.45;cursor:not-allowed}
+.timer{font-size:2rem;font-weight:800;font-variant-numeric:tabular-nums;color:var(--yellow)}
+.phase{font-weight:700;color:var(--turq)}
+details.model{margin-top:10px;background:var(--soft);border:1px solid var(--border);border-radius:14px;padding:10px 14px}
+details.model summary{cursor:pointer;font-weight:700}
+.scorebox{font-size:1.1rem;font-weight:800;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<span class="badge">EOI · Español A2 · Preparación del examen</span>
+<h1>Simulacro de examen — Unidades 1 a 4</h1>
+<div class="subtitle">Leer, escuchar, escribir y hablar, con más de 130 preguntas de repaso</div>
+<div class="subtitle" style="font-size:.9rem;margin-top:6px">📅 Examen: escrito el lunes 19 de octubre · oral el martes 20 de octubre</div>
+<div class="header-home"><a aria-label="Volver al inicio del curso" class="home-link" href="index.html">🏠 Volver al inicio</a></div>
+</header>
+<div aria-label="Controles de velocidad de pronunciación" class="audio-controls"><div class="speed-control">
+<button aria-label="Velocidad lenta" class="speed-btn" data-rate="0.58" title="Velocidad lenta" type="button">🐢 Lento</button>
+<button aria-label="Velocidad normal" class="speed-btn active" data-rate="0.88" title="Velocidad normal" type="button">▶ Normal</button>
+<button aria-label="Velocidad rápida" class="speed-btn" data-rate="1.12" title="Velocidad rápida" type="button">⚡ Rápido</button>
+</div></div>
+<div aria-label="Navegación del simulacro" class="sticky-shell">
+<button aria-label="Cambiar al modo claro" aria-pressed="true" class="theme-toggle" title="Cambiar al modo claro" type="button">🌙</button>
+<div aria-label="Secciones del simulacro" class="tab-nav" role="tablist">
+<button aria-controls="guia" aria-selected="true" class="active" data-tab="guia" id="tab-guia" role="tab">🧭 Guía</button>
+<button aria-controls="leer" aria-selected="false" data-tab="leer" id="tab-leer" role="tab">📖 Leer</button>
+<button aria-controls="escuchar" aria-selected="false" data-tab="escuchar" id="tab-escuchar" role="tab">🎧 Escuchar</button>
+<button aria-controls="escribir" aria-selected="false" data-tab="escribir" id="tab-escribir" role="tab">✍️ Escribir</button>
+<button aria-controls="oral" aria-selected="false" data-tab="oral" id="tab-oral" role="tab">🗣️ Oral</button>
+<button aria-controls="uni" aria-selected="false" data-tab="uni" id="tab-uni" role="tab">🧩 Unidades 1-4</button>
+<button aria-controls="rep" aria-selected="false" data-tab="rep" id="tab-rep" role="tab">✅ Mini simulacro</button>
+</div></div>
+<section aria-labelledby="tab-guia" class="active" id="guia" role="tabpanel" tabindex="0">
+<div class="grid">
+<div class="card" style="grid-column:1/-1"><div class="color-title pink">🎓 Cómo es la prueba (según la profesora)</div>
+<div class="table-wrap"><table><tr><th>Día</th><th>Parte</th><th>Qué hay</th></tr><tr><td><b>Lunes 19 de octubre</b> · 17:00</td><td>Escrita (2 horas)</td><td><b>Leer:</b> 2 textos · <b>Escuchar:</b> 2 audios (se oyen <b>2 veces</b>) · <b>Escribir:</b> 2 pruebas</td></tr><tr><td><b>Martes 20 de octubre</b></td><td>Oral</td><td>Una <b>interacción</b>: diálogo con un compañero de la clase, unos 3-5 minutos. Se graba.</td></tr></table></div>
+<ul class="clean"><li>Para aprobar necesitas un <b>5 sobre 10 en cada parte</b>: no hay compensación.</li><li>Tiempos aproximados: unos <b>30 min</b> para leer, unos <b>15</b> para escuchar y unos <b>40</b> para escribir.</li><li>En la oral tienes <b>un minuto para pensar</b>, sin escribir. Si hablas poco, la profesora te pide más.</li><li>Entran <b>las cuatro unidades</b> del libro (1 a 4).</li></ul>
+<p class="note">Esta página es material de práctica creado a partir de las fichas de clase. No son preguntas oficiales del examen: confirma siempre los detalles con la profesora.</p></div>
+<div class="card"><div class="color-title turq">🗺️ Contenidos por unidad</div>
+<div class="table-wrap"><table><tr><th>Unidad</th><th>Lo que hemos visto</th></tr><tr><td><b>1</b></td><td>Presentarse, vivir en otro país, presente (regular, irregular, pronominal), desde / desde hace / llevar + gerundio, qué / cuál, me cuesta, me va bien, el tiempo</td></tr><tr><td><b>2</b></td><td>Descripción física y de carácter, demostrativos (con neutros), ser / estar / tener / llevar, parecer y parecerse, caer bien / mal, medir, llevarse</td></tr><tr><td><b>3</b></td><td>Biografías, pretérito indefinido (regular e irregular), expresiones de tiempo, estado civil, números, ir / irse, convertirse</td></tr><tr><td><b>4</b></td><td>La vivienda, posesivos tónicos, gustar / encantar / preferir, comparar, preposiciones de lugar, hay / está / tiene / da a, estar + participio</td></tr></table></div></div>
+<div class="card"><div class="color-title yellow">🧭 Cómo usar esta página</div>
+<ul class="clean"><li><b>📖 Leer</b> y <b>🎧 Escuchar</b>: haz cada prueba como en el examen, sin mirar el texto mientras respondes.</li><li><b>✍️ Escribir</b>: escribe tu texto, cuenta las palabras y compáralo con la lista de control.</li><li><b>🗣️ Oral</b>: practica con un compañero; hay temporizador de 1 + 3 minutos.</li><li><b>🧩 Unidades 1-4</b>: más de 100 preguntas para repasar la gramática y el vocabulario.</li><li><b>✅ Mini simulacro</b>: 20 preguntas mezcladas para terminar.</li></ul>
+<p class="note">Los botones 🔊 leen el texto en voz alta. Si tu navegador no tiene voz en español, no sonarán.</p></div>
+<div class="card" style="grid-column:1/-1"><div class="color-title purple">💡 Consejos para cada parte</div>
+<ul class="clean"><li><b>Leer:</b> lee primero las preguntas, después el texto. Busca palabras clave (números, lugares, nombres).</li><li><b>Escuchar:</b> en la primera escucha, entiende la idea general; en la segunda, comprueba los datos (números, horas, precios).</li><li><b>Escribir:</b> contesta a <b>todos</b> los puntos que piden. Usa frases cortas y correctas: conectores como <i>y, pero, porque, también</i>.</li><li><b>Oral:</b> habla, pregunta y reacciona: <i>¿Qué te parece? Estoy de acuerdo. Yo prefiero… porque…</i>. Al final, poneos de acuerdo.</li></ul></div>
+</div></section>
+<section aria-labelledby="tab-leer" id="leer" role="tabpanel" tabindex="0"><h2>📖 Comprensión de lectura</h2>
+<p class="note">Tiempo orientativo: 30 minutos para las dos pruebas.</p>
+<div class="card"><h3>Prueba 1 · Anuncios de vivienda</h3>
+<p>Lee los cuatro anuncios y elige el más adecuado para cada persona.</p>
+<div class="ad"><b class="l">A</b><b>Piso en el centro.</b> 55 m², reformado, 2 habitaciones, amueblado. Sin ascensor. Cerca del metro Sol. <b>780 € al mes.</b></div>
+<div class="ad"><b class="l">B</b><b>Habitación en piso compartido (Vallecas).</b> Cocina y salón comunes. Buscamos persona tranquila y limpia. No se admiten mascotas. <b>320 € al mes.</b></div>
+<div class="ad"><b class="l">C</b><b>Casa con jardín en las afueras.</b> 3 habitaciones, 2 baños y garaje. Se admiten perros y gatos. <b>1.100 € al mes.</b></div>
+<div class="ad"><b class="l">D</b><b>Estudio de 30 m².</b> Cerca de la universidad, con cocina americana y ascensor. Ideal para una persona. <b>550 € al mes.</b></div>
+<div id="q-l1"></div></div>
+<div class="card" style="margin-top:14px"><h3>Prueba 2 · Un correo de Sofía</h3>
+<div class="reading"><p><b>Asunto:</b> ¡Hola desde Valencia!</p>
+<p>Hola, Daniel:</p>
+<p>¿Qué tal estás? Yo estoy muy bien. Llevo tres meses viviendo en Valencia y cada día me gusta más la ciudad. Vivo en un piso pequeño, pero muy luminoso, en un barrio tranquilo. Lo comparto con Giulia, una chica italiana muy simpática que trabaja en una librería. Mi habitación da a un patio y por la noche no hay ruido.</p>
+<p>El español me gusta mucho, pero todavía me cuesta bastante. Lo más difícil es entender a la gente cuando habla rápido. Me va bien escuchar la radio mientras cocino y ver series con subtítulos. Los fines de semana voy a la playa con mis compañeros de clase. ¡Es mucho más divertido que estudiar en casa!</p>
+<p>¿Por qué no vienes a visitarme en verano? Hay un sofá cama en el salón y tú puedes dormir allí. Seguro que te va a encantar.</p>
+<p>Un abrazo,<br>Sofía</p></div>
+<div id="q-l2"></div></div>
+</section>
+<section aria-labelledby="tab-escuchar" id="escuchar" role="tabpanel" tabindex="0"><h2>🎧 Comprensión auditiva</h2>
+<p class="note">Como en el examen, cada audio se escucha <b>dos veces</b>. El botón lee el texto con la voz de tu navegador; ajusta la velocidad arriba (🐢 / ▶ / ⚡). No abras la transcripción hasta terminar.</p>
+<div class="card"><h3>Audio 1 · Un mensaje de voz</h3>
+<div class="player"><button class="pbtn" id="play1" onclick="playAudio(1)" type="button">▶ Escuchar</button><span class="small" id="pcount1">Escuchas: 0/2</span></div>
+<div id="q-a1"></div>
+<details class="model"><summary>📄 Ver la transcripción (después de responder)</summary><p>Hola, Lucía, soy Marta. Te llamo porque ya tengo piso. Está en un barrio céntrico, cerca del metro, y tiene dos habitaciones, un salón y una cocina pequeña. Es antiguo, pero está reformado. El alquiler cuesta seiscientos cincuenta euros al mes. Lo comparto con una chica argentina que se llama Paula. Es muy simpática y trabaja en un hospital. El piso no tiene ascensor, pero da a una plaza muy tranquila. Me mudo el sábado a las diez de la mañana. ¿Puedes ayudarme con las cajas? Llámame, por favor. Un beso.</p></details></div>
+<div class="card" style="margin-top:14px"><h3>Audio 2 · Una biografía</h3>
+<div class="player"><button class="pbtn" id="play2" onclick="playAudio(2)" type="button">▶ Escuchar</button><span class="small" id="pcount2">Escuchas: 0/2</span></div>
+<div id="q-a2"></div>
+<details class="model"><summary>📄 Ver la transcripción (después de responder)</summary><p>Pablo nació en Valencia en mil novecientos noventa. De pequeño vivió con sus abuelos. En dos mil ocho empezó a estudiar Arquitectura en Madrid y allí conoció a su mujer, Elena. Se casaron en dos mil dieciséis y un año después tuvieron una hija. Hace cinco años que viven en Sevilla. Pablo trabaja en un estudio de arquitectura y por las tardes da clases de dibujo. Le encanta el cine y no le gusta nada cocinar. Elena es morena, alta y lleva gafas.</p></details></div>
+<div class="card" style="margin-top:14px"><h3>Audio 3 · En la agencia inmobiliaria</h3>
+<div class="player"><button class="pbtn" id="play3" onclick="playAudio(3)" type="button">▶ Escuchar</button><span class="small" id="pcount3">Escuchas: 0/2</span></div>
+<div id="q-a3"></div>
+<details class="model"><summary>📄 Ver la transcripción (después de responder)</summary><p>Buenos días. Busco un piso para dos personas. — Tenemos dos opciones. El primero es más grande, pero está en las afueras. El segundo es más pequeño, pero está en el centro y tiene terraza. — ¿Cuánto cuestan? — El primero cuesta setecientos euros y el segundo, ochocientos. — A mí me gusta más el segundo, porque es más luminoso, pero es más caro. Mi pareja prefiere el primero porque tiene garaje. — ¿Quieren verlos? — Sí, el viernes por la tarde, si es posible. — Perfecto. El viernes a las cinco.</p></details></div>
+</section>
+<section aria-labelledby="tab-escribir" id="escribir" role="tabpanel" tabindex="0"><h2>✍️ Expresión escrita</h2>
+<p class="note">Tiempo orientativo: 40 minutos para las dos pruebas. <b>La profesora no ha dicho cuántas palabras hay que escribir</b> (ni en las grabaciones ni en las fichas): pregúntaselo; el contador es solo para tu práctica. El cine salió como ejemplo en la oral y todo lo visto en clase puede aparecer, por eso hay una prueba extra sobre películas. Tu texto no se guarda ni se envía: se queda solo en tu pantalla.</p>
+<div class="card" style="margin-top:14px"><h3>Prueba 1 · Responder a un anuncio</h3><p>Quieres vivir en un piso compartido. Escribe un mensaje a la persona del anuncio. Incluye:</p><ul class="clean"><li>Quién eres (nombre, edad, trabajo o estudios) y desde cuándo vives en la ciudad.</li><li>Cómo eres y qué te gusta.</li><li>Por qué eres la persona ideal para el piso.</li><li>Una pregunta sobre el precio o las normas.</li></ul>
+<textarea class="wr" id="wr1" oninput="wcount(1)" placeholder="Escribe aquí tu texto…"></textarea>
+<div class="wc" id="wc1">0 palabras</div>
+<details class="model"><summary>✅ Lista de control y modelo</summary><p><b>Comprueba:</b> ¿contestas a los cuatro puntos? ¿usas <i>porque</i> y <i>también</i>? ¿hay concordancia (<i>una chica simpática</i>)? ¿cuentas las palabras?</p>
+<div class="reading"><p>Hola, me llamo Carlos, tengo 28 años y soy profesor. Vivo en Madrid desde hace dos años. Soy tranquilo, ordenado y muy sociable. Me gusta cocinar y también me encanta el cine. Creo que soy la persona ideal para el piso porque trabajo mucho fuera de casa y siempre limpio la cocina. ¿Cuánto cuesta el alquiler? ¿Se pueden tener invitados? Gracias y un saludo.</p></div></details></div>
+<div class="card" style="margin-top:14px"><h3>Prueba 2 · Mi vida</h3><p>Escribe un texto sobre ti para el blog de la escuela. Incluye:</p><ul class="clean"><li>Dónde y cuándo naciste, y cuándo llegaste a España.</li><li>Cuánto tiempo llevas viviendo aquí.</li><li>Cómo es tu casa y qué hay en tu barrio.</li><li>Qué te gusta de tu vida aquí y qué te cuesta.</li></ul>
+<textarea class="wr" id="wr2" oninput="wcount(2)" placeholder="Escribe aquí tu texto…"></textarea>
+<div class="wc" id="wc2">0 palabras</div>
+<details class="model"><summary>✅ Lista de control y modelo</summary><p><b>Comprueba:</b> pretérito para el pasado (<i>nací, llegué</i>), <i>desde hace / llevo + gerundio</i> para el presente, <i>hay / tiene / da a</i> para la casa, y <i>me gusta / me cuesta</i>.</p>
+<div class="reading"><p>Nací en Lima en 1996 y llegué a España en 2024 para estudiar. Llevo dos años viviendo en Madrid, en un piso pequeño y luminoso que da a una plaza. Mi barrio tiene un parque y hay muchas tiendas. Comparto el piso con una amiga y nos llevamos muy bien. Me gusta mucho caminar por la ciudad y conocer a gente nueva. Lo más difícil para mí es hablar rápido en español, pero me va bien practicar con mis compañeros de clase. Estoy muy contenta aquí.</p></div></details></div>
+<div class="card" style="margin-top:14px"><h3>Prueba extra · Recomendar una película</h3><p>Un amigo te pide una película para ver este fin de semana. Escribe un mensaje recomendándole una. Incluye:</p><ul class="clean"><li>El título, el país y de qué trata.</li><li>Por qué te gusta o te encanta.</li><li>Cómo es: una comparación con otra película (más… que, tan… como).</li><li>Cuándo la viste y con quién.</li></ul>
+<textarea class="wr" id="wr3" oninput="wcount(3)" placeholder="Escribe aquí tu texto…"></textarea>
+<div class="wc" id="wc3">0 palabras</div>
+<details class="model"><summary>✅ Lista de control y modelo</summary><p><b>Comprueba:</b> <i>te recomiendo</i>, <i>me encanta</i>, pretérito para cuándo la viste (<i>la vi, fui al cine</i>) y al menos una comparación.</p>
+<div class="reading"><p>Hola, Luis. Te recomiendo la película «Volver», de Pedro Almodóvar. Es una película española que cuenta la historia de una familia de mujeres. Me encanta porque es muy divertida y también muy emotiva. Es más original que otras películas que vi este año y los actores son geniales. La vi hace dos años con mi hermana y la vi otra vez el mes pasado. Seguro que te gusta. Un abrazo.</p></div></details></div>
+</section>
+<section aria-labelledby="tab-oral" id="oral" role="tabpanel" tabindex="0"><h2>🗣️ Expresión oral: interacción</h2>
+<p class="note">Practica con un compañero. Primero, <b>un minuto para pensar</b> (sin escribir); después, <b>tres minutos</b> hablando. Al final, poneos de acuerdo.</p>
+<div class="card"><h3>🔊 Frases útiles</h3><div class="sound-bar"><span class="small">Toca para escuchar.</span></div>
+<div class="example"><b>¿Qué te parece?</b></div><div class="example"><b>Yo creo que es mejor porque…</b></div><div class="example"><b>Estoy de acuerdo contigo.</b></div><div class="example"><b>No estoy de acuerdo, yo prefiero…</b></div><div class="example"><b>Por un lado… pero, por otro lado…</b></div><div class="example"><b>Entonces, ¿elegimos este?</b></div><div class="example"><b>Vale, nos ponemos de acuerdo.</b></div><div class="example"><b>¿Puedes explicar un poco más?</b></div></div>
+<div class="card" style="margin-top:14px"><h3>🎤 1 · La semana del cine internacional</h3><p><b>Situación:</b> en la escuela van a celebrar la semana del cine internacional. Tu compañero y tú presentáis una película.</p><ul class="clean"><li>Elegid una película (de vuestro país o de otro).</li><li>Explicad por qué es representativa.</li><li>Poneos de acuerdo en una sola.</li></ul>
+<div class="player"><button class="pbtn" onclick="startOral(1)" type="button">⏱ Empezar (1 min + 3 min)</button><span class="phase" id="ph1">Listo</span><span class="timer" id="tm1">1:00</span></div></div>
+<div class="card" style="margin-top:14px"><h3>🎤 2 · Alquilar un piso para compartir</h3><p><b>Situación:</b> vais a vivir juntos y tenéis que decidir qué tipo de vivienda queréis.</p><ul class="clean"><li>¿Casa o piso? ¿Cuántas habitaciones y baños?</li><li>¿Centro o afueras? ¿Cuánto podéis pagar?</li><li>Poneos de acuerdo.</li></ul>
+<div class="player"><button class="pbtn" onclick="startOral(2)" type="button">⏱ Empezar (1 min + 3 min)</button><span class="phase" id="ph2">Listo</span><span class="timer" id="tm2">1:00</span></div></div>
+<div class="card" style="margin-top:14px"><h3>🎤 3 · Buscar un compañero de piso</h3><p><b>Situación:</b> necesitáis un compañero más. Hablad de cómo es y de cómo lo buscáis.</p><ul class="clean"><li>Carácter, profesión y hábitos.</li><li>Dónde poner el anuncio.</li><li>Normas imprescindibles.</li></ul>
+<div class="player"><button class="pbtn" onclick="startOral(3)" type="button">⏱ Empezar (1 min + 3 min)</button><span class="phase" id="ph3">Listo</span><span class="timer" id="tm3">1:00</span></div></div>
+<div class="card" style="margin-top:14px"><h3>🎤 4 · Elegir entre dos pisos</h3><p><b>Situación:</b> habéis visto dos pisos. El primero es más grande, pero está lejos; el segundo es más pequeño y céntrico.</p><ul class="clean"><li>Comparad precio, tamaño y barrio.</li><li>Usad más… que, menos… que, tan… como.</li><li>Decidid cuál alquilar.</li></ul>
+<div class="player"><button class="pbtn" onclick="startOral(4)" type="button">⏱ Empezar (1 min + 3 min)</button><span class="phase" id="ph4">Listo</span><span class="timer" id="tm4">1:00</span></div></div>
+<div class="card" style="margin-top:14px"><h3>🎤 5 · ¿Ciudad grande o pueblo?</h3><p><b>Situación:</b> vais a pasar un fin de semana juntos y tenéis que elegir entre una ciudad grande y un pueblo.</p><ul class="clean"><li>Decid qué ventajas e inconvenientes tiene cada lugar.</li><li>Contad una experiencia pasada (¿Qué hiciste el año pasado?).</li><li>Poneos de acuerdo.</li></ul>
+<div class="player"><button class="pbtn" onclick="startOral(5)" type="button">⏱ Empezar (1 min + 3 min)</button><span class="phase" id="ph5">Listo</span><span class="timer" id="tm5">1:00</span></div></div>
+<div class="card" style="margin-top:14px"><h3>🎤 6 · Presenta a un amigo</h3><p><b>Situación:</b> vuestra profesora quiere conocer a vuestros amigos. Hablad de una persona importante para cada uno.</p><ul class="clean"><li>¿Cómo es físicamente y cómo es de carácter?</li><li>¿Desde cuándo os conocéis?</li><li>¿Qué os gusta hacer juntos?</li></ul>
+<div class="player"><button class="pbtn" onclick="startOral(6)" type="button">⏱ Empezar (1 min + 3 min)</button><span class="phase" id="ph6">Listo</span><span class="timer" id="tm6">1:00</span></div></div>
+</section>
+<section aria-labelledby="tab-uni" id="uni" role="tabpanel" tabindex="0"><h2>🧩 Unidades 1-4: banco de preguntas</h2>
+<p class="note">Todas las preguntas se corrigen al instante. Pulsa 🔊 para escuchar cada pregunta.</p>
+<h3 style="margin:18px 4px 8px">🌍 Unidad 1 · Presentarse, presente y desde / hace</h3>
+<div class="card"><h3>1.1 · Presente</h3><div id="q-u1a"></div></div>
+<div class="card" style="margin-top:14px"><h3>1.2 · Desde, hace, llevar, qué / cuál</h3><div id="q-u1b"></div></div>
+<h3 style="margin:24px 4px 8px">👤 Unidad 2 · Describir personas</h3><div class="card"><h3>2.1 · Demostrativos, ser / tener / llevar, parecer</h3><div id="q-u2a"></div></div>
+<div class="card" style="margin-top:14px"><h3>2.2 · Vocabulario de descripción</h3><div id="q-u2b"></div></div>
+<h3 style="margin:24px 4px 8px">📜 Unidad 3 · Biografías y pretérito</h3><div class="card"><h3>3.1 · Pretérito indefinido</h3><div id="q-u3a"></div></div>
+<div class="card" style="margin-top:14px"><h3>3.2 · Fechas, estado civil y números</h3><div id="q-u3b"></div></div>
+<h3 style="margin:24px 4px 8px">🏠 Unidad 4 · La vivienda</h3><div class="card"><h3>4.1 · Posesivos, gustar, preferir y lugar</h3><div id="q-u4a"></div></div>
+<div class="card" style="margin-top:14px"><h3>4.2 · Hay / está / tiene / da a y comparar</h3><div id="q-u4b"></div></div>
+</section>
+<section aria-labelledby="tab-rep" id="rep" role="tabpanel" tabindex="0"><h2>✅ Mini simulacro mezclado</h2>
+<p class="note">20 preguntas de las cuatro unidades.</p>
+<div class="card"><div id="q-mix"></div></div>
+<div class="card" style="margin-top:14px"><h3>✅ Lista de control antes del examen</h3>
+<label><input type="checkbox" onchange="tick(this)"> Sé escribir <b>dos textos cortos</b> contestando a todos los puntos.</label><br>
+<label><input type="checkbox" onchange="tick(this)"> Conozco el <b>pretérito indefinido</b> regular y los irregulares más comunes.</label><br>
+<label><input type="checkbox" onchange="tick(this)"> Sé hablar de <b>mi casa</b>: hay / tiene / está / da a.</label><br>
+<label><input type="checkbox" onchange="tick(this)"> Sé <b>comparar</b>: más… que, menos… que, tan… como.</label><br>
+<label><input type="checkbox" onchange="tick(this)"> He practicado la <b>oral en pareja</b> al menos dos veces.</label>
+<div class="progress" style="margin-top:12px"><span id="bar"></span></div><p id="count" class="small">0/5 completado</p></div>
+</section>
+
+<div class="home-nav"><a aria-label="Volver al inicio del curso" class="home-link bottom-home" href="index.html">🏠 Volver al inicio</a></div>
+<footer>Material de práctica para el examen del 19 y 20 de octubre de 2026. Basado en las fichas de clase; no son preguntas oficiales.</footer>
+</div>
+
+<script>
+let esVoice=null, speechRate=0.88;
+function showTab(id,btn){
+ const target=document.getElementById(id); if(!target)return;
+ document.querySelectorAll('section[role="tabpanel"]').forEach(s=>s.classList.remove('active'));
+ target.classList.add('active');
+ document.querySelectorAll('.tab-nav button[role="tab"]').forEach(b=>{
+  const active=b===btn || b.dataset.tab===id;
+  b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));b.setAttribute('tabindex',active?'0':'-1');
+ });
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function pickEs(){if(!('speechSynthesis' in window))return;const vs=speechSynthesis.getVoices();esVoice=vs.find(v=>v.lang==='es-ES')||vs.find(v=>v.lang&&v.lang.toLowerCase().startsWith('es'))||null;}
+if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=pickEs;pickEs();}
+function say(txt){
+ if(!('speechSynthesis' in window)){return;}
+ // Limpiar símbolos de formato para que el lector pronuncie el contenido, no las barras.
+ const spoken=String(txt)
+  .replace(/[|]+/g,' ')
+  .replace(/\s*\/\s*/g, ', ')
+  .replace(/(?:^|\s):-{1,}\s*/g, ' ')
+  .replace(/[-]{2,}/g, ' ')
+  .replace(/\s{2,}/g, ' ')
+  .trim();
+ speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(spoken);u.lang='es-ES';u.rate=speechRate;if(esVoice)u.voice=esVoice;speechSynthesis.speak(u);
+}
+function setSpeechSpeed(rate,btn){speechRate=rate;document.querySelectorAll('.speed-btn').forEach(b=>b.classList.toggle('active',b===btn));}
+document.addEventListener('DOMContentLoaded',()=>{
+ document.querySelectorAll('.tab-nav button[role="tab"]').forEach(btn=>{btn.addEventListener('click',()=>showTab(btn.dataset.tab,btn));btn.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();const tabs=[...document.querySelectorAll('.tab-nav button[role="tab"]')];const i=tabs.indexOf(btn);const next=tabs[(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length];next.focus();showTab(next.dataset.tab,next);}});});
+ document.querySelectorAll('.speed-btn').forEach(btn=>btn.addEventListener('click',()=>setSpeechSpeed(Number(btn.dataset.rate),btn)));
+ const theme=document.querySelector('.theme-toggle');if(theme)theme.addEventListener('click',()=>{const light=document.documentElement.getAttribute('data-theme')!=='light';document.documentElement.setAttribute('data-theme',light?'light':'dark');theme.textContent=light?'☀️':'🌙';theme.setAttribute('aria-pressed',String(!light));});
+});
+// botón 🔊 en cada frase de ejemplo de TODAS las pestañas (solo el texto en español, dentro de <b>)
+document.querySelectorAll('.example').forEach(el=>{
+ const b=el.querySelector('b'); if(!b) return;
+ const txt=b.textContent.trim();
+ const wrap=document.createElement('span');
+ while(el.firstChild) wrap.appendChild(el.firstChild);
+ el.appendChild(wrap);
+ el.classList.add('sayable');
+ const btn=document.createElement('button');
+ btn.type='button';btn.className='speak';btn.textContent='🔊';
+ btn.setAttribute('aria-label','Escuchar: '+txt);
+ btn.onclick=()=>say(txt);
+ el.appendChild(btn);
+});
+const HAS_TTS='speechSynthesis' in window;
+if(!HAS_TTS) document.querySelectorAll('.sound-bar').forEach(x=>x.style.display='none');
+
+function makeQuiz(id,qs){
+  const box=document.getElementById(id); if(!box)return;
+  box.innerHTML='';
+  const form=document.createElement('div'); form.className='quiz-all';
+  qs.forEach((q,qi)=>{
+    const card=document.createElement('div');card.className='quiz-question';
+    const questionHead=document.createElement('div');questionHead.className='quiz-question-head';
+    const p=document.createElement('p');p.innerHTML='<b>'+q.t+'</b>';questionHead.appendChild(p);
+    const audio=document.createElement('button');audio.type='button';audio.className='quiz-audio';audio.textContent='🔊';audio.title='Escuchar la pregunta';audio.setAttribute('aria-label','Escuchar la pregunta');
+    audio.onclick=()=>say(q.t);
+    questionHead.appendChild(audio);card.appendChild(questionHead);
+    const grid=document.createElement('div');grid.className='choice-grid';
+    q.o.forEach((opt,i)=>{const optionWrap=document.createElement('div');optionWrap.className='quiz-option';const b=document.createElement('button');b.type='button';b.className='choice';b.dataset.i=i;b.textContent=opt;b.setAttribute('aria-pressed','false');b.addEventListener('click',()=>{
+        // Cada alternativa también se pronuncia al hacer clic.
+        // El audio usa el mismo control global Lento / Normal / Rápido.
+        say(opt);
+        const buttons=[...card.querySelectorAll('.choice')];
+        const fb=card.querySelector('.feedback');
+        buttons.forEach(x=>{x.classList.remove('selected','correct','wrong');x.setAttribute('aria-pressed','false');});
+        b.classList.add('selected');b.setAttribute('aria-pressed','true');card.dataset.answer=i;
+        if(i===q.a){
+          b.classList.add('correct');
+          fb.className='feedback ok';
+          fb.innerHTML='✅ Correcto.'+(q.e?'<br>'+q.e:'');
+          card.dataset.correct='true';
+        }else{
+          b.classList.add('wrong');
+          fb.className='feedback bad';
+          fb.innerHTML='❌ Incorrecto. Vuelve a intentarlo.';
+          card.dataset.correct='false';
+        }
+      });optionWrap.appendChild(b);grid.appendChild(optionWrap);});
+    card.appendChild(grid);
+    const fb=document.createElement('div');fb.className='feedback';fb.setAttribute('aria-live','polite');card.appendChild(fb);
+    form.appendChild(card);
+  });
+  const check=document.createElement('button');check.type='button';check.className='check-all';check.textContent='Comprobar Respuestas';
+  const result=document.createElement('div');result.className='quiz-result';result.setAttribute('aria-live','polite');
+  check.addEventListener('click',()=>{
+    let score=0, unanswered=0;
+    form.querySelectorAll('.quiz-question').forEach((card,qi)=>{
+      const q=qs[qi], selected=card.querySelector('.choice.selected'), buttons=card.querySelectorAll('.choice'), fb=card.querySelector('.feedback');
+      if(selected && Number(selected.dataset.i)===q.a){score++;}
+      else if(!selected){unanswered++;fb.className='feedback bad';fb.innerHTML='⚠️ Falta responder esta pregunta.';}
+    });
+    const incorrect=qs.length-score-unanswered;
+    result.innerHTML='<div class=\"result-main\">Resultado: <strong>'+score+' de '+qs.length+'</strong> respuestas correctas.</div>'
+      +'<div class=\"result-stats\"><span class=\"result-ok\">✅ '+score+' correctas</span>'
+      +'<span class=\"result-bad\">❌ '+incorrect+' incorrectas</span>'
+      +'<span class=\"result-warn\">⚠️ '+unanswered+' sin responder</span></div>';
+    check.disabled=true;
+  });
+  box.appendChild(form);box.appendChild(check);box.appendChild(result);
+}
+
+makeQuiz("q-l1",[{"t": "Ana es estudiante y no tiene mucho dinero. Busca una habitación para compartir. ¿Qué anuncio le interesa?", "o": ["A", "B", "D"], "a": 1, "e": "B: habitación en piso compartido por 320 € al mes."}, {"t": "Una familia con un perro busca una casa con jardín. ¿Qué anuncio es mejor?", "o": ["C", "A", "B"], "a": 0, "e": "C: casa con jardín; se admiten perros y gatos."}, {"t": "Javier es profesor, vive solo y quiere un piso pequeño con ascensor cerca de la universidad.", "o": ["C", "D", "A"], "a": 1, "e": "D: estudio de 30 m² cerca de la universidad, con ascensor."}, {"t": "Una pareja quiere vivir en el centro, en un piso amueblado de dos habitaciones.", "o": ["B", "A", "D"], "a": 1, "e": "A: piso reformado en el centro, amueblado, con dos habitaciones."}, {"t": "¿En qué anuncio NO se admiten mascotas?", "o": ["C", "B", "D"], "a": 1, "e": "En B: «No se admiten mascotas»."}, {"t": "¿Qué vivienda es la más cara?", "o": ["C", "D", "A"], "a": 0, "e": "C cuesta 1.100 € al mes."}]);
+makeQuiz("q-l2",[{"t": "¿Cuánto tiempo lleva Sofía viviendo en Valencia?", "o": ["desde enero", "tres años", "tres meses"], "a": 2, "e": "«Llevo tres meses viviendo en Valencia»."}, {"t": "¿Cómo es el piso de Sofía?", "o": ["grande y oscuro", "antiguo y ruidoso", "pequeño pero luminoso"], "a": 2, "e": "«Es pequeño, pero muy luminoso»."}, {"t": "¿Con quién vive Sofía?", "o": ["con una compañera italiana", "sola", "con su novio"], "a": 0, "e": "Comparte piso con Giulia, una chica italiana."}, {"t": "¿Qué le cuesta más a Sofía?", "o": ["entender a la gente cuando habla rápido", "cocinar", "llegar al trabajo"], "a": 0, "e": "«Lo más difícil es entender a la gente cuando habla rápido»."}, {"t": "Para mejorar, a Sofía le va bien…", "o": ["ver la tele sin sonido", "escuchar la radio", "leer en voz baja"], "a": 1, "e": "«Me va bien escuchar la radio mientras cocino»."}, {"t": "¿Qué propone Sofía a Daniel?", "o": ["mudarse a Valencia", "visitarla en verano", "escribirle más cartas"], "a": 1, "e": "Le invita a visitarla en verano."}]);
+makeQuiz("q-a1",[{"t": "¿Dónde está el piso de Marta?", "o": ["en un barrio céntrico, cerca del metro", "en las afueras", "en un pueblo"], "a": 0, "e": "Está en un barrio céntrico, cerca del metro."}, {"t": "¿Cuántas habitaciones tiene?", "o": ["una", "dos", "tres"], "a": 1, "e": "Tiene dos habitaciones."}, {"t": "¿Cuánto cuesta el alquiler?", "o": ["560 euros al mes", "650 euros al mes", "850 euros al mes"], "a": 1, "e": "Seiscientos cincuenta euros."}, {"t": "¿Cómo es Paula, la compañera de piso?", "o": ["seria y estudia Derecho", "simpática y trabaja en un hospital", "callada y trabaja en un banco"], "a": 1, "e": "Es simpática y trabaja en un hospital."}, {"t": "¿Cuándo se muda Marta?", "o": ["el sábado a las diez", "el domingo a las diez", "el sábado a las doce"], "a": 0, "e": "El sábado a las diez de la mañana."}]);
+makeQuiz("q-a2",[{"t": "¿Dónde nació Pablo?", "o": ["en Madrid", "en Sevilla", "en Valencia"], "a": 2, "e": "Nació en Valencia, en 1990."}, {"t": "¿Qué empezó a estudiar en 2008?", "o": ["Medicina", "Arquitectura", "Cine"], "a": 1, "e": "Empezó Arquitectura en Madrid."}, {"t": "¿Cuándo se casaron Pablo y Elena?", "o": ["en 2016", "en 2017", "en 2008"], "a": 0, "e": "Se casaron en 2016."}, {"t": "¿Desde hace cuánto tiempo viven en Sevilla?", "o": ["desde hace diez años", "desde hace un año", "desde hace cinco años"], "a": 2, "e": "«Hace cinco años que viven en Sevilla»."}, {"t": "¿Cómo es Elena?", "o": ["rubia, baja y lleva barba", "pelirroja y lleva sombrero", "morena, alta y lleva gafas"], "a": 2, "e": "Elena es morena, alta y lleva gafas."}]);
+makeQuiz("q-a3",[{"t": "¿Qué busca el cliente?", "o": ["un piso para dos personas", "una casa con jardín", "una habitación"], "a": 0, "e": "Busca un piso para dos personas."}, {"t": "¿Cómo es el primer piso?", "o": ["más pequeño y céntrico", "más grande, pero está en las afueras", "más caro y con terraza"], "a": 1, "e": "Es más grande, pero está en las afueras."}, {"t": "¿Cuánto cuesta el segundo piso?", "o": ["1.000 euros", "700 euros", "800 euros"], "a": 2, "e": "Ochocientos euros."}, {"t": "¿Por qué prefiere la pareja el primer piso?", "o": ["porque tiene garaje", "porque es más luminoso", "porque está en el centro"], "a": 0, "e": "La pareja prefiere el primero porque tiene garaje."}, {"t": "¿Cuándo van a ver los pisos?", "o": ["el viernes a las diez", "el viernes a las cinco", "el jueves a las cinco"], "a": 1, "e": "El viernes por la tarde, a las cinco."}]);
+makeQuiz("q-u1a",[{"t": "Yo ___ (vivir) en Madrid desde septiembre.", "o": ["vive", "vives", "vivo"], "a": 2, "e": "Yo → vivo."}, {"t": "Nosotros ___ (empezar) la clase a las cinco.", "o": ["empiezamos", "empezamos", "empezemos"], "a": 1, "e": "Empezar: e→ie solo en yo, tú, él, ellos; nosotros → empezamos."}, {"t": "Ellos ___ (poder) venir mañana.", "o": ["pueden", "poden", "podemos"], "a": 0, "e": "Poder: o→ue → pueden."}, {"t": "Yo ___ (ir) al trabajo en metro.", "o": ["va", "voy", "vo"], "a": 1, "e": "Ir: voy."}, {"t": "¿Tú ___ (hacer) deporte?", "o": ["hago", "haces", "hace"], "a": 1, "e": "Hacer: tú haces."}, {"t": "Yo ___ (hacer) la cena todos los días.", "o": ["hago", "hace", "hacemos"], "a": 0, "e": "Hacer: yo hago."}, {"t": "Por la mañana yo ___ a las siete. (levantarse)", "o": ["se levanta", "me levanto", "levanto"], "a": 1, "e": "Verbo pronominal: me levanto."}, {"t": "Ella ___ muy contenta en España. (sentirse)", "o": ["siente", "se sienta", "se siente"], "a": 2, "e": "Sentirse: se siente (e→ie)."}, {"t": "Mis amigos y yo ___ (volver) a casa a las ocho.", "o": ["volvemos", "volvamos", "vuelvemos"], "a": 0, "e": "Volver: nosotros volvemos."}, {"t": "Vosotros ___ (tener) mucha suerte.", "o": ["tenéis", "tienen", "tenemos"], "a": 0, "e": "Tener: vosotros tenéis."}, {"t": "¿Cómo ___ tú? — Me llamo Carla. (llamarse)", "o": ["llamas", "te llamas", "se llama"], "a": 1, "e": "Llamarse: tú te llamas."}, {"t": "Yo ___ (conocer) a muchos españoles.", "o": ["conozco", "conoco", "conozo"], "a": 0, "e": "Conocer: yo conozco (c→zc)."}]);
+makeQuiz("q-u1b",[{"t": "Vivo en Madrid ___ 2024.", "o": ["desde", "hace", "desde hace"], "a": 0, "e": "Desde + punto de partida (fecha)."}, {"t": "Vivo aquí ___ dos años.", "o": ["desde hace", "desde", "hasta"], "a": 0, "e": "Desde hace + cantidad de tiempo."}, {"t": "¿___ tiempo llevas estudiando español?", "o": ["Cuál", "Cuánto", "Qué"], "a": 1, "e": "¿Cuánto tiempo llevas…?"}, {"t": "Llevo tres meses ___ español. (estudiar)", "o": ["estudio", "estudiando", "estudiar"], "a": 1, "e": "Llevar + gerundio."}, {"t": "¿___ es tu comida favorita?", "o": ["Cuál", "Qué", "Cuáles"], "a": 0, "e": "Cuál + verbo ser (una opción entre varias)."}, {"t": "¿___ significa «huelga»?", "o": ["Cuáles", "Cuál", "Qué"], "a": 2, "e": "Qué + verbo ser para definiciones."}, {"t": "No hablo con mi familia ___ el lunes.", "o": ["desde hace", "desde", "hasta hace"], "a": 1, "e": "Desde + el lunes."}, {"t": "Trabajo en este restaurante ___ hace seis meses.", "o": ["desde", "hasta", "a"], "a": 0, "e": "Desde hace seis meses."}, {"t": "Me ___ mucho hablar rápido en español. (costar)", "o": ["cuesta", "cuestas", "cuestan"], "a": 0, "e": "Me cuesta + infinitivo."}, {"t": "Lo más difícil ___ entender a los nativos.", "o": ["son", "es", "están"], "a": 1, "e": "Lo más difícil es + infinitivo."}, {"t": "Para aprender vocabulario, me ___ escribir notas.", "o": ["voy bien", "van bien", "va bien"], "a": 2, "e": "Me va bien + infinitivo."}, {"t": "En verano ___ mucho calor en Madrid.", "o": ["hace", "está", "es"], "a": 0, "e": "El tiempo: hace calor / hace frío."}]);
+makeQuiz("q-u2a",[{"t": "___ chica de la foto es mi hermana.", "o": ["Este", "Esto", "Esta"], "a": 2, "e": "Esta chica: femenino singular, cerca."}, {"t": "___ libros de allí son de la profesora.", "o": ["Aquellos", "Estos", "Aquella"], "a": 0, "e": "Aquellos: masculino plural, lejos."}, {"t": "¿Qué es ___? — Es un regalo.", "o": ["este", "esto", "esta"], "a": 1, "e": "Los demostrativos neutros no llevan nombre: esto, eso, aquello."}, {"t": "Mi padre ___ barba y gafas. (llevar)", "o": ["es", "lleva", "está"], "a": 1, "e": "Llevar barba / gafas."}, {"t": "Mi hermana ___ muy simpática. (ser)", "o": ["es", "tiene", "está"], "a": 0, "e": "Ser + carácter."}, {"t": "Mi abuelo ___ el pelo blanco. (tener)", "o": ["hay", "es", "tiene"], "a": 2, "e": "Tener + el pelo + color."}, {"t": "Mi hermano ___ 1,80 m. (medir)", "o": ["miden", "mido", "mide"], "a": 2, "e": "Medir: él mide."}, {"t": "Yo ___ mucho a mi madre. (parecerse)", "o": ["parezco", "se parece", "me parezco"], "a": 2, "e": "Parecerse a: me parezco a mi madre."}, {"t": "Tu hermano ___ más joven de lo que es. (parecer)", "o": ["parece", "se parece", "parezca"], "a": 0, "e": "Parecer + adjetivo."}, {"t": "A mí mi compañera ___ muy bien. (caer)", "o": ["me cae", "me caen", "me caigo"], "a": 0, "e": "Caer bien: me cae bien."}, {"t": "Hoy Marta ___ muy cansada. (estar)", "o": ["es", "está", "tiene"], "a": 1, "e": "Estado temporal: está cansada."}, {"t": "Pablo es ___ , delgado y moreno.", "o": ["altos", "alta", "alto"], "a": 2, "e": "Concordancia: masculino singular."}]);
+makeQuiz("q-u2b",[{"t": "«Mi madre es pelirroja» significa que tiene el pelo…", "o": ["blanco", "de color naranja-rojizo", "corto"], "a": 1, "e": "Pelirrojo/a: pelo de color rojo-naranja."}, {"t": "Lo contrario de «delgado» es…", "o": ["gordo", "rubio", "guapo"], "a": 0, "e": "Delgado ↔ gordo."}, {"t": "Lo contrario de «simpático» es…", "o": ["tímido", "divertido", "antipático"], "a": 2, "e": "Simpático ↔ antipático."}, {"t": "Una persona que no habla mucho con desconocidos es…", "o": ["graciosa", "abierta", "tímida"], "a": 2, "e": "Tímido/a."}, {"t": "«Se lleva bien con su jefe» significa…", "o": ["vive con su jefe", "tiene buena relación", "le lleva comida"], "a": 1, "e": "Llevarse bien con alguien."}, {"t": "Ella tiene los ojos ___ . (color)", "o": ["verdas", "verde", "verdes"], "a": 2, "e": "Plural: ojos verdes."}, {"t": "¿Cómo es tu mejor amigo? — Es ___ .", "o": ["altos y divertido", "alto y divertido", "alto y divertida"], "a": 1, "e": "Concordancia en masculino singular."}, {"t": "Para identificar a alguien dices: «El chico ___ lleva gafas es mi primo».", "o": ["que", "quien", "donde"], "a": 0, "e": "El chico que lleva gafas."}, {"t": "Mi hermana ___ a mi madre. Las dos tienen los ojos grandes.", "o": ["es", "se parece", "parece"], "a": 1, "e": "Parecerse a + persona."}, {"t": "«Medir» se usa para hablar de…", "o": ["la altura", "el color del pelo", "el carácter"], "a": 0, "e": "Mido 1,70 m."}]);
+makeQuiz("q-u3a",[{"t": "Ayer yo ___ (comer) paella.", "o": ["comí", "comía", "comió"], "a": 0, "e": "Comer: yo comí."}, {"t": "El año pasado nosotros ___ (viajar) a Italia.", "o": ["viajemos", "viajamos", "viajaron"], "a": 1, "e": "-ar: nosotros viajamos."}, {"t": "Ella ___ (nacer) en 1995.", "o": ["nació", "nace", "nacía"], "a": 0, "e": "Nacer: nació."}, {"t": "Ayer yo ___ (ir) al médico.", "o": ["voy", "iba", "fui"], "a": 2, "e": "Ir (pretérito): fui."}, {"t": "Marta ___ (ser) profesora durante diez años.", "o": ["fui", "era", "fue"], "a": 2, "e": "Ser (pretérito): fue."}, {"t": "Yo ___ (hacer) los deberes anoche.", "o": ["hacía", "hice", "hizo"], "a": 1, "e": "Hacer: hice."}, {"t": "Mi madre ___ (hacer) una tarta ayer.", "o": ["hice", "hizo", "hacío"], "a": 1, "e": "Hacer: él/ella hizo."}, {"t": "Ellos ___ (tener) un hijo en 2015.", "o": ["tuvieran", "tenieron", "tuvieron"], "a": 2, "e": "Tener: tuvieron."}, {"t": "Yo ___ (venir) a España en 2023.", "o": ["vino", "vine", "vení"], "a": 1, "e": "Venir: vine."}, {"t": "Ayer ___ (nosotros, estar) en casa de Luis.", "o": ["estamos", "estaremos", "estuvimos"], "a": 2, "e": "Estar: estuvimos."}, {"t": "Ana ___ (decir) que no puede venir.", "o": ["dijó", "dijo", "decía"], "a": 1, "e": "Decir: dijo."}, {"t": "Ellos ___ (poder) llegar a tiempo.", "o": ["pueden", "pudieron", "podieron"], "a": 1, "e": "Poder: pudieron."}, {"t": "Ayer yo ___ (ver) una película.", "o": ["vi", "vió", "veí"], "a": 0, "e": "Ver: vi (sin tilde)."}, {"t": "Él ___ (dar) un regalo a su madre.", "o": ["dió", "dio", "dío"], "a": 1, "e": "Dar: dio (sin tilde)."}, {"t": "Nosotros ___ (leer) el periódico.", "o": ["leemos", "leyimos", "leímos"], "a": 2, "e": "Leer: nosotros leímos; ellos leyeron."}, {"t": "Los niños ___ (dormir) hasta las diez.", "o": ["durmieron", "dormen", "dormieron"], "a": 0, "e": "Dormir: durmieron (o→u)."}]);
+makeQuiz("q-u3b",[{"t": "Hace tres años ___ a Madrid. (llegar, yo)", "o": ["llegó", "llegué", "llegé"], "a": 1, "e": "Llegar: yo llegué (g→gu)."}, {"t": "El sábado ___ (empezar, yo) el curso.", "o": ["empezí", "empecé", "empezé"], "a": 1, "e": "Empezar: yo empecé (z→c)."}, {"t": "Ayer ___ (buscar, yo) piso.", "o": ["buscé", "buscí", "busqué"], "a": 2, "e": "Buscar: yo busqué (c→qu)."}, {"t": "Se casó ___ 2018.", "o": ["hace", "en", "desde"], "a": 1, "e": "En + año."}, {"t": "Conocí a mi marido ___ cinco años.", "o": ["desde", "hace", "hasta"], "a": 1, "e": "Hace cinco años = cinco años antes de hoy."}, {"t": "Estudió en Sevilla ___ 2010 ___ 2014.", "o": ["en / a", "hace / desde", "desde / hasta"], "a": 2, "e": "Desde 2010 hasta 2014."}, {"t": "Una persona que ya no está casada ni vive con su pareja está…", "o": ["viuda", "divorciada", "soltera"], "a": 1, "e": "Divorciado/a."}, {"t": "Una persona sin pareja es…", "o": ["viuda", "soltera", "casada"], "a": 1, "e": "Soltero/a."}, {"t": "Antes de la boda tienen una…", "o": ["relación", "huelga", "residencia"], "a": 0, "e": "Relación → boda."}, {"t": "Pedro ___ ingeniero. (convertirse)", "o": ["se convertió en", "se convirtió a", "se convirtió en"], "a": 2, "e": "Convertirse en + profesión/cosa."}, {"t": "2.015 se lee…", "o": ["dos mil quince", "veinte quince", "dos quince"], "a": 0, "e": "2.015: dos mil quince."}, {"t": "1.994 se lee…", "o": ["mil novecientos noventa y cuatro", "mil nueve cientos noventa y cuatro", "diecinueve noventa y cuatro"], "a": 0, "e": "Mil novecientos noventa y cuatro."}, {"t": "550 se lee…", "o": ["cinco cincuenta", "quinientos cincuentas", "quinientos cincuenta"], "a": 2, "e": "Quinientos cincuenta."}, {"t": "Mi hermano ___ a Londres porque quería trabajar allí. (irse)", "o": ["fue", "se fue", "se va"], "a": 1, "e": "Irse = marcharse: se fue."}]);
+makeQuiz("q-u4a",[{"t": "Mi casa es grande, pero ___ es más moderna. (de ti)", "o": ["el tuyo", "la tuya", "la tu"], "a": 1, "e": "Pronombre posesivo: la tuya."}, {"t": "Este es mi sofá y ese es ___ . (de él)", "o": ["el suyo", "la suya", "el su"], "a": 0, "e": "El suyo."}, {"t": "Vuestro piso es bonito, pero ___ es más barato. (de nosotros)", "o": ["el nuestros", "la nuestra", "el nuestro"], "a": 2, "e": "El nuestro."}, {"t": "A mí ___ encanta la cocina de tu casa.", "o": ["le", "te", "me"], "a": 2, "e": "A mí → me."}, {"t": "A ellos ___ gustan los pisos con terraza.", "o": ["le", "les", "los"], "a": 1, "e": "A ellos → les + gustan."}, {"t": "A mi hermana ___ gusta cocinar.", "o": ["le", "les", "se"], "a": 0, "e": "A ella → le."}, {"t": "A nosotros ___ gustan los animales.", "o": ["les", "nos", "os"], "a": 1, "e": "A nosotros → nos."}, {"t": "Yo ___ vivir con amigos. (preferir)", "o": ["prefiero", "preferimos", "preferio"], "a": 0, "e": "Preferir: e→ie → prefiero."}, {"t": "¿Tú ___ una casa o un piso? (preferir)", "o": ["prefieres", "preferes", "prefieras"], "a": 0, "e": "Preferir: tú prefieres."}, {"t": "El gato está ___ la mesa. (sobre)", "o": ["debajo", "encima de", "detrás"], "a": 1, "e": "Encima de = sobre."}, {"t": "La lámpara está ___ la cama y la pared. (entre)", "o": ["contra", "sobre", "entre"], "a": 2, "e": "Entre… y…"}, {"t": "El espejo está ___ del sofá. (al lado)", "o": ["dentro", "al lado", "detrás"], "a": 1, "e": "Al lado de."}]);
+makeQuiz("q-u4b",[{"t": "Mi barrio ___ un parque.", "o": ["tiene", "está", "es"], "a": 0, "e": "Con tiene, el sujeto es el barrio."}, {"t": "En mi barrio ___ un parque.", "o": ["tiene", "está", "hay"], "a": 2, "e": "En mi barrio hay…"}, {"t": "El parque ___ cerca de mi casa.", "o": ["está", "tiene", "hay"], "a": 0, "e": "Estar para localizar algo conocido."}, {"t": "Mi piso ___ a una calle muy tranquila.", "o": ["da", "está", "es"], "a": 0, "e": "Dar a + lugar."}, {"t": "¿___ metros tiene tu casa?", "o": ["Cuánto", "Cuántas", "Cuántos"], "a": 2, "e": "Cuántos metros: masculino plural."}, {"t": "La cocina ___ limpia hoy. (resultado)", "o": ["tiene", "está", "es"], "a": 1, "e": "Estar + participio."}, {"t": "El edificio es ___ , pero tiene todo reformado.", "o": ["mayor", "antiguo", "roto"], "a": 1, "e": "Antiguo: suave y positivo."}, {"t": "Mi sofá está muy ___ ; tengo que comprar otro.", "o": ["mayor", "viejo", "antiguo"], "a": 1, "e": "Viejo: algo negativo."}, {"t": "Una persona de 80 años es una persona…", "o": ["nueva", "mayor", "antigua"], "a": 1, "e": "Mayor se usa solo con personas."}, {"t": "Madrid es ___ cara ___ Barcelona. (igual)", "o": ["tanto / que", "más / como", "tan / como"], "a": 2, "e": "Tan + adjetivo + como."}, {"t": "En Madrid hay ___ gente que en mi pueblo.", "o": ["más", "tan", "tanto"], "a": 0, "e": "Más + nombre + que."}, {"t": "En mi barrio no hay ___ ruido como en el centro.", "o": ["tan", "tantos", "tanto"], "a": 2, "e": "Tanto ruido (masculino singular)."}, {"t": "El horno está en…", "o": ["el garaje", "la cocina", "el baño"], "a": 1, "e": "El horno está en la cocina."}, {"t": "Lo que usamos para guardar la comida fría es…", "o": ["el fregadero", "el frigorífico", "la encimera"], "a": 1, "e": "Frigorífico / nevera."}]);
+makeQuiz("q-mix",[{"t": "Si alguien dice «Llevo dos años viviendo aquí», significa que…", "o": ["vive aquí desde hace dos años", "se va en dos años", "llegó hoy"], "a": 0, "e": "Llevar + gerundio = duración hasta hoy."}, {"t": "Ayer ___ (nosotros, ir) al cine.", "o": ["íbamos", "vamos", "fuimos"], "a": 2, "e": "Ir: fuimos."}, {"t": "Mi piso ___ un balcón pequeño.", "o": ["tiene", "da", "hay"], "a": 0, "e": "Tiene."}, {"t": "A mi madre ___ encantan los gatos.", "o": ["les", "me", "le"], "a": 2, "e": "A ella → le."}, {"t": "Mi hermana ___ mucho a mi madre.", "o": ["es", "se parece", "parece"], "a": 1, "e": "Parecerse a."}, {"t": "Ella nació ___ 1999.", "o": ["en", "hace", "desde"], "a": 0, "e": "En + año."}, {"t": "El alquiler es ___ caro ___ el de Madrid. (igual)", "o": ["tan / como", "tan / que", "más / como"], "a": 0, "e": "Tan… como."}, {"t": "¿___ es tu número de teléfono?", "o": ["Cuál", "Qué", "Cuánto"], "a": 0, "e": "Cuál + ser."}, {"t": "Yo ___ (poner) la mesa ayer.", "o": ["ponió", "puse", "poní"], "a": 1, "e": "Poner: puse."}, {"t": "«El mío» en «Mi coche es rojo; el suyo es azul» se refiere a…", "o": ["rojo", "azul", "coche"], "a": 2, "e": "Pronombre que sustituye a coche."}, {"t": "Antonio ___ moreno y lleva gafas.", "o": ["es", "está", "tiene"], "a": 0, "e": "Ser + descripción física."}, {"t": "El gato está ___ la cama. (debajo)", "o": ["entre", "encima", "debajo de"], "a": 2, "e": "Debajo de."}, {"t": "Hace diez años ___ a España. (venir, yo)", "o": ["vine", "vino", "vení"], "a": 0, "e": "Venir: vine."}, {"t": "¿___ metros cuadrados tiene el salón?", "o": ["Cuánto", "Cuántas", "Cuántos"], "a": 2, "e": "Cuántos metros."}, {"t": "Nosotros ___ (pedir) una pizza ayer.", "o": ["pidimos", "pedemos", "pedimos"], "a": 2, "e": "Pedir: nosotros pedimos."}, {"t": "Ellos ___ (pedir) una pizza ayer.", "o": ["pedieron", "pedían", "pidieron"], "a": 2, "e": "Pedir: ellos pidieron (e→i)."}, {"t": "En verano ___ calor en Madrid.", "o": ["hace", "tiene", "es"], "a": 0, "e": "Hace calor."}, {"t": "Yo vivo aquí ___ junio.", "o": ["en", "desde", "hace"], "a": 1, "e": "Desde + punto de partida."}, {"t": "Un piso sin muebles no está…", "o": ["amueblado", "reformado", "ruidoso"], "a": 0, "e": "Amueblado = con muebles."}, {"t": "Para recomendar una película dices…", "o": ["Te recomendo esta película.", "Recomiendo tú película.", "Te recomiendo esta película."], "a": 2, "e": "Recomendar: yo recomiendo."}]);
+let done=0;
+function tick(cb){
+ done+=cb.checked?1:-1;
+ document.getElementById('bar').style.width=(done/5*100)+'%';
+ document.getElementById('count').textContent=done+'/5 completado';
+}
+const AUDIOS=["Hola, Lucía, soy Marta. Te llamo porque ya tengo piso. Está en un barrio céntrico, cerca del metro, y tiene dos habitaciones, un salón y una cocina pequeña. Es antiguo, pero está reformado. El alquiler cuesta seiscientos cincuenta euros al mes. Lo comparto con una chica argentina que se llama Paula. Es muy simpática y trabaja en un hospital. El piso no tiene ascensor, pero da a una plaza muy tranquila. Me mudo el sábado a las diez de la mañana. ¿Puedes ayudarme con las cajas? Llámame, por favor. Un beso.", "Pablo nació en Valencia en mil novecientos noventa. De pequeño vivió con sus abuelos. En dos mil ocho empezó a estudiar Arquitectura en Madrid y allí conoció a su mujer, Elena. Se casaron en dos mil dieciséis y un año después tuvieron una hija. Hace cinco años que viven en Sevilla. Pablo trabaja en un estudio de arquitectura y por las tardes da clases de dibujo. Le encanta el cine y no le gusta nada cocinar. Elena es morena, alta y lleva gafas.", "Buenos días. Busco un piso para dos personas. — Tenemos dos opciones. El primero es más grande, pero está en las afueras. El segundo es más pequeño, pero está en el centro y tiene terraza. — ¿Cuánto cuestan? — El primero cuesta setecientos euros y el segundo, ochocientos. — A mí me gusta más el segundo, porque es más luminoso, pero es más caro. Mi pareja prefiere el primero porque tiene garaje. — ¿Quieren verlos? — Sí, el viernes por la tarde, si es posible. — Perfecto. El viernes a las cinco."];
+const plays={1:0,2:0,3:0};
+function playAudio(n){
+ if(plays[n]>=2)return;
+ plays[n]++;
+ document.getElementById('pcount'+n).textContent='Escuchas: '+plays[n]+'/2';
+ if(plays[n]>=2)document.getElementById('play'+n).disabled=true;
+ say(AUDIOS[n-1]);
+}
+function wcount(n){
+ const t=document.getElementById('wr'+n).value.trim();
+ const c=t?t.split(/\s+/).length:0;
+ document.getElementById('wc'+n).textContent=c+' palabras';
+}
+const oralTimers={};
+function fmt(s){return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');}
+function startOral(n){
+ if(oralTimers[n])clearInterval(oralTimers[n]);
+ let phase=0,left=60;
+ const ph=document.getElementById('ph'+n),tm=document.getElementById('tm'+n);
+ ph.textContent='Piensa (sin escribir)';tm.textContent=fmt(left);
+ oralTimers[n]=setInterval(()=>{
+  left--;tm.textContent=fmt(Math.max(left,0));
+  if(left<=0){
+   if(phase===0){phase=1;left=180;ph.textContent='¡Habla con tu compañero!';tm.textContent=fmt(left);}
+   else{clearInterval(oralTimers[n]);ph.textContent='Terminado. Poneos de acuerdo.';tm.textContent='0:00';}
+  }
+ },1000);
+}
+</script>
+</body></html>
