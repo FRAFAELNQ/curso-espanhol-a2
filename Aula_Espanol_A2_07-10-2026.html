@@ -713,6 +713,7 @@ function say(txt){
  // Limpiar símbolos de formato para que el lector pronuncie el contenido, no las barras.
  const spoken=String(txt)
   .replace(/[|]+/g,' ')
+  .replace(/_{2,}/g,', ... ,')
   .replace(/\s*\/\s*/g, ', ')
   .replace(/(?:^|\s):-{1,}\s*/g, ' ')
   .replace(/[-]{2,}/g, ' ')

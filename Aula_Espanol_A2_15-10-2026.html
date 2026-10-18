@@ -508,7 +508,7 @@ header .subtitle{color:var(--header-text);opacity:.88}
 <div class="card" style="margin-top:14px"><h3>⚠️ Para confirmar con la profesora</h3><ul class="clean"><li>El <b>lugar</b> de la parte escrita del lunes 19 (aula o salón de actos) y las horas de la prueba oral del martes 20. El audio de esta parte se entiende mal.</li><li>Si hay <b>tarea</b> nueva: en las notas de clase no aparece ninguna.</li><li>Las respuestas del ejercicio 17 (p. 149) se corrigieron en clase y se vieron en la pantalla; aquí solo se resumen las reglas. Revisa tu cuaderno.</li><li>En el ejercicio 7 de la p. 62 (audio con Jorge, Fiona, Pedro y Carolina) y en el ejercicio 7 de la p. 145, el audio de la grabación no deja ver bien las respuestas oficiales.</li><li>En la foto de la p. 147 aparece también el ejercicio 11, pero las notas dicen que se hizo el <b>12</b>.</li><li>El contexto de «<b>acaba de levantarse</b>» y la palabra <b>mejorar</b> junto a «entrenar» en la pizarra.</li><li>El documento del <b>Aula Virtual</b> con verbos como gustar: la profesora dijo que lo compartirá si alguien no tiene acceso.</li></ul></div></section>
 
 <div class="home-nav"><a aria-label="Volver al inicio del curso" class="home-link bottom-home" href="index.html">🏠 Volver al inicio</a></div>
-<footer>Registro individual de la clase del 15/10/2026. Basado en la pizarra, el libro y las notas de la clase.</footer>
+<footer>Registro individual de la clase del 15/10/2026. Basado en la pizarra, el libro, el audio y las notas de la clase.</footer>
 </div>
 
 <script>
@@ -530,6 +530,7 @@ function say(txt){
  // Limpiar símbolos de formato para que el lector pronuncie el contenido, no las barras.
  const spoken=String(txt)
   .replace(/[|]+/g,' ')
+  .replace(/_{2,}/g,', ... ,')
   .replace(/\s*\/\s*/g, ', ')
   .replace(/(?:^|\s):-{1,}\s*/g, ' ')
   .replace(/[-]{2,}/g, ' ')

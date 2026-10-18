@@ -429,7 +429,7 @@ const EXPLAINS=[
 ];
 let speechRate=.88,esVoice=null,score=0,answered=Array(QUESTIONS.length).fill(false);
 function cleanSpeechText(t){
- return t.replace(/→/g,'. ').replace(/[🌍😊🗣️📖🎯🎧☕📌❓🧠⚠️🔎💬😨😠🎭🔗✏️]/g,'').replace(/\s+/g,' ').trim();
+ return t.replace(/_{2,}/g,' ').replace(/→/g,'. ').replace(/[🌍😊🗣️📖🎯🎧☕📌❓🧠⚠️🔎💬😨😠🎭🔗✏️]/g,'').replace(/\s+/g,' ').trim();
 }
 function pickEs(){
  if(!('speechSynthesis' in window))return;

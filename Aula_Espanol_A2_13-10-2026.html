@@ -535,7 +535,7 @@ header .subtitle{color:var(--header-text);opacity:.88}
 <div class="card" style="margin-top:14px"><h3>⚠️ Para confirmar con la profesora</h3><ul class="clean"><li>La ficha del 08/10 decía que la fecha del certificado estaba «por confirmar»: en esta clase se confirmaron el <b>13 y el 14 de enero</b>.</li><li>El lugar y la hora exactos de los exámenes del 19 y 20 de octubre: la profesora dará más información.</li><li>Si suspendes los tres intentos, qué ocurre con el paso a B1: la profesora lo explicó rápido; pregúntale para estar seguro.</li><li>En el ejercicio 10 (a), el cuarto hueco se ve poco claro en la foto: aquí se resolvió con «Tiene una habitación, un salón…».</li></ul></div></section>
 
 <div class="home-nav"><a aria-label="Volver al inicio del curso" class="home-link bottom-home" href="index.html">🏠 Volver al inicio</a></div>
-<footer>Registro individual de la clase del 13/10/2026. Basado en la pizarra, el libro y las notas de la clase.</footer>
+<footer>Registro individual de la clase del 13/10/2026. Basado en la pizarra, el libro, el audio y las notas de la clase.</footer>
 </div>
 <script>
 let esVoice=null, speechRate=0.88;
@@ -556,6 +556,7 @@ function say(txt){
  // Limpiar símbolos de formato para que el lector pronuncie el contenido, no las barras.
  const spoken=String(txt)
   .replace(/[|]+/g,' ')
+  .replace(/_{2,}/g,', ... ,')
   .replace(/\s*\/\s*/g, ', ')
   .replace(/(?:^|\s):-{1,}\s*/g, ' ')
   .replace(/[-]{2,}/g, ' ')
