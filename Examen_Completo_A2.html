@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#080a18" name="theme-color"/>
+<title>Examen completo A2</title>
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#080a18;--card:#171d38;--text:#f8f9ff;--muted:#b8c0dd;
+  --pink:#ff5ca8;--purple:#a56cff;--turq:#37e6d4;--yellow:#ffd34e;
+  --blue:#42a5ff;--soft:#252e50;--border:#2d385e;--ok:#4be59a;--bad:#ff6b7c;--header-border:#48598d;--header-start:#172c6c;--header-mid:#49237f;--header-end:#741c58;--header-text:#fff;--header-shadow:rgba(0,0,0,.55);
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 10% 0,#1d2b66,transparent 38%),radial-gradient(circle at 90% 0,#5a174d,transparent 35%),var(--bg);background-attachment:fixed;color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}
+.container{max-width:1100px;margin:auto;padding:22px 16px 60px}
+header{text-align:center;padding:26px 20px;margin-bottom:6px;border-radius:22px;border:1px solid var(--header-border);background:linear-gradient(135deg,var(--header-start),var(--header-mid) 52%,var(--header-end));box-shadow:0 18px 50px var(--header-shadow);transition:background .2s ease,border-color .2s ease,color .2s ease}
+.badge{display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;font-weight:800;font-size:.82rem}
+h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);color:var(--header-text)}
+.subtitle{color:var(--header-text);opacity:.92}
+section{display:none;padding-top:22px;scroll-margin-top:66px}
+section.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:0 7px 22px color-mix(in srgb,var(--purple) 10%,transparent)}
+.card h3{margin-top:0}
+.color-title{font-size:1.25rem;font-weight:900}
+.pink{color:var(--pink)}.purple{color:var(--purple)}.turq{color:var(--turq)}.blue{color:var(--blue)}.yellow{color:var(--yellow)}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden}
+th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+th{background:#202a4c;color:#cdbdff}
+.verb-card{margin-bottom:16px}
+.verb-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.verb{font-size:1.45rem;font-weight:900;color:var(--pink)}
+.tag{font-size:.78rem;font-weight:800;padding:4px 9px;border-radius:999px;background:var(--soft);color:#cdbdff}
+.speak{border:0;background:var(--soft);border-radius:10px;padding:7px 10px;cursor:pointer}
+.example{border-left:4px solid var(--turq);padding:9px 12px;background:color-mix(in srgb,var(--turq) 8%,var(--card));border-radius:0 12px 12px 0;margin:9px 0}
+.note{font-size:.9rem;color:var(--muted)}
+.choice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media(max-width:760px){.choice-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.choice-grid{grid-template-columns:1fr}}
+.choice{padding:12px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;text-align:center;font-weight:700;font-size:1rem;transition:0.2s}
+.choice:hover{border-color:var(--turq)}
+.choice:disabled{cursor:default}
+.choice.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card));color:var(--ok)}
+.choice.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card));color:var(--bad)}
+.feedback{margin-top:12px;font-weight:800;padding:12px;border-radius:10px;display:none}
+.feedback.ok{display:block;color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card));border:1px solid var(--ok)}
+.feedback.bad{display:block;color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card));border:1px solid var(--bad)}
+.quiz-result{margin-top:14px;padding:14px 16px;border:1px solid var(--border);border-radius:14px;background:var(--card);font-weight:800}
+.result-main{font-size:1.05rem}
+.result-stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.result-stats span{padding:6px 9px;border-radius:999px;background:var(--soft);font-size:.85rem}
+.result-ok{color:var(--ok)}.result-bad{color:var(--bad)}.result-warn{color:var(--yellow)}
+.example.sayable{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.example.sayable .example-audio{flex:0 0 auto}
+
+details{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px;margin:9px 0}
+summary{cursor:pointer;font-weight:800}
+.progress{height:12px;background:var(--soft);border-radius:99px;overflow:hidden;margin-top:12px;border:1px solid var(--border)}
+.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq));transition:width .3s ease}
+.small{font-size:.88rem;color:var(--muted)}
+.example.sayable{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.example.sayable .speak{flex:0 0 auto;font-size:1.05rem}
+.sound-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:6px 0 12px}
+.speak:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.speak[aria-pressed="true"]{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff}
+footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
+/* Desktop compacto / janela dividida: evita que o grupo de velocidade invada o botão central. */
+@media (min-width:601px) and (max-width:1050px){
+  .header-controls{
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    gap:8px;
+  }
+  .header-controls .home-link{
+    min-width:0;
+    max-width:210px;
+    padding:0 12px;
+    font-size:.88rem;
+  }
+  .header-controls .speed-control{
+    min-width:0;
+    gap:5px;
+    justify-self:end;
+  }
+  .speed-btn{
+    min-width:64px;
+    padding:0 8px;
+    font-size:.78rem;
+  }
+}
+
+@media (min-width:601px) and (max-width:780px){
+}
+@media(max-width:600px){
+  .container{padding:14px 10px 45px}
+  th,td{padding:8px;font-size:.9rem}
+  .card{padding:15px}
+}
+
+
+.table-wrap{overflow-x:auto;border-radius:16px}
+.table-wrap table{min-width:520px}
+.mini-grid{display:flex;flex-direction:column;gap:14px}
+.mini-grid .verb-card{min-width:0}
+.mini-grid .verb-card{margin-bottom:0}
+/* Verbos trabajados: misma distribución visual del Modelo Mestre. */
+#verbos .mini-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;align-items:stretch}
+#verbos .mini-grid .verb-card{min-width:0;height:100%;box-sizing:border-box}
+@media(max-width:1050px){#verbos .mini-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){#verbos .mini-grid{grid-template-columns:minmax(0,1fr)}}
+.form-big{font-size:1.25rem;font-weight:900;color:var(--turq);margin:10px 0 4px}
+ul.clean{margin:8px 0;padding-left:20px}ul.clean li{margin:5px 0}
+
+.mini-forms{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.mini-forms div{flex:1 1 90px;background:var(--soft);border:1px solid var(--border);border-radius:10px;padding:7px 9px;text-align:center}
+.mini-forms small{display:block;color:var(--muted);font-size:.7rem;text-transform:uppercase}
+.mini-forms b{font-size:1.05rem;color:var(--turq)}
+
+
+/* === Template Mestre A2 — interfaz estable === */
+:root[data-theme="light"]{color-scheme:light;--bg:#f5f3ff;--card:#ffffff;--text:#1b2340;--muted:#5e6780;--soft:#e9e6f8;--border:#cfd1ea;--header-border:#aeb8df;--header-start:#dfe9ff;--header-mid:#eadfff;--header-end:#ffe0ef;--header-text:#1b2340;--header-shadow:rgba(73,55,128,.18);--blue:#397fdb;--purple:#7856d9;--turq:#159f93;--yellow:#c58d00}
+:root[data-theme="light"] .pink{color:#c52f76}:root[data-theme="light"] .purple{color:#6840bf}:root[data-theme="light"] .turq{color:#087f78}:root[data-theme="light"] .yellow{color:#946600}:root[data-theme="light"] .blue{color:#2f6fc4}
+body{transition:background .2s ease,color .2s ease}
+header{border-color:var(--header-border);background:linear-gradient(135deg,var(--header-start),var(--header-mid) 52%,var(--header-end));box-shadow:0 18px 50px var(--header-shadow)}
+header h1{color:var(--header-text)}
+header .subtitle{color:var(--header-text);opacity:.88}
+.badge{color:var(--header-text);background:color-mix(in srgb,var(--purple) 12%,transparent);border:1px solid color-mix(in srgb,var(--purple) 22%,transparent)}
+.theme-toggle,.home-link,.speed-btn{background:#ffffff;color:var(--text);border-color:#c7cbe4;box-shadow:0 3px 10px rgba(70,58,125,.08)}
+.theme-toggle:hover,.home-link:hover,.speed-btn:hover{border-color:var(--turq);box-shadow:0 4px 12px rgba(21,159,147,.14)}
+.tab-nav button{background:#ffffff;color:var(--text);border-color:#c9cce5;box-shadow:0 2px 7px rgba(70,58,125,.06)}
+.tab-nav button:hover{background:#f6f4ff;border-color:var(--turq);box-shadow:0 0 0 1px rgba(21,159,147,.18)}
+.sticky-shell{background:color-mix(in srgb,#ffffff 88%,var(--soft));border-color:#c9cce5;box-shadow:0 10px 28px rgba(87,70,145,.12)}
+.card{box-shadow:0 7px 22px rgba(87,70,145,.08)}
+.sticky-shell{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:color-mix(in srgb,var(--bg) 96%,transparent);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:7px 8px;
+  box-shadow:0 10px 28px color-mix(in srgb,var(--purple) 14%,transparent);
+  margin:8px 0 0;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+/* Controles no cabeçalho e NÃO acompanham a rolagem.
+   Inicio permanece centrado · Velocidad fica à direita. */
+.header-controls{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+  align-items:center;
+  gap:10px;
+  width:100%;
+  margin:14px auto 0;
+}
+.header-controls .home-link{grid-column:2;justify-self:center}
+.header-controls .speed-control{grid-column:3;justify-self:end}
+.theme-toggle,.speed-control,.home-link{border:1px solid var(--border);background:var(--card);color:var(--text)}
+.theme-toggle{
+  flex:0 0 auto;height:38px;min-width:72px;border-radius:999px;padding:0 11px;
+  display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;font-size:.92rem;
+}
+.theme-toggle:hover,.home-link:hover,.speed-btn:hover{border-color:var(--turq)}
+.home-link{
+  flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;height:38px;
+  padding:0 14px;border-radius:12px;text-decoration:none;font-weight:850;position:relative;white-space:nowrap;
+}
+
+.speed-control{flex:0 0 auto;height:38px;display:flex;align-items:center;gap:6px;background:transparent;border:0}
+.speed-label{display:none}
+.speed-btn{
+  flex:0 0 auto;height:40px;min-width:78px;padding:0 11px;border:1px solid var(--border);
+  border-radius:999px;background:var(--card);color:var(--text);font-weight:800;cursor:pointer;white-space:nowrap;
+}
+.speed-btn.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+/* Menu principal: uma única linha, fixa durante a rolagem. */
+.sticky-shell{display:flex;align-items:center;gap:7px}
+.sticky-shell > .theme-toggle{flex:0 0 40px;width:40px;min-width:40px;height:40px;padding:0;border-radius:12px}
+.sticky-shell > .tab-nav{flex:1;min-width:0}
+.tab-nav{
+  display:flex;flex-wrap:nowrap;gap:7px;width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;
+  padding:0;scrollbar-width:thin;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;
+  touch-action:pan-x;
+}
+.tab-nav button{
+  flex:0 0 118px;width:118px;min-width:118px;height:40px;border:1px solid var(--border);
+  background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;font-weight:800;
+  font-size:.84rem;white-space:nowrap;display:flex;align-items:center;justify-content:center;gap:4px;
+  transition:transform .15s ease,border-color .15s ease,background .15s ease;touch-action:manipulation;
+}
+.tab-nav button:hover{border-color:var(--turq);box-shadow:0 0 0 1px color-mix(in srgb,var(--turq) 22%,transparent)}
+.tab-nav button:focus-visible,.speed-btn:focus-visible,.theme-toggle:focus-visible,.home-link:focus-visible{outline:3px solid var(--yellow);outline-offset:0}
+.tab-nav button.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+/* Navegação e controles — ajuste final para mobile */
+.home-nav{display:flex;justify-content:center;align-items:center;margin:22px 0 0}
+.home-nav a{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 16px;border:1px solid var(--border);border-radius:12px;background:var(--card);color:var(--text);text-decoration:none;font-weight:850;white-space:nowrap;transition:transform .15s ease,border-color .15s ease,background .2s ease}
+.home-nav a:hover{transform:translateY(-1px);border-color:var(--turq)}
+.home-nav a:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.home-nav .bottom-home{height:40px;min-height:40px;padding:0 14px;border-radius:12px;font-weight:850}
+
+@media(max-width:600px){
+  .sticky-shell{padding:6px 7px;border-radius:14px;margin-top:7px}
+  .tab-nav{gap:6px}
+  .tab-nav button{flex-basis:112px;width:112px;min-width:112px;height:38px;font-size:.80rem}
+
+  /* Controles: Inicio al centro · Velocidad à direita */
+  .header-controls{
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    gap:6px;
+    margin-top:12px;
+    overflow:visible;
+  }
+  .header-controls .home-link{grid-column:2;justify-self:center;height:40px;min-width:0;padding:0 8px;font-size:.88rem}
+  .header-controls .speed-control{grid-column:3;justify-self:end}
+  .speed-control{height:40px;gap:3px;min-width:0;justify-content:flex-end}
+  .header-controls .speed-btn{height:36px;width:36px;min-width:36px;padding:0;border-radius:10px;font-size:0;line-height:1}
+  .header-controls .speed-btn[data-rate="0.58"]::before{content:"🐢";font-size:1rem}
+  .header-controls .speed-btn[data-rate="0.88"]::before{content:"▶";font-size:.88rem}
+  .header-controls .speed-btn[data-rate="1.12"]::before{content:"⚡";font-size:1rem}
+  .speed-label{display:none}
+
+  /* O menu permanece fixo, mas ocupa apenas uma linha horizontal */
+  .tab-nav{touch-action:pan-x;overscroll-behavior-x:contain}
+}
+@media(max-width:380px){
+  .sticky-shell > .theme-toggle{width:38px;min-width:38px;height:38px}
+  .header-controls{gap:5px}
+  .header-controls .home-link{font-size:.82rem;padding:0 6px}
+  .speed-control{gap:2px}
+  .header-controls .speed-btn{width:34px;min-width:34px;height:34px}
+  .header-controls .speed-btn[data-rate="0.58"]::before,.header-controls .speed-btn[data-rate="1.12"]::before{font-size:.9rem}
+  .header-controls .speed-btn[data-rate="0.88"]::before{font-size:.8rem}
+  .tab-nav button{flex-basis:108px;width:108px;min-width:108px;font-size:.78rem}
+}
+
+
+/* === Correção final: controles responsivos em janela PC dividida === */
+@media (min-width:601px) and (max-width:1050px){
+  .header-controls{
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    gap:14px;
+  }
+  .header-controls .home-link{
+    justify-self:center;
+    max-width:190px;
+    min-width:0;
+    padding:0 11px;
+    font-size:.86rem;
+  }
+  .header-controls .speed-control{
+    justify-self:end;
+    min-width:0;
+    gap:5px;
+  }
+  .header-controls .speed-btn{
+    width:64px;
+    min-width:64px;
+    max-width:64px;
+    padding:0 5px;
+    font-size:.76rem;
+  }
+}
+@media (min-width:601px) and (max-width:780px){
+  .header-controls{gap:10px}
+  .header-controls .home-link{max-width:175px;font-size:.82rem;padding:0 8px}
+  .header-controls .speed-control{gap:3px}
+  .header-controls .speed-btn{width:58px;min-width:58px;max-width:58px;font-size:.70rem;padding:0 3px}
+}
+
+/* === Estrutura definitiva: cabeçalho, velocidade e navegação separados === */
+.header-controls{display:none !important}
+.header-home{display:flex;justify-content:center;align-items:center;margin:14px auto 0;width:100%}
+.header-home .home-link{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 16px;border-radius:12px;text-decoration:none;font-weight:850;white-space:nowrap}
+.audio-controls{display:flex;justify-content:center;align-items:center;width:100%;margin:8px 0 8px}
+.audio-controls .speed-control{display:flex;align-items:center;justify-content:center;gap:7px;height:auto;min-width:0}
+.audio-controls .speed-btn{flex:0 0 auto;height:40px;min-width:78px;padding:0 12px;border:1px solid var(--border);border-radius:999px;background:var(--card);color:var(--text);font-weight:800;cursor:pointer;white-space:nowrap}
+.audio-controls .speed-btn.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+.audio-controls .speed-btn:hover{border-color:var(--turq)}
+@media (max-width:600px){
+  .header-home{margin-top:12px}
+  .header-home .home-link{height:40px;padding:0 14px;font-size:.9rem}
+  .audio-controls{margin:7px 0 7px}
+  .audio-controls .speed-control{gap:5px;width:100%;justify-content:center}
+  .audio-controls .speed-btn{height:38px;min-width:0;width:auto;padding:0 11px;font-size:.82rem}
+}
+@media (max-width:380px){
+  .audio-controls .speed-control{gap:4px}
+  .audio-controls .speed-btn{height:36px;padding:0 9px;font-size:.78rem}
+}
+
+/* Áudio das formas de conjugação — versão completa */
+.mini-forms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:10px 0}
+.mini-forms .mini-form-item{display:grid;grid-template-columns:1fr auto;grid-template-areas:"label audio" "form audio";align-items:center;gap:2px 8px;background:var(--soft);border:1px solid var(--border);border-radius:10px;padding:9px 10px;text-align:left}
+.mini-forms .mini-form-item small{grid-area:label;text-transform:none}
+.mini-forms .mini-form-item b{grid-area:form;font-size:1.05rem;color:var(--turq)}
+.mini-forms .mini-form-item .form-audio{grid-area:audio;align-self:center;padding:6px 8px;border-radius:9px}
+.verb-card td .form-audio{margin-left:6px;padding:4px 7px;border-radius:8px;font-size:.9rem;vertical-align:middle}
+.verb-card .example .example-audio{margin-left:6px;padding:5px 8px;border-radius:9px;vertical-align:middle}
+.form-big .form-audio{margin-left:6px;padding:5px 8px;border-radius:9px;vertical-align:middle}
+@media (max-width:640px){
+  .mini-forms{grid-template-columns:1fr}
+  .mini-forms .mini-form-item{padding:8px 9px}
+}
+
+
+.verb-structure-guide{margin:14px 0 18px;padding:12px 14px;border:1px solid var(--border);border-radius:14px;background:var(--soft);color:var(--text);font-size:.94rem;line-height:1.55}
+.verb-subtitle{margin:12px 0 8px;font-weight:800;color:var(--text);font-size:.9rem;letter-spacing:.01em}
+.example-label{margin:12px 0 5px;font-weight:800;color:var(--text);font-size:.88rem}
+.flashcard-link{display:inline-flex;align-items:center;gap:6px;margin:10px 0 2px;padding:7px 10px;border-radius:10px;border:1px solid var(--border);background:var(--soft);color:var(--turq);text-decoration:none;font-weight:800;font-size:.82rem}
+.flashcard-link:hover{transform:translateY(-1px)}
+.verb-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+
+
+/* === Ajuste definitivo de Verbos === */
+#verbos .verb-card{width:100%;margin:0 0 16px}
+#verbos .conj-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px}
+#verbos .conj-item{background:var(--soft);border:1px solid var(--border);border-radius:12px;padding:10px 11px;min-width:0}
+#verbos .conj-person{font-size:.78rem;font-weight:800;color:var(--muted);margin-bottom:5px;line-height:1.3}
+#verbos .conj-form{font-size:1.08rem;font-weight:900;color:var(--turq);display:flex;align-items:center;justify-content:space-between;gap:7px;flex-wrap:wrap}
+#verbos .conj-form .form-audio{margin-left:auto}
+#verbos .mini-forms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:10px 0}
+#verbos .mini-forms .mini-form-item{min-width:0;background:var(--soft);border:1px solid var(--border);border-radius:12px;padding:10px 11px;display:grid;grid-template-columns:1fr auto;grid-template-areas:"person audio" "form audio";align-items:center;gap:4px 8px}
+#verbos .mini-forms .mini-form-item small{grid-area:person;margin:0;text-align:left}
+#verbos .mini-forms .mini-form-item b{grid-area:form;text-align:left}
+#verbos .mini-forms .mini-form-item .form-audio{grid-area:audio;align-self:center;margin:0}
+@media(max-width:780px){#verbos .conj-grid,#verbos .mini-forms{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){#verbos .conj-grid,#verbos .mini-forms{grid-template-columns:1fr}#verbos .conj-item,#verbos .mini-forms .mini-form-item{padding:9px 10px}}
+
+/* === Áudio mais robusto para os exercícios === */
+.quiz-audio{display:inline-flex;align-items:center;justify-content:center;gap:4px;min-width:42px;height:38px;border:1px solid var(--border);border-radius:10px;background:var(--soft);cursor:pointer}
+.quiz-audio:hover{border-color:var(--turq);transform:translateY(-1px)}
+.quiz-question{display:flex;align-items:center;gap:10px;justify-content:space-between}
+.quiz-question p{flex:1;min-width:0;margin:8px 0}.quiz-question .question-audio{white-space:nowrap;font-weight:800}
+.quiz-option{display:flex;align-items:stretch;gap:6px;min-width:0}
+.quiz-option .choice{flex:1;min-width:0}
+.quiz-audio{flex:0 0 auto;padding:7px 10px;color:var(--text);background:var(--soft);border:1px solid var(--border);border-radius:10px;cursor:pointer}
+.quiz-audio:hover{border-color:var(--turq)}
+
+
+
+/* Aula 01/10: componentes específicos de la lección, sin alterar el Modelo Mestre */
+.pending{margin-top:14px;padding:12px 14px;border-radius:14px;background:color-mix(in srgb,var(--yellow) 9%,var(--card));border:1px solid color-mix(in srgb,var(--yellow) 35%,var(--border))}
+.activity-list p{margin:10px 0}
+#vocab .grid{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:14px}
+#vocab .card{min-width:0;overflow:hidden}
+#vocab .table-wrap{width:100%;min-width:0;overflow-x:visible}
+#vocab .table-wrap .num-table{width:100%;min-width:0;table-layout:fixed}
+#vocab .num-table td{padding:7px 10px}
+#vocab .num-table td.n{width:64px;white-space:nowrap;font-weight:900;color:var(--yellow);font-variant-numeric:tabular-nums}
+#vocab .num-table td:not(.n){overflow-wrap:anywhere;word-break:normal}
+#vocab .color-title{margin-bottom:10px}
+@media(max-width:700px){#vocab .grid{grid-template-columns:1fr}#vocab .num-table td{padding:7px 8px}#vocab .num-table td.n{width:52px}}
+@media(max-width:420px){#vocab .card{padding:12px}#vocab .num-table td{padding:7px 5px;font-size:.88rem}#vocab .num-table td.n{width:44px}}
+
+
+/* Miles y millones: misma presentación tabular que Centenas, con columna numérica automática */
+#vocab .miles-table{width:100%;min-width:0;table-layout:auto;border-collapse:collapse}
+#vocab .miles-table tr{display:grid;grid-template-columns:max-content minmax(0,1fr);column-gap:18px;align-items:center}
+#vocab .miles-table td{display:block;box-sizing:border-box;min-width:0;width:auto;vertical-align:middle;padding:7px 10px}
+/* Sobrescreve a largura fixa genérica de .num-table: a coluna numérica deve crescer conforme a cifra. */
+#vocab .miles-table.num-table td.n{width:max-content;min-width:max-content;max-width:none;white-space:nowrap;padding-right:0;font-weight:900;color:var(--yellow);font-variant-numeric:tabular-nums}
+#vocab .miles-table td:not(.n){white-space:normal;overflow-wrap:anywhere;word-break:normal}
+#vocab .miles-table .vocab-speak{margin-left:7px}
+@media(max-width:700px){#vocab .miles-table tr{column-gap:14px}#vocab .miles-table td{padding:7px 8px}}
+@media(max-width:420px){#vocab .miles-table tr{column-gap:10px}#vocab .miles-table td{padding:7px 5px;font-size:.88rem}#vocab .miles-table.num-table td.n{width:max-content;min-width:max-content;padding-right:0}#vocab .miles-table .vocab-speak{margin-left:4px}}
+
+/* Audio compacto del vocabulario: icono junto a cada número/expresión */
+#vocab .vocab-speak{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;margin-left:7px;padding:4px 7px;min-width:30px;min-height:28px;border:0;border-radius:9px;background:var(--button, #263154);color:var(--text);cursor:pointer;font-size:.9rem;line-height:1}
+#vocab .vocab-speak:hover{filter:brightness(1.18)}
+#vocab .num-table td:not(.n){overflow-wrap:anywhere}
+@media(max-width:420px){#vocab .vocab-speak{margin-left:4px;padding:3px 5px;min-width:27px;min-height:26px}}
+
+
+/* Botones de Flashcards: patrón del Modelo Mestre 30/09/2026 */
+.flashcard-link{display:inline-flex;align-items:center;gap:6px;margin:10px 0 2px;padding:7px 10px;border-radius:10px;border:1px solid var(--border);background:var(--soft);color:var(--turq);text-decoration:none;font-weight:800;font-size:.82rem}
+.flashcard-link:hover{transform:translateY(-1px)}
+.verb-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+</style>
+<style id="verb-audio-only-addition">
+#verbos .speak-inline{display:inline-flex;align-items:center;justify-content:center;min-width:32px;min-height:30px;margin-left:6px;padding:4px 8px;border:0;border-radius:10px;background:#263154;color:#fff;cursor:pointer;vertical-align:middle;font-size:14px;}
+#verbos td .speak-inline{min-width:26px;min-height:25px;padding:2px 5px;margin-left:4px;}
+#verbos .speak-inline:focus-visible{outline:2px solid #32e4d0;outline-offset:2px;}
+
+/* Ejercicios: interacción alineada con el Modelo Mestre del 30/09/2026 */
+.quiz-all{display:grid;gap:12px}
+.quiz-question{border:1px solid var(--border,#303b63);border-radius:14px;padding:14px;background:rgba(30,40,72,.45)}
+.quiz-question-head{display:flex;align-items:flex-start;gap:10px;justify-content:space-between}
+.quiz-question-head p{margin:0;flex:1}
+.choice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px}
+.quiz-option{display:flex;align-items:stretch;gap:6px;min-width:0}
+.quiz-option .choice{flex:1;min-width:0}
+.quiz-audio{flex:0 0 auto;border:0;border-radius:10px;padding:8px 10px;background:#252f52;color:inherit;cursor:pointer}
+.check-all{margin-top:12px;border:1px solid #394875;border-radius:10px;padding:10px 16px;background:#202b4c;color:inherit;font-weight:700;cursor:pointer}
+.quiz-result{margin-top:12px;border:1px solid var(--border,#303b63);border-radius:14px;padding:14px}
+.result-main{font-weight:800;margin-bottom:10px}.result-stats{display:flex;gap:8px;flex-wrap:wrap}
+.result-stats span{padding:8px 10px;border-radius:999px;background:#252f52;font-weight:700}
+.result-ok{color:#43e9a0}.result-bad{color:#ff5e83}.result-warn{color:#ffc857}
+.choice.selected{outline:2px solid #37d8d0}.choice.correct{border-color:#39d99a}.choice.wrong{border-color:#ff5e83}
+@media(max-width:700px){.choice-grid{grid-template-columns:1fr}}
+
+/* Correção de estrutura dos exercícios: enunciado, alternativas e feedback em blocos separados */
+.quiz-all{display:flex;flex-direction:column;gap:14px;min-width:0;width:100%}
+.quiz-question{display:block;min-width:0;width:100%;box-sizing:border-box;overflow-wrap:anywhere}
+.quiz-question-head{display:flex;align-items:flex-start;gap:10px;width:100%;min-width:0}
+.quiz-question-head p{flex:1 1 auto;min-width:0;margin:8px 0;overflow-wrap:anywhere;word-break:normal}
+.quiz-question-head .quiz-audio{flex:0 0 auto}
+.quiz-question .choice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;width:100%;min-width:0;margin-top:12px}
+.quiz-question .quiz-option{display:flex;min-width:0;width:100%;max-width:100%}
+.quiz-question .choice{display:block;width:100%;min-width:0;max-width:100%;height:100%;white-space:normal;overflow-wrap:anywhere;word-break:normal;box-sizing:border-box}
+.quiz-question .feedback{width:100%;min-width:0;box-sizing:border-box;overflow-wrap:anywhere}
+@media(max-width:760px){.quiz-question .choice-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.quiz-question .choice-grid{grid-template-columns:minmax(0,1fr)}.quiz-question-head{gap:8px}.quiz-question .choice{padding:10px}}
+
+</style>
+<style>
+textarea.wr{width:100%;min-height:170px;background:var(--soft);color:var(--text);border:1px solid var(--border);border-radius:14px;padding:12px;font:inherit;resize:vertical}
+.wc{font-size:.88rem;color:var(--muted);margin:6px 0}
+.reading{background:var(--soft);border-left:4px solid var(--turq);border-radius:0 14px 14px 0;padding:12px 16px;margin:10px 0}
+.reading p{margin:6px 0}
+.ad{background:var(--soft);border:1px solid var(--border);border-radius:14px;padding:10px 14px;margin:8px 0}
+.ad b.l{display:inline-block;background:var(--purple);color:#fff;border-radius:8px;padding:0 9px;margin-right:6px}
+.player{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:10px 0}
+.pbtn{border:1px solid #394875;border-radius:10px;padding:10px 16px;background:#202b4c;color:inherit;font-weight:700;cursor:pointer}
+.pbtn:disabled{opacity:.45;cursor:not-allowed}
+.timer{font-size:2rem;font-weight:800;font-variant-numeric:tabular-nums;color:var(--yellow)}
+.phase{font-weight:700;color:var(--turq)}
+details.model{margin-top:10px;background:var(--soft);border:1px solid var(--border);border-radius:14px;padding:10px 14px}
+details.model summary{cursor:pointer;font-weight:700}
+.scorebox{font-size:1.1rem;font-weight:800;margin:8px 0}
+.hidden{display:none}
+.bar-top{position:sticky;top:64px;z-index:5;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:8px 14px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.pass{color:var(--ok)}.fail{color:var(--bad)}
+.opt{display:block;width:100%;text-align:left;margin:6px 0;border:1px solid var(--border);border-radius:12px;padding:10px 14px;background:var(--soft);color:inherit;font:inherit;cursor:pointer}
+.opt.sel{border-color:var(--turq);background:#16355a}
+.opt.ok{border-color:var(--ok)}.opt.no{border-color:var(--bad)}
+.q{margin:14px 0}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<span class="badge">EOI · Español A2 · Examen completo</span>
+<h1>Examen completo cronometrado</h1>
+<div class="subtitle">Leer, escuchar y escribir, como en la prueba del lunes 19 de octubre</div>
+<div class="header-home"><a aria-label="Volver al inicio del curso" class="home-link" href="index.html">🏠 Volver al inicio</a></div>
+</header>
+<div aria-label="Controles de velocidad de pronunciación" class="audio-controls"><div class="speed-control">
+<button aria-label="Velocidad lenta" class="speed-btn" data-rate="0.58" title="Velocidad lenta" type="button">🐢 Lento</button>
+<button aria-label="Velocidad normal" class="speed-btn active" data-rate="0.88" title="Velocidad normal" type="button">▶ Normal</button>
+<button aria-label="Velocidad rápida" class="speed-btn" data-rate="1.12" title="Velocidad rápida" type="button">⚡ Rápido</button>
+</div></div>
+<div aria-label="Navegación del examen" class="sticky-shell">
+<button aria-label="Cambiar al modo claro" aria-pressed="true" class="theme-toggle" title="Cambiar al modo claro" type="button">🌙</button>
+<div aria-label="Secciones del examen" class="tab-nav" role="tablist">
+<button aria-controls="inst" aria-selected="true" class="active" data-tab="inst" id="tab-inst" role="tab">📋 Instrucciones</button>
+<button aria-controls="exam" aria-selected="false" data-tab="exam" id="tab-exam" role="tab">⏱️ Examen</button>
+<button aria-controls="res" aria-selected="false" data-tab="res" id="tab-res" role="tab">🧾 Resultados</button>
+</div></div>
+<section aria-labelledby="tab-inst" class="active" id="inst" role="tabpanel" tabindex="0">
+<div class="card"><div class="color-title pink">⏱️ Examen completo, como el del 19 de octubre</div>
+<p>Una sola sesión con las tres partes escritas, una detrás de otra y <b>sin poder volver atrás</b>:</p>
+<ul class="clean"><li><b>1. Leer</b> · 2 textos · 30 minutos</li><li><b>2. Escuchar</b> · 2 audios, cada uno se oye <b>2 veces</b> · 15 minutos</li><li><b>3. Escribir</b> · 2 pruebas · 40 minutos</li></ul>
+<p class="note">Los tiempos son los aproximados que dijo la profesora. En cada parte necesitas un 5 sobre 10 y no hay compensación. La oral se practica en la página del simulacro.</p>
+<div class="player"><label><input type="checkbox" id="notimer"> Modo práctica: sin cronómetro</label></div>
+<div class="player"><button class="pbtn" onclick="startExam()" type="button">▶ Empezar el examen</button></div>
+<p class="note">Consejo: busca un sitio tranquilo, usa solo lápiz y papel para borradores y no mires los apuntes.</p></div></section>
+<section aria-labelledby="tab-exam" id="exam" role="tabpanel" tabindex="0">
+<div class="bar-top"><span class="phase" id="partlabel">—</span><span class="timer" id="clock">00:00</span><button class="pbtn" onclick="nextPart()" type="button" id="nextbtn">Terminar esta parte ▶</button></div>
+<div id="p1" class="hidden"><div class="card"><h3>Prueba 1 · Un correo</h3><div class="reading"><p><b>Asunto:</b> Mi nueva vida en Sevilla</p><p>Hola, Inés:</p><p>¿Cómo estás? Hace tres semanas que vivo en Sevilla y estoy muy contento. Nací en Santiago de Chile en 1999 y llegué a España en septiembre para trabajar en un restaurante. Antes estudié Cocina durante dos años y trabajé en un hotel hasta agosto.</p><p>Mi casa es pequeña, pero muy bonita. Tiene un salón con una ventana grande, una cocina y dos habitaciones. Comparto el piso con Diego, un chico de Málaga. Es alto, moreno y lleva barba, y me cae muy bien. Los dos cocinamos mucho y nos encantan las series.</p><p>Lo más difícil para mí es entender el acento andaluz: la gente habla muy rápido y me cuesta bastante. Me va bien escuchar la radio por las mañanas. ¿Cuándo vienes a verme?</p><p>Un abrazo,<br>Hugo</p></div><div id="r1"></div></div>
+<div class="card" style="margin-top:14px"><h3>Prueba 2 · Tres viviendas</h3><div class="ad"><b class="l">A</b><b>Piso luminoso en el centro.</b> 60 m², 2 habitaciones, amueblado y con ascensor. <b>850 € al mes.</b></div>
+<div class="ad"><b class="l">B</b><b>Casa adosada con jardín.</b> 120 m², 4 habitaciones, garaje y a 20 minutos del centro en metro. <b>1.200 € al mes.</b></div>
+<div class="ad"><b class="l">C</b><b>Estudio de 28 m².</b> Cocina americana, sin ascensor, cerca del río. <b>480 € al mes.</b></div><div id="r2"></div></div></div>
+<div id="p2" class="hidden"><div class="card"><h3>Audio 1</h3><div class="player"><button class="pbtn" id="play1" onclick="playAudio(1)" type="button">▶ Escuchar</button><span class="small" id="pcount1">Escuchas: 0/2</span></div><div id="l1"></div></div>
+<div class="card" style="margin-top:14px"><h3>Audio 2</h3><div class="player"><button class="pbtn" id="play2" onclick="playAudio(2)" type="button">▶ Escuchar</button><span class="small" id="pcount2">Escuchas: 0/2</span></div><div id="l2"></div></div></div>
+<div id="p3" class="hidden"><div class="card" style="margin-top:14px"><h3>Prueba 1 · Un mensaje a un compañero de piso</h3><p>Vas a compartir piso con un chico o una chica de tu clase. Escríbele un mensaje. Incluye:</p><ul class="clean"><li>Quién eres y desde cuándo vives en esta ciudad (desde / desde hace).</li><li>Cómo es tu carácter y qué te gusta.</li><li>Cómo es el piso (tiene, da a, es de…) y una comparación con tu casa anterior.</li><li>Una pregunta sobre las normas de convivencia.</li></ul>
+<textarea class="wr" id="wr1" oninput="wcount(1)" placeholder="Escribe aquí tu texto…"></textarea><div class="wc" id="wc1">0 palabras</div></div><div class="card" style="margin-top:14px"><h3>Prueba 2 · La biografía de una persona</h3><p>Escribe la biografía breve de una persona que admiras (puede ser inventada). Incluye:</p><ul class="clean"><li>Cuándo y dónde nació.</li><li>Qué hizo en su vida (estudió, trabajó, se mudó…) con marcadores de tiempo.</li><li>Cómo es físicamente y de carácter.</li><li>Qué hace ahora (desde hace…).</li></ul>
+<textarea class="wr" id="wr2" oninput="wcount(2)" placeholder="Escribe aquí tu texto…"></textarea><div class="wc" id="wc2">0 palabras</div></div></div>
+</section>
+<section aria-labelledby="tab-res" id="res" role="tabpanel" tabindex="0"><h2>🧾 Resultados</h2><div id="resout" class="card"><p>Haz el examen para ver tus resultados.</p></div></section>
+
+<div class="home-nav"><a aria-label="Volver al inicio del curso" class="home-link bottom-home" href="index.html">🏠 Volver al inicio</a></div>
+<footer>Material de práctica; no es un examen oficial. Los tiempos son aproximados.</footer>
+</div>
+
+<script>
+let esVoice=null, speechRate=0.88;
+function showTab(id,btn){
+ const target=document.getElementById(id); if(!target)return;
+ document.querySelectorAll('section[role="tabpanel"]').forEach(s=>s.classList.remove('active'));
+ target.classList.add('active');
+ document.querySelectorAll('.tab-nav button[role="tab"]').forEach(b=>{
+  const active=b===btn || b.dataset.tab===id;
+  b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));b.setAttribute('tabindex',active?'0':'-1');
+ });
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function pickEs(){if(!('speechSynthesis' in window))return;const vs=speechSynthesis.getVoices();esVoice=vs.find(v=>v.lang==='es-ES')||vs.find(v=>v.lang&&v.lang.toLowerCase().startsWith('es'))||null;}
+if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=pickEs;pickEs();}
+function say(txt){
+ if(!('speechSynthesis' in window)){return;}
+ // Limpiar símbolos de formato para que el lector pronuncie el contenido, no las barras.
+ const spoken=String(txt)
+  .replace(/[|]+/g,' ')
+  .replace(/\s*\/\s*/g, ', ')
+  .replace(/(?:^|\s):-{1,}\s*/g, ' ')
+  .replace(/[-]{2,}/g, ' ')
+  .replace(/\s{2,}/g, ' ')
+  .trim();
+ speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(spoken);u.lang='es-ES';u.rate=speechRate;if(esVoice)u.voice=esVoice;speechSynthesis.speak(u);
+}
+function setSpeechSpeed(rate,btn){speechRate=rate;document.querySelectorAll('.speed-btn').forEach(b=>b.classList.toggle('active',b===btn));}
+document.addEventListener('DOMContentLoaded',()=>{
+ document.querySelectorAll('.tab-nav button[role="tab"]').forEach(btn=>{btn.addEventListener('click',()=>showTab(btn.dataset.tab,btn));btn.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();const tabs=[...document.querySelectorAll('.tab-nav button[role="tab"]')];const i=tabs.indexOf(btn);const next=tabs[(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length];next.focus();showTab(next.dataset.tab,next);}});});
+ document.querySelectorAll('.speed-btn').forEach(btn=>btn.addEventListener('click',()=>setSpeechSpeed(Number(btn.dataset.rate),btn)));
+ const theme=document.querySelector('.theme-toggle');if(theme)theme.addEventListener('click',()=>{const light=document.documentElement.getAttribute('data-theme')!=='light';document.documentElement.setAttribute('data-theme',light?'light':'dark');theme.textContent=light?'☀️':'🌙';theme.setAttribute('aria-pressed',String(!light));});
+});
+// botón 🔊 en cada frase de ejemplo de TODAS las pestañas (solo el texto en español, dentro de <b>)
+document.querySelectorAll('.example').forEach(el=>{
+ const b=el.querySelector('b'); if(!b) return;
+ const txt=b.textContent.trim();
+ const wrap=document.createElement('span');
+ while(el.firstChild) wrap.appendChild(el.firstChild);
+ el.appendChild(wrap);
+ el.classList.add('sayable');
+ const btn=document.createElement('button');
+ btn.type='button';btn.className='speak';btn.textContent='🔊';
+ btn.setAttribute('aria-label','Escuchar: '+txt);
+ btn.onclick=()=>say(txt);
+ el.appendChild(btn);
+});
+const HAS_TTS='speechSynthesis' in window;
+if(!HAS_TTS) document.querySelectorAll('.sound-bar').forEach(x=>x.style.display='none');
+
+function makeQuiz(id,qs){
+  const box=document.getElementById(id); if(!box)return;
+  box.innerHTML='';
+  const form=document.createElement('div'); form.className='quiz-all';
+  qs.forEach((q,qi)=>{
+    const card=document.createElement('div');card.className='quiz-question';
+    const questionHead=document.createElement('div');questionHead.className='quiz-question-head';
+    const p=document.createElement('p');p.innerHTML='<b>'+q.t+'</b>';questionHead.appendChild(p);
+    const audio=document.createElement('button');audio.type='button';audio.className='quiz-audio';audio.textContent='🔊';audio.title='Escuchar la pregunta';audio.setAttribute('aria-label','Escuchar la pregunta');
+    audio.onclick=()=>say(q.t);
+    questionHead.appendChild(audio);card.appendChild(questionHead);
+    const grid=document.createElement('div');grid.className='choice-grid';
+    q.o.forEach((opt,i)=>{const optionWrap=document.createElement('div');optionWrap.className='quiz-option';const b=document.createElement('button');b.type='button';b.className='choice';b.dataset.i=i;b.textContent=opt;b.setAttribute('aria-pressed','false');b.addEventListener('click',()=>{
+        // Cada alternativa también se pronuncia al hacer clic.
+        // El audio usa el mismo control global Lento / Normal / Rápido.
+        say(opt);
+        const buttons=[...card.querySelectorAll('.choice')];
+        const fb=card.querySelector('.feedback');
+        buttons.forEach(x=>{x.classList.remove('selected','correct','wrong');x.setAttribute('aria-pressed','false');});
+        b.classList.add('selected');b.setAttribute('aria-pressed','true');card.dataset.answer=i;
+        if(i===q.a){
+          b.classList.add('correct');
+          fb.className='feedback ok';
+          fb.innerHTML='✅ Correcto.'+(q.e?'<br>'+q.e:'');
+          card.dataset.correct='true';
+        }else{
+          b.classList.add('wrong');
+          fb.className='feedback bad';
+          fb.innerHTML='❌ Incorrecto. Vuelve a intentarlo.';
+          card.dataset.correct='false';
+        }
+      });optionWrap.appendChild(b);grid.appendChild(optionWrap);});
+    card.appendChild(grid);
+    const fb=document.createElement('div');fb.className='feedback';fb.setAttribute('aria-live','polite');card.appendChild(fb);
+    form.appendChild(card);
+  });
+  const check=document.createElement('button');check.type='button';check.className='check-all';check.textContent='Comprobar Respuestas';
+  const result=document.createElement('div');result.className='quiz-result';result.setAttribute('aria-live','polite');
+  check.addEventListener('click',()=>{
+    let score=0, unanswered=0;
+    form.querySelectorAll('.quiz-question').forEach((card,qi)=>{
+      const q=qs[qi], selected=card.querySelector('.choice.selected'), buttons=card.querySelectorAll('.choice'), fb=card.querySelector('.feedback');
+      if(selected && Number(selected.dataset.i)===q.a){score++;}
+      else if(!selected){unanswered++;fb.className='feedback bad';fb.innerHTML='⚠️ Falta responder esta pregunta.';}
+    });
+    const incorrect=qs.length-score-unanswered;
+    result.innerHTML='<div class=\"result-main\">Resultado: <strong>'+score+' de '+qs.length+'</strong> respuestas correctas.</div>'
+      +'<div class=\"result-stats\"><span class=\"result-ok\">✅ '+score+' correctas</span>'
+      +'<span class=\"result-bad\">❌ '+incorrect+' incorrectas</span>'
+      +'<span class=\"result-warn\">⚠️ '+unanswered+' sin responder</span></div>';
+    check.disabled=true;
+  });
+  box.appendChild(form);box.appendChild(check);box.appendChild(result);
+}
+
+const D={"R1": [{"t": "¿Desde cuándo vive Hugo en Sevilla?", "o": ["desde 1999", "desde hace tres años", "desde hace tres semanas"], "a": 2, "e": "«Hace tres semanas que vivo en Sevilla»."}, {"t": "¿Dónde trabaja ahora Hugo?", "o": ["en una escuela", "en un restaurante", "en un hotel"], "a": 1, "e": "Llegó para trabajar en un restaurante."}, {"t": "¿Hasta cuándo trabajó Hugo en un hotel?", "o": ["hasta agosto", "durante tres años", "hasta septiembre"], "a": 0, "e": "Trabajó en un hotel hasta agosto."}, {"t": "¿Cómo es Diego?", "o": ["alto, moreno y con barba", "bajo y rubio", "alto y sin barba"], "a": 0, "e": "Es alto, moreno y lleva barba."}, {"t": "¿Qué le cuesta más a Hugo?", "o": ["entender el acento andaluz", "cocinar", "hacer amigos"], "a": 0, "e": "Lo más difícil es entender el acento andaluz."}], "R2": [{"t": "Lucía es estudiante, vive sola y tiene poco dinero. ¿Qué vivienda le conviene?", "o": ["C", "B", "A"], "a": 0, "e": "C: estudio de 28 m² por 480 €."}, {"t": "Una familia con tres hijos y un perro busca casa con jardín. ¿Cuál es mejor?", "o": ["C", "B", "A"], "a": 1, "e": "B: casa adosada con jardín y 4 habitaciones."}, {"t": "Una pareja trabaja en el centro, no tiene coche y quiere ascensor.", "o": ["C", "B", "A"], "a": 2, "e": "A: piso en el centro con ascensor."}, {"t": "¿Qué vivienda no tiene ascensor?", "o": ["B", "A", "C"], "a": 2, "e": "C: «sin ascensor»."}, {"t": "¿Cuál es la vivienda más grande?", "o": ["B", "C", "A"], "a": 0, "e": "B tiene 120 m²."}], "L1": [{"t": "¿Cómo tiene el pelo Laura?", "o": ["liso", "muy corto", "rizado"], "a": 2, "e": "Es la chica con el pelo rizado."}, {"t": "¿Qué relación tiene la persona que habla con Laura?", "o": ["es su compañera", "es su prima", "es su vecina"], "a": 1, "e": "Laura es su prima."}, {"t": "¿En qué se parecen Laura y la persona que habla?", "o": ["en la nariz", "en el pelo", "en los ojos"], "a": 2, "e": "Tienen los mismos ojos."}, {"t": "¿Desde cuándo salen Laura y Daniel?", "o": ["desde marzo", "desde hace dos años", "desde hace dos meses"], "a": 1, "e": "Salen juntos desde hace dos años."}, {"t": "¿Cuándo se mudaron Laura y Daniel?", "o": ["en mayo", "en marzo", "el año pasado"], "a": 1, "e": "Se mudaron en marzo."}], "L2": [{"t": "¿Cómo es el piso?", "o": ["grande y sin muebles", "antiguo, pero reformado", "nuevo y pequeño"], "a": 1, "e": "Es un piso antiguo, pero está reformado."}, {"t": "¿A dónde da la terraza?", "o": ["a una calle", "a un parque", "a un patio"], "a": 1, "e": "La terraza da a un parque."}, {"t": "¿Cuánto cuesta el piso al mes?", "o": ["990 euros", "800 euros", "900 euros"], "a": 2, "e": "Novecientos euros."}, {"t": "¿Cuándo es la visita?", "o": ["el jueves a las seis", "el jueves a las dos", "el miércoles a las seis"], "a": 0, "e": "El jueves a las seis de la tarde."}, {"t": "Si no pueden venir, ¿hasta cuándo deben llamar?", "o": ["hasta el jueves a las seis", "hasta el martes por la noche", "hasta el miércoles al mediodía"], "a": 2, "e": "Antes del miércoles al mediodía."}], "AUD": ["— ¿Quién es esa chica que está allí, con el pelo rizado? — Es Laura, mi prima. Tiene veinticuatro años y trabaja en una librería. — ¡Qué simpática! Se parece mucho a ti. — Sí, tenemos los mismos ojos, pero ella es más alta que yo. Me llevo muy bien con ella. — ¿Y el chico que lleva gafas? — Es su novio, Daniel. Salen juntos desde hace dos años. A mí me cae genial, es muy divertido. — ¿Dónde viven? — En un piso pequeño del centro, cerca de la plaza. Se mudaron en marzo.", "Buenas tardes. Les habla Ana, de la agencia Casa Fácil. Quiero recordarles la visita del piso de la calle Mayor. Es un piso antiguo, pero está reformado. Tiene tres habitaciones, un salón grande y una terraza que da a un parque. Cuesta novecientos euros al mes y es más barato que los otros pisos de la zona. La cita es el jueves a las seis de la tarde, delante del portal. Si no pueden venir, llámenme antes del miércoles al mediodía."], "W": [{"t": "Prueba 1 · Un mensaje a un compañero de piso", "m": "Hola, me llamo Marta y vivo en Madrid desde hace un año. Soy tranquila, ordenada y muy sociable. Me encanta cocinar y también me gusta el cine. El piso tiene dos habitaciones y un salón y da a una plaza muy tranquila. Es más luminoso que mi casa anterior, pero es más pequeño. ¿Podemos tener invitados los fines de semana? Un saludo."}, {"t": "Prueba 2 · La biografía de una persona", "m": "Mi tío Pablo nació en Valencia en 1975. Estudió Arquitectura durante cinco años y en 2001 se mudó a Barcelona. Allí trabajó en un estudio hasta 2010 y un año más tarde abrió su propia empresa. Es alto, delgado y lleva gafas. Es muy simpático y un poco tímido. Me parezco a él en los ojos. Vive en Barcelona desde hace veinte años y le encanta su trabajo."}], "RUB": ["Contesto a todos los puntos de la tarea", "Gramática y verbos correctos", "Vocabulario variado y adecuado", "Texto claro y ordenado (conectores)"]};
+let part=0,left=0,tick_=null,notimer=false;
+const ans={r1:[],r2:[],l1:[],l2:[]};
+const plays={1:0,2:0};
+const DUR=[0,30*60,15*60,40*60];
+const LABEL=['','Parte 1 · Leer','Parte 2 · Escuchar','Parte 3 · Escribir'];
+function fmt(s){return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');}
+function renderQ(id,qs,key){
+ const box=document.getElementById(id);box.innerHTML='';
+ qs.forEach((q,i)=>{
+  const w=document.createElement('div');w.className='q';
+  const p=document.createElement('p');p.innerHTML='<b>'+(i+1)+'. '+q.t+'</b>';w.appendChild(p);
+  q.o.forEach((o,j)=>{const b=document.createElement('button');b.type='button';b.className='opt';b.textContent=o;
+   b.onclick=()=>{ans[key][i]=j;[...w.querySelectorAll('.opt')].forEach(x=>x.classList.remove('sel'));b.classList.add('sel');};
+   w.appendChild(b);});
+  box.appendChild(w);
+ });
+}
+function startExam(){
+ notimer=document.getElementById('notimer').checked;
+ renderQ('r1',D.R1,'r1');renderQ('r2',D.R2,'r2');renderQ('l1',D.L1,'l1');renderQ('l2',D.L2,'l2');
+ ans.r1=[];ans.r2=[];ans.l1=[];ans.l2=[];plays[1]=0;plays[2]=0;
+ [1,2].forEach(n=>{document.getElementById('play'+n).disabled=false;document.getElementById('pcount'+n).textContent='Escuchas: 0/2';});
+ [1,2].forEach(n=>{document.getElementById('wr'+n).value='';wcount(n);});
+ showTab('exam',document.getElementById('tab-exam'));
+ goPart(1);
+}
+function goPart(n){
+ part=n;
+ ['p1','p2','p3'].forEach((id,i)=>document.getElementById(id).classList.toggle('hidden',i+1!==n));
+ document.getElementById('partlabel').textContent=LABEL[n];
+ document.getElementById('nextbtn').textContent=n===3?'Terminar el examen ✔':'Terminar esta parte ▶';
+ if(tick_)clearInterval(tick_);
+ left=DUR[n];
+ const clk=document.getElementById('clock');
+ if(notimer){clk.textContent='—';return;}
+ clk.textContent=fmt(left);
+ tick_=setInterval(()=>{left--;clk.textContent=fmt(Math.max(left,0));if(left<=0){clearInterval(tick_);nextPart(true);}},1000);
+}
+function nextPart(auto){
+ if(part<3){goPart(part+1);}
+ else{finish();}
+}
+function wcount(n){
+ const t=document.getElementById('wr'+n).value.trim();
+ document.getElementById('wc'+n).textContent=(t?t.split(/\s+/).length:0)+' palabras';
+}
+function playAudio(n){
+ if(plays[n]>=2)return;
+ plays[n]++;
+ document.getElementById('pcount'+n).textContent='Escuchas: '+plays[n]+'/2';
+ if(plays[n]>=2)document.getElementById('play'+n).disabled=true;
+ say(D.AUD[n-1]);
+}
+function review(qs,key,label){
+ let ok=0,h='<h3>'+label+'</h3>';
+ qs.forEach((q,i)=>{
+  const c=ans[key][i]===q.a;if(c)ok++;
+  h+='<div class="q"><p><b>'+(i+1)+'. '+q.t+'</b></p>';
+  q.o.forEach((o,j)=>{h+='<div class="opt '+(j===q.a?'ok':(j===ans[key][i]?'no':''))+'">'+(j===q.a?'✅ ':(j===ans[key][i]?'❌ ':''))+o+'</div>';});
+  h+='<p class="small">'+q.e+'</p></div>';
+ });
+ return {ok:ok,html:h};
+}
+let scoreR=0,scoreL=0;
+function finish(){
+ if(tick_)clearInterval(tick_);
+ const r1=review(D.R1,'r1','Prueba 1 · Correo'),r2=review(D.R2,'r2','Prueba 2 · Viviendas');
+ const l1=review(D.L1,'l1','Audio 1'),l2=review(D.L2,'l2','Audio 2');
+ scoreR=r1.ok+r2.ok;scoreL=l1.ok+l2.ok;
+ const cls=s=>s>=5?'pass':'fail';
+ let h='<h3>Notas por parte (mínimo 5 sobre 10)</h3>';
+ h+='<p class="scorebox">📖 Leer: <span class="'+cls(scoreR)+'">'+scoreR+' / 10</span> · 🎧 Escuchar: <span class="'+cls(scoreL)+'">'+scoreL+' / 10</span></p>';
+ h+='<p class="scorebox" id="wscore">✍️ Escribir: completa la autoevaluación de abajo.</p>';
+ h+='<p class="note">Recuerda: en el examen no hay compensación entre partes. Con menos de 5 en una parte, esa parte no está aprobada.</p>';
+ h+='<hr>'+'<h3>✍️ Autoevaluación de la escritura</h3><p class="note">Puntúa tu texto de 0 a 2 en cada criterio. Es una autoevaluación orientativa; la nota real la pone la profesora.</p>';
+ D.W.forEach((w,i)=>{
+  h+='<div class="card" style="margin-top:10px"><b>'+w.t+'</b>';
+  D.RUB.forEach((r,k)=>{h+='<div class="player"><span style="min-width:260px">'+r+'</span>'+[0,1,2].map(v=>'<label><input type="radio" name="rub'+i+'_'+k+'" value="'+v+'"> '+v+'</label>').join(' ')+'</div>';});
+  h+='<details class="model"><summary>Ver modelo</summary><div class="reading"><p>'+w.m+'</p></div></details></div>';
+ });
+ h+='<div class="player"><button class="pbtn" onclick="calcW()" type="button">Calcular nota de escritura</button></div><hr>';
+ h+=r1.html+r2.html+l1.html+l2.html;
+ h+='<h3>📄 Transcripciones</h3><div class="reading"><p><b>Audio 1:</b> '+D.AUD[0]+'</p><p><b>Audio 2:</b> '+D.AUD[1]+'</p></div>';
+ h+='<div class="player"><button class="pbtn" onclick="showTab(\'inst\',document.getElementById(\'tab-inst\'))" type="button">Repetir con otra sesión</button></div>';
+ document.getElementById('resout').innerHTML=h;
+ showTab('res',document.getElementById('tab-res'));
+}
+function calcW(){
+ let sum=0,n=0;
+ D.W.forEach((w,i)=>D.RUB.forEach((r,k)=>{const el=document.querySelector('input[name="rub'+i+'_'+k+'"]:checked');if(el){sum+=Number(el.value);n++;}}));
+ const tot=D.W.length*D.RUB.length;
+ if(n<tot){document.getElementById('wscore').textContent='✍️ Escribir: te faltan '+(tot-n)+' criterios por puntuar.';return;}
+ const s=Math.round(sum/(tot*2)*100)/10;
+ document.getElementById('wscore').innerHTML='✍️ Escribir: <span class="'+(s>=5?'pass':'fail')+'">'+s+' / 10</span>';
+}
+document.querySelectorAll('.sound-bar').forEach(x=>x.style.display='none');
+</script>
+</body></html>
