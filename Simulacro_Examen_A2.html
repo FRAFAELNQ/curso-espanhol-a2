@@ -767,6 +767,23 @@ function tick(cb){
  document.getElementById('count').textContent=done+'/5 completado';
 }
 const AUDIOS=["Hola, Lucía, soy Marta. Te llamo porque ya tengo piso. Está en un barrio céntrico, cerca del metro, y tiene dos habitaciones, un salón y una cocina pequeña. Es antiguo, pero está reformado. El alquiler cuesta seiscientos cincuenta euros al mes. Lo comparto con una chica argentina que se llama Paula. Es muy simpática y trabaja en un hospital. El piso no tiene ascensor, pero da a una plaza muy tranquila. Me mudo el sábado a las diez de la mañana. ¿Puedes ayudarme con las cajas? Llámame, por favor. Un beso.", "Pablo nació en Valencia en mil novecientos noventa. De pequeño vivió con sus abuelos. En dos mil ocho empezó a estudiar Arquitectura en Madrid y allí conoció a su mujer, Elena. Se casaron en dos mil dieciséis y un año después tuvieron una hija. Hace cinco años que viven en Sevilla. Pablo trabaja en un estudio de arquitectura y por las tardes da clases de dibujo. Le encanta el cine y no le gusta nada cocinar. Elena es morena, alta y lleva gafas.", "Buenos días. Busco un piso para dos personas. — Tenemos dos opciones. El primero es más grande, pero está en las afueras. El segundo es más pequeño, pero está en el centro y tiene terraza. — ¿Cuánto cuestan? — El primero cuesta setecientos euros y el segundo, ochocientos. — A mí me gusta más el segundo, porque es más luminoso, pero es más caro. Mi pareja prefiere el primero porque tiene garaje. — ¿Quieren verlos? — Sí, el viernes por la tarde, si es posible. — Perfecto. El viernes a las cinco."];
+function addReadAloud(){
+ document.querySelectorAll('.ad, .reading').forEach(el=>{
+  const b=document.createElement('button');
+  b.type='button';b.className='pbtn';b.style.cssText='margin-top:8px;padding:6px 12px';
+  const isAd=el.classList.contains('ad');
+  b.textContent=isAd?'🔊 Escuchar':'🔊 Escuchar el texto';
+  b.setAttribute('aria-label','Escuchar el texto');
+  b.onclick=()=>{
+   const c=el.cloneNode(true);
+   c.querySelectorAll('button,.l').forEach(x=>x.remove());
+   say(c.textContent.replace(/\s+/g,' ').replace(/m²/g,'metros cuadrados').replace(/€/g,'euros').trim());
+  };
+  el.appendChild(b);
+ });
+}
+addReadAloud();
+
 const RULES=[
 ['\\bhize\\b','hice'],['\\bhací(?![\\p{L}])','hice'],['\\bhacieron\\b','hicieron'],['\\btenió(?![\\p{L}])|\\btenieron\\b','tuvo / tuvieron'],['\\bdijó(?![\\p{L}])|\\bdijieron\\b','dijo / dijeron'],['\\bponí(?![\\p{L}])','puse'],['\\bvení(?![\\p{L}])','vine'],['\\bsabí(?![\\p{L}])','supe'],['\\bquerí(?![\\p{L}])','quise'],['\\bestaron\\b|\\bestó(?![\\p{L}])','estuvieron / estuvo'],
 ['\\bvió(?![\\p{L}])','vio'],['\\bdió(?![\\p{L}])','dio'],['\\bfué(?![\\p{L}])','fue'],['\\bfuí(?![\\p{L}])','fui'],['\\bdí(?![\\p{L}])','di'],
