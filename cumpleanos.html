@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cumpleaños del grupo · Curso Español A2</title>
+<meta name="description" content="Registra tu cumpleaños y recibe una felicitación en español.">
+<meta name="theme-color" content="#160d25">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎂</text></svg>">
+<style>
+*{box-sizing:border-box}
+html{background:#0d0914}
+body{margin:0;min-height:100vh;font-family:Arial,Helvetica,sans-serif;color:#f8f4ff;background:radial-gradient(circle at 20% 10%,rgba(130,70,190,.18),transparent 30%),radial-gradient(circle at 90% 20%,rgba(255,50,150,.14),transparent 28%),linear-gradient(135deg,#160d25 0%,#0d0914 55%,#170b1b 100%);background-attachment:fixed}
+.container{width:min(100%,820px);margin:auto;padding:20px 16px 44px}
+.demo{background:#ffd166;color:#2a1a00;text-align:center;font-weight:700;font-size:13px;padding:8px 12px;border-radius:12px;margin-bottom:14px}
+.back{display:inline-block;color:#f8f4ff;text-decoration:none;border:1px solid rgba(210,130,255,.4);border-radius:999px;padding:9px 16px;font-weight:700;font-size:14px;margin-bottom:14px;background:rgba(57,30,70,.6)}
+.back:focus-visible,.btn:focus-visible,.go:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #ffd166;outline-offset:2px}
+.hero{text-align:center;padding:28px 18px;border:1px solid rgba(190,120,255,.38);border-radius:26px;background:linear-gradient(135deg,rgba(65,25,82,.78),rgba(28,35,58,.88));position:relative;overflow:hidden}
+.hero h1{margin:8px 0 6px;font-size:clamp(30px,6vw,48px);background:linear-gradient(90deg,#ff7ac6,#ffd166,#7fb1ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{margin:0;color:#d9c8ec}
+.confetti{position:absolute;inset:0;pointer-events:none;opacity:.5;font-size:20px}
+.confetti span{position:absolute}
+h2{font-size:22px;margin:30px 4px 12px}
+.today{border:2px solid #ffd166;border-radius:24px;padding:18px;background:linear-gradient(135deg,rgba(110,40,110,.5),rgba(40,30,70,.7));box-shadow:0 0 40px rgba(255,209,102,.15);margin-top:22px}
+.today h2{margin:0 0 4px;text-align:center;font-size:clamp(24px,5vw,32px)}
+.today .fecha{text-align:center;color:#d9c8ec;font-size:14px;margin:0 0 6px}
+.bcard{display:flex;gap:14px;align-items:flex-start;border:1px solid rgba(255,138,198,.5);border-left:5px solid #ff3eaa;border-radius:18px;padding:16px;background:rgba(30,20,46,.85);margin-top:12px}
+.bcard .em{font-size:36px;line-height:1}
+.bcard b{font-size:18px;color:#ffd166;overflow-wrap:anywhere}
+.bcard p{margin:6px 0 0;line-height:1.5;color:#f1e6ff}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.btn{border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:8px 13px;background:rgba(255,255,255,.1);color:#f8f4ff;font-size:13px;cursor:pointer;text-decoration:none;display:inline-block}
+.btn:hover{background:rgba(255,255,255,.18)}
+.next{display:grid;gap:10px}
+.row{display:flex;align-items:center;gap:14px;border:1px solid rgba(210,130,255,.35);border-radius:16px;padding:12px 14px;background:linear-gradient(135deg,rgba(57,30,70,.86),rgba(31,25,46,.92))}
+.date{flex:0 0 auto;width:56px;text-align:center;border-radius:12px;background:rgba(255,62,157,.16);color:#ff8ac6;padding:7px 0;line-height:1}
+.date strong{display:block;font-size:24px}.date span{display:block;font-size:12px;margin-top:3px;font-weight:700;text-transform:uppercase}
+.row .n{font-weight:700;font-size:17px;overflow-wrap:anywhere}.row .s{color:#c9b4e0;font-size:14px}
+.form{border:1px solid rgba(210,130,255,.35);border-radius:22px;padding:18px;background:rgba(40,24,58,.8)}
+label{display:block;font-weight:700;margin:12px 0 6px;font-size:14px}
+input,select{width:100%;padding:13px 14px;border-radius:12px;border:1px solid rgba(210,130,255,.45);background:#1b1130;color:#fff;font-size:16px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.go{width:100%;margin-top:16px;border:0;border-radius:14px;padding:14px;font-size:17px;font-weight:700;color:#fff;background:linear-gradient(90deg,#8338ec,#ff3e9d);cursor:pointer}
+.go[disabled]{opacity:.6;cursor:wait}
+.msg{margin-top:12px;padding:10px 12px;border-radius:12px;font-size:14px;line-height:1.45;display:none}
+.msg.ok{display:block;background:rgba(80,200,120,.15);border:1px solid rgba(80,200,120,.5)}
+.msg.err{display:block;background:rgba(255,90,90,.14);border:1px solid rgba(255,90,90,.5)}
+.priv{margin-top:14px;font-size:13px;line-height:1.5;color:#d9c8ec;background:rgba(255,209,102,.08);border:1px solid rgba(255,209,102,.35);border-radius:12px;padding:10px 12px}
+.empty{text-align:center;color:#d9c8ec;border:1px dashed rgba(210,130,255,.45);border-radius:18px;padding:16px;margin-top:10px}
+.err-box{text-align:center;color:#ffb3b3;border:1px dashed rgba(255,120,120,.5);border-radius:18px;padding:14px;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="demo" id="demo" hidden>👀 Modo demostración: estos son datos de ejemplo y no se guarda nada.</div>
+<a class="back" href="index.html">← Volver al curso</a>
+<header class="hero">
+  <div class="confetti" aria-hidden="true"><span style="left:6%;top:12%">🎈</span><span style="left:90%;top:18%">🎉</span><span style="left:14%;top:78%">✨</span><span style="left:84%;top:74%">🎂</span><span style="left:50%;top:6%">🎊</span></div>
+  <div style="font-size:44px" aria-hidden="true">🎂</div>
+  <h1>Cumpleaños del grupo</h1>
+  <p>Registra tu cumpleaños y recibe una felicitación en español.</p>
+</header>
+
+<section id="today" class="today" hidden aria-live="polite">
+  <h2>🎉 ¡Feliz cumpleaños!</h2>
+  <p class="fecha" id="fecha"></p>
+  <div id="today-list"></div>
+</section>
+<div id="today-empty" class="empty" hidden>Hoy no tenemos cumpleaños registrados. ¡Volvemos a celebrar pronto! 🎈</div>
+
+<h2>📅 Próximos cumpleaños</h2>
+<div id="next" class="next"></div>
+<div id="next-empty" class="empty" hidden>No hay cumpleaños en los próximos 30 días.</div>
+<div id="load-err" class="err-box" hidden>No se pudo cargar la lista. Inténtalo de nuevo más tarde.</div>
+
+<h2>➕ Registra tu cumpleaños</h2>
+<form class="form" id="form" novalidate autocomplete="off">
+  <label for="name">Nombre o apodo</label>
+  <input id="name" name="name" maxlength="30" placeholder="Por ejemplo: Rafa" required>
+  <div class="two">
+    <div><label for="day">Día</label><select id="day"></select></div>
+    <div><label for="month">Mes</label><select id="month"></select></div>
+  </div>
+  <label for="code">Código del grupo</label>
+  <input id="code" name="code" maxlength="40" placeholder="Te lo da el grupo de WhatsApp" required autocapitalize="off" autocorrect="off">
+  <div class="hp" aria-hidden="true"><label>No rellenar<input id="website" tabindex="-1" autocomplete="off"></label></div>
+  <button class="go" id="go" type="submit">🎁 Guardar mi cumpleaños</button>
+  <div class="msg" id="msg" role="status"></div>
+  <div class="priv">🔒 Solo pedimos tu nombre o apodo, el día y el mes. <b>No pedimos el año</b> ni otros datos personales. Lo que escribas será visible para las personas que entren en esta página. Usa un apodo si prefieres.</div>
+</form>
+</div>
+
+<script src="cumpleanos-config.js"></script>
+<script>
+(function(){
+'use strict';
+var CFG=window.CUMPLE_CONFIG||{};
+var CONFIGURED=/^https:\/\//.test(CFG.SUPABASE_URL||'')&&!/PEGA/.test((CFG.SUPABASE_URL||'')+(CFG.SUPABASE_ANON_KEY||''));
+var DEMO=!CONFIGURED||/(^|[?&])demo(=|&|$)/.test(location.search);
+var MESES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+var $=function(id){return document.getElementById(id)};
+
+/* ---------- mensajes en español (cada persona recibe uno distinto) ---------- */
+var MSGS=[
+ ['🎂','¡Feliz cumpleaños, {n}! Que este nuevo año de vida te traiga mucha salud, alegría, amor y nuevos logros. ¡Que todos tus sueños se hagan realidad!'],
+ ['🎉','¡Muchas felicidades, {n}! Que tengas un día lleno de sonrisas, cariño y momentos inolvidables. ¡Te deseamos lo mejor hoy y siempre!'],
+ ['🎈','¡Feliz cumpleaños, {n}! Que nunca te falten motivos para sonreír, sueños por cumplir y personas especiales a tu lado. ¡Un abrazo grande!'],
+ ['🌟','¡Felicidades, {n}! Que esta nueva vuelta al sol venga cargada de salud, amistad, aventuras y éxitos. ¡Y que sigamos aprendiendo español juntos!'],
+ ['🎁','¡Feliz cumpleaños, {n}! Hoy es tu día: disfruta, ríe mucho y date todos los gustos. ¡Que lo pases genial con los tuyos!'],
+ ['🥳','¡Felicidades, {n}! Un año más, un año mejor. Que el español te siga abriendo puertas y que tengas un día increíble.'],
+ ['✨','¡Feliz cumpleaños, {n}! Que se cumplan todos tus deseos y que cada día de este nuevo año esté lleno de cosas bonitas.'],
+ ['🍰','¡Muchas felicidades, {n}! Que tengas una tarta enorme, muchos regalos y una sonrisa que dure todo el año. ¡Disfruta tu día!'],
+ ['🎊','¡Feliz cumpleaños, {n}! Gracias por ser parte de este grupo. Te deseamos un año lleno de salud, aprendizaje y alegría.'],
+ ['💐','¡Felicidades, {n}! Que hoy recibas mucho cariño y que este año te traiga paz, buenos amigos y muchas oportunidades.'],
+ ['🎶','¡Feliz cumpleaños, {n}! Que la vida te regale canciones bonitas, risas con amigos y muchas ganas de seguir aprendiendo.'],
+ ['🌈','¡Muchas felicidades, {n}! Que tu nuevo año tenga todos los colores: aventuras, amor, salud y mucha suerte. ¡Un abrazo fuerte!']
+];
+function hash(s){var h=0;for(var i=0;i<s.length;i++){h=(h*31+s.charCodeAt(i))>>>0}return h}
+function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
+function pickMessages(names){
+  var used={},out=[],y=new Date().getFullYear();
+  names.forEach(function(nm){
+    var i=hash(nm.toLowerCase()+y)%MSGS.length;
+    while(used[i]){i=(i+1)%MSGS.length}
+    used[i]=true;
+    var nice=cap(nm);
+    out.push({name:nice,emoji:MSGS[i][0],text:MSGS[i][1].replace('{n}',nice)});
+  });
+  return out;
+}
+
+/* ---------- acceso a Supabase (solo 3 funciones públicas) ---------- */
+function rpc(fn,args){
+  var h={'Content-Type':'application/json',apikey:CFG.SUPABASE_ANON_KEY};
+  if(/^eyJ/.test(CFG.SUPABASE_ANON_KEY))h.Authorization='Bearer '+CFG.SUPABASE_ANON_KEY;
+  return fetch(CFG.SUPABASE_URL.replace(/\/$/,'')+'/rest/v1/rpc/'+fn,{method:'POST',headers:h,body:JSON.stringify(args||{})})
+    .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json()});
+}
+/* ---------- modo demostración ---------- */
+function inDays(n){var d=new Date(Date.now()+n*864e5);return{day:d.getDate(),month:d.getMonth()+1,days_until:n}}
+var demoData={
+  today:[{name:'ana'},{name:'carlos'},{name:'pedro'}],
+  next:[Object.assign({name:'maría'},inDays(5)),Object.assign({name:'luis'},inDays(12)),Object.assign({name:'sofía'},inDays(12))]
+};
+function getToday(){return DEMO?Promise.resolve(demoData.today):rpc('get_birthdays_today')}
+function getNext(){return DEMO?Promise.resolve(demoData.next):rpc('get_upcoming_birthdays')}
+function addBirthday(n,d,m,c){return DEMO?Promise.resolve('ok'):rpc('add_birthday',{p_name:n,p_day:d,p_month:m,p_code:c})}
+
+/* ---------- utilidades: voz, copiar, WhatsApp ---------- */
+function say(t){
+  if(!('speechSynthesis' in window))return;
+  var u=new SpeechSynthesisUtterance(t);u.lang='es-ES';
+  var v=speechSynthesis.getVoices().filter(function(x){return x.lang&&x.lang.toLowerCase().indexOf('es')===0})[0];
+  if(v)u.voice=v;speechSynthesis.cancel();speechSynthesis.speak(u);
+}
+function copy(t,btn){
+  var done=function(){var o=btn.textContent;btn.textContent='✅ Copiado';setTimeout(function(){btn.textContent=o},1800)};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,function(){fallback()})}else fallback();
+  function fallback(){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');done()}catch(e){}document.body.removeChild(a)}
+}
+
+/* ---------- pintar ---------- */
+function el(tag,cls,text){var e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e}
+function renderToday(list){
+  var box=$('today-list');box.textContent='';
+  if(!list.length){$('today').hidden=true;$('today-empty').hidden=false;return}
+  $('today-empty').hidden=true;$('today').hidden=false;
+  $('fecha').textContent=new Intl.DateTimeFormat('es-ES',{weekday:'long',day:'numeric',month:'long',timeZone:'Europe/Madrid'}).format(new Date());
+  pickMessages(list.map(function(x){return x.name})).forEach(function(m){
+    var c=el('div','bcard'),b=el('div');
+    c.appendChild(el('div','em',m.emoji));c.lastChild.setAttribute('aria-hidden','true');
+    b.appendChild(el('b',null,m.name));b.appendChild(el('p',null,m.text));
+    var a=el('div','acts');
+    var s=el('button','btn','🔊 Escuchar');s.type='button';s.onclick=function(){say(m.text)};
+    var w=el('a','btn','📲 WhatsApp');w.href='https://wa.me/?text='+encodeURIComponent(m.emoji+' '+m.text);w.target='_blank';w.rel='noopener noreferrer';
+    var k=el('button','btn','📋 Copiar');k.type='button';k.onclick=function(){copy(m.emoji+' '+m.text,k)};
+    a.appendChild(s);a.appendChild(w);a.appendChild(k);b.appendChild(a);c.appendChild(b);box.appendChild(c);
+  });
+}
+function renderNext(list){
+  var box=$('next');box.textContent='';
+  $('next-empty').hidden=list.length>0;
+  list.forEach(function(x){
+    var r=el('div','row'),d=el('div','date');
+    d.appendChild(el('strong',null,String(x.day)));d.appendChild(el('span',null,MESES[x.month-1].slice(0,3)));
+    var t=el('div');t.appendChild(el('div','n',cap(x.name)));
+    t.appendChild(el('div','s',x.days_until===1?'mañana':'dentro de '+x.days_until+' días'));
+    r.appendChild(d);r.appendChild(t);box.appendChild(r);
+  });
+}
+function load(){
+  $('load-err').hidden=true;
+  Promise.all([getToday(),getNext()]).then(function(r){renderToday(r[0]);renderNext(r[1])})
+   .catch(function(){$('load-err').hidden=false;$('today-empty').hidden=true});
+}
+
+/* ---------- formulario ---------- */
+function fillSelects(){
+  var d=$('day'),m=$('month'),i;
+  for(i=1;i<=31;i++){var o=document.createElement('option');o.value=i;o.textContent=i;d.appendChild(o)}
+  MESES.forEach(function(n,k){var o=document.createElement('option');o.value=k+1;o.textContent=cap(n);m.appendChild(o)});
+}
+var MAXD=[31,29,31,30,31,30,31,31,30,31,30,31];
+var TXT={
+  ok:['ok','¡Listo! Tu cumpleaños quedó guardado 🎂'],
+  duplicate:['err','Ese nombre ya está registrado con esa fecha.'],
+  bad_code:['err','El código del grupo no es correcto. Pídelo en el grupo de WhatsApp.'],
+  bad_name:['err','El nombre solo puede tener letras, números, espacios, punto, guion y apóstrofo (máximo 30).'],
+  bad_date:['err','Esa fecha no existe. Revisa el día y el mes.'],
+  rate_limited:['err','Hay demasiados intentos. Espera unos minutos e inténtalo otra vez.'],
+  full:['err','La lista está llena. Avisa a tu profesor o administrador.']
+};
+function show(k,custom){var m=$('msg');var t=custom?['err',custom]:TXT[k]||['err','No se pudo guardar. Inténtalo de nuevo.'];m.className='msg '+t[0];m.textContent=t[1]}
+function init(){
+  fillSelects();
+  if(DEMO)$('demo').hidden=false;
+  load();
+  $('form').addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=$('name').value.replace(/\s+/g,' ').trim(),day=+$('day').value,mon=+$('month').value,code=$('code').value.trim();
+    if($('website').value){show('ok');return}
+    if(!name)return show(0,'Escribe tu nombre o apodo.');
+    if(!code)return show(0,'Escribe el código del grupo.');
+    if(day>MAXD[mon-1])return show('bad_date');
+    var b=$('go');b.disabled=true;
+    addBirthday(name,day,mon,code).then(function(res){
+      show(res);
+      if(res==='ok'){$('name').value='';if(!DEMO)load();else{demoData.today.push({name:name});load()}}
+    }).catch(function(){show(0,'No se pudo conectar. Inténtalo de nuevo.')}).then(function(){b.disabled=false});
+  });
+}
+init();
+})();
+</script>
+</body>
+</html>

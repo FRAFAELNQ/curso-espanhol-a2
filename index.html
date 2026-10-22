@@ -122,6 +122,12 @@ h1{
 .featured .icon{font-size:34px;flex:0 0 auto}
 .featured h3{font-size:22px}
 
+.card.birthday{grid-column:1/-1;border-left-color:#ffd166;background:linear-gradient(135deg,rgba(95,36,96,.9),rgba(52,30,78,.92));overflow:hidden}
+.card.birthday::after{content:"🎈 🎉 🎂";position:absolute;right:56px;top:10px;font-size:15px;opacity:.55;letter-spacing:4px}
+@media(max-width:640px){.card.birthday::after{display:none}}
+.bday-banner{display:flex;align-items:center;gap:14px;margin:18px 0 0;padding:14px 18px;border:2px solid #ffd166;border-radius:20px;background:linear-gradient(135deg,rgba(110,40,110,.6),rgba(40,30,70,.75));color:#f8f4ff;text-decoration:none;box-shadow:0 0 30px rgba(255,209,102,.15)}
+.bday-banner[hidden]{display:none}
+.bday-banner .bi{font-size:30px}.bday-banner b{color:#ffd166}.bday-banner span.t{flex:1;line-height:1.4}
 .card.verbs{border-left-color:#39d8d0}
 .card.verbs .arrow{color:#55e7df}
 .card.verbs:hover{border-color:rgba(85,231,223,.7);border-left-color:#39d8d0}
@@ -196,6 +202,9 @@ footer{text-align:center;color:#b7a2ca;font-size:14px;margin-top:36px}
 
   <main>
 
+    <!-- Aviso de cumpleaños (solo aparece si hoy hay algún cumpleaños) -->
+    <a class="bday-banner" id="bday-banner" href="cumpleanos.html" hidden><span class="bi" aria-hidden="true">🎂</span><span class="t" id="bday-text"></span><span aria-hidden="true">→</span></a>
+
     <!-- Accesos rápidos -->
     <section aria-labelledby="t-inicio">
       <h2 class="section-title" id="t-inicio">⭐ Empieza aquí</h2>
@@ -229,6 +238,14 @@ footer{text-align:center;color:#b7a2ca;font-size:14px;margin-top:36px}
           <div>
             <h3>Explorador Interactivo</h3>
             <p>Unidades 1-8, quiz, matriz y Tutor IA.</p>
+          </div>
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="card featured birthday" href="cumpleanos.html">
+          <div class="icon" aria-hidden="true">🎂</div>
+          <div>
+            <h3>Cumpleaños del grupo</h3>
+            <p>Registra tu cumpleaños y recibe una felicitación en español.</p>
           </div>
           <span class="arrow" aria-hidden="true">→</span>
         </a>
@@ -412,6 +429,26 @@ function actualizarCronometros() {
 
 // Executa a função assim que a página carrega
 window.addEventListener('load', actualizarCronometros);
+</script>
+<script src="cumpleanos-config.js"></script>
+<script>
+(function(){
+  var C=window.CUMPLE_CONFIG;
+  if(!C||!/^https:\/\//.test(C.SUPABASE_URL||'')||/PEGA/.test(C.SUPABASE_URL+C.SUPABASE_ANON_KEY))return;
+  var h={'Content-Type':'application/json',apikey:C.SUPABASE_ANON_KEY};
+  if(/^eyJ/.test(C.SUPABASE_ANON_KEY))h.Authorization='Bearer '+C.SUPABASE_ANON_KEY;
+  fetch(C.SUPABASE_URL.replace(/\/$/,'')+'/rest/v1/rpc/get_birthdays_today',{method:'POST',headers:h,body:'{}'})
+   .then(function(r){return r.ok?r.json():[]}).then(function(l){
+     if(!l||!l.length)return;
+     var n=l.map(function(x){return x.name.charAt(0).toUpperCase()+x.name.slice(1)});
+     var t=document.getElementById('bday-text');t.textContent='';
+     var b=document.createElement('b');
+     b.textContent=n.length===1?n[0]:n.slice(0,-1).join(', ')+' y '+n[n.length-1];
+     t.appendChild(document.createTextNode(n.length===1?'Hoy cumple años ':'Hoy cumplen años '));t.appendChild(b);
+     t.appendChild(document.createTextNode('. ¡Felicítal'+(n.length===1?'o/a':'os')+'! 🎉'));
+     document.getElementById('bday-banner').hidden=false;
+   }).catch(function(){});
+})();
 </script>
 </body>
 </html>
