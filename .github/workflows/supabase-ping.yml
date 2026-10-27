@@ -1,4 +1,5 @@
 # Evita que el proyecto gratuito de Supabase se pause por inactividad.
+# Usa solo datos públicos (URL y clave publicable): no necesita "secrets".
 name: Supabase ping
 on:
   schedule:
@@ -9,9 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Llamar a la función pública
-        env:
-          URL: ${{ secrets.SUPABASE_URL }}
-          KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: |
-          curl -fsS -X POST "$URL/rest/v1/rpc/get_birthdays_today" \
-            -H "apikey: $KEY" -H "Content-Type: application/json" -d '{}'
+          curl -fsS -X POST "https://mkqlsnhjwywwqklzytxa.supabase.co/rest/v1/rpc/get_birthdays_today" \
+            -H "apikey: sb_publishable_GV7qpOetx0P8wW6yrbvfxw_z8gaGCqk" \
+            -H "Content-Type: application/json" -d '{}'
