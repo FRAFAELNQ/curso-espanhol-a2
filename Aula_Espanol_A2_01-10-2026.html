@@ -120,7 +120,7 @@ ul.clean{margin:8px 0;padding-left:20px}ul.clean li{margin:5px 0}
 
 <div class="card" style="margin-top:14px">
 <h3>⭐ Frases clave de la clase</h3>
-<div class="sound-bar"><span class="small">🔊 Toca el botón de cada frase para escucharla.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
+<div class="sound-bar"><span class="small">🔊 Toca el botón de cada frase para escucharla.</span><span class="speedGroup" role="group" aria-label="Velocidad del audio"><button type="button" class="speak speedOpt" aria-pressed="false" data-rate="0.6" onclick="setRate(0.6)">🐢 Lento</button> <button type="button" class="speak speedOpt" aria-pressed="true" data-rate="0.85" onclick="setRate(0.85)">▶ Normal</button> <button type="button" class="speak speedOpt" aria-pressed="false" data-rate="1.1" onclick="setRate(1.1)">⚡ Rápido</button></span></div>
 <div class="example"><b>Viví en Francia de 2024 a 2025.</b></div>
 <div class="example"><b>Hago yoga desde enero.</b></div>
 <div class="example"><b>Terminé la carrera hace cuatro meses.</b></div>
@@ -169,7 +169,7 @@ ul.clean{margin:8px 0;padding-left:20px}ul.clean li{margin:5px 0}
 
 <section id="gram">
 <h2>🧠 Gramática</h2>
-<div class="sound-bar"><span class="small">🔊 Toca el botón de cada ejemplo para escucharlo.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
+<div class="sound-bar"><span class="small">🔊 Toca el botón de cada ejemplo para escucharlo.</span><span class="speedGroup" role="group" aria-label="Velocidad del audio"><button type="button" class="speak speedOpt" aria-pressed="false" data-rate="0.6" onclick="setRate(0.6)">🐢 Lento</button> <button type="button" class="speak speedOpt" aria-pressed="true" data-rate="0.85" onclick="setRate(0.85)">▶ Normal</button> <button type="button" class="speak speedOpt" aria-pressed="false" data-rate="1.1" onclick="setRate(1.1)">⚡ Rápido</button></span></div>
 
 <h3 class="color-title turq">1 · Expresiones de tiempo</h3>
 <div class="card">
@@ -271,7 +271,7 @@ ul.clean{margin:8px 0;padding-left:20px}ul.clean li{margin:5px 0}
 <section id="verbos">
 <h2>🔤 Verbos trabajados en la clase</h2>
 <p class="small">Aquí se muestra el <b>pretérito indefinido</b> que se trabajó hoy. Los verbos nuevos de los flashcards son <b>correr, coger, caminar, alquilar, trabajar, enseñar, llegar</b> y <b>encontrarse</b>. <a href="flashcards-verbos-a2.html">Abrir los flashcards →</a></p>
-<div class="sound-bar"><span class="small">🔊 Cada verbo tiene su botón para escuchar el infinitivo.</span><button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button></div>
+<div class="sound-bar"><span class="small">🔊 Cada verbo tiene su botón para escuchar el infinitivo.</span><span class="speedGroup" role="group" aria-label="Velocidad del audio"><button type="button" class="speak speedOpt" aria-pressed="false" data-rate="0.6" onclick="setRate(0.6)">🐢 Lento</button> <button type="button" class="speak speedOpt" aria-pressed="true" data-rate="0.85" onclick="setRate(0.85)">▶ Normal</button> <button type="button" class="speak speedOpt" aria-pressed="false" data-rate="1.1" onclick="setRate(1.1)">⚡ Rápido</button></span></div>
 <h3 class="color-title turq" style="margin-top:22px">A · Tarjetas de verbos: la forma «yo» en pretérito indefinido</h3>
 <p class="small">La profesora sacó las tarjetas de verbos y cada alumno dijo una frase en pasado. Estas son las formas de «yo».</p>
 <div class="mini-grid">
@@ -478,7 +478,7 @@ ul.clean{margin:8px 0;padding-left:20px}ul.clean li{margin:5px 0}
   <select id="dLevel"><option value="1">Hasta 100</option><option value="2" selected>100 – 999</option><option value="3">1000 – 2100 (años)</option></select>
  </label>
  <button type="button" class="speak" id="dPlay">🔊 Escuchar</button>
- <button type="button" class="speak slowBtn" aria-pressed="false" onclick="toggleSlow()">🐢 Lento: apagado</button>
+ <span class="speedGroup" role="group" aria-label="Velocidad del audio"><button type="button" class="speak speedOpt" aria-pressed="false" data-rate="0.6" onclick="setRate(0.6)">🐢 Lento</button> <button type="button" class="speak speedOpt" aria-pressed="true" data-rate="0.85" onclick="setRate(0.85)">▶ Normal</button> <button type="button" class="speak speedOpt" aria-pressed="false" data-rate="1.1" onclick="setRate(1.1)">⚡ Rápido</button></span>
 </div>
 <div class="dict-row">
  <input class="num-input" id="dInput" type="text" inputmode="numeric" autocomplete="off" placeholder="Escribe el número" aria-label="Escribe el número que escuchas">
@@ -536,7 +536,7 @@ function showTab(id,btn){
  btn.classList.add('active');
  window.scrollTo({top:0,behavior:'smooth'});
 }
-let slow=false, esVoice=null;
+let speechRate=0.85, esVoice=null;
 function pickEs(){
  const vs=speechSynthesis.getVoices();
  esVoice=vs.find(v=>v.lang==='es-ES')||vs.find(v=>v.lang&&v.lang.startsWith('es'))||null;
@@ -547,15 +547,12 @@ function say(txt){
  speechSynthesis.cancel();
  const u=new SpeechSynthesisUtterance(String(txt).replace(/_{2,}/g,', ... ,'));
  u.lang='es-ES';if(esVoice)u.voice=esVoice;
- u.rate=slow?.6:.85;
+ u.rate=speechRate;
  speechSynthesis.speak(u);
 }
-function toggleSlow(){
- slow=!slow;
- document.querySelectorAll('.slowBtn').forEach(b=>{
-  b.textContent=slow?'🐢 Lento: encendido':'🐢 Lento: apagado';
-  b.setAttribute('aria-pressed',slow);
- });
+function setRate(r){
+ speechRate=r;
+ document.querySelectorAll('.speedOpt').forEach(b=>b.setAttribute('aria-pressed',Number(b.dataset.rate)===r));
 }
 // botón 🔊 en cada frase de ejemplo de TODAS las pestañas (solo el texto en español, dentro de <b>)
 document.querySelectorAll('.example').forEach(el=>{
