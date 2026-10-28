@@ -3192,6 +3192,18 @@ function setLang(l) {
 }
 
 setLang('pt');
+
+// Abrir un verbo concreto desde un enlace: flashcards-verbos-a2.html#vigilar
+function openFromHash() {
+  let w = '';
+  try { w = decodeURIComponent((location.hash || '').replace(/^#/, '')).trim().toLowerCase(); } catch (e) { return; }
+  if (!w) return;
+  if (!verbs.some(v => v.word === w)) return;
+  goToVerb(w);
+  try { window.scrollTo(0, 0); } catch (e) {}
+}
+openFromHash();
+window.addEventListener('hashchange', openFromHash);
 </script>
 
 
