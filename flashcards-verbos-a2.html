@@ -940,6 +940,14 @@ const verbs = [
   { word: "aparcar", meaning: "",sticker: "🅿️",groupKey: "ar", forms: ["aparco","aparcas","aparca","aparcamos","aparcáis","aparcan"], noteKey: "publicarNote" },
   { word: "negociar", meaning: "",sticker: "🤝",groupKey: "ar", forms: ["negocio","negocias","negocia","negociamos","negociáis","negocian"], noteKey: "sameHablar" },
   { word: "relajarse", meaning: "",sticker: "😌",groupKey: "ar-refl", forms: ["me relajo","te relajas","se relaja","nos relajamos","os relajáis","se relajan"], noteKey: "reflexive" },
+  { word: "chocar", meaning: "",sticker: "💥",groupKey: "ar", forms: ["choco","chocas","choca","chocamos","chocáis","chocan"], noteKey: "sameHablar" },
+  { word: "recoger", meaning: "",sticker: "🧺",groupKey: "yo-irr", forms: ["recojo","recoges","recoge","recogemos","recogéis","recogen"], noteKey: "cogerNote" },
+  { word: "caerse", meaning: "",sticker: "🤕",groupKey: "yo-irr-refl", forms: ["me caigo","te caes","se cae","nos caemos","os caéis","se caen"], noteKey: "sameHacer" },
+  { word: "olvidar", meaning: "",sticker: "🫥",groupKey: "ar", forms: ["olvido","olvidas","olvida","olvidamos","olvidáis","olvidan"], noteKey: "sameHablar" },
+  { word: "mirar", meaning: "",sticker: "👁️",groupKey: "ar", forms: ["miro","miras","mira","miramos","miráis","miran"], noteKey: "sameHablar" },
+  { word: "parir", meaning: "",sticker: "🍼",groupKey: "ir", forms: ["paro","pares","pare","parimos","parís","paren"], noteKey: "sameSubir" },
+  { word: "funcionar", meaning: "",sticker: "⚙️",groupKey: "ar", forms: ["funciono","funcionas","funciona","funcionamos","funcionáis","funcionan"], noteKey: "sameHablar" },
+  { word: "estropearse", meaning: "",sticker: "🛠️",groupKey: "ar-refl", forms: ["me estropeo","te estropeas","se estropea","nos estropeamos","os estropeáis","se estropean"], noteKey: "reflexive" },
   { word: "vigilar", meaning: "",sticker: "👀",groupKey: "ar", forms: ["vigilo","vigilas","vigila","vigilamos","vigiláis","vigilan"], noteKey: "sameHablar" },
   { word: "bajar", meaning: "",sticker: "⬇️",groupKey: "ar", forms: ["bajo","bajas","baja","bajamos","bajáis","bajan"], noteKey: "sameHablar" },
   { word: "apoyar", meaning: "",sticker: "🦵",groupKey: "ar", forms: ["apoyo","apoyas","apoya","apoyamos","apoyáis","apoyan"], noteKey: "sameHablar" },
@@ -1141,6 +1149,14 @@ const MEAN = {
   "aparcar": { pt: "estacionar", en: "to park" },
   "negociar": { pt: "negociar", en: "to negotiate" },
   "relajarse": { pt: "relaxar-se", en: "to relax" },
+  "chocar": { pt: "chocar / bater", en: "to crash / to bump into" },
+  "recoger": { pt: "buscar / apanhar", en: "to pick up" },
+  "caerse": { pt: "cair", en: "to fall down" },
+  "olvidar": { pt: "esquecer", en: "to forget" },
+  "mirar": { pt: "olhar", en: "to look at" },
+  "parir": { pt: "parir", en: "to give birth (animals)" },
+  "funcionar": { pt: "funcionar", en: "to work / to function" },
+  "estropearse": { pt: "estragar-se", en: "to break down" },
   "vigilar": { pt: "vigiar", en: "to watch over" },
   "bajar": { pt: "baixar / descer", en: "to lower / to go down" },
   "apoyar": { pt: "apoiar", en: "to lean / to support" },
@@ -1358,6 +1374,70 @@ const PAST_FORMS = {
   "nos relajamos",
   "os relajasteis",
   "se relajaron"
+ ],
+ "chocar": [
+  "choqué",
+  "chocaste",
+  "chocó",
+  "chocamos",
+  "chocasteis",
+  "chocaron"
+ ],
+ "recoger": [
+  "recogí",
+  "recogiste",
+  "recogió",
+  "recogimos",
+  "recogisteis",
+  "recogieron"
+ ],
+ "caerse": [
+  "me caí",
+  "te caíste",
+  "se cayó",
+  "nos caímos",
+  "os caísteis",
+  "se cayeron"
+ ],
+ "olvidar": [
+  "olvidé",
+  "olvidaste",
+  "olvidó",
+  "olvidamos",
+  "olvidasteis",
+  "olvidaron"
+ ],
+ "mirar": [
+  "miré",
+  "miraste",
+  "miró",
+  "miramos",
+  "mirasteis",
+  "miraron"
+ ],
+ "parir": [
+  "parí",
+  "pariste",
+  "parió",
+  "parimos",
+  "paristeis",
+  "parieron"
+ ],
+ "funcionar": [
+  "funcioné",
+  "funcionaste",
+  "funcionó",
+  "funcionamos",
+  "funcionasteis",
+  "funcionaron"
+ ],
+ "estropearse": [
+  "me estropeé",
+  "te estropeaste",
+  "se estropeó",
+  "nos estropeamos",
+  "os estropeasteis",
+  "se estropearon"
  ],
  "vigilar": [
   "vigilé",

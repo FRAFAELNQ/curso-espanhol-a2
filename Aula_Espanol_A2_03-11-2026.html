@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#080a18" name="theme-color"/>
+<title>Clase de Español A2 — 03/11/2026</title>
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#080a18;--card:#171d38;--text:#f8f9ff;--muted:#b8c0dd;
+  --pink:#ff5ca8;--purple:#a56cff;--turq:#37e6d4;--yellow:#ffd34e;
+  --blue:#42a5ff;--soft:#252e50;--border:#2d385e;--ok:#4be59a;--bad:#ff6b7c;--header-border:#48598d;--header-start:#172c6c;--header-mid:#49237f;--header-end:#741c58;--header-text:#fff;--header-shadow:rgba(0,0,0,.55);
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 10% 0,#1d2b66,transparent 38%),radial-gradient(circle at 90% 0,#5a174d,transparent 35%),var(--bg);background-attachment:fixed;color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}
+.container{max-width:1100px;margin:auto;padding:22px 16px 60px}
+header{text-align:center;padding:26px 20px;margin-bottom:6px;border-radius:22px;border:1px solid var(--header-border);background:linear-gradient(135deg,var(--header-start),var(--header-mid) 52%,var(--header-end));box-shadow:0 18px 50px var(--header-shadow);transition:background .2s ease,border-color .2s ease,color .2s ease}
+.badge{display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;font-weight:800;font-size:.82rem}
+h1{margin:10px 0 4px;font-size:clamp(1.8rem,5vw,3rem);color:var(--header-text)}
+.subtitle{color:var(--header-text);opacity:.92}
+section{display:none;padding-top:22px;scroll-margin-top:66px}
+section.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:0 7px 22px color-mix(in srgb,var(--purple) 10%,transparent)}
+.card h3{margin-top:0}
+.color-title{font-size:1.25rem;font-weight:900}
+.pink{color:var(--pink)}.purple{color:var(--purple)}.turq{color:var(--turq)}.blue{color:var(--blue)}.yellow{color:var(--yellow)}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden}
+th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+th{background:#202a4c;color:#cdbdff}
+.verb-card{margin-bottom:16px}
+.verb-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.verb{font-size:1.45rem;font-weight:900;color:var(--pink)}
+.tag{font-size:.78rem;font-weight:800;padding:4px 9px;border-radius:999px;background:var(--soft);color:#cdbdff}
+.speak{border:0;background:var(--soft);border-radius:10px;padding:7px 10px;cursor:pointer}
+.example{border-left:4px solid var(--turq);padding:9px 12px;background:color-mix(in srgb,var(--turq) 8%,var(--card));border-radius:0 12px 12px 0;margin:9px 0}
+.note{font-size:.9rem;color:var(--muted)}
+.choice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media(max-width:760px){.choice-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.choice-grid{grid-template-columns:1fr}}
+.choice{padding:12px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;text-align:center;font-weight:700;font-size:1rem;transition:0.2s}
+.choice:hover{border-color:var(--turq)}
+.choice:disabled{cursor:default}
+.choice.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card));color:var(--ok)}
+.choice.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card));color:var(--bad)}
+.feedback{margin-top:12px;font-weight:800;padding:12px;border-radius:10px;display:none}
+.feedback.ok{display:block;color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card));border:1px solid var(--ok)}
+.feedback.bad{display:block;color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card));border:1px solid var(--bad)}
+.quiz-result{margin-top:14px;padding:14px 16px;border:1px solid var(--border);border-radius:14px;background:var(--card);font-weight:800}
+.result-main{font-size:1.05rem}
+.result-stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.result-stats span{padding:6px 9px;border-radius:999px;background:var(--soft);font-size:.85rem}
+.result-ok{color:var(--ok)}.result-bad{color:var(--bad)}.result-warn{color:var(--yellow)}
+.example.sayable{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.example.sayable .example-audio{flex:0 0 auto}
+
+details{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px;margin:9px 0}
+summary{cursor:pointer;font-weight:800}
+.progress{height:12px;background:var(--soft);border-radius:99px;overflow:hidden;margin-top:12px;border:1px solid var(--border)}
+.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple),var(--turq));transition:width .3s ease}
+.small{font-size:.88rem;color:var(--muted)}
+.example.sayable{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.example.sayable .speak{flex:0 0 auto;font-size:1.05rem}
+.sound-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:6px 0 12px}
+.speak:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.speak[aria-pressed="true"]{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff}
+footer{text-align:center;color:var(--muted);padding-top:30px;font-size:.82rem}
+/* Desktop compacto / janela dividida: evita que o grupo de velocidade invada o botão central. */
+@media (min-width:601px) and (max-width:1050px){
+  .header-controls{
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    gap:8px;
+  }
+  .header-controls .home-link{
+    min-width:0;
+    max-width:210px;
+    padding:0 12px;
+    font-size:.88rem;
+  }
+  .header-controls .speed-control{
+    min-width:0;
+    gap:5px;
+    justify-self:end;
+  }
+  .speed-btn{
+    min-width:64px;
+    padding:0 8px;
+    font-size:.78rem;
+  }
+}
+
+@media (min-width:601px) and (max-width:780px){
+}
+@media(max-width:600px){
+  .container{padding:14px 10px 45px}
+  th,td{padding:8px;font-size:.9rem}
+  .card{padding:15px}
+}
+
+
+.table-wrap{overflow-x:auto;border-radius:16px}
+.table-wrap table{min-width:520px}
+.mini-grid{display:flex;flex-direction:column;gap:14px}
+.mini-grid .verb-card{min-width:0}
+.mini-grid .verb-card{margin-bottom:0}
+/* Verbos trabajados: misma distribución visual del Modelo Mestre. */
+#verbos .mini-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;align-items:stretch}
+#verbos .mini-grid .verb-card{min-width:0;height:100%;box-sizing:border-box}
+@media(max-width:1050px){#verbos .mini-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){#verbos .mini-grid{grid-template-columns:minmax(0,1fr)}}
+.form-big{font-size:1.25rem;font-weight:900;color:var(--turq);margin:10px 0 4px}
+ul.clean{margin:8px 0;padding-left:20px}ul.clean li{margin:5px 0}
+
+.mini-forms{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.mini-forms div{flex:1 1 90px;background:var(--soft);border:1px solid var(--border);border-radius:10px;padding:7px 9px;text-align:center}
+.mini-forms small{display:block;color:var(--muted);font-size:.7rem;text-transform:uppercase}
+.mini-forms b{font-size:1.05rem;color:var(--turq)}
+
+
+/* === Template Mestre A2 — interfaz estable === */
+:root[data-theme="light"]{color-scheme:light;--bg:#f5f3ff;--card:#ffffff;--text:#1b2340;--muted:#5e6780;--soft:#e9e6f8;--border:#cfd1ea;--header-border:#aeb8df;--header-start:#dfe9ff;--header-mid:#eadfff;--header-end:#ffe0ef;--header-text:#1b2340;--header-shadow:rgba(73,55,128,.18);--blue:#397fdb;--purple:#7856d9;--turq:#159f93;--yellow:#c58d00}
+:root[data-theme="light"] .pink{color:#c52f76}:root[data-theme="light"] .purple{color:#6840bf}:root[data-theme="light"] .turq{color:#087f78}:root[data-theme="light"] .yellow{color:#946600}:root[data-theme="light"] .blue{color:#2f6fc4}
+body{transition:background .2s ease,color .2s ease}
+header{border-color:var(--header-border);background:linear-gradient(135deg,var(--header-start),var(--header-mid) 52%,var(--header-end));box-shadow:0 18px 50px var(--header-shadow)}
+header h1{color:var(--header-text)}
+header .subtitle{color:var(--header-text);opacity:.88}
+.badge{color:var(--header-text);background:color-mix(in srgb,var(--purple) 12%,transparent);border:1px solid color-mix(in srgb,var(--purple) 22%,transparent)}
+.theme-toggle,.home-link,.speed-btn{background:#ffffff;color:var(--text);border-color:#c7cbe4;box-shadow:0 3px 10px rgba(70,58,125,.08)}
+.theme-toggle:hover,.home-link:hover,.speed-btn:hover{border-color:var(--turq);box-shadow:0 4px 12px rgba(21,159,147,.14)}
+.tab-nav button{background:#ffffff;color:var(--text);border-color:#c9cce5;box-shadow:0 2px 7px rgba(70,58,125,.06)}
+.tab-nav button:hover{background:#f6f4ff;border-color:var(--turq);box-shadow:0 0 0 1px rgba(21,159,147,.18)}
+.sticky-shell{background:color-mix(in srgb,#ffffff 88%,var(--soft));border-color:#c9cce5;box-shadow:0 10px 28px rgba(87,70,145,.12)}
+.card{box-shadow:0 7px 22px rgba(87,70,145,.08)}
+.sticky-shell{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:color-mix(in srgb,var(--bg) 96%,transparent);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:7px 8px;
+  box-shadow:0 10px 28px color-mix(in srgb,var(--purple) 14%,transparent);
+  margin:8px 0 0;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+/* Controles no cabeçalho e NÃO acompanham a rolagem.
+   Inicio permanece centrado · Velocidad fica à direita. */
+.header-controls{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+  align-items:center;
+  gap:10px;
+  width:100%;
+  margin:14px auto 0;
+}
+.header-controls .home-link{grid-column:2;justify-self:center}
+.header-controls .speed-control{grid-column:3;justify-self:end}
+.theme-toggle,.speed-control,.home-link{border:1px solid var(--border);background:var(--card);color:var(--text)}
+.theme-toggle{
+  flex:0 0 auto;height:38px;min-width:72px;border-radius:999px;padding:0 11px;
+  display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;font-size:.92rem;
+}
+.theme-toggle:hover,.home-link:hover,.speed-btn:hover{border-color:var(--turq)}
+.home-link{
+  flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;height:38px;
+  padding:0 14px;border-radius:12px;text-decoration:none;font-weight:850;position:relative;white-space:nowrap;
+}
+
+.speed-control{flex:0 0 auto;height:38px;display:flex;align-items:center;gap:6px;background:transparent;border:0}
+.speed-label{display:none}
+.speed-btn{
+  flex:0 0 auto;height:40px;min-width:78px;padding:0 11px;border:1px solid var(--border);
+  border-radius:999px;background:var(--card);color:var(--text);font-weight:800;cursor:pointer;white-space:nowrap;
+}
+.speed-btn.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+/* Menu principal: uma única linha, fixa durante a rolagem. */
+.sticky-shell{display:flex;align-items:center;gap:7px}
+.sticky-shell > .theme-toggle{flex:0 0 40px;width:40px;min-width:40px;height:40px;padding:0;border-radius:12px}
+.sticky-shell > .tab-nav{flex:1;min-width:0}
+.tab-nav{
+  display:flex;flex-wrap:nowrap;gap:7px;width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;
+  padding:0;scrollbar-width:thin;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;
+  touch-action:pan-x;
+}
+.tab-nav button{
+  flex:0 0 118px;width:118px;min-width:118px;height:40px;border:1px solid var(--border);
+  background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;font-weight:800;
+  font-size:.84rem;white-space:nowrap;display:flex;align-items:center;justify-content:center;gap:4px;
+  transition:transform .15s ease,border-color .15s ease,background .15s ease;touch-action:manipulation;
+}
+.tab-nav button:hover{border-color:var(--turq);box-shadow:0 0 0 1px color-mix(in srgb,var(--turq) 22%,transparent)}
+.tab-nav button:focus-visible,.speed-btn:focus-visible,.theme-toggle:focus-visible,.home-link:focus-visible{outline:3px solid var(--yellow);outline-offset:0}
+.tab-nav button.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+/* Navegação e controles — ajuste final para mobile */
+.home-nav{display:flex;justify-content:center;align-items:center;margin:22px 0 0}
+.home-nav a{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 16px;border:1px solid var(--border);border-radius:12px;background:var(--card);color:var(--text);text-decoration:none;font-weight:850;white-space:nowrap;transition:transform .15s ease,border-color .15s ease,background .2s ease}
+.home-nav a:hover{transform:translateY(-1px);border-color:var(--turq)}
+.home-nav a:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.home-nav .bottom-home{height:40px;min-height:40px;padding:0 14px;border-radius:12px;font-weight:850}
+
+@media(max-width:600px){
+  .sticky-shell{padding:6px 7px;border-radius:14px;margin-top:7px}
+  .tab-nav{gap:6px}
+  .tab-nav button{flex-basis:112px;width:112px;min-width:112px;height:38px;font-size:.80rem}
+
+  /* Controles: Inicio al centro · Velocidad à direita */
+  .header-controls{
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    gap:6px;
+    margin-top:12px;
+    overflow:visible;
+  }
+  .header-controls .home-link{grid-column:2;justify-self:center;height:40px;min-width:0;padding:0 8px;font-size:.88rem}
+  .header-controls .speed-control{grid-column:3;justify-self:end}
+  .speed-control{height:40px;gap:3px;min-width:0;justify-content:flex-end}
+  .header-controls .speed-btn{height:36px;width:36px;min-width:36px;padding:0;border-radius:10px;font-size:0;line-height:1}
+  .header-controls .speed-btn[data-rate="0.58"]::before{content:"🐢";font-size:1rem}
+  .header-controls .speed-btn[data-rate="0.88"]::before{content:"▶";font-size:.88rem}
+  .header-controls .speed-btn[data-rate="1.12"]::before{content:"⚡";font-size:1rem}
+  .speed-label{display:none}
+
+  /* O menu permanece fixo, mas ocupa apenas uma linha horizontal */
+  .tab-nav{touch-action:pan-x;overscroll-behavior-x:contain}
+}
+@media(max-width:380px){
+  .sticky-shell > .theme-toggle{width:38px;min-width:38px;height:38px}
+  .header-controls{gap:5px}
+  .header-controls .home-link{font-size:.82rem;padding:0 6px}
+  .speed-control{gap:2px}
+  .header-controls .speed-btn{width:34px;min-width:34px;height:34px}
+  .header-controls .speed-btn[data-rate="0.58"]::before,.header-controls .speed-btn[data-rate="1.12"]::before{font-size:.9rem}
+  .header-controls .speed-btn[data-rate="0.88"]::before{font-size:.8rem}
+  .tab-nav button{flex-basis:108px;width:108px;min-width:108px;font-size:.78rem}
+}
+
+
+/* === Correção final: controles responsivos em janela PC dividida === */
+@media (min-width:601px) and (max-width:1050px){
+  .header-controls{
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    gap:14px;
+  }
+  .header-controls .home-link{
+    justify-self:center;
+    max-width:190px;
+    min-width:0;
+    padding:0 11px;
+    font-size:.86rem;
+  }
+  .header-controls .speed-control{
+    justify-self:end;
+    min-width:0;
+    gap:5px;
+  }
+  .header-controls .speed-btn{
+    width:64px;
+    min-width:64px;
+    max-width:64px;
+    padding:0 5px;
+    font-size:.76rem;
+  }
+}
+@media (min-width:601px) and (max-width:780px){
+  .header-controls{gap:10px}
+  .header-controls .home-link{max-width:175px;font-size:.82rem;padding:0 8px}
+  .header-controls .speed-control{gap:3px}
+  .header-controls .speed-btn{width:58px;min-width:58px;max-width:58px;font-size:.70rem;padding:0 3px}
+}
+
+/* === Estrutura definitiva: cabeçalho, velocidade e navegação separados === */
+.header-controls{display:none !important}
+.header-home{display:flex;justify-content:center;align-items:center;margin:14px auto 0;width:100%}
+.header-home .home-link{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 16px;border-radius:12px;text-decoration:none;font-weight:850;white-space:nowrap}
+.audio-controls{display:flex;justify-content:center;align-items:center;width:100%;margin:8px 0 8px}
+.audio-controls .speed-control{display:flex;align-items:center;justify-content:center;gap:7px;height:auto;min-width:0}
+.audio-controls .speed-btn{flex:0 0 auto;height:40px;min-width:78px;padding:0 12px;border:1px solid var(--border);border-radius:999px;background:var(--card);color:var(--text);font-weight:800;cursor:pointer;white-space:nowrap}
+.audio-controls .speed-btn.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+.audio-controls .speed-btn:hover{border-color:var(--turq)}
+@media (max-width:600px){
+  .header-home{margin-top:12px}
+  .header-home .home-link{height:40px;padding:0 14px;font-size:.9rem}
+  .audio-controls{margin:7px 0 7px}
+  .audio-controls .speed-control{gap:5px;width:100%;justify-content:center}
+  .audio-controls .speed-btn{height:38px;min-width:0;width:auto;padding:0 11px;font-size:.82rem}
+}
+@media (max-width:380px){
+  .audio-controls .speed-control{gap:4px}
+  .audio-controls .speed-btn{height:36px;padding:0 9px;font-size:.78rem}
+}
+
+/* Áudio das formas de conjugação — versão completa */
+.mini-forms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:10px 0}
+.mini-forms .mini-form-item{display:grid;grid-template-columns:1fr auto;grid-template-areas:"label audio" "form audio";align-items:center;gap:2px 8px;background:var(--soft);border:1px solid var(--border);border-radius:10px;padding:9px 10px;text-align:left}
+.mini-forms .mini-form-item small{grid-area:label;text-transform:none}
+.mini-forms .mini-form-item b{grid-area:form;font-size:1.05rem;color:var(--turq)}
+.mini-forms .mini-form-item .form-audio{grid-area:audio;align-self:center;padding:6px 8px;border-radius:9px}
+.verb-card td .form-audio{margin-left:6px;padding:4px 7px;border-radius:8px;font-size:.9rem;vertical-align:middle}
+.verb-card .example .example-audio{margin-left:6px;padding:5px 8px;border-radius:9px;vertical-align:middle}
+.form-big .form-audio{margin-left:6px;padding:5px 8px;border-radius:9px;vertical-align:middle}
+@media (max-width:640px){
+  .mini-forms{grid-template-columns:1fr}
+  .mini-forms .mini-form-item{padding:8px 9px}
+}
+
+
+.verb-structure-guide{margin:14px 0 18px;padding:12px 14px;border:1px solid var(--border);border-radius:14px;background:var(--surface2);color:var(--text);font-size:.94rem;line-height:1.55}
+.verb-subtitle{margin:12px 0 8px;font-weight:800;color:var(--text);font-size:.9rem;letter-spacing:.01em}
+.example-label{margin:12px 0 5px;font-weight:800;color:var(--text);font-size:.88rem}
+.flashcard-link{display:inline-flex;align-items:center;gap:6px;margin:10px 0 2px;padding:7px 10px;border-radius:10px;border:1px solid var(--border);background:var(--surface2);color:var(--turq);text-decoration:none;font-weight:800;font-size:.82rem}
+.flashcard-link:hover{transform:translateY(-1px)}
+.verb-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+
+
+/* === Ajuste definitivo de Verbos === */
+#verbos .verb-card{width:100%;margin:0 0 16px}
+#verbos .conj-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px}
+#verbos .conj-item{background:var(--soft);border:1px solid var(--border);border-radius:12px;padding:10px 11px;min-width:0}
+#verbos .conj-person{font-size:.78rem;font-weight:800;color:var(--muted);margin-bottom:5px;line-height:1.3}
+#verbos .conj-form{font-size:1.08rem;font-weight:900;color:var(--turq);display:flex;align-items:center;justify-content:space-between;gap:7px;flex-wrap:wrap}
+#verbos .conj-form .form-audio{margin-left:auto}
+#verbos .mini-forms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:10px 0}
+#verbos .mini-forms .mini-form-item{min-width:0;background:var(--soft);border:1px solid var(--border);border-radius:12px;padding:10px 11px;display:grid;grid-template-columns:1fr auto;grid-template-areas:"person audio" "form audio";align-items:center;gap:4px 8px}
+#verbos .mini-forms .mini-form-item small{grid-area:person;margin:0;text-align:left}
+#verbos .mini-forms .mini-form-item b{grid-area:form;text-align:left}
+#verbos .mini-forms .mini-form-item .form-audio{grid-area:audio;align-self:center;margin:0}
+@media(max-width:780px){#verbos .conj-grid,#verbos .mini-forms{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){#verbos .conj-grid,#verbos .mini-forms{grid-template-columns:1fr}#verbos .conj-item,#verbos .mini-forms .mini-form-item{padding:9px 10px}}
+
+/* === Áudio mais robusto para os exercícios === */
+.quiz-audio{display:inline-flex;align-items:center;justify-content:center;gap:4px;min-width:42px;height:38px;border:1px solid var(--border);border-radius:10px;background:var(--soft);cursor:pointer}
+.quiz-audio:hover{border-color:var(--turq);transform:translateY(-1px)}
+.quiz-question{display:flex;align-items:center;gap:10px;justify-content:space-between}
+.quiz-question p{flex:1;min-width:0;margin:8px 0}.quiz-question .question-audio{white-space:nowrap;font-weight:800}
+.quiz-option{display:flex;align-items:stretch;gap:6px;min-width:0}
+.quiz-option .choice{flex:1;min-width:0}
+.quiz-audio{flex:0 0 auto;padding:7px 10px;color:var(--text);background:var(--soft);border:1px solid var(--border);border-radius:10px;cursor:pointer}
+.quiz-audio:hover{border-color:var(--turq)}
+
+
+
+/* Aula 01/10: componentes específicos de la lección, sin alterar el Modelo Mestre */
+.pending{margin-top:14px;padding:12px 14px;border-radius:14px;background:color-mix(in srgb,var(--yellow) 9%,var(--card));border:1px solid color-mix(in srgb,var(--yellow) 35%,var(--border))}
+.activity-list p{margin:10px 0}
+#vocab .grid{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:14px}
+#vocab .card{min-width:0;overflow:hidden}
+#vocab .table-wrap{width:100%;min-width:0;overflow-x:visible}
+#vocab .table-wrap .num-table{width:100%;min-width:0;table-layout:fixed}
+#vocab .num-table td{padding:7px 10px}
+#vocab .num-table td.n{width:64px;white-space:nowrap;font-weight:900;color:var(--yellow);font-variant-numeric:tabular-nums}
+#vocab .num-table td:not(.n){overflow-wrap:anywhere;word-break:normal}
+#vocab .color-title{margin-bottom:10px}
+@media(max-width:700px){#vocab .grid{grid-template-columns:1fr}#vocab .num-table td{padding:7px 8px}#vocab .num-table td.n{width:52px}}
+@media(max-width:420px){#vocab .card{padding:12px}#vocab .num-table td{padding:7px 5px;font-size:.88rem}#vocab .num-table td.n{width:44px}}
+
+
+/* Miles y millones: misma presentación tabular que Centenas, con columna numérica automática */
+#vocab .miles-table{width:100%;min-width:0;table-layout:auto;border-collapse:collapse}
+#vocab .miles-table tr{display:grid;grid-template-columns:max-content minmax(0,1fr);column-gap:18px;align-items:center}
+#vocab .miles-table td{display:block;box-sizing:border-box;min-width:0;width:auto;vertical-align:middle;padding:7px 10px}
+/* Sobrescreve a largura fixa genérica de .num-table: a coluna numérica deve crescer conforme a cifra. */
+#vocab .miles-table.num-table td.n{width:max-content;min-width:max-content;max-width:none;white-space:nowrap;padding-right:0;font-weight:900;color:var(--yellow);font-variant-numeric:tabular-nums}
+#vocab .miles-table td:not(.n){white-space:normal;overflow-wrap:anywhere;word-break:normal}
+#vocab .miles-table .vocab-speak{margin-left:7px}
+@media(max-width:700px){#vocab .miles-table tr{column-gap:14px}#vocab .miles-table td{padding:7px 8px}}
+@media(max-width:420px){#vocab .miles-table tr{column-gap:10px}#vocab .miles-table td{padding:7px 5px;font-size:.88rem}#vocab .miles-table.num-table td.n{width:max-content;min-width:max-content;padding-right:0}#vocab .miles-table .vocab-speak{margin-left:4px}}
+
+/* Audio compacto del vocabulario: icono junto a cada número/expresión */
+#vocab .vocab-speak{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;margin-left:7px;padding:4px 7px;min-width:30px;min-height:28px;border:0;border-radius:9px;background:var(--button, #263154);color:var(--text);cursor:pointer;font-size:.9rem;line-height:1}
+#vocab .vocab-speak:hover{filter:brightness(1.18)}
+#vocab .num-table td:not(.n){overflow-wrap:anywhere}
+@media(max-width:420px){#vocab .vocab-speak{margin-left:4px;padding:3px 5px;min-width:27px;min-height:26px}}
+
+
+/* Botones de Flashcards: patrón del Modelo Mestre 30/09/2026 */
+.flashcard-link{display:inline-flex;align-items:center;gap:6px;margin:10px 0 2px;padding:7px 10px;border-radius:10px;border:1px solid var(--border);background:var(--surface2);color:var(--turq);text-decoration:none;font-weight:800;font-size:.82rem}
+.flashcard-link:hover{transform:translateY(-1px)}
+.verb-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+</style>
+<style id="verb-audio-only-addition">
+#verbos .speak-inline{display:inline-flex;align-items:center;justify-content:center;min-width:32px;min-height:30px;margin-left:6px;padding:4px 8px;border:0;border-radius:10px;background:#263154;color:#fff;cursor:pointer;vertical-align:middle;font-size:14px;}
+#verbos td .speak-inline{min-width:26px;min-height:25px;padding:2px 5px;margin-left:4px;}
+#verbos .speak-inline:focus-visible{outline:2px solid #32e4d0;outline-offset:2px;}
+
+/* Ejercicios: interacción alineada con el Modelo Mestre del 30/09/2026 */
+.quiz-all{display:grid;gap:12px}
+.quiz-question{border:1px solid var(--border,#303b63);border-radius:14px;padding:14px;background:rgba(30,40,72,.45)}
+.quiz-question-head{display:flex;align-items:flex-start;gap:10px;justify-content:space-between}
+.quiz-question-head p{margin:0;flex:1}
+.choice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px}
+.quiz-option{display:flex;align-items:stretch;gap:6px;min-width:0}
+.quiz-option .choice{flex:1;min-width:0}
+.quiz-audio{flex:0 0 auto;border:0;border-radius:10px;padding:8px 10px;background:#252f52;color:inherit;cursor:pointer}
+.check-all{margin-top:12px;border:1px solid #394875;border-radius:10px;padding:10px 16px;background:#202b4c;color:inherit;font-weight:700;cursor:pointer}
+.quiz-result{margin-top:12px;border:1px solid var(--border,#303b63);border-radius:14px;padding:14px}
+.result-main{font-weight:800;margin-bottom:10px}.result-stats{display:flex;gap:8px;flex-wrap:wrap}
+.result-stats span{padding:8px 10px;border-radius:999px;background:#252f52;font-weight:700}
+.result-ok{color:#43e9a0}.result-bad{color:#ff5e83}.result-warn{color:#ffc857}
+.choice.selected{outline:2px solid #37d8d0}.choice.correct{border-color:#39d99a}.choice.wrong{border-color:#ff5e83}
+@media(max-width:700px){.choice-grid{grid-template-columns:1fr}}
+
+/* Correção de estrutura dos exercícios: enunciado, alternativas e feedback em blocos separados */
+.quiz-all{display:flex;flex-direction:column;gap:14px;min-width:0;width:100%}
+.quiz-question{display:block;min-width:0;width:100%;box-sizing:border-box;overflow-wrap:anywhere}
+.quiz-question-head{display:flex;align-items:flex-start;gap:10px;width:100%;min-width:0}
+.quiz-question-head p{flex:1 1 auto;min-width:0;margin:8px 0;overflow-wrap:anywhere;word-break:normal}
+.quiz-question-head .quiz-audio{flex:0 0 auto}
+.quiz-question .choice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;width:100%;min-width:0;margin-top:12px}
+.quiz-question .quiz-option{display:flex;min-width:0;width:100%;max-width:100%}
+.quiz-question .choice{display:block;width:100%;min-width:0;max-width:100%;height:100%;white-space:normal;overflow-wrap:anywhere;word-break:normal;box-sizing:border-box}
+.quiz-question .feedback{width:100%;min-width:0;box-sizing:border-box;overflow-wrap:anywhere}
+@media(max-width:760px){.quiz-question .choice-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.quiz-question .choice-grid{grid-template-columns:minmax(0,1fr)}.quiz-question-head{gap:8px}.quiz-question .choice{padding:10px}}
+
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<span class="badge">EOI · Español A2 · Clase individual</span>
+<h1>Ficha Interactiva — 03/11/2026</h1>
+<div class="subtitle">Excusas con «es que», respuestas educadas y maleducadas y vocabulario cotidiano</div>
+<div class="subtitle" style="font-size:.9rem;margin-top:6px">📖 Libro: Aula Plus 2 · pp. 73, 77 y 154 (+ p. 76 tarea)</div>
+<div class="header-home"><a aria-label="Volver al inicio del curso" class="home-link" href="index.html">🏠 Volver al inicio</a></div>
+</header>
+<div aria-label="Controles de velocidad de pronunciación" class="audio-controls"><div class="speed-control">
+<button aria-label="Velocidad lenta" class="speed-btn" data-rate="0.58" title="Velocidad lenta" type="button">🐢 Lento</button>
+<button aria-label="Velocidad normal" class="speed-btn active" data-rate="0.88" title="Velocidad normal" type="button">▶ Normal</button>
+<button aria-label="Velocidad rápida" class="speed-btn" data-rate="1.12" title="Velocidad rápida" type="button">⚡ Rápido</button>
+</div></div>
+<div aria-label="Navegación de la clase" class="sticky-shell">
+<button aria-label="Cambiar al modo claro" aria-pressed="true" class="theme-toggle" title="Cambiar al modo claro" type="button">🌙</button>
+<div aria-label="Secciones de la clase" class="tab-nav" role="tablist">
+<button aria-controls="resumen" aria-selected="true" class="active" data-tab="resumen" id="tab-resumen" role="tab">📚 Resumen</button>
+<button aria-controls="vocab" aria-selected="false" data-tab="vocab" id="tab-vocab" role="tab">📝 Vocabulario</button>
+<button aria-controls="gram" aria-selected="false" data-tab="gram" id="tab-gram" role="tab">🧠 Gramática</button>
+<button aria-controls="verbos" aria-selected="false" data-tab="verbos" id="tab-verbos" role="tab">🔤 Verbos</button>
+<button aria-controls="ex" aria-selected="false" data-tab="ex" id="tab-ex" role="tab">✏️ Ejercicios</button>
+<button aria-controls="practica" aria-selected="false" data-tab="practica" id="tab-practica" role="tab">🎯 Práctica</button>
+</div></div>
+<section aria-labelledby="tab-resumen" class="active" id="resumen" role="tabpanel" tabindex="0"><div class="grid">
+<div class="card"><div class="color-title pink">1. Corrección de la página 154</div><p>Ejercicios <b>10, 11 y 12</b>: los corregimos en parejas o en grupo y después con la profesora, con participación de todos (tú / usted / vosotros / ustedes, la palabra clave del audio y las frases de peticiones).</p></div>
+<div class="card"><div class="color-title purple">2. «Es que…»</div><p>Página 73, ejercicio 7 (A, B y C): contestamos, comparamos con un compañero y corregimos con la profesora. <b>Es que</b> sirve para justificar una negativa o una petición.</p></div>
+<div class="card"><div class="color-title turq">3. «Oiga, cállese»</div><p>Página 77, ejercicio 10 (A y B): Liberto es <b>educado</b> y Roberto es <b>maleducado</b>. En parejas escribimos dos respuestas negativas a una petición: una educada y otra maleducada.</p></div>
+<div class="card"><div class="color-title yellow">4. Aviso: simulacro de incendio</div><p>La profesora explicó qué hacer en caso de incendio en la escuela y habrá un simulacro de unos 5 minutos. Fecha: <b>por confirmar</b> (se habló de mañana o del jueves).</p></div>
+</div>
+<div class="card" style="margin-top:14px"><h3>⭐ Frases clave de la clase</h3>
+<div class="sound-bar"><span class="small">🔊 Toca el botón de cada frase para escucharla.</span></div>
+<div class="example"><b>Es que tengo que estudiar.</b></div><div class="example"><b>Perdona, me tengo que ir. Es que llego tarde.</b></div><div class="example"><b>Se me cayó el café y tengo que recogerlo.</b></div><div class="example"><b>Me quedé dormido y llegué tarde.</b></div><div class="example"><b>Mi coche está estropeado: está en el taller.</b></div><div class="example"><b>Me va bien el horario. Me encanta la idea.</b></div>
+</div>
+<div class="card" style="margin-top:14px"><h3>📋 Actividades de la clase</h3>
+<div class="activity-list">
+<p><b>✓ Página 154, ejercicios 10, 11 y 12 — Corrección</b><br/>Corrección en parejas o grupos y después con la profesora.</p>
+<p><b>✓ Página 73, ejercicio 7 (A, B y C) — Es que…</b><br/>Contestar, comparar con un compañero y corregir. Excusas habituales y excusas originales.</p>
+<p><b>✓ Página 77, ejercicio 10 (A y B) — Oiga, cállese</b><br/>Liberto (educado) frente a Roberto (maleducado). Dos respuestas negativas: una educada y otra maleducada. Corrección con la profesora.</p>
+<p><b>✓ Pizarra</b><br/>Vocabulario cotidiano: echar, caerse, estropeado, quedarse dormido, parir, estar de viaje, chocar, oye / oiga, apetecer…</p>
+</div>
+<div class="pending"><b>🏠 Para mañana:</b><ul><li>Página 76: ejercicio 8 (A y B). En el apartado B, intenta escribir <b>al menos dos ejemplos</b>.</li></ul></div>
+<p class="small" style="margin-top:10px">Aviso: simulacro de incendio con explicación previa (fecha por confirmar).</p></div>
+<div class="note" style="margin-top:14px">⚠️ La transcripción automática tiene ruido. Los datos dudosos están marcados «por confirmar». No se publican las respuestas del libro.</div></section>
+
+<section aria-labelledby="tab-vocab" id="vocab" role="tabpanel" tabindex="0"><h2>📝 Vocabulario</h2><div class="grid">
+<div class="card"><div class="color-title pink">Excusas</div><ul class="clean"><li><b>Me tengo que ir</b>: tengo que estudiar / tengo una reunión / tengo clase / llego tarde / tengo cosas que hacer.</li><li><b>tener prisa</b>: dicho solo, suena mal. Mejor da una causa concreta.</li><li>Excusas originales: los deberes, el coche, quedar con alguien, el jefe…</li></ul></div>
+<div class="card"><div class="color-title purple">Cosas que se rompen</div><ul class="clean"><li><b>estar estropeado/a</b>: no funciona (<b>está en el taller</b>).</li><li><b>estar roto/a</b>: mi reloj está roto.</li><li><b>fuera de servicio</b>: cartel de un aparato que no funciona.</li><li><b>estar ocupado/a</b>: el baño está ocupado.</li></ul></div>
+<div class="card"><div class="color-title turq">Caer y recoger</div><ul class="clean"><li><b>caerse</b>: se me cayó el café.</li><li><b>echar</b>: poner un líquido o un sólido (echar azúcar).</li><li><b>recoger</b>: levantar algo del suelo o ir a buscar a alguien.</li><li><b>chocar con</b> algo: chocar con una <b>farola</b>.</li></ul><div class="example"><b>Tengo que recoger a mi padre del aeropuerto.</b></div></div>
+<div class="card"><div class="color-title yellow">Dormir y viajar</div><ul class="clean"><li><b>quedarse dormido</b>: me quedé dormido (sin querer).</li><li><b>quedarse a dormir</b>: dormir en casa de otra persona.</li><li><b>estar de viaje</b>.</li><li><b>estar borracho/a</b>: estado temporal.</li><li><b>el tráfico</b>.</li></ul></div>
+<div class="card"><div class="color-title pink">Animales</div><ul class="clean"><li>La gata está <b>embarazada</b> (también: <b>preñada</b> en animales).</li><li><b>parir</b> (animales) / <b>dar a luz</b> (personas): dio a luz.</li><li><b>el paritorio</b>: sala del hospital.</li></ul></div>
+<div class="card"><div class="color-title turq">Lugares y personas</div><ul class="clean"><li>Con <b>a</b> + persona hay que decir un lugar o un verbo.</li></ul><div class="example"><b>Voy a casa de mi madre.</b></div><div class="example"><b>Voy a ver a mi madre.</b></div></div>
+</div></section>
+
+<section aria-labelledby="tab-gram" id="gram" role="tabpanel" tabindex="0"><h2>🧠 Gramática</h2><div class="grid">
+<div class="card"><div class="color-title pink">Es que + justificación</div><div class="example"><b>No puedo. Es que tengo que estudiar.</b></div><div class="example"><b>¿Puedes bajar la música? Es que duermo.</b></div><div class="note">Los nativos dicen <b>es que…</b>: es más corto que «lo siento, pero…».</div></div>
+<div class="card"><div class="color-title purple">Educado ≠ formal</div><ul class="clean"><li>Formal es la gramática (usted, condicional).</li><li>Educado es el <b>tono</b> y las palabras.</li></ul><div class="example"><b>Lo siento, es que no puedo.</b></div><div class="example"><b>Cállese ya, por favor.</b></div><div class="note">Con usted se puede ser maleducado y con tú se puede ser muy educado.</div></div>
+<div class="card"><div class="color-title turq">Llamar la atención: tú / usted</div><ul class="clean"><li><b>oye</b> / <b>oiga</b> (verbo <b>oír</b>)</li><li><b>mira</b> / <b>mire</b> (verbo <b>mirar</b>)</li></ul></div>
+<div class="card"><div class="color-title yellow">Apetecer, importar, ir bien</div><ul class="clean"><li><b>me apetece / me apetecen</b>: funciona como gustar.</li><li><b>no me importa</b> = me da igual.</li><li><b>me va bien</b>: un horario o un plan que me afecta.</li><li><b>les pongo</b>: a ellos / ellas / ustedes.</li></ul><div class="example"><b>Me apetece un café.</b></div><div class="example"><b>Me encanta la idea.</b></div><div class="example"><b>Me va bien a las seis.</b></div></div>
+<div class="card" style="grid-column:1/-1"><div class="color-title pink">Tú, vosotros, usted, ustedes</div><div class="example"><b>¿Me dejas tu libro? (tú)</b></div><div class="example"><b>¿Me dejáis el libro? (vosotros)</b></div><div class="example"><b>¿Me deja su libro? (usted)</b></div><div class="example"><b>¿Me dejan el libro? (ustedes)</b></div><div class="note">Cambia la persona, no la idea de la petición.</div></div>
+<div class="card" style="grid-column:1/-1"><div class="color-title turq">Pretérito de caerse</div><ul class="clean"><li>me caí, te caíste, <b>se cayó</b>, nos caímos, os caísteis, <b>se cayeron</b></li></ul><div class="note">El pretérito lleva <b>y</b> en él / ellos: se cayó, se cayeron.</div></div></div></section>
+
+<section aria-labelledby="tab-verbos" id="verbos" role="tabpanel" tabindex="0"><h2>🔤 Verbos de la clase</h2><p class="small">Verbos nuevos añadidos a los <a href="flashcards-verbos-a2.html">flashcards →</a></p><div class="verb-card card" id="verb-chocar" style="margin:18px 0 22px;padding:18px 20px;border-radius:22px"><div class="verb-head" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap"><span class="verb" style="font-size:1.55rem">chocar</span><span class="tag">regular</span><button aria-label="Escuchar chocar" class="speak" onclick="say('chocar')" type="button">🔊</button></div><h4 style="margin:16px 0 10px">🔄 Presente</h4><div class="conj-grid"><div class="conj-item"><div class="conj-person">Yo</div><div class="conj-form">choco <button aria-label="Escuchar choco" class="speak-inline" onclick="say('choco')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Tú</div><div class="conj-form">chocas <button aria-label="Escuchar chocas" class="speak-inline" onclick="say('chocas')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Él / Ella / Usted</div><div class="conj-form">choca <button aria-label="Escuchar choca" class="speak-inline" onclick="say('choca')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Nosotros / Nosotras</div><div class="conj-form">chocamos <button aria-label="Escuchar chocamos" class="speak-inline" onclick="say('chocamos')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Vosotros / Vosotras</div><div class="conj-form">chocáis <button aria-label="Escuchar chocáis" class="speak-inline" onclick="say('chocáis')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Ellos / Ellas / Ustedes</div><div class="conj-form">chocan <button aria-label="Escuchar chocan" class="speak-inline" onclick="say('chocan')" type="button">🔊</button></div></div></div><h4 style="margin:16px 0 10px">🔄 Pretérito indefinido</h4><div class="conj-grid"><div class="conj-item"><div class="conj-person">Yo</div><div class="conj-form">choqué <button aria-label="Escuchar choqué" class="speak-inline" onclick="say('choqué')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Tú</div><div class="conj-form">chocaste <button aria-label="Escuchar chocaste" class="speak-inline" onclick="say('chocaste')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Él / Ella / Usted</div><div class="conj-form">chocó <button aria-label="Escuchar chocó" class="speak-inline" onclick="say('chocó')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Nosotros / Nosotras</div><div class="conj-form">chocamos <button aria-label="Escuchar chocamos" class="speak-inline" onclick="say('chocamos')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Vosotros / Vosotras</div><div class="conj-form">chocasteis <button aria-label="Escuchar chocasteis" class="speak-inline" onclick="say('chocasteis')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Ellos / Ellas / Ustedes</div><div class="conj-form">chocaron <button aria-label="Escuchar chocaron" class="speak-inline" onclick="say('chocaron')" type="button">🔊</button></div></div></div><h4 style="margin:16px 0 10px">🗨️ Frases de ejemplo</h4><div style="display:grid;gap:10px"><div class="example-line" style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:var(--soft);border-left:4px solid var(--turq);border-radius:0 14px 14px 0;padding:12px 14px"><span>Choqué con una farola.</span><button aria-label="Escuchar" class="speak" onclick="say('Choqué con una farola')" type="button">🔊</button></div><div class="example-line" style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:var(--soft);border-left:4px solid var(--turq);border-radius:0 14px 14px 0;padding:12px 14px"><span>El coche choca con un árbol.</span><button aria-label="Escuchar" class="speak" onclick="say('El coche choca con un árbol')" type="button">🔊</button></div></div><p class="note" style="margin-top:14px">Cambio ortográfico: c→qu en yo del pretérito (choqué).</p><div style="margin-top:14px"><a class="flashcard-link" href="flashcards-verbos-a2.html#chocar" title="Ver este verbo en Flashcards">📚 Ver chocar en Flashcards</a></div></div><div class="verb-card card" id="verb-recoger" style="margin:18px 0 22px;padding:18px 20px;border-radius:22px"><div class="verb-head" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap"><span class="verb" style="font-size:1.55rem">recoger</span><span class="tag">regular -er</span><button aria-label="Escuchar recoger" class="speak" onclick="say('recoger')" type="button">🔊</button></div><h4 style="margin:16px 0 10px">🔄 Presente</h4><div class="conj-grid"><div class="conj-item"><div class="conj-person">Yo</div><div class="conj-form">recojo <button aria-label="Escuchar recojo" class="speak-inline" onclick="say('recojo')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Tú</div><div class="conj-form">recoges <button aria-label="Escuchar recoges" class="speak-inline" onclick="say('recoges')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Él / Ella / Usted</div><div class="conj-form">recoge <button aria-label="Escuchar recoge" class="speak-inline" onclick="say('recoge')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Nosotros / Nosotras</div><div class="conj-form">recogemos <button aria-label="Escuchar recogemos" class="speak-inline" onclick="say('recogemos')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Vosotros / Vosotras</div><div class="conj-form">recogéis <button aria-label="Escuchar recogéis" class="speak-inline" onclick="say('recogéis')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Ellos / Ellas / Ustedes</div><div class="conj-form">recogen <button aria-label="Escuchar recogen" class="speak-inline" onclick="say('recogen')" type="button">🔊</button></div></div></div><h4 style="margin:16px 0 10px">🔄 Pretérito indefinido</h4><div class="conj-grid"><div class="conj-item"><div class="conj-person">Yo</div><div class="conj-form">recogí <button aria-label="Escuchar recogí" class="speak-inline" onclick="say('recogí')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Tú</div><div class="conj-form">recogiste <button aria-label="Escuchar recogiste" class="speak-inline" onclick="say('recogiste')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Él / Ella / Usted</div><div class="conj-form">recogió <button aria-label="Escuchar recogió" class="speak-inline" onclick="say('recogió')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Nosotros / Nosotras</div><div class="conj-form">recogimos <button aria-label="Escuchar recogimos" class="speak-inline" onclick="say('recogimos')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Vosotros / Vosotras</div><div class="conj-form">recogisteis <button aria-label="Escuchar recogisteis" class="speak-inline" onclick="say('recogisteis')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Ellos / Ellas / Ustedes</div><div class="conj-form">recogieron <button aria-label="Escuchar recogieron" class="speak-inline" onclick="say('recogieron')" type="button">🔊</button></div></div></div><h4 style="margin:16px 0 10px">🗨️ Frases de ejemplo</h4><div style="display:grid;gap:10px"><div class="example-line" style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:var(--soft);border-left:4px solid var(--turq);border-radius:0 14px 14px 0;padding:12px 14px"><span>Tengo que recoger a mi padre.</span><button aria-label="Escuchar" class="speak" onclick="say('Tengo que recoger a mi padre')" type="button">🔊</button></div><div class="example-line" style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:var(--soft);border-left:4px solid var(--turq);border-radius:0 14px 14px 0;padding:12px 14px"><span>Recojo el café del suelo.</span><button aria-label="Escuchar" class="speak" onclick="say('Recojo el café del suelo')" type="button">🔊</button></div></div><p class="note" style="margin-top:14px">Cambio ortográfico g→j en yo (recojo), como coger.</p><div style="margin-top:14px"><a class="flashcard-link" href="flashcards-verbos-a2.html#recoger" title="Ver este verbo en Flashcards">📚 Ver recoger en Flashcards</a></div></div><div class="verb-card card" id="verb-caerse" style="margin:18px 0 22px;padding:18px 20px;border-radius:22px"><div class="verb-head" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap"><span class="verb" style="font-size:1.55rem">caerse</span><span class="tag">irregular reflexivo</span><button aria-label="Escuchar caerse" class="speak" onclick="say('caerse')" type="button">🔊</button></div><h4 style="margin:16px 0 10px">🔄 Presente</h4><div class="conj-grid"><div class="conj-item"><div class="conj-person">Yo</div><div class="conj-form">me caigo <button aria-label="Escuchar me caigo" class="speak-inline" onclick="say('me caigo')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Tú</div><div class="conj-form">te caes <button aria-label="Escuchar te caes" class="speak-inline" onclick="say('te caes')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Él / Ella / Usted</div><div class="conj-form">se cae <button aria-label="Escuchar se cae" class="speak-inline" onclick="say('se cae')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Nosotros / Nosotras</div><div class="conj-form">nos caemos <button aria-label="Escuchar nos caemos" class="speak-inline" onclick="say('nos caemos')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Vosotros / Vosotras</div><div class="conj-form">os caéis <button aria-label="Escuchar os caéis" class="speak-inline" onclick="say('os caéis')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Ellos / Ellas / Ustedes</div><div class="conj-form">se caen <button aria-label="Escuchar se caen" class="speak-inline" onclick="say('se caen')" type="button">🔊</button></div></div></div><h4 style="margin:16px 0 10px">🔄 Pretérito indefinido</h4><div class="conj-grid"><div class="conj-item"><div class="conj-person">Yo</div><div class="conj-form">me caí <button aria-label="Escuchar me caí" class="speak-inline" onclick="say('me caí')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Tú</div><div class="conj-form">te caíste <button aria-label="Escuchar te caíste" class="speak-inline" onclick="say('te caíste')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Él / Ella / Usted</div><div class="conj-form">se cayó <button aria-label="Escuchar se cayó" class="speak-inline" onclick="say('se cayó')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Nosotros / Nosotras</div><div class="conj-form">nos caímos <button aria-label="Escuchar nos caímos" class="speak-inline" onclick="say('nos caímos')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Vosotros / Vosotras</div><div class="conj-form">os caísteis <button aria-label="Escuchar os caísteis" class="speak-inline" onclick="say('os caísteis')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Ellos / Ellas / Ustedes</div><div class="conj-form">se cayeron <button aria-label="Escuchar se cayeron" class="speak-inline" onclick="say('se cayeron')" type="button">🔊</button></div></div></div><h4 style="margin:16px 0 10px">🗨️ Frases de ejemplo</h4><div style="display:grid;gap:10px"><div class="example-line" style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:var(--soft);border-left:4px solid var(--turq);border-radius:0 14px 14px 0;padding:12px 14px"><span>Se cayó el café.</span><button aria-label="Escuchar" class="speak" onclick="say('Se cayó el café')" type="button">🔊</button></div><div class="example-line" style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:var(--soft);border-left:4px solid var(--turq);border-radius:0 14px 14px 0;padding:12px 14px"><span>Me caigo en la calle.</span><button aria-label="Escuchar" class="speak" onclick="say('Me caigo en la calle')" type="button">🔊</button></div></div><p class="note" style="margin-top:14px">Yo: me caigo. Pretérito con y: se cayó.</p><div style="margin-top:14px"><a class="flashcard-link" href="flashcards-verbos-a2.html#caerse" title="Ver este verbo en Flashcards">📚 Ver caerse en Flashcards</a></div></div><div class="verb-card card" id="verb-olvidar" style="margin:18px 0 22px;padding:18px 20px;border-radius:22px"><div class="verb-head" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap"><span class="verb" style="font-size:1.55rem">olvidar</span><span class="tag">regular</span><button aria-label="Escuchar olvidar" class="speak" onclick="say('olvidar')" type="button">🔊</button></div><h4 style="margin:16px 0 10px">🔄 Presente</h4><div class="conj-grid"><div class="conj-item"><div class="conj-person">Yo</div><div class="conj-form">olvido <button aria-label="Escuchar olvido" class="speak-inline" onclick="say('olvido')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Tú</div><div class="conj-form">olvidas <button aria-label="Escuchar olvidas" class="speak-inline" onclick="say('olvidas')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Él / Ella / Usted</div><div class="conj-form">olvida <button aria-label="Escuchar olvida" class="speak-inline" onclick="say('olvida')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Nosotros / Nosotras</div><div class="conj-form">olvidamos <button aria-label="Escuchar olvidamos" class="speak-inline" onclick="say('olvidamos')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Vosotros / Vosotras</div><div class="conj-form">olvidáis <button aria-label="Escuchar olvidáis" class="speak-inline" onclick="say('olvidáis')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Ellos / Ellas / Ustedes</div><div class="conj-form">olvidan <button aria-label="Escuchar olvidan" class="speak-inline" onclick="say('olvidan')" type="button">🔊</button></div></div></div><h4 style="margin:16px 0 10px">🔄 Pretérito indefinido</h4><div class="conj-grid"><div class="conj-item"><div class="conj-person">Yo</div><div class="conj-form">olvidé <button aria-label="Escuchar olvidé" class="speak-inline" onclick="say('olvidé')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Tú</div><div class="conj-form">olvidaste <button aria-label="Escuchar olvidaste" class="speak-inline" onclick="say('olvidaste')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Él / Ella / Usted</div><div class="conj-form">olvidó <button aria-label="Escuchar olvidó" class="speak-inline" onclick="say('olvidó')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Nosotros / Nosotras</div><div class="conj-form">olvidamos <button aria-label="Escuchar olvidamos" class="speak-inline" onclick="say('olvidamos')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Vosotros / Vosotras</div><div class="conj-form">olvidasteis <button aria-label="Escuchar olvidasteis" class="speak-inline" onclick="say('olvidasteis')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Ellos / Ellas / Ustedes</div><div class="conj-form">olvidaron <button aria-label="Escuchar olvidaron" class="speak-inline" onclick="say('olvidaron')" type="button">🔊</button></div></div></div><h4 style="margin:16px 0 10px">🗨️ Frases de ejemplo</h4><div style="display:grid;gap:10px"><div class="example-line" style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:var(--soft);border-left:4px solid var(--turq);border-radius:0 14px 14px 0;padding:12px 14px"><span>Lo olvidé.</span><button aria-label="Escuchar" class="speak" onclick="say('Lo olvidé')" type="button">🔊</button></div><div class="example-line" style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:var(--soft);border-left:4px solid var(--turq);border-radius:0 14px 14px 0;padding:12px 14px"><span>Olvido mi móvil.</span><button aria-label="Escuchar" class="speak" onclick="say('Olvido mi móvil')" type="button">🔊</button></div></div><p class="note" style="margin-top:14px">Mismo patrón que hablar.</p><div style="margin-top:14px"><a class="flashcard-link" href="flashcards-verbos-a2.html#olvidar" title="Ver este verbo en Flashcards">📚 Ver olvidar en Flashcards</a></div></div><div class="verb-card card" id="verb-mirar" style="margin:18px 0 22px;padding:18px 20px;border-radius:22px"><div class="verb-head" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap"><span class="verb" style="font-size:1.55rem">mirar</span><span class="tag">regular</span><button aria-label="Escuchar mirar" class="speak" onclick="say('mirar')" type="button">🔊</button></div><h4 style="margin:16px 0 10px">🔄 Presente</h4><div class="conj-grid"><div class="conj-item"><div class="conj-person">Yo</div><div class="conj-form">miro <button aria-label="Escuchar miro" class="speak-inline" onclick="say('miro')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Tú</div><div class="conj-form">miras <button aria-label="Escuchar miras" class="speak-inline" onclick="say('miras')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Él / Ella / Usted</div><div class="conj-form">mira <button aria-label="Escuchar mira" class="speak-inline" onclick="say('mira')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Nosotros / Nosotras</div><div class="conj-form">miramos <button aria-label="Escuchar miramos" class="speak-inline" onclick="say('miramos')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Vosotros / Vosotras</div><div class="conj-form">miráis <button aria-label="Escuchar miráis" class="speak-inline" onclick="say('miráis')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Ellos / Ellas / Ustedes</div><div class="conj-form">miran <button aria-label="Escuchar miran" class="speak-inline" onclick="say('miran')" type="button">🔊</button></div></div></div><h4 style="margin:16px 0 10px">🔄 Pretérito indefinido</h4><div class="conj-grid"><div class="conj-item"><div class="conj-person">Yo</div><div class="conj-form">miré <button aria-label="Escuchar miré" class="speak-inline" onclick="say('miré')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Tú</div><div class="conj-form">miraste <button aria-label="Escuchar miraste" class="speak-inline" onclick="say('miraste')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Él / Ella / Usted</div><div class="conj-form">miró <button aria-label="Escuchar miró" class="speak-inline" onclick="say('miró')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Nosotros / Nosotras</div><div class="conj-form">miramos <button aria-label="Escuchar miramos" class="speak-inline" onclick="say('miramos')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Vosotros / Vosotras</div><div class="conj-form">mirasteis <button aria-label="Escuchar mirasteis" class="speak-inline" onclick="say('mirasteis')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Ellos / Ellas / Ustedes</div><div class="conj-form">miraron <button aria-label="Escuchar miraron" class="speak-inline" onclick="say('miraron')" type="button">🔊</button></div></div></div><h4 style="margin:16px 0 10px">🗨️ Frases de ejemplo</h4><div style="display:grid;gap:10px"><div class="example-line" style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:var(--soft);border-left:4px solid var(--turq);border-radius:0 14px 14px 0;padding:12px 14px"><span>Mira, es que tengo prisa.</span><button aria-label="Escuchar" class="speak" onclick="say('Mira, es que tengo prisa')" type="button">🔊</button></div><div class="example-line" style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:var(--soft);border-left:4px solid var(--turq);border-radius:0 14px 14px 0;padding:12px 14px"><span>Mire, señor, un momento.</span><button aria-label="Escuchar" class="speak" onclick="say('Mire, señor, un momento')" type="button">🔊</button></div></div><p class="note" style="margin-top:14px">Mismo patrón que hablar.</p><div style="margin-top:14px"><a class="flashcard-link" href="flashcards-verbos-a2.html#mirar" title="Ver este verbo en Flashcards">📚 Ver mirar en Flashcards</a></div></div><div class="verb-card card" id="verb-parir" style="margin:18px 0 22px;padding:18px 20px;border-radius:22px"><div class="verb-head" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap"><span class="verb" style="font-size:1.55rem">parir</span><span class="tag">regular -ir</span><button aria-label="Escuchar parir" class="speak" onclick="say('parir')" type="button">🔊</button></div><h4 style="margin:16px 0 10px">🔄 Presente</h4><div class="conj-grid"><div class="conj-item"><div class="conj-person">Yo</div><div class="conj-form">paro <button aria-label="Escuchar paro" class="speak-inline" onclick="say('paro')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Tú</div><div class="conj-form">pares <button aria-label="Escuchar pares" class="speak-inline" onclick="say('pares')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Él / Ella / Usted</div><div class="conj-form">pare <button aria-label="Escuchar pare" class="speak-inline" onclick="say('pare')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Nosotros / Nosotras</div><div class="conj-form">parimos <button aria-label="Escuchar parimos" class="speak-inline" onclick="say('parimos')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Vosotros / Vosotras</div><div class="conj-form">parís <button aria-label="Escuchar parís" class="speak-inline" onclick="say('parís')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Ellos / Ellas / Ustedes</div><div class="conj-form">paren <button aria-label="Escuchar paren" class="speak-inline" onclick="say('paren')" type="button">🔊</button></div></div></div><h4 style="margin:16px 0 10px">🔄 Pretérito indefinido</h4><div class="conj-grid"><div class="conj-item"><div class="conj-person">Yo</div><div class="conj-form">parí <button aria-label="Escuchar parí" class="speak-inline" onclick="say('parí')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Tú</div><div class="conj-form">pariste <button aria-label="Escuchar pariste" class="speak-inline" onclick="say('pariste')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Él / Ella / Usted</div><div class="conj-form">parió <button aria-label="Escuchar parió" class="speak-inline" onclick="say('parió')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Nosotros / Nosotras</div><div class="conj-form">parimos <button aria-label="Escuchar parimos" class="speak-inline" onclick="say('parimos')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Vosotros / Vosotras</div><div class="conj-form">paristeis <button aria-label="Escuchar paristeis" class="speak-inline" onclick="say('paristeis')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Ellos / Ellas / Ustedes</div><div class="conj-form">parieron <button aria-label="Escuchar parieron" class="speak-inline" onclick="say('parieron')" type="button">🔊</button></div></div></div><h4 style="margin:16px 0 10px">🗨️ Frases de ejemplo</h4><div style="display:grid;gap:10px"><div class="example-line" style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:var(--soft);border-left:4px solid var(--turq);border-radius:0 14px 14px 0;padding:12px 14px"><span>La gata va a parir.</span><button aria-label="Escuchar" class="speak" onclick="say('La gata va a parir')" type="button">🔊</button></div><div class="example-line" style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:var(--soft);border-left:4px solid var(--turq);border-radius:0 14px 14px 0;padding:12px 14px"><span>La perra parió seis cachorros.</span><button aria-label="Escuchar" class="speak" onclick="say('La perra parió seis cachorros')" type="button">🔊</button></div></div><p class="note" style="margin-top:14px">Se usa para animales; en personas, dar a luz.</p><div style="margin-top:14px"><a class="flashcard-link" href="flashcards-verbos-a2.html#parir" title="Ver este verbo en Flashcards">📚 Ver parir en Flashcards</a></div></div><div class="verb-card card" id="verb-funcionar" style="margin:18px 0 22px;padding:18px 20px;border-radius:22px"><div class="verb-head" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap"><span class="verb" style="font-size:1.55rem">funcionar</span><span class="tag">regular</span><button aria-label="Escuchar funcionar" class="speak" onclick="say('funcionar')" type="button">🔊</button></div><h4 style="margin:16px 0 10px">🔄 Presente</h4><div class="conj-grid"><div class="conj-item"><div class="conj-person">Yo</div><div class="conj-form">funciono <button aria-label="Escuchar funciono" class="speak-inline" onclick="say('funciono')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Tú</div><div class="conj-form">funcionas <button aria-label="Escuchar funcionas" class="speak-inline" onclick="say('funcionas')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Él / Ella / Usted</div><div class="conj-form">funciona <button aria-label="Escuchar funciona" class="speak-inline" onclick="say('funciona')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Nosotros / Nosotras</div><div class="conj-form">funcionamos <button aria-label="Escuchar funcionamos" class="speak-inline" onclick="say('funcionamos')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Vosotros / Vosotras</div><div class="conj-form">funcionáis <button aria-label="Escuchar funcionáis" class="speak-inline" onclick="say('funcionáis')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Ellos / Ellas / Ustedes</div><div class="conj-form">funcionan <button aria-label="Escuchar funcionan" class="speak-inline" onclick="say('funcionan')" type="button">🔊</button></div></div></div><h4 style="margin:16px 0 10px">🔄 Pretérito indefinido</h4><div class="conj-grid"><div class="conj-item"><div class="conj-person">Yo</div><div class="conj-form">funcioné <button aria-label="Escuchar funcioné" class="speak-inline" onclick="say('funcioné')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Tú</div><div class="conj-form">funcionaste <button aria-label="Escuchar funcionaste" class="speak-inline" onclick="say('funcionaste')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Él / Ella / Usted</div><div class="conj-form">funcionó <button aria-label="Escuchar funcionó" class="speak-inline" onclick="say('funcionó')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Nosotros / Nosotras</div><div class="conj-form">funcionamos <button aria-label="Escuchar funcionamos" class="speak-inline" onclick="say('funcionamos')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Vosotros / Vosotras</div><div class="conj-form">funcionasteis <button aria-label="Escuchar funcionasteis" class="speak-inline" onclick="say('funcionasteis')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Ellos / Ellas / Ustedes</div><div class="conj-form">funcionaron <button aria-label="Escuchar funcionaron" class="speak-inline" onclick="say('funcionaron')" type="button">🔊</button></div></div></div><h4 style="margin:16px 0 10px">🗨️ Frases de ejemplo</h4><div style="display:grid;gap:10px"><div class="example-line" style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:var(--soft);border-left:4px solid var(--turq);border-radius:0 14px 14px 0;padding:12px 14px"><span>El baño no funciona.</span><button aria-label="Escuchar" class="speak" onclick="say('El baño no funciona')" type="button">🔊</button></div><div class="example-line" style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:var(--soft);border-left:4px solid var(--turq);border-radius:0 14px 14px 0;padding:12px 14px"><span>Mi reloj ya no funciona.</span><button aria-label="Escuchar" class="speak" onclick="say('Mi reloj ya no funciona')" type="button">🔊</button></div></div><p class="note" style="margin-top:14px">Mismo patrón que hablar.</p><div style="margin-top:14px"><a class="flashcard-link" href="flashcards-verbos-a2.html#funcionar" title="Ver este verbo en Flashcards">📚 Ver funcionar en Flashcards</a></div></div><div class="verb-card card" id="verb-estropearse" style="margin:18px 0 22px;padding:18px 20px;border-radius:22px"><div class="verb-head" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap"><span class="verb" style="font-size:1.55rem">estropearse</span><span class="tag">regular reflexivo</span><button aria-label="Escuchar estropearse" class="speak" onclick="say('estropearse')" type="button">🔊</button></div><h4 style="margin:16px 0 10px">🔄 Presente</h4><div class="conj-grid"><div class="conj-item"><div class="conj-person">Yo</div><div class="conj-form">me estropeo <button aria-label="Escuchar me estropeo" class="speak-inline" onclick="say('me estropeo')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Tú</div><div class="conj-form">te estropeas <button aria-label="Escuchar te estropeas" class="speak-inline" onclick="say('te estropeas')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Él / Ella / Usted</div><div class="conj-form">se estropea <button aria-label="Escuchar se estropea" class="speak-inline" onclick="say('se estropea')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Nosotros / Nosotras</div><div class="conj-form">nos estropeamos <button aria-label="Escuchar nos estropeamos" class="speak-inline" onclick="say('nos estropeamos')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Vosotros / Vosotras</div><div class="conj-form">os estropeáis <button aria-label="Escuchar os estropeáis" class="speak-inline" onclick="say('os estropeáis')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Ellos / Ellas / Ustedes</div><div class="conj-form">se estropean <button aria-label="Escuchar se estropean" class="speak-inline" onclick="say('se estropean')" type="button">🔊</button></div></div></div><h4 style="margin:16px 0 10px">🔄 Pretérito indefinido</h4><div class="conj-grid"><div class="conj-item"><div class="conj-person">Yo</div><div class="conj-form">me estropeé <button aria-label="Escuchar me estropeé" class="speak-inline" onclick="say('me estropeé')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Tú</div><div class="conj-form">te estropeaste <button aria-label="Escuchar te estropeaste" class="speak-inline" onclick="say('te estropeaste')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Él / Ella / Usted</div><div class="conj-form">se estropeó <button aria-label="Escuchar se estropeó" class="speak-inline" onclick="say('se estropeó')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Nosotros / Nosotras</div><div class="conj-form">nos estropeamos <button aria-label="Escuchar nos estropeamos" class="speak-inline" onclick="say('nos estropeamos')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Vosotros / Vosotras</div><div class="conj-form">os estropeasteis <button aria-label="Escuchar os estropeasteis" class="speak-inline" onclick="say('os estropeasteis')" type="button">🔊</button></div></div><div class="conj-item"><div class="conj-person">Ellos / Ellas / Ustedes</div><div class="conj-form">se estropearon <button aria-label="Escuchar se estropearon" class="speak-inline" onclick="say('se estropearon')" type="button">🔊</button></div></div></div><h4 style="margin:16px 0 10px">🗨️ Frases de ejemplo</h4><div style="display:grid;gap:10px"><div class="example-line" style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:var(--soft);border-left:4px solid var(--turq);border-radius:0 14px 14px 0;padding:12px 14px"><span>Se estropeó el coche.</span><button aria-label="Escuchar" class="speak" onclick="say('Se estropeó el coche')" type="button">🔊</button></div><div class="example-line" style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:var(--soft);border-left:4px solid var(--turq);border-radius:0 14px 14px 0;padding:12px 14px"><span>Mi móvil se estropea.</span><button aria-label="Escuchar" class="speak" onclick="say('Mi móvil se estropea')" type="button">🔊</button></div></div><p class="note" style="margin-top:14px">Estropeado: no funciona.</p><div style="margin-top:14px"><a class="flashcard-link" href="flashcards-verbos-a2.html#estropearse" title="Ver este verbo en Flashcards">📚 Ver estropearse en Flashcards</a></div></div></section>
+
+<section aria-labelledby="tab-ex" id="ex" role="tabpanel" tabindex="0"><h2>✏️ Ejercicios interactivos</h2>
+<div class="card"><h3>1 · Es que + excusa</h3><div id="q-esque"></div></div>
+<div class="card" style="margin-top:14px"><h3>2 · Educado o maleducado</h3><div id="q-educ"></div></div>
+<div class="card" style="margin-top:14px"><h3>3 · Vocabulario cotidiano</h3><div id="q-vocab"></div></div>
+<div class="card" style="margin-top:14px"><h3>4 · Tú, vosotros, usted, ustedes</h3><div id="q-tu"></div></div></section>
+
+<section aria-labelledby="tab-practica" id="practica" role="tabpanel" tabindex="0"><h2>🎯 Práctica y tarea</h2>
+<div class="card"><h3>🏠 Tarea</h3><div class="homework"><p><b>📖 Libro (para mañana)</b></p><ul><li>Página <b>76</b>: ejercicio <b>8</b> (apartados A y B). En B, al menos <b>dos ejemplos</b>.</li></ul></div></div>
+<div class="card" style="margin-top:14px"><h3>💬 Practica en pareja</h3><ul class="clean"><li>Pide un favor. Tu compañero dice que no de forma educada y después de forma maleducada.</li><li>Inventa una excusa original con «es que».</li><li>Cuenta qué te pasó con un objeto estropeado.</li></ul></div>
+<div class="card" style="margin-top:14px"><h3>🎯 Checklist</h3>
+<label><input onchange="tick(this)" type="checkbox"/> Sé justificar con «es que»</label><br/>
+<label><input onchange="tick(this)" type="checkbox"/> Distingo respuestas educadas y maleducadas</label><br/>
+<label><input onchange="tick(this)" type="checkbox"/> Conozco caerse, estropeado y quedarse dormido</label><br/>
+<label><input onchange="tick(this)" type="checkbox"/> Sé cambiar de tú a usted y a ustedes</label><br/>
+<label><input onchange="tick(this)" type="checkbox"/> Hice la página 76, ejercicio 8</label>
+<div class="progress" style="margin-top:12px"><span id="bar"></span></div><p class="small" id="count">0/5 completado</p></div></section>
+
+<div class="home-nav"><a aria-label="Volver al inicio del curso" class="home-link bottom-home" href="index.html">🏠 Volver al inicio</a></div>
+<footer>Registro individual de la clase del 03/11/2026. Basado en la pizarra, las páginas del libro y las notas de la clase.</footer>
+</div>
+<script>
+let esVoice=null, speechRate=0.88;
+function showTab(id,btn){
+ const target=document.getElementById(id); if(!target)return;
+ document.querySelectorAll('section[role="tabpanel"]').forEach(s=>s.classList.remove('active'));
+ target.classList.add('active');
+ document.querySelectorAll('.tab-nav button[role="tab"]').forEach(b=>{
+  const active=b===btn || b.dataset.tab===id;
+  b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));b.setAttribute('tabindex',active?'0':'-1');
+ });
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function pickEs(){if(!('speechSynthesis' in window))return;const vs=speechSynthesis.getVoices();esVoice=vs.find(v=>v.lang==='es-ES')||vs.find(v=>v.lang&&v.lang.toLowerCase().startsWith('es'))||null;}
+if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=pickEs;pickEs();}
+function say(txt){
+ if(!('speechSynthesis' in window)){return;}
+ // Limpiar símbolos de formato para que el lector pronuncie el contenido, no las barras.
+ const spoken=String(txt)
+  .replace(/[|]+/g,' ')
+  .replace(/_{2,}/g,', ... ,')
+  .replace(/\s*\/\s*/g, ', ')
+  .replace(/(?:^|\s):-{1,}\s*/g, ' ')
+  .replace(/[-]{2,}/g, ' ')
+  .replace(/\s{2,}/g, ' ')
+  .trim();
+ speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(spoken);u.lang='es-ES';u.rate=speechRate;if(esVoice)u.voice=esVoice;speechSynthesis.speak(u);
+}
+function setSpeechSpeed(rate,btn){speechRate=rate;document.querySelectorAll('.speed-btn').forEach(b=>b.classList.toggle('active',b===btn));}
+document.addEventListener('DOMContentLoaded',()=>{
+ document.querySelectorAll('.tab-nav button[role="tab"]').forEach(btn=>{btn.addEventListener('click',()=>showTab(btn.dataset.tab,btn));btn.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();const tabs=[...document.querySelectorAll('.tab-nav button[role="tab"]')];const i=tabs.indexOf(btn);const next=tabs[(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length];next.focus();showTab(next.dataset.tab,next);}});});
+ document.querySelectorAll('.speed-btn').forEach(btn=>btn.addEventListener('click',()=>setSpeechSpeed(Number(btn.dataset.rate),btn)));
+ const theme=document.querySelector('.theme-toggle');if(theme)theme.addEventListener('click',()=>{const light=document.documentElement.getAttribute('data-theme')!=='light';document.documentElement.setAttribute('data-theme',light?'light':'dark');theme.textContent=light?'☀️':'🌙';theme.setAttribute('aria-pressed',String(!light));});
+});
+// botón 🔊 en cada frase de ejemplo de TODAS las pestañas (solo el texto en español, dentro de <b>)
+document.querySelectorAll('.example').forEach(el=>{
+ const b=el.querySelector('b'); if(!b) return;
+ const txt=b.textContent.trim();
+ const wrap=document.createElement('span');
+ while(el.firstChild) wrap.appendChild(el.firstChild);
+ el.appendChild(wrap);
+ el.classList.add('sayable');
+ const btn=document.createElement('button');
+ btn.type='button';btn.className='speak';btn.textContent='🔊';
+ btn.setAttribute('aria-label','Escuchar: '+txt);
+ btn.onclick=()=>say(txt);
+ el.appendChild(btn);
+});
+const HAS_TTS='speechSynthesis' in window;
+if(!HAS_TTS) document.querySelectorAll('.sound-bar').forEach(x=>x.style.display='none');
+
+function makeQuiz(id,qs){
+  const box=document.getElementById(id); if(!box)return;
+  box.innerHTML='';
+  const form=document.createElement('div'); form.className='quiz-all';
+  qs.forEach((q,qi)=>{
+    const card=document.createElement('div');card.className='quiz-question';
+    const questionHead=document.createElement('div');questionHead.className='quiz-question-head';
+    const p=document.createElement('p');p.innerHTML='<b>'+q.t+'</b>';questionHead.appendChild(p);
+    const audio=document.createElement('button');audio.type='button';audio.className='quiz-audio';audio.textContent='🔊';audio.title='Escuchar la pregunta';audio.setAttribute('aria-label','Escuchar la pregunta');
+    audio.onclick=()=>say(q.t);
+    questionHead.appendChild(audio);card.appendChild(questionHead);
+    const grid=document.createElement('div');grid.className='choice-grid';
+    q.o.forEach((opt,i)=>{const optionWrap=document.createElement('div');optionWrap.className='quiz-option';const b=document.createElement('button');b.type='button';b.className='choice';b.dataset.i=i;b.textContent=opt;b.setAttribute('aria-pressed','false');b.addEventListener('click',()=>{
+        // Cada alternativa también se pronuncia al hacer clic.
+        // El audio usa el mismo control global Lento / Normal / Rápido.
+        say(opt);
+        const buttons=[...card.querySelectorAll('.choice')];
+        const fb=card.querySelector('.feedback');
+        buttons.forEach(x=>{x.classList.remove('selected','correct','wrong');x.setAttribute('aria-pressed','false');});
+        b.classList.add('selected');b.setAttribute('aria-pressed','true');card.dataset.answer=i;
+        if(i===q.a){
+          b.classList.add('correct');
+          fb.className='feedback ok';
+          fb.innerHTML='✅ Correcto.'+(q.e?'<br>'+q.e:'');
+          card.dataset.correct='true';
+        }else{
+          b.classList.add('wrong');
+          fb.className='feedback bad';
+          fb.innerHTML='❌ Incorrecto. Vuelve a intentarlo.';
+          card.dataset.correct='false';
+        }
+      });optionWrap.appendChild(b);grid.appendChild(optionWrap);});
+    card.appendChild(grid);
+    const fb=document.createElement('div');fb.className='feedback';fb.setAttribute('aria-live','polite');card.appendChild(fb);
+    form.appendChild(card);
+  });
+  const check=document.createElement('button');check.type='button';check.className='check-all';check.textContent='Comprobar Respuestas';
+  const result=document.createElement('div');result.className='quiz-result';result.setAttribute('aria-live','polite');
+  check.addEventListener('click',()=>{
+    let score=0, unanswered=0;
+    form.querySelectorAll('.quiz-question').forEach((card,qi)=>{
+      const q=qs[qi], selected=card.querySelector('.choice.selected'), buttons=card.querySelectorAll('.choice'), fb=card.querySelector('.feedback');
+      if(selected && Number(selected.dataset.i)===q.a){score++;}
+      else if(!selected){unanswered++;fb.className='feedback bad';fb.innerHTML='⚠️ Falta responder esta pregunta.';}
+    });
+    const incorrect=qs.length-score-unanswered;
+    result.innerHTML='<div class=\"result-main\">Resultado: <strong>'+score+' de '+qs.length+'</strong> respuestas correctas.</div>'
+      +'<div class=\"result-stats\"><span class=\"result-ok\">✅ '+score+' correctas</span>'
+      +'<span class=\"result-bad\">❌ '+incorrect+' incorrectas</span>'
+      +'<span class=\"result-warn\">⚠️ '+unanswered+' sin responder</span></div>';
+    check.disabled=true;
+  });
+  box.appendChild(form);box.appendChild(check);box.appendChild(result);
+}
+
+makeQuiz("q-esque",[{"t": "«No puedo. ___ tengo que estudiar.»", "o": ["Es que", "Por eso de", "Para que"], "a": 0, "e": "Es que justifica."}, {"t": "La excusa más natural para irte es…", "o": ["Tengo prisa.", "Perdona, me tengo que ir: tengo clase.", "Me voy ya."], "a": 1, "e": "Dar una causa concreta suena mejor."}, {"t": "Los nativos suelen decir…", "o": ["Es que no puedo.", "No, nunca.", "Lo siento muchísimo pero no puedo."], "a": 0, "e": "Es que es más corto."}]);
+makeQuiz("q-educ",[{"t": "Una respuesta educada a una petición es…", "o": ["Ni hablar.", "No, qué pesado.", "Lo siento, es que no puedo."], "a": 2, "e": "El tono educado importa."}, {"t": "Una respuesta maleducada es…", "o": ["Perdone, es que no puedo.", "Cállese ya.", "Lo siento mucho."], "a": 1, "e": "Es un tono duro."}, {"t": "«Formal» significa…", "o": ["usted y gramática formal", "siempre educado", "siempre tú"], "a": 0, "e": "Formal no es lo mismo que educado."}]);
+makeQuiz("q-vocab",[{"t": "Mi reloj no funciona: …", "o": ["está embarazado", "está ocupado", "está estropeado"], "a": 2, "e": "Estropeado = no funciona."}, {"t": "Pretérito: «Ayer ___ el café.» (caerse)", "o": ["se cayeron", "se cayó", "se caió"], "a": 1, "e": "Él: se cayó."}, {"t": "Dormir en casa de otra persona:", "o": ["quedarse dormido", "quedarse a dormir", "dormir de viaje"], "a": 1, "e": "Quedarse a dormir."}, {"t": "Una persona da a luz; una gata…", "o": ["pare", "da a luz", "se cae"], "a": 0, "e": "Parir para animales."}, {"t": "«Me apetece» funciona como…", "o": ["gustar", "ser", "estar"], "a": 0, "e": "Apetecer funciona como gustar."}]);
+makeQuiz("q-tu",[{"t": "¿Me ___ tu libro? (tú)", "o": ["deja", "dejáis", "dejas"], "a": 2, "e": "Tú: dejas."}, {"t": "¿Me ___ su libro? (usted)", "o": ["deja", "dejas", "dejan"], "a": 0, "e": "Usted: deja."}, {"t": "¿Me ___ el libro? (vosotros)", "o": ["dejáis", "dejas", "dejan"], "a": 0, "e": "Vosotros: dejáis."}, {"t": "¿Me ___ el libro? (ustedes)", "o": ["dejan", "deja", "dejáis"], "a": 0, "e": "Ustedes: dejan."}]);
+let done=0;
+function tick(cb){
+ done+=cb.checked?1:-1;
+ document.getElementById('bar').style.width=(done/5*100)+'%';
+ document.getElementById('count').textContent=done+'/5 completado';
+}
+</script>
+</body></html>
