@@ -940,6 +940,22 @@ const verbs = [
   { word: "aparcar", meaning: "",sticker: "🅿️",groupKey: "ar", forms: ["aparco","aparcas","aparca","aparcamos","aparcáis","aparcan"], noteKey: "publicarNote" },
   { word: "negociar", meaning: "",sticker: "🤝",groupKey: "ar", forms: ["negocio","negocias","negocia","negociamos","negociáis","negocian"], noteKey: "sameHablar" },
   { word: "relajarse", meaning: "",sticker: "😌",groupKey: "ar-refl", forms: ["me relajo","te relajas","se relaja","nos relajamos","os relajáis","se relajan"], noteKey: "reflexive" },
+  { word: "pelar", meaning: "",sticker: "🥔",groupKey: "ar", forms: ["pelo","pelas","pela","pelamos","peláis","pelan"], noteKey: "sameHablar" },
+  { word: "cortar", meaning: "",sticker: "🔪",groupKey: "ar", forms: ["corto","cortas","corta","cortamos","cortáis","cortan"], noteKey: "sameHablar" },
+  { word: "lavar", meaning: "",sticker: "🚿",groupKey: "ar", forms: ["lavo","lavas","lava","lavamos","laváis","lavan"], noteKey: "sameHablar" },
+  { word: "añadir", meaning: "",sticker: "➕",groupKey: "ir", forms: ["añado","añades","añade","añadimos","añadís","añaden"], noteKey: "sameSubir" },
+  { word: "mezclar", meaning: "",sticker: "🥣",groupKey: "ar", forms: ["mezclo","mezclas","mezcla","mezclamos","mezcláis","mezclan"], noteKey: "sameHablar" },
+  { word: "batir", meaning: "",sticker: "🥚",groupKey: "ir", forms: ["bato","bates","bate","batimos","batís","baten"], noteKey: "sameSubir" },
+  { word: "congelar", meaning: "",sticker: "🧊",groupKey: "ar", forms: ["congelo","congelas","congela","congelamos","congeláis","congelan"], noteKey: "sameHablar" },
+  { word: "asar", meaning: "",sticker: "🍗",groupKey: "ar", forms: ["aso","asas","asa","asamos","asáis","asan"], noteKey: "sameHablar" },
+  { word: "exprimir", meaning: "",sticker: "🍊",groupKey: "ir", forms: ["exprimo","exprimes","exprime","exprimimos","exprimís","exprimen"], noteKey: "sameSubir" },
+  { word: "escurrir", meaning: "",sticker: "💧",groupKey: "ir", forms: ["escurro","escurres","escurre","escurrimos","escurrís","escurren"], noteKey: "sameSubir" },
+  { word: "limitar", meaning: "",sticker: "🚧",groupKey: "ar", forms: ["limito","limitas","limita","limitamos","limitáis","limitan"], noteKey: "sameHablar" },
+  { word: "eliminar", meaning: "",sticker: "🚫",groupKey: "ar", forms: ["elimino","eliminas","elimina","eliminamos","elimináis","eliminan"], noteKey: "sameHablar" },
+  { word: "moderar", meaning: "",sticker: "⚖️",groupKey: "ar", forms: ["modero","moderas","modera","moderamos","moderáis","moderan"], noteKey: "sameHablar" },
+  { word: "aconsejar", meaning: "",sticker: "💡",groupKey: "ar", forms: ["aconsejo","aconsejas","aconseja","aconsejamos","aconsejáis","aconsejan"], noteKey: "sameHablar" },
+  { word: "calentar", meaning: "",sticker: "♨️",groupKey: "eie", forms: ["caliento","calientas","calienta","calentamos","calentáis","calientan"], noteKey: "dipDisap" },
+  { word: "recomendar", meaning: "",sticker: "👍",groupKey: "eie", forms: ["recomiendo","recomiendas","recomienda","recomendamos","recomendáis","recomiendan"], noteKey: "dipDisap" },
   { word: "soler", meaning: "",sticker: "🔁",groupKey: "oue", forms: ["suelo","sueles","suele","solemos","soléis","suelen"], noteKey: "sameComprobar" },
   { word: "consumir", meaning: "",sticker: "🛒",groupKey: "ir", forms: ["consumo","consumes","consume","consumimos","consumís","consumen"], noteKey: "sameSubir" },
   { word: "probar", meaning: "",sticker: "👅",groupKey: "oue", forms: ["pruebo","pruebas","prueba","probamos","probáis","prueban"], noteKey: "sameComprobar" },
@@ -1154,6 +1170,22 @@ const MEAN = {
   "aparcar": { pt: "estacionar", en: "to park" },
   "negociar": { pt: "negociar", en: "to negotiate" },
   "relajarse": { pt: "relaxar-se", en: "to relax" },
+  "pelar": { pt: "descascar", en: "to peel" },
+  "cortar": { pt: "cortar", en: "to cut" },
+  "lavar": { pt: "lavar", en: "to wash" },
+  "añadir": { pt: "acrescentar", en: "to add" },
+  "mezclar": { pt: "misturar", en: "to mix" },
+  "batir": { pt: "bater", en: "to beat / to whisk" },
+  "congelar": { pt: "congelar", en: "to freeze" },
+  "asar": { pt: "assar", en: "to roast / to grill" },
+  "exprimir": { pt: "espremer", en: "to squeeze" },
+  "escurrir": { pt: "escorrer", en: "to drain" },
+  "limitar": { pt: "limitar", en: "to limit" },
+  "eliminar": { pt: "eliminar", en: "to eliminate" },
+  "moderar": { pt: "moderar", en: "to moderate" },
+  "aconsejar": { pt: "aconselhar", en: "to advise" },
+  "calentar": { pt: "esquentar", en: "to heat" },
+  "recomendar": { pt: "recomendar", en: "to recommend" },
   "soler": { pt: "costumar", en: "to usually do" },
   "consumir": { pt: "consumir", en: "to consume" },
   "probar": { pt: "provar", en: "to try / to taste" },
@@ -1384,6 +1416,134 @@ const PAST_FORMS = {
   "nos relajamos",
   "os relajasteis",
   "se relajaron"
+ ],
+ "pelar": [
+  "pelé",
+  "pelaste",
+  "peló",
+  "pelamos",
+  "pelasteis",
+  "pelaron"
+ ],
+ "cortar": [
+  "corté",
+  "cortaste",
+  "cortó",
+  "cortamos",
+  "cortasteis",
+  "cortaron"
+ ],
+ "lavar": [
+  "lavé",
+  "lavaste",
+  "lavó",
+  "lavamos",
+  "lavasteis",
+  "lavaron"
+ ],
+ "añadir": [
+  "añadí",
+  "añadiste",
+  "añadió",
+  "añadimos",
+  "añadisteis",
+  "añadieron"
+ ],
+ "mezclar": [
+  "mezclé",
+  "mezclaste",
+  "mezcló",
+  "mezclamos",
+  "mezclasteis",
+  "mezclaron"
+ ],
+ "batir": [
+  "batí",
+  "batiste",
+  "batió",
+  "batimos",
+  "batisteis",
+  "batieron"
+ ],
+ "congelar": [
+  "congelé",
+  "congelaste",
+  "congeló",
+  "congelamos",
+  "congelasteis",
+  "congelaron"
+ ],
+ "asar": [
+  "asé",
+  "asaste",
+  "asó",
+  "asamos",
+  "asasteis",
+  "asaron"
+ ],
+ "exprimir": [
+  "exprimí",
+  "exprimiste",
+  "exprimió",
+  "exprimimos",
+  "exprimisteis",
+  "exprimieron"
+ ],
+ "escurrir": [
+  "escurrí",
+  "escurriste",
+  "escurrió",
+  "escurrimos",
+  "escurristeis",
+  "escurrieron"
+ ],
+ "limitar": [
+  "limité",
+  "limitaste",
+  "limitó",
+  "limitamos",
+  "limitasteis",
+  "limitaron"
+ ],
+ "eliminar": [
+  "eliminé",
+  "eliminaste",
+  "eliminó",
+  "eliminamos",
+  "eliminasteis",
+  "eliminaron"
+ ],
+ "moderar": [
+  "moderé",
+  "moderaste",
+  "moderó",
+  "moderamos",
+  "moderasteis",
+  "moderaron"
+ ],
+ "aconsejar": [
+  "aconsejé",
+  "aconsejaste",
+  "aconsejó",
+  "aconsejamos",
+  "aconsejasteis",
+  "aconsejaron"
+ ],
+ "calentar": [
+  "calenté",
+  "calentaste",
+  "calentó",
+  "calentamos",
+  "calentasteis",
+  "calentaron"
+ ],
+ "recomendar": [
+  "recomendé",
+  "recomendaste",
+  "recomendó",
+  "recomendamos",
+  "recomendasteis",
+  "recomendaron"
  ],
  "soler": [
   "solí",
