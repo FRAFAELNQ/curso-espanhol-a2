@@ -940,6 +940,11 @@ const verbs = [
   { word: "aparcar", meaning: "",sticker: "🅿️",groupKey: "ar", forms: ["aparco","aparcas","aparca","aparcamos","aparcáis","aparcan"], noteKey: "publicarNote" },
   { word: "negociar", meaning: "",sticker: "🤝",groupKey: "ar", forms: ["negocio","negocias","negocia","negociamos","negociáis","negocian"], noteKey: "sameHablar" },
   { word: "relajarse", meaning: "",sticker: "😌",groupKey: "ar-refl", forms: ["me relajo","te relajas","se relaja","nos relajamos","os relajáis","se relajan"], noteKey: "reflexive" },
+  { word: "perder", meaning: "",sticker: "🔍",groupKey: "eie", forms: ["pierdo","pierdes","pierde","perdemos","perdéis","pierden"], noteKey: "dipDisap" },
+  { word: "equivocarse", meaning: "",sticker: "🤦",groupKey: "ar-refl", forms: ["me equivoco","te equivocas","se equivoca","nos equivocamos","os equivocáis","se equivocan"], noteKey: "reflexive" },
+  { word: "quemarse", meaning: "",sticker: "🔥",groupKey: "ar-refl", forms: ["me quemo","te quemas","se quema","nos quemamos","os quemáis","se queman"], noteKey: "reflexive" },
+  { word: "confundir", meaning: "",sticker: "😵",groupKey: "ir", forms: ["confundo","confundes","confunde","confundimos","confundís","confunden"], noteKey: "sameSubir" },
+  { word: "rezar", meaning: "",sticker: "🙏",groupKey: "ar", forms: ["rezo","rezas","reza","rezamos","rezáis","rezan"], noteKey: "sameHablar" },
   { word: "moler", meaning: "",sticker: "⚙️",groupKey: "oue", forms: ["muelo","mueles","muele","molemos","moléis","muelen"], noteKey: "sameComprobar" },
   { word: "triturar", meaning: "",sticker: "🌀",groupKey: "ar", forms: ["trituro","trituras","tritura","trituramos","trituráis","trituran"], noteKey: "sameHablar" },
   { word: "quitar", meaning: "",sticker: "✂️",groupKey: "ar", forms: ["quito","quitas","quita","quitamos","quitáis","quitan"], noteKey: "sameHablar" },
@@ -1176,6 +1181,11 @@ const MEAN = {
   "aparcar": { pt: "estacionar", en: "to park" },
   "negociar": { pt: "negociar", en: "to negotiate" },
   "relajarse": { pt: "relaxar-se", en: "to relax" },
+  "perder": { pt: "perder", en: "to lose / to miss" },
+  "equivocarse": { pt: "enganar-se / errar", en: "to make a mistake" },
+  "quemarse": { pt: "queimar-se", en: "to burn" },
+  "confundir": { pt: "confundir", en: "to confuse / to mix up" },
+  "rezar": { pt: "rezar", en: "to pray" },
   "moler": { pt: "moer", en: "to grind" },
   "triturar": { pt: "triturar", en: "to blend / to crush" },
   "quitar": { pt: "tirar / remover", en: "to remove" },
@@ -1428,6 +1438,46 @@ const PAST_FORMS = {
   "nos relajamos",
   "os relajasteis",
   "se relajaron"
+ ],
+ "perder": [
+  "perdí",
+  "perdiste",
+  "perdió",
+  "perdimos",
+  "perdisteis",
+  "perdieron"
+ ],
+ "equivocarse": [
+  "me equivoqué",
+  "te equivocaste",
+  "se equivocó",
+  "nos equivocamos",
+  "os equivocasteis",
+  "se equivocaron"
+ ],
+ "quemarse": [
+  "me quemé",
+  "te quemaste",
+  "se quemó",
+  "nos quemamos",
+  "os quemasteis",
+  "se quemaron"
+ ],
+ "confundir": [
+  "confundí",
+  "confundiste",
+  "confundió",
+  "confundimos",
+  "confundisteis",
+  "confundieron"
+ ],
+ "rezar": [
+  "recé",
+  "rezaste",
+  "rezó",
+  "rezamos",
+  "rezasteis",
+  "rezaron"
  ],
  "moler": [
   "molí",
